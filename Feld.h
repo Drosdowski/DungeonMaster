@@ -1,0 +1,68 @@
+#if !defined(AFX_FELD_H__9F453601_8A22_11D2_9F0B_008048898454__INCLUDED_)
+#define AFX_FELD_H__9F453601_8A22_11D2_9F0B_008048898454__INCLUDED_
+
+#include "StdAfx.h"	// Hinzugefügt von ClassView
+#include "Mobs\Monster.h"
+#if _MSC_VER >= 1000
+#pragma once
+#endif // _MSC_VER >= 1000
+#include <CDoor.h>
+// Feld.h : header file
+//
+/////////////////////////////////////////////////////////////////////////////
+// CField view
+
+class CGrpMonster;
+class CFieldDecoration;
+class CField
+{
+protected:
+	CField();           // protected constructor used by dynamic creation
+public:
+	enum FeldTyp {
+		EMPTY = 0,
+		WALL = 1,
+		DOOR = 2
+	};
+
+	CField(VEKTOR koord, FeldTyp fieldType, CDoor::DoorType doorType, bool doorFrameEastAndWest, CFieldDecoration* pDeco[4]);           // protected constructor used by dynamic creation
+	CField(VEKTOR koord, FeldTyp fieldType, CFieldDecoration* pDeco[4]);           // protected constructor used by dynamic creation
+
+// Attributes
+public:
+protected:
+	CGrpMonster* m_pGrpMonster; 
+	FeldTyp m_iTyp;
+	CFieldDecoration* m_pWallDecoration[4];
+	CDoor* m_pDoor = NULL;
+// Operations
+public:
+	void InitMonsterGruppe(CPictures* pDoc, CDC* pDC, CMonster::MonsterTyp iTyp, int iAnz);
+	CGrpMonster* GetMonsterGroup();
+	void RemoveMonsterGroup();
+	void SetMonsterGroup(CGrpMonster* pGrpMonster);
+	FeldTyp HoleTyp()	{ return m_iTyp;};
+	CFieldDecoration* HoleDeko(int side) { return m_pWallDecoration[side]; }
+	CDoor* HoleDoor() { return m_pDoor;  }
+	void SetType(FeldTyp iTyp, CDoor::DoorType doorType, bool doorDirectionEastWest);
+	void SetType(FeldTyp iTyp);
+
+// Overrides
+
+// Implementation
+	virtual ~CField();
+
+	// Generated message map functions
+protected:
+	VEKTOR m_posKoord;
+	//{{AFX_MSG(CField)
+		// NOTE - the ClassWizard will add and remove member functions here.
+	//}}AFX_MSG
+};
+
+/////////////////////////////////////////////////////////////////////////////
+
+//{{AFX_INSERT_LOCATION}}
+// Microsoft Developer Studio will insert additional declarations immediately before the previous line.
+
+#endif // !defined(AFX_FELD_H__9F453601_8A22_11D2_9F0B_008048898454__INCLUDED_)

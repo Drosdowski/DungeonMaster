@@ -1,0 +1,464 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Deutsch (Deutschland) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 7, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif\r\n"
+    "#include ""res\\DM.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.deu\\afxres.rc""          // Standard components\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\DM.ico"
+
+IDR_DMTYPE              ICON                    "res\\DMDoc.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU
+BEGIN
+    POPUP "&Datei"
+    BEGIN
+        MENUITEM "&Neu\tStrg+N",                ID_FILE_NEW
+        MENUITEM "Ö&ffnen...\tStrg+O",          ID_FILE_OPEN
+        MENUITEM "S&peichern\tStrg+S",          ID_FILE_SAVE
+        MENUITEM "Speichern &unter...",         ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "Letzte Datei",                ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "&Beenden",                    ID_APP_EXIT
+    END
+    POPUP "&Bearbeiten"
+    BEGIN
+        MENUITEM "&Rückgängig\tStrg+Z",         ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "&Ausschneiden\tStrg+X",       ID_EDIT_CUT
+        MENUITEM "&Kopieren\tStrg+C",           ID_EDIT_COPY
+        MENUITEM "E&infügen\tStrg+V",           ID_EDIT_PASTE
+    END
+    POPUP "&?"
+    BEGIN
+        MENUITEM "Inf&o über DM...",            ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG 0, 0, 217, 55
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Info über DM"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "DM, Version 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 1998",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,32,14,WS_GROUP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040704B0"
+        BEGIN
+            VALUE "FileDescription", "DM MFC Application"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "DM"
+            VALUE "LegalCopyright", "Copyright (C) 1998"
+            VALUE "OriginalFilename", "DM.EXE"
+            VALUE "ProductName", "DM Application"
+            VALUE "ProductVersion", "1, 0, 0, 1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x407, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 210
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP_KRAM         BITMAP                  "res\\Kram.bmp"
+
+IDB_BITMAP_E            BITMAP                  "res\\E.bmp"
+
+IDB_BITMAP_ICONS        BITMAP                  "res\\Icons.bmp"
+
+IDB_BITMAP_ICONS3D      BITMAP                  "res\\Icons3d.bmp"
+
+IDB_BITMAP_ICONS3DB     BITMAP                  "res\\Icons3db.bmp"
+
+IDB_BITMAP_PCST042      BITMAP                  "res\\Pcst_042.bmp"
+
+IDB_BITMAP_RUCK         BITMAP                  "res\\Ruck.bmp"
+
+IDB_BITMAP_TREP         BITMAP                  "res\\Trep.bmp"
+
+IDB_BITMAP_PINV         BITMAP                  "res\\Pinv.bmp"
+
+IDB_BITMAP_STEINE       BITMAP                  "res\\Steine.bmp"
+
+IDB_MUMMY_FRONT         BITMAP                  "res\\Mummy_Front.bmp"
+
+IDB_MUMMY_ATTACK        BITMAP                  "res\\Mummy_Attack.bmp"
+
+IDB_MUMMY_BACK          BITMAP                  "res\\Mummy_Back.bmp"
+
+IDB_MUMMY_RIGHT         BITMAP                  "res\\Mummy_Right.bmp"
+
+IDB_MAGICBG             BITMAP                  "res\\magicbg.bmp"
+
+IDB_BITMAP_E0L          BITMAP                  "res\\Wall0_Left.bmp"
+
+IDB_BITMAP_E0LF         BITMAP                  "res\\Wall0_LeftF.bmp"
+
+IDB_BITMAP_E0R          BITMAP                  "res\\Wall0_Right.bmp"
+
+IDB_BITMAP_E0RF         BITMAP                  "res\\Wall0_RightF.bmp"
+
+IDB_BITMAP_E1M          BITMAP                  "res\\Wall1_Front.bmp"
+
+IDB_BITMAP_E1MF         BITMAP                  "res\\Wall1_FrontF.bmp"
+
+IDB_BITMAP_E1L          BITMAP                  "res\\Wall1_Left.bmp"
+
+IDB_BITMAP_E1LF         BITMAP                  "res\\Wall1_LeftF.bmp"
+
+IDB_BITMAP_E1R          BITMAP                  "res\\Wall1_Right.bmp"
+
+IDB_BITMAP_E1RF         BITMAP                  "res\\Wall1_RightF.bmp"
+
+IDB_BITMAP_E2FL         BITMAP                  "res\\Wall2_FarLeft.bmp"
+
+IDB_BITMAP_E2FR         BITMAP                  "res\\Wall2_FarRight.bmp"
+
+IDB_BITMAP_E2M          BITMAP                  "res\\Wall2_Front.bmp"
+
+IDB_BITMAP_E2MF         BITMAP                  "res\\Wall2_FrontF.bmp"
+
+IDB_BITMAP_E2L          BITMAP                  "res\\Wall2_Left.bmp"
+
+IDB_BITMAP_E2LF         BITMAP                  "res\\Wall2_LeftF.bmp"
+
+IDB_BITMAP_E2R          BITMAP                  "res\\Wall2_Right.bmp"
+
+IDB_BITMAP_E2RF         BITMAP                  "res\\Wall2_RightF.bmp"
+
+IDB_BITMAP_E3FL         BITMAP                  "res\\Wall3_FarLeft.bmp"
+
+IDB_BITMAP_E3FR         BITMAP                  "res\\Wall3_FarRight.bmp"
+
+IDB_BITMAP_E3M          BITMAP                  "res\\Wall3_Front.bmp"
+
+IDB_BITMAP_E3MF         BITMAP                  "res\\Wall3_FrontF.bmp"
+
+IDB_BITMAP_E3L          BITMAP                  "res\\Wall3_Left.bmp"
+
+IDB_BITMAP_E3LF         BITMAP                  "res\\Wall3_LeftF.bmp"
+
+IDB_BITMAP_E3R          BITMAP                  "res\\Wall3_Right.bmp"
+
+IDB_BITMAP_E3RF         BITMAP                  "res\\Wall3_RightF.bmp"
+
+IDB_SKELETON_ATTACK     BITMAP                  "res\\Skeleton_Attack.bmp"
+
+IDB_SKELETON_BACK       BITMAP                  "res\\Skeleton_Back.bmp"
+
+IDB_SKELETON_FRONT      BITMAP                  "res\\Skeleton_Front.bmp"
+
+IDB_SKELETON_RIGHT      BITMAP                  "res\\Skeleton_Right.bmp"
+
+IDB_LEVER_UP_FRONT      BITMAP                  "res\\LeverUp_Front.bmp"
+
+IDB_LEVER_UP_RIGHT      BITMAP                  "res\\LeverUp_Right.bmp"
+
+IDB_LEVER_DOWN_FRONT    BITMAP                  "res\\LeverDown_Front.bmp"
+
+IDB_LEVER_DOWN_RIGHT    BITMAP                  "res\\LeverDown_Right.bmp"
+
+IDB_DOOR_FRAME_0        BITMAP                  "res\\Door_Frame_0_Front.bmp"
+
+IDB_DOOR_FRAME_1L       BITMAP                  "res\\Door_Frame_1_Left.bmp"
+
+IDB_DOOR_FRAME_2L       BITMAP                  "res\\Door_Frame_2_Left.bmp"
+
+IDB_DOOR_FRAME_3L       BITMAP                  "res\\Door_Frame_3_Left.bmp"
+
+IDB_DOOR_FRAME_3FL      BITMAP                  "res\\Door_Frame_3_FarLeft.bmp"
+
+IDB_DOOR_FRONT_1T       BITMAP                  "res\\Door_Front_Top_1.bmp"
+
+IDB_DOOR_FRONT_2T       BITMAP                  "res\\Door_Front_Top_2.bmp"
+
+IDB_DOOR_IRON_1         BITMAP                  "res\\Door_Iron_1.bmp"
+
+IDB_DOOR_IRON_2         BITMAP                  "res\\Door_Iron_2.bmp"
+
+IDB_DOOR_IRON_3         BITMAP                  "res\\Door_Iron_3.bmp"
+
+IDB_ACTIONS_AREA        BITMAP                  "res\\ActionsArea.bmp"
+
+IDB_ONE_HAND            BITMAP                  "res\\oneHand.bmp"
+
+IDB_ACTIONS_DAMAGE      BITMAP                  "res\\ActionsDamage.bmp"
+
+IDB_FOUNTAIN_F          BITMAP                  "res\\Fountain_Front.bmp"
+
+IDB_FOUNTAIN_L          BITMAP                  "res\\Fountain_Left.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDR_MAINFRAME           "DM\n\nDM\n\n\nDM.Document\nDM Document"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_APP_TITLE       "DM"
+    AFX_IDS_IDLEMESSAGE     "Bereit"
+END
+
+STRINGTABLE
+BEGIN
+    ID_INDICATOR_EXT        "ER"
+    ID_INDICATOR_CAPS       "UF"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "RF"
+    ID_INDICATOR_OVR        "ÜB"
+    ID_INDICATOR_REC        "MA"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_NEW             "Erstellt ein neues Dokument.\nNeu"
+    ID_FILE_OPEN            "Öffnet ein bestehendes Dokument.\nÖffnen"
+    ID_FILE_CLOSE           "Schließt das aktive Dokument.\nSchließen"
+    ID_FILE_SAVE            "Speichert das aktive Dokument.\nSpeichern"
+    ID_FILE_SAVE_AS         "Speichert das aktive Dokument unter neuem Namen.\nSpeichern unter"
+END
+
+STRINGTABLE
+BEGIN
+    ID_APP_ABOUT            "Zeigt Programm-Informationen, Versionsnummer und Copyright an.\nInfo"
+    ID_APP_EXIT             "Verläßt die Anwendung; fragt, ob Dokumente gespeichert werden sollen.\nBeenden"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_MRU_FILE1       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE2       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE3       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE4       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE5       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE6       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE7       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE8       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE9       "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE10      "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE11      "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE12      "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE13      "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE14      "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE15      "Öffnet dieses Dokument."
+    ID_FILE_MRU_FILE16      "Öffnet dieses Dokument."
+END
+
+STRINGTABLE
+BEGIN
+    ID_NEXT_PANE            "Wechselt zum nächsten Fensterausschnitt.\nNächster Ausschnitt"
+    ID_PREV_PANE            "Springt zum vorherigen Fensterausschnitt zurück.\nVorheriger Ausschnitt"
+END
+
+STRINGTABLE
+BEGIN
+    ID_WINDOW_SPLIT         "Teilt das aktive Fenster in Ausschnitte.\nTeilen"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_CLEAR           "Löscht die Markierung.\nLöschen"
+    ID_EDIT_CLEAR_ALL       "Löscht alles.\nAlles löschen"
+    ID_EDIT_COPY            "Kopiert die Markierung und überträgt sie in die Zwischenablage.\nKopieren"
+    ID_EDIT_CUT             "Entfernt die Markierung und überträgt sie in die Zwischenablage.\nAusschneiden"
+    ID_EDIT_FIND            "Sucht den angegebenen Text.\nSuchen"
+    ID_EDIT_PASTE           "Fügt den Inhalt der Zwischenablage ein.\nEinfügen"
+    ID_EDIT_REPEAT          "Wiederholt die letzte Aktion.\nWiederholen"
+    ID_EDIT_REPLACE         "Ersetzt einen bestimmten Text durch einen anderen.\nErsetzen"
+    ID_EDIT_SELECT_ALL      "Markiert das gesamte Dokument.\nAlles markieren"
+    ID_EDIT_UNDO            "Macht die letzte Aktion rückgängig.\nRückgängig"
+    ID_EDIT_REDO            "Wiederholt die vorher rückgängig gemachte Aktion.\nWiederherstellen"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCSIZE          "Ändert die Fenstergröße."
+    AFX_IDS_SCMOVE          "Ändert die Position des Fensters."
+    AFX_IDS_SCMINIMIZE      "Verkleinert das Fenster zu einem Symbol."
+    AFX_IDS_SCMAXIMIZE      "Vergrößert das Fenster zu voller Größe."
+    AFX_IDS_SCNEXTWINDOW    "Wechselt zum nächsten Dokumentfenster."
+    AFX_IDS_SCPREVWINDOW    "Wechselt zum vorherigen Dokumentfenster."
+    AFX_IDS_SCCLOSE         "Schließt das aktive Fenster und fordert zur Dokumentspeicherung auf."
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCRESTORE       "Stellt das Fenster in seiner normalen Größe wieder her."
+    AFX_IDS_SCTASKLIST      "Aktiviert die Task-Liste."
+END
+
+#endif    // Deutsch (Deutschland) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
+#ifdef _WIN32
+LANGUAGE 7, 1
+#pragma code_page(1252)
+#endif
+#include "res\DM.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.deu\afxres.rc"          // Standard components
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{6180bb6c-717a-46ee-b1fe-03b88c46dc25}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{5b0a8a9b-1848-405d-b838-cec013f10d53}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{3693650b-efbd-4704-bf15-cd7ab07ae9f8}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Mobs\Character.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DMDoc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DMView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Feld.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\MobGroups\GrpChar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\MobGroups\GrpHeld.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\MobGroups\GrpMonster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\Held.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\Monster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RaumView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rucksack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZauberView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Decoration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pictures\CPictures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CHelpfulValues.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\Skelett.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mobs\Mumie.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CDoor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pictures\CDoorPic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pictures\CLeverPic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pictures\CBasePictures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pictures\CWallPic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pictures\CFountainPic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CScreenCoords.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DM.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Mobs\Character.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DMDoc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DMView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Feld.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mobs\MobGroups\GrpChar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mobs\MobGroups\GrpHeld.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mobs\MobGroups\GrpMonster.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mobs\Held.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mobs\Monster.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RaumView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rucksack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ZauberView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Decoration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\CPictures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CHelpfulValues.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mobs\Skelett.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mobs\Mumie.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CDoor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\CDoorPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\CLeverPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\CBasePictures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\CWallPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\CFountainPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CScreenCoords.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\DM.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\DMDoc.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\E.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Icons.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Icons3d.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Icons3db.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Kram.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\magicbg.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Pcst_042.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Pinv.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Ruck.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Steine.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Trep.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall0_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall0_LeftF.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall0_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall0_RightF.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall1_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall1_FrontF.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall1_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall1_LeftF.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall1_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall1_RightF.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall2_FarLeft.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall2_FarRight.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall2_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall2_FrontF.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall2_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall2_LeftF.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall2_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall2_RightF.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall3_FarLeft.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall3_FarRight.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall3_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall3_FrontF.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall3_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall3_LeftF.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall3_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Wall3_RightF.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Skeleton_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Skeleton_Attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Skeleton_Back.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Skeleton_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bitmap1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Mummy_Attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Mummy_Back.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Mummy_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Mummy_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\LeverDown_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\LeverDown_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\LeverUp_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\LeverUp_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door_Frame_0_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door_Frame_1_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door_Frame_2_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door_Frame_3_FarLeft.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door_Frame_3_Left.png" />
+    <Image Include="res\Door_Front_Top_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door_Front_Top_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door_Iron_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door_Iron_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door_Iron_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door_Frame_3_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ActionsArea.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OneHand.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ActionsDamage.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Fountain_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Fountain_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="res\DM.rc2">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="sound\DMCSB-SoundEffect-RunningIntoAWall.mp3" />
+    <Media Include="sound\DMCSB-SoundEffect-Door.mp3" />
+    <Media Include="sound\DMCSB-SoundEffect-Move(Skeleton).mp3" />
+  </ItemGroup>
+</Project>
