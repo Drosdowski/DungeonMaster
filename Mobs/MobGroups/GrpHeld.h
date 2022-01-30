@@ -33,7 +33,7 @@ public:
 
 // Implementierung
 public:
-	void UpdateRucksack(CDC* pDC);
+	void UpdateRucksack(CDC* pDC, CPictures* pPictures);
 	void Aktiviere(int n);
 	void InitHeld(CPictures* pPictures, int nr);
 	CHeld* GetActiveHero() { return (CHeld*)m_pMember[m_iAktiverHeld]; }
@@ -49,7 +49,7 @@ public:
 // überschriebene Methoden
 	
 	bool SetzeModus(CDC* pDC, int iModus);	
-	void Zeichnen(CDC* pDC, int iModus);
+	void Zeichnen(CDC* pDC, CPictures* pPictures, int iModus);
 
 	virtual ~CGrpHeld();
 #ifdef _DEBUG

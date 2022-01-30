@@ -7,6 +7,7 @@
 #include "Feld.h"
 #include "RaumView.h"
 #include "Decoration.h"
+#include "CDungeonMap.h"
 #include "Pictures\CPictures.h"
 #include "Pictures\CDoorPic.h"
 #include "Pictures\CWallPic.h"
@@ -52,11 +53,7 @@ CRaumView::CRaumView()
 
 CRaumView::~CRaumView()
 {
-	for (int i=0; i<FELD_MAX_X; i++)
-		for (int j = 0; j < FELD_MAX_Y; j++) // Weil Baum
-		{			
-			delete m_pFeld[i][j][0];
-		}
+	delete m_pMap;
 	delete m_values;
 	delete m_pDoorPic;
 	delete m_pWallPic;
@@ -243,6 +240,46 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 		}
 }
 
+void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField) {
+	// Monster zeichnen
+	CGrpMonster* pGrpMon = (CGrpMonster*)pField->GetMonsterGroup();
+	if (pGrpMon)
+	{
+		int xx = wallXFactor[xxx];
+
+		for (int i = 1; i < 5; i++)
+		{		
+			CMonster* monster = pGrpMon->GetMonster(i);
+			if (monster && monster->Hp() > 0) // todo staubwolke hier berücksichtigen
+			{
+				int iRicht = (6 - monster->m_chrDirection + richt) % 4;
+				bool drawLeftInvers = iRicht == 3;
+				CBitmap bmp;
+				BITMAP bmpInfo;
+
+				bmp.LoadBitmap(monster->GetIDB(iRicht));
+
+				//get original size of bitmap
+				bmp.GetBitmap(&bmpInfo);
+				double faktor = m_pPictures->getFaktor(ebene);
+
+				// Bild Mitte: 225 / 78
+				int posX = 225 - bmpInfo.bmWidth * faktor + (xx * 156);
+				int posY = 100 + bmpInfo.bmHeight * (1 - faktor) / 2;
+
+				cdc->SelectObject(bmp);
+				if (drawLeftInvers) {
+					cdc->StretchBlt(0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, cdc, bmpInfo.bmWidth, 0, -bmpInfo.bmWidth, bmpInfo.bmHeight, SRCCOPY);
+					pDC->TransparentBlt(posX, posY, bmpInfo.bmWidth * faktor * 2, bmpInfo.bmHeight * faktor * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, monster->transCol);
+				}
+				else {
+					pDC->TransparentBlt(posX, posY, bmpInfo.bmWidth * faktor * 2, bmpInfo.bmHeight * faktor * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, monster->transCol);
+				}
+			}
+		}
+	}
+}
+
 void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, CDC* cdc) {
 	int rechterRand = w * 2 * faktor + x;
 	int reducedWidth = w;
@@ -290,10 +327,10 @@ void CRaumView::Zeichnen(CDC* pDC)
 				int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
 				int addx = x + ebene * sty + xx * stx;
 				int addy = y - ebene * stx + xx * sty;
-				CField* pField = m_pFeld[addx][addy][z];
+				CField* pField = m_pMap->GetField(addx,addy,z);
 				int fieldType = pField->HoleTyp();
 				
-				if (fieldType == CField::FeldTyp::WALL && ((ebene != 0) || (xx != 0)))
+				if (fieldType == CField::FeldTyp::WALL && ((ebene != 0) || (xxx != 0)))
 				{
 					DrawWall(pDC, &compCdc, xxx, ebene, richt, pField);
 				}
@@ -303,11 +340,7 @@ void CRaumView::Zeichnen(CDC* pDC)
 				}
 				else if (ebene > 0 && xxx > 1)
 				{
-					// Monster zeichnen
-					CGrpMonster* pGrpMon = (CGrpMonster*)pField->GetMonsterGroup();
-					if (pGrpMon)
-						pGrpMon->Zeichnen(pDC, ebene, richt, xx);
-
+					DrawMonster(pDC, &compCdc, xxx, ebene, richt, pField);
 				}
 			}
 		}
@@ -323,13 +356,13 @@ void CRaumView::Zeichnen(CDC* pDC)
 }
 
 CGrpMonster* CRaumView::GetMonsterGroup(VEKTOR pos) {
-	CField* pField = m_pFeld[pos.x][pos.y][pos.z];
+	CField* pField = m_pMap->GetField(pos); 
 	return pField->GetMonsterGroup();
 }
 
 bool CRaumView::Betrete(VEKTOR pos)
 {
-	CField* pField = m_pFeld[pos.x][pos.y][pos.z];
+	CField* pField = m_pMap->GetField(pos);
 	CField::FeldTyp iTyp = pField->HoleTyp();
 	if (iTyp == CField::FeldTyp::WALL)
 		return true;
@@ -354,7 +387,7 @@ void CRaumView::MoveAnythingNearby() {
 	VEKTOR held = m_pDoc->m_pGrpHelden->GetPos();
 	for (int i = max(held.x - 4, 0); i < min(held.x + 4, FELD_MAX_X); i++) {
 		for (int j = max(held.y - 4, 0); j < min(held.y + 4, FELD_MAX_Y); j++) {
-			CField* field = m_pFeld[i][j][held.z];
+			CField* field = m_pMap->GetField(i, j, held.z);
 			CGrpMonster* pGrpMon = field->GetMonsterGroup();
 			if (pGrpMon)
 			{
@@ -365,7 +398,7 @@ void CRaumView::MoveAnythingNearby() {
 				{
 					VEKTOR target = MonsterMoveOrAttack(pGrpMon);
 					if (target.x != i || target.y != j) {
-						CField* targetField = m_pFeld[target.x][target.y][held.z];
+						CField* targetField = m_pMap->GetField(target);
 						field->SetMonsterGroup(NULL);
 						targetField->SetMonsterGroup(pGrpMon);
 					}
@@ -403,7 +436,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 
 	// Versuch, in Blickrichtung zu gehen, ggf. Angriff!
 	VEKTOR target = pGrpMon->HoleZielFeld(VORWAERTS);
-	CField* targetField = m_pFeld[target.x][target.y][target.z];
+	CField* targetField = m_pMap->GetField(target);
 
 	int heroRicht = m_pDoc->m_pGrpHelden->HoleRichtung();
 
@@ -468,46 +501,8 @@ void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
 	m_pWallPic = new CWallPic(pDC);
 	m_pLeverPic = new CLeverPic(pDC);
 	m_pFountainPic = new CFountainPic(pDC);
-
-	for (int i=0; i<FELD_MAX_X; i++)
-		for (int j=0; j<FELD_MAX_Y; j++)
-		{
-			CField::FeldTyp iFieldType =((((j%4) !=0) || (i == FELD_MAX_X / 2))
-				&& (j>3) && (j<FELD_MAX_Y-3)
-				&& (i>3) && (i<FELD_MAX_X-3)
-				) ? CField::FeldTyp::EMPTY : CField::FeldTyp::WALL;
-			
-			if ((i == FELD_MAX_X / 2) && (j == FELD_MAX_Y / 2 + 1)) {
-				iFieldType = CField::FeldTyp::DOOR;
-			}
-			VEKTOR pos; pos.x = i; pos.y = j; pos.z = 0;
-
-			CFieldDecoration* deco[4];
-			for (int b = 0; b < 4; b++) {
-				if (i % 4 == 1) {
-					deco[b] = new CFieldDecoration(Switch);
-				} else if (i % 4 == 3) {
-					deco[b] = new CFieldDecoration(Fountain);
-				}
-				else {
-					deco[b] = new CFieldDecoration(None);
-				}
-			}
-
-			if (iFieldType == CField::FeldTyp::DOOR)
-				m_pFeld[i][j][0] = new CField(pos, iFieldType, CDoor::DoorType::Iron, true, deco);
-			else 
-				m_pFeld[i][j][0] = new CField(pos, iFieldType, deco);
-			/*if ((i == FELD_MAX_X / 2) && (j == FELD_MAX_Y / 2 + 1)) {
-				m_pFeld[i][j][0]->InitMonsterGruppe(m_pPictures, pDC, CMonster::MonsterTyp::MUMIE, 1);
-			}
-			else*/ 
-			
-			if ((i == FELD_MAX_X / 2) && (j == FELD_MAX_Y / 2 + 5)) {
-				m_pFeld[i][j][0]->InitMonsterGruppe(m_pPictures, pDC, CMonster::MonsterTyp::SKELETT, 1);
-			}
-		}
-	
+	m_pMap = new CDungeonMap();
+	m_pMap->DemoMap();	
 }
 
 void CRaumView::OnTrigger()
@@ -521,7 +516,7 @@ void CRaumView::OnTrigger()
 	int richt = m_pDoc->m_pGrpHelden->HoleRichtung();
 	int addx = x + m_values->m_sty[richt];
 	int addy = y - m_values->m_stx[richt];
-	CField* feld = m_pFeld[addx][addy][z];
+	CField* feld = m_pMap->GetField(addx, addy, z);
 	int iFeld = feld->HoleTyp();
 
 	// Testweise. Space = Wand vor Spieler erzeugen/löschen

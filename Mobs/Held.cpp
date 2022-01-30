@@ -48,7 +48,6 @@ CHeld::CHeld(CPictures* pPictures, int iIndex, CString strName): CCharacter()
 		m_Farbe[4] = BLAU; break;
 	}
 
-	m_pPictures = pPictures;
 	m_pRucksack = new CRucksack(pPictures);
 }
 
@@ -118,13 +117,13 @@ void CHeld::WaffeZeichnen(CDC* pDC)
 	// ggf. die Hand (zweimal!)
 }
 
-void CHeld::SymbolZeichnen(CDC* pDC)
+void CHeld::SymbolZeichnen(CDC* pDC, CPictures* pPictures)
 {
 	// kleines Symbol oben rechts; zeigt Richtung / Subpos der einzelnen Helden an
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 	
-	tmpdc.SelectObject(m_pPictures->GetRucksack());
+	tmpdc.SelectObject(pPictures->GetRucksack());
 	int sx = 560 +(((m_iIndex==1) || (m_iIndex ==4)) ? 0 : 40);
 	int sy =	   (m_iIndex > 2) ? 28 : 0;
 	
@@ -134,24 +133,24 @@ void CHeld::SymbolZeichnen(CDC* pDC)
 	tmpdc.DeleteDC();
 }
 
-void CHeld::HaendeZeichnen(CDC* pDC)
+void CHeld::HaendeZeichnen(CDC* pDC, CPictures* pPictures)
 {
 	// wird ggf. mit Waffezeichnen verschmelzen
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 	
-	tmpdc.SelectObject(m_pPictures->GetRucksack());
+	tmpdc.SelectObject(pPictures->GetRucksack());
 	pDC->BitBlt((m_iIndex-1)*138, 0, 138, 64, &tmpdc, 0, 0, SRCCOPY);
 
 	tmpdc.DeleteDC();
 }
 
-void CHeld::KnochenZeichnen(CDC* pDC)
+void CHeld::KnochenZeichnen(CDC* pDC, CPictures* pPictures)
 {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 	
-	tmpdc.SelectObject(m_pPictures->GetKram());
+	tmpdc.SelectObject(pPictures->GetKram());
 	pDC->BitBlt((m_iIndex-1)*138, 0, 138, 56, &tmpdc, 276, 320, SRCCOPY);
 
 	tmpdc.DeleteDC();
@@ -178,14 +177,14 @@ void CHeld::NameZeichnen(CDC* pDC)
 	pDC->ExtTextOut(x+4,-3,ETO_CLIPPED | ETO_OPAQUE, CRect(x,0,x+86,10), m_strName, NULL);
 }
 
-void CHeld::SchadenZeichnen(CDC* pDC)
+void CHeld::SchadenZeichnen(CDC* pDC, CPictures* pPictures)
 {
 	if (m_iReceivedDmg>0) 
 	{
 		CDC tmpdc;
 		tmpdc.CreateCompatibleDC(pDC);
 		
-		tmpdc.SelectObject(m_pPictures->GetKram());
+		tmpdc.SelectObject(pPictures->GetKram());
 		pDC->BitBlt((m_iIndex-1)*138, 0, 84, 14, &tmpdc, 192, 92, SRCCOPY);
 
 		tmpdc.DeleteDC();

@@ -78,7 +78,7 @@ void CGrpHeld::InitHeld(CPictures* pPictures, const int nr)
 		CHeld* pHeld = (CHeld*) m_pMember[nr];
 		
 		CDC* pDC = ((CDMApp*)AfxGetApp())->m_pView->GetDC();
-		pHeld->HaendeZeichnen(pDC);
+		pHeld->HaendeZeichnen(pDC, pPictures);
 		pHeld->NameZeichnen(pDC);
 		pHeld->WerteZeichnen(pDC);
 
@@ -104,7 +104,7 @@ void CGrpHeld::InitHeld(CPictures* pPictures, const int nr)
 			pos = RECHTSHINTEN;
 
 		m_pMember[nr]->SetzeSubPosition(pos);
-		pHeld->SymbolZeichnen(pDC);
+		pHeld->SymbolZeichnen(pDC, pPictures);
 
 		m_iAnzHelden++;
 	}
@@ -199,7 +199,7 @@ bool CGrpHeld::SetzeModus(CDC* pDC, int iModus)
 	return false;
 }
 
-void CGrpHeld::Zeichnen(CDC * pDC, int iModus)
+void CGrpHeld::Zeichnen(CDC * pDC, CPictures* pPictures, int iModus)
 {
 	for (int i=1; i<=4; i++)
 	{
@@ -208,14 +208,14 @@ void CGrpHeld::Zeichnen(CDC * pDC, int iModus)
 		if (m_pMember[i] != NULL)
 		{
 			if (m_pMember[i]->Hp() <= 0)
-				pHeld->KnochenZeichnen(pDC);
+				pHeld->KnochenZeichnen(pDC, pPictures);
 			else
 			{
 				switch (iModus)
 				{
 					case (MOD_LAUFEN):
 					{
-						pHeld->HaendeZeichnen(pDC);
+						pHeld->HaendeZeichnen(pDC, pPictures);
 						pHeld->NameZeichnen(pDC);
 						pHeld->WerteZeichnen(pDC);			
 						break;
@@ -231,14 +231,14 @@ void CGrpHeld::Zeichnen(CDC * pDC, int iModus)
 					}
 				}
 				pHeld->WaffeZeichnen(pDC);
-				pHeld->SymbolZeichnen(pDC);
-				pHeld->SchadenZeichnen(pDC);
+				pHeld->SymbolZeichnen(pDC, pPictures);
+				pHeld->SchadenZeichnen(pDC, pPictures);
 			}
 		}
 	}
 }
 
-void CGrpHeld::UpdateRucksack(CDC* pDC)
+void CGrpHeld::UpdateRucksack(CDC* pDC, CPictures* pPictures)
 {
 	for (int i = 1; i<5; i++)
 	{
@@ -252,12 +252,12 @@ void CGrpHeld::UpdateRucksack(CDC* pDC)
 					pHeld->RucksackZeichnen(pDC);
 				}
 				else {
-					pHeld->HaendeZeichnen(pDC);
+					pHeld->HaendeZeichnen(pDC, pPictures);
 				}
 				pHeld->WerteZeichnen(pDC);
 			}
 			else
-				pHeld->KnochenZeichnen(pDC);
+				pHeld->KnochenZeichnen(pDC, pPictures);
 	}	
 }
 

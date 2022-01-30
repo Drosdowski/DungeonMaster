@@ -171,18 +171,6 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 	CView::OnLButtonDown(nFlags, point);
 }
 
-/*void CDMView::HeroDoesDamage(CHeld* pHeld, CGrpMonster* pGrpMonster) {
-	for (int id = 1; id < 5; id++) {
-		CMonster* mon = (CMonster*)pGrpMonster->GetChar(id);
-		if (mon) {
-			mon->WerteTemporaerAendern(-pHeld->m_dealingDmg, 0, 0);
-			pHeld->m_dealingDmg = 0;
-			return;
-		}
-	}
-	
-}*/
-
 void CDMView::OnRButtonDown(UINT nFlags, CPoint point) 
 {
 	CDMDoc* pDoc = (CDMDoc*) GetDocument();
@@ -280,7 +268,7 @@ void CDMView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		else if (m_iModus == MOD_RUCKSACK)
 		{
 			CDC* pDC = GetDC();
-			pDoc->m_pGrpHelden->UpdateRucksack(pDC);
+			pDoc->m_pGrpHelden->UpdateRucksack(pDC, m_pPictures);
 		}
 	}
 	CView::OnKeyDown(nChar, nRepCnt, nFlags);
@@ -324,9 +312,9 @@ void CDMView::PfeilZeichnen(CDC* pDC, int i)
 	tmpdc.DeleteDC();
 }
 
-void CDMView::HeldenGrafikZeichnen(CGrpHeld* pGrpHelden, CDC* pDC)
+void CDMView::HeldenGrafikZeichnen(CGrpHeld* pGrpHelden, CDC* pDC, CPictures* pPictures)
 {
-	pGrpHelden->Zeichnen(pDC, m_iModus);
+	pGrpHelden->Zeichnen(pDC, pPictures, m_iModus);
 }
 
 void CDMView::ZauberReiterZeichnen(CDC* pDC)
@@ -397,7 +385,7 @@ void CDMView::UpdateGrafik()
 	CGrpHeld* pGrpHeroes = pDoc->m_pGrpHelden;
 	if (pGrpHeroes != NULL) 
 	{		
-		HeldenGrafikZeichnen(pGrpHeroes, pDC_);
+		HeldenGrafikZeichnen(pGrpHeroes, pDC_, m_pPictures);
 
 		int phase = pGrpHeroes->GetActionPhase();
 		if (phase == 1) {
@@ -445,7 +433,7 @@ void CDMView::OnTimer(UINT nIDEvent)
 		else if (m_iModus == MOD_RUCKSACK)
 		{
 			CDC* pDC = GetDC();
-			pDoc->m_pGrpHelden->UpdateRucksack(pDC);
+			pDoc->m_pGrpHelden->UpdateRucksack(pDC, m_pPictures);
 		}
 	}
 	else {

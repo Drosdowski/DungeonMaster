@@ -5,7 +5,7 @@ class CPictures;
 class CMumie : public CMonster
 {
 public:
-	CMumie(CPictures* pPictures, CDC* pDC);
+	CMumie();
 
 	void InitValues();
 	int GetIDB(int index);

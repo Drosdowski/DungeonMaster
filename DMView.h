@@ -58,7 +58,7 @@ protected:
 	CRaumView* m_pRaumView;
 
 	void UpdateGrafik();
-	void HeldenGrafikZeichnen(CGrpHeld* pGrpHeld, CDC* pDC);
+	void HeldenGrafikZeichnen(CGrpHeld* pGrpHeld, CDC* pDC, CPictures* pPictures);
 	void ZauberReiterZeichnen(CDC* pDC);
 	void ActionAreaZeichnen(CDC* pDC);
 	void ActionDamageZeichnen(CDC* pDC, int dmg);

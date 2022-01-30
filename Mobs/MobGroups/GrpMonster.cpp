@@ -69,15 +69,14 @@ void CGrpMonster::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // Behandlungsroutinen für Nachrichten CGrpMonster 
 
-void CGrpMonster::InitMonster(CPictures* pPicture, CDC* pDC, int nr, CMonster::MonsterTyp iTyp)
+void CGrpMonster::InitMonster(int nr, CMonster::MonsterTyp iTyp)
 {
 	if (m_pMember[nr] == NULL)
 	{
-		//m_pMember[nr] = new CMonster(pPicture, pDC, iTyp);
 		switch (iTyp)
 		{
 		case CMonster::MonsterTyp::SKELETT:
-			m_pMember[nr] = new CSkelett(pPicture, pDC);
+			m_pMember[nr] = new CSkelett();
 		}
 		
 		bool vl,vr,hl,hr;
@@ -135,16 +134,6 @@ bool CGrpMonster::Altern()
 }
 
 
-void CGrpMonster::Zeichnen(CDC* pDC, int iDistanz, int iRichtung, int xrel)
-{
-	for (int i=1; i<5; i++)
-	{
-		CMonster* pMonster= (CMonster*) m_pMember[i];
-		if (pMonster)
-			pMonster->Zeichnen(pDC, iDistanz, iRichtung, xrel);
-	}
-}
-
 void CGrpMonster::EndAttack() {
 	for (int i = 1; i < 5; i++)
 	{
@@ -189,7 +178,9 @@ void CGrpMonster::ActionDone() {
 	}
 }
 
-
+CMonster* CGrpMonster::GetMonster(int ID) {
+	return (CMonster*)m_pMember[ID];
+}
 
 //   0
 //   |

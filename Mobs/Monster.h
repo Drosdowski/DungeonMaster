@@ -17,7 +17,7 @@ public:
 		SKELETT = 3
 	};
 
-	explicit CMonster(CPictures* pPictures, CDC* pDC);
+	explicit CMonster();
 
 // Attribute
 public:
@@ -34,16 +34,17 @@ public:
 
 // Implementierung
 public:
-	void Zeichnen(CDC* pDC, int iEntfernung, int iRichtung, int xrel);
 	virtual bool Altern();
 	virtual int GetIDB(int index);
 	int getDealingDmg() { return m_dealingDmg; }
 	bool TurnTo(int iDirection);
 	int CalcDmg(int ID, CGrpChar* pOpponents);
 
+	int transCol;
+
 protected:
 	virtual ~CMonster();
-	void ZeichneMonster(CDC* pDC, int bmpTAG, int iEntfernung, int xrel, bool invers);
+	void ZeichneMonster(CDC* pDC, CPictures* pPictures, int bmpTAG, int iEntfernung, int xrel, bool invers);
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
@@ -53,7 +54,6 @@ protected:
 protected:
 	int m_iTyp;
 	CDC pCdc;
-	int transCol;
 
 	//{{AFX_MSG(CMonster)
 		// HINWEIS - Der Klassen-Assistent fügt hier Member-Funktionen ein und entfernt diese.

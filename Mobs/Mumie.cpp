@@ -1,9 +1,8 @@
 #include "stdafx.h"
 #include "resource.h"
-#include "Pictures\CPictures.h"
 #include "Mumie.h"
 
-CMumie::CMumie(CPictures* pPictures, CDC* pDC): CMonster(pPictures, pDC) {	
+CMumie::CMumie(): CMonster() {	
 	m_iTyp = MUMIE;
 	InitValues();
 }

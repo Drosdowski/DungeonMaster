@@ -3,7 +3,6 @@
 
 #include "stdafx.h"
 #include "resource.h"
-#include "Pictures\CPictures.h"
 #include "DMDoc.h"
 #include "Monster.h"
 #include <CHelpfulValues.h>
@@ -17,14 +16,11 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CMonster
 
-CMonster::CMonster(CPictures* pPictures, CDC* pDC): CCharacter()
+CMonster::CMonster(): CCharacter()
 {
-	m_pPictures = pPictures;
 	m_attacking = false;
 	
 	m_iReceivedDmg = 0;
-
-	pCdc.CreateCompatibleDC(pDC);
 }
 
 
@@ -93,42 +89,11 @@ bool CMonster::Altern()
 }
 
 
-void CMonster::ZeichneMonster(CDC* pDC, int bmpTAG, int iEntfernung, int xrel, bool invers) {
-	CBitmap bmp;
-	BITMAP bmpInfo;
 
-	bmp.LoadBitmap(bmpTAG);
-
-	//get original size of bitmap
-	bmp.GetBitmap(&bmpInfo);
-	double faktor = m_pPictures->getFaktor(iEntfernung);
-
-	// Bild Mitte: 225 / 78
-	int posX = 225 - bmpInfo.bmWidth * faktor + (xrel * 156);
-	int posY = 100 + bmpInfo.bmHeight * (1 - faktor) / 2;
-
-	pCdc.SelectObject(bmp);
-	if (invers) {
-		pCdc.StretchBlt(0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, &pCdc, bmpInfo.bmWidth, 0, -bmpInfo.bmWidth, bmpInfo.bmHeight, SRCCOPY);
-		pDC->TransparentBlt(posX, posY, bmpInfo.bmWidth * faktor * 2, bmpInfo.bmHeight * faktor * 2, &pCdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, transCol);
-	}
-	else {
-		pDC->TransparentBlt(posX, posY, bmpInfo.bmWidth * faktor * 2, bmpInfo.bmHeight * faktor * 2, &pCdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, transCol);
-	}
-	//pCdc.SelectObject(m_pPictures->m_pBmpHintergrund);
-}
 
 int CMonster::GetIDB(int index) {
 	return 0;
 }
-
-void CMonster::Zeichnen(CDC* pDC, int iEntfernung, int iRichtung, int xrel)
-{
-	int iRicht = (6 - m_chrDirection + iRichtung) % 4;
-	bool drawLeftInvers = iRicht == 3;
-	ZeichneMonster(pDC, GetIDB(iRicht), iEntfernung, xrel, drawLeftInvers);
-}
-
 
 bool CMonster::TurnTo(int iDirection) {
 	if (m_chrDirection == CHelpfulValues::OppositeDirection(iDirection))

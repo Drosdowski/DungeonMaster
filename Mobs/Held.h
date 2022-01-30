@@ -25,15 +25,15 @@ protected:
 public:
 // Operations
 public:
-	void KnochenZeichnen(CDC* pDC);
+	void KnochenZeichnen(CDC* pDC, CPictures* pPictures);
 	void NameZeichnen(CDC* pDC);
 	void RucksackZeichnen(CDC* pDC);
-	void HaendeZeichnen(CDC* pDC);
-	void SymbolZeichnen(CDC* pDC);
+	void HaendeZeichnen(CDC* pDC, CPictures* pPictures);
+	void SymbolZeichnen(CDC* pDC, CPictures* pPictures);
 	void WaffeZeichnen(CDC* pDC);
 	void WerteZeichnen(CDC* pDC);
 	void BildZeichnen(CDC* pDC);
-	void SchadenZeichnen(CDC* pDC);
+	void SchadenZeichnen(CDC* pDC, CPictures* pPictures);
 
 	void Trinken(int amount);
 	void Essen(int amount);
@@ -53,7 +53,7 @@ public:
 	virtual ~CHeld();
 
 	bool m_bAktiv;
-	CRucksack* m_pRucksack;
+	CRucksack* m_pRucksack; // todo raus hier! Parameter mitgeben!
 
 #ifdef _DEBUG
 	virtual void AssertValid() const;

@@ -2,7 +2,7 @@
 #include "resource.h"
 #include "Skelett.h"
 
-CSkelett::CSkelett(CPictures* pPictures, CDC* pDC) : CMonster(pPictures, pDC) {
+CSkelett::CSkelett() : CMonster() {
 	m_iTyp = SKELETT;
 	InitValues();
 }

@@ -37,7 +37,7 @@ protected:
 	CDoor* m_pDoor = NULL;
 // Operations
 public:
-	void InitMonsterGruppe(CPictures* pDoc, CDC* pDC, CMonster::MonsterTyp iTyp, int iAnz);
+	void InitMonsterGruppe(CMonster::MonsterTyp iTyp, int iAnz);
 	CGrpMonster* GetMonsterGroup();
 	void RemoveMonsterGroup();
 	void SetMonsterGroup(CGrpMonster* pGrpMonster);

@@ -52,7 +52,6 @@ public:
 
 	// TODO möglichst viel nach PROTECTED
 
-	CPictures* m_pPictures;
 	int m_SpeedDelay; // 0 = Schnellstes (Zyklen bis zur Aktion)
 	
 	int m_ApproxDmg; // AKTIV - Durchschnittlicher Schaden plus minus random

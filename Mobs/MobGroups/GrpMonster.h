@@ -26,6 +26,8 @@ public:
 // Operationen
 public:
 	bool Altern();
+	CMonster* GetMonster(int ID);
+	// TODO bool ExistsAndDies();
 	void MoveOrAttack(VEKTOR heroPos, int heroDirection);
 	void ActionDone();
 	bool IstBereit();
@@ -39,12 +41,11 @@ public:
 
 // Implementierung
 public:
-	void InitMonster(CPictures* pPicture, CDC* pDC, int nr, CMonster::MonsterTyp iTyp);
+	void InitMonster(int nr, CMonster::MonsterTyp iTyp);
 	bool SetzeModus(int iModus);	
 	void AttackHero(CGrpHeld* hero);
 	void TurnToHero(VEKTOR heroPos);
 	void EndAttack();
-	virtual void Zeichnen(CDC* pDC, int iDistanz, int iRichtung, int xrel);
 	virtual ~CGrpMonster();
 #ifdef _DEBUG
 	virtual void AssertValid() const;

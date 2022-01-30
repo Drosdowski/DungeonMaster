@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CDungeonMap.cpp" />
     <ClCompile Include="CScreenCoords.cpp" />
     <ClCompile Include="Pictures\CFountainPic.cpp" />
     <ClCompile Include="Pictures\CWallPic.cpp" />
@@ -165,6 +166,7 @@
     <ResourceCompile Include="DM.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CDungeonMap.h" />
     <ClInclude Include="CScreenCoords.h" />
     <ClInclude Include="Pictures\CFountainPic.h" />
     <ClInclude Include="Pictures\CWallPic.h" />
