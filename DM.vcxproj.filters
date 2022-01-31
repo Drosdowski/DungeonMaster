@@ -99,6 +99,18 @@
     <ClCompile Include="CDungeonMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tinystr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxmlerror.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxmlparser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -191,6 +203,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CDungeonMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tinystr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -410,5 +428,9 @@
     <Media Include="sound\DMCSB-SoundEffect-RunningIntoAWall.mp3" />
     <Media Include="sound\DMCSB-SoundEffect-Door.mp3" />
     <Media Include="sound\DMCSB-SoundEffect-Move(Skeleton).mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Maps\_dungeon.dat.xml" />
+    <Xml Include="Maps\0000.DUNGEON [Dungeon].xml" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Decoration.h"
+#include "tinyxml.h"
 #include "CDungeonMap.h"
 
 CDungeonMap::CDungeonMap()

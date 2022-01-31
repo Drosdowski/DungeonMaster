@@ -1,0 +1,3 @@
+﻿cl : befehlszeile warning D9035: Die Option "Gm" ist veraltet und wird in einer der nächsten Versionen entfernt.
+  CDungeonMap.cpp
+  DM.vcxproj -> C:\Users\Jones\source\repos\DungeonMaster\Debug\DM.exe
