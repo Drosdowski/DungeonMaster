@@ -275,6 +275,7 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, C
 				else {
 					pDC->TransparentBlt(posX, posY, bmpInfo.bmWidth * faktor * 2, bmpInfo.bmHeight * faktor * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, monster->transCol);
 				}
+				delete &bmp;
 			}
 		}
 	}
