@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include "Decoration.h"
+#include "tinyxml.h"
 #include "CDungeonMap.h"
 
 CDungeonMap::CDungeonMap()
 { 
+	// LoadMap();
 }
 
 CDungeonMap::~CDungeonMap()
@@ -23,6 +25,17 @@ CField* CDungeonMap::GetField(VEKTOR v) {
 	return m_pFeld[v.x][v.y][v.z];
 }
 
+
+void CDungeonMap::LoadMap() {
+	TiXmlDocument doc("Maps\\0000.DUNGEON [Dungeon].xml");
+	bool loadOkay = doc.LoadFile();
+
+	if (!loadOkay)
+	{
+		printf("Could not load test file 'demotest.xml'. Error='%s'. Exiting.\n", doc.ErrorDesc());
+		exit(1);
+	}
+}
 
 void CDungeonMap::DemoMap() {
 	for (int i = 0; i < FELD_MAX_X; i++)

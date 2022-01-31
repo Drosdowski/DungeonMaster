@@ -10,6 +10,7 @@ CFountainPic::CFountainPic(CDC* pDC) : CBasePictures(pDC)
 CFountainPic:: ~CFountainPic() {
 	delete m_pFountainFront;
 	delete m_pFountainRight;
+	delete m_pFountainLeft;
 }
 
 
