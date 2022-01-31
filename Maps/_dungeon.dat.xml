@@ -1,0 +1,10 @@
+<mapfile resource="dungeon.dat">
+  <item id="0000" uncompressed_raw_size="33357">
+    <custom_id>0000</custom_id>
+    <type>DUNGEON</type>
+    <description><![CDATA[Dungeon]]></description>
+    <files>
+      <file>C:\Spiele\dmaster\DATA\out_dungeon.dat\0000.DUNGEON [Dungeon].xml</file>
+    </files>
+  </item>
+</mapfile>
