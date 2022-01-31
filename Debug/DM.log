@@ -1,0 +1,14 @@
+﻿cl : befehlszeile warning D9035: Die Option "Gm" ist veraltet und wird in einer der nächsten Versionen entfernt.
+  RaumView.cpp
+C:\Users\mdros\source\repos\DungeonMaster\Pictures\CLeverPic.h(2,10): warning C4067: Unerwartete Token nach Präprozessordirektive - Zeilenvorschub erwartet.
+C:\Users\mdros\source\repos\DungeonMaster\RaumView.cpp(267,14): warning C4244: "Initialisierung": Konvertierung von "double" in "int", möglicher Datenverlust
+C:\Users\mdros\source\repos\DungeonMaster\RaumView.cpp(268,14): warning C4244: "Initialisierung": Konvertierung von "double" in "int", möglicher Datenverlust
+C:\Users\mdros\source\repos\DungeonMaster\RaumView.cpp(273,94): warning C4244: "Argument": Konvertierung von "double" in "int", möglicher Datenverlust
+C:\Users\mdros\source\repos\DungeonMaster\RaumView.cpp(273,63): warning C4244: "Argument": Konvertierung von "double" in "int", möglicher Datenverlust
+C:\Users\mdros\source\repos\DungeonMaster\RaumView.cpp(276,94): warning C4244: "Argument": Konvertierung von "double" in "int", möglicher Datenverlust
+C:\Users\mdros\source\repos\DungeonMaster\RaumView.cpp(276,63): warning C4244: "Argument": Konvertierung von "double" in "int", möglicher Datenverlust
+C:\Users\mdros\source\repos\DungeonMaster\RaumView.cpp(284,18): warning C4244: "Initialisierung": Konvertierung von "double" in "int", möglicher Datenverlust
+C:\Users\mdros\source\repos\DungeonMaster\RaumView.cpp(288,49): warning C4244: "-=": Konvertierung von "double" in "int", möglicher Datenverlust
+  CDungeonMap.cpp
+C:\Users\mdros\source\repos\DungeonMaster\CDungeonMap.cpp(2,10): fatal error C1083: Datei (Include) kann nicht geöffnet werden: "tinyxml.h": No such file or directory
+  Code wird generiert...
