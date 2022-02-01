@@ -20,9 +20,9 @@ protected:
 	CField();           // protected constructor used by dynamic creation
 public:
 	enum FeldTyp {
-		EMPTY = 0,
-		WALL = 1,
-		DOOR = 2
+		WALL = 0,
+		EMPTY = 1,
+		DOOR = 4
 	};
 
 	CField(VEKTOR koord, FeldTyp fieldType, CDoor::DoorType doorType, bool doorFrameEastAndWest, CFieldDecoration* pDeco[4]);           // protected constructor used by dynamic creation

@@ -5,7 +5,7 @@
 
 CDungeonMap::CDungeonMap()
 { 
-	// LoadMap();
+	LoadMap();
 }
 
 CDungeonMap::~CDungeonMap()
@@ -25,6 +25,75 @@ CField* CDungeonMap::GetField(VEKTOR v) {
 	return m_pFeld[v.x][v.y][v.z];
 }
 
+void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
+	const char* parent = rootNode->Value();
+	int index;
+	rootNode->QueryIntAttribute("index", &index);
+	int x = index % m_LevelWidth[etage];
+	int y = (int)(index / m_LevelWidth[etage]);
+	int type;
+	rootNode->QueryIntAttribute("type", &type);
+	// 0 = Wall , 1 == Empty, 4 == Door
+	if (type < 2 || type == 4) {
+		CField::FeldTyp iFieldType = (CField::FeldTyp)type;
+		VEKTOR pos; pos.x = x; pos.y = y; pos.z = etage;
+
+		CFieldDecoration* deco[4];
+		for (int b = 0; b < 4; b++) {
+			deco[b] = new CFieldDecoration(None);
+		}
+
+		if (iFieldType == CField::FeldTyp::DOOR)
+			m_pFeld[x][y][etage] = new CField(pos, iFieldType, CDoor::DoorType::Iron, true, deco);
+		else
+			m_pFeld[x][y][etage] = new CField(pos, iFieldType, deco); // etage 1 / index 30 => m_levelWidth[1] kaputt!
+	}
+	else {
+		// todo
+	}
+}
+
+
+void CDungeonMap::ParseTiles(TiXmlElement* rootNode, int etage) {
+	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "tile") == 0)
+		{
+			ParseTile(parentElement, etage);
+		}
+		parentElement = parentElement->NextSiblingElement();
+	}
+}
+
+
+void CDungeonMap::ParseMap(TiXmlElement* rootNode, int etage) {
+	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "tiles") == 0)
+		{
+			ParseTiles(parentElement, etage);
+		}
+		parentElement = parentElement->NextSiblingElement();
+	}
+}
+	
+void CDungeonMap::ParseMaps(TiXmlElement* rootNode) {
+	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		int etage;
+		parentElement->QueryIntAttribute("index", &etage);
+		parentElement->QueryIntAttribute("width", &m_LevelWidth[etage]);
+		parentElement->QueryIntAttribute("height", &m_LevelHeight[etage]);
+		ParseMap(parentElement, etage);
+		parentElement = parentElement->NextSiblingElement();
+	}
+}
 
 void CDungeonMap::LoadMap() {
 	TiXmlDocument doc("Maps\\0000.DUNGEON [Dungeon].xml");
@@ -34,6 +103,18 @@ void CDungeonMap::LoadMap() {
 	{
 		printf("Could not load test file 'demotest.xml'. Error='%s'. Exiting.\n", doc.ErrorDesc());
 		exit(1);
+	}
+	TiXmlElement* rootElement = doc.FirstChildElement();
+	const char* docname = rootElement->Value();
+	TiXmlElement* parentElement = rootElement->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "maps") == 0)
+		{
+			ParseMaps(parentElement);
+		}
+		parentElement = parentElement->NextSiblingElement();
 	}
 }
 
