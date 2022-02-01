@@ -8,7 +8,7 @@
 #include "DmView.h"
 #include "Raumview.h"
 #include "DMDoc.h"
-#include "Decoration.h"
+#include "SpecialTile\Decoration.h"
 #include "Mobs\Held.h"
 #include "Mobs\MobGroups\GrpHeld.h"
 

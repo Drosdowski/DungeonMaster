@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "..\resource.h"
-#include "..\Decoration.h"
+#include "..\SpecialTile\Decoration.h"
 #include "CWallPic.h"
 
 CWallPic::CWallPic(CDC* pDC) : CBasePictures(pDC)

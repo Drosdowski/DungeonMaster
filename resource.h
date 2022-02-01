@@ -51,6 +51,13 @@
 #define IDB_ACTIONS_DAMAGE              219
 #define IDB_FOUNTAIN_F                  220
 #define IDB_FOUNTAIN_L                  221
+#define IDB_REITER1                     222
+#define IDB_REITER2                     223
+#define IDB_REITER3                     224
+#define IDB_REITER4                     225
+#define IDB_RUNES1                      226
+#define IDB_RUNES3                      227
+#define IDB_RUNES2                      228
 #define IDB_BITMAP_E0L                  1001
 #define IDB_BITMAP_E0LF                 1002
 #define IDB_BITMAP_E0R                  1004
@@ -79,7 +86,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        222
+#define _APS_NEXT_RESOURCE_VALUE        229
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

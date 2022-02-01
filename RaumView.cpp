@@ -6,7 +6,7 @@
 #include "DmDoc.h"
 #include "Feld.h"
 #include "RaumView.h"
-#include "Decoration.h"
+#include "SpecialTile\Decoration.h"
 #include "CDungeonMap.h"
 #include "Pictures\CPictures.h"
 #include "Pictures\CDoorPic.h"

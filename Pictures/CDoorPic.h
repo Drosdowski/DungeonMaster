@@ -14,7 +14,7 @@ public:
 	CPoint GetDoorFramePos(int x, int ebene, bool left, CPoint wallPos);
 
 private:
-	void InitDoors(CDC* pDC);
+	void InitDoors();
 
 	CBitmap* m_pDoorFrameFront;
 	CBitmap* m_pDoorFrameLeft[4];

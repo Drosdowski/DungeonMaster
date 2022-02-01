@@ -136,14 +136,14 @@
     <ClCompile Include="Pictures\Creatures\CSkeletonPic.cpp" />
     <ClCompile Include="Pictures\CWallPic.cpp" />
     <ClCompile Include="Pictures\CBasePictures.cpp" />
-    <ClCompile Include="CDoor.cpp" />
+    <ClCompile Include="SpecialTile\CDoor.cpp" />
     <ClCompile Include="Pictures\CLeverPic.cpp" />
     <ClCompile Include="Pictures\CDoorPic.cpp" />
     <ClCompile Include="Mobs\Character.cpp" />
     <ClCompile Include="Mobs\Mumie.cpp" />
     <ClCompile Include="Pictures\CPictures.cpp" />
     <ClCompile Include="CHelpfulValues.cpp" />
-    <ClCompile Include="Decoration.cpp" />
+    <ClCompile Include="SpecialTile\Decoration.cpp" />
     <ClCompile Include="DM.cpp" />
     <ClCompile Include="DMDoc.cpp" />
     <ClCompile Include="DMView.cpp" />
@@ -163,10 +163,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="tinystr.cpp" />
-    <ClCompile Include="tinyxml.cpp" />
-    <ClCompile Include="tinyxmlerror.cpp" />
-    <ClCompile Include="tinyxmlparser.cpp" />
+    <ClCompile Include="TinyXML\tinystr.cpp" />
+    <ClCompile Include="TinyXML\tinyxml.cpp" />
+    <ClCompile Include="TinyXML\tinyxmlerror.cpp" />
+    <ClCompile Include="TinyXML\tinyxmlparser.cpp" />
     <ClCompile Include="ZauberView.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -181,14 +181,14 @@
     <ClInclude Include="Pictures\Creatures\CSkeletonPic.h" />
     <ClInclude Include="Pictures\CWallPic.h" />
     <ClInclude Include="Pictures\CBasePictures.h" />
-    <ClInclude Include="CDoor.h" />
+    <ClInclude Include="SpecialTile\CDoor.h" />
     <ClInclude Include="Pictures\CLeverPic.h" />
     <ClInclude Include="Pictures\CDoorPic.h" />
     <ClInclude Include="Mobs\Character.h" />
     <ClInclude Include="Mobs\Mumie.h" />
     <ClInclude Include="Pictures\CPictures.h" />
     <ClInclude Include="CHelpfulValues.h" />
-    <ClInclude Include="Decoration.h" />
+    <ClInclude Include="SpecialTile\Decoration.h" />
     <ClInclude Include="DM.h" />
     <ClInclude Include="DMDoc.h" />
     <ClInclude Include="DMView.h" />
@@ -204,8 +204,8 @@
     <ClInclude Include="Rucksack.h" />
     <ClInclude Include="Mobs\Skelett.h" />
     <ClInclude Include="StdAfx.h" />
-    <ClInclude Include="tinystr.h" />
-    <ClInclude Include="tinyxml.h" />
+    <ClInclude Include="TinyXML\tinystr.h" />
+    <ClInclude Include="TinyXML\tinyxml.h" />
     <ClInclude Include="ZauberView.h" />
   </ItemGroup>
   <ItemGroup>
@@ -236,7 +236,6 @@
     <Image Include="res\LeverDown_Right.bmp" />
     <Image Include="res\LeverUp_Right.bmp" />
     <Image Include="res\LeverUp_Front.bmp" />
-    <Image Include="res\magicbg.bmp" />
     <Image Include="res\Mummy_Attack.bmp" />
     <Image Include="res\Mummy_Back.bmp" />
     <Image Include="res\Mummy_Front.bmp" />
@@ -244,7 +243,12 @@
     <Image Include="res\OneHand.bmp" />
     <Image Include="res\Pcst_042.bmp" />
     <Image Include="res\Pinv.bmp" />
+    <Image Include="res\Reiter3.bmp" />
+    <Image Include="res\Reiter4.bmp" />
     <Image Include="res\Ruck.bmp" />
+    <Image Include="res\Runes1.bmp" />
+    <Image Include="res\Runes2.bmp" />
+    <Image Include="res\Runes3.bmp" />
     <Image Include="res\Skeleton_Attack.bmp" />
     <Image Include="res\Skeleton_Back.bmp" />
     <Image Include="res\Skeleton_Front.bmp" />

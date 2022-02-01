@@ -74,9 +74,12 @@ void CZauberView::Zeichnen(CPictures* pPictures, CDC * pDC)
 {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
-	tmpdc.SelectObject(pPictures->GetMagicBG());
 
-	pDC->BitBlt(466,80,174,66,&tmpdc,0,0,SRCCOPY);
+	tmpdc.SelectObject(pPictures->GetWizardTabs(1));
+	pDC->BitBlt(466, 80, 174, 17, &tmpdc, 0, 0, SRCCOPY);
+
+	tmpdc.SelectObject(pPictures->GetRunes(1));
+	pDC->BitBlt(466,97,174,59,&tmpdc,0,0,SRCCOPY);
 	
 	tmpdc.DeleteDC();
 }

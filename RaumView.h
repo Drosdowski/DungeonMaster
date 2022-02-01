@@ -84,7 +84,6 @@ protected:
 	void DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, CDC* cdc);
 	// VEKTOR NextFieldWithoutTurn(CGrpMonster* pGrpMon, VEKTOR heroPos);
 
-	//CField* m_pFeld[FELD_MAX_X][FELD_MAX_Y][FELD_MAX_Z];
 	CDungeonMap* m_pMap;
 	//{{AFX_MSG(CRaumView)
 		// NOTE - the ClassWizard will add and remove member functions here.

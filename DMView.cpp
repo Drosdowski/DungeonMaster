@@ -130,7 +130,11 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 			if (newWizard > 0)
 			{
 				if (m_pZauberView->setActiveCaster(newWizard, grpHelden))
-					UpdateGrafik(); // TODO reiter malen!
+				{
+					CDC* pDC = GetDC();
+					DrawWizardTabs(pDC, newWizard);
+					UpdateGrafik();
+				}
 			}
 			int actionPhase = grpHelden->GetActionPhase();
 			int action = CScreenCoords::CheckHitAction(point, actionPhase);
@@ -282,6 +286,11 @@ void CDMView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 //////////////////////////////////////////////////////////////////////
 // Zeichenmethoden
+
+void CDMView::DrawWizardTabs(CDC* pDC, int i)
+{
+	// TODO reiter malen!
+}
 
 void CDMView::PfeilZeichnen(CDC* pDC, int i)
 {

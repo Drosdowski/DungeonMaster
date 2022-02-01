@@ -3,8 +3,8 @@
 
 #include "stdafx.h"
 #include "Feld.h"
-#include "Decoration.h"
-#include "CDoor.h"
+#include "SpecialTile\Decoration.h"
+#include "SpecialTile\CDoor.h"
 #include "Mobs\MobGroups\GrpMonster.h"
 
 /////////////////////////////////////////////////////////////////////////////

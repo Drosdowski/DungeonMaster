@@ -21,10 +21,10 @@ void CLeverPic::InitLevers() {
 
 	LoadPic(m_pLeverUpFront, IDB_LEVER_UP_FRONT);
 	LoadPic(m_pLeverUpRight, IDB_LEVER_UP_RIGHT);
-	LoadPicAndFlip(GetMyDC(), m_pLeverUpLeft, IDB_LEVER_UP_RIGHT);
+	LoadPicAndFlip(m_pLeverUpLeft, IDB_LEVER_UP_RIGHT);
 	LoadPic(m_pLeverDownFront, IDB_LEVER_DOWN_FRONT);
 	LoadPic(m_pLeverDownRight, IDB_LEVER_DOWN_RIGHT);
-	LoadPicAndFlip(GetMyDC(), m_pLeverDownLeft, IDB_LEVER_DOWN_RIGHT);
+	LoadPicAndFlip(m_pLeverDownLeft, IDB_LEVER_DOWN_RIGHT);
 }
 
 CBitmap* CLeverPic::GetLeverFront(int state) {
