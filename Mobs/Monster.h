@@ -7,7 +7,6 @@
 /////////////////////////////////////////////////////////////////////////////
 // Ansicht CMonster 
 
-class CPictures;
 class CMonster : public CCharacter
 {
 public:
@@ -37,6 +36,7 @@ public:
 	virtual bool Altern();
 	virtual int GetIDB(int index);
 	int getDealingDmg() { return m_dealingDmg; }
+	int getType() { return m_iTyp; }
 	bool TurnTo(int iDirection);
 	int CalcDmg(int ID, CGrpChar* pOpponents);
 
@@ -44,7 +44,6 @@ public:
 
 protected:
 	virtual ~CMonster();
-	void ZeichneMonster(CDC* pDC, CPictures* pPictures, int bmpTAG, int iEntfernung, int xrel, bool invers);
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;

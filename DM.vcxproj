@@ -129,8 +129,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CDungeonMap.cpp" />
+    <ClCompile Include="Pictures\Creatures\CMonsterPic.cpp" />
+    <ClCompile Include="Pictures\Creatures\CMummyPic.cpp" />
     <ClCompile Include="CScreenCoords.cpp" />
     <ClCompile Include="Pictures\CFountainPic.cpp" />
+    <ClCompile Include="Pictures\Creatures\CSkeletonPic.cpp" />
     <ClCompile Include="Pictures\CWallPic.cpp" />
     <ClCompile Include="Pictures\CBasePictures.cpp" />
     <ClCompile Include="CDoor.cpp" />
@@ -171,8 +174,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CDungeonMap.h" />
+    <ClInclude Include="Pictures\Creatures\CMonsterPic.h" />
+    <ClInclude Include="Pictures\Creatures\CMummyPic.h" />
     <ClInclude Include="CScreenCoords.h" />
     <ClInclude Include="Pictures\CFountainPic.h" />
+    <ClInclude Include="Pictures\Creatures\CSkeletonPic.h" />
     <ClInclude Include="Pictures\CWallPic.h" />
     <ClInclude Include="Pictures\CBasePictures.h" />
     <ClInclude Include="CDoor.h" />

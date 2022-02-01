@@ -46,6 +46,8 @@ CField::~CField()
 {
 	if (m_pGrpMonster)
 		delete m_pGrpMonster;
+	if (m_pDoor)
+		delete m_pDoor;
 	for (int i = 0; i < 4; i++) {
 		if (m_pWallDecoration[i]) {
 			delete m_pWallDecoration[i];

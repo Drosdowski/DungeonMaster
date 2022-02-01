@@ -5,24 +5,37 @@
 
 CDungeonMap::CDungeonMap()
 { 
+	CFieldDecoration* deco[4];
+	for (int b = 0; b < 4; b++) {
+		deco[b] = new CFieldDecoration(None);
+	}
+	VEKTOR v; v.x = 0; v.y = 0;v.z = 0;
+
+	m_pEdgeWall = new CField(v, CField::FeldTyp::WALL, deco);
 	LoadMap();
 }
 
 CDungeonMap::~CDungeonMap()
 {
-	for (int i = 0; i < FELD_MAX_X; i++)
-		for (int j = 0; j < FELD_MAX_Y; j++) // Weil Baum
-		{
-			delete m_pFeld[i][j][0];
-		}
+	delete m_pEdgeWall;
+	for (int z = 0; z < FELD_MAX_Z; z++)
+		for (int i = 0; i < m_LevelWidth[z]; i++)
+			for (int j = 0; j < m_LevelHeight[z]; j++) {
+				delete m_pFeld[i][j][z];
+			}
 }
 
 CField* CDungeonMap::GetField(int x, int y, int z) {
-	return m_pFeld[x][y][z];
+	if (x >= m_LevelWidth[z] || y >= m_LevelHeight[z] || x < 0 || y < 0) {		
+		return m_pEdgeWall;
+	}
+	else {
+		return m_pFeld[x][y][z];
+	}
 }
 
 CField* CDungeonMap::GetField(VEKTOR v) {
-	return m_pFeld[v.x][v.y][v.z];
+	return GetField(v.x, v.y, v.z);
 }
 
 void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
@@ -34,23 +47,23 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	int type;
 	rootNode->QueryIntAttribute("type", &type);
 	// 0 = Wall , 1 == Empty, 4 == Door
-	if (type < 2 || type == 4) {
-		CField::FeldTyp iFieldType = (CField::FeldTyp)type;
-		VEKTOR pos; pos.x = x; pos.y = y; pos.z = etage;
-
-		CFieldDecoration* deco[4];
-		for (int b = 0; b < 4; b++) {
-			deco[b] = new CFieldDecoration(None);
-		}
-
-		if (iFieldType == CField::FeldTyp::DOOR)
-			m_pFeld[x][y][etage] = new CField(pos, iFieldType, CDoor::DoorType::Iron, true, deco);
-		else
-			m_pFeld[x][y][etage] = new CField(pos, iFieldType, deco); // etage 1 / index 30 => m_levelWidth[1] kaputt!
+	if (type != 0 && type != 1 && type != 4)
+	{
+		type = 1; // Teleporter etc erstmal leer lassen
 	}
-	else {
-		// todo
+	CField::FeldTyp iFieldType = (CField::FeldTyp)type;
+	VEKTOR pos; pos.x = x; pos.y = y; pos.z = etage;
+
+	CFieldDecoration* deco[4];
+	for (int b = 0; b < 4; b++) {
+		deco[b] = new CFieldDecoration(None);
 	}
+
+	if (iFieldType == CField::FeldTyp::DOOR)
+		m_pFeld[x][y][etage] = new CField(pos, iFieldType, CDoor::DoorType::Iron, true, deco);
+	else
+		m_pFeld[x][y][etage] = new CField(pos, iFieldType, deco); // etage 1 / index 30 => m_levelWidth[1] kaputt!
+	
 }
 
 
@@ -119,7 +132,7 @@ void CDungeonMap::LoadMap() {
 }
 
 void CDungeonMap::DemoMap() {
-	for (int i = 0; i < FELD_MAX_X; i++)
+	/*for (int i = 0; i < FELD_MAX_X; i++)
 		for (int j = 0; j < FELD_MAX_Y; j++)
 		{
 			CField::FeldTyp iFieldType = ((((j % 4) != 0) || (i == FELD_MAX_X / 2))
@@ -149,13 +162,15 @@ void CDungeonMap::DemoMap() {
 				m_pFeld[i][j][0] = new CField(pos, iFieldType, CDoor::DoorType::Iron, true, deco);
 			else
 				m_pFeld[i][j][0] = new CField(pos, iFieldType, deco);
-			/*if ((i == FELD_MAX_X / 2) && (j == FELD_MAX_Y / 2 + 1)) {
-				m_pFeld[i][j][0]->InitMonsterGruppe(m_pPictures, pDC, CMonster::MonsterTyp::MUMIE, 1);
-			}
-			else*/
+			//if ((i == FELD_MAX_X / 2) && (j == FELD_MAX_Y / 2 + 1)) {
+				//m_pFeld[i][j][0]->InitMonsterGruppe(m_pPictures, pDC, CMonster::MonsterTyp::MUMIE, 1);
+			//}
+			//else
 
 			if ((i == FELD_MAX_X / 2) && (j == FELD_MAX_Y / 2 + 5)) {
 				m_pFeld[i][j][0]->InitMonsterGruppe(CMonster::MonsterTyp::SKELETT, 1);
 			}
-		}
+		}*/
+
+		m_pFeld[3][7][0]->InitMonsterGruppe(CMonster::MonsterTyp::SKELETT, 1);
 }

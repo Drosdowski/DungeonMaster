@@ -8,6 +8,6 @@ public:
 	CMumie();
 
 	void InitValues();
-	int GetIDB(int index);
+	int GetIDB(int index); // todo raus
 };
 

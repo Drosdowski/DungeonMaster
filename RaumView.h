@@ -6,10 +6,6 @@
 #endif // _MSC_VER >= 1000
 // RaumView.h : header file
 //
-#define FELD_MAX_X 30
-#define FELD_MAX_Y 30
-#define FELD_MAX_Z 1
-
 #include "Feld.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -23,6 +19,7 @@ class CDoorPic;
 class CWallPic;
 class CLeverPic;
 class CFountainPic;
+class CMonsterPic;
 class CHelpfulValues;
 class CDecorationType;
 class CDungeonMap;
@@ -77,6 +74,7 @@ protected:
 	CWallPic* m_pWallPic;
 	CLeverPic* m_pLeverPic;
 	CFountainPic* m_pFountainPic;
+	CMonsterPic* m_pMonsterPic;
 
 	VEKTOR MonsterMoveOrAttack(CGrpMonster* pGrpMon);
 	void DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField);

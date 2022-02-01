@@ -77,7 +77,10 @@ void CGrpMonster::InitMonster(int nr, CMonster::MonsterTyp iTyp)
 		{
 		case CMonster::MonsterTyp::SKELETT:
 			m_pMember[nr] = new CSkelett();
-		}
+			break;
+		default:
+			ASSERT(false); // unexpected monster type
+		} 
 		
 		bool vl,vr,hl,hr;
 		vl=vr=hl=hr=false;

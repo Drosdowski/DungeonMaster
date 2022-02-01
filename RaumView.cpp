@@ -13,6 +13,7 @@
 #include "Pictures\CWallPic.h"
 #include "Pictures\CLeverPic.h"
 #include "Pictures\CFountainPic.h"
+#include "Pictures\Creatures\CMonsterPic.h"
 #include "CHelpfulValues.h"
 #include "Mobs\Monster.h"
 #include "Mobs\MobGroups\GrpMonster.h"
@@ -49,6 +50,7 @@ CRaumView::CRaumView()
 	m_pLeverPic = NULL;
 	m_pPictures = NULL;
 	m_pFountainPic = NULL;
+	m_pMonsterPic = NULL;
 }
 
 CRaumView::~CRaumView()
@@ -59,6 +61,7 @@ CRaumView::~CRaumView()
 	delete m_pWallPic;
 	delete m_pLeverPic;
 	delete m_pFountainPic;
+	delete m_pMonsterPic;
 }
 
 
@@ -252,15 +255,12 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, C
 			CMonster* monster = pGrpMon->GetMonster(i);
 			if (monster && monster->Hp() > 0) // todo staubwolke hier berücksichtigen
 			{
-				int iRicht = (6 - monster->m_chrDirection + richt) % 4;
-				bool drawLeftInvers = iRicht == 3;
-				CBitmap bmp;
+				CBitmap* bmp = m_pMonsterPic->GetBitmap(monster, richt);
 				BITMAP bmpInfo;
 
-				bmp.LoadBitmap(monster->GetIDB(iRicht));
 
 				//get original size of bitmap
-				bmp.GetBitmap(&bmpInfo);
+				bmp->GetBitmap(&bmpInfo);
 				double faktor = m_pPictures->getFaktor(ebene);
 
 				// Bild Mitte: 225 / 78
@@ -268,14 +268,7 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, C
 				int posY = 100 + bmpInfo.bmHeight * (1 - faktor) / 2;
 
 				cdc->SelectObject(bmp);
-				if (drawLeftInvers) {
-					cdc->StretchBlt(0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, cdc, bmpInfo.bmWidth, 0, -bmpInfo.bmWidth, bmpInfo.bmHeight, SRCCOPY);
-					pDC->TransparentBlt(posX, posY, bmpInfo.bmWidth * faktor * 2, bmpInfo.bmHeight * faktor * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, monster->transCol);
-				}
-				else {
-					pDC->TransparentBlt(posX, posY, bmpInfo.bmWidth * faktor * 2, bmpInfo.bmHeight * faktor * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, monster->transCol);
-				}
-				delete &bmp;
+				pDC->TransparentBlt(posX, posY, bmpInfo.bmWidth * faktor * 2, bmpInfo.bmHeight * faktor * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, monster->transCol);
 			}
 		}
 	}
@@ -386,8 +379,8 @@ bool CRaumView::Betrete(VEKTOR pos)
 
 void CRaumView::MoveAnythingNearby() {
 	VEKTOR held = m_pDoc->m_pGrpHelden->GetPos();
-	for (int i = max(held.x - 4, 0); i < min(held.x + 4, FELD_MAX_X); i++) {
-		for (int j = max(held.y - 4, 0); j < min(held.y + 4, FELD_MAX_Y); j++) {
+	for (int i = max(held.x - 4, 0); i < min(held.x + 4, m_pMap->GetMaxWidth(held.z)); i++) {
+		for (int j = max(held.y - 4, 0); j < min(held.y + 4, m_pMap->GetMaxHeight(held.z)); j++) {
 			CField* field = m_pMap->GetField(i, j, held.z);
 			CGrpMonster* pGrpMon = field->GetMonsterGroup();
 			if (pGrpMon)
@@ -502,6 +495,7 @@ void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
 	m_pWallPic = new CWallPic(pDC);
 	m_pLeverPic = new CLeverPic(pDC);
 	m_pFountainPic = new CFountainPic(pDC);
+	m_pMonsterPic = new CMonsterPic(pDC);
 	m_pMap = new CDungeonMap();
 	m_pMap->DemoMap();	
 }

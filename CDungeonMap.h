@@ -1,8 +1,8 @@
 #pragma once
 #include "Feld.h"
 
-#define FELD_MAX_X 30
-#define FELD_MAX_Y 30
+#define FELD_MAX_X 32
+#define FELD_MAX_Y 32
 #define FELD_MAX_Z 14
 
 class TiXmlElement;
@@ -15,7 +15,8 @@ public:
 	void LoadMap();
 	CField* GetField(int, int, int);
 	CField* GetField(VEKTOR);
-
+	int GetMaxWidth(int ebene) { return m_LevelWidth[ebene]; }
+	int GetMaxHeight(int ebene) { return m_LevelHeight[ebene]; }
 
 
 private:
@@ -24,6 +25,7 @@ private:
 	void ParseMap(TiXmlElement* rootNode, int etage);
 	void ParseMaps(TiXmlElement* rootNode);
 	CField* m_pFeld[FELD_MAX_X][FELD_MAX_Y][FELD_MAX_Z];
+	CField* m_pEdgeWall;
 	int m_LevelWidth[FELD_MAX_Z];
 	int m_LevelHeight[FELD_MAX_Z];
 };
