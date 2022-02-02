@@ -51,7 +51,6 @@ public:
 
 // Generated message map functions
 protected:
-//	bool setActiveCaster( CDMDoc* pDoc, CPoint point);
 	int m_iDir;
 	CPictures* m_pPictures;
 	CZauberView* m_pZauberView;
@@ -59,12 +58,11 @@ protected:
 
 	void UpdateGrafik();
 	void HeldenGrafikZeichnen(CGrpHeld* pGrpHeld, CDC* pDC, CPictures* pPictures);
-	void ZauberReiterZeichnen(CDC* pDC);
+	void ZauberReiterZeichnen(CDC* pDC, int iActiveWizard);
 	void ActionAreaZeichnen(CDC* pDC);
 	void ActionDamageZeichnen(CDC* pDC, int dmg);
 	void WaffenZeichnen(CDC* pDC, CGrpHeld* pGrpHeroes);
 	void PfeilZeichnen(CDC* pDC, int i);
-	void DrawWizardTabs(CDC* pDC, int i);
 	void DrawBMP(CDC* pDC, CBitmap* pBMP, int posX, int posY);
 	//void HeroDoesDamage(CHeld* pHeld, CGrpMonster* pGrpMonster);
 	bool m_bPause;

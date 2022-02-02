@@ -60,22 +60,14 @@ void CZauberView::Dump(CDumpContext& dc) const
 /////////////////////////////////////////////////////////////////////////////
 // Behandlungsroutinen für Nachrichten CZauberView 
 
-bool CZauberView::setActiveCaster(int ID, CGrpHeld* pGrpHelden)
-{	
-	if (ID <= pGrpHelden->m_iAnzHelden)
-	{
-		pGrpHelden->m_iAktiverZauberer = ID;
-		return true;
-	}	
-	return false;
-}
 
-void CZauberView::Zeichnen(CPictures* pPictures, CDC * pDC)
+
+void CZauberView::Zeichnen(CPictures* pPictures, CDC * pDC, int iActiveWizard)
 {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 
-	tmpdc.SelectObject(pPictures->GetWizardTabs(1));
+	tmpdc.SelectObject(pPictures->GetWizardTabs(iActiveWizard));
 	pDC->BitBlt(466, 80, 174, 17, &tmpdc, 0, 0, SRCCOPY);
 
 	tmpdc.SelectObject(pPictures->GetRunes(1));

@@ -24,17 +24,34 @@ int CScreenCoords::CheckHitArrows(CPoint point) {
 }
 
 int CScreenCoords::CheckHitActiveWizard(CPoint point, int activeWizardID) {
-	if (point.x > 460)
+	if (point.x > 465)
 	{
-		if ((point.y > 63) && (point.y < 129)) {
-			int nr;
-			if (point.y < 72)	// Reiter
+		if ((point.y > 80) && (point.y < 129)) {
+			if (point.y < 95)	// Reiter
 			{
-				nr = point.x / 28;
-				if (nr > (activeWizardID + 1))
-					nr -= 3;
+				int nr;
+				int relX = point.x - 466;
+				switch (activeWizardID)
+				{
+				case 1:
+					if (relX < 96) return 1;
+					return 1 + (int)(relX - 96 + 27) / 27;
+				case 2:
+					if (relX < 28) return 1;
+					return 1 + (int)(relX - 96 + 27) / 27;
+				case 3:
+					if (relX < 55) return 1 + (int)relX / 27;
+					if (relX > 148) return 4; else return 3;
+				case 4:
+					return 1 + (int) min(relX / 27, 4);
+				default:
+					break;
+				}
 
-				return nr;
+				return activeWizardID;
+			}
+			else {
+				// Runes - casting!
 			}
 		}
 	}

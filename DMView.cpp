@@ -126,13 +126,13 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 		if (pDoc->m_pGrpHelden)
 		{
 			CGrpHeld* grpHelden = pDoc->m_pGrpHelden;
-			int newWizard = CScreenCoords::CheckHitActiveWizard(point, grpHelden->m_iAktiverZauberer);
+			int newWizard = CScreenCoords::CheckHitActiveWizard(point, grpHelden->GetActiveWizard());
 			if (newWizard > 0)
 			{
-				if (m_pZauberView->setActiveCaster(newWizard, grpHelden))
+				if (grpHelden->SetActiveCaster(newWizard))
 				{
 					CDC* pDC = GetDC();
-					DrawWizardTabs(pDC, newWizard);
+					ZauberReiterZeichnen(pDC, newWizard);
 					UpdateGrafik();
 				}
 			}
@@ -287,10 +287,6 @@ void CDMView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 //////////////////////////////////////////////////////////////////////
 // Zeichenmethoden
 
-void CDMView::DrawWizardTabs(CDC* pDC, int i)
-{
-	// TODO reiter malen!
-}
 
 void CDMView::PfeilZeichnen(CDC* pDC, int i)
 {
@@ -326,9 +322,9 @@ void CDMView::HeldenGrafikZeichnen(CGrpHeld* pGrpHelden, CDC* pDC, CPictures* pP
 	pGrpHelden->Zeichnen(pDC, pPictures, m_iModus);
 }
 
-void CDMView::ZauberReiterZeichnen(CDC* pDC)
-{
-	m_pZauberView->Zeichnen(m_pPictures, pDC);
+void CDMView::ZauberReiterZeichnen(CDC* pDC, int iActiveWizard)
+{	
+	m_pZauberView->Zeichnen(m_pPictures, pDC, iActiveWizard);
 }
 
 void CDMView::ActionAreaZeichnen(CDC* pDC) {
@@ -410,7 +406,9 @@ void CDMView::UpdateGrafik()
 				ActionDamageZeichnen(pDC_, pHeld->m_dealingDmg);
 			}
 		}
-		ZauberReiterZeichnen(pDC_);
+		int iActiveWizard = pGrpHeroes->GetActiveWizard();
+		if (iActiveWizard > 0)
+			ZauberReiterZeichnen(pDC_, iActiveWizard);
 	
 	}
 
@@ -473,23 +471,4 @@ void CDMView::InitDungeon(CDMDoc* pDoc)
 	pDoc->SetRaumView(m_pRaumView);
 }
 
-/*
-bool CDMView::setActiveCaster(CDMDoc* pDoc, CPoint point)
-{
-	if (pDoc->m_pGrpHelden == NULL)
-		return false;
-	
-	CDC* pDC = GetDC();
-
-	CDC tmpdc;
-	tmpdc.CreateCompatibleDC(pDC);
-	tmpdc.SelectObject(pDoc->m_pMagicBG);
-
-	pDC->BitBlt(0,0,174,66,&tmpdc,460,64,SRCCOPY);
-
-	DeleteDc
-
-	return true; 	
-}
-*/
 

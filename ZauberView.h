@@ -18,19 +18,17 @@ public:
 public:
 
 // Operationen
-public:
-	bool setActiveCaster(int ID, CGrpHeld* pGrpHelden);
 
 // Überschreibungen
 	// Vom Klassen-Assistenten generierte virtuelle Funktionsüberschreibungen
 	//{{AFX_VIRTUAL(CZauberView)
-	protected:
+protected:
 	virtual void OnDraw(CDC* pDC);      // Überschrieben zum Zeichnen dieser Ansicht
 	//}}AFX_VIRTUAL
 
 // Implementierung
 public:
-	void Zeichnen(CPictures* pPictures, CDC* pDC);
+	void Zeichnen(CPictures* pPictures, CDC* pDC, int iActiveWizard);
 	virtual ~CZauberView();
 #ifdef _DEBUG
 	virtual void AssertValid() const;

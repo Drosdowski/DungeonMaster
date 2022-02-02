@@ -107,6 +107,8 @@ void CGrpHeld::InitHeld(CPictures* pPictures, const int nr)
 		pHeld->SymbolZeichnen(pDC, pPictures);
 
 		m_iAnzHelden++;
+		if (m_iAnzHelden == 1) 
+			m_iAktiverZauberer = 1;
 	}
 }
 
@@ -310,4 +312,14 @@ void CGrpHeld::DrinkFountain() {
 				pHeld->Trinken(100);
 		}
 	}
+}
+
+bool CGrpHeld::SetActiveCaster(int ID)
+{
+	if (ID <= m_iAnzHelden)
+	{
+		m_iAktiverZauberer = ID;
+		return true;
+	}
+	return false;
 }

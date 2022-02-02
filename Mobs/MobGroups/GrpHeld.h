@@ -19,7 +19,6 @@ protected:
 // Attribute
 public:
 	int m_iAktiverHeld = 1;
-	int m_iAktiverZauberer;
 	
 // Operationen
 public:
@@ -37,6 +36,8 @@ public:
 	void Aktiviere(int n);
 	void InitHeld(CPictures* pPictures, int nr);
 	CHeld* GetActiveHero() { return (CHeld*)m_pMember[m_iAktiverHeld]; }
+	int GetActiveWizard() { return m_iAktiverZauberer; }
+	int GetNumberOfHeroes() { return m_iAnzHelden;  }
 	CHeld* GetHero(int iID) { return (CHeld*)m_pMember[iID]; }
 	CHeld* GetAttackingHero();
 	int GetActionPhase() { return m_iPhase;  }
@@ -44,6 +45,7 @@ public:
 	void ChooseHeroForAction(int ID);
 	void DoActionForChosenHero(int ID, CGrpChar* pVictims);
 	void DrinkFountain();
+	bool SetActiveCaster(int ID);
 	//CHeld* GetHeroForAction() { return GetHero(m_iHeroForAction); }
 	CHeld* ClosestHeroTo(CMonster* monster);
 // überschriebene Methoden
@@ -61,8 +63,10 @@ public:
 protected:
 	int m_iPhase = 1;
 	int m_iHeroForAction = 1;
+	int m_iAktiverZauberer = 0;
+	int m_iAnzHelden = 0;
+	// TODO Saustall aufräumen
 public:
-	int m_iAnzHelden;
 	bool Altern();
 	//{{AFX_MSG(CGrpChar)
 	afx_msg void OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point);
