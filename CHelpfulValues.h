@@ -10,7 +10,7 @@ public:
 	int m_sty[4];
 
 	int static OppositeDirection(int direction);
-
+	SUBPOS static GetRelativeSubPos(SUBPOS opponentPos, int heroDir);
 
 };
 

@@ -12,3 +12,7 @@ CHelpfulValues::CHelpfulValues() {
 int CHelpfulValues::OppositeDirection(int direction) {
 	return (direction + 2) % 4;
 }
+
+SUBPOS CHelpfulValues::GetRelativeSubPos(SUBPOS opponentPos, int heroDir) {
+	// TODO
+}

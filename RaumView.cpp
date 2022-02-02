@@ -264,6 +264,8 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, C
 				double faktor = m_pPictures->getFaktor(ebene);
 
 				// Bild Mitte: 225 / 78
+				SUBPOS subPos = CHelpfulValues::GetRelativeSubPos(monster->HoleSubPosition(), richt);
+
 				int posX = 225 - bmpInfo.bmWidth * faktor + (xx * 156);
 				int posY = 100 + bmpInfo.bmHeight * (1 - faktor) / 2;
 

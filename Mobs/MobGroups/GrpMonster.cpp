@@ -78,13 +78,16 @@ void CGrpMonster::InitMonster(int nr, CMonster::MonsterTyp iTyp)
 		case CMonster::MonsterTyp::SKELETT:
 			m_pMember[nr] = new CSkelett();
 			break;
+		case CMonster::MonsterTyp::MUMIE:
+			m_pMember[nr] = new CMumie();
+			break;
 		default:
 			ASSERT(false); // unexpected monster type
 		} 
 		
 		bool vl,vr,hl,hr;
 		vl=vr=hl=hr=false;
-		SUBPOS pos;	// Freien Platz suchen
+		SUBPOS pos = MITTE;	// Freien Platz suchen
 		for (int i=1; i<5; i++)
 			if ((i!=nr) && (m_pMember[i]!=NULL))
 			{
