@@ -10,9 +10,9 @@ void CBasePictures::LoadPic(CBitmap*& mPic, int ID) {
 	mPic->LoadBitmap(ID);
 }
 
-void CBasePictures::LoadPicAndFlip(CDC* pDC, CBitmap*& mPic, int ID) {
+void CBasePictures::LoadPicAndFlip(CBitmap*& mPic, int ID) {
 	CDC flipDC;
-	flipDC.CreateCompatibleDC(pDC);
+	flipDC.CreateCompatibleDC(m_pDC);
 	LoadPic(mPic, ID);
 	flipDC.SelectObject(mPic);
 	BITMAP bmpInfo;

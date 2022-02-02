@@ -18,7 +18,7 @@ void CFountainPic::InitFountain() {
 
 	LoadPic(m_pFountainFront, IDB_FOUNTAIN_F);
 	LoadPic(m_pFountainRight, IDB_FOUNTAIN_L);
-	LoadPicAndFlip(GetMyDC(), m_pFountainLeft, IDB_FOUNTAIN_L);
+	LoadPicAndFlip(m_pFountainLeft, IDB_FOUNTAIN_L);
 }
 
 CBitmap* CFountainPic::GetFountainFront() {

@@ -43,7 +43,7 @@ int CScreenCoords::CheckHitActiveWizard(CPoint point, int activeWizardID) {
 
 int CScreenCoords::CheckHitAction(CPoint point, int phase)
 {
-	if ((point.y > 146) && (point.y < 290))
+	if ((point.y > 146) && (point.y < 250))
 	{
 		// Klick in ActionArea - Status prüfen
 		

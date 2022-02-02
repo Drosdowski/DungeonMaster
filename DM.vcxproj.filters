@@ -60,7 +60,7 @@
     <ClCompile Include="ZauberView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Decoration.cpp">
+    <ClCompile Include="SpecialTile\Decoration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Pictures\CPictures.cpp">
@@ -75,7 +75,7 @@
     <ClCompile Include="Mobs\Mumie.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CDoor.cpp">
+    <ClCompile Include="SpecialTile\CDoor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Pictures\CDoorPic.cpp">
@@ -99,16 +99,16 @@
     <ClCompile Include="CDungeonMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tinystr.cpp">
+    <ClCompile Include="TinyXML\tinystr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tinyxml.cpp">
+    <ClCompile Include="TinyXML\tinyxml.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tinyxmlerror.cpp">
+    <ClCompile Include="TinyXML\tinyxmlerror.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tinyxmlparser.cpp">
+    <ClCompile Include="TinyXML\tinyxmlparser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Pictures\Creatures\CSkeletonPic.cpp">
@@ -175,7 +175,7 @@
     <ClInclude Include="ZauberView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Decoration.h">
+    <ClInclude Include="SpecialTile\Decoration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\CPictures.h">
@@ -190,7 +190,7 @@
     <ClInclude Include="Mobs\Mumie.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CDoor.h">
+    <ClInclude Include="SpecialTile\CDoor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\CDoorPic.h">
@@ -214,10 +214,10 @@
     <ClInclude Include="CDungeonMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="tinystr.h">
+    <ClInclude Include="TinyXML\tinystr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="tinyxml.h">
+    <ClInclude Include="TinyXML\tinyxml.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\Creatures\CSkeletonPic.h">
@@ -250,9 +250,6 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Kram.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\magicbg.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Pcst_042.bmp">
@@ -431,6 +428,21 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Fountain_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Runes1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Reiter4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Reiter3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Runes2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Runes3.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

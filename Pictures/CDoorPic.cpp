@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "..\resource.h"
 #include "CDoorPic.h"
-#include <CDoor.h>
+#include "..\SpecialTile\CDoor.h"
 
 CDoorPic::CDoorPic(CDC* pDC) : CBasePictures(pDC)
 {
-	InitDoors(pDC);
+	InitDoors();
 }
 
 CDoorPic::~CDoorPic()
@@ -32,6 +32,8 @@ CBitmap* CDoorPic::GetDoorFrontPic(int iDoorType, int ebene) {
 	{
 		if (iDoorType == CDoor::DoorType::Iron)
 			return m_pDoorIron[ebene];
+		else
+			return NULL;
 	}
 	else
 		return m_pDoorFrameFront;
@@ -119,16 +121,16 @@ CPoint CDoorPic::GetDoorTopPos(int x, int ebene, CPoint wallPos) {
 	return CPoint(0, 0);
 }
 
-void CDoorPic::InitDoors(CDC* pDC) {
+void CDoorPic::InitDoors() {
 	LoadPic(m_pDoorFrameFront, IDB_DOOR_FRAME_0); // Ansicht Tür von innen zur Seite gedreht
 	LoadPic(m_pDoorFrameLeft[1], IDB_DOOR_FRAME_1L);
 	LoadPic(m_pDoorFrameLeft[2], IDB_DOOR_FRAME_2L);
 	LoadPic(m_pDoorFrameLeft[3], IDB_DOOR_FRAME_3L);
 	LoadPic(m_pDoorFrameFarLeft, IDB_DOOR_FRAME_3FL);
-	LoadPicAndFlip(pDC, m_pDoorFrameRight[1], IDB_DOOR_FRAME_1L);
-	LoadPicAndFlip(pDC, m_pDoorFrameRight[2], IDB_DOOR_FRAME_2L);
-	LoadPicAndFlip(pDC, m_pDoorFrameRight[3], IDB_DOOR_FRAME_3L);
-	LoadPicAndFlip(pDC, m_pDoorFrameFarRight, IDB_DOOR_FRAME_3FL);
+	LoadPicAndFlip(m_pDoorFrameRight[1], IDB_DOOR_FRAME_1L);
+	LoadPicAndFlip(m_pDoorFrameRight[2], IDB_DOOR_FRAME_2L);
+	LoadPicAndFlip(m_pDoorFrameRight[3], IDB_DOOR_FRAME_3L);
+	LoadPicAndFlip(m_pDoorFrameFarRight, IDB_DOOR_FRAME_3FL);
 	LoadPic(m_pDoorFrontTop[1], IDB_DOOR_FRONT_1T);
 	LoadPic(m_pDoorFrontTop[2], IDB_DOOR_FRONT_2T);
 	LoadPic(m_pDoorIron[1], IDB_DOOR_IRON_1);

@@ -231,7 +231,15 @@ IDB_MUMMY_BACK          BITMAP                  "res\\Mummy_Back.bmp"
 
 IDB_MUMMY_RIGHT         BITMAP                  "res\\Mummy_Right.bmp"
 
-IDB_MAGICBG             BITMAP                  "res\\magicbg.bmp"
+IDB_RUNES1              BITMAP                  "res\\Runes1.bmp"
+
+IDB_RUNES2              BITMAP                  "res\\Runes2.bmp"
+
+IDB_RUNES3              BITMAP                  "res\\Runes3.bmp"
+
+IDB_REITER3             BITMAP                  "res\\Reiter3.bmp"
+
+IDB_REITER4             BITMAP                  "res\\Reiter4.bmp"
 
 IDB_BITMAP_E0L          BITMAP                  "res\\Wall0_Left.bmp"
 

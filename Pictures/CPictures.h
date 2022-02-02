@@ -14,7 +14,8 @@ public:
 	CBitmap* GetInversePfeile() { return m_pBmpInversePfeile; }
 	CBitmap* GetActionsArea() { return m_pActionsArea; }
 	CBitmap* GetKram() { return m_pBmpKram; }
-	CBitmap* GetMagicBG() { return m_pMagicBG; }
+	CBitmap* GetRunes(int i) { return m_pRunes[i]; }
+	CBitmap* GetWizardTabs(int i) { return m_pWizardTabs[i]; }
 	CBitmap* GetOneHand() { return m_pOneHand; }
 	CBitmap* GetActionDamage(int dmg);
 
@@ -26,7 +27,8 @@ private:
 	CBitmap* m_pBmpHintergrund;
 	CBitmap* m_pBmpInversePfeile;
 	CBitmap* m_pBmpKram;
-	CBitmap* m_pMagicBG;
+	CBitmap* m_pRunes[4];
+	CBitmap* m_pWizardTabs[5];
 	CBitmap* m_pActionsArea;
 	CBitmap* m_pActionsDamage;
 	CBitmap* m_pOneHand;

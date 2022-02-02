@@ -21,7 +21,7 @@ void CMummyPic::InitPics() {
 	LoadPic(m_pMummyAttack, IDB_MUMMY_ATTACK);
 	LoadPic(m_pMummyFront, IDB_MUMMY_FRONT);
 	LoadPic(m_pMummyRight, IDB_MUMMY_RIGHT);
-	LoadPicAndFlip(GetMyDC(), m_pMummyLeft, IDB_MUMMY_RIGHT);
+	LoadPicAndFlip(m_pMummyLeft, IDB_MUMMY_RIGHT);
 	LoadPic(m_pMummyBack, IDB_MUMMY_BACK);
 }
 

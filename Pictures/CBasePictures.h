@@ -9,7 +9,7 @@ public:
 	CDC* GetMyDC() { return m_pDC; }
 
 	void LoadPic(CBitmap*& mPic, int ID);
-	void LoadPicAndFlip(CDC* pDC, CBitmap*& mPic, int ID);
+	void LoadPicAndFlip(CBitmap*& mPic, int ID);
 
 
 private:

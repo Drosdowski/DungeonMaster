@@ -21,7 +21,7 @@ void CSkeletonPic::InitPics() {
 	LoadPic(m_pSkeletonAttack, IDB_SKELETON_ATTACK);
 	LoadPic(m_pSkeletonFront, IDB_SKELETON_FRONT);
 	LoadPic(m_pSkeletonRight, IDB_SKELETON_RIGHT);
-	LoadPicAndFlip(GetMyDC(), m_pSkeletonLeft, IDB_SKELETON_RIGHT);
+	LoadPicAndFlip(m_pSkeletonLeft, IDB_SKELETON_RIGHT);
 	LoadPic(m_pSkeletonBack, IDB_SKELETON_BACK);
 }
 
