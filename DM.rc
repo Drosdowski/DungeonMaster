@@ -217,8 +217,6 @@ IDB_BITMAP_PCST042      BITMAP                  "res\\Pcst_042.bmp"
 
 IDB_BITMAP_RUCK         BITMAP                  "res\\Ruck.bmp"
 
-IDB_BITMAP_TREP         BITMAP                  "res\\Trep.bmp"
-
 IDB_BITMAP_PINV         BITMAP                  "res\\Pinv.bmp"
 
 IDB_BITMAP_STEINE       BITMAP                  "res\\Steine.bmp"
@@ -328,6 +326,34 @@ IDB_DOOR_IRON_1         BITMAP                  "res\\Door_Iron_1.bmp"
 IDB_DOOR_IRON_2         BITMAP                  "res\\Door_Iron_2.bmp"
 
 IDB_DOOR_IRON_3         BITMAP                  "res\\Door_Iron_3.bmp"
+
+IDB_STAIRS_DOWN_0L      BITMAP                  "res\\Stairs_Down0_Left.bmp"
+
+IDB_STAIRS_DOWN_1F      BITMAP                  "res\\Stairs_Down1_Front.bmp"
+
+IDB_STAIRS_DOWN_1L      BITMAP                  "res\\Stairs_Down1_Left.bmp"
+
+IDB_STAIRS_DOWN_2F      BITMAP                  "res\\Stairs_Down2_Front.bmp"
+
+IDB_STAIRS_DOWN_2L      BITMAP                  "res\\Stairs_Down2_Left.bmp"
+
+IDB_STAIRS_DOWN_3F      BITMAP                  "res\\Stairs_Down3_Front.bmp"
+
+IDB_STAIRS_DOWN_3L      BITMAP                  "res\\Stairs_Down3_Left.bmp"
+
+IDB_STAIRS_UP_0L        BITMAP                  "res\\Stairs_Up0_Left.bmp"
+
+IDB_STAIRS_UP_1F        BITMAP                  "res\\Stairs_Up1_Front.bmp"
+
+IDB_STAIRS_UP_1L        BITMAP                  "res\\Stairs_Up1_Left.bmp"
+
+IDB_STAIRS_UP_2F        BITMAP                  "res\\Stairs_Up2_Front.bmp"
+
+IDB_STAIRS_UP_2L        BITMAP                  "res\\Stairs_Up2_Left.bmp"
+
+IDB_STAIRS_UP_3F        BITMAP                  "res\\Stairs_Up3_Front.bmp"
+
+IDB_STAIRS_UP_3L        BITMAP                  "res\\Stairs_Up3_Left.bmp"
 
 IDB_ACTIONS_AREA        BITMAP                  "res\\ActionsArea.bmp"
 

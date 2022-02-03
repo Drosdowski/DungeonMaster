@@ -58,6 +58,20 @@
 #define IDB_RUNES1                      226
 #define IDB_RUNES3                      227
 #define IDB_RUNES2                      228
+#define IDB_STAIRS_DOWN_0L              229
+#define IDB_STAIRS_DOWN_1F              230
+#define IDB_STAIRS_UP_1L                231
+#define IDB_STAIRS_UP_0L                232
+#define IDB_STAIRS_DOWN_3F              233
+#define IDB_STAIRS_UP_1F                234
+#define IDB_STAIRS_UP_2L                235
+#define IDB_STAIRS_DOWN_2L              236
+#define IDB_STAIRS_DOWN_3L              237
+#define IDB_STAIRS_DOWN_2F              238
+#define IDB_STAIRS_DOWN_1L              239
+#define IDB_STAIRS_UP_3F                240
+#define IDB_STAIRS_UP_2F                241
+#define IDB_STAIRS_UP_3L                242
 #define IDB_BITMAP_E0L                  1001
 #define IDB_BITMAP_E0LF                 1002
 #define IDB_BITMAP_E0R                  1004
@@ -86,7 +100,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        229
+#define _APS_NEXT_RESOURCE_VALUE        243
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

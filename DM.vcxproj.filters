@@ -120,6 +120,9 @@
     <ClCompile Include="Pictures\Creatures\CMonsterPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pictures\CStairsPic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -229,6 +232,9 @@
     <ClInclude Include="Pictures\Creatures\CMonsterPic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Pictures\CStairsPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\DM.ico">
@@ -262,9 +268,6 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Steine.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\Trep.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Wall0_Left.bmp">
@@ -443,6 +446,48 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Runes3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Stairs_Up3_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Stairs_Down0_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Stairs_Down1_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Stairs_Down1_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Stairs_Down2_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Stairs_Down2_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Stairs_Down3_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Stairs_Down3_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Stairs_Up0_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Stairs_Up1_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Stairs_Up1_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Stairs_Up2_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Stairs_Up2_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Stairs_Up3_Front.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

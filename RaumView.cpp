@@ -158,7 +158,6 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 }
 
 void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField) {
-	// Wand zeichnen
 	BITMAP bmpDecoInfo;
 	BITMAP bmpInfo;
 
@@ -241,7 +240,6 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 }
 
 void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField) {
-	// Monster zeichnen
 	CGrpMonster* pGrpMon = (CGrpMonster*)pField->GetMonsterGroup();
 	if (pGrpMon)
 	{
@@ -249,27 +247,21 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, C
 
 		for (int i = 1; i < 5; i++)
 		{		
-			// todo: i => 1=VL, 2=VR, 3 = HL, 4=HR (aus Spielersicht)
-			CMonster* monster = pGrpMon->GetMonsterByRelSubPos(i, richt); //			GetMonster(i);
+			CMonster* monster = pGrpMon->GetMonsterByRelSubPos(i, richt); 
 			if (monster && monster->Hp() > 0) // todo staubwolke hier berücksichtigen
 			{
 				CBitmap* bmp = m_pMonsterPic->GetBitmap(monster, richt);
 				BITMAP bmpInfo;
 
-
 				//get original size of bitmap
 				bmp->GetBitmap(&bmpInfo);
 				double faktor = m_pPictures->getFaktor(ebene);
 
-				// Bild Mitte: 225 / 78
 				SUBPOS subPos = CHelpfulValues::GetRelativeSubPos(monster->HoleSubPosition(), richt);
 				CPoint pos = CHelpfulValues::CalcSubPosition(bmpInfo, subPos, faktor, xx);		
 
 				cdc->SelectObject(bmp);
-				// todo rechter bildschirmrand !
 				DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, monster->transCol);
-
-				//pDC->TransparentBlt(pos.x, pos.y, bmpInfo.bmWidth * faktor * 2, bmpInfo.bmHeight * faktor * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, monster->transCol);
 			}
 		}
 	}
@@ -412,16 +404,6 @@ void CRaumView::MoveAnythingNearby() {
 	}
 
 }
-//
-//VEKTOR CRaumView::NextFieldWithoutTurn(CGrpMonster* pGrpMon, VEKTOR heroPos) {
-//	int richt = pGrpMon->m_chrDirection;
-//	int xDist = pGrpMon->GetPos().x - heroPos.x;
-//	int yDist = pGrpMon->GetPos().y - heroPos.y;
-//
-//	int stx = m_values->m_stx[richt];
-//	int sty = m_values->m_sty[richt];
-//
-//}
 
 VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	// Prüfen: Held angreifbar? Erstmal nur Nahkampf!
