@@ -31,6 +31,7 @@ public:
 	void MoveOrAttack(VEKTOR heroPos, int heroDirection);
 	void ActionDone();
 	bool IstBereit();
+	CMonster* GetMonsterByRelSubPos(int posIndex, int richt);
 
 // Überschreibungen
 	// Vom Klassen-Assistenten generierte virtuelle Funktionsüberschreibungen

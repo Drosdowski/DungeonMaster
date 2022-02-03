@@ -174,5 +174,5 @@ void CDungeonMap::DemoMap() {
 			}
 		}
 		*/
-		m_pFeld[3][7][0]->InitMonsterGruppe(CMonster::MonsterTyp::SKELETT, 2);
+		m_pFeld[3][7][0]->InitMonsterGruppe(CMonster::MonsterTyp::SKELETT, 4);
 }

@@ -81,7 +81,7 @@ protected:
 	void DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField);
 	void DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene, bool left);
 	void DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField);
-	void DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, CDC* cdc);
+	void DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, CDC* cdc, COLORREF col);
 	// VEKTOR NextFieldWithoutTurn(CGrpMonster* pGrpMon, VEKTOR heroPos);
 
 	CDungeonMap* m_pMap;

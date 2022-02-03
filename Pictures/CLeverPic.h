@@ -1,6 +1,5 @@
-
-#include "CBasePictures.h";
 #pragma once
+#include "CBasePictures.h"
 class CLeverPic : CBasePictures
 {
 public:

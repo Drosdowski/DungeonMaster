@@ -127,10 +127,8 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 				cdc->SelectObject(bmp);
 				CPoint pos = m_pDoorPic->GetDoorTopPos(xxx, ebene, wallPos);
 				bmp->GetBitmap(&bmpInfo);
-				//int reducedWidth = min(bmpInfo.bmWidth, (448 - pos.x) / 2);
-				//pDC->TransparentBlt(pos.x, pos.y, reducedWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, reducedWidth, bmpInfo.bmHeight, RGB(208, 144, 112));
 
-				DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, 1, pDC, cdc);
+				DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, 1, pDC, cdc, RGB(208, 144, 112));
 			}
 		DrawFrame(pDC, cdc, xxx, ebene, true); // left Frame
 		DrawFrame(pDC, cdc, xxx, ebene, false); // right Frame
@@ -151,8 +149,7 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 			cdc->SelectObject(bmp);
 			CPoint pos = m_pDoorPic->GetDoorFrontPos(xxx, ebene, wallPos);
 			bmp->GetBitmap(&bmpInfo);
-			//pDC->TransparentBlt(pos.x, pos.y, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, RGB(208, 144, 112));
-			DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, 1, pDC, cdc);
+			DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, 1, pDC, cdc, RGB(208, 144, 112)); // TODO farbe auslagern
 
 		}
 	}
@@ -211,7 +208,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 			int decoPosX = pos.x + center.x - (int)(bmpDecoInfo.bmWidth * faktor);
 			int decoPosY = pos.y + center.y - (int)(bmpDecoInfo.bmHeight * faktor);
 
-			DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc);
+			DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, RGB(208, 144, 112));
 
 		}
 	}
@@ -237,7 +234,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 						decoPosX -= (int)(bmpDecoInfo.bmWidth * 2 * faktor);
 					int decoPosY = (int)(pos.y + center.y - bmpDecoInfo.bmHeight * faktor);
 
-					DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc);
+					DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, RGB(208, 144, 112));
 				}
 			}
 		}
@@ -252,7 +249,8 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, C
 
 		for (int i = 1; i < 5; i++)
 		{		
-			CMonster* monster = pGrpMon->GetMonster(i);
+			// todo: i => 1=VL, 2=VR, 3 = HL, 4=HR (aus Spielersicht)
+			CMonster* monster = pGrpMon->GetMonsterByRelSubPos(i, richt); //			GetMonster(i);
 			if (monster && monster->Hp() > 0) // todo staubwolke hier berücksichtigen
 			{
 				CBitmap* bmp = m_pMonsterPic->GetBitmap(monster, richt);
@@ -265,30 +263,31 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, C
 
 				// Bild Mitte: 225 / 78
 				SUBPOS subPos = CHelpfulValues::GetRelativeSubPos(monster->HoleSubPosition(), richt);
-
-				int posX = 225 - bmpInfo.bmWidth * faktor + (xx * 156);
-				int posY = 100 + bmpInfo.bmHeight * (1 - faktor) / 2;
+				CPoint pos = CHelpfulValues::CalcSubPosition(bmpInfo, subPos, faktor, xx);		
 
 				cdc->SelectObject(bmp);
-				pDC->TransparentBlt(posX, posY, bmpInfo.bmWidth * faktor * 2, bmpInfo.bmHeight * faktor * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, monster->transCol);
+				// todo rechter bildschirmrand !
+				DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, monster->transCol);
+
+				//pDC->TransparentBlt(pos.x, pos.y, bmpInfo.bmWidth * faktor * 2, bmpInfo.bmHeight * faktor * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, monster->transCol);
 			}
 		}
 	}
 }
 
-void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, CDC* cdc) {
-	int rechterRand = w * 2 * faktor + x;
+void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, CDC* cdc, COLORREF col) {
+	int rechterRand = (int)(w * 2 * faktor + x);
 	int reducedWidth = w;
 	if (rechterRand > MainAreaWidth)
 	{
-		reducedWidth -= (rechterRand - MainAreaWidth) / (2 * faktor);
+		reducedWidth -= (int)((rechterRand - MainAreaWidth) / (2 * faktor));
 	}
 
 	if (reducedWidth > 0)
 	{
 		pDC->TransparentBlt(x, y,
 			(int)(reducedWidth * 2 * faktor), (int)(h * 2 * faktor),
-			cdc, 0, 0, reducedWidth, h, RGB(208, 144, 112));
+			cdc, 0, 0, reducedWidth, h, col);
 	}
 }
 
