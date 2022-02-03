@@ -123,6 +123,9 @@
     <ClCompile Include="Pictures\CStairsPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SpecialTile\CStairs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -233,6 +236,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\CStairsPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialTile\CStairs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -46,8 +46,8 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	int y = (int)(index / m_LevelWidth[etage]);
 	int type;
 	rootNode->QueryIntAttribute("type", &type);
-	// 0 = Wall , 1 == Empty, 4 == Door
-	if (type != 0 && type != 1 && type != 4)
+	// 0 = Wall , 1 == Empty, 3 = Stair, 4 == Door
+	if (type != 0 && type != 1 && type != 3 && type != 4)
 	{
 		type = 1; // Teleporter etc erstmal leer lassen
 	}

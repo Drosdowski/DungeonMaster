@@ -22,6 +22,7 @@ public:
 	enum FeldTyp {
 		WALL = 0,
 		EMPTY = 1,
+		STAIR = 3,
 		DOOR = 4
 	};
 

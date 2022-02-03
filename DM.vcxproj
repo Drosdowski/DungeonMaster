@@ -129,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CDungeonMap.cpp" />
+    <ClCompile Include="SpecialTile\CStairs.cpp" />
     <ClCompile Include="Pictures\CStairsPic.cpp" />
     <ClCompile Include="Pictures\Creatures\CMonsterPic.cpp" />
     <ClCompile Include="Pictures\Creatures\CMummyPic.cpp" />
@@ -175,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CDungeonMap.h" />
+    <ClInclude Include="SpecialTile\CStairs.h" />
     <ClInclude Include="Pictures\CStairsPic.h" />
     <ClInclude Include="Pictures\Creatures\CMonsterPic.h" />
     <ClInclude Include="Pictures\Creatures\CMummyPic.h" />
