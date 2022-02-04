@@ -6,6 +6,7 @@
 #include "SpecialTile\Decoration.h"
 #include "SpecialTile\CDoor.h"
 #include "Mobs\MobGroups\GrpMonster.h"
+#include <cassert>
 
 /////////////////////////////////////////////////////////////////////////////
 // CField
@@ -42,12 +43,24 @@ CField::CField(VEKTOR koord, FeldTyp fieldType, CDoor::DoorType doorType, bool d
 	}
 }
 
+CField::CField(VEKTOR koord, FeldTyp fieldType, CStairs::StairType stairType, CFieldDecoration* pDeco[4])
+{
+	SetType(fieldType, stairType);
+	m_posKoord = koord;
+	m_pGrpMonster = NULL;
+	for (int i = 0; i < 4; i++) {
+		m_pWallDecoration[i] = pDeco[i];
+	}
+}
+
 CField::~CField()
 {
 	if (m_pGrpMonster)
 		delete m_pGrpMonster;
 	if (m_pDoor)
 		delete m_pDoor;
+	if (m_pStairs)
+		delete m_pStairs;
 	for (int i = 0; i < 4; i++) {
 		if (m_pWallDecoration[i]) {
 			delete m_pWallDecoration[i];
@@ -89,6 +102,16 @@ void CField::SetType(FeldTyp fieldType, CDoor::DoorType doorType, bool doorFrame
 	if (fieldType == DOOR) {
 		m_pDoor = new CDoor(doorType, doorFrameEastAndWest);
 	} else {
-		if (m_pDoor) delete m_pDoor;
+		assert(false);
+	}
+}
+
+void CField::SetType(FeldTyp fieldType, CStairs::StairType stairsType) {
+	m_iTyp = fieldType;
+	if (fieldType == STAIRS) {
+		m_pStairs = new CStairs(stairsType);
+	}
+	else {
+		assert(false);
 	}
 }

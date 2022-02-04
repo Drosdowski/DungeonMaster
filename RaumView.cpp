@@ -11,6 +11,7 @@
 #include "Pictures\CPictures.h"
 #include "Pictures\CDoorPic.h"
 #include "Pictures\CWallPic.h"
+#include "Pictures/CStairsPic.h"
 #include "Pictures\CLeverPic.h"
 #include "Pictures\CFountainPic.h"
 #include "Pictures\Creatures\CMonsterPic.h"
@@ -47,6 +48,7 @@ CRaumView::CRaumView()
 	m_pDoc = NULL;
 	m_pDoorPic = NULL;
 	m_pWallPic = NULL;
+	m_pStairsPic = NULL;
 	m_pLeverPic = NULL;
 	m_pPictures = NULL;
 	m_pFountainPic = NULL;
@@ -58,6 +60,7 @@ CRaumView::~CRaumView()
 	delete m_pMap;
 	delete m_values;
 	delete m_pDoorPic;
+	delete m_pStairsPic;
 	delete m_pWallPic;
 	delete m_pLeverPic;
 	delete m_pFountainPic;
@@ -111,6 +114,26 @@ void CRaumView::DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene, bool left) {
 		}
 	}
 }
+
+void CRaumView::DrawStairs(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField)
+{
+	BITMAP bmpInfo;
+	CBitmap* bmp;
+	CStairs* pStairs = pField->HoleStairs();
+	if (pStairs == NULL) return;
+
+	int xx = wallXFactor[xxx];
+
+	if (pStairs->GetType() == CStairs::UP) {
+		bmp = m_pStairsPic->GetStairUpFrontPic(ebene, xx);
+	} else {
+		bmp = m_pStairsPic->GetStairDownFrontPic(ebene, xx);
+	}
+
+
+}
+
+
 void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField) {
 	BITMAP bmpInfo;
 
@@ -119,7 +142,7 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 
 	CPoint wallPos = m_pWallPic->GetWallPos(xxx, ebene);
 
-	bool doorVisible = door->getDoorFrameEastAndWest() && (richt == 0 || richt == 2);
+	bool doorVisible = (door->getDoorFrameEastAndWest() != (richt % 2 != 0));
 	if (doorVisible && ebene > 0)
 	{
 		CBitmap* bmp = m_pDoorPic->GetDoorTopPic(ebene);
@@ -325,6 +348,10 @@ void CRaumView::Zeichnen(CDC* pDC)
 				{
 					DrawDoor(pDC, &compCdc, xxx, ebene, richt, pField);
 				}
+				else if (fieldType == CField::FeldTyp::STAIRS)
+				{
+					DrawStairs(pDC, &compCdc, xxx, ebene, richt, pField);
+				}
 				else if (ebene > 0 && xxx > 1)
 				{
 					DrawMonster(pDC, &compCdc, xxx, ebene, richt, pField);
@@ -362,6 +389,9 @@ bool CRaumView::Betrete(VEKTOR pos)
 	else if (iTyp == CField::FeldTyp::EMPTY) {
 		CGrpMonster* pGrpMonster = pField->GetMonsterGroup();
 		if (pGrpMonster) return true;
+	}
+	else if (iTyp == CField::FeldTyp::STAIRS) {
+		return true;
 	}
 	else // hier div. Abfragen für Teleporter, u.ä. 
 	{
@@ -453,7 +483,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 
 			return target;
 		}
-
+	// TODO stairs
 	if (abs(xDist) >= abs(yDist)) {
 		if (xDist > 0) {
 			// Monster steht tendenziel rechts vom mir -> versuch nach links zu gehen (+drehen)

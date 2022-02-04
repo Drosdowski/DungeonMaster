@@ -7,6 +7,7 @@
 #pragma once
 #endif // _MSC_VER >= 1000
 #include <SpecialTile\CDoor.h>
+#include <SpecialTile\CStairs.h>
 // Feld.h : header file
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -22,11 +23,12 @@ public:
 	enum FeldTyp {
 		WALL = 0,
 		EMPTY = 1,
-		STAIR = 3,
+		STAIRS = 3,
 		DOOR = 4
 	};
 
-	CField(VEKTOR koord, FeldTyp fieldType, CDoor::DoorType doorType, bool doorFrameEastAndWest, CFieldDecoration* pDeco[4]);           // protected constructor used by dynamic creation
+	CField(VEKTOR koord, FeldTyp fieldType, CDoor::DoorType doorType, bool doorFrameEastAndWest, CFieldDecoration* pDeco[4]);
+	CField(VEKTOR koord, FeldTyp fieldType, CStairs::StairType stairType, CFieldDecoration* pDeco[4]);
 	CField(VEKTOR koord, FeldTyp fieldType, CFieldDecoration* pDeco[4]);           // protected constructor used by dynamic creation
 
 // Attributes
@@ -36,6 +38,7 @@ protected:
 	FeldTyp m_iTyp;
 	CFieldDecoration* m_pWallDecoration[4];
 	CDoor* m_pDoor = NULL;
+	CStairs* m_pStairs = NULL;
 // Operations
 public:
 	void InitMonsterGruppe(CMonster::MonsterTyp iTyp, int iAnz);
@@ -45,7 +48,9 @@ public:
 	FeldTyp HoleTyp()	{ return m_iTyp;};
 	CFieldDecoration* HoleDeko(int side) { return m_pWallDecoration[side]; }
 	CDoor* HoleDoor() { return m_pDoor;  }
+	CStairs* HoleStairs() { return m_pStairs;  }
 	void SetType(FeldTyp iTyp, CDoor::DoorType doorType, bool doorDirectionEastWest);
+	void SetType(FeldTyp fieldType, CStairs::StairType stairsType);
 	void SetType(FeldTyp iTyp);
 
 // Overrides

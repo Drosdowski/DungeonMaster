@@ -60,7 +60,19 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	}
 
 	if (iFieldType == CField::FeldTyp::DOOR)
-		m_pFeld[x][y][etage] = new CField(pos, iFieldType, CDoor::DoorType::Iron, true, deco);
+	{
+		int orientation;
+		rootNode->QueryIntAttribute("orientation", &orientation);		
+		m_pFeld[x][y][etage] = new CField(pos, iFieldType, CDoor::DoorType::Iron, (orientation != 0), deco);
+	}
+	else if (iFieldType == CField::FeldTyp::STAIRS) {
+		int direction;
+		rootNode->QueryIntAttribute("direction", &direction);
+		if (direction == 0)
+			m_pFeld[x][y][etage] = new CField(pos, iFieldType, CStairs::StairType::DOWN, deco); 
+		else
+			m_pFeld[x][y][etage] = new CField(pos, iFieldType, CStairs::StairType::UP, deco);
+	}		
 	else
 		m_pFeld[x][y][etage] = new CField(pos, iFieldType, deco); // etage 1 / index 30 => m_levelWidth[1] kaputt!
 	

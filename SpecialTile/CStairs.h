@@ -10,6 +10,8 @@ public:
 	CStairs(StairType type);
 	~CStairs();
 
+	StairType GetType() { return m_Type; }
+
 private:
 	StairType m_Type;
 };

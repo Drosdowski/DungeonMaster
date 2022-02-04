@@ -16,6 +16,7 @@ class CMonster;
 class CDMDoc;
 class CPictures;
 class CDoorPic;
+class CStairsPic;
 class CWallPic;
 class CLeverPic;
 class CFountainPic;
@@ -73,12 +74,14 @@ protected:
 	CDoorPic* m_pDoorPic;	
 	CWallPic* m_pWallPic;
 	CLeverPic* m_pLeverPic;
+	CStairsPic* m_pStairsPic;
 	CFountainPic* m_pFountainPic;
 	CMonsterPic* m_pMonsterPic;
 
 	VEKTOR MonsterMoveOrAttack(CGrpMonster* pGrpMon);
 	void DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField);
 	void DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField);
+	void DrawStairs(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField);
 	void DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene, bool left);
 	void DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField);
 	void DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, CDC* cdc, COLORREF col);
