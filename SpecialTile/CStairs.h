@@ -7,12 +7,14 @@ public:
 		UP = 1
 	};
 
-	CStairs(StairType type);
+	CStairs(StairType type, bool m_eastWest);
 	~CStairs();
 
 	StairType GetType() { return m_Type; }
+	bool Visible(int heroDir);
 
 private:
 	StairType m_Type;
+	bool m_eastWest;
 };
 

@@ -23,8 +23,8 @@ CGrpHeld::CGrpHeld()
 {
 	for (int i=1; i<=4; i++)
 		m_pMember[i] = NULL;
-	m_posPosition.x=3;
-	m_posPosition.y=7;
+	m_posPosition.x=4;
+	m_posPosition.y=15;
 	m_posPosition.z=0;
 	m_iAktiverHeld = 1;
 	m_grpDirection = 0;

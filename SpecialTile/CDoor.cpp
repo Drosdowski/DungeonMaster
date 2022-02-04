@@ -32,3 +32,7 @@ void CDoor::Toggle() {
 		break;
 	}
 }
+
+bool CDoor::Visible(int heroRicht) {
+	return (getDoorFrameEastAndWest() != (heroRicht % 2 != 0));
+}

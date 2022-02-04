@@ -115,21 +115,34 @@ void CRaumView::DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene, bool left) {
 	}
 }
 
-void CRaumView::DrawStairs(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField)
+void CRaumView::DrawStairsSide(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField)
+{
+
+}
+
+void CRaumView::DrawStairsFront(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pField)
 {
 	BITMAP bmpInfo;
+	CPoint pos;
 	CBitmap* bmp;
 	CStairs* pStairs = pField->HoleStairs();
 	if (pStairs == NULL) return;
 
-	int xx = wallXFactor[xxx];
-
 	if (pStairs->GetType() == CStairs::UP) {
-		bmp = m_pStairsPic->GetStairUpFrontPic(ebene, xx);
+		bmp = m_pStairsPic->GetStairUpFrontPic(xxx, ebene);
+		pos = m_pStairsPic->GetStairsUpFrontPos(xxx, ebene, m_pWallPic->GetWallPos(xxx, ebene));
 	} else {
-		bmp = m_pStairsPic->GetStairDownFrontPic(ebene, xx);
+		bmp = m_pStairsPic->GetStairDownFrontPic(xxx, ebene);
+		pos = m_pStairsPic->GetStairsDownFrontPos(xxx, ebene, m_pWallPic->GetWallPos(xxx, ebene));
 	}
-
+	if (bmp) {
+		if (pos != CPoint(0, 0))
+		{
+			cdc->SelectObject(bmp);
+			bmp->GetBitmap(&bmpInfo);
+			pDC->TransparentBlt(pos.x, pos.y, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, RGB(208, 144, 112));
+		}
+	}
 
 }
 
@@ -142,7 +155,7 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 
 	CPoint wallPos = m_pWallPic->GetWallPos(xxx, ebene);
 
-	bool doorVisible = (door->getDoorFrameEastAndWest() != (richt % 2 != 0));
+	bool doorVisible = door->Visible(richt);
 	if (doorVisible && ebene > 0)
 	{
 		CBitmap* bmp = m_pDoorPic->GetDoorTopPic(ebene);
@@ -350,7 +363,8 @@ void CRaumView::Zeichnen(CDC* pDC)
 				}
 				else if (fieldType == CField::FeldTyp::STAIRS)
 				{
-					DrawStairs(pDC, &compCdc, xxx, ebene, richt, pField);
+
+					DrawStairsFront(pDC, &compCdc, xxx, ebene, pField);
 				}
 				else if (ebene > 0 && xxx > 1)
 				{
@@ -506,6 +520,7 @@ void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
 	m_pPictures = pPictures;
 	m_pDoorPic = new CDoorPic(pDC);
 	m_pWallPic = new CWallPic(pDC);
+	m_pStairsPic = new CStairsPic(pDC);
 	m_pLeverPic = new CLeverPic(pDC);
 	m_pFountainPic = new CFountainPic(pDC);
 	m_pMonsterPic = new CMonsterPic(pDC);

@@ -45,6 +45,8 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	int x = index % m_LevelWidth[etage];
 	int y = (int)(index / m_LevelWidth[etage]);
 	int type;
+	int orientation;
+	int direction;
 	rootNode->QueryIntAttribute("type", &type);
 	// 0 = Wall , 1 == Empty, 3 = Stair, 4 == Door
 	if (type != 0 && type != 1 && type != 3 && type != 4)
@@ -61,17 +63,16 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 
 	if (iFieldType == CField::FeldTyp::DOOR)
 	{
-		int orientation;
 		rootNode->QueryIntAttribute("orientation", &orientation);		
 		m_pFeld[x][y][etage] = new CField(pos, iFieldType, CDoor::DoorType::Iron, (orientation != 0), deco);
 	}
 	else if (iFieldType == CField::FeldTyp::STAIRS) {
-		int direction;
 		rootNode->QueryIntAttribute("direction", &direction);
+		rootNode->QueryIntAttribute("orientation", &orientation);
 		if (direction == 0)
-			m_pFeld[x][y][etage] = new CField(pos, iFieldType, CStairs::StairType::DOWN, deco); 
+			m_pFeld[x][y][etage] = new CField(pos, iFieldType, CStairs::StairType::DOWN, orientation == 0, deco); 
 		else
-			m_pFeld[x][y][etage] = new CField(pos, iFieldType, CStairs::StairType::UP, deco);
+			m_pFeld[x][y][etage] = new CField(pos, iFieldType, CStairs::StairType::UP, orientation == 0, deco);
 	}		
 	else
 		m_pFeld[x][y][etage] = new CField(pos, iFieldType, deco); // etage 1 / index 30 => m_levelWidth[1] kaputt!

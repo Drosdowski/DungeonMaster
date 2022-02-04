@@ -28,7 +28,7 @@ public:
 	};
 
 	CField(VEKTOR koord, FeldTyp fieldType, CDoor::DoorType doorType, bool doorFrameEastAndWest, CFieldDecoration* pDeco[4]);
-	CField(VEKTOR koord, FeldTyp fieldType, CStairs::StairType stairType, CFieldDecoration* pDeco[4]);
+	CField(VEKTOR koord, FeldTyp fieldType, CStairs::StairType stairType, bool eastWest, CFieldDecoration* pDeco[4]);
 	CField(VEKTOR koord, FeldTyp fieldType, CFieldDecoration* pDeco[4]);           // protected constructor used by dynamic creation
 
 // Attributes
@@ -50,7 +50,7 @@ public:
 	CDoor* HoleDoor() { return m_pDoor;  }
 	CStairs* HoleStairs() { return m_pStairs;  }
 	void SetType(FeldTyp iTyp, CDoor::DoorType doorType, bool doorDirectionEastWest);
-	void SetType(FeldTyp fieldType, CStairs::StairType stairsType);
+	void SetType(FeldTyp fieldType, CStairs::StairType stairsType, bool eastWest);
 	void SetType(FeldTyp iTyp);
 
 // Overrides

@@ -16,6 +16,7 @@ public:
 
 	DoorState getState() { return m_state; }
 	DoorType getType() { return m_type; }
+	bool Visible(int heroDir);
 	int getDoorBottomHeight() { return m_bottomHeight; }
 	bool getDoorFrameEastAndWest() { return m_doorFrameEastAndWest; }
 	void Toggle();

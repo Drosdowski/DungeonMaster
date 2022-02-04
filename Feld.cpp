@@ -43,9 +43,9 @@ CField::CField(VEKTOR koord, FeldTyp fieldType, CDoor::DoorType doorType, bool d
 	}
 }
 
-CField::CField(VEKTOR koord, FeldTyp fieldType, CStairs::StairType stairType, CFieldDecoration* pDeco[4])
+CField::CField(VEKTOR koord, FeldTyp fieldType, CStairs::StairType stairType, bool eastWest, CFieldDecoration* pDeco[4])
 {
-	SetType(fieldType, stairType);
+	SetType(fieldType, stairType, eastWest);
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
 	for (int i = 0; i < 4; i++) {
@@ -106,10 +106,10 @@ void CField::SetType(FeldTyp fieldType, CDoor::DoorType doorType, bool doorFrame
 	}
 }
 
-void CField::SetType(FeldTyp fieldType, CStairs::StairType stairsType) {
+void CField::SetType(FeldTyp fieldType, CStairs::StairType stairsType, bool eastWest) {
 	m_iTyp = fieldType;
 	if (fieldType == STAIRS) {
-		m_pStairs = new CStairs(stairsType);
+		m_pStairs = new CStairs(stairsType, eastWest);
 	}
 	else {
 		assert(false);

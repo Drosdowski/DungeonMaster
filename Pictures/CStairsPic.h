@@ -6,11 +6,18 @@ public:
 	CStairsPic(CDC* pDC);
 	~CStairsPic();
 
-	CBitmap* GetStairUpFrontPic(int ebene, int xx);
-	CBitmap* GetStairDownFrontPic(int ebene, int xx);
+	CBitmap* GetStairUpFrontPic(int xx, int ebene);
+	CBitmap* GetStairDownFrontPic(int xx, int ebene);
 
-	CPoint GetStairsUpFrontPos(int ebene, int xx, CPoint wallPos);
-	CPoint GetStairsDownFrontPos(int ebene, int xx, CPoint wallPos);
+	CBitmap* GetStairUpSidePic(int xx, int ebene);
+	CBitmap* GetStairDownSidePic(int xx, int ebene);
+
+
+	CPoint GetStairsUpFrontPos(int xx, int ebene, CPoint wallPos);
+	CPoint GetStairsDownFrontPos(int xx, int ebene, CPoint wallPos);
+
+	CPoint GetStairsUpSidePos(int xx, int ebene, CPoint wallPos);
+	CPoint GetStairsDownSidePos(int xx, int ebene, CPoint wallPos);
 
 private:
 	void InitStairs();
