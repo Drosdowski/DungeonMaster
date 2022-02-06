@@ -38,6 +38,10 @@ CField* CDungeonMap::GetField(VEKTOR v) {
 	return GetField(v.x, v.y, v.z);
 }
 
+CPoint CDungeonMap::GetOffset(int ebene) {
+	return CPoint(m_offsetX[ebene], m_offsetY[ebene]);
+}
+
 void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	const char* parent = rootNode->Value();
 	int index;
@@ -116,6 +120,8 @@ void CDungeonMap::ParseMaps(TiXmlElement* rootNode) {
 		parentElement->QueryIntAttribute("index", &etage);
 		parentElement->QueryIntAttribute("width", &m_LevelWidth[etage]);
 		parentElement->QueryIntAttribute("height", &m_LevelHeight[etage]);
+		parentElement->QueryIntAttribute("offsetx", &m_offsetX[etage]);
+		parentElement->QueryIntAttribute("offsety", &m_offsetY[etage]);
 		ParseMap(parentElement, etage);
 		parentElement = parentElement->NextSiblingElement();
 	}

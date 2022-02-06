@@ -70,8 +70,8 @@ CPoint CDoorPic::GetDoorFrontPos(int x, int ebene, CPoint wallPos) {
 		break;
 	case 2:
 		if (x == 2) return CPoint(wallPos.x, wallPos.y + 5 * 2);
-		return CPoint(wallPos.x + 21 * 2, wallPos.y + 5 * 2);
-
+		if (x > 1)	return CPoint(wallPos.x + 21 * 2, wallPos.y + 5 * 2);
+		break;
 	case 3:
 		if (x == 0) return CPoint(wallPos.x, wallPos.y + 2 * 2);
 		return CPoint(wallPos.x + 11 * 2, wallPos.y + 2 * 2);

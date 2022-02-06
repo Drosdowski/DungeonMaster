@@ -35,7 +35,7 @@ IMPLEMENT_DYNCREATE(CRaumView, CView)
 
 CRaumView::CRaumView()
 {
-	m_BlackBrush.CreateSolidBrush(RGB(0,0,0));
+	m_BlackBrush.CreateSolidBrush(SCHWARZ);
 	
 	wallXFactor[0] = -2;
 	wallXFactor[1] = 2;
@@ -111,7 +111,7 @@ void CRaumView::DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene, bool left) {
 		{
 			cdc->SelectObject(bmp);
 			bmp->GetBitmap(&bmpInfo);
-			pDC->TransparentBlt(pos.x, pos.y, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, RGB(208, 144, 112));
+			pDC->TransparentBlt(pos.x, pos.y, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);
 		}
 	}
 }
@@ -141,7 +141,7 @@ void CRaumView::DrawStairsFront(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* 
 		{
 			cdc->SelectObject(bmp);
 			bmp->GetBitmap(&bmpInfo);
-			pDC->TransparentBlt(pos.x, pos.y, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, RGB(208, 144, 112));
+			pDC->TransparentBlt(pos.x, pos.y, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);
 		}
 	}
 
@@ -165,7 +165,7 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 				CPoint pos = m_pDoorPic->GetDoorTopPos(xxx, ebene, wallPos);
 				bmp->GetBitmap(&bmpInfo);
 
-				DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, 1, pDC, cdc, RGB(208, 144, 112));
+				DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, 1, pDC, cdc, TRANS_ORA);
 			}
 		DrawFrame(pDC, cdc, xxx, ebene, true); // left Frame
 		DrawFrame(pDC, cdc, xxx, ebene, false); // right Frame
@@ -174,9 +174,11 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 			cdc->SelectObject(bmp);
 			CPoint pos = m_pDoorPic->GetDoorFrontPos(xxx, ebene, wallPos);
 			bmp->GetBitmap(&bmpInfo);
-			int reducedWidth = min(bmpInfo.bmWidth, (MainAreaWidth - pos.x) / 2);
-			int reducedHeight = bmpInfo.bmHeight - door->getDoorBottomHeight();
-			pDC->TransparentBlt(pos.x, pos.y, reducedWidth * 2, reducedHeight * 2, cdc, 0, door->getDoorBottomHeight(), reducedWidth, reducedHeight, RGB(208, 144, 112));
+			if (pos.x != 0 && pos.y != 0) {
+				int reducedWidth = min(bmpInfo.bmWidth, (MainAreaWidth - pos.x) / 2);
+				int reducedHeight = bmpInfo.bmHeight - door->getDoorBottomHeight();
+				pDC->TransparentBlt(pos.x, pos.y, reducedWidth * 2, reducedHeight * 2, cdc, 0, door->getDoorBottomHeight(), reducedWidth, reducedHeight, TRANS_ORA);
+			}
 		}
 	}
 	else if (!doorVisible && (ebene == 0) && (xx == 0)) {
@@ -186,7 +188,7 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 			cdc->SelectObject(bmp);
 			CPoint pos = m_pDoorPic->GetDoorFrontPos(xxx, ebene, wallPos);
 			bmp->GetBitmap(&bmpInfo);
-			DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, 1, pDC, cdc, RGB(208, 144, 112)); // TODO farbe auslagern
+			DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, 1, pDC, cdc, TRANS_ORA); 
 
 		}
 	}
@@ -220,7 +222,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 
 	bmp->GetBitmap(&bmpInfo);
 
-	pDC->TransparentBlt(pos.x, pos.y, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, RGB(255, 0, 255));
+	pDC->TransparentBlt(pos.x, pos.y, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_VIO);
 
 	// Deko auf FRONT Wand zeichnen
 	if (frontDeco->GetDecoType() != None)
@@ -244,7 +246,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 			int decoPosX = pos.x + center.x - (int)(bmpDecoInfo.bmWidth * faktor);
 			int decoPosY = pos.y + center.y - (int)(bmpDecoInfo.bmHeight * faktor);
 
-			DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, RGB(208, 144, 112));
+			DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
 
 		}
 	}
@@ -270,7 +272,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 						decoPosX -= (int)(bmpDecoInfo.bmWidth * 2 * faktor);
 					int decoPosY = (int)(pos.y + center.y - bmpDecoInfo.bmHeight * faktor);
 
-					DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, RGB(208, 144, 112));
+					DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
 				}
 			}
 		}
@@ -410,6 +412,8 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 		if (stairs->GetType() == CStairs::StairType::DOWN)
 		{
 			toPos.z++;
+			toPos.x+= (m_pMap->GetOffset(fromPos.z).x - m_pMap->GetOffset(toPos.z).x);
+			toPos.y+= (m_pMap->GetOffset(fromPos.z).y - m_pMap->GetOffset(toPos.z).y);
 		}
 		else {
 			toPos.z--;

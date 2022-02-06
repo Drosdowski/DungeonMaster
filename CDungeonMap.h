@@ -17,7 +17,7 @@ public:
 	CField* GetField(VEKTOR);
 	int GetMaxWidth(int ebene) { return m_LevelWidth[ebene]; }
 	int GetMaxHeight(int ebene) { return m_LevelHeight[ebene]; }
-
+	CPoint GetOffset(int ebene);
 
 private:
 	void ParseTile(TiXmlElement* rootNode, int etage);
@@ -28,5 +28,7 @@ private:
 	CField* m_pEdgeWall;
 	int m_LevelWidth[FELD_MAX_Z];
 	int m_LevelHeight[FELD_MAX_Z];
+	int m_offsetX[FELD_MAX_Z]; // shifting when changing floor level
+	int m_offsetY[FELD_MAX_Z]; // shifting when changing floor level
 };
 

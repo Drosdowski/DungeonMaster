@@ -26,6 +26,7 @@
 #define LINKS_DREHEN 5
 #define RECHTS_DREHEN 6
 
+#define SCHWARZ RGB(0,0,0)
 #define HELLBLAU RGB(0,224,224)
 #define HELLGRAU RGB(160,160,160)
 #define MITTELGRAU RGB(128,128,128)
@@ -43,6 +44,10 @@
 #define ROT RGB(224,0,0)
 #define WEISS RGB(224,224,224)
 #define ROSA RGB(224,0,224)
+
+#define TRANS_ORA RGB(208, 144, 112)
+#define TRANS_BLU RGB(0, 208, 208)
+#define TRANS_VIO RGB(255, 0, 255)
 
 #define MOD_LAUFEN 1
 #define MOD_RUCKSACK 2

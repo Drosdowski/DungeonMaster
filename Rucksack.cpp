@@ -96,7 +96,7 @@ void CRucksack::OnLButtonUp(CDC* pDC, UINT nFlags, CPoint point)
 
 void CRucksack::ZeichneHungerDurst(CDC* pDC, int i, int j)
 {
-	pDC->FillSolidRect(CRect(230,206,230+i,218), RGB(0,0,0));
+	pDC->FillSolidRect(CRect(230,206,230+i,218), SCHWARZ);
 	COLORREF col;
 	if (i>50)
 		col = DUNKELBRAUN;
@@ -106,7 +106,7 @@ void CRucksack::ZeichneHungerDurst(CDC* pDC, int i, int j)
 		col = ROT;
 	pDC->FillSolidRect(CRect(226,202,226+i,214), col);
 
-	pDC->FillSolidRect(CRect(230,252,230+j,264), RGB(0,0,0));
+	pDC->FillSolidRect(CRect(230,252,230+j,264), SCHWARZ);
 	if (j>50)
 		col = BLAU;
 	else if (j>15)

@@ -13,7 +13,7 @@ void CSkelett::InitValues() {
 	m_MA.Max = m_MA.Aktuell = 0;
 	m_SpeedDelay = 8;
 	m_ApproxDmg = 2;
-	transCol = RGB(0, 208, 208);
+	transCol = TRANS_BLU;
 }
 
 int CSkelett::GetIDB(int index)
