@@ -100,6 +100,7 @@ CPoint CStairsPic::GetStairsDownFrontPos(int xx, int ebene, CPoint wallPos) {
 		if (xx == 2 || xx == 3) return CPoint(wallPos.x, wallPos.y + 40);
 		break;
 	case 1:
+		if (xx == 3) return  CPoint(wallPos.x + 58, wallPos.y);
 		return wallPos;
 		break;
 	case 2:

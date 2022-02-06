@@ -5,6 +5,7 @@
 #include "stdafx.h"
 #include "DmDoc.h"
 #include "Feld.h"
+#include "SpecialTile/CStairs.h"
 #include "RaumView.h"
 #include "SpecialTile\Decoration.h"
 #include "CDungeonMap.h"
@@ -388,30 +389,39 @@ CGrpMonster* CRaumView::GetMonsterGroup(VEKTOR pos) {
 	return pField->GetMonsterGroup();
 }
 
-bool CRaumView::Betrete(VEKTOR pos)
-{
-	CField* pField = m_pMap->GetField(pos);
+VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
+{	
+	CField* pField = m_pMap->GetField(toPos);
 	CField::FeldTyp iTyp = pField->HoleTyp();
 	if (iTyp == CField::FeldTyp::WALL)
-		return true;
+		return fromPos;
 	else if (iTyp == CField::FeldTyp::DOOR)
 	{
 		CDoor* pDoor = pField->HoleDoor();
 		if (pDoor->getState() != CDoor::DoorState::OPEN)
-			return true;
+			return fromPos;
 	}
 	else if (iTyp == CField::FeldTyp::EMPTY) {
 		CGrpMonster* pGrpMonster = pField->GetMonsterGroup();
-		if (pGrpMonster) return true;
+		if (pGrpMonster) return fromPos;
 	}
 	else if (iTyp == CField::FeldTyp::STAIRS) {
-		return true;
+		CStairs* stairs = pField->HoleStairs();
+		if (stairs->GetType() == CStairs::StairType::DOWN)
+		{
+			toPos.z++;
+		}
+		else {
+			toPos.z--;
+		}
+
+		return toPos;
 	}
 	else // hier div. Abfragen für Teleporter, u.ä. 
 	{
 		
 	}
-	return false;
+	return toPos;
 }
 
 void CRaumView::MoveAnythingNearby() {

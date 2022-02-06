@@ -105,7 +105,7 @@ void CDMDoc::Dump(CDumpContext& dc) const
 void CDMDoc::Laufen()
 {
 	bool bLaufbereit = m_pGrpHelden->Laufbereit();
-	VEKTOR pos;
+	VEKTOR posTarget, posFrom, posFinal;
 
 	switch(m_iWunschRichtung)
 	{
@@ -122,9 +122,11 @@ void CDMDoc::Laufen()
 	case RECHTS_STRAFE:
 	case VORWAERTS:
 		if (bLaufbereit)
-			pos = m_pGrpHelden->HoleZielFeld(m_iWunschRichtung);
-
-			if (m_pRaumView->Betrete(pos))
+		{
+			posTarget = m_pGrpHelden->HoleZielFeld(m_iWunschRichtung);
+			posFrom = m_pGrpHelden->GetPos();
+			posFinal = m_pRaumView->Betrete(posFrom, posTarget);
+			if (posFinal.x == posFrom.x && posFinal.y == posFinal.y && posFinal.z == posFinal.z)
 			{
 				m_pGrpHelden->Kollision();
 				PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-RunningIntoAWall.mp3");
@@ -132,9 +134,10 @@ void CDMDoc::Laufen()
 			else
 			{
 				m_pRaumView->TriggerMoveAnimation();
-				m_pGrpHelden->Laufen(pos);
+				m_pGrpHelden->Laufen(posFinal);
 			}
-			break;
+		}
+		break;
 	}
 	m_iWunschRichtung = 0;
 }

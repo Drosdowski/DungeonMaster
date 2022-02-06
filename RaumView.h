@@ -55,7 +55,7 @@ public:
 	void MoveAnythingNearby();
 
 	void InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures); // TODO: pDOC & pDC private merken
-	bool Betrete(VEKTOR pos);
+	VEKTOR Betrete(VEKTOR from, VEKTOR to);
 	CGrpMonster* GetMonsterGroup(VEKTOR pos);
 	void TriggerMoveAnimation();
 	void Zeichnen(CDC* pDC);
