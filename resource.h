@@ -72,6 +72,8 @@
 #define IDB_STAIRS_UP_3F                240
 #define IDB_STAIRS_UP_2F                241
 #define IDB_STAIRS_UP_3L                242
+#define IDB_STAIRS_DOWN_0F              243
+#define IDB_STAIRS_UP_0F                244
 #define IDB_BITMAP_E0L                  1001
 #define IDB_BITMAP_E0LF                 1002
 #define IDB_BITMAP_E0R                  1004
@@ -100,7 +102,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        243
+#define _APS_NEXT_RESOURCE_VALUE        245
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

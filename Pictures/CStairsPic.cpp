@@ -11,20 +11,19 @@ CStairsPic::~CStairsPic()
 {
 	for (int i = 0; i < 4; i++)
 	{
-		delete m_pStairsDownLeft[i];
-		delete m_pStairsDownRight[i];
-		delete m_pStairsUpLeft[i];
-		delete m_pStairsUpRight[i];
+		delete m_pStairsDownFront[i];
+		delete m_pStairsUpFront[i];
 		if (i > 0) {
-			delete m_pStairsDownFront[i];
-			delete m_pStairsUpFront[i];
+			delete m_pStairsUpLeft[i];
+			delete m_pStairsUpRight[i];
+			delete m_pStairsDownLeft[i];
+			delete m_pStairsDownRight[i];
 		}
 	}
 }
 
 void CStairsPic::InitStairs() {
-	LoadPic(m_pStairsDownLeft[0], IDB_STAIRS_DOWN_0L);
-	LoadPicAndFlip(m_pStairsDownRight[0], IDB_STAIRS_DOWN_0L);
+	LoadPic(m_pStairsDownFront[0], IDB_STAIRS_DOWN_0F);
 	
 	LoadPic(m_pStairsDownLeft[1], IDB_STAIRS_DOWN_1L);
 	LoadPicAndFlip(m_pStairsDownRight[1], IDB_STAIRS_DOWN_1L);
@@ -39,8 +38,7 @@ void CStairsPic::InitStairs() {
 	LoadPic(m_pStairsDownFront[3], IDB_STAIRS_DOWN_3F);
 
 
-	LoadPic(m_pStairsUpLeft[0], IDB_STAIRS_UP_0L);
-	LoadPicAndFlip(m_pStairsUpRight[0], IDB_STAIRS_UP_0L);
+	LoadPic(m_pStairsUpFront[0], IDB_STAIRS_UP_0F);
 	
 	LoadPic(m_pStairsUpLeft[1], IDB_STAIRS_UP_1L);
 	LoadPicAndFlip(m_pStairsUpRight[1], IDB_STAIRS_UP_1L);
@@ -57,15 +55,16 @@ void CStairsPic::InitStairs() {
 }
 
 CBitmap* CStairsPic::GetStairUpFrontPic(int xx, int ebene) {
+
 	if (xx == 2) return m_pStairsUpLeft[ebene];
 	if (xx == 3) return m_pStairsUpRight[ebene];
-	if ((xx == 4) && (ebene > 0)) return m_pStairsUpFront[ebene];
+	if (xx == 4) return m_pStairsUpFront[ebene];
 	return NULL;
 }
 CBitmap* CStairsPic::GetStairDownFrontPic(int xx, int ebene) {
 	if (xx == 2) return m_pStairsDownLeft[ebene];
 	if (xx == 3) return m_pStairsDownRight[ebene];
-	if ((xx == 4) && (ebene > 0)) return m_pStairsDownFront[ebene];
+	if (xx == 4) return m_pStairsDownFront[ebene];
 	return NULL;
 }
 
@@ -79,7 +78,7 @@ CBitmap* CStairsPic::GetStairDownSidePic(int xx, int ebene) {
 CPoint CStairsPic::GetStairsUpFrontPos(int xx, int ebene, CPoint wallPos) {
 	switch (ebene) {
 	case 0:
-		if (xx == 2 || xx == 3) return CPoint(wallPos.x, wallPos.y + 40);
+		return CPoint(wallPos.x, wallPos.y + 100);
 		break;
 	case 1:
 		if (xx == 3) return  CPoint(wallPos.x + 58, wallPos.y);
@@ -98,7 +97,7 @@ CPoint CStairsPic::GetStairsUpFrontPos(int xx, int ebene, CPoint wallPos) {
 CPoint CStairsPic::GetStairsDownFrontPos(int xx, int ebene, CPoint wallPos) {
 	switch (ebene) {
 	case 0:
-		if (xx == 2 || xx == 3) return CPoint(wallPos.x, wallPos.y + 40);
+		return CPoint(wallPos.x, wallPos.y + 138);
 		break;
 	case 1:
 		if (xx == 3) return  CPoint(wallPos.x + 58, wallPos.y);

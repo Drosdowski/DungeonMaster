@@ -457,7 +457,7 @@
     <Image Include="res\Stairs_Up3_Left.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\Stairs_Down0_Left.bmp">
+    <Image Include="res\Stairs_Down0_Front.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Stairs_Down1_Front.bmp">
@@ -478,7 +478,7 @@
     <Image Include="res\Stairs_Down3_Left.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\Stairs_Up0_Left.bmp">
+    <Image Include="res\Stairs_Up0_Front.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Stairs_Up1_Front.bmp">

@@ -327,7 +327,7 @@ IDB_DOOR_IRON_2         BITMAP                  "res\\Door_Iron_2.bmp"
 
 IDB_DOOR_IRON_3         BITMAP                  "res\\Door_Iron_3.bmp"
 
-IDB_STAIRS_DOWN_0L      BITMAP                  "res\\Stairs_Down0_Left.bmp"
+IDB_STAIRS_DOWN_0F      BITMAP                  "res\\Stairs_Down0_Front.bmp"
 
 IDB_STAIRS_DOWN_1F      BITMAP                  "res\\Stairs_Down1_Front.bmp"
 
@@ -341,7 +341,7 @@ IDB_STAIRS_DOWN_3F      BITMAP                  "res\\Stairs_Down3_Front.bmp"
 
 IDB_STAIRS_DOWN_3L      BITMAP                  "res\\Stairs_Down3_Left.bmp"
 
-IDB_STAIRS_UP_0L        BITMAP                  "res\\Stairs_Up0_Left.bmp"
+IDB_STAIRS_UP_0F        BITMAP                  "res\\Stairs_Up0_Front.bmp"
 
 IDB_STAIRS_UP_1F        BITMAP                  "res\\Stairs_Up1_Front.bmp"
 

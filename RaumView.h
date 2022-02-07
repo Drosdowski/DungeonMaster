@@ -59,6 +59,7 @@ public:
 	CGrpMonster* GetMonsterGroup(VEKTOR pos);
 	void TriggerMoveAnimation();
 	void Zeichnen(CDC* pDC);
+	bool OnStairs();
 
 	virtual ~CRaumView();
 protected:
@@ -80,9 +81,9 @@ protected:
 
 	VEKTOR MonsterMoveOrAttack(CGrpMonster* pGrpMon);
 	void DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField);
-	void DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField);
-	void DrawStairsFront(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pField);
-	void DrawStairsSide(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField);
+	void DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CDoor* pDoor);
+	void DrawStairsFront(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs);
+	void DrawStairsSide(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs);
 	void DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene, bool left);
 	void DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField);
 	void DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, CDC* cdc, COLORREF col);

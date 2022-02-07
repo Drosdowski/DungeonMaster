@@ -106,16 +106,25 @@ void CDMDoc::Laufen()
 {
 	bool bLaufbereit = m_pGrpHelden->Laufbereit();
 	VEKTOR posTarget, posFrom, posFinal;
+	posFrom = m_pGrpHelden->GetPos();
 
 	switch(m_iWunschRichtung)
 	{
 	case LINKS_DREHEN:
-		m_pRaumView->TriggerMoveAnimation();
-		m_pGrpHelden->Drehen(LINKS);
-		break;
 	case RECHTS_DREHEN:
 		m_pRaumView->TriggerMoveAnimation();
-		m_pGrpHelden->Drehen(RECHTS);
+		if (m_pRaumView->OnStairs()) {
+			// auf Treppe drehen = Treppe nutzen!
+			posFinal = m_pRaumView->Betrete(posFrom, posFrom);
+			m_pGrpHelden->Laufen(posFinal);
+		}
+		else {
+			if (m_iWunschRichtung == LINKS_DREHEN)
+				m_pGrpHelden->Drehen(LINKS);
+			else
+				m_pGrpHelden->Drehen(RECHTS);
+		}
+
 		break;
 	case LINKS_STRAFE:
 	case RUECKWAERTS:
@@ -123,8 +132,7 @@ void CDMDoc::Laufen()
 	case VORWAERTS:
 		if (bLaufbereit)
 		{
-			posTarget = m_pGrpHelden->HoleZielFeld(m_iWunschRichtung);
-			posFrom = m_pGrpHelden->GetPos();
+			posTarget = m_pGrpHelden->HoleZielFeld(m_iWunschRichtung);			
 			posFinal = m_pRaumView->Betrete(posFrom, posTarget);
 			if (posFinal.x == posFrom.x && posFinal.y == posFrom.y && posFinal.z == posFrom.z)
 			{

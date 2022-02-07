@@ -116,17 +116,16 @@ void CRaumView::DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene, bool left) {
 	}
 }
 
-void CRaumView::DrawStairsSide(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField)
+void CRaumView::DrawStairsSide(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs)
 {
 
 }
 
-void CRaumView::DrawStairsFront(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pField)
+void CRaumView::DrawStairsFront(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs)
 {
 	BITMAP bmpInfo;
 	CPoint pos;
 	CBitmap* bmp;
-	CStairs* pStairs = pField->HoleStairs();
 	if (pStairs == NULL) return;
 
 	if (pStairs->GetType() == CStairs::UP) {
@@ -148,15 +147,14 @@ void CRaumView::DrawStairsFront(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* 
 }
 
 
-void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField) {
+void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CDoor* pDoor) {
 	BITMAP bmpInfo;
 
 	int xx = wallXFactor[xxx];
-	CDoor* door = pField->HoleDoor();
 
 	CPoint wallPos = m_pWallPic->GetWallPos(xxx, ebene);
 
-	bool doorVisible = door->Visible(richt);
+	bool doorVisible = pDoor->Visible(richt);
 	if (doorVisible && ebene > 0)
 	{
 		CBitmap* bmp = m_pDoorPic->GetDoorTopPic(ebene);
@@ -169,15 +167,15 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 			}
 		DrawFrame(pDC, cdc, xxx, ebene, true); // left Frame
 		DrawFrame(pDC, cdc, xxx, ebene, false); // right Frame
-		bmp = m_pDoorPic->GetDoorFrontPic(door->getType(), ebene);
+		bmp = m_pDoorPic->GetDoorFrontPic(pDoor->getType(), ebene);
 		if (bmp) {
 			cdc->SelectObject(bmp);
 			CPoint pos = m_pDoorPic->GetDoorFrontPos(xxx, ebene, wallPos);
 			bmp->GetBitmap(&bmpInfo);
 			if (pos.x != 0 && pos.y != 0) {
 				int reducedWidth = min(bmpInfo.bmWidth, (MainAreaWidth - pos.x) / 2);
-				int reducedHeight = bmpInfo.bmHeight - door->getDoorBottomHeight();
-				pDC->TransparentBlt(pos.x, pos.y, reducedWidth * 2, reducedHeight * 2, cdc, 0, door->getDoorBottomHeight(), reducedWidth, reducedHeight, TRANS_ORA);
+				int reducedHeight = bmpInfo.bmHeight - pDoor->getDoorBottomHeight();
+				pDC->TransparentBlt(pos.x, pos.y, reducedWidth * 2, reducedHeight * 2, cdc, 0, pDoor->getDoorBottomHeight(), reducedWidth, reducedHeight, TRANS_ORA);
 			}
 		}
 	}
@@ -356,18 +354,25 @@ void CRaumView::Zeichnen(CDC* pDC)
 				CField* pField = m_pMap->GetField(addx,addy,z);
 				int fieldType = pField->HoleTyp();
 				
-				if (fieldType == CField::FeldTyp::WALL && ((ebene != 0) || (xxx != 0)))
+				if (fieldType == CField::FeldTyp::WALL && ((ebene != 0) || (xx != 0)))
 				{
 					DrawWall(pDC, &compCdc, xxx, ebene, richt, pField);
 				}
 				else if (fieldType == CField::FeldTyp::DOOR )
 				{
-					DrawDoor(pDC, &compCdc, xxx, ebene, richt, pField);
+					CDoor* pDoor = pField->HoleDoor();
+					DrawDoor(pDC, &compCdc, xxx, ebene, richt, pDoor);
 				}
 				else if (fieldType == CField::FeldTyp::STAIRS)
 				{
+					CStairs* pStairs = pField->HoleStairs();
 
-					DrawStairsFront(pDC, &compCdc, xxx, ebene, pField);
+					if (pStairs->Visible(richt)) {
+						DrawStairsFront(pDC, &compCdc, xxx, ebene, pStairs);
+					}
+					else {
+						DrawStairsSide(pDC, &compCdc, xxx, ebene, pStairs);
+					}
 				}
 				else if (ebene > 0 && xxx > 1)
 				{
@@ -411,12 +416,25 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 		CStairs* stairs = pField->HoleStairs();
 		if (stairs->GetType() == CStairs::StairType::DOWN)
 		{
-			toPos.z++;
-			toPos.x+= (m_pMap->GetOffset(fromPos.z).x - m_pMap->GetOffset(toPos.z).x);
-			toPos.y+= (m_pMap->GetOffset(fromPos.z).y - m_pMap->GetOffset(toPos.z).y);
+			toPos.z++;			
 		}
 		else {
 			toPos.z--;
+		}
+		toPos.x += (m_pMap->GetOffset(fromPos.z).x - m_pMap->GetOffset(toPos.z).x);
+		toPos.y += (m_pMap->GetOffset(fromPos.z).y - m_pMap->GetOffset(toPos.z).y);
+		// neue Richtung: Blick auf das einzige EMPTY Feld neben Hero
+
+		for (int i = -1; i <= 1; i += 2) {
+			if (!m_pMap->GetField(toPos.x + i, toPos.y, toPos.z)->HoleTyp() == CField::FeldTyp::WALL) {
+				CGrpHeld* pGrpHelden = m_pDoc->m_pGrpHelden;
+				pGrpHelden->SetzeRichtung((i == -1) ? 3 : 1);
+			}
+			if (!m_pMap->GetField(toPos.x, toPos.y + i, toPos.z)->HoleTyp() == CField::FeldTyp::WALL) {
+				CGrpHeld* pGrpHelden = m_pDoc->m_pGrpHelden;
+				pGrpHelden->SetzeRichtung((i == -1) ? 0 : 2);
+			}
+
 		}
 
 		return toPos;
@@ -526,6 +544,10 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 
 void CRaumView::TriggerMoveAnimation() {
 	m_bMirror = !m_bMirror;
+}
+
+bool CRaumView::OnStairs() {
+	return m_pMap->GetField(m_pDoc->m_pGrpHelden->HolePosition())->HoleTyp() == CField::FeldTyp::STAIRS;
 }
 
 void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
