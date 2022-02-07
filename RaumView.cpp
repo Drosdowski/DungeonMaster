@@ -354,16 +354,16 @@ void CRaumView::Zeichnen(CDC* pDC)
 				CField* pField = m_pMap->GetField(addx,addy,z);
 				int fieldType = pField->HoleTyp();
 				
-				if (fieldType == CField::FeldTyp::WALL && ((ebene != 0) || (xx != 0)))
+				if (fieldType == FeldTyp::WALL && ((ebene != 0) || (xx != 0)))
 				{
 					DrawWall(pDC, &compCdc, xxx, ebene, richt, pField);
 				}
-				else if (fieldType == CField::FeldTyp::DOOR )
+				else if (fieldType == FeldTyp::DOOR )
 				{
 					CDoor* pDoor = pField->HoleDoor();
 					DrawDoor(pDC, &compCdc, xxx, ebene, richt, pDoor);
 				}
-				else if (fieldType == CField::FeldTyp::STAIRS)
+				else if (fieldType == FeldTyp::STAIRS)
 				{
 					CStairs* pStairs = pField->HoleStairs();
 
@@ -399,20 +399,20 @@ CGrpMonster* CRaumView::GetMonsterGroup(VEKTOR pos) {
 VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 {	
 	CField* pField = m_pMap->GetField(toPos);
-	CField::FeldTyp iTyp = pField->HoleTyp();
-	if (iTyp == CField::FeldTyp::WALL)
+	FeldTyp iTyp = pField->HoleTyp();
+	if (iTyp == FeldTyp::WALL)
 		return fromPos;
-	else if (iTyp == CField::FeldTyp::DOOR)
+	else if (iTyp == FeldTyp::DOOR)
 	{
 		CDoor* pDoor = pField->HoleDoor();
 		if (pDoor->getState() != CDoor::DoorState::OPEN)
 			return fromPos;
 	}
-	else if (iTyp == CField::FeldTyp::EMPTY) {
+	else if (iTyp == FeldTyp::EMPTY) {
 		CGrpMonster* pGrpMonster = pField->GetMonsterGroup();
 		if (pGrpMonster) return fromPos;
 	}
-	else if (iTyp == CField::FeldTyp::STAIRS) {
+	else if (iTyp == FeldTyp::STAIRS) {
 		CStairs* stairs = pField->HoleStairs();
 		if (stairs->GetType() == CStairs::StairType::DOWN)
 		{
@@ -426,11 +426,11 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 		// neue Richtung: Blick auf das einzige EMPTY Feld neben Hero
 
 		for (int i = -1; i <= 1; i += 2) {
-			if (!m_pMap->GetField(toPos.x + i, toPos.y, toPos.z)->HoleTyp() == CField::FeldTyp::WALL) {
+			if (!m_pMap->GetField(toPos.x + i, toPos.y, toPos.z)->HoleTyp() == FeldTyp::WALL) {
 				CGrpHeld* pGrpHelden = m_pDoc->m_pGrpHelden;
 				pGrpHelden->SetzeRichtung((i == -1) ? 3 : 1);
 			}
-			if (!m_pMap->GetField(toPos.x, toPos.y + i, toPos.z)->HoleTyp() == CField::FeldTyp::WALL) {
+			if (!m_pMap->GetField(toPos.x, toPos.y + i, toPos.z)->HoleTyp() == FeldTyp::WALL) {
 				CGrpHeld* pGrpHelden = m_pDoc->m_pGrpHelden;
 				pGrpHelden->SetzeRichtung((i == -1) ? 0 : 2);
 			}
@@ -515,8 +515,8 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	// todo: schlauer bewegungsalgorithmus!
 		
 	if ((target.x != monPos.x || target.y != monPos.y) && 
-		(targetField->HoleTyp() == CField::FeldTyp::EMPTY && targetField->GetMonsterGroup() == NULL) ||
-		(targetField->HoleTyp() == CField::FeldTyp::DOOR && targetField->GetMonsterGroup() == NULL)) // TODO nur Open!
+		(targetField->HoleTyp() == FeldTyp::EMPTY && targetField->GetMonsterGroup() == NULL) ||
+		(targetField->HoleTyp() == FeldTyp::DOOR && targetField->GetMonsterGroup() == NULL)) // TODO nur Open!
 		// Feld vorhanden - Monster drauf?
 		// TODO: prüfen, ob Monster da sind, ggf. Merge
 
@@ -547,7 +547,7 @@ void CRaumView::TriggerMoveAnimation() {
 }
 
 bool CRaumView::OnStairs() {
-	return m_pMap->GetField(m_pDoc->m_pGrpHelden->HolePosition())->HoleTyp() == CField::FeldTyp::STAIRS;
+	return m_pMap->GetField(m_pDoc->m_pGrpHelden->HolePosition())->HoleTyp() == FeldTyp::STAIRS;
 }
 
 void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
@@ -580,7 +580,7 @@ void CRaumView::OnTrigger()
 
 	// Testweise. Space = Wand vor Spieler erzeugen/löschen
 
-	if (iFeld == CField::FeldTyp::WALL)
+	if (iFeld == FeldTyp::WALL)
 	{
 		CFieldDecoration* deco = (feld->HoleDeko(CHelpfulValues::OppositeDirection(richt)));
 		if (deco->GetDecoType() == Switch) {
@@ -590,7 +590,7 @@ void CRaumView::OnTrigger()
 			m_pDoc->m_pGrpHelden->DrinkFountain();
 		}
 	}
-	else if (iFeld == CField::FeldTyp::DOOR)
+	else if (iFeld == FeldTyp::DOOR)
 	{
 		CDoor* door = feld->HoleDoor();
 		if (door) {
@@ -600,6 +600,6 @@ void CRaumView::OnTrigger()
 		}
 	}
 	else
-		feld->SetType(CField::FeldTyp::WALL);
+		feld->SetType(FeldTyp::WALL);
 }
 
