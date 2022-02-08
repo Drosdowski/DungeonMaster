@@ -11,7 +11,7 @@ CDungeonMap::CDungeonMap()
 	}
 	VEKTOR v; v.x = 0; v.y = 0;v.z = 0;
 
-	m_pEdgeWall = new CField(v, CField::FeldTyp::WALL, deco);
+	m_pEdgeWall = new CField(v, FeldTyp::WALL, deco);
 	LoadMap();
 }
 
@@ -42,6 +42,14 @@ CPoint CDungeonMap::GetOffset(int ebene) {
 	return CPoint(m_offsetX[ebene], m_offsetY[ebene]);
 }
 
+CField* CDungeonMap::ParseDoor(TiXmlElement* rootNode, VEKTOR pos) {
+	int orientation;
+	rootNode->QueryIntAttribute("orientation", &orientation);
+
+	return new CField(pos, FeldTyp::DOOR, CDoor::DoorType::Iron, (orientation != 0), NULL);
+	// to be continued
+}
+
 void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	const char* parent = rootNode->Value();
 	int index;
@@ -57,29 +65,23 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	{
 		type = 1; // Teleporter etc erstmal leer lassen
 	}
-	CField::FeldTyp iFieldType = (CField::FeldTyp)type;
+	FeldTyp iFieldType = (FeldTyp)type;
 	VEKTOR pos; pos.x = x; pos.y = y; pos.z = etage;
 
-	CFieldDecoration* deco[4];
-	for (int b = 0; b < 4; b++) {
-		deco[b] = new CFieldDecoration(None);
-	}
-
-	if (iFieldType == CField::FeldTyp::DOOR)
+	if (iFieldType == FeldTyp::DOOR)
 	{
-		rootNode->QueryIntAttribute("orientation", &orientation);		
-		m_pFeld[x][y][etage] = new CField(pos, iFieldType, CDoor::DoorType::Iron, (orientation != 0), deco);
+		m_pFeld[x][y][etage] = ParseDoor(rootNode, pos);
 	}
-	else if (iFieldType == CField::FeldTyp::STAIRS) {
+	else if (iFieldType == FeldTyp::STAIRS) {
 		rootNode->QueryIntAttribute("direction", &direction);
 		rootNode->QueryIntAttribute("orientation", &orientation);
 		if (direction == 0)
-			m_pFeld[x][y][etage] = new CField(pos, iFieldType, CStairs::StairType::DOWN, (orientation != 0), deco); 
+			m_pFeld[x][y][etage] = new CField(pos, iFieldType, CStairs::StairType::DOWN, (orientation != 0), NULL);
 		else
-			m_pFeld[x][y][etage] = new CField(pos, iFieldType, CStairs::StairType::UP, (orientation != 0), deco);
+			m_pFeld[x][y][etage] = new CField(pos, iFieldType, CStairs::StairType::UP, (orientation != 0), NULL);
 	}		
 	else
-		m_pFeld[x][y][etage] = new CField(pos, iFieldType, deco); // etage 1 / index 30 => m_levelWidth[1] kaputt!
+		m_pFeld[x][y][etage] = new CField(pos, iFieldType, NULL); // etage 1 / index 30 => m_levelWidth[1] kaputt!
 	
 }
 

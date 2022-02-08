@@ -17,9 +17,7 @@ CField::CField()
 	VEKTOR pos; pos.x = 0; pos.y = 0; pos.z = 0;
 	m_posKoord = pos;
 	m_pGrpMonster = NULL;
-	for (int i = 0; i < 4; i++) {
-		m_pWallDecoration[i] = NULL;
-	}
+	InitDeco(NULL);
 }
 
 CField::CField(VEKTOR koord, FeldTyp fieldType, CFieldDecoration* pDeco[4])
@@ -28,9 +26,7 @@ CField::CField(VEKTOR koord, FeldTyp fieldType, CFieldDecoration* pDeco[4])
 	SetType(fieldType);
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
-	for (int i = 0; i < 4; i++) {
-		m_pWallDecoration[i] = pDeco[i];
-	}
+	InitDeco(pDeco);
 }
 
 CField::CField(VEKTOR koord, FeldTyp fieldType, CDoor::DoorType doorType, bool doorDirectionEastWest, CFieldDecoration* pDeco[4])
@@ -38,9 +34,7 @@ CField::CField(VEKTOR koord, FeldTyp fieldType, CDoor::DoorType doorType, bool d
 	SetType(fieldType, doorType, doorDirectionEastWest);
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
-	for (int i = 0; i < 4; i++) {
-		m_pWallDecoration[i] = pDeco[i];
-	}
+	InitDeco(pDeco);
 }
 
 CField::CField(VEKTOR koord, FeldTyp fieldType, CStairs::StairType stairType, bool eastWest, CFieldDecoration* pDeco[4])
@@ -48,9 +42,7 @@ CField::CField(VEKTOR koord, FeldTyp fieldType, CStairs::StairType stairType, bo
 	SetType(fieldType, stairType, eastWest);
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
-	for (int i = 0; i < 4; i++) {
-		m_pWallDecoration[i] = pDeco[i];
-	}
+	InitDeco(pDeco);
 }
 
 CField::~CField()
@@ -67,6 +59,18 @@ CField::~CField()
 		}
 	}
 
+}
+
+void CField::InitDeco(CFieldDecoration* pDeco[4]) {
+	for (int i = 0; i < 4; i++) {
+		if (pDeco != NULL)
+		{
+			m_pWallDecoration[i] = pDeco[i];
+		}
+		else {
+			m_pWallDecoration[i] = new CFieldDecoration(None);
+		}
+	}
 }
 
 

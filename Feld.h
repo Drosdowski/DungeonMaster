@@ -20,12 +20,6 @@ class CField
 protected:
 	CField();           // protected constructor used by dynamic creation
 public:
-	enum FeldTyp {
-		WALL = 0,
-		EMPTY = 1,
-		STAIRS = 3,
-		DOOR = 4
-	};
 
 	CField(VEKTOR koord, FeldTyp fieldType, CDoor::DoorType doorType, bool doorFrameEastAndWest, CFieldDecoration* pDeco[4]);
 	CField(VEKTOR koord, FeldTyp fieldType, CStairs::StairType stairType, bool eastWest, CFieldDecoration* pDeco[4]);
@@ -39,6 +33,7 @@ protected:
 	CFieldDecoration* m_pWallDecoration[4];
 	CDoor* m_pDoor = NULL;
 	CStairs* m_pStairs = NULL;
+
 // Operations
 public:
 	void InitMonsterGruppe(CMonster::MonsterTyp iTyp, int iAnz);
@@ -61,6 +56,9 @@ public:
 	// Generated message map functions
 protected:
 	VEKTOR m_posKoord;
+
+	void InitDeco(CFieldDecoration* pDeco[4]);
+
 	//{{AFX_MSG(CField)
 		// NOTE - the ClassWizard will add and remove member functions here.
 	//}}AFX_MSG

@@ -24,6 +24,7 @@ private:
 	void ParseTiles(TiXmlElement* rootNode, int etage);
 	void ParseMap(TiXmlElement* rootNode, int etage);
 	void ParseMaps(TiXmlElement* rootNode);
+	CField* ParseDoor(TiXmlElement* rootNode, VEKTOR pos);
 	CField* m_pFeld[FELD_MAX_X][FELD_MAX_Y][FELD_MAX_Z];
 	CField* m_pEdgeWall;
 	int m_LevelWidth[FELD_MAX_Z];
