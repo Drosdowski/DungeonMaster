@@ -92,6 +92,14 @@ enum DecorationType
 	Fountain
 };
 
+enum FeldTyp {
+	WALL = 0,
+	EMPTY = 1,
+	STAIRS = 3,
+	DOOR = 4
+};
+
+
 bool InRect(CPoint p, int x1, int y1, int x2, int y2);
 
 #define MainAreaWidth 448
