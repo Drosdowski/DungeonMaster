@@ -18,10 +18,15 @@ public:
 	int GetMaxWidth(int ebene) { return m_LevelWidth[ebene]; }
 	int GetMaxHeight(int ebene) { return m_LevelHeight[ebene]; }
 	CPoint GetOffset(int ebene);
+	CPoint GetStart() { return m_start; }
+	int GetStartDirection() { return m_startRicht; }
 
 private:
+	void ParseDoorObjects(TiXmlElement* rootNode);
+	void ParseObjects(TiXmlElement* rootNode);
 	void ParseMaps(TiXmlElement* rootNode);
 	void ParseMap(TiXmlElement* rootNode, int etage);
+	void ParseDungeon(TiXmlElement* rootNode);
 	void ParseTiles(TiXmlElement* rootNode, int etage);
 	void ParseTile(TiXmlElement* rootNode, int etage);
 	CField* ParseDoor(TiXmlElement* rootNode, VEKTOR pos);
@@ -32,5 +37,9 @@ private:
 	int m_LevelHeight[FELD_MAX_Z];
 	int m_offsetX[FELD_MAX_Z]; // shifting when changing floor level
 	int m_offsetY[FELD_MAX_Z]; // shifting when changing floor level
+	CPoint m_start;
+	int m_startRicht;
+	int m_countDoors;
+	int* m_doorType; // dynamic array
 };
 

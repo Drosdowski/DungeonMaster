@@ -27,7 +27,7 @@ protected: // create from serialization only
 
 	// Attributes
 public:
-	CGrpHeld* m_pGrpHelden;
+	CGrpHeld* m_pGrpHelden; // todo raus hier, nach Dungeon bauen
 	// Operations
 public:
 

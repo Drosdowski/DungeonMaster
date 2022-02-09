@@ -9,7 +9,8 @@ public:
 		CLOSED =3
 	};
 	enum DoorType {
-		Iron = 0
+		Iron = 0,
+		Wood = 1
 	};
 
 	CDoor(DoorType type, bool doorFrameEastAndWest);

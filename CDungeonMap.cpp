@@ -23,6 +23,7 @@ CDungeonMap::~CDungeonMap()
 			for (int j = 0; j < m_LevelHeight[z]; j++) {
 				delete m_pFeld[i][j][z];
 			}
+	delete m_doorType;
 }
 
 CField* CDungeonMap::GetField(int x, int y, int z) {
@@ -42,6 +43,7 @@ CPoint CDungeonMap::GetOffset(int ebene) {
 	return CPoint(m_offsetX[ebene], m_offsetY[ebene]);
 }
 
+
 CField* CDungeonMap::ParseStairs(TiXmlElement* rootNode, VEKTOR pos) {
 	int orientation;
 	int direction;
@@ -54,10 +56,30 @@ CField* CDungeonMap::ParseStairs(TiXmlElement* rootNode, VEKTOR pos) {
 }
 
 CField* CDungeonMap::ParseDoor(TiXmlElement* rootNode, VEKTOR pos) {
-	int orientation;
+	int orientation, type;
 	rootNode->QueryIntAttribute("orientation", &orientation);
+	
+	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "items") == 0)
+		{
+			TiXmlElement* doorItem = parentElement->FirstChildElement();
+			if (doorItem && strcmp(doorItem->Value(), "items") == 0) {
+				int index;
+				parentElement->QueryIntAttribute("index", &index);
+				type = m_doorType[index];
+			}
 
-	return new CField(pos, FeldTyp::DOOR, CDoor::DoorType::Iron, (orientation != 0), NULL);
+		}
+		parentElement = parentElement->NextSiblingElement();
+
+	}
+	if (type == 0)
+		return new CField(pos, FeldTyp::DOOR, CDoor::DoorType::Iron, (orientation != 0), NULL);
+	else
+		return new CField(pos, FeldTyp::DOOR, CDoor::DoorType::Wood, (orientation != 0), NULL);
 }
 
 void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
@@ -133,6 +155,65 @@ void CDungeonMap::ParseMaps(TiXmlElement* rootNode) {
 	}
 }
 
+void CDungeonMap::ParseDoorObjects(TiXmlElement* rootNode) {
+	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "door") == 0) // several existing
+		{
+			int index, type;
+			parentElement->QueryIntAttribute("index", &index);
+			parentElement->QueryIntAttribute("type", &type);
+			m_doorType[index] = type; // todo mehr attribute zulassen - knopf, ...
+		}
+		parentElement = parentElement->NextSiblingElement();
+	}
+}
+
+void CDungeonMap::ParseObjects(TiXmlElement* rootNode) {
+	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "doors") == 0)
+		{
+			ParseDoorObjects(parentElement);
+		}
+		parentElement = parentElement->NextSiblingElement();
+	}
+}
+
+void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
+	int x, y;
+	rootNode->QueryIntAttribute("start_x", &x);
+	rootNode->QueryIntAttribute("start_y", &y);
+	m_start = CPoint(x, y);
+	rootNode->QueryIntAttribute("number_of_doors", &m_countDoors);
+	m_doorType = new int[m_countDoors];
+	const char* startDir = rootNode->Attribute("start_facing");
+	if (strcmp(startDir, "North") == 0) m_startRicht = 0;
+	if (strcmp(startDir, "East") == 0) m_startRicht = 1;
+	if (strcmp(startDir, "South") == 0) m_startRicht = 2;
+	if (strcmp(startDir, "West") == 0) m_startRicht = 3;
+	
+
+	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "maps") == 0)
+		{
+			ParseMaps(parentElement);
+		}
+		else if (strcmp(parent, "objects") == 0)
+		{
+			ParseObjects(parentElement);
+		}
+		parentElement = parentElement->NextSiblingElement();
+	}
+}
+
 void CDungeonMap::LoadMap() {
 	TiXmlDocument doc("Maps\\0000.DUNGEON [Dungeon].xml");
 	bool loadOkay = doc.LoadFile();
@@ -144,16 +225,11 @@ void CDungeonMap::LoadMap() {
 	}
 	TiXmlElement* rootElement = doc.FirstChildElement();
 	const char* docname = rootElement->Value();
-	TiXmlElement* parentElement = rootElement->FirstChildElement();
-	while (parentElement)
-	{
-		const char* parent = parentElement->Value();
-		if (strcmp(parent, "maps") == 0)
-		{
-			ParseMaps(parentElement);
-		}
-		parentElement = parentElement->NextSiblingElement();
+	if (strcmp(docname, "dungeon") == 0) {
+
+		ParseDungeon(rootElement);
 	}
+
 }
 
 void CDungeonMap::DemoMap() {
