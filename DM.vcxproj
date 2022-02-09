@@ -266,6 +266,9 @@
     <Image Include="res\Stairs_Down2_Left.bmp" />
     <Image Include="res\Stairs_Down3_Front.bmp" />
     <Image Include="res\Stairs_Down3_Left.bmp" />
+    <Image Include="res\Stairs_DownSide2.bmp" />
+    <Image Include="res\Stairs_Side1.bmp" />
+    <Image Include="res\Stairs_Side3.bmp" />
     <Image Include="res\Stairs_Up0_Front.bmp" />
     <Image Include="res\Stairs_Up1_Front.bmp" />
     <Image Include="res\Stairs_Up1_Left.bmp" />
@@ -273,6 +276,7 @@
     <Image Include="res\Stairs_Up2_Left.bmp" />
     <Image Include="res\Stairs_Up3_Front.bmp" />
     <Image Include="res\Stairs_Up3_Left.bmp" />
+    <Image Include="res\Stairs_UpSide2.bmp" />
     <Image Include="res\Steine.bmp" />
     <Image Include="res\Wall0_Left.bmp" />
     <Image Include="res\Wall0_LeftF.bmp" />

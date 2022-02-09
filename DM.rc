@@ -365,6 +365,14 @@ IDB_FOUNTAIN_F          BITMAP                  "res\\Fountain_Front.bmp"
 
 IDB_FOUNTAIN_L          BITMAP                  "res\\Fountain_Left.bmp"
 
+IDB_STAIRS_DOWN_S2L     BITMAP                  "res\\Stairs_DownSide2.bmp"
+
+IDB_STAIRS_S1L          BITMAP                  "res\\Stairs_Side1.bmp"
+
+IDB_STAIRS_S3L          BITMAP                  "res\\Stairs_Side3.bmp"
+
+IDB_STAIRS_UP_S2L       BITMAP                  "res\\Stairs_UpSide2.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

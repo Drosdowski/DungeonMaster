@@ -502,6 +502,18 @@
     <Image Include="res\Stairs_Up3_Front.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Stairs_DownSide2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Stairs_Side1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Stairs_Side3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Stairs_UpSide2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

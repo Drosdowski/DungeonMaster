@@ -118,7 +118,26 @@ void CRaumView::DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene, bool left) {
 
 void CRaumView::DrawStairsSide(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs)
 {
-
+	BITMAP bmpInfo;
+	CPoint pos;
+	CBitmap* bmp;
+	if (pStairs == NULL) return;
+	if (pStairs->GetType() == CStairs::UP) {
+		bmp = m_pStairsPic->GetStairUpSidePic(xxx, ebene);
+		pos = m_pStairsPic->GetStairsUpSidePos(xxx, ebene, m_pWallPic->GetWallPos(xxx, ebene));
+	}
+	else {
+		bmp = m_pStairsPic->GetStairDownSidePic(xxx, ebene);
+		pos = m_pStairsPic->GetStairsDownSidePos(xxx, ebene, m_pWallPic->GetWallPos(xxx, ebene));
+	}
+	if (bmp) {
+		if (pos != CPoint(0, 0))
+		{
+			cdc->SelectObject(bmp);
+			bmp->GetBitmap(&bmpInfo);
+			pDC->TransparentBlt(pos.x, pos.y, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);
+		}
+	}
 }
 
 void CRaumView::DrawStairsFront(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs)

@@ -29,5 +29,10 @@ private:
 	CBitmap* m_pStairsUpLeft[4];
 	CBitmap* m_pStairsUpFront[4];
 
+	CBitmap* m_pStairsDownSideLeft[4];
+	CBitmap* m_pStairsUpSideLeft[4];
+	CBitmap* m_pStairsDownSideRight[4];
+	CBitmap* m_pStairsUpSideRight[4];
+
 };
 

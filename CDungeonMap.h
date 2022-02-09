@@ -20,11 +20,12 @@ public:
 	CPoint GetOffset(int ebene);
 
 private:
-	void ParseTile(TiXmlElement* rootNode, int etage);
-	void ParseTiles(TiXmlElement* rootNode, int etage);
-	void ParseMap(TiXmlElement* rootNode, int etage);
 	void ParseMaps(TiXmlElement* rootNode);
+	void ParseMap(TiXmlElement* rootNode, int etage);
+	void ParseTiles(TiXmlElement* rootNode, int etage);
+	void ParseTile(TiXmlElement* rootNode, int etage);
 	CField* ParseDoor(TiXmlElement* rootNode, VEKTOR pos);
+	CField* ParseStairs(TiXmlElement* rootNode, VEKTOR pos);
 	CField* m_pFeld[FELD_MAX_X][FELD_MAX_Y][FELD_MAX_Z];
 	CField* m_pEdgeWall;
 	int m_LevelWidth[FELD_MAX_Z];
