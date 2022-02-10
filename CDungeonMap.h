@@ -6,6 +6,7 @@
 #define FELD_MAX_Z 14
 
 class TiXmlElement;
+class CGrpHeld;
 class CDungeonMap
 {
 public:
@@ -18,8 +19,9 @@ public:
 	int GetMaxWidth(int ebene) { return m_LevelWidth[ebene]; }
 	int GetMaxHeight(int ebene) { return m_LevelHeight[ebene]; }
 	CPoint GetOffset(int ebene);
-	CPoint GetStart() { return m_start; }
+	VEKTOR GetStart() { return m_start; }
 	int GetStartDirection() { return m_startRicht; }
+	CGrpHeld* GetHeroes() { return m_pGrpHelden; }
 
 private:
 	void ParseDoorObjects(TiXmlElement* rootNode);
@@ -37,9 +39,12 @@ private:
 	int m_LevelHeight[FELD_MAX_Z];
 	int m_offsetX[FELD_MAX_Z]; // shifting when changing floor level
 	int m_offsetY[FELD_MAX_Z]; // shifting when changing floor level
-	CPoint m_start;
+	VEKTOR m_start;
 	int m_startRicht;
 	int m_countDoors;
 	int* m_doorType; // dynamic array
+
+	CGrpHeld* m_pGrpHelden;
+
 };
 

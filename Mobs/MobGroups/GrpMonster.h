@@ -15,7 +15,7 @@ class CGrpMonster : public CGrpChar
 {
 public:
 	
-	CGrpMonster(VEKTOR pos);
+	CGrpMonster(VEKTOR pos, int richt);
 protected:
 	CGrpMonster();           // Dynamische Erstellung verwendet geschützten Konstruktor
 	DECLARE_DYNCREATE(CGrpMonster)

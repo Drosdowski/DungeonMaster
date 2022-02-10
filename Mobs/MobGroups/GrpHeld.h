@@ -9,12 +9,13 @@
 
 class CHeld;
 class CMonster;
+class CPictures;
 class CGrpHeld: public CGrpChar
 {
 public:
-	CGrpHeld();
+	CGrpHeld(VEKTOR pos, int richt);
 protected:
-	DECLARE_DYNCREATE(CGrpHeld)
+	//DECLARE_DYNCREATE(CGrpHeld)
 
 
 // Überschreibungen

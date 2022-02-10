@@ -353,11 +353,11 @@ void CRaumView::Zeichnen(CDC* pDC)
 		pDC->StretchBlt(0, 64, MainAreaWidth, 269, &compCdc, MainAreaWidth, 64, -MainAreaWidth, 269, SRCCOPY);
 	}
 
-	int x = m_pDoc->m_pGrpHelden->HolePosition().x;
-	int y = m_pDoc->m_pGrpHelden->HolePosition().y;
-	int z = m_pDoc->m_pGrpHelden->HolePosition().z;
+	int x = m_pMap->GetHeroes()->HolePosition().x;
+	int y = m_pMap->GetHeroes()->HolePosition().y;
+	int z = m_pMap->GetHeroes()->HolePosition().z;
 
-	int richt = m_pDoc->m_pGrpHelden->HoleRichtung();
+	int richt = m_pMap->GetHeroes()->HoleRichtung();
 	int stx = m_values->m_stx[richt];
 	int sty = m_values->m_sty[richt];
 
@@ -446,11 +446,11 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 
 		for (int i = -1; i <= 1; i += 2) {
 			if (!m_pMap->GetField(toPos.x + i, toPos.y, toPos.z)->HoleTyp() == FeldTyp::WALL) {
-				CGrpHeld* pGrpHelden = m_pDoc->m_pGrpHelden;
+				CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
 				pGrpHelden->SetzeRichtung((i == -1) ? 3 : 1);
 			}
 			if (!m_pMap->GetField(toPos.x, toPos.y + i, toPos.z)->HoleTyp() == FeldTyp::WALL) {
-				CGrpHeld* pGrpHelden = m_pDoc->m_pGrpHelden;
+				CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
 				pGrpHelden->SetzeRichtung((i == -1) ? 0 : 2);
 			}
 
@@ -466,7 +466,7 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 }
 
 void CRaumView::MoveAnythingNearby() {
-	VEKTOR held = m_pDoc->m_pGrpHelden->GetPos();
+	VEKTOR held = m_pMap->GetHeroes()->GetPos();
 	for (int i = max(held.x - 4, 0); i < min(held.x + 4, m_pMap->GetMaxWidth(held.z)); i++) {
 		for (int j = max(held.y - 4, 0); j < min(held.y + 4, m_pMap->GetMaxHeight(held.z)); j++) {
 			CField* field = m_pMap->GetField(i, j, held.z);
@@ -502,7 +502,7 @@ void CRaumView::MoveAnythingNearby() {
 
 VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	// Prüfen: Held angreifbar? Erstmal nur Nahkampf!
-	VEKTOR heroPos = m_pDoc->m_pGrpHelden->GetPos();
+	VEKTOR heroPos = m_pMap->GetHeroes()->GetPos();
 	VEKTOR monPos = pGrpMon->GetPos();
 	if (pGrpMon->GetPos().z != heroPos.z) return monPos; // Falsche Etage, nix tun!
 
@@ -510,16 +510,16 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	VEKTOR target = pGrpMon->HoleZielFeld(VORWAERTS);
 	CField* targetField = m_pMap->GetField(target);
 
-	int heroRicht = m_pDoc->m_pGrpHelden->HoleRichtung();
+	int heroRicht = m_pMap->GetHeroes()->HoleRichtung();
 
 	int xDist = monPos.x - heroPos.x;
 	int yDist = monPos.y - heroPos.y;
 	int absDist = abs(xDist) + abs(yDist);
 	if (target.x == heroPos.x && target.y == heroPos.y) {
-		pGrpMon->AttackHero(m_pDoc->m_pGrpHelden);
+		pGrpMon->AttackHero(m_pMap->GetHeroes());
 		m_pDoc->PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
 
-		m_pDoc->m_pGrpHelden->DamageFrom(pGrpMon, false);
+		m_pMap->GetHeroes()->DamageFrom(pGrpMon, false);
 		return monPos;
 	}
 	else {
@@ -566,7 +566,7 @@ void CRaumView::TriggerMoveAnimation() {
 }
 
 bool CRaumView::OnStairs() {
-	return m_pMap->GetField(m_pDoc->m_pGrpHelden->HolePosition())->HoleTyp() == FeldTyp::STAIRS;
+	return m_pMap->GetField(m_pMap->GetHeroes()->HolePosition())->HoleTyp() == FeldTyp::STAIRS;
 }
 
 void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
@@ -587,11 +587,11 @@ void CRaumView::OnTrigger()
 {
 	// Hier werden sämtliche Trigger angestoßen: Schalter, Türen, etc.
 
-	int x = m_pDoc->m_pGrpHelden->HolePosition().x;
-	int y = m_pDoc->m_pGrpHelden->HolePosition().y;
-	int z = m_pDoc->m_pGrpHelden->HolePosition().z;
+	int x = m_pMap->GetHeroes()->HolePosition().x;
+	int y = m_pMap->GetHeroes()->HolePosition().y;
+	int z = m_pMap->GetHeroes()->HolePosition().z;
 
-	int richt = m_pDoc->m_pGrpHelden->HoleRichtung();
+	int richt = m_pMap->GetHeroes()->HoleRichtung();
 	int addx = x + m_values->m_sty[richt];
 	int addy = y - m_values->m_stx[richt];
 	CField* feld = m_pMap->GetField(addx, addy, z);
@@ -606,7 +606,7 @@ void CRaumView::OnTrigger()
 			deco->SetState(1 - deco->GetState());
 			m_pDoc->PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-Switch.mp3");
 		} else if	(deco->GetDecoType() == Fountain) {
-			m_pDoc->m_pGrpHelden->DrinkFountain();
+			m_pMap->GetHeroes()->DrinkFountain();
 		}
 	}
 	else if (iFeld == FeldTyp::DOOR)

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "SpecialTile\Decoration.h"
 #include "TinyXML/tinyxml.h"
+#include "Mobs/MobGroups/GrpHeld.h"
 #include "CDungeonMap.h"
 
 CDungeonMap::CDungeonMap()
@@ -13,11 +14,13 @@ CDungeonMap::CDungeonMap()
 
 	m_pEdgeWall = new CField(v, FeldTyp::WALL, deco);
 	LoadMap();
+	m_pGrpHelden = new CGrpHeld(m_start, m_startRicht);
 }
 
 CDungeonMap::~CDungeonMap()
 {
 	delete m_pEdgeWall;
+	delete m_pGrpHelden;
 	for (int z = 0; z < FELD_MAX_Z; z++)
 		for (int i = 0; i < m_LevelWidth[z]; i++)
 			for (int j = 0; j < m_LevelHeight[z]; j++) {
@@ -188,7 +191,9 @@ void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
 	int x, y;
 	rootNode->QueryIntAttribute("start_x", &x);
 	rootNode->QueryIntAttribute("start_y", &y);
-	m_start = CPoint(x, y);
+	m_start.x = x;
+	m_start.y = y;
+	m_start.z = 0;
 	rootNode->QueryIntAttribute("number_of_doors", &m_countDoors);
 	m_doorType = new int[m_countDoors];
 	const char* startDir = rootNode->Attribute("start_facing");
@@ -275,5 +280,5 @@ void CDungeonMap::DemoMap() {
 			}
 		}
 		*/
-		m_pFeld[3][7][0]->InitMonsterGruppe(CMonster::MonsterTyp::SKELETT, 4);
+		m_pFeld[3][7][0]->InitMonsterGruppe(CMonster::MonsterTyp::SKELETT, 4, 0);
 }

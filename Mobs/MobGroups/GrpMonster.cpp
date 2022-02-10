@@ -23,12 +23,12 @@ CGrpMonster::CGrpMonster()
 {
 }
 
-CGrpMonster::CGrpMonster(VEKTOR pos)
+CGrpMonster::CGrpMonster(VEKTOR pos, int richt)
 {
 	for (int i=1; i<=4; i++)
 		m_pMember[i] = NULL;
 	m_posPosition=pos;
-	m_grpDirection = 0;
+	m_grpDirection = richt;
 }
 
 CGrpMonster::~CGrpMonster()

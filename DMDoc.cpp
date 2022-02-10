@@ -7,6 +7,7 @@
 
 #include "DmView.h"
 #include "Raumview.h"
+#include "CDungeonMap.h"
 #include "DMDoc.h"
 #include "SpecialTile\Decoration.h"
 #include "Mobs\Held.h"
@@ -36,8 +37,6 @@ END_MESSAGE_MAP()
 
 CDMDoc::CDMDoc()
 {
-	m_pGrpHelden = new CGrpHeld();
-	
 	m_iWunschRichtung = 0;
 	
 	((CDMApp*)AfxGetApp())->SetDoc(this);
@@ -48,8 +47,6 @@ CDMDoc::CDMDoc()
 CDMDoc::~CDMDoc()
 {
 	((CDMApp*)AfxGetApp())->SetDoc(NULL);
-
-	delete m_pGrpHelden;
 
 }
 
@@ -104,9 +101,9 @@ void CDMDoc::Dump(CDumpContext& dc) const
 
 void CDMDoc::Laufen()
 {
-	bool bLaufbereit = m_pGrpHelden->Laufbereit();
 	VEKTOR posTarget, posFrom, posFinal;
-	posFrom = m_pGrpHelden->GetPos();
+	CGrpHeld* pGrpHeroes = m_pRaumView->GetHeroes();
+	posFrom = pGrpHeroes->GetPos();
 
 	switch(m_iWunschRichtung)
 	{
@@ -116,13 +113,13 @@ void CDMDoc::Laufen()
 		if (m_pRaumView->OnStairs()) {
 			// auf Treppe drehen = Treppe nutzen!
 			posFinal = m_pRaumView->Betrete(posFrom, posFrom);
-			m_pGrpHelden->Laufen(posFinal);
+			pGrpHeroes->Laufen(posFinal);
 		}
 		else {
 			if (m_iWunschRichtung == LINKS_DREHEN)
-				m_pGrpHelden->Drehen(LINKS);
+				pGrpHeroes->Drehen(LINKS);
 			else
-				m_pGrpHelden->Drehen(RECHTS);
+				pGrpHeroes->Drehen(RECHTS);
 		}
 
 		break;
@@ -130,19 +127,20 @@ void CDMDoc::Laufen()
 	case RUECKWAERTS:
 	case RECHTS_STRAFE:
 	case VORWAERTS:
+		bool bLaufbereit = m_pRaumView->GetHeroes()->Laufbereit();
 		if (bLaufbereit)
 		{
-			posTarget = m_pGrpHelden->HoleZielFeld(m_iWunschRichtung);			
+			posTarget = pGrpHeroes->HoleZielFeld(m_iWunschRichtung);
 			posFinal = m_pRaumView->Betrete(posFrom, posTarget);
 			if (posFinal.x == posFrom.x && posFinal.y == posFrom.y && posFinal.z == posFrom.z)
 			{
-				m_pGrpHelden->Kollision();
+				pGrpHeroes->Kollision();
 				PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-RunningIntoAWall.mp3");
 			}
 			else
 			{
 				m_pRaumView->TriggerMoveAnimation();
-				m_pGrpHelden->Laufen(posFinal);
+				pGrpHeroes->Laufen(posFinal);
 			}
 		}
 		break;
@@ -157,17 +155,17 @@ void CDMDoc::SetzeRichtung(int iRichtung)
 
 void CDMDoc::InitGruppe(CPictures* pPictures, const int nr)
 {
-	m_pGrpHelden->InitHeld(pPictures, nr);
+	m_pRaumView->GetHeroes()->InitHeld(pPictures, nr);
 }
 
 int CDMDoc::HoleGruppenRichtung() 
 {
-	return m_pGrpHelden->HoleRichtung();
+	return m_pRaumView->GetHeroes()->HoleRichtung();
 }
 
 VEKTOR CDMDoc::HoleGruppenPosition()   
 {
-	return m_pGrpHelden->HolePosition();
+	return m_pRaumView->GetHeroes()->HolePosition();
 }
 	
 void CDMDoc::PlayDMSound(std::string file) {

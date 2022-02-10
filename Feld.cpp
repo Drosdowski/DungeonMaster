@@ -74,11 +74,11 @@ void CField::InitDeco(CFieldDecoration* pDeco[4]) {
 }
 
 
-void CField::InitMonsterGruppe(CMonster::MonsterTyp iTyp, int iAnz)
+void CField::InitMonsterGruppe(CMonster::MonsterTyp iTyp, int iAnz, int richt)
 {
 	if (m_pGrpMonster)
 		AfxMessageBox("Fehler: Versuch, zwei Monstergruppen auf gleichem Feld zu initialisiern");
-	m_pGrpMonster = new CGrpMonster(m_posKoord);
+	m_pGrpMonster = new CGrpMonster(m_posKoord, richt);
 	for (int i=1; i<= iAnz; i++)
 		((CGrpMonster*)m_pGrpMonster)->InitMonster(i, iTyp);
 }

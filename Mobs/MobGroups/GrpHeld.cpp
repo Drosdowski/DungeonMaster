@@ -17,17 +17,15 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CGrpHeld
 
-IMPLEMENT_DYNCREATE(CGrpHeld, CView)
+//IMPLEMENT_DYNCREATE(CGrpHeld, CView)
 
-CGrpHeld::CGrpHeld()
+CGrpHeld::CGrpHeld(VEKTOR pos, int richt)
 {
 	for (int i=1; i<=4; i++)
 		m_pMember[i] = NULL;
-	m_posPosition.x=4;
-	m_posPosition.y=15;
-	m_posPosition.z=0;
+	m_posPosition = pos;
 	m_iAktiverHeld = 1;
-	m_grpDirection = 0;
+	m_grpDirection = richt;
 }
 
 CGrpHeld::~CGrpHeld()

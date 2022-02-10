@@ -36,7 +36,7 @@ protected:
 
 // Operations
 public:
-	void InitMonsterGruppe(CMonster::MonsterTyp iTyp, int iAnz);
+	void InitMonsterGruppe(CMonster::MonsterTyp iTyp, int iAnz, int richt);
 	CGrpMonster* GetMonsterGroup();
 	void RemoveMonsterGroup();
 	void SetMonsterGroup(CGrpMonster* pGrpMonster);

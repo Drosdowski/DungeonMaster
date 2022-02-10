@@ -15,7 +15,6 @@
 #pragma once
 #endif // _MSC_VER >= 1000
 
-class CGrpHeld;
 class CRaumView;
 class CFieldDecoration;
 class CPictures;
@@ -26,8 +25,6 @@ protected: // create from serialization only
 	DECLARE_DYNCREATE(CDMDoc)
 
 	// Attributes
-public:
-	CGrpHeld* m_pGrpHelden; // todo raus hier, nach Dungeon bauen
 	// Operations
 public:
 
@@ -44,7 +41,7 @@ public:
 	void SetRaumView(CRaumView* pRaumView);
 	void InitGruppe(CPictures* pPictures, const int nr);
 	void SetzeRichtung(int iRichtung);
-	void Laufen();
+	void Laufen();	
 	int HoleGruppenRichtung();
 	VEKTOR HoleGruppenPosition();
 	void PlayDMSound(std::string file);

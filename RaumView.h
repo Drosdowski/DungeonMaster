@@ -7,6 +7,7 @@
 // RaumView.h : header file
 //
 #include "Feld.h"
+#include "CDungeonMap.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CRaumView view
@@ -23,7 +24,7 @@ class CFountainPic;
 class CMonsterPic;
 class CHelpfulValues;
 class CDecorationType;
-class CDungeonMap;
+class CGrpHeld;
 class CRaumView : public CView
 {
 public:
@@ -57,6 +58,8 @@ public:
 	void InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures); // TODO: pDOC & pDC private merken
 	VEKTOR Betrete(VEKTOR from, VEKTOR to);
 	CGrpMonster* GetMonsterGroup(VEKTOR pos);
+	CDungeonMap* GetMap() { return m_pMap; }
+	CGrpHeld* GetHeroes() { return m_pMap->GetHeroes(); }
 	void TriggerMoveAnimation();
 	void Zeichnen(CDC* pDC);
 	bool OnStairs();

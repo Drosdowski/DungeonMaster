@@ -8,6 +8,7 @@
 #include "DMView.h"
 #include "RaumView.h"
 #include "ZauberView.h"
+#include "CDungeonMap.h"
 #include "Pictures\CPictures.h"
 #include "Mobs\MobGroups\GrpHeld.h"
 #include "Mobs\MobGroups\GrpMonster.h"
@@ -112,6 +113,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 	//RAUM :0,64,460,270+64
 
 	CDMDoc* pDoc = (CDMDoc*)GetDocument();
+	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 	if (m_iModus == MOD_LAUFEN)
 	{
 		int newDir = CScreenCoords::CheckHitArrows(point);
@@ -123,9 +125,8 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 				pDoc->SetzeRichtung(m_iDir);
 			}
 		}
-		if (pDoc->m_pGrpHelden)
+		if (grpHelden)
 		{
-			CGrpHeld* grpHelden = pDoc->m_pGrpHelden;
 			int newWizard = CScreenCoords::CheckHitActiveWizard(point, grpHelden->GetActiveWizard());
 			if (newWizard > 0)
 			{
@@ -157,7 +158,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 			int heroID = CScreenCoords::CheckHitHeroes(point);
 			if (heroID > 0)
 			{
-				pDoc->m_pGrpHelden->Aktiviere(heroID);
+				grpHelden->Aktiviere(heroID);
 			}
 		}
 
@@ -170,7 +171,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 		CDC* pDC = GetDC();
 
 		if (CScreenCoords::CheckHitMainScr(point))
-			pDoc->m_pGrpHelden->OnLButtonDown(pDC, nFlags, point);
+			grpHelden->OnLButtonDown(pDC, nFlags, point);
 	}
 	CView::OnLButtonDown(nFlags, point);
 }
@@ -179,11 +180,12 @@ void CDMView::OnRButtonDown(UINT nFlags, CPoint point)
 {
 	CDMDoc* pDoc = (CDMDoc*) GetDocument();
 	CDC* pDC = GetDC();
+	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 
 	switch (m_iModus)
 	{
 	case MOD_LAUFEN:
-		if (pDoc->m_pGrpHelden->SetzeModus(	pDC, RUCKSACK))
+		if (grpHelden->SetzeModus(	pDC, RUCKSACK))
 	
 		/*if (pDoc->m_pHeld[iIndex ] != NULL)
 			{*/
@@ -192,7 +194,7 @@ void CDMView::OnRButtonDown(UINT nFlags, CPoint point)
 		break;
 		//	}
 	case MOD_RUCKSACK:
-		if (pDoc->m_pGrpHelden->SetzeModus(	pDC, LAUFEN))
+		if (grpHelden->SetzeModus(	pDC, LAUFEN))
 		{
 			m_iModus = MOD_LAUFEN;
 			UpdateGrafik();
@@ -272,7 +274,7 @@ void CDMView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		else if (m_iModus == MOD_RUCKSACK)
 		{
 			CDC* pDC = GetDC();
-			pDoc->m_pGrpHelden->UpdateRucksack(pDC, m_pPictures);
+			m_pRaumView->GetHeroes()->UpdateRucksack(pDC, m_pPictures);
 		}
 	}
 	CView::OnKeyDown(nChar, nRepCnt, nFlags);
@@ -387,7 +389,7 @@ void CDMView::UpdateGrafik()
 		// Game frozen
 		;
 
-	CGrpHeld* pGrpHeroes = pDoc->m_pGrpHelden;
+	CGrpHeld* pGrpHeroes = m_pRaumView->GetHeroes();
 	if (pGrpHeroes != NULL) 
 	{		
 		HeldenGrafikZeichnen(pGrpHeroes, pDC_, m_pPictures);
@@ -422,7 +424,7 @@ void CDMView::OnTimer(UINT nIDEvent)
 	CDMDoc* pDoc = GetDocument();
 
 	if (!m_bPause) {
-		if (!pDoc->m_pGrpHelden->Altern()) {
+		if (!m_pRaumView->GetHeroes()->Altern()) {
 			// 
 		}
 
@@ -440,7 +442,7 @@ void CDMView::OnTimer(UINT nIDEvent)
 		else if (m_iModus == MOD_RUCKSACK)
 		{
 			CDC* pDC = GetDC();
-			pDoc->m_pGrpHelden->UpdateRucksack(pDC, m_pPictures);
+			m_pRaumView->GetHeroes()->UpdateRucksack(pDC, m_pPictures);
 		}
 	}
 	else {
@@ -457,7 +459,7 @@ void CDMView::OnLButtonUp(UINT nFlags, CPoint point)
 		CDMDoc* pDoc = (CDMDoc*) GetDocument();
 		CDC* pDC = GetDC();
 
-		pDoc->m_pGrpHelden->OnLButtonUp(pDC, nFlags, point);
+		m_pRaumView->GetHeroes()->OnLButtonUp(pDC, nFlags, point);
 	}
 
 	CView::OnLButtonUp(nFlags, point);
