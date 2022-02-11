@@ -16,8 +16,6 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CHeld
 
-IMPLEMENT_DYNCREATE(CHeld, CView)
-
 CHeld::CHeld(CPictures* pPictures, int iIndex, CString strName): CCharacter()
 {
 	m_HP.Max = 100;
@@ -60,35 +58,6 @@ CHeld::~CHeld()
 	delete m_pRucksack;
 }
 
-
-BEGIN_MESSAGE_MAP(CHeld, CView)
-	//{{AFX_MSG_MAP(CHeld)
-		// NOTE - the ClassWizard will add and remove mapping macros here.
-	//}}AFX_MSG_MAP
-END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CHeld drawing
-
-void CHeld::OnDraw(CDC* pDC)
-{
-	// TODO: add draw code here
-}
-
-/////////////////////////////////////////////////////////////////////////////
-// CHeld diagnostics
-
-#ifdef _DEBUG
-void CHeld::AssertValid() const
-{
-	CView::AssertValid();
-}
-
-void CHeld::Dump(CDumpContext& dc) const
-{
-	CView::Dump(dc);
-}
-#endif //_DEBUG
 
 /////////////////////////////////////////////////////////////////////////////
 // CHeld message handlers

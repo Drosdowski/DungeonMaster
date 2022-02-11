@@ -17,8 +17,6 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CGrpMonster
 
-IMPLEMENT_DYNCREATE(CGrpMonster, CView)
-
 CGrpMonster::CGrpMonster()
 {
 }
@@ -34,37 +32,6 @@ CGrpMonster::CGrpMonster(VEKTOR pos, int richt)
 CGrpMonster::~CGrpMonster()
 {
 }
-
-
-BEGIN_MESSAGE_MAP(CGrpMonster, CView)
-	//{{AFX_MSG_MAP(CGrpMonster)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
-	//}}AFX_MSG_MAP
-END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// Zeichnung CGrpMonster 
-
-void CGrpMonster::OnDraw(CDC* pDC)
-{
-	CDocument* pDoc = GetDocument();
-	// ZU ERLEDIGEN: Code zum Zeichnen hier einfügen
-}
-
-/////////////////////////////////////////////////////////////////////////////
-// Diagnose CGrpMonster
-
-#ifdef _DEBUG
-void CGrpMonster::AssertValid() const
-{
-	CView::AssertValid();
-}
-
-void CGrpMonster::Dump(CDumpContext& dc) const
-{
-	CView::Dump(dc);
-}
-#endif //_DEBUG
 
 /////////////////////////////////////////////////////////////////////////////
 // Behandlungsroutinen für Nachrichten CGrpMonster 

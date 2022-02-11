@@ -9,7 +9,7 @@
 
 class CHelpfulValues;
 class CCharacter;
-class CGrpChar : public CView
+class CGrpChar 
 {
 #define LINKS 1
 #define RECHTS 2
@@ -18,8 +18,6 @@ class CGrpChar : public CView
 
 public:
 	CGrpChar();
-protected:
-	DECLARE_DYNCREATE(CGrpChar)
 
 // Attribute
 protected:
@@ -32,12 +30,6 @@ public:
 	void SetzeRichtung(int richt) { m_grpDirection = richt; }
 	VEKTOR HolePosition() {return m_posPosition;};
 
-// Überschreibungen
-protected:
-	// Vom Klassen-Assistenten generierte virtuelle Funktionsüberschreibungen
-	//{{AFX_VIRTUAL(CGrpChar)
-	virtual void OnDraw(CDC* pDC);      // Überschrieben zum Zeichnen dieser Ansicht
-	//}}AFX_VIRTUAL
 
 // Implementierung
 public:
@@ -62,17 +54,6 @@ protected:
 	VEKTOR m_posPosition;
 	CHelpfulValues* m_values;
 
-#ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
-#endif
-
-	// Generierte Nachrichtenzuordnungsfunktionen
-protected:
-public:
-	//{{AFX_MSG(CGrpChar)
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

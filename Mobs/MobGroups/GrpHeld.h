@@ -14,16 +14,7 @@ class CGrpHeld: public CGrpChar
 {
 public:
 	CGrpHeld(VEKTOR pos, int richt);
-protected:
-	//DECLARE_DYNCREATE(CGrpHeld)
-
-
-// Überschreibungen
-	// Vom Klassen-Assistenten generierte virtuelle Funktionsüberschreibungen
-	//{{AFX_VIRTUAL(CGrpChar)
-protected:
-	virtual void OnDraw(CDC* pDC);      // Überschrieben zum Zeichnen dieser Ansicht
-	//}}AFX_VIRTUAL
+	
 
 // Implementierung
 public:
@@ -56,10 +47,6 @@ public:
 	void Zeichnen(CDC* pDC, CPictures* pPictures, int iModus);
 
 	virtual ~CGrpHeld();
-#ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
-#endif
 
 	// Generierte Nachrichtenzuordnungsfunktionen
 protected:
@@ -73,7 +60,6 @@ public:
 	afx_msg void OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(CDC* pDC, UINT nFlags, CPoint point);
 	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

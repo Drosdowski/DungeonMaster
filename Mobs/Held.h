@@ -19,7 +19,6 @@ public:
 	CHeld(CPictures* pPictures, int iIndex, CString strName);
 protected:
 	CHeld();           // protected constructor used by dynamic creation
-	DECLARE_DYNCREATE(CHeld)
 
 // Attributes
 public:
@@ -40,13 +39,6 @@ public:
 
 	int CalcDmg(int ID, CGrpChar* pOpponents);
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CHeld)
-	protected:
-	virtual void OnDraw(CDC* pDC);      // overridden to draw this view
-	//}}AFX_VIRTUAL
-
 // Implementation
 public:
 	virtual bool Altern();
@@ -55,32 +47,13 @@ public:
 	bool m_bAktiv;
 	CRucksack* m_pRucksack; // todo raus hier! Parameter mitgeben!
 
-#ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
-#endif
-
-	// Generated message map functions
 protected:
-	/*virtual CDC* m_pDC;
-	virtual CDMDoc* m_pDoc;
-	virtual int m_iReceivedDmg;
-	
-	virtual WERTE m_MA;	// Mana
-	virtual WERTE m_ST;	// Stamina
-	virtual WERTE m_HP;	// Hitpoints
-	virtual SUBPOS m_subPosition;
-	virtual bool m_bBereit;*/
-	
+
 	CString m_strName;
 	long m_sExp[5];
 	VITALS m_sVitals;
 	int m_iFood;
 	int m_iWater;
-	//{{AFX_MSG(CHeld)
-		// NOTE - the ClassWizard will add and remove member functions here.
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
 private:
 	COLORREF m_Farbe[5];
 	int m_iIndex;

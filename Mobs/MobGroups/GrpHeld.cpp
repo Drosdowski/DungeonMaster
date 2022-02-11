@@ -17,8 +17,6 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CGrpHeld
 
-//IMPLEMENT_DYNCREATE(CGrpHeld, CView)
-
 CGrpHeld::CGrpHeld(VEKTOR pos, int richt)
 {
 	for (int i=1; i<=4; i++)
@@ -31,35 +29,6 @@ CGrpHeld::CGrpHeld(VEKTOR pos, int richt)
 CGrpHeld::~CGrpHeld()
 {
 }
-
-BEGIN_MESSAGE_MAP(CGrpHeld, CView)
-	//{{AFX_MSG_MAP(CGrpHeld)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
-	//}}AFX_MSG_MAP
-END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// Zeichnung CGrpHeld 
-
-void CGrpHeld::OnDraw(CDC* pDC)
-{
-	// ZU ERLEDIGEN: Code zum Zeichnen hier einfügen
-}
-
-/////////////////////////////////////////////////////////////////////////////
-// Diagnose CGrpHeld
-
-#ifdef _DEBUG
-void CGrpHeld::AssertValid() const
-{
-	CView::AssertValid();
-}
-
-void CGrpHeld::Dump(CDumpContext& dc) const
-{
-	CView::Dump(dc);
-}
-#endif //_DEBUG
 
 /////////////////////////////////////////////////////////////////////////////
 // Behandlungsroutinen für Nachrichten CGrpHeld 

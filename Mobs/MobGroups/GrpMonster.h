@@ -18,7 +18,6 @@ public:
 	CGrpMonster(VEKTOR pos, int richt);
 protected:
 	CGrpMonster();           // Dynamische Erstellung verwendet geschützten Konstruktor
-	DECLARE_DYNCREATE(CGrpMonster)
 
 // Attribute
 public:
@@ -33,12 +32,6 @@ public:
 	bool IstBereit();
 	CMonster* GetMonsterByRelSubPos(int posIndex, int richt);
 
-// Überschreibungen
-	// Vom Klassen-Assistenten generierte virtuelle Funktionsüberschreibungen
-	//{{AFX_VIRTUAL(CGrpMonster)
-	protected:
-	virtual void OnDraw(CDC* pDC);      // Überschrieben zum Zeichnen dieser Ansicht
-	//}}AFX_VIRTUAL
 
 // Implementierung
 public:
@@ -48,17 +41,7 @@ public:
 	void TurnToHero(VEKTOR heroPos);
 	void EndAttack();
 	virtual ~CGrpMonster();
-#ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
-#endif
 
-	// Generierte Nachrichtenzuordnungsfunktionen
-protected:
-	//{{AFX_MSG(CGrpMonster)
-		// HINWEIS - Der Klassen-Assistent fügt hier Member-Funktionen ein und entfernt diese.
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

@@ -24,42 +24,11 @@ CMonster::CMonster(): CCharacter()
 }
 
 
-
 CMonster::~CMonster()
 {
 	DeleteDC(pCdc);
 }
 
-
-BEGIN_MESSAGE_MAP(CMonster, CView)
-	//{{AFX_MSG_MAP(CMonster)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
-	//}}AFX_MSG_MAP
-END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// Zeichnung CMonster 
-
-void CMonster::OnDraw(CDC* pDC)
-{
-	CDocument* pDoc = GetDocument();
-	// ZU ERLEDIGEN: Code zum Zeichnen hier einfügen
-}
-
-/////////////////////////////////////////////////////////////////////////////
-// Diagnose CMonster
-
-#ifdef _DEBUG
-void CMonster::AssertValid() const
-{
-	CView::AssertValid();
-}
-
-void CMonster::Dump(CDumpContext& dc) const
-{
-	CView::Dump(dc);
-}
-#endif //_DEBUG
 
 /////////////////////////////////////////////////////////////////////////////
 // Behandlungsroutinen für Nachrichten CMonster 

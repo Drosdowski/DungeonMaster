@@ -16,8 +16,6 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CGrpChar
 
-IMPLEMENT_DYNCREATE(CGrpChar, CView)
-
 
 CGrpChar::CGrpChar() 
 {
@@ -37,36 +35,6 @@ CGrpChar::~CGrpChar()
 	delete m_values;
 }
 
-
-BEGIN_MESSAGE_MAP(CGrpChar, CView)
-	//{{AFX_MSG_MAP(CGrpChar)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
-	//}}AFX_MSG_MAP
-END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// Zeichnung CGrpChar 
-
-void CGrpChar::OnDraw(CDC* pDC)
-{
-	CDocument* pDoc = GetDocument();
-	// ZU ERLEDIGEN: Code zum Zeichnen hier einfügen
-}
-
-/////////////////////////////////////////////////////////////////////////////
-// Diagnose CGrpChar
-
-#ifdef _DEBUG
-void CGrpChar::AssertValid() const
-{
-	CView::AssertValid();
-}
-
-void CGrpChar::Dump(CDumpContext& dc) const
-{
-	CView::Dump(dc);
-}
-#endif //_DEBUG
 
 /////////////////////////////////////////////////////////////////////////////
 // Behandlungsroutinen für Nachrichten CGrpChar 

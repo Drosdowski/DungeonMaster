@@ -16,8 +16,6 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CCharacter
 
-IMPLEMENT_DYNCREATE(CCharacter, CView)
-
 CCharacter::CCharacter()
 {
 	m_chrDirection = 0;
@@ -28,36 +26,6 @@ CCharacter::~CCharacter()
 {
 }
 
-
-BEGIN_MESSAGE_MAP(CCharacter, CView)
-	//{{AFX_MSG_MAP(CCharacter)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
-	//}}AFX_MSG_MAP
-END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// Zeichnung CCharacter 
-
-void CCharacter::OnDraw(CDC* pDC)
-{
-	CDocument* pDoc = GetDocument();
-	// ZU ERLEDIGEN: Code zum Zeichnen hier einfügen
-}
-
-/////////////////////////////////////////////////////////////////////////////
-// Diagnose CCharacter
-
-#ifdef _DEBUG
-void CCharacter::AssertValid() const
-{
-	CView::AssertValid();
-}
-
-void CCharacter::Dump(CDumpContext& dc) const
-{
-	CView::Dump(dc);
-}
-#endif //_DEBUG
 
 /////////////////////////////////////////////////////////////////////////////
 // Behandlungsroutinen für Nachrichten CCharacter 

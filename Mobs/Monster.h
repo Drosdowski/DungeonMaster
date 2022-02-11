@@ -22,14 +22,7 @@ public:
 public:
 
 // Operationen
-public:
 
-// Überschreibungen
-	// Vom Klassen-Assistenten generierte virtuelle Funktionsüberschreibungen
-	//{{AFX_VIRTUAL(CMonster)
-	protected:
-	virtual void OnDraw(CDC* pDC);      // Überschrieben zum Zeichnen dieser Ansicht
-	//}}AFX_VIRTUAL
 
 // Implementierung
 public:
@@ -44,20 +37,12 @@ public:
 
 protected:
 	virtual ~CMonster();
-#ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
-#endif
 
 	// Generierte Nachrichtenzuordnungsfunktionen
 protected:
 	int m_iTyp;
 	CDC pCdc;
 
-	//{{AFX_MSG(CMonster)
-		// HINWEIS - Der Klassen-Assistent fügt hier Member-Funktionen ein und entfernt diese.
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////
