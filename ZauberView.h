@@ -8,39 +8,22 @@
 // Ansicht CZauberView 
 
 class CGrpHeld;
-class CZauberView : public CView
+class CZauberView
 {
 public:
 	CZauberView();           // Dynamische Erstellung verwendet geschützten Konstruktor
-	DECLARE_DYNCREATE(CZauberView)
+	virtual ~CZauberView();
 
 // Attribute
 public:
 
 // Operationen
 
-// Überschreibungen
-	// Vom Klassen-Assistenten generierte virtuelle Funktionsüberschreibungen
-	//{{AFX_VIRTUAL(CZauberView)
-protected:
-	virtual void OnDraw(CDC* pDC);      // Überschrieben zum Zeichnen dieser Ansicht
-	//}}AFX_VIRTUAL
 
 // Implementierung
 public:
 	void Zeichnen(CPictures* pPictures, CDC* pDC, int iActiveWizard);
-	virtual ~CZauberView();
-#ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
-#endif
 
-	// Generierte Nachrichtenzuordnungsfunktionen
-protected:
-	//{{AFX_MSG(CZauberView)
-		// HINWEIS - Der Klassen-Assistent fügt hier Member-Funktionen ein und entfernt diese.
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

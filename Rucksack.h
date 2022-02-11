@@ -10,13 +10,12 @@
 // CRucksack view
 
 class CPictures;
-class CRucksack : public CView
+class CRucksack 
 {
 public:
 	CRucksack(CPictures* pPictures);
 protected:
 	CRucksack();           // protected constructor used by dynamic creation
-	DECLARE_DYNCREATE(CRucksack)
 
 // Attributes
 public:
@@ -27,13 +26,6 @@ public:
 	virtual void OnLButtonUp(CDC* pDC, UINT nFlags, CPoint point);
 	void Zeichnen(CDC* pDC);
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CRucksack)
-	protected:
-	virtual void OnDraw(CDC* pDC);      // overridden to draw this view
-	//}}AFX_VIRTUAL
-
 // Implementation
 public:
 	void SetzeModusExtend(int iModusExtend);
@@ -43,21 +35,10 @@ public:
 	void ZeichneHungerDurst(CDC* pDC, int i, int j);
 	virtual ~CRucksack();
 protected:
-#ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
-#endif
-
-	// Generated message map functions
-protected:
 	CString Titel(long exp);
 	int m_iModusExtend;
 	CString KLASSE[5];
 	CPictures* m_pPictures;
-	//{{AFX_MSG(CRucksack)
-		// NOTE - the ClassWizard will add and remove member functions here.
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////

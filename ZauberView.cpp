@@ -16,8 +16,6 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CZauberView
 
-IMPLEMENT_DYNCREATE(CZauberView, CView)
-
 CZauberView::CZauberView()
 {
 }
@@ -25,41 +23,6 @@ CZauberView::CZauberView()
 CZauberView::~CZauberView()
 {
 }
-
-
-BEGIN_MESSAGE_MAP(CZauberView, CView)
-	//{{AFX_MSG_MAP(CZauberView)
-		// HINWEIS - Der Klassen-Assistent fügt hier Zuordnungsmakros ein und entfernt diese.
-	//}}AFX_MSG_MAP
-END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// Zeichnung CZauberView 
-
-void CZauberView::OnDraw(CDC* pDC)
-{
-	CDocument* pDoc = GetDocument();
-	// ZU ERLEDIGEN: Code zum Zeichnen hier einfügen
-}
-
-/////////////////////////////////////////////////////////////////////////////
-// Diagnose CZauberView
-
-#ifdef _DEBUG
-void CZauberView::AssertValid() const
-{
-	CView::AssertValid();
-}
-
-void CZauberView::Dump(CDumpContext& dc) const
-{
-	CView::Dump(dc);
-}
-#endif //_DEBUG
-
-/////////////////////////////////////////////////////////////////////////////
-// Behandlungsroutinen für Nachrichten CZauberView 
-
 
 
 void CZauberView::Zeichnen(CPictures* pPictures, CDC * pDC, int iActiveWizard)

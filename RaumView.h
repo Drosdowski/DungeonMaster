@@ -25,30 +25,18 @@ class CMonsterPic;
 class CHelpfulValues;
 class CDecorationType;
 class CGrpHeld;
-class CRaumView : public CView
+class CRaumView
 {
 public:
 	CRaumView();
 protected:
-	//CRaumView();           // protected constructor used by dynamic creation
-	DECLARE_DYNCREATE(CRaumView)
 
 // Attributes
 	CBrush m_BlackBrush;
-//	LPDIRECTDRAWSURFACE     lpDDSPrimary;
-//	LPDIRECTDRAWSURFACE     lpDDSOffOne;
 public:
 	CDMDoc* m_pDoc;
 
 // Operations
-public:
-
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CRaumView)
-	protected:
-	virtual void OnDraw(CDC* pDC);      // overridden to draw this view
-	//}}AFX_VIRTUAL
 
 // Implementation
 public:
@@ -65,13 +53,7 @@ public:
 	bool OnStairs();
 
 	virtual ~CRaumView();
-protected:
-#ifdef _DEBUG
-	virtual void AssertValid() const;
-	virtual void Dump(CDumpContext& dc) const;
-#endif
 
-	// Generated message map functions
 protected:
 	bool m_bMirror;
 	CPictures* m_pPictures;
@@ -93,10 +75,6 @@ protected:
 	// VEKTOR NextFieldWithoutTurn(CGrpMonster* pGrpMon, VEKTOR heroPos);
 
 	CDungeonMap* m_pMap;
-	//{{AFX_MSG(CRaumView)
-		// NOTE - the ClassWizard will add and remove member functions here.
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
 private:
 	int wallXFactor[5];
 	CHelpfulValues* m_values;

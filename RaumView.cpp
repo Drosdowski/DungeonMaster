@@ -31,8 +31,6 @@ static char THIS_FILE[] = __FILE__;
 // CRaumView
 
 
-IMPLEMENT_DYNCREATE(CRaumView, CView)
-
 CRaumView::CRaumView()
 {
 	m_BlackBrush.CreateSolidBrush(SCHWARZ);
@@ -67,37 +65,6 @@ CRaumView::~CRaumView()
 	delete m_pFountainPic;
 	delete m_pMonsterPic;
 }
-
-
-BEGIN_MESSAGE_MAP(CRaumView, CView)
-	//{{AFX_MSG_MAP(CRaumView)
-		// NOTE - the ClassWizard will add and remove mapping macros here.
-	//}}AFX_MSG_MAP
-END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CRaumView drawing
-
-void CRaumView::OnDraw(CDC* pDC)
-{
-	// CDocument* pDoc = GetDocument();
-	// TODO: add draw code here
-}
-
-/////////////////////////////////////////////////////////////////////////////
-// CRaumView diagnostics
-
-#ifdef _DEBUG
-void CRaumView::AssertValid() const
-{
-	CView::AssertValid();
-}
-
-void CRaumView::Dump(CDumpContext& dc) const
-{
-	CView::Dump(dc);
-}
-#endif //_DEBUG
 
 /////////////////////////////////////////////////////////////////////////////
 // CRaumView message handlers

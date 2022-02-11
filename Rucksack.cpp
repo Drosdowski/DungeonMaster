@@ -14,8 +14,6 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CRucksack
 
-IMPLEMENT_DYNCREATE(CRucksack, CView)
-
 CRucksack::CRucksack(CPictures* pPictures)
 {
 	m_iModusExtend = MOD_EXT_NORMAL;
@@ -35,35 +33,6 @@ CRucksack::~CRucksack()
 {
 }
 
-
-BEGIN_MESSAGE_MAP(CRucksack, CView)
-	//{{AFX_MSG_MAP(CRucksack)
-		// NOTE - the ClassWizard will add and remove mapping macros here.
-	//}}AFX_MSG_MAP
-END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CRucksack drawing
-
-void CRucksack::OnDraw(CDC* pDC)
-{
-	// TODO: add draw code here
-}
-
-/////////////////////////////////////////////////////////////////////////////
-// CRucksack diagnostics
-
-#ifdef _DEBUG
-void CRucksack::AssertValid() const
-{
-	CView::AssertValid();
-}
-
-void CRucksack::Dump(CDumpContext& dc) const
-{
-	CView::Dump(dc);
-}
-#endif //_DEBUG
 
 /////////////////////////////////////////////////////////////////////////////
 // CRucksack message handlers
