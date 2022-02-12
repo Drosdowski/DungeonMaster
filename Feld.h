@@ -3,6 +3,7 @@
 
 #include "StdAfx.h"	// Hinzugefügt von ClassView
 #include "Mobs\Monster.h"
+
 #if _MSC_VER >= 1000
 #pragma once
 #endif // _MSC_VER >= 1000
@@ -14,6 +15,7 @@
 // CField view
 
 class CGrpMonster;
+class CMiscellaneous;
 class CFieldDecoration;
 class CField
 {
@@ -31,6 +33,7 @@ protected:
 	CGrpMonster* m_pGrpMonster; 
 	FeldTyp m_iTyp;
 	CFieldDecoration* m_pWallDecoration[4];
+	CMiscellaneous* m_pMiscellaneous[4]; // todo stacks / listen davon , nicht einzeln!
 	CDoor* m_pDoor = NULL;
 	CStairs* m_pStairs = NULL;
 
@@ -48,6 +51,8 @@ public:
 	void SetType(FeldTyp fieldType, CStairs::StairType stairsType, bool eastWest);
 	void SetType(FeldTyp iTyp);
 
+	void PutMisc(CMiscellaneous* misc, int subPos);
+
 // Overrides
 
 // Implementation
@@ -56,6 +61,7 @@ public:
 	// Generated message map functions
 protected:
 	VEKTOR m_posKoord;
+
 
 	void InitDeco(CFieldDecoration* pDeco[4]);
 

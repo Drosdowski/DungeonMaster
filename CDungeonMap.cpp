@@ -2,6 +2,7 @@
 #include "SpecialTile\Decoration.h"
 #include "TinyXML/tinyxml.h"
 #include "Mobs/MobGroups/GrpHeld.h"
+#include "Items/CMiscellaneous.h"
 #include "CDungeonMap.h"
 
 CDungeonMap::CDungeonMap()
@@ -65,7 +66,7 @@ CField* CDungeonMap::ParseDoor(TiXmlElement* rootNode, VEKTOR pos) {
 		if (strcmp(parent, "items") == 0)
 		{
 			TiXmlElement* doorItem = parentElement->FirstChildElement();
-			if (doorItem && strcmp(doorItem->Value(), "items") == 0) {
+			if (doorItem && strcmp(doorItem->Value(), "door") == 0) {
 				int index;
 				parentElement->QueryIntAttribute("index", &index);
 				type = m_doorType[index];
@@ -89,6 +90,9 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	int y = (int)(index / m_LevelWidth[etage]);
 	int type;
 	rootNode->QueryIntAttribute("type", &type);
+	int hasObjects;
+	rootNode->QueryIntAttribute("has_objects", &hasObjects);
+		
 	// 0 = Wall , 1 == Empty, 3 = Stair, 4 == Door
 	if (type != 0 && type != 1 && type != 3 && type != 4)
 	{
@@ -108,6 +112,31 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	else
 		m_pFeld[x][y][etage] = new CField(pos, iFieldType, NULL); // etage 1 / index 30 => m_levelWidth[1] kaputt!
 	
+	if (hasObjects == 1) {
+		int msubtype, mtype = 0;
+		TiXmlElement* parentElement = rootNode->FirstChildElement();
+		while (parentElement)
+		{
+			const char* parent = parentElement->Value();
+			if (strcmp(parent, "items") == 0)
+			{ // 16851
+				TiXmlElement* miscItem = parentElement->FirstChildElement();
+				if (miscItem && strcmp(miscItem->Value(), "miscellaneous") == 0) {
+					int index, subPos;
+					parentElement->QueryIntAttribute("index", &index);
+					parentElement->QueryIntAttribute("position", &subPos);
+					mtype = m_miscellaneousType[index];
+					msubtype = m_miscellaneousSubtype[index];
+
+					CMiscellaneous* misc = new CMiscellaneous(index, mtype, msubtype);
+					m_pFeld[x][y][etage]->PutMisc(misc, subPos);
+				}
+
+			}
+			parentElement = parentElement->NextSiblingElement();
+
+		}
+	}
 }
 
 
@@ -170,6 +199,25 @@ void CDungeonMap::ParseDoorObjects(TiXmlElement* rootNode) {
 	}
 }
 
+void CDungeonMap::ParseMiscellaneousesObjects(TiXmlElement* rootNode) {
+	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "miscellaneous") == 0) // several existing
+		{
+			int index, subtype, type;
+			parentElement->QueryIntAttribute("index", &index);
+			parentElement->QueryIntAttribute("subtype", &subtype);
+			parentElement->QueryIntAttribute("type", &type);
+			m_miscellaneousType[index] = type;
+			m_miscellaneousSubtype[index] = type;
+
+		}
+		parentElement = parentElement->NextSiblingElement();
+	}
+}
+
 void CDungeonMap::ParseObjects(TiXmlElement* rootNode) {
 	TiXmlElement* parentElement = rootNode->FirstChildElement();
 	while (parentElement)
@@ -178,6 +226,10 @@ void CDungeonMap::ParseObjects(TiXmlElement* rootNode) {
 		if (strcmp(parent, "doors") == 0)
 		{
 			ParseDoorObjects(parentElement);
+		}
+		else if (strcmp(parent, "miscellaneouses") == 0)
+		{
+			ParseMiscellaneousesObjects(parentElement);
 		}
 		parentElement = parentElement->NextSiblingElement();
 	}
@@ -192,6 +244,10 @@ void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
 	m_start.z = 0;
 	rootNode->QueryIntAttribute("number_of_doors", &m_countDoors);
 	m_doorType = new int[m_countDoors];
+	rootNode->QueryIntAttribute("number_of_miscellaneous", &m_countMiscellaneous);
+	m_miscellaneousType = new int[m_countMiscellaneous];
+	m_miscellaneousSubtype = new int[m_countMiscellaneous];
+
 	const char* startDir = rootNode->Attribute("start_facing");
 	if (strcmp(startDir, "North") == 0) m_startRicht = 0;
 	if (strcmp(startDir, "East") == 0) m_startRicht = 1;

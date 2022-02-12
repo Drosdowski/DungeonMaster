@@ -21,6 +21,7 @@ int CScreenCoords::CheckHitArrows(CPoint point) {
 		else if (InRect(point, 582, 248, 638, 290))
 			return RECHTS_DREHEN;
 		}
+	return 0;
 }
 
 int CScreenCoords::CheckHitActiveWizard(CPoint point, int activeWizardID) {

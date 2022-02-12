@@ -119,3 +119,7 @@ void CField::SetType(FeldTyp fieldType, CStairs::StairType stairsType, bool east
 		assert(false);
 	}
 }
+
+void CField::PutMisc(CMiscellaneous* misc, int subPos) {
+	// TODO put misc
+}

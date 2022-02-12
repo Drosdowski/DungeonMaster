@@ -25,6 +25,7 @@ public:
 
 private:
 	void ParseDoorObjects(TiXmlElement* rootNode);
+	void ParseMiscellaneousesObjects(TiXmlElement* rootNode);
 	void ParseObjects(TiXmlElement* rootNode);
 	void ParseMaps(TiXmlElement* rootNode);
 	void ParseMap(TiXmlElement* rootNode, int etage);
@@ -42,9 +43,14 @@ private:
 	VEKTOR m_start;
 	int m_startRicht;
 	int m_countDoors;
-	int* m_doorType; // dynamic array
-
+	int m_countMiscellaneous;
 	CGrpHeld* m_pGrpHelden;
+
+	// dynamic arrays
+	int* m_doorType; 
+	int* m_miscellaneousType;
+	int* m_miscellaneousSubtype;
+
 
 };
 

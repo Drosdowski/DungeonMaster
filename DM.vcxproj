@@ -129,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CDungeonMap.cpp" />
+    <ClCompile Include="Items\CMiscellaneous.cpp" />
     <ClCompile Include="SpecialTile\CTile.cpp" />
     <ClCompile Include="SpecialTile\CStairs.cpp" />
     <ClCompile Include="Pictures\CStairsPic.cpp" />
@@ -177,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CDungeonMap.h" />
+    <ClInclude Include="Items\CMiscellaneous.h" />
     <ClInclude Include="SpecialTile\CTile.h" />
     <ClInclude Include="SpecialTile\CStairs.h" />
     <ClInclude Include="Pictures\CStairsPic.h" />
