@@ -180,8 +180,8 @@ bool CHeld::Altern()
 	if (alive)
 	{
 		WerteTemporaerAendern(1, 1, 1);
-		m_iFood--;
-		m_iWater--;
+		//m_iFood--;
+		//m_iWater--;
 		if (m_iFood < 50)
 			WerteTemporaerAendern(0, -1, 0);
 		if (m_iWater < 50)

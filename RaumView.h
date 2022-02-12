@@ -32,7 +32,6 @@ public:
 protected:
 
 // Attributes
-	CBrush m_BlackBrush;
 public:
 	CDMDoc* m_pDoc;
 

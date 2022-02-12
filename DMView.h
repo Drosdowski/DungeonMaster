@@ -78,6 +78,12 @@ protected:
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
+	void ParseClickArrows(CPoint point);
+	void ParseClickWizard(CPoint point);
+	void ParseClickAction(CPoint point);
+	void ParseClickHeroes(CPoint point);
+
 };
 
 #ifndef _DEBUG  // debug version in DMView.cpp

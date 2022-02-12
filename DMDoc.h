@@ -16,7 +16,6 @@
 #endif // _MSC_VER >= 1000
 
 class CRaumView;
-class CFieldDecoration;
 class CPictures;
 class CDMDoc : public CDocument
 {
@@ -26,15 +25,10 @@ protected: // create from serialization only
 
 	// Attributes
 	// Operations
-public:
 
-	// Overrides
-		// ClassWizard generated virtual function overrides
-		//{{AFX_VIRTUAL(CDMDoc)
 public:
 	virtual BOOL OnNewDocument();
 	virtual void Serialize(CArchive& ar);
-	//}}AFX_VIRTUAL
 
 // Implementation
 public:
@@ -52,8 +46,6 @@ public:
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
 #endif
-
-protected:
 
 	// Generated message map functions
 protected:

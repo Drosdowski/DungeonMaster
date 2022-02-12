@@ -6,13 +6,9 @@
 
 CDungeonMap::CDungeonMap()
 { 
-	CFieldDecoration* deco[4];
-	for (int b = 0; b < 4; b++) {
-		deco[b] = new CFieldDecoration(None);
-	}
 	VEKTOR v; v.x = 0; v.y = 0;v.z = 0;
 
-	m_pEdgeWall = new CField(v, FeldTyp::WALL, deco);
+	m_pEdgeWall = new CField(v, FeldTyp::WALL, NULL);
 	LoadMap();
 	m_pGrpHelden = new CGrpHeld(m_start, m_startRicht);
 }

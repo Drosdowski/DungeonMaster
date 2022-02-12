@@ -108,6 +108,67 @@ CDMDoc* CDMView::GetDocument() // non-debug version is inline
 /////////////////////////////////////////////////////////////////////////////
 // CDMView message handlers
 
+void CDMView::ParseClickArrows(CPoint point) {
+	CDMDoc* pDoc = (CDMDoc*)GetDocument();
+	int newDir = CScreenCoords::CheckHitArrows(point);
+	if (newDir > 0) {
+		m_iDir = newDir;
+		if ((m_iModus == MOD_LAUFEN) && (m_iDir > 0))
+		{
+			UpdateGrafik();
+			pDoc->SetzeRichtung(m_iDir);
+		}
+	}
+}
+
+void CDMView::ParseClickWizard(CPoint point) {
+	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+	int newWizard = CScreenCoords::CheckHitActiveWizard(point, grpHelden->GetActiveWizard());
+	if (newWizard > 0)
+	{
+		if (grpHelden->SetActiveCaster(newWizard))
+		{
+			CDC* pDC = GetDC();
+			ZauberReiterZeichnen(pDC, newWizard);
+			UpdateGrafik();
+		}
+	}
+}
+
+void CDMView::ParseClickAction(CPoint point) {
+	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+
+	int actionPhase = grpHelden->GetActionPhase();
+	int action = CScreenCoords::CheckHitAction(point, actionPhase);
+	if (action > 0 && actionPhase == 1)
+	{
+		grpHelden->ChooseHeroForAction(action);
+	}
+	else if (action != 0 && actionPhase == 2) {
+		if (action == -1) // pass
+		{
+			grpHelden->PassAction();
+		}
+		else {
+			VEKTOR pos = grpHelden->HoleZielFeld(VORWAERTS);
+			CGrpMonster* grpMonster = m_pRaumView->GetMonsterGroup(pos);
+			grpHelden->DoActionForChosenHero(action, grpMonster);
+		}
+		UpdateGrafik();
+	}
+
+}
+
+void CDMView::ParseClickHeroes(CPoint point) {
+	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+	int heroID = CScreenCoords::CheckHitHeroes(point);
+	if (heroID > 0)
+	{
+		grpHelden->Aktiviere(heroID);
+	}
+}
+
+
 void CDMView::OnLButtonDown(UINT nFlags, CPoint point) 
 {
 	//RAUM :0,64,460,270+64
@@ -116,50 +177,12 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 	if (m_iModus == MOD_LAUFEN)
 	{
-		int newDir = CScreenCoords::CheckHitArrows(point);
-		if (newDir > 0) {
-			m_iDir = newDir;
-			if ((m_iModus == MOD_LAUFEN) && (m_iDir > 0))
-			{
-				UpdateGrafik();
-				pDoc->SetzeRichtung(m_iDir);
-			}
-		}
+		ParseClickArrows(point);
 		if (grpHelden)
 		{
-			int newWizard = CScreenCoords::CheckHitActiveWizard(point, grpHelden->GetActiveWizard());
-			if (newWizard > 0)
-			{
-				if (grpHelden->SetActiveCaster(newWizard))
-				{
-					CDC* pDC = GetDC();
-					ZauberReiterZeichnen(pDC, newWizard);
-					UpdateGrafik();
-				}
-			}
-			int actionPhase = grpHelden->GetActionPhase();
-			int action = CScreenCoords::CheckHitAction(point, actionPhase);
-			if (action > 0 && actionPhase == 1)
-			{
-				grpHelden->ChooseHeroForAction(action);
-			}
-			else if (action != 0 && actionPhase == 2) {
-				if (action == -1) // pass
-				{
-					grpHelden->PassAction();
-				}
-				else {
-					VEKTOR pos = grpHelden->HoleZielFeld(VORWAERTS);
-					CGrpMonster* grpMonster = m_pRaumView->GetMonsterGroup(pos);
-					grpHelden->DoActionForChosenHero(action, grpMonster);
-				}
-				UpdateGrafik();
-			}
-			int heroID = CScreenCoords::CheckHitHeroes(point);
-			if (heroID > 0)
-			{
-				grpHelden->Aktiviere(heroID);
-			}
+			ParseClickWizard(point);
+			ParseClickAction(point);
+			ParseClickHeroes(point);
 		}
 
 		else if (CScreenCoords::CheckHitDeco(point)) {
@@ -456,7 +479,6 @@ void CDMView::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	if (m_iModus == MOD_RUCKSACK)
 	{
-		CDMDoc* pDoc = (CDMDoc*) GetDocument();
 		CDC* pDC = GetDC();
 
 		m_pRaumView->GetHeroes()->OnLButtonUp(pDC, nFlags, point);

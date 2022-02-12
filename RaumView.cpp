@@ -33,8 +33,6 @@ static char THIS_FILE[] = __FILE__;
 
 CRaumView::CRaumView()
 {
-	m_BlackBrush.CreateSolidBrush(SCHWARZ);
-	
 	wallXFactor[0] = -2;
 	wallXFactor[1] = 2;
 	wallXFactor[2] = -1;
