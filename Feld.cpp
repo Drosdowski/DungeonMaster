@@ -59,29 +59,13 @@ CField::~CField()
 			delete m_pWallDecoration[i];
 		}
 	}
-	while (!m_pMiscellaneousNW.empty()) {
-
-		CMiscellaneous* item = m_pMiscellaneousNW.top();
-		delete item;
-		m_pMiscellaneousNW.pop();
+	for (int i = 0; i < 4; i++) {
+		while (!m_pMiscellaneous[i].empty()) {
+			CMiscellaneous* item = m_pMiscellaneous[i].top();
+			delete item;
+			m_pMiscellaneous[i].pop();
+		}
 	}
-	while (!m_pMiscellaneousNE.empty()) {
-		CMiscellaneous* item = m_pMiscellaneousNE.top();
-		delete item;
-		m_pMiscellaneousNE.pop();
-	}
-	while (!m_pMiscellaneousSW.empty()) {
-		CMiscellaneous* item = m_pMiscellaneousSW.top();
-		delete item;
-		m_pMiscellaneousSW.pop();
-	}
-	while (!m_pMiscellaneousSE.empty()) {
-		CMiscellaneous* item = m_pMiscellaneousSE.top();
-		delete item;
-		m_pMiscellaneousSE.pop();
-	}
-
-
 }
 
 void CField::InitDeco(CFieldDecoration* pDeco[4]) {
@@ -144,19 +128,17 @@ void CField::SetType(FeldTyp fieldType, CStairs::StairType stairsType, bool east
 }
 
 void CField::PutMisc(CMiscellaneous* misc, int subPos) {
-	switch (subPos) {
-	case 0: 
-		m_pMiscellaneousNW.push(misc);
-		break;
-	case 1:
-		m_pMiscellaneousNE.push(misc);
-		break;
-	case 2:
-		m_pMiscellaneousSW.push(misc);
-		break;
-	case 3:
-		m_pMiscellaneousSE.push(misc);
-		break;
+	m_pMiscellaneous[subPos].push(misc);
+}
+
+// Item von Stapel nehmen - ist dann "in der Hand"
+CMiscellaneous* CField::TakeMisc(int subPos) {
+	if (m_pMiscellaneous[subPos].size() > 0)
+	{
+		CMiscellaneous* topItem = m_pMiscellaneous[subPos].top();
+		m_pMiscellaneous[subPos].pop();
+		return topItem;
 	}
-	// TODO put misc
+	else
+		return NULL;
 }

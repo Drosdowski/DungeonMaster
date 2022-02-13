@@ -3,12 +3,15 @@
 
 
 #include "stdafx.h"
+#include <stack>
+#include "CHelpfulValues.h"
 #include "DmDoc.h"
 #include "Feld.h"
-#include "SpecialTile/CStairs.h"
+#include "Items/CMiscellaneous.h"
 #include "RaumView.h"
-#include "SpecialTile\Decoration.h"
 #include "CDungeonMap.h"
+#include "SpecialTile/CStairs.h"
+#include "SpecialTile\Decoration.h"
 #include "Pictures\CPictures.h"
 #include "Pictures\CDoorPic.h"
 #include "Pictures\CWallPic.h"
@@ -16,7 +19,6 @@
 #include "Pictures\CLeverPic.h"
 #include "Pictures\CFountainPic.h"
 #include "Pictures\Creatures\CMonsterPic.h"
-#include "CHelpfulValues.h"
 #include "Mobs\Monster.h"
 #include "Mobs\MobGroups\GrpMonster.h"
 #include "Mobs\MobGroups\GrpHeld.h"
@@ -304,6 +306,10 @@ void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, 
 	}
 }
 
+void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, int SubPos, std::stack<CMiscellaneous*> pile) {
+
+}
+
 void CRaumView::Zeichnen(CDC* pDC)
 {
 	CDC compCdc;
@@ -338,7 +344,16 @@ void CRaumView::Zeichnen(CDC* pDC)
 				CField* pField = m_pMap->GetField(addx,addy,z);
 				int fieldType = pField->HoleTyp();
 				
-				if (fieldType == FeldTyp::WALL && ((ebene != 0) || (xx != 0)))
+				if (fieldType == FeldTyp::EMPTY) {
+					for (int subPos = 0; subPos < 4; subPos++)
+					{
+						std::stack<CMiscellaneous*> pile = pField->GetMisc(subPos);
+						if (pile.size() > 0) {
+							DrawPile(pDC, &compCdc, xxx, ebene, subPos, pile);
+						}
+					}
+				}
+				else if (fieldType == FeldTyp::WALL && ((ebene != 0) || (xx != 0)))
 				{
 					DrawWall(pDC, &compCdc, xxx, ebene, richt, pField);
 				}

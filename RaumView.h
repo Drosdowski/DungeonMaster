@@ -24,6 +24,7 @@ class CFountainPic;
 class CMonsterPic;
 class CHelpfulValues;
 class CDecorationType;
+class CMiscellaneous;
 class CGrpHeld;
 class CRaumView
 {
@@ -64,6 +65,7 @@ protected:
 	CMonsterPic* m_pMonsterPic;
 
 	VEKTOR MonsterMoveOrAttack(CGrpMonster* pGrpMon);
+	void DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, int SubPos, std::stack<CMiscellaneous*> pile);
 	void DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField);
 	void DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CDoor* pDoor);
 	void DrawStairsFront(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs);

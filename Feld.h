@@ -28,20 +28,6 @@ public:
 	CField(VEKTOR koord, FeldTyp fieldType, CStairs::StairType stairType, bool eastWest, CFieldDecoration* pDeco[4]);
 	CField(VEKTOR koord, FeldTyp fieldType, CFieldDecoration* pDeco[4]);           // protected constructor used by dynamic creation
 
-// Attributes
-public:
-protected:
-	CGrpMonster* m_pGrpMonster; 
-	FeldTyp m_iTyp;
-	CFieldDecoration* m_pWallDecoration[4];
-	std::stack<CMiscellaneous*> m_pMiscellaneousNW;
-	std::stack<CMiscellaneous*> m_pMiscellaneousNE; // todo stacks / listen davon , nicht einzeln!
-	std::stack<CMiscellaneous*> m_pMiscellaneousSE; // todo stacks / listen davon , nicht einzeln!
-	std::stack<CMiscellaneous*> m_pMiscellaneousSW; // todo stacks / listen davon , nicht einzeln!
-
-
-	CDoor* m_pDoor = NULL;
-	CStairs* m_pStairs = NULL;
 
 // Operations
 public:
@@ -58,6 +44,8 @@ public:
 	void SetType(FeldTyp iTyp);
 
 	void PutMisc(CMiscellaneous* misc, int subPos);
+	CMiscellaneous* TakeMisc(int subPos);
+	std::stack<CMiscellaneous*> GetMisc(int subPos) { return m_pMiscellaneous[subPos]; }
 
 // Overrides
 
@@ -68,6 +56,13 @@ public:
 protected:
 	VEKTOR m_posKoord;
 
+	CGrpMonster* m_pGrpMonster;
+	FeldTyp m_iTyp;
+	CFieldDecoration* m_pWallDecoration[4];
+	std::stack<CMiscellaneous*> m_pMiscellaneous[4];
+
+	CDoor* m_pDoor = NULL;
+	CStairs* m_pStairs = NULL;
 
 	void InitDeco(CFieldDecoration* pDeco[4]);
 
