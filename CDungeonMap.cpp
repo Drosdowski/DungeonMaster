@@ -68,7 +68,7 @@ CField* CDungeonMap::ParseDoor(TiXmlElement* rootNode, VEKTOR pos) {
 			TiXmlElement* doorItem = parentElement->FirstChildElement();
 			if (doorItem && strcmp(doorItem->Value(), "door") == 0) {
 				int index;
-				parentElement->QueryIntAttribute("index", &index);
+				doorItem->QueryIntAttribute("index", &index);
 				type = m_doorType[index];
 			}
 
@@ -123,8 +123,8 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 				TiXmlElement* miscItem = parentElement->FirstChildElement();
 				if (miscItem && strcmp(miscItem->Value(), "miscellaneous") == 0) {
 					int index, subPos;
-					parentElement->QueryIntAttribute("index", &index);
-					parentElement->QueryIntAttribute("position", &subPos);
+					miscItem->QueryIntAttribute("index", &index);
+					miscItem->QueryIntAttribute("position", &subPos);
 					mtype = m_miscellaneousType[index];
 					msubtype = m_miscellaneousSubtype[index];
 

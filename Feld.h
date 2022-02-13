@@ -3,6 +3,7 @@
 
 #include "StdAfx.h"	// Hinzugefügt von ClassView
 #include "Mobs\Monster.h"
+#include <stack>
 
 #if _MSC_VER >= 1000
 #pragma once
@@ -33,7 +34,12 @@ protected:
 	CGrpMonster* m_pGrpMonster; 
 	FeldTyp m_iTyp;
 	CFieldDecoration* m_pWallDecoration[4];
-	CMiscellaneous* m_pMiscellaneous[4]; // todo stacks / listen davon , nicht einzeln!
+	std::stack<CMiscellaneous*> m_pMiscellaneousNW;
+	std::stack<CMiscellaneous*> m_pMiscellaneousNE; // todo stacks / listen davon , nicht einzeln!
+	std::stack<CMiscellaneous*> m_pMiscellaneousSE; // todo stacks / listen davon , nicht einzeln!
+	std::stack<CMiscellaneous*> m_pMiscellaneousSW; // todo stacks / listen davon , nicht einzeln!
+
+
 	CDoor* m_pDoor = NULL;
 	CStairs* m_pStairs = NULL;
 

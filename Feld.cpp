@@ -6,6 +6,7 @@
 #include "SpecialTile\Decoration.h"
 #include "SpecialTile\CDoor.h"
 #include "Mobs\MobGroups\GrpMonster.h"
+#include "Items/CMiscellaneous.h"
 #include <cassert>
 
 /////////////////////////////////////////////////////////////////////////////
@@ -58,6 +59,28 @@ CField::~CField()
 			delete m_pWallDecoration[i];
 		}
 	}
+	while (!m_pMiscellaneousNW.empty()) {
+
+		CMiscellaneous* item = m_pMiscellaneousNW.top();
+		delete item;
+		m_pMiscellaneousNW.pop();
+	}
+	while (!m_pMiscellaneousNE.empty()) {
+		CMiscellaneous* item = m_pMiscellaneousNE.top();
+		delete item;
+		m_pMiscellaneousNE.pop();
+	}
+	while (!m_pMiscellaneousSW.empty()) {
+		CMiscellaneous* item = m_pMiscellaneousSW.top();
+		delete item;
+		m_pMiscellaneousSW.pop();
+	}
+	while (!m_pMiscellaneousSE.empty()) {
+		CMiscellaneous* item = m_pMiscellaneousSE.top();
+		delete item;
+		m_pMiscellaneousSE.pop();
+	}
+
 
 }
 
@@ -121,5 +144,19 @@ void CField::SetType(FeldTyp fieldType, CStairs::StairType stairsType, bool east
 }
 
 void CField::PutMisc(CMiscellaneous* misc, int subPos) {
+	switch (subPos) {
+	case 0: 
+		m_pMiscellaneousNW.push(misc);
+		break;
+	case 1:
+		m_pMiscellaneousNE.push(misc);
+		break;
+	case 2:
+		m_pMiscellaneousSW.push(misc);
+		break;
+	case 3:
+		m_pMiscellaneousSE.push(misc);
+		break;
+	}
 	// TODO put misc
 }
