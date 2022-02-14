@@ -373,6 +373,38 @@ IDB_STAIRS_S3L          BITMAP                  "res\\Stairs_Side3.bmp"
 
 IDB_STAIRS_UP_S2L       BITMAP                  "res\\Stairs_UpSide2.bmp"
 
+IDB_ITEMS_42            BITMAP                  "res\\Items42.bmp"
+
+IDB_ITEMS_43            BITMAP                  "res\\Items43.bmp"
+
+IDB_ITEMS_44            BITMAP                  "res\\Items44.bmp"
+
+IDB_ITEMS_45            BITMAP                  "res\\Items45.bmp"
+
+IDB_ITEMS_46            BITMAP                  "res\\items46.bmp"
+
+IDB_ITEMS_47            BITMAP                  "res\\Items47.bmp"
+
+IDB_ITEMS_48            BITMAP                  "res\\Items48.bmp"
+
+IDB_DOOR_WOOD_1         BITMAP                  "res\\Door_Wood_1.bmp"
+
+IDB_DOOR_WOOD_2         BITMAP                  "res\\Door_Wood_2.bmp"
+
+IDB_DOOR_WOOD_3         BITMAP                  "res\\Door_Wood_3.bmp"
+
+IDB_DOOR_WOOD_BACHED    BITMAP                  "res\\Door_Mask_Bashed.bmp"
+
+IDB_ITEM3D_APPLE        BITMAP                  "res\\Item_3d_Apple.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// PNG
+//
+
+
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

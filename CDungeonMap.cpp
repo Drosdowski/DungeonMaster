@@ -211,7 +211,7 @@ void CDungeonMap::ParseMiscellaneousesObjects(TiXmlElement* rootNode) {
 			parentElement->QueryIntAttribute("subtype", &subtype);
 			parentElement->QueryIntAttribute("type", &type);
 			m_miscellaneousType[index] = type;
-			m_miscellaneousSubtype[index] = type;
+			m_miscellaneousSubtype[index] = subtype;
 
 		}
 		parentElement = parentElement->NextSiblingElement();

@@ -128,7 +128,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Pictures\Items3D\CItem3DPic.cpp" />
     <ClCompile Include="CDungeonMap.cpp" />
+    <ClCompile Include="Pictures\Items2D\CItemPic.cpp" />
     <ClCompile Include="Items\CMiscellaneous.cpp" />
     <ClCompile Include="SpecialTile\CTile.cpp" />
     <ClCompile Include="SpecialTile\CStairs.cpp" />
@@ -177,7 +179,9 @@
     <ResourceCompile Include="DM.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Pictures\Items3D\CItem3DPic.h" />
     <ClInclude Include="CDungeonMap.h" />
+    <ClInclude Include="Pictures\Items2D\CItemPic.h" />
     <ClInclude Include="Items\CMiscellaneous.h" />
     <ClInclude Include="SpecialTile\CTile.h" />
     <ClInclude Include="SpecialTile\CStairs.h" />
@@ -233,12 +237,23 @@
     <Image Include="res\Door_Iron_1.bmp" />
     <Image Include="res\Door_Iron_2.bmp" />
     <Image Include="res\Door_Iron_3.bmp" />
+    <Image Include="res\Door_Wood_1.bmp" />
+    <Image Include="res\Door_Wood_2.bmp" />
+    <Image Include="res\Door_Wood_3.bmp" />
     <Image Include="res\E.bmp" />
     <Image Include="res\Fountain_Front.bmp" />
     <Image Include="res\Fountain_Left.bmp" />
     <Image Include="res\Icons.bmp" />
     <Image Include="res\Icons3d.bmp" />
     <Image Include="res\Icons3db.bmp" />
+    <Image Include="res\Items42.bmp" />
+    <Image Include="res\Items43.bmp" />
+    <Image Include="res\Items44.bmp" />
+    <Image Include="res\Items45.bmp" />
+    <Image Include="res\items46.bmp" />
+    <Image Include="res\Items47.bmp" />
+    <Image Include="res\Items48.bmp" />
+    <Image Include="res\Item_3d_Apple.bmp" />
     <Image Include="res\Kram.bmp" />
     <Image Include="res\LeverDown_Front.bmp" />
     <Image Include="res\LeverDown_Right.bmp" />

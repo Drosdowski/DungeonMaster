@@ -39,7 +39,8 @@ SUBPOS CHelpfulValues::GetPosByIndex(int index) {
 
 CPoint CHelpfulValues::CalcSubPosition(BITMAP bmpInfo, SUBPOS subPos, double faktor, int xx) {
 	int posX = 225 - (int)(bmpInfo.bmWidth * faktor - (xx * 156));
-	int posY = 90 + (int)(bmpInfo.bmHeight * (1 - faktor) / 2);
+	//int posY = 90 + (int)(bmpInfo.bmHeight * (1 - faktor) / 2);
+	int posY = (int)(260 - bmpInfo.bmHeight*2 - (1 - faktor) * 40); // TODO !!!!!!!!!!!
 
 	if (subPos == LINKSVORNE) {
 		posX -= (int)(60 * faktor);

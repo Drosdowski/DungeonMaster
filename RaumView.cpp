@@ -19,6 +19,7 @@
 #include "Pictures\CLeverPic.h"
 #include "Pictures\CFountainPic.h"
 #include "Pictures\Creatures\CMonsterPic.h"
+#include "Pictures\Items3D\CItem3DPic.h"
 #include "Mobs\Monster.h"
 #include "Mobs\MobGroups\GrpMonster.h"
 #include "Mobs\MobGroups\GrpHeld.h"
@@ -52,6 +53,7 @@ CRaumView::CRaumView()
 	m_pPictures = NULL;
 	m_pFountainPic = NULL;
 	m_pMonsterPic = NULL;
+	m_pItem3DPic = NULL;
 }
 
 CRaumView::~CRaumView()
@@ -64,6 +66,7 @@ CRaumView::~CRaumView()
 	delete m_pLeverPic;
 	delete m_pFountainPic;
 	delete m_pMonsterPic;
+	delete m_pItem3DPic;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -290,6 +293,25 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, C
 	}
 }
 
+
+void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xx, int ebene, int itemSubPos, int heroDir, std::stack<CMiscellaneous*> pile) {
+	// TODO - besser als "nur oberstes Malen... "
+	CMiscellaneous* misc = pile.top();
+	if (misc) {
+		CBitmap* bmp = m_pItem3DPic->GetApple();
+		BITMAP bmpInfo;
+		bmp->GetBitmap(&bmpInfo);
+		double faktor = m_pPictures->getFaktor(ebene);
+
+		SUBPOS subPos = CHelpfulValues::GetRelativeSubPos(itemSubPos, heroDir);
+		CPoint pos = CHelpfulValues::CalcSubPosition(bmpInfo, subPos, faktor, xx);
+
+		cdc->SelectObject(bmp);
+		DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
+	}
+}
+
+
 void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, CDC* cdc, COLORREF col) {
 	int rechterRand = (int)(w * 2 * faktor + x);
 	int reducedWidth = w;
@@ -304,10 +326,6 @@ void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, 
 			(int)(reducedWidth * 2 * faktor), (int)(h * 2 * faktor),
 			cdc, 0, 0, reducedWidth, h, col);
 	}
-}
-
-void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, int SubPos, std::stack<CMiscellaneous*> pile) {
-
 }
 
 void CRaumView::Zeichnen(CDC* pDC)
@@ -328,9 +346,9 @@ void CRaumView::Zeichnen(CDC* pDC)
 	int y = m_pMap->GetHeroes()->HolePosition().y;
 	int z = m_pMap->GetHeroes()->HolePosition().z;
 
-	int richt = m_pMap->GetHeroes()->HoleRichtung();
-	int stx = m_values->m_stx[richt];
-	int sty = m_values->m_sty[richt];
+	int heroDir = m_pMap->GetHeroes()->HoleRichtung();
+	int stx = m_values->m_stx[heroDir];
+	int sty = m_values->m_sty[heroDir];
 
 	for (int ebene = 3; ebene >= 0; ebene--)
 	{
@@ -349,33 +367,35 @@ void CRaumView::Zeichnen(CDC* pDC)
 					{
 						std::stack<CMiscellaneous*> pile = pField->GetMisc(subPos);
 						if (pile.size() > 0) {
-							DrawPile(pDC, &compCdc, xxx, ebene, subPos, pile);
+							DrawPile(pDC, &compCdc, xx, ebene, subPos, heroDir, pile);
 						}
 					}
+					if (ebene > 0 && xxx > 1)
+					{
+						DrawMonster(pDC, &compCdc, xxx, ebene, heroDir, pField);
+					}
+
+
 				}
 				else if (fieldType == FeldTyp::WALL && ((ebene != 0) || (xx != 0)))
 				{
-					DrawWall(pDC, &compCdc, xxx, ebene, richt, pField);
+					DrawWall(pDC, &compCdc, xxx, ebene, heroDir, pField);
 				}
 				else if (fieldType == FeldTyp::DOOR )
 				{
 					CDoor* pDoor = pField->HoleDoor();
-					DrawDoor(pDC, &compCdc, xxx, ebene, richt, pDoor);
+					DrawDoor(pDC, &compCdc, xxx, ebene, heroDir, pDoor);
 				}
 				else if (fieldType == FeldTyp::STAIRS)
 				{
 					CStairs* pStairs = pField->HoleStairs();
 
-					if (pStairs->Visible(richt)) {
+					if (pStairs->Visible(heroDir)) {
 						DrawStairsFront(pDC, &compCdc, xxx, ebene, pStairs);
 					}
 					else {
 						DrawStairsSide(pDC, &compCdc, xxx, ebene, pStairs);
 					}
-				}
-				else if (ebene > 0 && xxx > 1)
-				{
-					DrawMonster(pDC, &compCdc, xxx, ebene, richt, pField);
 				}
 			}
 		}
@@ -559,6 +579,7 @@ void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
 	m_pLeverPic = new CLeverPic(pDC);
 	m_pFountainPic = new CFountainPic(pDC);
 	m_pMonsterPic = new CMonsterPic(pDC);
+	m_pItem3DPic = new CItem3DPic(pDC);
 	m_pMap = new CDungeonMap();
 	m_pMap->DemoMap();	
 }

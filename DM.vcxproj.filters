@@ -132,6 +132,12 @@
     <ClCompile Include="Items\CMiscellaneous.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pictures\Items2D\CItemPic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pictures\Items3D\CItem3DPic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -251,6 +257,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Items\CMiscellaneous.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\Items2D\CItemPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\Items3D\CItem3DPic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -518,6 +530,39 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Stairs_UpSide2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items42.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items43.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items44.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items45.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\items46.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items47.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items48.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door_Wood_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door_Wood_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Item_3d_Apple.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door_Wood_3.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

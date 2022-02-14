@@ -21,6 +21,7 @@ class CStairsPic;
 class CWallPic;
 class CLeverPic;
 class CFountainPic;
+class CItem3DPic;
 class CMonsterPic;
 class CHelpfulValues;
 class CDecorationType;
@@ -63,9 +64,10 @@ protected:
 	CStairsPic* m_pStairsPic;
 	CFountainPic* m_pFountainPic;
 	CMonsterPic* m_pMonsterPic;
+	CItem3DPic* m_pItem3DPic;
 
 	VEKTOR MonsterMoveOrAttack(CGrpMonster* pGrpMon);
-	void DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, int SubPos, std::stack<CMiscellaneous*> pile);
+	void DrawPile(CDC* pDC, CDC* cdc, int xx, int ebene, int SubPos, int heroDir, std::stack<CMiscellaneous*> pile);
 	void DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField);
 	void DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CDoor* pDoor);
 	void DrawStairsFront(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs);
