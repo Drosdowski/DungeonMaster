@@ -18,17 +18,32 @@ void CItem3DPic::InitBitmap() {
 
 CPoint CItem3DPic::GetFloorMiddle(int x, int ebene) {
 	CPoint middle;
-	switch (ebene) {
-	case 0:
-
-		break;
-	case 1:
-		if (x == 1) { middle.x = 450; middle.y = 340; }
-		break;
-	case 2:
+	switch (x) {
+	case 2: 
+		if (ebene == 1) middle.x = 20;
+		if (ebene == 2) middle.x = 90;
 		break;
 	case 3:
+		if (ebene == 2) middle.x = 430;
+		if (ebene == 3) middle.x = 360;
+		break;
+	case 4: 
+		middle.x = 225; 
 		break;
 	}
+	if (middle.x == 0) {
+		switch (ebene) {
+		case 0:
+			// nur oben links / rechts
+			middle.y = 300; break;
+		case 1:
+			middle.y = 270; break;
+		case 2:
+			middle.y = 225;	break;
+		case 3:
+			middle.y = 200; break;
+		}
+	}
+
 	return middle;
 }
