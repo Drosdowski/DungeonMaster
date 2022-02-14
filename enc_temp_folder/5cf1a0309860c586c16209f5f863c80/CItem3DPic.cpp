@@ -23,7 +23,6 @@ CPoint CItem3DPic::GetFloorMiddle(int x, int ebene) {
 
 		break;
 	case 1:
-		if (x == 1) { middle.x = 450; middle.y = 340; }
 		break;
 	case 2:
 		break;

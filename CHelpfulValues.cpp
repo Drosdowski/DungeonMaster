@@ -37,10 +37,35 @@ SUBPOS CHelpfulValues::GetPosByIndex(int index) {
 	return MITTE;
 }
 
+CPoint CHelpfulValues::CalcRelSubPosition(BITMAP bmpInfo, CPoint wallMiddlePos, SUBPOS subPos, double faktor, int xx) 
+{
+	int posX = wallMiddlePos.x;
+	int posY = wallMiddlePos.y;
+
+	if (subPos == LINKSVORNE) {
+		posX -= (int)(30 * faktor);
+		posY += (int)(25 * faktor);
+	}
+	else if (subPos == RECHTSVORNE) {
+		posX += (int)(30 * faktor);
+		posY += (int)(25 * faktor);
+	}
+	else if (subPos == LINKSHINTEN) {
+		posX -= (int)(20 * faktor);
+		posY -= (int)(15 * faktor);
+	}
+	else if (RECHTSHINTEN) {
+		posX += (int)(20 * faktor);
+		posY -= (int)(15 * faktor);
+	}
+	return CPoint(posX, posY);
+}
+
 CPoint CHelpfulValues::CalcSubPosition(BITMAP bmpInfo, SUBPOS subPos, double faktor, int xx) {
 	int posX = 225 - (int)(bmpInfo.bmWidth * faktor - (xx * 156));
-	//int posY = 90 + (int)(bmpInfo.bmHeight * (1 - faktor) / 2);
-	int posY = (int)(260 - bmpInfo.bmHeight*2 - (1 - faktor) * 40); // TODO !!!!!!!!!!!
+	int posY = 90 + (int)(bmpInfo.bmHeight * (1 - faktor) / 2);
+	//int posY = (int)(260 - bmpInfo.bmHeight * 2 - (1 - faktor) * 40); // TODO !!!!!!!!!!!
+	//int posY = (int)(260 - bmpInfo.bmHeight*2 ); 
 
 	if (subPos == LINKSVORNE) {
 		posX -= (int)(60 * faktor);

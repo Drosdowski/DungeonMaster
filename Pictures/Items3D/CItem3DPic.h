@@ -6,6 +6,9 @@ public:
 	CItem3DPic(CDC* pDC);
 	~CItem3DPic();
 
+	CPoint GetFloorMiddle(int x, int ebene);
+
+
 	CBitmap* GetApple() { return m_pApple; }
 
 

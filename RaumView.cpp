@@ -294,17 +294,21 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, C
 }
 
 
-void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xx, int ebene, int itemSubPos, int heroDir, std::stack<CMiscellaneous*> pile) {
+void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, int itemSubPos, int heroDir, std::stack<CMiscellaneous*> pile) {
 	// TODO - besser als "nur oberstes Malen... "
 	CMiscellaneous* misc = pile.top();
 	if (misc) {
+		int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
+	
 		CBitmap* bmp = m_pItem3DPic->GetApple();
 		BITMAP bmpInfo;
 		bmp->GetBitmap(&bmpInfo);
 		double faktor = m_pPictures->getFaktor(ebene);
 
-		SUBPOS subPos = CHelpfulValues::GetRelativeSubPos(itemSubPos, heroDir);
-		CPoint pos = CHelpfulValues::CalcSubPosition(bmpInfo, subPos, faktor, xx);
+		CPoint wallMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
+		
+		SUBPOS subPos = CHelpfulValues::GetRelativeSubPos(itemSubPos+1, heroDir); // todo subpos angleichen
+		CPoint pos = CHelpfulValues::CalcRelSubPosition(bmpInfo, wallMiddlePos, subPos, faktor, xx);
 
 		cdc->SelectObject(bmp);
 		DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
@@ -367,7 +371,7 @@ void CRaumView::Zeichnen(CDC* pDC)
 					{
 						std::stack<CMiscellaneous*> pile = pField->GetMisc(subPos);
 						if (pile.size() > 0) {
-							DrawPile(pDC, &compCdc, xx, ebene, subPos, heroDir, pile);
+							DrawPile(pDC, &compCdc, xxx, ebene, subPos, heroDir, pile);
 						}
 					}
 					if (ebene > 0 && xxx > 1)

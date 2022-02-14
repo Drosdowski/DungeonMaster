@@ -11,6 +11,7 @@ public:
 
 	int static OppositeDirection(int direction);
 	CPoint static CalcSubPosition(BITMAP bmpInfo, SUBPOS subPos, double faktor, int xx);
+	CPoint static CalcRelSubPosition(BITMAP bmpInfo, CPoint wallPos, SUBPOS subPos, double faktor, int xx);
 	SUBPOS static GetRelativeSubPos(SUBPOS opponentPos, int heroDir);
 	SUBPOS static GetRelativeSubPos(int index, int heroDir);
 	SUBPOS static GetPosByIndex(int index);
