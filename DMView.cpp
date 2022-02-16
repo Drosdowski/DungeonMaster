@@ -10,9 +10,11 @@
 #include "ZauberView.h"
 #include "CDungeonMap.h"
 #include "Pictures\CPictures.h"
+#include "Pictures/Items3D/CItem3DPic.h"
 #include "Mobs\MobGroups\GrpHeld.h"
 #include "Mobs\MobGroups\GrpMonster.h"
 #include "Mobs\Held.h"
+#include "ColorCursor/ColorCursor.h"
 #include <CScreenCoords.h>
 
 #ifdef _DEBUG
@@ -180,14 +182,23 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 		ParseClickArrows(point);
 		if (grpHelden)
 		{
+			SUBPOS itemPos = CScreenCoords::CheckHitFloor(point);
+			
 			ParseClickWizard(point);
 			ParseClickAction(point);
 			ParseClickHeroes(point);
+			if (itemPos != MITTE) {
+				CBitmap* bmp = m_pRaumView->Get3DPics()->GetApple();
+				HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
+				HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
+				SetCursor(hCursor);
+			}
 		}
 
-		else if (CScreenCoords::CheckHitDeco(point)) {
+		if (CScreenCoords::CheckHitDeco(point)) {
 			m_pRaumView->OnTrigger();
 		}
+		
 	}
 	else if (m_iModus == MOD_RUCKSACK)
 	{

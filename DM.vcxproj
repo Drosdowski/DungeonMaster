@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ColorCursor\ColorCursor.cpp" />
     <ClCompile Include="Pictures\Items3D\CItem3DPic.cpp" />
     <ClCompile Include="CDungeonMap.cpp" />
     <ClCompile Include="Pictures\Items2D\CItemPic.cpp" />
@@ -179,6 +180,7 @@
     <ResourceCompile Include="DM.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ColorCursor\ColorCursor.h" />
     <ClInclude Include="Pictures\Items3D\CItem3DPic.h" />
     <ClInclude Include="CDungeonMap.h" />
     <ClInclude Include="Pictures\Items2D\CItemPic.h" />
@@ -237,6 +239,7 @@
     <Image Include="res\Door_Iron_1.bmp" />
     <Image Include="res\Door_Iron_2.bmp" />
     <Image Include="res\Door_Iron_3.bmp" />
+    <Image Include="res\Door_Mask_Bashed.bmp" />
     <Image Include="res\Door_Wood_1.bmp" />
     <Image Include="res\Door_Wood_2.bmp" />
     <Image Include="res\Door_Wood_3.bmp" />

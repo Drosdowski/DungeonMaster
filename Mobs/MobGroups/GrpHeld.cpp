@@ -22,6 +22,8 @@ CGrpHeld::CGrpHeld(VEKTOR pos, int richt)
 	for (int i=1; i<=4; i++)
 		m_pMember[i] = NULL;
 	m_posPosition = pos;
+	m_posPosition.x = 7;
+	m_posPosition.y = 9;
 	m_iAktiverHeld = 1;
 	m_grpDirection = richt;
 }

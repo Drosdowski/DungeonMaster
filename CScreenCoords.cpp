@@ -101,3 +101,13 @@ bool CScreenCoords::CheckHitDeco(CPoint point) {
 bool CScreenCoords::CheckHitMainScr(CPoint point) {
 	return (point.y > 63) && (point.x < 460) && (point.y < 335);
 }
+
+SUBPOS CScreenCoords::CheckHitFloor(CPoint point) {
+	// Hinten sind von EBENE 0 links & Rechts sichtbar
+	if ((point.x < 230) && (point.y > 305)) return LINKSHINTEN;
+	if ((point.x > 230) && (point.y > 335)) return RECHTSHINTEN;
+	// Vorne  sind von EBENE 1 links & Rechts sichtbar
+	if ((point.y > 270) && (point.x < 230) && (point.y < 305)) return LINKSVORNE;
+	if ((point.y > 270) && (point.x > 230) && (point.y < 305)) return RECHTSVORNE;
+	return MITTE;
+}

@@ -121,7 +121,8 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 			if (strcmp(parent, "items") == 0)
 			{ // 16851
 				TiXmlElement* miscItem = parentElement->FirstChildElement();
-				if (miscItem && strcmp(miscItem->Value(), "miscellaneous") == 0) {
+				while (miscItem && strcmp(miscItem->Value(), "miscellaneous") == 0) 
+				{
 					int index, subPos;
 					miscItem->QueryIntAttribute("index", &index);
 					miscItem->QueryIntAttribute("position", &subPos);
@@ -130,6 +131,7 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 
 					CMiscellaneous* misc = new CMiscellaneous(index, mtype, msubtype);
 					m_pFeld[x][y][etage]->PutMisc(misc, subPos);
+					miscItem = miscItem->NextSiblingElement();
 				}
 
 			}

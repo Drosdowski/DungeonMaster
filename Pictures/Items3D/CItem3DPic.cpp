@@ -31,7 +31,7 @@ CPoint CItem3DPic::GetFloorMiddle(int x, int ebene) {
 		middle.x = 225; 
 		break;
 	}
-	if (middle.x == 0) {
+	if (middle.x != 0) {
 		switch (ebene) {
 		case 0:
 			// nur oben links / rechts

@@ -53,6 +53,8 @@ public:
 	void Zeichnen(CDC* pDC);
 	bool OnStairs();
 
+	CItem3DPic* Get3DPics() { return m_pItem3DPic; }
+
 	virtual ~CRaumView();
 
 protected:
