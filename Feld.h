@@ -44,7 +44,7 @@ public:
 	void SetType(FeldTyp iTyp);
 
 	void PutMisc(CMiscellaneous* misc, int subPos);
-	CMiscellaneous* TakeMisc(int subPos);
+	CMiscellaneous* TakeMisc(SUBPOS subPos);
 	std::stack<CMiscellaneous*> GetMisc(int subPos) { return m_pMiscellaneous[subPos]; }
 
 // Overrides

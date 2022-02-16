@@ -1,6 +1,5 @@
 // DMView.cpp : implementation of the CDMView class
 //
-
 #include "stdafx.h"
 #include "DM.h"
 
@@ -16,6 +15,7 @@
 #include "Mobs\Held.h"
 #include "ColorCursor/ColorCursor.h"
 #include <CScreenCoords.h>
+#include <winuser.rh>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -170,6 +170,33 @@ void CDMView::ParseClickHeroes(CPoint point) {
 	}
 }
 
+void CDMView::ParseClickItem(CPoint point) {
+	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+	SUBPOS itemPos = CScreenCoords::CheckHitFloor(point);
+	CMiscellaneous* topItem = NULL;
+	if (itemPos == LINKSVORNE || itemPos == RECHTSVORNE)
+	{
+		CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
+		if (FeldVorHeld)
+			topItem = FeldVorHeld->TakeMisc(itemPos);
+	}
+	else if (itemPos == LINKSHINTEN || itemPos == RECHTSHINTEN) {
+		CField* FeldUnterHeld = m_pRaumView->GetMap()->GetField(grpHelden->GetPos());
+		if (FeldUnterHeld)
+			topItem = FeldUnterHeld->TakeMisc(itemPos);
+	}
+	if (topItem != NULL) {
+		// etwas genommen!
+		CBitmap* bmp = m_pRaumView->Get3DPics()->GetApple();
+		HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
+		HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
+		SetSystemCursor(hCursor, OCR_NORMAL);
+	}
+	else {
+		::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
+	}
+}
+
 
 void CDMView::OnLButtonDown(UINT nFlags, CPoint point) 
 {
@@ -182,17 +209,11 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 		ParseClickArrows(point);
 		if (grpHelden)
 		{
-			SUBPOS itemPos = CScreenCoords::CheckHitFloor(point);
-			
+			ParseClickItem(point);
 			ParseClickWizard(point);
 			ParseClickAction(point);
 			ParseClickHeroes(point);
-			if (itemPos != MITTE) {
-				CBitmap* bmp = m_pRaumView->Get3DPics()->GetApple();
-				HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
-				HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
-				SetCursor(hCursor);
-			}
+		
 		}
 
 		if (CScreenCoords::CheckHitDeco(point)) {

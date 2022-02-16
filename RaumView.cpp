@@ -307,13 +307,13 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, int itemSubPos,
 
 		CPoint wallMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
 		if (wallMiddlePos.x > 0 || wallMiddlePos.y > 0) {
-			wallMiddlePos.x -= bmpInfo.bmWidth; // entspr- halber Breite, später Faktor 2
-			wallMiddlePos.y -= bmpInfo.bmHeight;
+			wallMiddlePos.x -= bmpInfo.bmWidth * faktor; // entspr- halber Breite, später Faktor 2
+			wallMiddlePos.y -= bmpInfo.bmHeight * faktor;
 			SUBPOS subPos = CHelpfulValues::GetRelativeSubPos(itemSubPos+1, heroDir); // todo subpos angleichen
-			//CPoint pos = CHelpfulValues::CalcRelSubPosition(bmpInfo, wallMiddlePos, subPos, faktor, xx);
+			CPoint pos = CHelpfulValues::CalcRelSubPosition(bmpInfo, wallMiddlePos, subPos, faktor, xx);
 
 			cdc->SelectObject(bmp);
-			DrawInArea(wallMiddlePos.x, wallMiddlePos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
+			DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
 		}
 
 	}

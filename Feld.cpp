@@ -132,11 +132,19 @@ void CField::PutMisc(CMiscellaneous* misc, int subPos) {
 }
 
 // Item von Stapel nehmen - ist dann "in der Hand"
-CMiscellaneous* CField::TakeMisc(int subPos) {
-	if (m_pMiscellaneous[subPos].size() > 0)
+CMiscellaneous* CField::TakeMisc(SUBPOS subPos) {
+	int index;
+	switch (subPos) {
+	case LINKSHINTEN: index = 0; break;
+	case RECHTSHINTEN: index = 1; break;
+	case RECHTSVORNE: index = 2; break;
+	case LINKSVORNE: index = 3; break;
+	}
+	if (m_pMiscellaneous[index].size() > 0)
 	{
-		CMiscellaneous* topItem = m_pMiscellaneous[subPos].top();
-		m_pMiscellaneous[subPos].pop();
+		CMiscellaneous* topItem = m_pMiscellaneous[index].top();
+		m_pMiscellaneous[index].pop();
+
 		return topItem;
 	}
 	else

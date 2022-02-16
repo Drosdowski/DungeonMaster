@@ -43,19 +43,19 @@ CPoint CHelpfulValues::CalcRelSubPosition(BITMAP bmpInfo, CPoint wallMiddlePos, 
 	int posY = wallMiddlePos.y;
 
 	if (subPos == LINKSVORNE) {
-		posX -= (int)(30 * faktor);
+		posX -= (int)(90 * faktor);
 		posY += (int)(25 * faktor);
 	}
 	else if (subPos == RECHTSVORNE) {
-		posX += (int)(30 * faktor);
+		posX += (int)(90 * faktor);
 		posY += (int)(25 * faktor);
 	}
 	else if (subPos == LINKSHINTEN) {
-		posX -= (int)(20 * faktor);
+		posX -= (int)(75 * faktor);
 		posY -= (int)(15 * faktor);
 	}
 	else if (RECHTSHINTEN) {
-		posX += (int)(20 * faktor);
+		posX += (int)(75 * faktor);
 		posY -= (int)(15 * faktor);
 	}
 	return CPoint(posX, posY);
