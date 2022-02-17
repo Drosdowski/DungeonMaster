@@ -15,6 +15,7 @@ public:
 	SUBPOS static GetRelativeSubPos(SUBPOS opponentPos, int heroDir);
 	SUBPOS static GetRelativeSubPos(int index, int heroDir);
 	SUBPOS static GetPosByIndex(int index);
+	int static GetIndexBySubpos(SUBPOS pos);
 
 };
 

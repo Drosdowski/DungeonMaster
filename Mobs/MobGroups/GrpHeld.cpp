@@ -292,3 +292,14 @@ bool CGrpHeld::SetActiveCaster(int ID)
 	}
 	return false;
 }
+
+void CGrpHeld::TakeItemInHand(CMiscellaneous* item) 
+{ 
+	if (m_pItemInHand == NULL) 
+		m_pItemInHand = item; 
+}
+
+void CGrpHeld::EmptyHand() {
+	// kein delete, Objekt ist jetzt woanders...
+	m_pItemInHand = NULL;
+}

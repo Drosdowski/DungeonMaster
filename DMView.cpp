@@ -15,6 +15,7 @@
 #include "Mobs\Held.h"
 #include "ColorCursor/ColorCursor.h"
 #include <CScreenCoords.h>
+#include "CHelpfulValues.h"
 #include <winuser.rh>
 
 #ifdef _DEBUG
@@ -172,18 +173,36 @@ void CDMView::ParseClickHeroes(CPoint point) {
 
 void CDMView::ParseClickItem(CPoint point) {
 	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+	CMiscellaneous* pItem = grpHelden->GetItemInHand();
+
 	SUBPOS itemPos = CScreenCoords::CheckHitFloor(point);
+	SUBPOS relItemPos = CHelpfulValues::GetRelativeSubPos(itemPos, grpHelden->HoleRichtung());
 	CMiscellaneous* topItem = NULL;
 	if (itemPos == LINKSVORNE || itemPos == RECHTSVORNE)
 	{
 		CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
 		if (FeldVorHeld)
-			topItem = FeldVorHeld->TakeMisc(itemPos);
+		{
+			if (pItem == NULL)
+				topItem = FeldVorHeld->TakeMisc(relItemPos);
+			else {
+				FeldVorHeld->PutMisc(pItem, relItemPos);
+				grpHelden->EmptyHand();
+			}
+
+		}
 	}
 	else if (itemPos == LINKSHINTEN || itemPos == RECHTSHINTEN) {
 		CField* FeldUnterHeld = m_pRaumView->GetMap()->GetField(grpHelden->GetPos());
 		if (FeldUnterHeld)
-			topItem = FeldUnterHeld->TakeMisc(itemPos);
+		{
+			if (pItem == NULL)
+				topItem = FeldUnterHeld->TakeMisc(relItemPos);
+			else {
+				FeldUnterHeld->PutMisc(pItem, relItemPos);
+				grpHelden->EmptyHand();
+			}
+		}
 	}
 	if (topItem != NULL) {
 		// etwas genommen!
@@ -191,6 +210,7 @@ void CDMView::ParseClickItem(CPoint point) {
 		HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
 		HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
 		SetSystemCursor(hCursor, OCR_NORMAL);
+		grpHelden->TakeItemInHand(topItem);
 	}
 	else {
 		::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
@@ -207,7 +227,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 	if (m_iModus == MOD_LAUFEN)
 	{
 		ParseClickArrows(point);
-		if (grpHelden)
+		if (grpHelden && grpHelden->GetNumberOfHeroes() > 0)
 		{
 			ParseClickItem(point);
 			ParseClickWizard(point);

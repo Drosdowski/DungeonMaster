@@ -310,10 +310,13 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, int itemSubPos,
 			wallMiddlePos.x -= bmpInfo.bmWidth * faktor; // entspr- halber Breite, später Faktor 2
 			wallMiddlePos.y -= bmpInfo.bmHeight * faktor;
 			SUBPOS subPos = CHelpfulValues::GetRelativeSubPos(itemSubPos+1, heroDir); // todo subpos angleichen
-			CPoint pos = CHelpfulValues::CalcRelSubPosition(bmpInfo, wallMiddlePos, subPos, faktor, xx);
+			if (ebene > 0 || subPos == LINKSHINTEN || subPos == RECHTSHINTEN)
+			{
+				CPoint pos = CHelpfulValues::CalcRelSubPosition(bmpInfo, wallMiddlePos, subPos, faktor, xx);
 
-			cdc->SelectObject(bmp);
-			DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
+				cdc->SelectObject(bmp);
+				DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
+			}
 		}
 
 	}
@@ -371,11 +374,11 @@ void CRaumView::Zeichnen(CDC* pDC)
 				int fieldType = pField->HoleTyp();
 				
 				if (fieldType == FeldTyp::EMPTY) {
-					for (int subPos = 0; subPos < 4; subPos++)
+					for (int index = 0; index < 4; index++)
 					{
-						std::stack<CMiscellaneous*> pile = pField->GetMisc(subPos);
+						std::stack<CMiscellaneous*> pile = pField->GetMisc(index);
 						if (pile.size() > 0) {
-							DrawPile(pDC, &compCdc, xxx, ebene, subPos, heroDir, pile);
+							DrawPile(pDC, &compCdc, xxx, ebene, index, heroDir, pile);
 						}
 					}
 					if (ebene > 0 && xxx > 1)
@@ -627,7 +630,7 @@ void CRaumView::OnTrigger()
 
 		}
 	}
-	else
-		feld->SetType(FeldTyp::WALL);
+	//else
+		//feld->SetType(FeldTyp::WALL);
 }
 

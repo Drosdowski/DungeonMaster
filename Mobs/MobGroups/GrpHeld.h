@@ -10,6 +10,7 @@
 class CHeld;
 class CMonster;
 class CPictures;
+class CMiscellaneous;
 class CGrpHeld: public CGrpChar
 {
 public:
@@ -29,12 +30,15 @@ public:
 	int GetActiveWizard() { return m_iAktiverZauberer; }
 	int GetNumberOfHeroes() { return m_iAnzHelden;  }
 	int GetActionPhase() { return m_iPhase; }
+	CMiscellaneous* GetItemInHand() { return m_pItemInHand; }
 	
 	void Aktiviere(int n);
 	void PassAction();
 	void ChooseHeroForAction(int ID);
 	void DoActionForChosenHero(int ID, CGrpChar* pVictims);
 	bool SetActiveCaster(int ID);
+	void TakeItemInHand(CMiscellaneous* item);
+	void EmptyHand();
 
 	void DrinkFountain();
 	bool Altern();
@@ -55,6 +59,8 @@ protected:
 	int m_iAktiverZauberer = 0;
 	int m_iAktiverHeld = 1;
 	int m_iAnzHelden = 0;
+
+	CMiscellaneous* m_pItemInHand = NULL;
 public:
 	//{{AFX_MSG(CGrpChar)
 	afx_msg void OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point);

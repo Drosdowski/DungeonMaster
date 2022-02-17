@@ -7,7 +7,7 @@
 
 CDungeonMap::CDungeonMap()
 { 
-	VEKTOR v; v.x = 0; v.y = 0;v.z = 0;
+	VEKTOR v{ 0,0,0 };
 
 	m_pEdgeWall = new CField(v, FeldTyp::WALL, NULL);
 	LoadMap();
@@ -99,7 +99,7 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 		type = 1; // Teleporter etc erstmal leer lassen
 	}
 	FeldTyp iFieldType = (FeldTyp)type;
-	VEKTOR pos; pos.x = x; pos.y = y; pos.z = etage;
+	VEKTOR pos{ x, y, etage };
 
 	if (iFieldType == FeldTyp::DOOR)
 	{

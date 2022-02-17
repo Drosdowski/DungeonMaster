@@ -13,18 +13,17 @@ int CHelpfulValues::OppositeDirection(int direction) {
 	return (direction + 2) % 4;
 }
 
-SUBPOS CHelpfulValues::GetRelativeSubPos(SUBPOS opponentPos, int heroDir) {
-	// TODO
-	return opponentPos;
-}
-
-SUBPOS CHelpfulValues::GetRelativeSubPos(int index, int heroDir) {
-	// TODO
-	return CHelpfulValues::GetRelativeSubPos(GetPosByIndex(index), heroDir);
+int CHelpfulValues::GetIndexBySubpos(SUBPOS pos) {
+	switch (pos) {
+	case LINKSHINTEN: return 1;
+	case RECHTSHINTEN: return 2;
+	case LINKSVORNE: return 3;
+	case RECHTSVORNE: return 4;
+	}
 }
 
 SUBPOS CHelpfulValues::GetPosByIndex(int index) {
-	switch (index) {
+	switch (((index -1) % 4) + 1) {
 	case 1:
 		return LINKSHINTEN;
 	case 2:
@@ -36,6 +35,23 @@ SUBPOS CHelpfulValues::GetPosByIndex(int index) {
 	}
 	return MITTE;
 }
+
+SUBPOS CHelpfulValues::GetRelativeSubPos(SUBPOS opponentPos, int heroDir) {
+	int index = GetIndexBySubpos(opponentPos);
+	switch (heroDir) {
+	case 0: return opponentPos;
+	case 1: return GetPosByIndex(index + 4 - heroDir);
+	case 2: return GetPosByIndex(index + 4 - heroDir);
+	case 3: return GetPosByIndex(index + 4 - heroDir);
+	}
+	
+}
+
+SUBPOS CHelpfulValues::GetRelativeSubPos(int index, int heroDir) {
+	return GetRelativeSubPos(GetPosByIndex(index), heroDir);
+}
+
+
 
 CPoint CHelpfulValues::CalcRelSubPosition(BITMAP bmpInfo, CPoint wallMiddlePos, SUBPOS subPos, double faktor, int xx) 
 {

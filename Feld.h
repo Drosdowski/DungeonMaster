@@ -43,9 +43,10 @@ public:
 	void SetType(FeldTyp fieldType, CStairs::StairType stairsType, bool eastWest);
 	void SetType(FeldTyp iTyp);
 
-	void PutMisc(CMiscellaneous* misc, int subPos);
+	void PutMisc(CMiscellaneous* misc, int index);
+	void PutMisc(CMiscellaneous* misc, SUBPOS subPos);
 	CMiscellaneous* TakeMisc(SUBPOS subPos);
-	std::stack<CMiscellaneous*> GetMisc(int subPos) { return m_pMiscellaneous[subPos]; }
+	std::stack<CMiscellaneous*> GetMisc(int index) { return m_pMiscellaneous[index]; }
 
 // Overrides
 
@@ -65,6 +66,7 @@ protected:
 	CStairs* m_pStairs = NULL;
 
 	void InitDeco(CFieldDecoration* pDeco[4]);
+	int SubPosToIndex(SUBPOS subPos);
 
 	//{{AFX_MSG(CField)
 		// NOTE - the ClassWizard will add and remove member functions here.

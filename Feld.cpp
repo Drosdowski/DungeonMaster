@@ -15,7 +15,7 @@
 CField::CField()
 {
 	m_iTyp = EMPTY;
-	VEKTOR pos; pos.x = 0; pos.y = 0; pos.z = 0;
+	VEKTOR pos{ 0,0,0 };
 	m_posKoord = pos;
 	m_pGrpMonster = NULL;
 	InitDeco(NULL);
@@ -127,19 +127,18 @@ void CField::SetType(FeldTyp fieldType, CStairs::StairType stairsType, bool east
 	}
 }
 
-void CField::PutMisc(CMiscellaneous* misc, int subPos) {
-	m_pMiscellaneous[subPos].push(misc);
+void CField::PutMisc(CMiscellaneous* misc, SUBPOS subPos) {
+	PutMisc(misc, SubPosToIndex(subPos));
 }
+
+void CField::PutMisc(CMiscellaneous* misc, int index) {
+	m_pMiscellaneous[index].push(misc);
+}
+
 
 // Item von Stapel nehmen - ist dann "in der Hand"
 CMiscellaneous* CField::TakeMisc(SUBPOS subPos) {
-	int index;
-	switch (subPos) {
-	case LINKSHINTEN: index = 0; break;
-	case RECHTSHINTEN: index = 1; break;
-	case RECHTSVORNE: index = 2; break;
-	case LINKSVORNE: index = 3; break;
-	}
+	int index = SubPosToIndex(subPos);
 	if (m_pMiscellaneous[index].size() > 0)
 	{
 		CMiscellaneous* topItem = m_pMiscellaneous[index].top();
@@ -149,4 +148,15 @@ CMiscellaneous* CField::TakeMisc(SUBPOS subPos) {
 	}
 	else
 		return NULL;
+}
+
+int CField::SubPosToIndex(SUBPOS subPos) {
+	int index = -1;
+	switch (subPos) {
+	case LINKSHINTEN: index = 0; break;
+	case RECHTSHINTEN: index = 1; break;
+	case LINKSVORNE: index = 2; break;
+	case RECHTSVORNE: index = 3; break;
+	}
+	return index;
 }
