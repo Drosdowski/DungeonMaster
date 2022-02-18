@@ -311,7 +311,11 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, int itemSubPos,
 			wallMiddlePos.y -= bmpInfo.bmHeight * faktor;
 			SUBPOS subPos = CHelpfulValues::GetRelativeSubPos(itemSubPos+1, heroDir); // todo subpos angleichen
 			if (ebene > 0 || subPos == LINKSHINTEN || subPos == RECHTSHINTEN)
-			{
+			{			
+				if (subPos == LINKSHINTEN || subPos == RECHTSHINTEN)
+				{
+					faktor = m_pPictures->getFaktor(ebene+1);
+				}
 				CPoint pos = CHelpfulValues::CalcRelSubPosition(bmpInfo, wallMiddlePos, subPos, faktor, xx);
 
 				cdc->SelectObject(bmp);
