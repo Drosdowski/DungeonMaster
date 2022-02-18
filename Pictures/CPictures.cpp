@@ -30,9 +30,10 @@ CPictures::~CPictures()
 
 
 double CPictures::getFaktor(int iEntfernung) {
+	if (iEntfernung == 1) return 1;
 	if (iEntfernung == 2) return 0.75;
 	if (iEntfernung == 3) return 0.5;
-	return 1.0;
+	return 1.5; // todo 1 !
 }
 
 

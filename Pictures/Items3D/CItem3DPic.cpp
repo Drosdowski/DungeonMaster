@@ -37,7 +37,7 @@ CPoint CItem3DPic::GetFloorMiddle(int x, int ebene) {
 			// nur oben links / rechts
 			middle.y = 325; break;
 		case 1:
-			middle.y = 270; break;
+			middle.y = 260; break;
 		case 2:
 			middle.y = 225;	break;
 		case 3:

@@ -25,13 +25,13 @@ int CHelpfulValues::GetIndexBySubpos(SUBPOS pos) {
 SUBPOS CHelpfulValues::GetPosByIndex(int index) {
 	switch (((index -1) % 4) + 1) {
 	case 1:
-		return LINKSHINTEN;
+		return LINKSHINTEN; // OK
 	case 2:
 		return RECHTSHINTEN;
 	case 3:
-		return LINKSVORNE;
-	case 4:
 		return RECHTSVORNE;
+	case 4:
+		return LINKSVORNE;		
 	}
 	return MITTE;
 }
