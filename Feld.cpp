@@ -7,6 +7,7 @@
 #include "SpecialTile\CDoor.h"
 #include "Mobs\MobGroups\GrpMonster.h"
 #include "Items/CMiscellaneous.h"
+#include "CHelpfulValues.h"
 #include <cassert>
 
 /////////////////////////////////////////////////////////////////////////////
@@ -128,17 +129,17 @@ void CField::SetType(FeldTyp fieldType, CStairs::StairType stairsType, bool east
 }
 
 void CField::PutMisc(CMiscellaneous* misc, SUBPOS subPos) {
-	PutMisc(misc, SubPosToIndex(subPos));
+	PutMisc(misc, CHelpfulValues::GetIndexBySubpos(subPos));
 }
 
-void CField::PutMisc(CMiscellaneous* misc, int index) {
+void CField::PutMisc(CMiscellaneous* misc, SUBPOSINDEX index) {
 	m_pMiscellaneous[index].push(misc);
 }
 
 
 // Item von Stapel nehmen - ist dann "in der Hand"
 CMiscellaneous* CField::TakeMisc(SUBPOS subPos) {
-	int index = SubPosToIndex(subPos);
+	int index = CHelpfulValues::GetIndexBySubpos(subPos);
 	if (m_pMiscellaneous[index].size() > 0)
 	{
 		CMiscellaneous* topItem = m_pMiscellaneous[index].top();
@@ -148,15 +149,4 @@ CMiscellaneous* CField::TakeMisc(SUBPOS subPos) {
 	}
 	else
 		return NULL;
-}
-
-int CField::SubPosToIndex(SUBPOS subPos) {
-	int index = -1;
-	switch (subPos) {
-	case LINKSHINTEN: index = 0; break;
-	case RECHTSHINTEN: index = 1; break;
-	case LINKSVORNE: index = 2; break;
-	case RECHTSVORNE: index = 3; break;
-	}
-	return index;
 }

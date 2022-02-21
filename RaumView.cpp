@@ -271,9 +271,9 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, C
 	{
 		int xx = wallXFactor[xxx];
 
-		for (int i = 1; i < 5; i++)
+		for (int i = 0; i < 4; i++)
 		{		
-			CMonster* monster = pGrpMon->GetMonsterByRelSubPos(i, richt); 
+			CMonster* monster = pGrpMon->GetMonsterByRelSubPos((SUBPOSINDEX)i, richt); 
 			if (monster && monster->Hp() > 0) // todo staubwolke hier berücksichtigen
 			{
 				CBitmap* bmp = m_pMonsterPic->GetBitmap(monster, richt);
@@ -283,7 +283,7 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, C
 				bmp->GetBitmap(&bmpInfo);
 				double faktor = m_pPictures->getFaktor(ebene);
 
-				SUBPOS subPos = CHelpfulValues::GetRelativeSubPos(monster->HoleSubPosition(), richt);
+				SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(monster->HoleSubPosition(), richt);
 				CPoint pos = CHelpfulValues::CalcSubPosition(bmpInfo, subPos, faktor, xx);		
 
 				cdc->SelectObject(bmp);
@@ -294,7 +294,7 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, C
 }
 
 
-void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, int itemSubPos, int heroDir, std::stack<CMiscellaneous*> pile) {
+void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOSINDEX itemSubPos, int heroDir, std::stack<CMiscellaneous*> pile) {
 	// TODO - besser als "nur oberstes Malen... "
 	CMiscellaneous* misc = pile.top();
 	if (misc) {
@@ -309,7 +309,7 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, int itemSubPos,
 		if (wallMiddlePos.x > 0 || wallMiddlePos.y > 0) {
 			wallMiddlePos.x -= bmpInfo.bmWidth * faktor; // entspr- halber Breite, später Faktor 2
 			wallMiddlePos.y -= bmpInfo.bmHeight * faktor;
-			SUBPOS subPos = CHelpfulValues::GetRelativeSubPos(itemSubPos+1, heroDir); // todo subpos angleichen
+			SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(itemSubPos, heroDir); // todo subpos angleichen
 			if (ebene > 0 || subPos == LINKSHINTEN || subPos == RECHTSHINTEN)
 			{			
 				if (subPos == LINKSHINTEN || subPos == RECHTSHINTEN)
@@ -380,9 +380,9 @@ void CRaumView::Zeichnen(CDC* pDC)
 				if (fieldType == FeldTyp::EMPTY) {
 					for (int index = 0; index < 4; index++)
 					{
-						std::stack<CMiscellaneous*> pile = pField->GetMisc(index);
+						std::stack<CMiscellaneous*> pile = pField->GetMisc((SUBPOSINDEX)index);
 						if (pile.size() > 0) {
-							DrawPile(pDC, &compCdc, xxx, ebene, index, heroDir, pile);
+							DrawPile(pDC, &compCdc, xxx, ebene, (SUBPOSINDEX)index, heroDir, pile);
 						}
 					}
 					if (ebene > 0 && xxx > 1)

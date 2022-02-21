@@ -130,7 +130,7 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 					msubtype = m_miscellaneousSubtype[index];
 
 					CMiscellaneous* misc = new CMiscellaneous(index, mtype, msubtype);
-					m_pFeld[x][y][etage]->PutMisc(misc, subPos);
+					m_pFeld[x][y][etage]->PutMisc(misc, (SUBPOSINDEX)subPos);
 					miscItem = miscItem->NextSiblingElement();
 				}
 

@@ -65,6 +65,14 @@ enum SUBPOS
 	MITTE		 = 0x1111
 };
 
+enum SUBPOSINDEX
+{
+	TOPLEFT = 0,
+	TOPRIGHT = 1,
+	BOTTOMLEFT = 2,
+	BOTTOMRIGHT = 3
+};
+
 struct VEKTOR
 {
 	int x,y,z;

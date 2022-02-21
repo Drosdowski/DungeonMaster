@@ -173,33 +173,33 @@ void CDMView::ParseClickHeroes(CPoint point) {
 
 void CDMView::ParseClickItem(CPoint point) {
 	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
-	CMiscellaneous* pItem = grpHelden->GetItemInHand();
+	CMiscellaneous* pItemInHand = grpHelden->GetItemInHand();
 
-	SUBPOS itemPos = CScreenCoords::CheckHitFloor(point);
-	SUBPOS relItemPos = CHelpfulValues::GetRelativeSubPos(itemPos, grpHelden->HoleRichtung());
+	SUBPOS itemRegionClicked = CScreenCoords::CheckHitFloor(point);
+	SUBPOS itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(itemRegionClicked, grpHelden->HoleRichtung());
 	CMiscellaneous* topItem = NULL;
-	if (itemPos == LINKSVORNE || itemPos == RECHTSVORNE)
+	if (itemRegionClicked == LINKSVORNE || itemRegionClicked == RECHTSVORNE)
 	{
 		CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
 		if (FeldVorHeld)
 		{
-			if (pItem == NULL)
-				topItem = FeldVorHeld->TakeMisc(relItemPos);
+			if (pItemInHand == NULL)
+				topItem = FeldVorHeld->TakeMisc(itemRegionReal);
 			else {
-				FeldVorHeld->PutMisc(pItem, relItemPos);
+				FeldVorHeld->PutMisc(pItemInHand, itemRegionReal);
 				grpHelden->EmptyHand();
 			}
 
 		}
 	}
-	else if (itemPos == LINKSHINTEN || itemPos == RECHTSHINTEN) {
+	else if (itemRegionClicked == LINKSHINTEN || itemRegionClicked == RECHTSHINTEN) {
 		CField* FeldUnterHeld = m_pRaumView->GetMap()->GetField(grpHelden->GetPos());
 		if (FeldUnterHeld)
 		{
-			if (pItem == NULL)
-				topItem = FeldUnterHeld->TakeMisc(relItemPos);
+			if (pItemInHand == NULL)
+				topItem = FeldUnterHeld->TakeMisc(itemRegionReal);
 			else {
-				FeldUnterHeld->PutMisc(pItem, relItemPos);
+				FeldUnterHeld->PutMisc(pItemInHand, itemRegionReal);
 				grpHelden->EmptyHand();
 			}
 		}

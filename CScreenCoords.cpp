@@ -30,7 +30,6 @@ int CScreenCoords::CheckHitActiveWizard(CPoint point, int activeWizardID) {
 		if ((point.y > 80) && (point.y < 129)) {
 			if (point.y < 95)	// Reiter
 			{
-				int nr;
 				int relX = point.x - 466;
 				switch (activeWizardID)
 				{
