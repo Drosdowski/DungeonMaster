@@ -32,6 +32,7 @@ public:
 	virtual void WerteTemporaerAendern(int hp, int st, int ma);
 	virtual void WertePermanentAendern(int hp, int st, int ma);
 	virtual int CalcDmg(int ID, CGrpChar* pOpponents);
+	bool InFrontOfOpponent(CGrpChar* pOpponent);
 	virtual ~CCharacter();
 
 	bool isAttacking() { return m_attacking; }

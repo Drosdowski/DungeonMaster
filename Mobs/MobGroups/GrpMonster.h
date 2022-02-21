@@ -37,7 +37,7 @@ public:
 public:
 	void InitMonster(int nr, CMonster::MonsterTyp iTyp);
 	bool SetzeModus(int iModus);	
-	void AttackHero(CGrpHeld* hero);
+	CMonster* AttackHero(CGrpHeld* hero);
 	void TurnToHero(VEKTOR heroPos);
 	void EndAttack();
 	virtual ~CGrpMonster();

@@ -5,6 +5,7 @@
 #include <typeinfo>
 #include "DMDoc.h"
 #include "Character.h"
+#include "..\CHelpfulValues.h"
 #include "MobGroups/GrpChar.h"
 
 #ifdef _DEBUG
@@ -91,4 +92,13 @@ bool CCharacter::Altern() {
 	{
 		return false;
 	}
+}
+
+bool CCharacter::InFrontOfOpponent(CGrpChar* pOpponent) {
+	// in vierergruppe sind maximal zwei vorne, abhängig von Drehung, nur die können angreifen. sonst nur vorrücken
+	SUBPOS posRelative = CHelpfulValues::GetRelativeSubPosPassive(m_subPosition, pOpponent->HoleRichtung());
+	if (posRelative == BOTTOMLEFT || posRelative == BOTTOMRIGHT)
+		return true;
+	else
+		return false;
 }

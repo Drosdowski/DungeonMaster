@@ -109,14 +109,14 @@ void CGrpHeld::PassAction() {
 
 }
 
-void CGrpHeld::DoActionForChosenHero(int ID, CGrpChar* pVictims) {
+void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpChar* pVictims) {
 	if (m_iPhase == 2) {
 		if (pVictims) {
 			CHeld* pHero = (CHeld*)m_pMember[m_iHeroForAction];
 			if (pHero) {
 				if (pHero->Hp() > 0) {
-					int dmg = pHero->CalcDmg(ID, pVictims);
-					pVictims->DoDamage(dmg, false); // true = Schaden an alle
+					int dmg = pHero->CalcDmg(ActionId, pVictims);
+					pVictims->DoDamage(dmg, pHero->HoleSubPosition(), false); // true = Schaden an alle
 					pHero->AttackModeWithDmg(dmg);
 					m_iPhase = 3;
 				}

@@ -117,13 +117,21 @@ void CGrpMonster::EndAttack() {
 	}
 }
 
-void CGrpMonster::AttackHero(CGrpHeld* pHeroes) {
+CMonster* CGrpMonster::AttackHero(CGrpHeld* pHeroes) {
 	for (int i = 1; i < 5; i++)
 	{
 		CMonster* pMonster = (CMonster*)m_pMember[i];
-		if (pMonster) {					
-			int dmg = pMonster->CalcDmg(1, pHeroes); // todo monster attacke random
-			pMonster->AttackModeWithDmg(dmg);
+		if (pMonster && pMonster->IstBereit() && pMonster->InFrontOfOpponent(pHeroes)) {	
+			if (pMonster->m_chrDirection == m_grpDirection)
+			{
+				int dmg = pMonster->CalcDmg(1, pHeroes); // todo monster attacke random
+				pMonster->AttackModeWithDmg(dmg);
+				return pMonster; // pro Tick nur ein Angriff / Gruppe
+			}
+			else {
+				pMonster->m_chrDirection = m_grpDirection; // Einzeldrehung zur Attacke
+				return NULL;
+			}
 		}
 	}
 }
