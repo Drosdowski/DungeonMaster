@@ -33,7 +33,7 @@ SUBPOS CHelpfulValues::GetPosByIndex(SUBPOSINDEX index) {
 	case BOTTOMLEFT:
 		return LINKSVORNE;		
 	}
-	return MITTE;
+	return NONE;
 }
 
 SUBPOSINDEX CHelpfulValues::RightFrom(SUBPOSINDEX pos) {

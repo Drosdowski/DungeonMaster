@@ -45,6 +45,7 @@ CRaumView::CRaumView()
 	m_bMirror = true;
 
 	m_values = new CHelpfulValues();
+	m_pMap = NULL;
 	m_pDoc = NULL;
 	m_pDoorPic = NULL;
 	m_pWallPic = NULL;
@@ -242,7 +243,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 		if (sideDeco->GetDecoType() != None)
 		{
 			if (ebene > 0 && xxx < 4) {
-				CBitmap* decoBmp;
+				CBitmap* decoBmp = NULL;
 				if (frontDeco->GetDecoType() == Switch) {
 					decoBmp = m_pLeverPic->GetLeverSide(sideDeco->GetState(), (xx > 0));
 				}
@@ -377,7 +378,7 @@ void CRaumView::Zeichnen(CDC* pDC)
 				CField* pField = m_pMap->GetField(addx,addy,z);
 				int fieldType = pField->HoleTyp();
 				
-				if (fieldType == FeldTyp::EMPTY) {
+				if (fieldType != FeldTyp::WALL) {
 					for (int index = 0; index < 4; index++)
 					{
 						std::stack<CMiscellaneous*> pile = pField->GetMisc((SUBPOSINDEX)index);
@@ -389,10 +390,9 @@ void CRaumView::Zeichnen(CDC* pDC)
 					{
 						DrawMonster(pDC, &compCdc, xxx, ebene, heroDir, pField);
 					}
-
-
 				}
-				else if (fieldType == FeldTyp::WALL && ((ebene != 0) || (xx != 0)))
+
+				if (fieldType == FeldTyp::WALL && ((ebene != 0) || (xx != 0)))
 				{
 					DrawWall(pDC, &compCdc, xxx, ebene, heroDir, pField);
 				}

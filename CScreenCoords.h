@@ -21,5 +21,6 @@ public:
 	static bool CheckHitDeco(CPoint point);
 	static bool CheckHitMainScr(CPoint);
 	static SUBPOS CheckHitFloor(CPoint point);
+	static SUBPOS CheckHitAir(CPoint point); // throwing
 };
 

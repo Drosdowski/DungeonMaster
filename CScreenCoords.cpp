@@ -108,5 +108,13 @@ SUBPOS CScreenCoords::CheckHitFloor(CPoint point) {
 	// Vorne  sind von EBENE 1 links & Rechts sichtbar
 	if ((point.y > 270) && (point.x < 230) && (point.y < 305)) return LINKSVORNE;
 	if ((point.y > 270) && (point.x > 230) && (point.y < 305)) return RECHTSVORNE;
-	return MITTE;
+	return NONE;
+}
+
+SUBPOS CScreenCoords::CheckHitAir(CPoint point) {
+	if (point.y < 250) {
+		if (point.x < 230) return LINKSHINTEN; // Wurf von links
+		if (point.x > 230) return RECHTSHINTEN; // Wurf von rechts
+	}	
+	return NONE;
 }

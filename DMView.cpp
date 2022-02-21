@@ -45,7 +45,7 @@ END_MESSAGE_MAP()
 
 CDMView::CDMView()
 {
-	// TODO: add construction code here
+	m_pPictures = NULL;
 	m_pRaumView = new CRaumView();
 	m_pZauberView = new CZauberView();
 	m_bSleep = false;
@@ -204,17 +204,20 @@ void CDMView::ParseClickItem(CPoint point) {
 			}
 		}
 	}
-	if (topItem != NULL) {
-		// etwas genommen!
-		CBitmap* bmp = m_pRaumView->Get3DPics()->GetApple();
-		HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
-		HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
-		SetSystemCursor(hCursor, OCR_NORMAL);
-		grpHelden->TakeItemInHand(topItem);
+	if (itemRegionClicked != NONE) {
+		if (topItem != NULL) {
+			// etwas genommen!
+			CBitmap* bmp = m_pRaumView->Get3DPics()->GetApple();
+			HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
+			HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
+			SetSystemCursor(hCursor, OCR_NORMAL);
+			grpHelden->TakeItemInHand(topItem);
+		}
+		else {
+			::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
+		}
 	}
-	else {
-		::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
-	}
+
 }
 
 

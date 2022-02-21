@@ -54,7 +54,7 @@ void CGrpMonster::InitMonster(int nr, CMonster::MonsterTyp iTyp)
 		
 		bool vl,vr,hl,hr;
 		vl=vr=hl=hr=false;
-		SUBPOS pos = MITTE;	// Freien Platz suchen
+		SUBPOS pos = NONE;	// Freien Platz suchen
 		for (int i=1; i<5; i++)
 			if ((i!=nr) && (m_pMember[i]!=NULL))
 			{
