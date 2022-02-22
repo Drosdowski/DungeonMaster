@@ -505,8 +505,8 @@ void CDMView::OnTimer(UINT nIDEvent)
 		if (!m_pRaumView->GetHeroes()->Altern()) {
 			// 
 		}
-
-		m_pRaumView->MoveAnythingNearby();
+		if (m_pRaumView->GetHeroes()->GetNumberOfHeroes() > 0)
+			m_pRaumView->MoveAnythingNearby();
 
 		if (m_iModus == MOD_LAUFEN)
 		{
