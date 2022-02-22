@@ -70,27 +70,38 @@ void CGrpChar::Kollision() {
 				m_pMember[i]->WerteTemporaerAendern(-2, 0, 0);
 }
 
-void CGrpChar::DoDamage(int dmg, bool areaDmg) {
-
+void CGrpChar::DoDamage(int dmg, SUBPOS fromPos, bool areaDmg) {
+	CCharacter* victim = NULL;
+	if (areaDmg) {
 		for (int dmgTgt = 1; dmgTgt <= 4; dmgTgt++) {
-
-			CCharacter* victim = m_pMember[dmgTgt];
+			victim = m_pMember[dmgTgt];
 			if (victim && (victim->Hp() > 0)) {
 				victim->m_iReceivedDmg += dmg; // Schaden aufsummieren, Abrechnung folgt im Altern.
-				if (!areaDmg) dmgTgt = 4;
 			}
 		}
+	}
+	else {
+		victim = NearestTarget(fromPos);
+		if (victim && (victim->Hp() > 0)) {
+			victim->m_iReceivedDmg += dmg; 
+		}
+	}
 
 }
 
-void CGrpChar::DamageFrom(CGrpChar* pGrpMon, bool areaDmg) {
-	for (int dmgSrc = 1; dmgSrc <= 4; dmgSrc++)
-	{
-		if ((pGrpMon->m_pMember[dmgSrc]) && (pGrpMon->m_pMember[dmgSrc]->isAttacking())) {
-			int dmg = pGrpMon->m_pMember[dmgSrc]->m_dealingDmg;
-			DoDamage(dmg, areaDmg);
-			return;
-		}
+CCharacter* CGrpChar::NearestTarget(SUBPOS from) {
+	// todo unfug code
+	if (from == TOPLEFT || from == BOTTOMLEFT) {
+		return m_pMember[3];
+	} 
+	return m_pMember[1];
+}
+
+void CGrpChar::DamageFrom(CCharacter* pEnemy, bool areaDmg) {
+	if (pEnemy && pEnemy->isAttacking()) {
+		int dmg = pEnemy->m_dealingDmg;
+		DoDamage(dmg, pEnemy->HoleSubPosition(), areaDmg);
+		return;
 	}
 }
 

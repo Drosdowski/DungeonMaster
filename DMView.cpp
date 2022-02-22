@@ -142,20 +142,20 @@ void CDMView::ParseClickAction(CPoint point) {
 	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 
 	int actionPhase = grpHelden->GetActionPhase();
-	int action = CScreenCoords::CheckHitAction(point, actionPhase);
-	if (action > 0 && actionPhase == 1)
+	int actionNumber = CScreenCoords::CheckHitAction(point, actionPhase);
+	if (actionNumber > 0 && actionPhase == 1)
 	{
-		grpHelden->ChooseHeroForAction(action);
+		grpHelden->ChooseHeroForAction(actionNumber);
 	}
-	else if (action != 0 && actionPhase == 2) {
-		if (action == -1) // pass
+	else if (actionNumber != 0 && actionPhase == 2) {
+		if (actionNumber == -1) // pass
 		{
 			grpHelden->PassAction();
 		}
 		else {
 			VEKTOR pos = grpHelden->HoleZielFeld(VORWAERTS);
 			CGrpMonster* grpMonster = m_pRaumView->GetMonsterGroup(pos);
-			grpHelden->DoActionForChosenHero(action, grpMonster);
+			grpHelden->DoActionForChosenHero(actionNumber, grpMonster);
 		}
 		UpdateGrafik();
 	}
