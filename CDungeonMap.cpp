@@ -24,6 +24,8 @@ CDungeonMap::~CDungeonMap()
 				delete m_pFeld[i][j][z];
 			}
 	delete m_doorType;
+	delete m_miscellaneousType;
+	delete m_miscellaneousSubtype;
 }
 
 CField* CDungeonMap::GetField(int x, int y, int z) {
@@ -243,7 +245,7 @@ void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
 	rootNode->QueryIntAttribute("start_y", &y);
 	m_start.x = x;
 	m_start.y = y;
-	m_start.z = 0;
+	m_start.z = 0;	
 	rootNode->QueryIntAttribute("number_of_doors", &m_countDoors);
 	m_doorType = new int[m_countDoors];
 	rootNode->QueryIntAttribute("number_of_miscellaneous", &m_countMiscellaneous);

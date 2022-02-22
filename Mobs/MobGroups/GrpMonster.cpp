@@ -130,10 +130,10 @@ CMonster* CGrpMonster::AttackHero(CGrpHeld* pHeroes) {
 			}
 			else {
 				pMonster->m_chrDirection = m_grpDirection; // Einzeldrehung zur Attacke
-				return NULL;
 			}
 		}
 	}
+	return NULL;
 }
 
 bool CGrpMonster::IstBereit() {
