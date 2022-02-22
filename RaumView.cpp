@@ -531,10 +531,13 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	int yDist = monPos.y - heroPos.y;
 	int absDist = abs(xDist) + abs(yDist);
 	if (target.x == heroPos.x && target.y == heroPos.y) {
-		pGrpMon->AttackHero(m_pMap->GetHeroes());
-		m_pDoc->PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
+		CMonster* attackingMonster = pGrpMon->AttackHero(m_pMap->GetHeroes());
+		if (attackingMonster)
+		{
+			m_pDoc->PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
 
-		m_pMap->GetHeroes()->DamageFrom(pGrpMon, false);
+			m_pMap->GetHeroes()->DamageFrom(attackingMonster, false);
+		}
 		return monPos;
 	}
 	else {
