@@ -163,7 +163,7 @@ CMonster* CGrpMonster::GetMonster(int ID) {
 	return (CMonster*)m_pMember[ID];
 }
 
-CMonster* CGrpMonster::GetMonsterByRelSubPos(SUBPOSINDEX posIndex, int richt) {
+CMonster* CGrpMonster::GetMonsterByRelSubPos(SUBPOS_ABSOLUTE posIndex, int richt) {
 	// Gib Monster vorne links => Das Monster, das aus Sicht des Players vorne links ist!
 	
 

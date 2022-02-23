@@ -176,7 +176,7 @@ void CDMView::ParseClickItem(CPoint point) {
 	CMiscellaneous* pItemInHand = grpHelden->GetItemInHand();
 
 	SUBPOS itemRegionClicked = CScreenCoords::CheckHitFloor(point);
-	SUBPOS itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(itemRegionClicked, grpHelden->HoleRichtung());
+	SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(itemRegionClicked, grpHelden->HoleRichtung());
 	CMiscellaneous* topItem = NULL;
 	if (itemRegionClicked == LINKSVORNE || itemRegionClicked == RECHTSVORNE)
 	{

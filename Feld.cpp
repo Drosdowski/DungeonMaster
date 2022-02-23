@@ -128,22 +128,21 @@ void CField::SetType(FeldTyp fieldType, CStairs::StairType stairsType, bool east
 	}
 }
 
-void CField::PutMisc(CMiscellaneous* misc, SUBPOS subPos) {
-	PutMisc(misc, CHelpfulValues::GetIndexBySubpos(subPos));
-}
+//void CField::PutMisc(CMiscellaneous* misc, SUBPOS subPos) {
+//	PutMisc(misc, CHelpfulValues::GetIndexBySubpos(subPos));
+//}
 
-void CField::PutMisc(CMiscellaneous* misc, SUBPOSINDEX index) {
+void CField::PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index) {
 	m_pMiscellaneous[index].push(misc);
 }
 
 
 // Item von Stapel nehmen - ist dann "in der Hand"
-CMiscellaneous* CField::TakeMisc(SUBPOS subPos) {
-	int index = CHelpfulValues::GetIndexBySubpos(subPos);
-	if (m_pMiscellaneous[index].size() > 0)
+CMiscellaneous* CField::TakeMisc(SUBPOS_ABSOLUTE subPos) {
+	if (m_pMiscellaneous[subPos].size() > 0)
 	{
-		CMiscellaneous* topItem = m_pMiscellaneous[index].top();
-		m_pMiscellaneous[index].pop();
+		CMiscellaneous* topItem = m_pMiscellaneous[subPos].top();
+		m_pMiscellaneous[subPos].pop();
 
 		return topItem;
 	}

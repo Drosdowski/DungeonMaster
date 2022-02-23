@@ -91,7 +91,7 @@ void CGrpChar::DoDamage(int dmg, SUBPOS fromPos, bool areaDmg) {
 
 CCharacter* CGrpChar::NearestTarget(SUBPOS from) {
 	// todo unfug code
-	if (from == TOPLEFT || from == BOTTOMLEFT) {
+	if (from == NORTHWEST || from == SOUTHWEST) {
 		return m_pMember[3];
 	} 
 	return m_pMember[1];

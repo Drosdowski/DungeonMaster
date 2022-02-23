@@ -97,7 +97,7 @@ bool CCharacter::Altern() {
 bool CCharacter::InFrontOfOpponent(CGrpChar* pOpponent) {
 	// in vierergruppe sind maximal zwei vorne, abhängig von Drehung, nur die können angreifen. sonst nur vorrücken
 	SUBPOS posRelative = CHelpfulValues::GetRelativeSubPosPassive(m_subPosition, pOpponent->HoleRichtung());
-	if (posRelative == BOTTOMLEFT || posRelative == BOTTOMRIGHT)
+	if (posRelative == LINKSVORNE || posRelative == RECHTSVORNE)
 		return true;
 	else
 		return false;

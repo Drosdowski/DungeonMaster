@@ -56,6 +56,9 @@
 #define MOD_EXT_NORMAL 0
 #define MOD_EXT_AUGE 1
 
+/// <summary>
+/// Relative Position aus Sicht des Feldes
+/// </summary>
 enum SUBPOS
 {
 	LINKSVORNE	 = 0x1100,	// LVRH -> Kollisionsbits
@@ -66,12 +69,15 @@ enum SUBPOS
 
 };
 
-enum SUBPOSINDEX
+/// <summary>
+/// Absolute Position auf der Karte
+/// </summary>
+enum SUBPOS_ABSOLUTE
 {
-	TOPLEFT = 0,
-	TOPRIGHT = 1,
-	BOTTOMLEFT = 2,
-	BOTTOMRIGHT = 3
+	NORTHWEST = 0,
+	NORTHEAST = 1,
+	SOUTHWEST = 2,
+	SOUTHEAST = 3
 };
 
 struct VEKTOR

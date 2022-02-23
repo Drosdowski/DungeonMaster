@@ -13,57 +13,57 @@ int CHelpfulValues::OppositeDirection(int direction) {
 	return (direction + 2) % 4;
 }
 
-SUBPOSINDEX CHelpfulValues::GetIndexBySubpos(SUBPOS pos) {
+SUBPOS_ABSOLUTE CHelpfulValues::GetIndexBySubpos(SUBPOS pos) {
 	switch (pos) {
-	case LINKSHINTEN: return TOPLEFT;
-	case RECHTSHINTEN: return TOPRIGHT;
-	case RECHTSVORNE: return BOTTOMRIGHT;
-	case LINKSVORNE: return BOTTOMLEFT;
+	case LINKSHINTEN: return NORTHWEST;
+	case RECHTSHINTEN: return NORTHEAST;
+	case RECHTSVORNE: return SOUTHEAST;
+	case LINKSVORNE: return SOUTHWEST;
 	}
 }
 
-SUBPOS CHelpfulValues::GetPosByIndex(SUBPOSINDEX index) {
-	switch (index) {
-	case TOPLEFT:
+SUBPOS CHelpfulValues::GetPosByIndex(SUBPOS_ABSOLUTE pos) {
+	switch (pos) {
+	case NORTHWEST:
 		return LINKSHINTEN; 
-	case TOPRIGHT:
+	case NORTHEAST:
 		return RECHTSHINTEN;
-	case BOTTOMRIGHT:
+	case SOUTHEAST:
 		return RECHTSVORNE;
-	case BOTTOMLEFT:
+	case SOUTHWEST:
 		return LINKSVORNE;		
 	}
 	return NONE;
 }
 
-SUBPOSINDEX CHelpfulValues::RightFrom(SUBPOSINDEX pos) {
+SUBPOS_ABSOLUTE CHelpfulValues::RightFrom(SUBPOS_ABSOLUTE pos) {
 	switch (pos) {
-	case TOPLEFT:
-		return TOPRIGHT;
-	case TOPRIGHT:
-		return BOTTOMRIGHT;
-	case BOTTOMRIGHT:
-		return BOTTOMLEFT;
-	case BOTTOMLEFT:
-		return TOPLEFT;
+	case NORTHWEST:
+		return NORTHEAST;
+	case NORTHEAST:
+		return SOUTHEAST;
+	case SOUTHEAST:
+		return SOUTHWEST;
+	case SOUTHWEST:
+		return NORTHWEST;
 	}
 }
 
-SUBPOSINDEX CHelpfulValues::LeftFrom(SUBPOSINDEX pos) {
+SUBPOS_ABSOLUTE CHelpfulValues::LeftFrom(SUBPOS_ABSOLUTE pos) {
 	switch (pos) {
-	case TOPLEFT:
-		return BOTTOMLEFT;
-	case TOPRIGHT:
-		return TOPLEFT;
-	case BOTTOMRIGHT:
-		return TOPRIGHT;
-	case BOTTOMLEFT:
-		return BOTTOMRIGHT;
+	case NORTHWEST:
+		return SOUTHWEST;
+	case NORTHEAST:
+		return NORTHWEST;
+	case SOUTHEAST:
+		return NORTHEAST;
+	case SOUTHWEST:
+		return SOUTHEAST;
 	}
 }
 
 SUBPOS CHelpfulValues::GetRelativeSubPosPassive(SUBPOS opponentPos, int heroDir) {
-	SUBPOSINDEX index = GetIndexBySubpos(opponentPos);
+	SUBPOS_ABSOLUTE index = GetIndexBySubpos(opponentPos);
 	for (int turns = 0; turns < heroDir; turns++)
 	{
 		index = LeftFrom(index);
@@ -71,21 +71,21 @@ SUBPOS CHelpfulValues::GetRelativeSubPosPassive(SUBPOS opponentPos, int heroDir)
 	return GetPosByIndex(index);
 }
 
-SUBPOS CHelpfulValues::GetRelativeSubPosPassive(SUBPOSINDEX index, int heroDir) {
-	return GetRelativeSubPosPassive(GetPosByIndex(index), heroDir);
+SUBPOS CHelpfulValues::GetRelativeSubPosPassive(SUBPOS_ABSOLUTE pos, int heroDir) {
+	return GetRelativeSubPosPassive(GetPosByIndex(pos), heroDir);
 }
 
-SUBPOS CHelpfulValues::GetRelativeSubPosActive(SUBPOS opponentPos, int heroDir) {
-	SUBPOSINDEX index = GetIndexBySubpos(opponentPos);
+SUBPOS_ABSOLUTE CHelpfulValues::GetRelativeSubPosActive(SUBPOS opponentPos, int heroDir) {
+	SUBPOS_ABSOLUTE pos_abs = GetIndexBySubpos(opponentPos);
 	for (int turns = 0; turns < heroDir; turns++)
 	{
-		index = RightFrom(index);
+		pos_abs = RightFrom(pos_abs);
 	}
-	return GetPosByIndex(index);
+	return pos_abs;
 }
 
-SUBPOS CHelpfulValues::GetRelativeSubPosActive(SUBPOSINDEX index, int heroDir) {
-	return GetRelativeSubPosActive(GetPosByIndex(index), heroDir);
+SUBPOS_ABSOLUTE CHelpfulValues::GetRelativeSubPosActive(SUBPOS_ABSOLUTE pos, int heroDir) {
+	return GetRelativeSubPosActive(GetPosByIndex(pos), heroDir);
 }
 
 

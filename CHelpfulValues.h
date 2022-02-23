@@ -13,14 +13,14 @@ public:
 	CPoint static CalcSubPosition(BITMAP bmpInfo, SUBPOS subPos, double faktor, int xx);
 	CPoint static CalcRelSubPosition(BITMAP bmpInfo, CPoint wallPos, SUBPOS subPos, double faktor, int xx);
 	SUBPOS static GetRelativeSubPosPassive(SUBPOS opponentPos, int heroDir);
-	SUBPOS static GetRelativeSubPosPassive(SUBPOSINDEX index, int heroDir);
+	SUBPOS static GetRelativeSubPosPassive(SUBPOS_ABSOLUTE pos, int heroDir);
 	
-	SUBPOS static GetRelativeSubPosActive(SUBPOS opponentPos, int heroDir);
-	SUBPOS static GetRelativeSubPosActive(SUBPOSINDEX index, int heroDir);
-	SUBPOS static GetPosByIndex(SUBPOSINDEX SUBPOSINDEX);
-	SUBPOSINDEX static GetIndexBySubpos(SUBPOS pos);
-	SUBPOSINDEX static RightFrom(SUBPOSINDEX pos);
-	SUBPOSINDEX static LeftFrom(SUBPOSINDEX pos);
+	SUBPOS_ABSOLUTE static GetRelativeSubPosActive(SUBPOS opponentPos, int heroDir);
+	SUBPOS_ABSOLUTE static GetRelativeSubPosActive(SUBPOS_ABSOLUTE index, int heroDir);
+	SUBPOS static GetPosByIndex(SUBPOS_ABSOLUTE SUBPOSINDEX);
+	SUBPOS_ABSOLUTE static GetIndexBySubpos(SUBPOS pos);
+	SUBPOS_ABSOLUTE static RightFrom(SUBPOS_ABSOLUTE pos);
+	SUBPOS_ABSOLUTE static LeftFrom(SUBPOS_ABSOLUTE pos);
 
 };
 

@@ -69,7 +69,7 @@ protected:
 	CItem3DPic* m_pItem3DPic;
 
 	VEKTOR MonsterMoveOrAttack(CGrpMonster* pGrpMon);
-	void DrawPile(CDC* pDC, CDC* cdc, int xx, int ebene, SUBPOSINDEX SubPos, int heroDir, std::stack<CMiscellaneous*> pile);
+	void DrawPile(CDC* pDC, CDC* cdc, int xx, int ebene, SUBPOS_ABSOLUTE SubPos, int heroDir, std::stack<CMiscellaneous*> pile);
 	void DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField);
 	void DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CDoor* pDoor);
 	void DrawStairsFront(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs);

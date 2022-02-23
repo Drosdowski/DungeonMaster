@@ -43,10 +43,10 @@ public:
 	void SetType(FeldTyp fieldType, CStairs::StairType stairsType, bool eastWest);
 	void SetType(FeldTyp iTyp);
 
-	void PutMisc(CMiscellaneous* misc, SUBPOSINDEX index);
-	void PutMisc(CMiscellaneous* misc, SUBPOS subPos);
-	CMiscellaneous* TakeMisc(SUBPOS subPos);
-	std::stack<CMiscellaneous*> GetMisc(SUBPOSINDEX index) { return m_pMiscellaneous[index]; }
+	void PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index);
+	//void PutMisc(CMiscellaneous* misc, SUBPOS subPos);
+	CMiscellaneous* TakeMisc(SUBPOS_ABSOLUTE subPos);
+	std::stack<CMiscellaneous*> GetMisc(SUBPOS_ABSOLUTE index) { return m_pMiscellaneous[index]; }
 
 // Overrides
 

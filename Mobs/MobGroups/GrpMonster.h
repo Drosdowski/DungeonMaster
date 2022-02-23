@@ -30,7 +30,7 @@ public:
 	void MoveOrAttack(VEKTOR heroPos, int heroDirection);
 	void ActionDone();
 	bool IstBereit();
-	CMonster* GetMonsterByRelSubPos(SUBPOSINDEX posIndex, int richt);
+	CMonster* GetMonsterByRelSubPos(SUBPOS_ABSOLUTE posIndex, int richt);
 
 
 // Implementierung
