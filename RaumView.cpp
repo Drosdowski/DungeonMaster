@@ -522,16 +522,16 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	if (pGrpMon->GetPos().z != heroPos.z) return monPos; // Falsche Etage, nix tun!
 
 	// Versuch, in Blickrichtung zu gehen, ggf. Angriff!
-	VEKTOR target = pGrpMon->HoleZielFeld(VORWAERTS);
-	CField* targetField = m_pMap->GetField(target);
+	VEKTOR targetPos = pGrpMon->HoleZielFeld(VORWAERTS);
+	CField* targetField = m_pMap->GetField(targetPos);
 
 	int heroRicht = m_pMap->GetHeroes()->HoleRichtung();
 
 	int xDist = monPos.x - heroPos.x;
 	int yDist = monPos.y - heroPos.y;
 	int absDist = abs(xDist) + abs(yDist);
-	if (target.x == heroPos.x && target.y == heroPos.y) {
-		CMonster* attackingMonster = pGrpMon->AttackHero(m_pMap->GetHeroes());
+	if (targetPos.x == heroPos.x && targetPos.y == heroPos.y) {
+		CMonster* attackingMonster = pGrpMon->AttackHero(monPos, heroPos);
 		if (attackingMonster)
 		{
 			m_pDoc->PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
@@ -551,20 +551,20 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	// Nein: Bewege näher / drehe hin
 	// todo: schlauer bewegungsalgorithmus!
 		
-	if ((target.x != monPos.x || target.y != monPos.y) && 
+	if ((targetPos.x != monPos.x || targetPos.y != monPos.y) && 
 		(targetField->HoleTyp() == FeldTyp::EMPTY && targetField->GetMonsterGroup() == NULL) ||
 		(targetField->HoleTyp() == FeldTyp::DOOR && targetField->GetMonsterGroup() == NULL)) // TODO nur Open!
 		// Feld vorhanden - Monster drauf?
 		// TODO: prüfen, ob Monster da sind, ggf. Merge
 
-		if (absDist > (abs(target.x - heroPos.x) + abs(target.y - heroPos.y)))
+		if (absDist > (abs(targetPos.x - heroPos.x) + abs(targetPos.y - heroPos.y)))
 		{
 			// Kommt näher => Move!
 
-			pGrpMon->Laufen(target);
+			pGrpMon->Laufen(targetPos);
 			m_pDoc->PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-Move(Skeleton).mp3");
 
-			return target;
+			return targetPos;
 		}
 	// TODO stairs
 	if (abs(xDist) >= abs(yDist)) {

@@ -37,10 +37,12 @@ public:
 public:
 	void InitMonster(int nr, CMonster::MonsterTyp iTyp);
 	bool SetzeModus(int iModus);	
-	CMonster* AttackHero(CGrpHeld* hero);
+	CMonster* AttackHero(VEKTOR myPos, VEKTOR hisPos);
 	void TurnToHero(VEKTOR heroPos);
 	void EndAttack();
 	virtual ~CGrpMonster();
+private:
+	void TryToAdavanceToFirstRow(int index, VEKTOR monPos, VEKTOR heroPos);
 
 };
 

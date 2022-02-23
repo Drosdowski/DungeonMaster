@@ -95,7 +95,7 @@ bool CGrpMonster::Altern()
 			bool monsterAlive = pMonster->Altern();
 			if (!monsterAlive)
 			{
-				delete m_pMember[i]; // auslöschen! todo: staubwolke malen!
+				delete m_pMember[i]; // TODO auslöschen! todo: staubwolke malen!
 				m_pMember[i] = NULL;
 			}
 			else {
@@ -117,23 +117,40 @@ void CGrpMonster::EndAttack() {
 	}
 }
 
-CMonster* CGrpMonster::AttackHero(CGrpHeld* pHeroes) {
+CMonster* CGrpMonster::AttackHero(VEKTOR myPos, VEKTOR hisPos) {
 	for (int i = 1; i < 5; i++)
 	{
 		CMonster* pMonster = (CMonster*)m_pMember[i];
-		if (pMonster && pMonster->IstBereit() && pMonster->InFrontOfOpponent(pHeroes)) {	
-			if (pMonster->m_chrDirection == m_grpDirection)
-			{
-				int dmg = pMonster->CalcDmg(1, pHeroes); // todo monster attacke random
-				pMonster->AttackModeWithDmg(dmg);
-				return pMonster; // pro Tick nur ein Angriff / Gruppe
+		if (pMonster && pMonster->IstBereit()) {	
+			if (pMonster->InFrontOfOpponent(myPos, hisPos)) {
+				if (pMonster->m_chrDirection == m_grpDirection)
+				{
+					int dmg = pMonster->CalcDmg(1); // todo monster attacke random
+					pMonster->AttackModeWithDmg(dmg);
+					return pMonster; // pro Tick nur ein Angriff / Gruppe
+				}
+				else {
+					pMonster->m_chrDirection = m_grpDirection; // Einzeldrehung zur Attacke
+				}
 			}
 			else {
-				pMonster->m_chrDirection = m_grpDirection; // Einzeldrehung zur Attacke
-			}
+				TryToAdavanceToFirstRow(i, myPos, hisPos);
+			}			
 		}
 	}
+
 	return NULL;
+}
+
+void CGrpMonster::TryToAdavanceToFirstRow(int index, VEKTOR myPos, VEKTOR hisPos) {
+	/*switch (m_subPosition) {
+	case LINKSVORNE:
+	case RECHTSVORNE:
+		// skip, schon vorne
+		break;
+	case LINKSHINTEN:
+
+	}*/
 }
 
 bool CGrpMonster::IstBereit() {

@@ -94,11 +94,34 @@ bool CCharacter::Altern() {
 	}
 }
 
-bool CCharacter::InFrontOfOpponent(CGrpChar* pOpponent) {
-	// in vierergruppe sind maximal zwei vorne, abhängig von Drehung, nur die können angreifen. sonst nur vorrücken
-	SUBPOS posRelative = CHelpfulValues::GetRelativeSubPosPassive(m_subPosition, pOpponent->HoleRichtung());
-	if (posRelative == LINKSVORNE || posRelative == RECHTSVORNE)
-		return true;
-	else
-		return false;
+bool CCharacter::InFrontOfOpponent(VEKTOR myPos, VEKTOR hisPos) {
+	if (myPos.z != hisPos.z) return false;
+
+	SUBPOS_ABSOLUTE feldPos = CHelpfulValues::GetAbsPosBySubpos(m_subPosition);
+
+	bool xEqual = (myPos.x == hisPos.x);
+	bool yEqual = (myPos.x == myPos.y);
+	bool meEastFromHim = ((myPos.x - hisPos.x) == 1);
+	bool meSouthFromHim = ((myPos.y - hisPos.y) == 1);
+	bool meWestFromHim = ((hisPos.x - myPos.x) == 1);
+	bool meNorthFromHim = ((hisPos.x - myPos.x) == 1);
+
+	switch (feldPos) {
+	case NORTHWEST: // nw nach n oder w könnte "front" sein.
+		if (xEqual && meSouthFromHim) return true;
+		if (yEqual && meEastFromHim) return true;
+		break;
+	case NORTHEAST:
+		if (xEqual && meSouthFromHim) return true;
+		if (yEqual && meWestFromHim) return true;
+		break;
+	case SOUTHWEST:
+		if (xEqual && meNorthFromHim) return true;
+		if (yEqual && meEastFromHim) return true;
+		break;
+	case SOUTHEAST:
+		if (xEqual && meNorthFromHim) return true;
+		if (yEqual && meWestFromHim) return true;
+	}
+
 }

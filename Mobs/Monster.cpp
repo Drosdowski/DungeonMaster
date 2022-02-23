@@ -75,7 +75,7 @@ bool CMonster::TurnTo(int iDirection) {
 	}
 }
 
-int CMonster::CalcDmg(int ID, CGrpChar* pOpponents) {
+int CMonster::CalcDmg(int ID) {
 	// TODO 1. Waffe
 	// TODO 2. Gegnerrüstung
 	// TODO 3. Random	
