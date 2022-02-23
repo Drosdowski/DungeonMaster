@@ -143,14 +143,33 @@ CMonster* CGrpMonster::AttackHero(VEKTOR myPos, VEKTOR hisPos) {
 }
 
 void CGrpMonster::TryToAdavanceToFirstRow(int index, VEKTOR myPos, VEKTOR hisPos) {
-	/*switch (m_subPosition) {
+	SUBPOS vorMir;
+	switch (m_pMember[index]->HoleSubPosition()) {
 	case LINKSVORNE:
 	case RECHTSVORNE:
 		// skip, schon vorne
 		break;
 	case LINKSHINTEN:
+		vorMir = LINKSVORNE;
+		break;
+	case RECHTSHINTEN:
+		vorMir = RECHTSHINTEN;
+		break;
+	}
 
-	}*/
+	CMonster* frontMon = GetBySubpos(vorMir);
+	if (frontMon == NULL)
+		m_pMember[index]->SetzeSubPosition(vorMir);
+}
+
+CMonster* CGrpMonster::GetBySubpos(SUBPOS pos) {
+	for (int i = 1; i < 5; i++)
+	{
+		CMonster* pMonster = (CMonster*)m_pMember[i];
+		if (pMonster && pMonster->HoleSubPosition() == pos)
+			return pMonster;
+	}
+	return NULL;
 }
 
 bool CGrpMonster::IstBereit() {

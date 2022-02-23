@@ -43,6 +43,7 @@ public:
 	virtual ~CGrpMonster();
 private:
 	void TryToAdavanceToFirstRow(int index, VEKTOR monPos, VEKTOR heroPos);
+	CMonster* GetBySubpos(SUBPOS pos);
 
 };
 
