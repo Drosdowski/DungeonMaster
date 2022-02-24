@@ -44,8 +44,8 @@ public:
 	VEKTOR HoleZielFeld(int iRichtung); // VORWAERTS, etc
 	void Kollision();
 	void Laufen(VEKTOR WunschPos);
-	void DamageFrom(CCharacter* pMon, bool DamageFrom);
-	void DoDamage(int dmg, SUBPOS fromPos, bool DamageFrom);
+	void DamageFrom(CCharacter* pMon, VEKTOR hisPos, bool DamageFrom);
+	void DoDamage(int dmg, VEKTOR hisPos, bool DamageFrom);
 
 	void Drehen(int iRichtung);
 	virtual ~CGrpChar();
@@ -53,7 +53,7 @@ protected:
 	int m_grpDirection;
 	VEKTOR m_posPosition;
 	CHelpfulValues* m_values;
-	CCharacter* NearestTarget(SUBPOS from);
+	CCharacter* NearestTarget(VEKTOR hisPos);
 };
 
 /////////////////////////////////////////////////////////////////////////////

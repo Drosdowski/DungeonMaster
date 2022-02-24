@@ -96,7 +96,7 @@ void CHeld::SymbolZeichnen(CDC* pDC, CPictures* pPictures)
 	int sx = 560 +(((m_iIndex==1) || (m_iIndex ==4)) ? 0 : 40);
 	int sy =	   (m_iIndex > 2) ? 28 : 0;
 	
-	int dx = 560 +((m_subPosition & 0x1000) ? 0 : 40);
+	int dx = 560 +((m_subPosition & 0x1000) ? 0 : 40); // todo falsch!
 	int dy =	   (m_subPosition & 0x0100) ? 0 : 28;
 	pDC->BitBlt(dx,dy,40,28,&tmpdc,sx,sy,SRCCOPY);
 	tmpdc.DeleteDC();

@@ -26,8 +26,8 @@ public:
 // Implementierung
 public:
 	virtual bool Altern();
-	virtual void SetzeSubPosition(SUBPOS pos) {m_subPosition = pos;};
-	virtual SUBPOS HoleSubPosition() { return m_subPosition;};
+	virtual void SetzeSubPosition(SUBPOS_ABSOLUTE pos) {m_subPosition = pos;};
+	virtual SUBPOS_ABSOLUTE HoleSubPosition() { return m_subPosition;};
 	virtual bool Kollision(int richt, CGrpChar* pGrpChar);
 	virtual void WerteTemporaerAendern(int hp, int st, int ma);
 	virtual void WertePermanentAendern(int hp, int st, int ma);
@@ -50,6 +50,12 @@ public:
 
 	int m_chrDirection;	// initial und bei Grp.-Bewegung gleich der Gruppenvariable; ändert sich nur bei angriffen
 
+
+	bool westOf(VEKTOR myPos, VEKTOR hisPos);
+	bool eastOf(VEKTOR myPos, VEKTOR hisPos);
+	bool northOf(VEKTOR myPos, VEKTOR hisPos);
+	bool southOf(VEKTOR myPos, VEKTOR hisPos);
+
 	// Generierte Nachrichtenzuordnungsfunktionen
 protected:
 	bool m_attacking = false;
@@ -59,8 +65,9 @@ protected:
 	WERTE m_ST;	// Stamina
 	WERTE m_HP;	// Hitpoints	
 
-	SUBPOS m_subPosition;
+	SUBPOS_ABSOLUTE m_subPosition;
 	int m_iReady;
+
 
 };
 

@@ -266,31 +266,34 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 		}
 }
 
-void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField) {
+void CRaumView::DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField) {
 	CGrpMonster* pGrpMon = (CGrpMonster*)pField->GetMonsterGroup();
 	if (pGrpMon)
 	{
 		int xx = wallXFactor[xxx];
 
-		for (int i = 0; i < 4; i++)
-		{		
-			CMonster* monster = pGrpMon->GetMonsterByRelSubPos((SUBPOS_ABSOLUTE)i, richt); 
-			if (monster && monster->Hp() > 0) // todo staubwolke hier berücksichtigen
-			{
-				CBitmap* bmp = m_pMonsterPic->GetBitmap(monster, richt);
-				BITMAP bmpInfo;
+		DrawMonster(pDC, cdc, xx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(LINKSHINTEN, richt));
+		DrawMonster(pDC, cdc, xx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(RECHTSHINTEN, richt));
+		DrawMonster(pDC, cdc, xx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(LINKSVORNE, richt));
+		DrawMonster(pDC, cdc, xx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(RECHTSVORNE, richt));
+	}
+}
 
-				//get original size of bitmap
-				bmp->GetBitmap(&bmpInfo);
-				double faktor = m_pPictures->getFaktor(ebene);
+void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xx, int ebene, int richt, CMonster* pMonster) {
+	if (pMonster && pMonster->Hp() > 0) // todo staubwolke hier berücksichtigen
+	{
+		CBitmap* bmp = m_pMonsterPic->GetBitmap(pMonster, richt);
+		BITMAP bmpInfo;
 
-				SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(monster->HoleSubPosition(), richt);
-				CPoint pos = CHelpfulValues::CalcSubPosition(bmpInfo, subPos, faktor, xx);		
+		//get original size of bitmap
+		bmp->GetBitmap(&bmpInfo);
+		double faktor = m_pPictures->getFaktor(ebene);
 
-				cdc->SelectObject(bmp);
-				DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, monster->transCol);
-			}
-		}
+		SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(pMonster->HoleSubPosition(), richt);
+		CPoint pos = CHelpfulValues::CalcSubPosition(bmpInfo, subPos, faktor, xx);
+
+		cdc->SelectObject(bmp);
+		DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, pMonster->transCol);
 	}
 }
 
@@ -388,7 +391,7 @@ void CRaumView::Zeichnen(CDC* pDC)
 					}
 					if (ebene > 0 && xxx > 1)
 					{
-						DrawMonster(pDC, &compCdc, xxx, ebene, heroDir, pField);
+						DrawMonsterGroup(pDC, &compCdc, xxx, ebene, heroDir, pField);
 					}
 				}
 
@@ -536,7 +539,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 		{
 			m_pDoc->PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
 
-			m_pMap->GetHeroes()->DamageFrom(attackingMonster, false);
+			m_pMap->GetHeroes()->DamageFrom(attackingMonster, pGrpMon->HolePosition(), false);
 		}
 		return monPos;
 	}

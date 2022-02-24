@@ -17,10 +17,12 @@ public:
 	
 	SUBPOS_ABSOLUTE static GetRelativeSubPosActive(SUBPOS opponentPos, int heroDir);
 	SUBPOS_ABSOLUTE static GetRelativeSubPosActive(SUBPOS_ABSOLUTE index, int heroDir);
-	SUBPOS static GetPosByIndex(SUBPOS_ABSOLUTE SUBPOSINDEX);
-	SUBPOS_ABSOLUTE static GetAbsPosBySubpos(SUBPOS pos);
 	SUBPOS_ABSOLUTE static RightFrom(SUBPOS_ABSOLUTE pos);
 	SUBPOS_ABSOLUTE static LeftFrom(SUBPOS_ABSOLUTE pos);
+
+private:
+	SUBPOS static GetPosByIndexWhenFacingNorth(SUBPOS_ABSOLUTE SUBPOSINDEX); // only internal usage when DIR = 0!
+	SUBPOS_ABSOLUTE static GetAbsPosBySubposWhenFacingNorth(SUBPOS pos); // only internal usage when DIR = 0!
 
 };
 

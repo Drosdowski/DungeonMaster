@@ -96,32 +96,37 @@ bool CCharacter::Altern() {
 
 bool CCharacter::InFrontOfOpponent(VEKTOR myPos, VEKTOR hisPos) {
 	if (myPos.z != hisPos.z) return false;
-
-	SUBPOS_ABSOLUTE feldPos = CHelpfulValues::GetAbsPosBySubpos(m_subPosition);
-
-	bool xEqual = (myPos.x == hisPos.x);
-	bool yEqual = (myPos.x == myPos.y);
-	bool meEastFromHim = ((myPos.x - hisPos.x) == 1);
-	bool meSouthFromHim = ((myPos.y - hisPos.y) == 1);
-	bool meWestFromHim = ((hisPos.x - myPos.x) == 1);
-	bool meNorthFromHim = ((hisPos.x - myPos.x) == 1);
-
-	switch (feldPos) {
+		
+	switch (m_subPosition) {
 	case NORTHWEST: // nw nach n oder w könnte "front" sein.
-		if (xEqual && meSouthFromHim) return true;
-		if (yEqual && meEastFromHim) return true;
+		if (southOf(myPos, hisPos)) return true;
+		if (eastOf(myPos, hisPos)) return true;
 		break;
 	case NORTHEAST:
-		if (xEqual && meSouthFromHim) return true;
-		if (yEqual && meWestFromHim) return true;
+		if (southOf(myPos, hisPos)) return true;
+		if (westOf(myPos, hisPos)) return true;
 		break;
 	case SOUTHWEST:
-		if (xEqual && meNorthFromHim) return true;
-		if (yEqual && meEastFromHim) return true;
+		if (northOf(myPos, hisPos)) return true;
+		if (eastOf(myPos, hisPos)) return true;
 		break;
 	case SOUTHEAST:
-		if (xEqual && meNorthFromHim) return true;
-		if (yEqual && meWestFromHim) return true;
+		if (northOf(myPos, hisPos)) return true;
+		if (westOf(myPos, hisPos)) return true;
 	}
+	return false;
+}
 
+bool CCharacter::westOf(VEKTOR myPos, VEKTOR hisPos) {
+	return (myPos.y == myPos.y) && ((hisPos.x - myPos.x) == 1);
+}
+
+bool CCharacter::eastOf(VEKTOR myPos, VEKTOR hisPos) {
+	return (myPos.y == myPos.y) && ((myPos.x - hisPos.x) == 1);
+}
+bool CCharacter::northOf(VEKTOR myPos, VEKTOR hisPos) {
+	return (myPos.x == hisPos.x) && ((hisPos.x - myPos.x) == 1);
+}
+bool CCharacter::southOf(VEKTOR myPos, VEKTOR hisPos) {
+	return (myPos.x == hisPos.x) && ((myPos.y - hisPos.y) == 1);
 }

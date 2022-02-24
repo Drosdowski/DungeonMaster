@@ -70,7 +70,7 @@ void CGrpChar::Kollision() {
 				m_pMember[i]->WerteTemporaerAendern(-2, 0, 0);
 }
 
-void CGrpChar::DoDamage(int dmg, SUBPOS enemy, bool areaDmg) {
+void CGrpChar::DoDamage(int dmg, VEKTOR hisPos, bool areaDmg) {
 	CCharacter* victim = NULL;
 	if (areaDmg) {
 		for (int dmgTgt = 1; dmgTgt <= 4; dmgTgt++) {
@@ -81,7 +81,7 @@ void CGrpChar::DoDamage(int dmg, SUBPOS enemy, bool areaDmg) {
 		}
 	}
 	else {
-		victim = NearestTarget(enemy);
+		victim = NearestTarget(hisPos);
 		if (victim && (victim->Hp() > 0)) {
 			victim->m_iReceivedDmg += dmg; 
 		}
@@ -89,30 +89,21 @@ void CGrpChar::DoDamage(int dmg, SUBPOS enemy, bool areaDmg) {
 
 }
 
-CCharacter* CGrpChar::NearestTarget(SUBPOS enemy) {
-	// todo unfug code
-	if (enemy == LINKSVORNE) {
-		if (m_pMember[1] && m_pMember[1]->Hp() > 0) return m_pMember[1];
-		if (m_pMember[3] && m_pMember[3]->Hp() > 0) return m_pMember[3];
-		if (m_pMember[2] && m_pMember[2]->Hp() > 0) return m_pMember[2];
-		if (m_pMember[4] && m_pMember[4]->Hp() > 0) return m_pMember[4];
+CCharacter* CGrpChar::NearestTarget(VEKTOR hisPos) {
+	for (int i = 1; i < 5; i++) {
+		CCharacter* pChar = m_pMember[i];
+		if (pChar && pChar->Hp() > 0) {
+			if (pChar->InFrontOfOpponent(GetPos(), hisPos))
+				return pChar;
+		}
 	}
-	else if (enemy == RECHTSVORNE) {
-		if (m_pMember[3] && m_pMember[3]->Hp() > 0) return m_pMember[3];
-		if (m_pMember[1] && m_pMember[1]->Hp() > 0) return m_pMember[1];
-		if (m_pMember[4] && m_pMember[4]->Hp() > 0) return m_pMember[3];
-		if (m_pMember[2] && m_pMember[2]->Hp() > 0) return m_pMember[2];
-
-	}
-	else {
-		return NULL; // Kein Nahkampf von Hinten
-	}
+	return NULL; // Kein Nahkampf von Hinten
 }
 
-void CGrpChar::DamageFrom(CCharacter* pEnemy, bool areaDmg) {
+void CGrpChar::DamageFrom(CCharacter* pEnemy, VEKTOR hisPos, bool areaDmg) {
 	if (pEnemy && pEnemy->isAttacking()) {
 		int dmg = pEnemy->m_dealingDmg;
-		DoDamage(dmg, pEnemy->HoleSubPosition(), areaDmg);
+		DoDamage(dmg, hisPos, areaDmg);
 		return;
 	}
 }

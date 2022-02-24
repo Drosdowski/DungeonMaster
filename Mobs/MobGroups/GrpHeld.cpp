@@ -50,26 +50,27 @@ void CGrpHeld::InitHeld(CPictures* pPictures, const int nr)
 		pHeld->NameZeichnen(pDC);
 		pHeld->WerteZeichnen(pDC);
 
-		bool vl,vr,hl,hr;
-		vl=vr=hl=hr=false;
-		SUBPOS pos;	// Freien Platz suchen
-		for (int i=1; i<5; i++)
-			if ((i!=nr) && (m_pMember[i]!=NULL))
+		// todo duplicate code here!
+		bool ne, nw, sw, se;
+		ne = nw = sw = se = false;
+		SUBPOS_ABSOLUTE pos = MIDDLE;	// Freien Platz suchen
+		for (int i = 1; i < 5; i++)
+			if ((i != nr) && (m_pMember[i] != NULL))
 			{
 				pos = m_pMember[i]->HoleSubPosition();
-				if (pos == RECHTSVORNE) vr = true;
-				else if (pos == LINKSVORNE) vl = true;
-				else if (pos == LINKSHINTEN) hl = true;
-				else if (pos == RECHTSHINTEN) hr = true;
+				if (pos == NORTHWEST) nw = true;
+				else if (pos == NORTHEAST) ne = true;
+				else if (pos == SOUTHWEST) sw = true;
+				else if (pos == SOUTHEAST) se = true;
 			}
-		if (!vl)
-			pos = LINKSVORNE;
-		else if (!vr)
-			pos = RECHTSVORNE;
-		else if (!hl)
-			pos = LINKSHINTEN;
-		else
-			pos = RECHTSHINTEN;
+		if (!ne)
+			pos = NORTHEAST;
+		else if (!nw)
+			pos = NORTHWEST;
+		else if (!sw)
+			pos = SOUTHWEST;
+		else if (!se)
+			pos = SOUTHEAST;
 
 		m_pMember[nr]->SetzeSubPosition(pos);
 		pHeld->SymbolZeichnen(pDC, pPictures);
@@ -115,7 +116,7 @@ void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpChar* pVictims) {
 			if (pHero) {
 				if (pHero->Hp() > 0) {
 					int dmg = pHero->CalcDmg(ActionId, pVictims);
-					pVictims->DoDamage(dmg, pHero->HoleSubPosition(), false); // true = Schaden an alle
+					pVictims->DoDamage(dmg, HolePosition(), false); // true = Schaden an alle
 					pHero->AttackModeWithDmg(dmg);
 					m_iPhase = 3;
 				}

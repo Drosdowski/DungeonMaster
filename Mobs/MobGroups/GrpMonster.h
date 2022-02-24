@@ -30,7 +30,7 @@ public:
 	void MoveOrAttack(VEKTOR heroPos, int heroDirection);
 	void ActionDone();
 	bool IstBereit();
-	CMonster* GetMonsterByRelSubPos(SUBPOS_ABSOLUTE posIndex, int richt);
+	CMonster* GetMonsterByRelSubPos(SUBPOS posIndex, int richt);
 
 
 // Implementierung
@@ -43,6 +43,8 @@ public:
 	virtual ~CGrpMonster();
 private:
 	void TryToAdavanceToFirstRow(int index, VEKTOR monPos, VEKTOR heroPos);
+	bool isSubPosAbsoluteFree(SUBPOS_ABSOLUTE pos);
+
 	CMonster* GetBySubpos(SUBPOS pos);
 
 };

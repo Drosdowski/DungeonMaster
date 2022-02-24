@@ -75,7 +75,8 @@ protected:
 	void DrawStairsFront(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs);
 	void DrawStairsSide(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs);
 	void DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene, bool left);
-	void DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField);
+	void DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField);
+	void DrawMonster(CDC* pDC, CDC* cdc, int xx, int ebene, int richt, CMonster* pMonster);
 	void DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, CDC* cdc, COLORREF col);
 	// VEKTOR NextFieldWithoutTurn(CGrpMonster* pGrpMon, VEKTOR heroPos);
 
