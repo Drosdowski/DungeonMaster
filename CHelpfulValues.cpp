@@ -63,17 +63,12 @@ SUBPOS_ABSOLUTE CHelpfulValues::LeftFrom(SUBPOS_ABSOLUTE pos) {
 	}
 }
 
-SUBPOS CHelpfulValues::GetRelativeSubPosPassive(SUBPOS opponentPos, int heroDir) {
-	SUBPOS_ABSOLUTE index = GetAbsPosBySubposWhenFacingNorth(opponentPos);
+SUBPOS CHelpfulValues::GetRelativeSubPosPassive(SUBPOS_ABSOLUTE pos_abs, int heroDir) {
 	for (int turns = 0; turns < heroDir; turns++)
 	{
-		index = LeftFrom(index);
+		pos_abs = LeftFrom(pos_abs);
 	}
-	return GetPosByIndexWhenFacingNorth(index);
-}
-
-SUBPOS CHelpfulValues::GetRelativeSubPosPassive(SUBPOS_ABSOLUTE pos, int heroDir) {
-	return GetRelativeSubPosPassive(GetPosByIndexWhenFacingNorth(pos), heroDir);
+	return GetPosByIndexWhenFacingNorth(pos_abs);
 }
 
 SUBPOS_ABSOLUTE CHelpfulValues::GetRelativeSubPosActive(SUBPOS opponentPos, int heroDir) {
@@ -85,8 +80,12 @@ SUBPOS_ABSOLUTE CHelpfulValues::GetRelativeSubPosActive(SUBPOS opponentPos, int 
 	return pos_abs;
 }
 
-SUBPOS_ABSOLUTE CHelpfulValues::GetRelativeSubPosActive(SUBPOS_ABSOLUTE pos, int heroDir) {
-	return GetRelativeSubPosActive(GetPosByIndexWhenFacingNorth(pos), heroDir);
+SUBPOS CHelpfulValues::GetRelativeSubPosActive(SUBPOS_ABSOLUTE pos_abs, int heroDir) {
+	for (int turns = 0; turns < heroDir; turns++)
+	{
+		pos_abs = RightFrom(pos_abs);
+	}
+	return GetPosByIndexWhenFacingNorth(pos_abs);
 }
 
 

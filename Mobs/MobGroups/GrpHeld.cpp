@@ -73,7 +73,7 @@ void CGrpHeld::InitHeld(CPictures* pPictures, const int nr)
 			pos = SOUTHEAST;
 
 		m_pMember[nr]->SetzeSubPosition(pos);
-		pHeld->SymbolZeichnen(pDC, pPictures);
+		pHeld->SymbolZeichnen(pDC, pPictures, m_grpDirection);
 
 		m_iAnzHelden++;
 		if (m_iAnzHelden == 1) 
@@ -202,7 +202,7 @@ void CGrpHeld::Zeichnen(CDC * pDC, CPictures* pPictures, int iModus)
 					}
 				}
 				pHeld->WaffeZeichnen(pDC);
-				pHeld->SymbolZeichnen(pDC, pPictures);
+				pHeld->SymbolZeichnen(pDC, pPictures, m_grpDirection);
 				pHeld->SchadenZeichnen(pDC, pPictures);
 			}
 		}

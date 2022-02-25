@@ -28,7 +28,7 @@ public:
 	void NameZeichnen(CDC* pDC);
 	void RucksackZeichnen(CDC* pDC);
 	void HaendeZeichnen(CDC* pDC, CPictures* pPictures);
-	void SymbolZeichnen(CDC* pDC, CPictures* pPictures);
+	void SymbolZeichnen(CDC* pDC, CPictures* pPictures, int heroGrpDir);
 	void WaffeZeichnen(CDC* pDC);
 	void WerteZeichnen(CDC* pDC);
 	void BildZeichnen(CDC* pDC);

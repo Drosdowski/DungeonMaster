@@ -170,6 +170,19 @@ void CGrpChar::Drehen(int iRichtung)
 	{
 		if (m_pMember[i] != NULL) {
 			m_pMember[i]->m_chrDirection = m_grpDirection;
+			SUBPOS_ABSOLUTE pos = m_pMember[i]->HoleSubPosition();
+			
+			switch (iRichtung)
+			{
+			case LINKS:
+				pos = CHelpfulValues::RightFrom(pos);
+				break;
+			case RECHTS:
+				pos = CHelpfulValues::LeftFrom(pos);
+				break;
+			}
+
+			m_pMember[i]->SetzeSubPosition(pos);
 			m_pMember[i]->ActionDone();
 		}
 	}
