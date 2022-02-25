@@ -35,7 +35,6 @@ END_MESSAGE_MAP()
 
 CDMApp::CDMApp()
 {
-	// TODO: add construction code here,
 	// Place all significant initialization in InitInstance
 	m_lCount= 0;
 }

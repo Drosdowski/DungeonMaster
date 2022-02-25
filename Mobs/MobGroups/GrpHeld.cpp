@@ -50,29 +50,8 @@ void CGrpHeld::InitHeld(CPictures* pPictures, const int nr)
 		pHeld->NameZeichnen(pDC);
 		pHeld->WerteZeichnen(pDC);
 
-		// todo duplicate code here!
-		bool ne, nw, sw, se;
-		ne = nw = sw = se = false;
-		SUBPOS_ABSOLUTE pos = MIDDLE;	// Freien Platz suchen
-		for (int i = 1; i < 5; i++)
-			if ((i != nr) && (m_pMember[i] != NULL))
-			{
-				pos = m_pMember[i]->HoleSubPosition();
-				if (pos == NORTHWEST) nw = true;
-				else if (pos == NORTHEAST) ne = true;
-				else if (pos == SOUTHWEST) sw = true;
-				else if (pos == SOUTHEAST) se = true;
-			}
-		if (!ne)
-			pos = NORTHEAST;
-		else if (!nw)
-			pos = NORTHWEST;
-		else if (!sw)
-			pos = SOUTHWEST;
-		else if (!se)
-			pos = SOUTHEAST;
+		SetNewCharOnNextFreePos(nr);
 
-		m_pMember[nr]->SetzeSubPosition(pos);
 		pHeld->SymbolZeichnen(pDC, pPictures, m_grpDirection);
 
 		m_iAnzHelden++;
@@ -146,12 +125,12 @@ CHeld* CGrpHeld::ClosestHeroTo(CMonster* monster) {
 
 void CGrpHeld::OnLButtonUp(CDC* pDC, UINT nFlags, CPoint point) 
 {
-	((CHeld*)m_pMember[m_iAktiverHeld])->m_pRucksack->OnLButtonUp(pDC, nFlags, point);
+	((CHeld*)m_pMember[m_iAktiverHeld])->GetRucksack()->OnLButtonUp(pDC, nFlags, point);
 }
 
 void CGrpHeld::OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point) 
 {
-	((CHeld*)m_pMember[m_iAktiverHeld])->m_pRucksack->OnLButtonDown(pDC, nFlags, point);
+	((CHeld*)m_pMember[m_iAktiverHeld])->GetRucksack()->OnLButtonDown(pDC, nFlags, point);
 }
 
 bool CGrpHeld::SetzeModus(CDC* pDC, int iModus)
@@ -162,7 +141,7 @@ bool CGrpHeld::SetzeModus(CDC* pDC, int iModus)
 		if (iModus == RUCKSACK)
 			if (m_pMember[iIndex] != NULL)
 			{
-				((CHeld*)m_pMember[iIndex])->m_pRucksack->SetzeModusExtend(MOD_EXT_NORMAL);
+				((CHeld*)m_pMember[iIndex])->GetRucksack()->SetzeModusExtend(MOD_EXT_NORMAL);
 				((CHeld*)m_pMember[iIndex])->RucksackZeichnen(pDC);
 			}
 		return true;

@@ -40,14 +40,10 @@ public:
 	void AttackModeWithDmg(int damage);
 	void EndAttack();
 
+	int GetDealingDamage() { return m_dealingDmg; }
+
 	// TODO möglichst viel nach PROTECTED
-
-	int m_SpeedDelay; // 0 = Schnellstes (Zyklen bis zur Aktion)
-	
-	int m_ApproxDmg; // AKTIV - Durchschnittlicher Schaden plus minus random
-	int m_dealingDmg; // AKTIV - tatsächlicher aktueller Schaden, zur Anzeige.
 	int m_iReceivedDmg; // PASSIV- Erhaltener Schaden, zur Anzeige.
-
 	int m_chrDirection;	// initial und bei Grp.-Bewegung gleich der Gruppenvariable; ändert sich nur bei angriffen
 
 
@@ -58,6 +54,9 @@ public:
 
 	// Generierte Nachrichtenzuordnungsfunktionen
 protected:
+	int m_ApproxDmg; // AKTIV - Durchschnittlicher Schaden plus minus random
+	int m_SpeedDelay; // 0 = Schnellstes (Zyklen bis zur Aktion)
+	int m_dealingDmg; // AKTIV - tatsächlicher aktueller Schaden, zur Anzeige.
 	bool m_attacking = false;
 	CDC* m_pDC;
 
@@ -67,7 +66,6 @@ protected:
 
 	SUBPOS_ABSOLUTE m_subPosition;
 	int m_iReady;
-
 
 };
 

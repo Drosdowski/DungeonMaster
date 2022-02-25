@@ -361,7 +361,6 @@ void CDMView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CDMView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) 
 {
-	// TODO: Add your message handler code here and/or call default
 	CView::OnKeyUp(nChar, nRepCnt, nFlags);
 }
 
@@ -484,7 +483,7 @@ void CDMView::UpdateGrafik()
 			CHeld* pHeld = pGrpHeroes->GetAttackingHero();
 			if (pHeld)
 			{
-				ActionDamageZeichnen(pDC_, pHeld->m_dealingDmg);
+				ActionDamageZeichnen(pDC_, pHeld->GetDealingDamage());
 			}
 		}
 		int iActiveWizard = pGrpHeroes->GetActiveWizard();

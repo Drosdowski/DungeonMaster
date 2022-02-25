@@ -25,6 +25,6 @@ CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
 	default:
 		break;
 	}
-
+	return NULL;
 
 }

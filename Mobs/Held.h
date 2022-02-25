@@ -39,13 +39,14 @@ public:
 
 	int CalcDmg(int ID, CGrpChar* pOpponents);
 
+	CRucksack* GetRucksack() { return m_pRucksack; }
+
 // Implementation
 public:
 	virtual bool Altern();
 	virtual ~CHeld();
 
 	bool m_bAktiv;
-	CRucksack* m_pRucksack; // todo raus hier! Parameter mitgeben!
 
 protected:
 
@@ -55,6 +56,7 @@ protected:
 	int m_iFood;
 	int m_iWater;
 private:
+	CRucksack* m_pRucksack;
 	COLORREF m_Farbe[5];
 	int m_iIndex;
 	int maxFood = 200;

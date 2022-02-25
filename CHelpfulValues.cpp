@@ -80,6 +80,15 @@ SUBPOS_ABSOLUTE CHelpfulValues::GetRelativeSubPosActive(SUBPOS opponentPos, int 
 	return pos_abs;
 }
 
+SUBPOS_ABSOLUTE CHelpfulValues::GetRelativeSubPosPassive(SUBPOS pos, int heroDir) {
+	SUBPOS_ABSOLUTE pos_abs = GetAbsPosBySubposWhenFacingNorth(pos);
+	for (int turns = 0; turns < heroDir; turns++)
+	{
+		pos_abs = LeftFrom(pos_abs);
+	}
+	return pos_abs;
+}
+
 SUBPOS CHelpfulValues::GetRelativeSubPosActive(SUBPOS_ABSOLUTE pos_abs, int heroDir) {
 	for (int turns = 0; turns < heroDir; turns++)
 	{

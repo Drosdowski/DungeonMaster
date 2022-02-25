@@ -26,6 +26,7 @@ protected:
 
 // Operationen
 public:
+	void SetNewCharOnNextFreePos(int nr);
 	int HoleRichtung() {return m_grpDirection;};
 	void SetzeRichtung(int richt) { m_grpDirection = richt; }
 	VEKTOR HolePosition() {return m_posPosition;};

@@ -16,6 +16,7 @@ public:
 	SUBPOS static GetRelativeSubPosPassive(SUBPOS_ABSOLUTE pos, int heroDir);
 
 	SUBPOS_ABSOLUTE static GetRelativeSubPosActive(SUBPOS opponentPos, int heroDir);
+	SUBPOS_ABSOLUTE  static GetRelativeSubPosPassive(SUBPOS pos, int heroDir);
 	SUBPOS_ABSOLUTE static RightFrom(SUBPOS_ABSOLUTE pos);
 	SUBPOS_ABSOLUTE static LeftFrom(SUBPOS_ABSOLUTE pos);
 

@@ -102,7 +102,7 @@ CCharacter* CGrpChar::NearestTarget(VEKTOR hisPos) {
 
 void CGrpChar::DamageFrom(CCharacter* pEnemy, VEKTOR hisPos, bool areaDmg) {
 	if (pEnemy && pEnemy->isAttacking()) {
-		int dmg = pEnemy->m_dealingDmg;
+		int dmg = pEnemy->GetDealingDamage();
 		DoDamage(dmg, hisPos, areaDmg);
 		return;
 	}
@@ -126,8 +126,7 @@ VEKTOR CGrpChar::HoleZielFeld(int iRichtung)
 	int sx = m_values->m_stx[m_grpDirection];
 	int sy = m_values->m_sty[m_grpDirection];
 
-	VEKTOR WunschPos;
-	WunschPos.z = m_posPosition.z;
+	VEKTOR WunschPos = {0,0,m_posPosition.z };
 
 	switch (iRichtung)
 	{
@@ -189,4 +188,30 @@ void CGrpChar::Drehen(int iRichtung)
 
 }
 
+void CGrpChar::SetNewCharOnNextFreePos(int nr) {
+
+	// TODO relative positionen hier !!
+	bool lv, rv, lh, rh;
+	lv = rv = lh = rh = false;
+	SUBPOS pos = NONE;	// Freien Platz suchen
+	for (int i = 1; i < 5; i++)
+		if ((i != nr) && (m_pMember[i] != NULL))
+		{
+			pos = CHelpfulValues::GetRelativeSubPosActive(m_pMember[i]->HoleSubPosition(), m_grpDirection);
+			if (pos == LINKSVORNE) lv = true;
+			else if (pos == RECHTSVORNE) rv = true;
+			else if (pos == LINKSHINTEN) lh = true;
+			else if (pos == RECHTSHINTEN) rh = true;
+		}
+	if (!lv)
+		pos = LINKSVORNE;
+	else if (!rv)
+		pos = RECHTSVORNE;
+	else if (!lh)
+		pos = LINKSHINTEN;
+	else if (!rh)
+		pos = RECHTSHINTEN;
+
+	m_pMember[nr]->SetzeSubPosition(CHelpfulValues::GetRelativeSubPosPassive(pos, m_grpDirection));
+}
 
