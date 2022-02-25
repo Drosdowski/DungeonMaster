@@ -393,17 +393,11 @@ IDB_DOOR_WOOD_2         BITMAP                  "res\\Door_Wood_2.bmp"
 
 IDB_DOOR_WOOD_3         BITMAP                  "res\\Door_Wood_3.bmp"
 
-IDB_DOOR_WOOD_BACHED    BITMAP                  "res\\Door_Mask_Bashed.bmp"
+IDB_DOOR_WOOD_BASHED    BITMAP                  "res\\Door_Mask_Bashed.bmp"
 
 IDB_ITEM3D_APPLE        BITMAP                  "res\\Item_3d_Apple.bmp"
 
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// PNG
-//
-
-
+IDB_ITEM3D_BREAD        BITMAP                  "res\\Item_3d_Bread.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

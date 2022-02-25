@@ -257,6 +257,7 @@
     <Image Include="res\Items47.bmp" />
     <Image Include="res\Items48.bmp" />
     <Image Include="res\Item_3d_Apple.bmp" />
+    <Image Include="res\Item_3d_Bread.bmp" />
     <Image Include="res\Kram.bmp" />
     <Image Include="res\LeverDown_Front.bmp" />
     <Image Include="res\LeverDown_Right.bmp" />

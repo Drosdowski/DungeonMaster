@@ -304,7 +304,12 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 	if (misc) {
 		int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
 	
-		CBitmap* bmp = m_pItem3DPic->GetApple();
+		CBitmap* bmp;
+		if (misc->GetType() == CMiscellaneous::ItemType::Apple)
+			bmp = m_pItem3DPic->GetApple();
+		else
+			bmp = m_pItem3DPic->GetBread();
+
 		BITMAP bmpInfo;
 		bmp->GetBitmap(&bmpInfo);
 		double faktor = m_pPictures->getFaktor(ebene);

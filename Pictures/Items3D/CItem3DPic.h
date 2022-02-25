@@ -10,11 +10,13 @@ public:
 
 
 	CBitmap* GetApple() { return m_pApple; }
+	CBitmap* GetBread() { return m_pBread; }
 
 
 private:
 	void InitBitmap();
 
 	CBitmap* m_pApple;
+	CBitmap* m_pBread;
 };
 

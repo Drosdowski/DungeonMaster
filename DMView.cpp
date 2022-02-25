@@ -17,6 +17,7 @@
 #include <CScreenCoords.h>
 #include "CHelpfulValues.h"
 #include <winuser.rh>
+#include <Items/CMiscellaneous.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -208,7 +209,12 @@ void CDMView::ParseClickItem(CPoint point) {
 	if (itemRegionClicked != NONE) {
 		if (topItem != NULL) {
 			// etwas genommen!
-			CBitmap* bmp = m_pRaumView->Get3DPics()->GetApple();
+			CBitmap* bmp;
+			if (topItem->GetType() == CMiscellaneous::ItemType::Apple)
+				bmp = m_pRaumView->Get3DPics()->GetApple();
+			else
+				bmp = m_pRaumView->Get3DPics()->GetBread();
+
 			HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
 			HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
 			SetSystemCursor(hCursor, OCR_NORMAL);

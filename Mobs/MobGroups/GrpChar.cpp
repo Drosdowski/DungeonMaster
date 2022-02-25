@@ -190,7 +190,6 @@ void CGrpChar::Drehen(int iRichtung)
 
 void CGrpChar::SetNewCharOnNextFreePos(int nr) {
 
-	// TODO relative positionen hier !!
 	bool lv, rv, lh, rh;
 	lv = rv = lh = rh = false;
 	SUBPOS pos = NONE;	// Freien Platz suchen

@@ -574,6 +574,9 @@
     <Image Include="res\Door_Mask_Bashed.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Item_3d_Bread.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
