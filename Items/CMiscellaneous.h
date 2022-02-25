@@ -14,6 +14,7 @@ public:
 		return (ItemType)m_type;
 	}
 	
+	bool inAir;
 
 private:
 	int m_index;

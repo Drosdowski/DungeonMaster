@@ -44,6 +44,7 @@ public:
 	void SetType(FeldTyp iTyp);
 
 	void PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index);
+	void ThrowMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index);
 	//void PutMisc(CMiscellaneous* misc, SUBPOS subPos);
 	CMiscellaneous* TakeMisc(SUBPOS_ABSOLUTE subPos);
 	std::stack<CMiscellaneous*> GetMisc(SUBPOS_ABSOLUTE index) { return m_pMiscellaneous[index]; }

@@ -128,9 +128,10 @@ void CField::SetType(FeldTyp fieldType, CStairs::StairType stairsType, bool east
 	}
 }
 
-//void CField::PutMisc(CMiscellaneous* misc, SUBPOS subPos) {
-//	PutMisc(misc, CHelpfulValues::GetIndexBySubpos(subPos));
-//}
+void CField::ThrowMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index) {
+	misc->inAir = true;
+	m_pMiscellaneous[index].push(misc);
+}
 
 void CField::PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index) {
 	m_pMiscellaneous[index].push(misc);

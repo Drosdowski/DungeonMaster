@@ -16,6 +16,7 @@
 #include "ColorCursor/ColorCursor.h"
 #include <CScreenCoords.h>
 #include "CHelpfulValues.h"
+#include "SpecialTile/CDoor.h"
 #include <winuser.rh>
 #include <Items/CMiscellaneous.h>
 
@@ -173,7 +174,36 @@ void CDMView::ParseClickHeroes(CPoint point) {
 	}
 }
 
-void CDMView::ParseClickItem(CPoint point) {
+/// <summary>
+/// Werfen
+/// </summary>
+/// <param name="point"></param>
+void CDMView::ParseClickAir(CPoint point) {
+	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+	CMiscellaneous* pItemInHand = grpHelden->GetItemInHand();
+
+	if (pItemInHand != NULL) {
+		SUBPOS airRegionClicked = CScreenCoords::CheckHitAir(point);
+		if (airRegionClicked != NONE) {
+			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
+			if (FeldVorHeld) {
+				if (FeldVorHeld->HoleTyp() == WALL || (FeldVorHeld->HoleTyp() == DOOR && FeldVorHeld->HoleDoor()->getState() != CDoor::DoorState::OPEN)) {
+					// skip, nix.
+				}
+				else 
+				{
+					SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(airRegionClicked, grpHelden->HoleRichtung());
+					FeldVorHeld->ThrowMisc(pItemInHand, itemRegionReal);
+					grpHelden->EmptyHand();
+				}
+			}
+
+		}
+	}
+
+}
+
+void CDMView::ParseClickFloor(CPoint point) {
 	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 	CMiscellaneous* pItemInHand = grpHelden->GetItemInHand();
 
@@ -239,7 +269,8 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 		ParseClickArrows(point);
 		if (grpHelden && grpHelden->GetNumberOfHeroes() > 0)
 		{
-			ParseClickItem(point);
+			ParseClickFloor(point);
+			ParseClickAir(point);
 			ParseClickWizard(point);
 			ParseClickAction(point);
 			ParseClickHeroes(point);

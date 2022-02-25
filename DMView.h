@@ -83,7 +83,8 @@ protected:
 	void ParseClickWizard(CPoint point);
 	void ParseClickAction(CPoint point);
 	void ParseClickHeroes(CPoint point);
-	void ParseClickItem(CPoint point);
+	void ParseClickFloor(CPoint point);
+	void ParseClickAir(CPoint point);
 
 };
 
