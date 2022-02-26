@@ -121,6 +121,8 @@ bool InRect(CPoint p, int x1, int y1, int x2, int y2);
 #define MainAreaWidth 448
 #define MainAreaHeight 205
 
+#define sign(a) ( ( (a) < 0 )  ?  -1   : ( (a) > 0 ) )
+
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.

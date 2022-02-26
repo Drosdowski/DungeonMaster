@@ -4,14 +4,52 @@
 CHelpfulValues::CHelpfulValues() {
 	for (int i = 0; i < 4; i++)
 	{
-		m_stx[i] = int(cos(i * PI / 2));  // 0,  1, 0, -1
-		m_sty[i] = int(sin(i * PI / 2));  // 1, 0, -1, 0
+		m_stx[i] = stx(i);
+		m_sty[i] = sty(i);
 	}
 }
 
+int CHelpfulValues::stx(int i) {
+	return int(cos(i * PI / 2)); // 0,  1, 0, -1;
+}
+
+int CHelpfulValues::sty(int i) {
+	return int(sin(i * PI / 2)); // 1, 0, -1, 0;
+}
 int CHelpfulValues::OppositeDirection(int direction) {
 	return (direction + 2) % 4;
 }
+
+VEKTOR CHelpfulValues::MakeVektor(int direction, int force) {
+	return VEKTOR{ stx(direction) * force, -sty(direction) * force, 0 };
+}
+
+
+SUBPOS_ABSOLUTE CHelpfulValues::FindNextSubposWithoutFieldChange(SUBPOS_ABSOLUTE posAbs, VEKTOR force) {
+	int xV = force.x;
+	int yV = force.y;
+	// Annahme: nur einer ist gesetzt!
+	switch (posAbs) {
+	case NORTHWEST:
+		if (xV > 0) return NORTHEAST;
+		if (yV > 0) return SOUTHWEST;
+		break;
+	case NORTHEAST:
+		if (xV < 0) return NORTHWEST;
+		if (yV > 0) return SOUTHEAST;
+		break;
+	case SOUTHWEST:
+		if (xV > 0) return SOUTHEAST;
+		if (yV < 0) return NORTHWEST;
+		break;
+	case SOUTHEAST:
+		if (xV < 0) return SOUTHWEST;
+		if (yV < 0) return NORTHEAST;
+		break;
+	}
+	return MIDDLE;
+}
+
 
 
 SUBPOS_ABSOLUTE CHelpfulValues::GetAbsPosBySubposWhenFacingNorth(SUBPOS pos) {

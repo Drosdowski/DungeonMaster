@@ -13,8 +13,10 @@ public:
 	ItemType GetType() {
 		return (ItemType)m_type;
 	}
+
+	bool IsFlying();
 	
-	bool inAir;
+	VEKTOR m_flyForce;
 
 private:
 	int m_index;

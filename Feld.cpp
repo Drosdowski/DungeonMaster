@@ -100,6 +100,16 @@ void CField::RemoveMonsterGroup() {
 	m_pGrpMonster = NULL;
 }
 
+bool CField::Blocked() {
+	if (m_iTyp == WALL) return true;
+	if (m_iTyp == DOOR) {
+		CDoor* door = HoleDoor();
+		if (door && door->getState() == CDoor::DoorState::CLOSED) return true;
+	}
+	return false;
+}
+
+
 void CField::SetMonsterGroup(CGrpMonster* pGrpMonster) {
 	m_pGrpMonster = pGrpMonster;
 }
@@ -128,8 +138,8 @@ void CField::SetType(FeldTyp fieldType, CStairs::StairType stairsType, bool east
 	}
 }
 
-void CField::ThrowMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index) {
-	misc->inAir = true;
+void CField::ThrowMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index, VEKTOR force) {
+	misc->m_flyForce = force;
 	m_pMiscellaneous[index].push(misc);
 }
 

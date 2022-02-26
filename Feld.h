@@ -36,6 +36,7 @@ public:
 	void RemoveMonsterGroup();
 	void SetMonsterGroup(CGrpMonster* pGrpMonster);
 	FeldTyp HoleTyp()	{ return m_iTyp;};
+	bool Blocked();
 	CFieldDecoration* HoleDeko(int side) { return m_pWallDecoration[side]; }
 	CDoor* HoleDoor() { return m_pDoor;  }
 	CStairs* HoleStairs() { return m_pStairs;  }
@@ -44,7 +45,7 @@ public:
 	void SetType(FeldTyp iTyp);
 
 	void PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index);
-	void ThrowMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index);
+	void ThrowMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index, VEKTOR force);
 	//void PutMisc(CMiscellaneous* misc, SUBPOS subPos);
 	CMiscellaneous* TakeMisc(SUBPOS_ABSOLUTE subPos);
 	std::stack<CMiscellaneous*> GetMisc(SUBPOS_ABSOLUTE index) { return m_pMiscellaneous[index]; }

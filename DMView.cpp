@@ -187,14 +187,17 @@ void CDMView::ParseClickAir(CPoint point) {
 		if (airRegionClicked != NONE) {
 			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
 			if (FeldVorHeld) {
-				if (FeldVorHeld->HoleTyp() == WALL || (FeldVorHeld->HoleTyp() == DOOR && FeldVorHeld->HoleDoor()->getState() != CDoor::DoorState::OPEN)) {
+				if (FeldVorHeld->Blocked()) {
 					// skip, nix.
 				}
 				else 
 				{
-					SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(airRegionClicked, grpHelden->HoleRichtung());
-					FeldVorHeld->ThrowMisc(pItemInHand, itemRegionReal);
+					int grpDir = grpHelden->HoleRichtung();
+					SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(airRegionClicked, grpDir);
+					VEKTOR force = CHelpfulValues::MakeVektor(grpDir, 3);
+					FeldVorHeld->ThrowMisc(pItemInHand, itemRegionReal, force);
 					grpHelden->EmptyHand();
+					::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
 				}
 			}
 
