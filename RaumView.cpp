@@ -518,33 +518,42 @@ void CRaumView::MoveAnythingNearby() {
 					pDoor->Toggle();
 				}
 			}
-			for (int i = 0; i < 4; i++) {
-				SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)i;
+			// Flag setzen, Item muss sich ggf. noch bewegen
+			for (int s = 0; s < 4; s++) {
+				SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
+				std::stack<CMiscellaneous*> pile = field->GetMisc(posAbs);
+				if (!pile.empty()) {
+					CMiscellaneous* topItem = pile.top();
+					topItem->ResethasMoved();
+				}
+			}
+			for (int s = 0; s < 4; s++) {
+				SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
 				std::stack<CMiscellaneous*> pile = field->GetMisc(posAbs);
 				if (!pile.empty()) {
 					CMiscellaneous* topItem = pile.top(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Items je Feld
-					if (topItem-> IsFlying()) {
+					if (topItem-> IsFlying() && !topItem->HasMovedThisTick()) {
 						// fliegendes Item gefunden
 						SUBPOS_ABSOLUTE newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, topItem->m_flyForce);
-						std::stack<CMiscellaneous*> pile;
+						
 						if (newPos == MIDDLE) {
 							// Feld verlassen
 							CField* newField = m_pMap->GetField(i + sign(topItem->m_flyForce.x), j + sign(topItem->m_flyForce.y), held.z);
 							if (!newField->Blocked()) {
 								// westlich von west ist ost => anders rum subpos suchen
-								pile.pop(); // vom Feld weg
+								topItem = field->TakeMisc(posAbs);
 								newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topItem->m_flyForce.x, -topItem->m_flyForce.y, 0 });
-								pile = newField->GetMisc(newPos);
-								pile.push(topItem);
+								newField->PutMisc(topItem, newPos);
 							}
 							else {
+								// nicht bewegen, sondern stehen bleiben (unten)
 								topItem->m_flyForce = { 0,0,0 };
 							}
 						}
 						else {
-							pile.pop(); // vom Feld weg
-							pile = field->GetMisc(newPos);
-							pile.push(topItem);
+							topItem = field->TakeMisc(posAbs);
+							topItem->ReduceSpeed();
+							field->PutMisc(topItem, newPos);
 						}
 					}
 				}

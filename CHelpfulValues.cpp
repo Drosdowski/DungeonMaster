@@ -21,7 +21,13 @@ int CHelpfulValues::OppositeDirection(int direction) {
 }
 
 VEKTOR CHelpfulValues::MakeVektor(int direction, int force) {
-	return VEKTOR{ stx(direction) * force, -sty(direction) * force, 0 };
+
+	switch (direction) {
+	case 0: return VEKTOR{ 0, -force, 0 };
+	case 1: return VEKTOR{ force, 0, 0 };
+	case 2: return VEKTOR{ 0, force, 0 };
+	case 3: return VEKTOR{ -force, 0, 0 };
+	}
 }
 
 

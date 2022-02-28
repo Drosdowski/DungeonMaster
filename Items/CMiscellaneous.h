@@ -15,6 +15,10 @@ public:
 	}
 
 	bool IsFlying();
+	bool HasMovedThisTick();
+	void ResethasMoved();
+	void ReduceSpeed();
+
 	
 	VEKTOR m_flyForce;
 
@@ -22,5 +26,6 @@ private:
 	int m_index;
 	int m_type;
 	int m_subtype;
+	bool m_done;
 };
 

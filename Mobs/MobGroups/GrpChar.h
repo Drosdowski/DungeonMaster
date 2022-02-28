@@ -51,7 +51,7 @@ public:
 	void Drehen(int iRichtung);
 	virtual ~CGrpChar();
 protected:
-	int m_grpDirection;
+	int m_grpDirection; // TODO enum bauen
 	VEKTOR m_posPosition;
 	CHelpfulValues* m_values;
 	CCharacter* NearestTarget(VEKTOR hisPos);

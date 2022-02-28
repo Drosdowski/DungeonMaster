@@ -6,6 +6,7 @@
 #include "..\Character.h"
 #include "GrpChar.h"
 #include "CHelpfulValues.h"
+#include <iostream>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -117,6 +118,8 @@ void CGrpChar::Laufen(VEKTOR WunschPos) {
 			m_pMember[i]->ActionDone();
 		}
 	m_posPosition = WunschPos;	
+	std::cout << "New Position: " << m_posPosition.x << " - " << m_posPosition.y << std::endl;
+
 }
 
 VEKTOR CGrpChar::HoleZielFeld(int iRichtung)
