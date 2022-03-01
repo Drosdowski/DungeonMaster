@@ -335,9 +335,9 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 					faktor = m_pPictures->getFaktor(ebene+1);
 				}
 				CPoint pos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, wallMiddlePos, subPos, faktor, xx, ebene);
-				//if (misc->IsFlying() && pos.y > 0) {
-					//pos.y = 360 - pos.y;
-				//}
+				if (misc->IsFlying() && pos.y != 0) {
+					pos.y = 250 - pos.y / 2; 
+				}
 				cdc->SelectObject(bmp);
 				DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
 				/*test(pDC, 130, 370);

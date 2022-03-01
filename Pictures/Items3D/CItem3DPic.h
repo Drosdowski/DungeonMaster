@@ -7,7 +7,6 @@ public:
 	~CItem3DPic();
 
 	CPoint GetFloorMiddle(int x, int ebene);
-	CPoint GetCeilingMiddle(int x, int ebene);
 
 
 	CBitmap* GetApple() { return m_pApple; }
