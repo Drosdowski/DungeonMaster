@@ -142,27 +142,64 @@ SUBPOS CHelpfulValues::GetRelativeSubPosActive(SUBPOS_ABSOLUTE pos_abs, int hero
 }
 
 
-CPoint CHelpfulValues::CalcRelSubPosition(BITMAP bmpInfo, CPoint wallMiddlePos, SUBPOS subPos, double faktor, int xx) 
+CPoint CHelpfulValues::CalcRelSubFloorPosition(BITMAP bmpInfo, CPoint wallMiddlePos, SUBPOS subPos, double faktor, int xx, int ebene)
 {
 	int posX = wallMiddlePos.x;
-	int posY = wallMiddlePos.y;
+	int posY = 0; // = wallMiddlePos.y;
 
-	if (subPos == LINKSVORNE) {
-		posX -= (int)(90 * faktor);
-		posY += (int)(25 * faktor);
+	bool vorne = (subPos == LINKSVORNE || subPos == RECHTSVORNE);
+	int xFaktor = (subPos == LINKSVORNE || subPos == LINKSHINTEN) ? -1 : 1;
+
+	/*Coords - Mitte des Items
+		Ebene | x   |  y	  (225 - x)
+		0	  | 130 | 370		95
+		1v	  | 150 | 325		75
+		1h	  | 165 | 300		60
+		2v	  | 177 | 280		48
+		2h	  | 185 | 265		40
+		3v	  | 191 | 255		34 */
+
+	switch (ebene) {
+	case 0:
+		if (!vorne) {
+			posX += (int)xFaktor * 95;
+			posY = 370;
+		}
+		break;
+	case 1:
+		if (vorne) {
+			posX += (int)xFaktor * 75;
+			posY = 325;
+		}
+		else {
+			posX += (int)xFaktor * 60;
+			posY = 300;
+		}
+		break;
+	case 2:
+		if (vorne) {
+			posX += (int)xFaktor * 48;
+			posY = 280;
+		}
+		else {
+			posX += (int)xFaktor * 40;
+			posY = 265;
+		}
+		break;
+	case 3:
+		if (vorne) {
+			posX += (int)xFaktor * 34;
+			posY = 255;
+		}
+		break;
 	}
-	else if (subPos == RECHTSVORNE) {
-		posX += (int)(90 * faktor);
-		posY += (int)(25 * faktor);
+
+	if (posY > 0) {
+		posX -= (int)(bmpInfo.bmWidth * faktor); // entspr- halber Breite, später Faktor 2
+		posY -= (int)(bmpInfo.bmHeight * faktor);
+		posY -= 55;
 	}
-	else if (subPos == LINKSHINTEN) {
-		posX -= (int)(75 * faktor);
-		posY -= (int)(15 * faktor);
-	}
-	else if (RECHTSHINTEN) {
-		posX += (int)(75 * faktor);
-		posY -= (int)(15 * faktor);
-	}
+
 	return CPoint(posX, posY);
 }
 

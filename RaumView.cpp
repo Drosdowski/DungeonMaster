@@ -298,6 +298,11 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xx, int ebene, int richt, CM
 }
 
 
+void test(CDC* pDC, int x, int y) {
+	y = y - 55;
+	pDC->Ellipse(x - 5, y - 5, x + 5, y + 5);
+}
+
 void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, int heroDir, std::stack<CMiscellaneous*> pile) {
 	// TODO - besser als "nur oberstes Malen... "
 	CMiscellaneous* misc = pile.top();
@@ -314,10 +319,14 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 		bmp->GetBitmap(&bmpInfo);
 		double faktor = m_pPictures->getFaktor(ebene);
 
-		CPoint wallMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
+		CPoint wallMiddlePos;
+		//if (misc->IsFlying()) {
+			//wallMiddlePos = m_pItem3DPic->GetCeilingMiddle(xxx, ebene);
+		//}
+		//else {
+			wallMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
+		//}
 		if (wallMiddlePos.x > 0 || wallMiddlePos.y > 0) {
-			wallMiddlePos.x -= (int)(bmpInfo.bmWidth * faktor); // entspr- halber Breite, später Faktor 2
-			wallMiddlePos.y -= (int)(bmpInfo.bmHeight * faktor);
 			SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(itemSubPos, heroDir); // todo subpos angleichen
 			if (ebene > 0 || subPos == LINKSHINTEN || subPos == RECHTSHINTEN)
 			{			
@@ -325,15 +334,31 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 				{
 					faktor = m_pPictures->getFaktor(ebene+1);
 				}
-				CPoint pos = CHelpfulValues::CalcRelSubPosition(bmpInfo, wallMiddlePos, subPos, faktor, xx);
-
+				CPoint pos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, wallMiddlePos, subPos, faktor, xx, ebene);
+				//if (misc->IsFlying() && pos.y > 0) {
+					//pos.y = 360 - pos.y;
+				//}
 				cdc->SelectObject(bmp);
 				DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
+				/*test(pDC, 130, 370);
+				test(pDC, 150, 325);
+				test(pDC, 165, 300);
+				test(pDC, 177, 280);
+				test(pDC, 185, 265);
+				test(pDC, 191, 255);
+
+				test(pDC, 320, 370);
+				test(pDC, 300, 325);
+				test(pDC, 285, 300);
+				test(pDC, 273, 280);
+				test(pDC, 265, 265);
+				test(pDC, 259, 255);*/
 			}
 		}
 
 	}
 }
+
 
 
 void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, CDC* cdc, COLORREF col) {
@@ -488,76 +513,97 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 	return toPos;
 }
 
+void CRaumView::MoveMonsters(int i, int j, VEKTOR held) {
+	CField* field = m_pMap->GetField(i, j, held.z);
+	CGrpMonster* pGrpMon = field->GetMonsterGroup();
+	if (pGrpMon)
+	{
+		if (!pGrpMon->Altern()) {
+			// Gruppe ausgestorben!
+			field->RemoveMonsterGroup();
+		}
+		else if (pGrpMon->IstBereit())
+		{
+			VEKTOR target = MonsterMoveOrAttack(pGrpMon);
+			if (target.x != i || target.y != j) {
+				CField* targetField = m_pMap->GetField(target);
+				field->SetMonsterGroup(NULL);
+				targetField->SetMonsterGroup(pGrpMon);
+			}
+			pGrpMon->ActionDone();
+		}
+	}
+}
+
+void CRaumView::MoveDoors(int i, int j, VEKTOR held) {
+	CField* field = m_pMap->GetField(i, j, held.z);
+	CDoor* pDoor = field->HoleDoor();
+	if (pDoor) {
+		if ((pDoor->getState() == CDoor::DoorState::OPENING) ||
+			(pDoor->getState() == CDoor::DoorState::CLOSING))
+		{
+			pDoor->Toggle();
+		}
+	}
+}
+
+void CRaumView::PrepareMoveItems(int i, int j, VEKTOR held) {
+	CField* field = m_pMap->GetField(i, j, held.z);
+	// Flag setzen, Item muss sich ggf. noch bewegen
+	for (int s = 0; s < 4; s++) {
+		SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
+		std::stack<CMiscellaneous*> pile = field->GetMisc(posAbs);
+		if (!pile.empty()) {
+			CMiscellaneous* topItem = pile.top();
+			topItem->ResethasMoved();
+		}
+	}
+}
+
+void CRaumView::MoveItems(int i, int j, VEKTOR held) {
+	CField* field = m_pMap->GetField(i, j, held.z);
+	
+	for (int s = 0; s < 4; s++) {
+		SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
+		std::stack<CMiscellaneous*> pile = field->GetMisc(posAbs);
+		if (!pile.empty()) {
+			CMiscellaneous* topItem = pile.top(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Items je Feld
+			if (topItem->IsFlying() && !topItem->HasMovedThisTick()) {
+				// fliegendes Item gefunden
+				SUBPOS_ABSOLUTE newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, topItem->m_flyForce);
+
+				if (newPos == MIDDLE) {
+					// Feld verlassen
+					CField* newField = m_pMap->GetField(i + sign(topItem->m_flyForce.x), j + sign(topItem->m_flyForce.y), held.z);
+					if (!newField->Blocked()) {
+						// westlich von west ist ost => anders rum subpos suchen
+						topItem = field->TakeMisc(posAbs);
+						newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topItem->m_flyForce.x, -topItem->m_flyForce.y, 0 });
+						newField->PutMisc(topItem, newPos);
+					}
+					else {
+						// nicht bewegen, sondern stehen bleiben (unten)
+						topItem->m_flyForce = { 0,0,0 };
+					}
+				}
+				else {
+					topItem = field->TakeMisc(posAbs);
+					topItem->ReduceSpeed();
+					field->PutMisc(topItem, newPos);
+				}
+			}
+		}
+	}
+}
+
 void CRaumView::MoveAnythingNearby() {
 	VEKTOR held = m_pMap->GetHeroes()->GetPos();
 	for (int i = max(held.x - 4, 0); i < min(held.x + 4, m_pMap->GetMaxWidth(held.z)); i++) {
 		for (int j = max(held.y - 4, 0); j < min(held.y + 4, m_pMap->GetMaxHeight(held.z)); j++) {
-			CField* field = m_pMap->GetField(i, j, held.z);
-			CGrpMonster* pGrpMon = field->GetMonsterGroup();
-			if (pGrpMon)
-			{
-				if (!pGrpMon->Altern()) {
-					// Gruppe ausgestorben!
-					field->RemoveMonsterGroup();
-				} else if (pGrpMon->IstBereit())
-				{
-					VEKTOR target = MonsterMoveOrAttack(pGrpMon);
-					if (target.x != i || target.y != j) {
-						CField* targetField = m_pMap->GetField(target);
-						field->SetMonsterGroup(NULL);
-						targetField->SetMonsterGroup(pGrpMon);
-					}
-					pGrpMon->ActionDone();
-				}
-			}
-			CDoor* pDoor = field->HoleDoor();
-			if (pDoor) {
-				if ((pDoor->getState() == CDoor::DoorState::OPENING) ||
-					(pDoor->getState() == CDoor::DoorState::CLOSING))
-				{
-					pDoor->Toggle();
-				}
-			}
-			// Flag setzen, Item muss sich ggf. noch bewegen
-			for (int s = 0; s < 4; s++) {
-				SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
-				std::stack<CMiscellaneous*> pile = field->GetMisc(posAbs);
-				if (!pile.empty()) {
-					CMiscellaneous* topItem = pile.top();
-					topItem->ResethasMoved();
-				}
-			}
-			for (int s = 0; s < 4; s++) {
-				SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
-				std::stack<CMiscellaneous*> pile = field->GetMisc(posAbs);
-				if (!pile.empty()) {
-					CMiscellaneous* topItem = pile.top(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Items je Feld
-					if (topItem-> IsFlying() && !topItem->HasMovedThisTick()) {
-						// fliegendes Item gefunden
-						SUBPOS_ABSOLUTE newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, topItem->m_flyForce);
-						
-						if (newPos == MIDDLE) {
-							// Feld verlassen
-							CField* newField = m_pMap->GetField(i + sign(topItem->m_flyForce.x), j + sign(topItem->m_flyForce.y), held.z);
-							if (!newField->Blocked()) {
-								// westlich von west ist ost => anders rum subpos suchen
-								topItem = field->TakeMisc(posAbs);
-								newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topItem->m_flyForce.x, -topItem->m_flyForce.y, 0 });
-								newField->PutMisc(topItem, newPos);
-							}
-							else {
-								// nicht bewegen, sondern stehen bleiben (unten)
-								topItem->m_flyForce = { 0,0,0 };
-							}
-						}
-						else {
-							topItem = field->TakeMisc(posAbs);
-							topItem->ReduceSpeed();
-							field->PutMisc(topItem, newPos);
-						}
-					}
-				}
-			}
+			MoveMonsters(i, j, held);
+			MoveDoors(i, j, held);
+			PrepareMoveItems(i, j, held);
+			MoveItems(i, j, held);
 		}
 	}
 

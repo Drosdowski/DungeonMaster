@@ -84,6 +84,10 @@ protected:
 private:
 	int wallXFactor[5];
 	CHelpfulValues* m_values;
+	void MoveMonsters(int i, int j, VEKTOR held);
+	void MoveDoors(int i, int j, VEKTOR held);
+	void PrepareMoveItems(int i, int j, VEKTOR held);
+	void MoveItems(int i, int j, VEKTOR held);
 };
 
 /////////////////////////////////////////////////////////////////////////////

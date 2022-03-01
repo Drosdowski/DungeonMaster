@@ -49,3 +49,10 @@ CPoint CItem3DPic::GetFloorMiddle(int x, int ebene) {
 
 	return middle;
 }
+
+CPoint CItem3DPic::GetCeilingMiddle(int x, int ebene) {
+	CPoint middle = GetFloorMiddle(x, ebene);
+	if (middle.y > 0 )
+		middle.y = 360 - middle.y;
+	return middle;
+}
