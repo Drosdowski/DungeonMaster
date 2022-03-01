@@ -141,6 +141,9 @@
     <ClCompile Include="ColorCursor\ColorCursor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pictures\CPressurePadPic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -269,6 +272,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ColorCursor\ColorCursor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\CPressurePadPic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -575,6 +581,24 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Item_3d_Bread.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\SquarePressurePad_1F.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\SquarePressurePad_1L.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\SquarePressurePad_2F.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\SquarePressurePad_2L.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\SquarePressurePad_3F.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\SquarePressurePad_3L.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

@@ -129,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ColorCursor\ColorCursor.cpp" />
+    <ClCompile Include="Pictures\CPressurePadPic.cpp" />
     <ClCompile Include="Pictures\Items3D\CItem3DPic.cpp" />
     <ClCompile Include="CDungeonMap.cpp" />
     <ClCompile Include="Pictures\Items2D\CItemPic.cpp" />
@@ -181,6 +182,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColorCursor\ColorCursor.h" />
+    <ClInclude Include="Pictures\CPressurePadPic.h" />
     <ClInclude Include="Pictures\Items3D\CItem3DPic.h" />
     <ClInclude Include="CDungeonMap.h" />
     <ClInclude Include="Pictures\Items2D\CItemPic.h" />
@@ -280,6 +282,12 @@
     <Image Include="res\Skeleton_Back.bmp" />
     <Image Include="res\Skeleton_Front.bmp" />
     <Image Include="res\Skeleton_Right.bmp" />
+    <Image Include="res\SquarePressurePad_1F.bmp" />
+    <Image Include="res\SquarePressurePad_1L.bmp" />
+    <Image Include="res\SquarePressurePad_2F.bmp" />
+    <Image Include="res\SquarePressurePad_2L.bmp" />
+    <Image Include="res\SquarePressurePad_3F.bmp" />
+    <Image Include="res\SquarePressurePad_3L.bmp" />
     <Image Include="res\Stairs_Down0_Front.bmp" />
     <Image Include="res\Stairs_Down1_Front.bmp" />
     <Image Include="res\Stairs_Down1_Left.bmp" />

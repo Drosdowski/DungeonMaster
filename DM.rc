@@ -399,6 +399,18 @@ IDB_ITEM3D_APPLE        BITMAP                  "res\\Item_3d_Apple.bmp"
 
 IDB_ITEM3D_BREAD        BITMAP                  "res\\Item_3d_Bread.bmp"
 
+IDB_PRESSURE_PAD_1F     BITMAP                  "res\\SquarePressurePad_1F.bmp"
+
+IDB_PRESSURE_PAD_1L     BITMAP                  "res\\SquarePressurePad_1L.bmp"
+
+IDB_PRESSURE_PAD_2F     BITMAP                  "res\\SquarePressurePad_2F.bmp"
+
+IDB_PRESSURE_PAD_2L     BITMAP                  "res\\SquarePressurePad_2L.bmp"
+
+IDB_PRESSURE_PAD_3F     BITMAP                  "res\\SquarePressurePad_3F.bmp"
+
+IDB_PRESSURE_PAD_3L     BITMAP                  "res\\SquarePressurePad_3L.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

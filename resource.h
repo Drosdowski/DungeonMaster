@@ -91,6 +91,12 @@
 #define IDB_DOOR_WOOD_BASHED            260
 #define IDB_ITEM3D_APPLE                261
 #define IDB_ITEM3D_BREAD                262
+#define IDB_PRESSURE_PAD_1F             265
+#define IDB_PRESSURE_PAD_1L             266
+#define IDB_PRESSURE_PAD_2F             267
+#define IDB_PRESSURE_PAD_2L             268
+#define IDB_PRESSURE_PAD_3F             269
+#define IDB_PRESSURE_PAD_3L             270
 #define IDB_BITMAP_E0L                  1001
 #define IDB_BITMAP_E0LF                 1002
 #define IDB_BITMAP_E0R                  1004
@@ -119,7 +125,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        265
+#define _APS_NEXT_RESOURCE_VALUE        271
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101
