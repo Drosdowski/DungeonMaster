@@ -3,6 +3,7 @@
 #include "TinyXML/tinyxml.h"
 #include "Mobs/MobGroups/GrpHeld.h"
 #include "Items/CMiscellaneous.h"
+#include "Items/CActuator.h"
 #include "CDungeonMap.h"
 
 CDungeonMap::CDungeonMap()
@@ -26,6 +27,9 @@ CDungeonMap::~CDungeonMap()
 	delete m_doorType;
 	delete m_miscellaneousType;
 	delete m_miscellaneousSubtype;
+	delete m_actuatorType;
+	delete m_actionTarget;
+	delete m_actionType;
 }
 
 CField* CDungeonMap::GetField(int x, int y, int z) {
@@ -55,6 +59,18 @@ CField* CDungeonMap::ParseStairs(TiXmlElement* rootNode, VEKTOR pos) {
 		return new CField(pos, FeldTyp::STAIRS, CStairs::StairType::DOWN, (orientation != 0), NULL);
 	else
 		return new CField(pos, FeldTyp::STAIRS, CStairs::StairType::UP, (orientation != 0), NULL);
+}
+
+CField* CDungeonMap::ParsePit(TiXmlElement* rootNode, VEKTOR pos) {
+	/*int orientation;
+	int direction;
+	rootNode->QueryIntAttribute("direction", &direction);
+	rootNode->QueryIntAttribute("orientation", &orientation);
+	if (direction == 0)
+		return new CField(pos, FeldTyp::STAIRS, CStairs::StairType::DOWN, (orientation != 0), NULL);
+	else
+		return new CField(pos, FeldTyp::STAIRS, CStairs::StairType::UP, (orientation != 0), NULL);*/
+	return new CField(pos, FeldTyp::PIT, NULL);
 }
 
 CField* CDungeonMap::ParseDoor(TiXmlElement* rootNode, VEKTOR pos) {
@@ -95,8 +111,8 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	int hasObjects;
 	rootNode->QueryIntAttribute("has_objects", &hasObjects);
 		
-	// 0 = Wall , 1 == Empty, 3 = Stair, 4 == Door
-	if (type != 0 && type != 1 && type != 3 && type != 4)
+	// 0 = Wall , 1 == Empty, 2 = Pit, 3 = Stair, 4 == Door
+	if (type > 4)
 	{
 		type = 1; // Teleporter etc erstmal leer lassen
 	}
@@ -110,39 +126,72 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	else if (iFieldType == FeldTyp::STAIRS) {
 		
 		m_pFeld[x][y][etage] = ParseStairs(rootNode, pos);
-	}		
+	}
+	else if (iFieldType == FeldTyp::PIT) {
+		m_pFeld[x][y][etage] = ParsePit(rootNode, pos);
+	}
 	else
 		m_pFeld[x][y][etage] = new CField(pos, iFieldType, NULL); // etage 1 / index 30 => m_levelWidth[1] kaputt!
 	
-	if (hasObjects == 1) {
-		int msubtype, mtype = 0;
-		TiXmlElement* parentElement = rootNode->FirstChildElement();
-		while (parentElement)
-		{
-			const char* parent = parentElement->Value();
-			if (strcmp(parent, "items") == 0)
-			{ // 16851
-				TiXmlElement* miscItem = parentElement->FirstChildElement();
-				while (miscItem && strcmp(miscItem->Value(), "miscellaneous") == 0) 
-				{
-					int index, subPos;
-					miscItem->QueryIntAttribute("index", &index);
-					miscItem->QueryIntAttribute("position", &subPos);
-					mtype = m_miscellaneousType[index];
-					msubtype = m_miscellaneousSubtype[index];
-
-					CMiscellaneous* misc = new CMiscellaneous(index, mtype, msubtype);
-					m_pFeld[x][y][etage]->PutMisc(misc, (SUBPOS_ABSOLUTE)subPos);
-					miscItem = miscItem->NextSiblingElement();
-				}
-
-			}
-			parentElement = parentElement->NextSiblingElement();
-
-		}
+	if (hasObjects == 1) {		
+		ParseItems(rootNode, VEKTOR{x ,y, etage});
 	}
 }
 
+void CDungeonMap::ParseItems(TiXmlElement* rootNode, VEKTOR coords) {
+	int msubtype, mtype = 0;
+	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "items") == 0)
+		{ // 16851
+			TiXmlElement* miscItem = parentElement->FirstChildElement();
+			while (miscItem)
+			{
+				if (strcmp(miscItem->Value(), "miscellaneous") == 0) {
+
+					ParseMiscellaneous(miscItem, coords);
+				}
+				else if (strcmp(miscItem->Value(), "actuator") == 0) {
+					ParseActuator(miscItem, coords);
+				}
+			
+				miscItem = miscItem->NextSiblingElement();
+			}
+
+
+		}
+		parentElement = parentElement->NextSiblingElement();
+
+	}
+}
+
+void CDungeonMap::ParseMiscellaneous(TiXmlElement* miscItem, VEKTOR coords) {
+	int msubtype, mtype = 0;
+	int index, subPos;
+	miscItem->QueryIntAttribute("index", &index);
+	miscItem->QueryIntAttribute("position", &subPos);
+	mtype = m_miscellaneousType[index];
+	msubtype = m_miscellaneousSubtype[index];
+
+	CMiscellaneous* misc = new CMiscellaneous(index, mtype, msubtype);
+	m_pFeld[coords.x][coords.y][coords.z]->PutMisc(misc, (SUBPOS_ABSOLUTE)subPos);
+}
+
+void CDungeonMap::ParseActuator(TiXmlElement* miscItem, VEKTOR coords) {
+	/*
+			<actuator index="151"
+			type="3"
+			data="0"
+			graphic_number="4"
+			word2_bits012="192"
+			word3="18752"/>*/
+	int index;
+	miscItem->QueryIntAttribute("index", &index);
+	CActuator* actuator = new CActuator(index, m_actionTarget[index], m_actionType[index]);
+	m_pFeld[coords.x][coords.y][coords.z]->SetActuator(actuator);
+}
 
 void CDungeonMap::ParseTiles(TiXmlElement* rootNode, int etage) {
 	TiXmlElement* parentElement = rootNode->FirstChildElement();
@@ -222,6 +271,56 @@ void CDungeonMap::ParseMiscellaneousesObjects(TiXmlElement* rootNode) {
 	}
 }
 
+void CDungeonMap::ParseActuatorObjects(TiXmlElement* rootNode) {
+	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "actuator") == 0) // several existing
+		{
+			
+			/*	<actuator index = "151" position = "0">
+					<!--Floor actuator : 3 - P-->
+					< type>3 < / type >
+					< data>0 < / data > <!--type 3 specific: always activated-->
+					< graphic>4 < / graphic > <!-- 0 = invisible-->
+					<action_target>remote< / action_target>
+					< delay>1 < / delay >
+					< has_sound>1 < / has_sound >
+					< has_revert>0 < / has_revert >
+					<action_type>Set< / action_type>
+					< once_only>0 < / once_only >
+					< target_y>9 < / target_y > <!--remote specific-->
+					< target_x>5 < / target_x > <!--remote specific-->
+					<direction>North< / direction> <!--remote specific-->
+					< / actuator> <!--North / TopLeft-->
+					< / items> */
+
+			int index, type, value;
+			ActionTypes action_type;
+
+			parentElement->QueryIntAttribute("index", &index);
+			parentElement->QueryIntAttribute("type", &type);
+			m_actuatorType[index] = type;
+
+			const char* strActionType = parentElement->Attribute("action_type");
+			if (strcmp(strActionType, "Set") == 0) m_actionType[index] = Set;
+			if (strcmp(strActionType, "Clear") == 0) m_actionType[index] = Clear;
+			if (strcmp(strActionType, "Hold") == 0) m_actionType[index] = Hold;
+			if (strcmp(strActionType, "Toggle") == 0) m_actionType[index] = Toggle;
+
+			parentElement->QueryIntAttribute("target_x", &value);
+			m_actionTarget[index].x = value;
+				
+			parentElement->QueryIntAttribute("target_y", &value);
+			m_actionTarget[index].y = value;
+
+
+		}
+		parentElement = parentElement->NextSiblingElement();
+	}
+}
+
 void CDungeonMap::ParseObjects(TiXmlElement* rootNode) {
 	TiXmlElement* parentElement = rootNode->FirstChildElement();
 	while (parentElement)
@@ -234,6 +333,10 @@ void CDungeonMap::ParseObjects(TiXmlElement* rootNode) {
 		else if (strcmp(parent, "miscellaneouses") == 0)
 		{
 			ParseMiscellaneousesObjects(parentElement);
+		}
+		else if (strcmp(parent, "actuators") == 0)
+		{
+			ParseActuatorObjects(parentElement);
 		}
 		parentElement = parentElement->NextSiblingElement();
 	}
@@ -251,6 +354,11 @@ void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
 	rootNode->QueryIntAttribute("number_of_miscellaneous", &m_countMiscellaneous);
 	m_miscellaneousType = new int[m_countMiscellaneous];
 	m_miscellaneousSubtype = new int[m_countMiscellaneous];
+	rootNode->QueryIntAttribute("number_of_actuators", &m_countActuators);	
+	m_actuatorType = new int[m_countActuators];
+
+	m_actionType = new ActionTypes[m_countActuators];
+	m_actionTarget = new VEKTOR[m_countActuators];
 
 	const char* startDir = rootNode->Attribute("start_facing");
 	if (strcmp(startDir, "North") == 0) m_startRicht = 0;

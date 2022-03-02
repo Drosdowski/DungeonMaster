@@ -20,6 +20,7 @@ class CDoorPic;
 class CStairsPic;
 class CWallPic;
 class CLeverPic;
+class CPressurePadPic;
 class CFountainPic;
 class CItem3DPic;
 class CMonsterPic;
@@ -64,6 +65,7 @@ protected:
 	CWallPic* m_pWallPic;
 	CLeverPic* m_pLeverPic;
 	CStairsPic* m_pStairsPic;
+	CPressurePadPic* m_pPressurePadPic;
 	CFountainPic* m_pFountainPic;
 	CMonsterPic* m_pMonsterPic;
 	CItem3DPic* m_pItem3DPic;

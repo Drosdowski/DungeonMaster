@@ -17,6 +17,7 @@
 
 class CGrpMonster;
 class CMiscellaneous;
+class CActuator;
 class CFieldDecoration;
 class CField
 {
@@ -50,6 +51,8 @@ public:
 	CMiscellaneous* TakeMisc(SUBPOS_ABSOLUTE subPos);
 	std::stack<CMiscellaneous*> GetMisc(SUBPOS_ABSOLUTE index) { return m_pMiscellaneous[index]; }
 
+	void SetActuator(CActuator* actuator);
+
 // Overrides
 
 // Implementation
@@ -63,6 +66,8 @@ protected:
 	FeldTyp m_iTyp;
 	CFieldDecoration* m_pWallDecoration[4];
 	std::stack<CMiscellaneous*> m_pMiscellaneous[4];
+
+	CActuator* m_pActuator;
 
 	CDoor* m_pDoor = NULL;
 	CStairs* m_pStairs = NULL;

@@ -17,6 +17,7 @@
 #include "Pictures\CWallPic.h"
 #include "Pictures/CStairsPic.h"
 #include "Pictures\CLeverPic.h"
+#include "Pictures/CPressurePadPic.h"
 #include "Pictures\CFountainPic.h"
 #include "Pictures\Creatures\CMonsterPic.h"
 #include "Pictures\Items3D\CItem3DPic.h"
@@ -50,6 +51,7 @@ CRaumView::CRaumView()
 	m_pDoorPic = NULL;
 	m_pWallPic = NULL;
 	m_pStairsPic = NULL;
+	m_pPressurePadPic = NULL;
 	m_pLeverPic = NULL;
 	m_pPictures = NULL;
 	m_pFountainPic = NULL;
@@ -64,6 +66,7 @@ CRaumView::~CRaumView()
 	delete m_pDoorPic;
 	delete m_pStairsPic;
 	delete m_pWallPic;
+	delete m_pPressurePadPic;
 	delete m_pLeverPic;
 	delete m_pFountainPic;
 	delete m_pMonsterPic;
@@ -689,6 +692,7 @@ void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
 	m_pWallPic = new CWallPic(pDC);
 	m_pStairsPic = new CStairsPic(pDC);
 	m_pLeverPic = new CLeverPic(pDC);
+	m_pPressurePadPic = new CPressurePadPic(pDC);
 	m_pFountainPic = new CFountainPic(pDC);
 	m_pMonsterPic = new CMonsterPic(pDC);
 	m_pItem3DPic = new CItem3DPic(pDC);

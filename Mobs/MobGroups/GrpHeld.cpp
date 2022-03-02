@@ -22,8 +22,9 @@ CGrpHeld::CGrpHeld(VEKTOR pos, int richt)
 	for (int i=1; i<=4; i++)
 		m_pMember[i] = NULL;
 	m_posPosition = pos;
-	//m_posPosition = VEKTOR{ 2,7,0 };
-	m_posPosition = VEKTOR{ 7,9,1 };
+	//m_posPosition = VEKTOR{ 2,7,0 }; // bei Monster Gruppe
+	//m_posPosition = VEKTOR{ 7,9,1 }; // bei Items
+	m_posPosition = VEKTOR{ 6,9,0 }; // bei Pressure Pad
 	m_grpDirection = richt;
 }
 

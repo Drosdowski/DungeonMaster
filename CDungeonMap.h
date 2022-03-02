@@ -32,8 +32,13 @@ private:
 	void ParseDungeon(TiXmlElement* rootNode);
 	void ParseTiles(TiXmlElement* rootNode, int etage);
 	void ParseTile(TiXmlElement* rootNode, int etage);
+	void ParseItems(TiXmlElement* rootNode, VEKTOR coords);
+	void ParseMiscellaneous(TiXmlElement* rootNode, VEKTOR coords);
+	void ParseActuatorObjects(TiXmlElement* rootNode);
+	void ParseActuator(TiXmlElement* miscItem, VEKTOR coords);
 	CField* ParseDoor(TiXmlElement* rootNode, VEKTOR pos);
 	CField* ParseStairs(TiXmlElement* rootNode, VEKTOR pos);
+	CField* ParsePit(TiXmlElement* rootNode, VEKTOR pos);
 	CField* m_pFeld[FELD_MAX_X][FELD_MAX_Y][FELD_MAX_Z];
 	CField* m_pEdgeWall;
 	int m_LevelWidth[FELD_MAX_Z];
@@ -44,12 +49,17 @@ private:
 	int m_startRicht;
 	int m_countDoors;
 	int m_countMiscellaneous;
+	int m_countActuators;
 	CGrpHeld* m_pGrpHelden;
 
 	// dynamic arrays
 	int* m_doorType; 
 	int* m_miscellaneousType;
 	int* m_miscellaneousSubtype;
+	int* m_actuatorType;
+	ActionTypes* m_actionType;
+	VEKTOR* m_actionTarget;
+
 
 
 };

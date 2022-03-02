@@ -111,8 +111,16 @@ enum DecorationType
 enum FeldTyp {
 	WALL = 0,
 	EMPTY = 1,
+	PIT = 2,
 	STAIRS = 3,
 	DOOR = 4
+};
+
+enum ActionTypes {
+	Set,
+	Clear,
+	Toggle,
+	Hold
 };
 
 
