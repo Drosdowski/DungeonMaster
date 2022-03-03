@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SpecialTile\CPressurePad.cpp" />
     <ClCompile Include="Items\CActuator.cpp" />
     <ClCompile Include="ColorCursor\ColorCursor.cpp" />
     <ClCompile Include="Pictures\CPressurePadPic.cpp" />
@@ -182,6 +183,7 @@
     <ResourceCompile Include="DM.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SpecialTile\CPressurePad.h" />
     <ClInclude Include="Items\CActuator.h" />
     <ClInclude Include="ColorCursor\ColorCursor.h" />
     <ClInclude Include="Pictures\CPressurePadPic.h" />

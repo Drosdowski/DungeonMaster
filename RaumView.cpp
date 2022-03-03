@@ -413,20 +413,7 @@ void CRaumView::Zeichnen(CDC* pDC)
 				int addy = y - ebene * stx + xx * sty;
 				CField* pField = m_pMap->GetField(addx,addy,z);
 				int fieldType = pField->HoleTyp();
-				
-				if (fieldType != FeldTyp::WALL) {
-					for (int index = 0; index < 4; index++)
-					{
-						std::stack<CMiscellaneous*> pile = pField->GetMisc((SUBPOS_ABSOLUTE)index);
-						if (pile.size() > 0) {
-							DrawPile(pDC, &compCdc, xxx, ebene, (SUBPOS_ABSOLUTE)index, heroDir, pile);
-						}
-					}
-					if (ebene > 0 && xxx > 1)
-					{
-						DrawMonsterGroup(pDC, &compCdc, xxx, ebene, heroDir, pField);
-					}
-				}
+							
 
 				if (fieldType == FeldTyp::WALL && ((ebene != 0) || (xx != 0)))
 				{
@@ -446,6 +433,24 @@ void CRaumView::Zeichnen(CDC* pDC)
 					}
 					else {
 						DrawStairsSide(pDC, &compCdc, xxx, ebene, pStairs);
+					}
+				}
+				else if (fieldType == FeldTyp::EMPTY) {
+					// Platten, Pfützen, Fussabdrücke, Pit, ...
+					
+				}
+
+				if (fieldType != FeldTyp::WALL) {
+					for (int index = 0; index < 4; index++)
+					{
+						std::stack<CMiscellaneous*> pile = pField->GetMisc((SUBPOS_ABSOLUTE)index);
+						if (pile.size() > 0) {
+							DrawPile(pDC, &compCdc, xxx, ebene, (SUBPOS_ABSOLUTE)index, heroDir, pile);
+						}
+					}
+					if (ebene > 0 && xxx > 1)
+					{
+						DrawMonsterGroup(pDC, &compCdc, xxx, ebene, heroDir, pField);
 					}
 				}
 			}

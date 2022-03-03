@@ -2,6 +2,13 @@
 class CActuator
 {
 public:
+	enum ActionTypes {
+		Set,
+		Clear,
+		Toggle,
+		Hold
+	};
+
 	CActuator(int index, VEKTOR actionTarget, ActionTypes actionTypes);
 	~CActuator();
 

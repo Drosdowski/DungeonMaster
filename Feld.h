@@ -51,7 +51,7 @@ public:
 	CMiscellaneous* TakeMisc(SUBPOS_ABSOLUTE subPos);
 	std::stack<CMiscellaneous*> GetMisc(SUBPOS_ABSOLUTE index) { return m_pMiscellaneous[index]; }
 
-	void SetActuator(CActuator* actuator);
+	void PutActuator(CActuator* actuator);
 
 // Overrides
 
@@ -67,7 +67,7 @@ protected:
 	CFieldDecoration* m_pWallDecoration[4];
 	std::stack<CMiscellaneous*> m_pMiscellaneous[4];
 
-	CActuator* m_pActuator;
+	std::stack <CActuator*> m_pActuator;
 
 	CDoor* m_pDoor = NULL;
 	CStairs* m_pStairs = NULL;

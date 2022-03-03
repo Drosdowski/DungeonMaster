@@ -1,5 +1,6 @@
 #pragma once
 #include "Feld.h"
+#include "Items/CActuator.h"
 
 #define FELD_MAX_X 32
 #define FELD_MAX_Y 32
@@ -57,8 +58,8 @@ private:
 	int* m_miscellaneousType;
 	int* m_miscellaneousSubtype;
 	int* m_actuatorType;
-	ActionTypes* m_actionType;
-	VEKTOR* m_actionTarget;
+	//CActuator::ActionTypes* m_actionType;
+	//VEKTOR* m_actionTarget;
 
 
 

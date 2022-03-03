@@ -67,7 +67,11 @@ CField::~CField()
 			m_pMiscellaneous[i].pop();
 		}
 	}
-	delete m_pActuator;
+	while (!m_pActuator.empty()) {
+		CActuator* actuator = m_pActuator.top();
+		delete actuator;
+		m_pActuator.pop();
+	}
 }
 
 void CField::InitDeco(CFieldDecoration* pDeco[4]) {
@@ -148,8 +152,8 @@ void CField::PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index) {
 	m_pMiscellaneous[index].push(misc);
 }
 
-void CField::SetActuator(CActuator* actuator) {
-	m_pActuator = actuator;
+void CField::PutActuator(CActuator* actuator) {
+	m_pActuator.push(actuator);
 }
 
 // Item von Stapel nehmen - ist dann "in der Hand"
