@@ -187,7 +187,7 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 			<direction>North< / direction> <!--remote specific-->
 			< / actuator> <!--North / TopLeft-->
 			< / items> */
-	int index;
+	int index, type;
 	VEKTOR target;
 	CActuator::ActionTypes actionType;
 	actuatorItem->QueryIntAttribute("index", &index);
@@ -202,6 +202,12 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 			if (strcmp(strActionType, "Clear") == 0) actionType = CActuator::Clear;
 			if (strcmp(strActionType, "Hold") == 0) actionType = CActuator::Hold;
 			if (strcmp(strActionType, "Toggle") == 0) actionType = CActuator::Toggle;
+		}
+		else if (strcmp(actuatorAttributes->Value(), "type") == 0) {
+			const char* strValue = actuatorAttributes->GetText();
+			std::stringstream streamValue;
+			streamValue << strValue;
+			streamValue >> type;
 		}
 		else if (strcmp(actuatorAttributes->Value(), "target_x") == 0) {
 			const char* strValue = actuatorAttributes->GetText();
@@ -222,7 +228,7 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 	target.z = coords.z;
 
 	// todo mehr als 1 / Feld möglich !!!
-	CActuator* actuator = new CActuator(index, target, actionType);
+	CActuator* actuator = new CActuator(index, target, actionType, type);
 	m_pFeld[coords.x][coords.y][coords.z]->PutActuator(actuator);
 }
 
