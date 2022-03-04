@@ -322,13 +322,7 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 		bmp->GetBitmap(&bmpInfo);
 		double faktor = m_pPictures->getFaktor(ebene);
 
-		CPoint wallMiddlePos;
-		//if (misc->IsFlying()) {
-			//wallMiddlePos = m_pItem3DPic->GetCeilingMiddle(xxx, ebene);
-		//}
-		//else {
-			wallMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
-		//}
+		CPoint wallMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
 		if (wallMiddlePos.x > 0 || wallMiddlePos.y > 0) {
 			SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(itemSubPos, heroDir); // todo subpos angleichen
 			if (ebene > 0 || subPos == LINKSHINTEN || subPos == RECHTSHINTEN)
@@ -358,10 +352,8 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 				test(pDC, 259, 255);*/
 			}
 		}
-
 	}
 }
-
 
 
 void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, CDC* cdc, COLORREF col) {
@@ -437,7 +429,7 @@ void CRaumView::Zeichnen(CDC* pDC)
 				}
 				else if (fieldType == FeldTyp::EMPTY) {
 					// Platten, Pfützen, Fussabdrücke, Pit, ...
-					
+					//CActuator* actuator = pField->GetMisc
 				}
 
 				if (fieldType != FeldTyp::WALL) {

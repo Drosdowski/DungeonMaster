@@ -10,6 +10,7 @@
 #endif // _MSC_VER >= 1000
 #include <SpecialTile\CDoor.h>
 #include <SpecialTile\CStairs.h>
+#include <SpecialTile/CPressurePad.h>
 // Feld.h : header file
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -41,8 +42,9 @@ public:
 	CFieldDecoration* HoleDeko(int side) { return m_pWallDecoration[side]; }
 	CDoor* HoleDoor() { return m_pDoor;  }
 	CStairs* HoleStairs() { return m_pStairs;  }
-	void SetType(FeldTyp iTyp, CDoor::DoorType doorType, bool doorDirectionEastWest);
-	void SetType(FeldTyp fieldType, CStairs::StairType stairsType, bool eastWest);
+	void SetTypeDoor(FeldTyp iTyp, CDoor::DoorType doorType, bool doorDirectionEastWest);
+	void SetTypeStair(FeldTyp fieldType, CStairs::StairType stairsType, bool eastWest);
+	void SetTypePressurePad(FeldTyp fieldType, CPressurePad::PressurePadType pressurePadTyp, bool eastWest);
 	void SetType(FeldTyp iTyp);
 
 	void PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index);
@@ -71,6 +73,7 @@ protected:
 
 	CDoor* m_pDoor = NULL;
 	CStairs* m_pStairs = NULL;
+	CPressurePad* m_pPressurePad = NULL;
 
 	void InitDeco(CFieldDecoration* pDeco[4]);
 

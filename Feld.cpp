@@ -31,9 +31,9 @@ CField::CField(VEKTOR koord, FeldTyp fieldType, CFieldDecoration* pDeco[4])
 	InitDeco(pDeco);
 }
 
-CField::CField(VEKTOR koord, FeldTyp fieldType, CDoor::DoorType doorType, bool doorDirectionEastWest, CFieldDecoration* pDeco[4])
+CField::CField(VEKTOR koord, FeldTyp fieldType, CDoor::DoorType doorType, bool eastWest, CFieldDecoration* pDeco[4])
 {	
-	SetType(fieldType, doorType, doorDirectionEastWest);
+	SetTypeDoor(fieldType, doorType, eastWest);
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
 	InitDeco(pDeco);
@@ -41,7 +41,7 @@ CField::CField(VEKTOR koord, FeldTyp fieldType, CDoor::DoorType doorType, bool d
 
 CField::CField(VEKTOR koord, FeldTyp fieldType, CStairs::StairType stairType, bool eastWest, CFieldDecoration* pDeco[4])
 {
-	SetType(fieldType, stairType, eastWest);
+	SetTypeStair(fieldType, stairType, eastWest);
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
 	InitDeco(pDeco);
@@ -55,6 +55,8 @@ CField::~CField()
 		delete m_pDoor;
 	if (m_pStairs)
 		delete m_pStairs;
+	if (m_pPressurePad)
+		delete m_pPressurePad;
 	for (int i = 0; i < 4; i++) {
 		if (m_pWallDecoration[i]) {
 			delete m_pWallDecoration[i];
@@ -124,7 +126,7 @@ void CField::SetType(FeldTyp fieldType) {
 }
 
 
-void CField::SetType(FeldTyp fieldType, CDoor::DoorType doorType, bool doorFrameEastAndWest) {
+void CField::SetTypeDoor(FeldTyp fieldType, CDoor::DoorType doorType, bool doorFrameEastAndWest) {
 	m_iTyp = fieldType;
 	if (fieldType == DOOR) {
 		m_pDoor = new CDoor(doorType, doorFrameEastAndWest);
@@ -133,7 +135,7 @@ void CField::SetType(FeldTyp fieldType, CDoor::DoorType doorType, bool doorFrame
 	}
 }
 
-void CField::SetType(FeldTyp fieldType, CStairs::StairType stairsType, bool eastWest) {
+void CField::SetTypeStair(FeldTyp fieldType, CStairs::StairType stairsType, bool eastWest) {
 	m_iTyp = fieldType;
 	if (fieldType == STAIRS) {
 		m_pStairs = new CStairs(stairsType, eastWest);
@@ -141,6 +143,11 @@ void CField::SetType(FeldTyp fieldType, CStairs::StairType stairsType, bool east
 	else {
 		assert(false);
 	}
+}
+
+void CField::SetTypePressurePad(FeldTyp fieldType, CPressurePad::PressurePadType padType, bool eastWest) {
+	m_iTyp = fieldType;
+	m_pPressurePad = new CPressurePad(padType);
 }
 
 void CField::ThrowMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index, VEKTOR force) {

@@ -9,18 +9,19 @@ public:
 		Hold
 	};
 
-	CActuator(int index, VEKTOR actionTarget, ActionTypes actionTypes, int type);
+	CActuator(int index, int position, VEKTOR actionTarget, ActionTypes actionTypes, int type);
 	~CActuator();
-
+ 
 	int GetType() { return m_type; }
-	VEKTOR GetActionTarget() { return m_actionTarget; }
-	ActionTypes GetActionType() { return m_actionType; }
+	VEKTOR GetActionTarget(int position) { return m_actionTarget[position]; }
+	ActionTypes GetActionType(int position) { return m_actionType[position]; }
 
 private:
 	int m_index;
+	int m_position;
 	int m_type;
-	VEKTOR m_actionTarget;
-	ActionTypes m_actionType;
+	VEKTOR m_actionTarget[4];
+	ActionTypes m_actionType[4];
 
 };
 

@@ -187,10 +187,11 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 			<direction>North< / direction> <!--remote specific-->
 			< / actuator> <!--North / TopLeft-->
 			< / items> */
-	int index, type;
-	VEKTOR target;
+	int index, position, type;
+	VEKTOR target = coords;
 	CActuator::ActionTypes actionType;
 	actuatorItem->QueryIntAttribute("index", &index);
+	actuatorItem->QueryIntAttribute("position", &position);
 
 	// todo ab hier children
 	TiXmlElement* actuatorAttributes = actuatorItem->FirstChildElement();
@@ -225,11 +226,10 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 		actuatorAttributes = actuatorAttributes->NextSiblingElement();
 	}
 
-	target.z = coords.z;
-
-	// todo mehr als 1 / Feld möglich !!!
-	CActuator* actuator = new CActuator(index, target, actionType, type);
+	CActuator* actuator = new CActuator(index, position, target, actionType, type);
 	m_pFeld[coords.x][coords.y][coords.z]->PutActuator(actuator);
+
+	//CPressurePad::PressurePadType typ = todo ??????
 }
 
 	
