@@ -145,11 +145,6 @@ void CField::SetTypeStair(FeldTyp fieldType, CStairs::StairType stairsType, bool
 	}
 }
 
-void CField::SetTypePressurePad(FeldTyp fieldType, CPressurePad::PressurePadType padType, bool eastWest) {
-	m_iTyp = fieldType;
-	m_pPressurePad = new CPressurePad(padType);
-}
-
 void CField::ThrowMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index, VEKTOR force) {
 	misc->m_flyForce = force;
 	m_pMiscellaneous[index].push(misc);

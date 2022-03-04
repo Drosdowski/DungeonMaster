@@ -44,7 +44,6 @@ public:
 	CStairs* HoleStairs() { return m_pStairs;  }
 	void SetTypeDoor(FeldTyp iTyp, CDoor::DoorType doorType, bool doorDirectionEastWest);
 	void SetTypeStair(FeldTyp fieldType, CStairs::StairType stairsType, bool eastWest);
-	void SetTypePressurePad(FeldTyp fieldType, CPressurePad::PressurePadType pressurePadTyp, bool eastWest);
 	void SetType(FeldTyp iTyp);
 
 	void PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index);
@@ -52,6 +51,7 @@ public:
 	//void PutMisc(CMiscellaneous* misc, SUBPOS subPos);
 	CMiscellaneous* TakeMisc(SUBPOS_ABSOLUTE subPos);
 	std::stack<CMiscellaneous*> GetMisc(SUBPOS_ABSOLUTE index) { return m_pMiscellaneous[index]; }
+	std::stack<CActuator*> GetActuator(SUBPOS_ABSOLUTE index) { return m_pActuator[index]; }
 
 	void PutActuator(CActuator* actuator);
 

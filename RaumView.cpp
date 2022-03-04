@@ -90,6 +90,14 @@ void CRaumView::DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene, bool left) {
 	}
 }
 
+void CRaumView::DrawSquarePressurePad(CDC* pDC, CDC* cdc, int xx, int ebene, CActuator* pActuator) {
+	BITMAP bmpInfo;
+	CBitmap* bmp = m_pPressurePadPic->GetPressurePadPic(ebene, xx);
+	if (bmp) {
+		// todo hier weiter
+	}
+}
+
 void CRaumView::DrawStairsSide(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs)
 {
 	BITMAP bmpInfo;
@@ -429,15 +437,22 @@ void CRaumView::Zeichnen(CDC* pDC)
 				}
 				else if (fieldType == FeldTyp::EMPTY) {
 					// Platten, Pfützen, Fussabdrücke, Pit, ...
-					//CActuator* actuator = pField->GetMisc
+					std::stack<CActuator*> actuators = pField->GetActuator((SUBPOS_ABSOLUTE)0);  // Boden hat immer POsition 0.
+					while (!actuators.empty()) {
+						CActuator* actuator = actuators.top();
+						if (actuator->GetType() == 3) {
+							DrawSquarePressurePad(pDC, &compCdc, xx, ebene, actuator);
+						}
+						actuators.pop();
+					}
 				}
 
 				if (fieldType != FeldTyp::WALL) {
-					for (int index = 0; index < 4; index++)
+					for (int pos = 0; pos < 4; pos++)
 					{
-						std::stack<CMiscellaneous*> pile = pField->GetMisc((SUBPOS_ABSOLUTE)index);
+						std::stack<CMiscellaneous*> pile = pField->GetMisc((SUBPOS_ABSOLUTE)pos);
 						if (pile.size() > 0) {
-							DrawPile(pDC, &compCdc, xxx, ebene, (SUBPOS_ABSOLUTE)index, heroDir, pile);
+							DrawPile(pDC, &compCdc, xxx, ebene, (SUBPOS_ABSOLUTE)pos, heroDir, pile);
 						}
 					}
 					if (ebene > 0 && xxx > 1)

@@ -76,6 +76,7 @@ protected:
 	void DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CDoor* pDoor);
 	void DrawStairsFront(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs);
 	void DrawStairsSide(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs);
+	void DrawSquarePressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene, CActuator* pActuator);
 	void DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene, bool left);
 	void DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField);
 	void DrawMonster(CDC* pDC, CDC* cdc, int xx, int ebene, int richt, CMonster* pMonster);
