@@ -227,9 +227,8 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 	}
 
 	CActuator* actuator = new CActuator(index, position, target, actionType, type);
-	m_pFeld[coords.x][coords.y][coords.z]->PutActuator(actuator);
+	m_pFeld[coords.x][coords.y][coords.z]->PutActuator(actuator, (SUBPOS_ABSOLUTE)position);
 
-	//CPressurePad::PressurePadType typ = todo ??????
 }
 
 	

@@ -90,11 +90,17 @@ void CRaumView::DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene, bool left) {
 	}
 }
 
-void CRaumView::DrawSquarePressurePad(CDC* pDC, CDC* cdc, int xx, int ebene, CActuator* pActuator) {
+void CRaumView::DrawSquarePressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene, CActuator* pActuator) {
 	BITMAP bmpInfo;
-	CBitmap* bmp = m_pPressurePadPic->GetPressurePadPic(ebene, xx);
+	CBitmap* bmp = m_pPressurePadPic->GetPressurePadPic(xxx, ebene);
 	if (bmp) {
-		// todo hier weiter
+		CPoint floorMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
+		if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) {
+			cdc->SelectObject(bmp);
+			bmp->GetBitmap(&bmpInfo);
+			pDC->TransparentBlt(floorMiddlePos.x - bmpInfo.bmWidth, floorMiddlePos.y - bmpInfo.bmHeight, 
+								bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);
+		}
 	}
 }
 
@@ -330,8 +336,8 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 		bmp->GetBitmap(&bmpInfo);
 		double faktor = m_pPictures->getFaktor(ebene);
 
-		CPoint wallMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
-		if (wallMiddlePos.x > 0 || wallMiddlePos.y > 0) {
+		CPoint floorMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
+		if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) {
 			SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(itemSubPos, heroDir); // todo subpos angleichen
 			if (ebene > 0 || subPos == LINKSHINTEN || subPos == RECHTSHINTEN)
 			{			
@@ -339,7 +345,7 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 				{
 					faktor = m_pPictures->getFaktor(ebene+1);
 				}
-				CPoint pos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, wallMiddlePos, subPos, faktor, xx, ebene);
+				CPoint pos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, floorMiddlePos, subPos, faktor, xx, ebene);
 				if (misc->IsFlying() && pos.y != 0) {
 					pos.y = 250 - pos.y / 2; 
 				}
@@ -441,7 +447,7 @@ void CRaumView::Zeichnen(CDC* pDC)
 					while (!actuators.empty()) {
 						CActuator* actuator = actuators.top();
 						if (actuator->GetType() == 3) {
-							DrawSquarePressurePad(pDC, &compCdc, xx, ebene, actuator);
+							DrawSquarePressurePad(pDC, &compCdc, xxx, ebene, actuator);
 						}
 						actuators.pop();
 					}

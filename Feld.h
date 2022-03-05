@@ -10,7 +10,6 @@
 #endif // _MSC_VER >= 1000
 #include <SpecialTile\CDoor.h>
 #include <SpecialTile\CStairs.h>
-#include <SpecialTile/CPressurePad.h>
 // Feld.h : header file
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -53,7 +52,7 @@ public:
 	std::stack<CMiscellaneous*> GetMisc(SUBPOS_ABSOLUTE index) { return m_pMiscellaneous[index]; }
 	std::stack<CActuator*> GetActuator(SUBPOS_ABSOLUTE index) { return m_pActuator[index]; }
 
-	void PutActuator(CActuator* actuator);
+	void PutActuator(CActuator* actuator, SUBPOS_ABSOLUTE index);
 
 // Overrides
 
@@ -69,11 +68,10 @@ protected:
 	CFieldDecoration* m_pWallDecoration[4];
 	std::stack<CMiscellaneous*> m_pMiscellaneous[4];
 
-	std::stack <CActuator*> m_pActuator;
+	std::stack <CActuator*> m_pActuator[4];
 
 	CDoor* m_pDoor = NULL;
 	CStairs* m_pStairs = NULL;
-	CPressurePad* m_pPressurePad = NULL;
 
 	void InitDeco(CFieldDecoration* pDeco[4]);
 

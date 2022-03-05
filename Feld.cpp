@@ -55,24 +55,20 @@ CField::~CField()
 		delete m_pDoor;
 	if (m_pStairs)
 		delete m_pStairs;
-	if (m_pPressurePad)
-		delete m_pPressurePad;
 	for (int i = 0; i < 4; i++) {
 		if (m_pWallDecoration[i]) {
 			delete m_pWallDecoration[i];
 		}
-	}
-	for (int i = 0; i < 4; i++) {
 		while (!m_pMiscellaneous[i].empty()) {
 			CMiscellaneous* item = m_pMiscellaneous[i].top();
 			delete item;
 			m_pMiscellaneous[i].pop();
 		}
-	}
-	while (!m_pActuator.empty()) {
-		CActuator* actuator = m_pActuator.top();
-		delete actuator;
-		m_pActuator.pop();
+		while (!m_pActuator[i].empty()) {
+			CActuator* actuator = m_pActuator[i].top();
+			delete actuator;
+			m_pActuator[i].pop();
+		}
 	}
 }
 
@@ -154,8 +150,8 @@ void CField::PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index) {
 	m_pMiscellaneous[index].push(misc);
 }
 
-void CField::PutActuator(CActuator* actuator) {
-	m_pActuator.push(actuator);
+void CField::PutActuator(CActuator* actuator, SUBPOS_ABSOLUTE index) {
+	m_pActuator[index].push(actuator);
 }
 
 // Item von Stapel nehmen - ist dann "in der Hand"

@@ -30,11 +30,11 @@ void CPressurePadPic::InitPressurePads() {
 	LoadPicAndFlip(m_pPressurePadRight[3], IDB_PRESSURE_PAD_3L);
 }
 
-CBitmap* CPressurePadPic::GetPressurePadPic(int ebene, int xx) {
+CBitmap* CPressurePadPic::GetPressurePadPic(int xxx, int ebene) {
 	if (ebene > 0) {
-		if (xx == 2) return m_pPressurePadLeft[ebene];
-		if (xx == 3) return m_pPressurePadRight[ebene];
-		if (xx == 4) return m_pPressurePadFront[ebene];
+		if (xxx == 2) return m_pPressurePadLeft[ebene];
+		if (xxx == 3) return m_pPressurePadRight[ebene];
+		if (xxx == 4) return m_pPressurePadFront[ebene];
 	}
 	return NULL;
 }

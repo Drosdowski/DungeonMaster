@@ -147,9 +147,6 @@
     <ClCompile Include="Items\CActuator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SpecialTile\CPressurePad.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -284,9 +281,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Items\CActuator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SpecialTile\CPressurePad.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
