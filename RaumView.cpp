@@ -534,8 +534,8 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 	return toPos;
 }
 
-void CRaumView::MoveMonsters(int i, int j, VEKTOR held) {
-	CField* field = m_pMap->GetField(i, j, held.z);
+void CRaumView::MoveMonsters(VEKTOR heroPos) {
+	CField* field = m_pMap->GetField(heroPos);
 	CGrpMonster* pGrpMon = field->GetMonsterGroup();
 	if (pGrpMon)
 	{
@@ -546,7 +546,7 @@ void CRaumView::MoveMonsters(int i, int j, VEKTOR held) {
 		else if (pGrpMon->IstBereit())
 		{
 			VEKTOR target = MonsterMoveOrAttack(pGrpMon);
-			if (target.x != i || target.y != j) {
+			if (target.x != heroPos.x || target.y != heroPos.y) {
 				CField* targetField = m_pMap->GetField(target);
 				field->SetMonsterGroup(NULL);
 				targetField->SetMonsterGroup(pGrpMon);
@@ -556,8 +556,8 @@ void CRaumView::MoveMonsters(int i, int j, VEKTOR held) {
 	}
 }
 
-void CRaumView::MoveDoors(int i, int j, VEKTOR held) {
-	CField* field = m_pMap->GetField(i, j, held.z);
+void CRaumView::MoveDoors(VEKTOR heroPos) {
+	CField* field = m_pMap->GetField(heroPos);
 	CDoor* pDoor = field->HoleDoor();
 	if (pDoor) {
 		if ((pDoor->getState() == CDoor::DoorState::OPENING) ||
@@ -568,8 +568,8 @@ void CRaumView::MoveDoors(int i, int j, VEKTOR held) {
 	}
 }
 
-void CRaumView::PrepareMoveItems(int i, int j, VEKTOR held) {
-	CField* field = m_pMap->GetField(i, j, held.z);
+void CRaumView::PrepareMoveItems(VEKTOR heroPos) {
+	CField* field = m_pMap->GetField(heroPos);
 	// Flag setzen, Item muss sich ggf. noch bewegen
 	for (int s = 0; s < 4; s++) {
 		SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
@@ -581,8 +581,8 @@ void CRaumView::PrepareMoveItems(int i, int j, VEKTOR held) {
 	}
 }
 
-void CRaumView::MoveItems(int i, int j, VEKTOR held) {
-	CField* field = m_pMap->GetField(i, j, held.z);
+void CRaumView::MoveItems(VEKTOR heroPos) {
+	CField* field = m_pMap->GetField(heroPos);
 	
 	for (int s = 0; s < 4; s++) {
 		SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
@@ -595,7 +595,7 @@ void CRaumView::MoveItems(int i, int j, VEKTOR held) {
 
 				if (newPos == MIDDLE) {
 					// Feld verlassen
-					CField* newField = m_pMap->GetField(i + sign(topItem->m_flyForce.x), j + sign(topItem->m_flyForce.y), held.z);
+					CField* newField = m_pMap->GetField(heroPos.x + sign(topItem->m_flyForce.x), heroPos.y + sign(topItem->m_flyForce.y), heroPos.z);
 					if (!newField->Blocked()) {
 						// westlich von west ist ost => anders rum subpos suchen
 						topItem = field->TakeMisc(posAbs);
@@ -621,13 +621,52 @@ void CRaumView::MoveAnythingNearby() {
 	VEKTOR held = m_pMap->GetHeroes()->GetPos();
 	for (int i = max(held.x - 4, 0); i < min(held.x + 4, m_pMap->GetMaxWidth(held.z)); i++) {
 		for (int j = max(held.y - 4, 0); j < min(held.y + 4, m_pMap->GetMaxHeight(held.z)); j++) {
-			MoveMonsters(i, j, held);
-			MoveDoors(i, j, held);
-			PrepareMoveItems(i, j, held);
-			MoveItems(i, j, held);
+			VEKTOR heroPos = { i, j, held.z };
+			MoveMonsters(heroPos);
+			MoveDoors(heroPos);
+			PrepareMoveItems(heroPos);
+			MoveItems(heroPos);
 		}
 	}
+}
 
+void CRaumView::PrepareActuators(VEKTOR heroPos) {
+	CField* field = m_pMap->GetField(heroPos);
+	std::stack<CActuator*> actuators = field->GetActuator((SUBPOS_ABSOLUTE)0);
+	while (!actuators.empty()) {
+		CActuator* actuator = actuators.top();
+		actuator->ResetWeight();
+		actuators.pop();
+	}
+}
+
+void CRaumView::TriggerActuators(VEKTOR heroPos) {
+	CField* field = m_pMap->GetField(heroPos);
+	std::stack<CActuator*> actuators = field->GetActuator((SUBPOS_ABSOLUTE)0);
+	while (!actuators.empty()) {
+		CActuator* actuator = actuators.top();
+		TriggerActuator(heroPos, field, actuator);
+		actuators.pop();
+	}
+}
+
+void CRaumView::TriggerActuator(VEKTOR heroPos, CField* field , CActuator* actuator) {
+	int weight = field->GetWeight(heroPos); // todo parameter optimieren?
+	
+	switch (actuator->GetType()) {
+	case 3:
+		// TODO später hier weiter
+		break;
+	}
+}
+
+void CRaumView::TriggerActuatorsNearby() {
+	VEKTOR held = m_pMap->GetHeroes()->GetPos();
+	for (int i = max(held.x - 4, 0); i < min(held.x + 4, m_pMap->GetMaxWidth(held.z)); i++) {
+		for (int j = max(held.y - 4, 0); j < min(held.y + 4, m_pMap->GetMaxHeight(held.z)); j++) {
+			TriggerActuators(VEKTOR{ i, j, held.z });
+		}
+	}
 }
 
 VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {

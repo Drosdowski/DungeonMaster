@@ -141,12 +141,18 @@ void CDMDoc::Laufen()
 			{
 				m_pRaumView->TriggerMoveAnimation();
 				pGrpHeroes->Laufen(posFinal);
+				/*std::stack<CActuator*> actuatorsFrom = m_pRaumView->GetMap()->GetField(posFrom)->GetActuator((SUBPOS_ABSOLUTE)0);
+				std::stack<CActuator*> actuatorsTarget = m_pRaumView->GetMap()->GetField(posFinal)->GetActuator((SUBPOS_ABSOLUTE)0);
+				while (!actuators.empty()) {
+
+				}*/
 			}
 		}
 		break;
 	}
 	m_iWunschRichtung = 0;
 }
+
 
 void CDMDoc::SetzeRichtung(int iRichtung)
 {

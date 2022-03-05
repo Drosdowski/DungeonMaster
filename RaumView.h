@@ -44,6 +44,7 @@ public:
 public:
 	void OnTrigger();
 	void MoveAnythingNearby();
+	void TriggerActuatorsNearby();
 
 	void InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures); // TODO: pDOC & pDC private merken
 	VEKTOR Betrete(VEKTOR from, VEKTOR to);
@@ -87,10 +88,14 @@ protected:
 private:
 	int wallXFactor[5];
 	CHelpfulValues* m_values;
-	void MoveMonsters(int i, int j, VEKTOR held);
-	void MoveDoors(int i, int j, VEKTOR held);
-	void PrepareMoveItems(int i, int j, VEKTOR held);
-	void MoveItems(int i, int j, VEKTOR held);
+	void MoveMonsters(VEKTOR heroPos);
+	void MoveDoors(VEKTOR heroPos);
+	void PrepareMoveItems(VEKTOR heroPos);
+	void MoveItems(VEKTOR heroPos);
+
+	void PrepareActuators(VEKTOR heroPos);
+	void TriggerActuators(VEKTOR heroPos);
+	void TriggerActuator(VEKTOR heroPos, CField* field, CActuator* actuator);
 };
 
 /////////////////////////////////////////////////////////////////////////////

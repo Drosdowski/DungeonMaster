@@ -166,3 +166,14 @@ CMiscellaneous* CField::TakeMisc(SUBPOS_ABSOLUTE subPos) {
 	else
 		return NULL;
 }
+
+int CField::GetWeight(VEKTOR heroPos) {
+	int weight = 0;
+	if (GetMonsterGroup() != NULL) weight = 100; // max
+	if (m_posKoord.x == heroPos.x && m_posKoord.y == heroPos.y && m_posKoord.z == heroPos.z) weight = 100; // max
+	for (int i = 0; i < 4; i++) {
+		weight += m_pMiscellaneous[i].size(); // todo bessere Lösung als Anzahl Items als Gewicht zu nehmen
+	}
+
+	return weight;
+}

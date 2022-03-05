@@ -7,6 +7,7 @@ CActuator::CActuator(int index, int position, VEKTOR actionTarget, ActionTypes a
 	m_actionType[position] = actionType;
 	m_type = type;
 	m_position = position;
+	m_lastWeight = 0;
 }
 
 CActuator::~CActuator() {

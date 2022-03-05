@@ -53,6 +53,8 @@ public:
 	std::stack<CActuator*> GetActuator(SUBPOS_ABSOLUTE index) { return m_pActuator[index]; }
 
 	void PutActuator(CActuator* actuator, SUBPOS_ABSOLUTE index);
+	VEKTOR HolePos() { return m_posKoord; }
+	int GetWeight(VEKTOR heroPos);
 
 // Overrides
 
