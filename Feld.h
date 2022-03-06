@@ -54,7 +54,7 @@ public:
 
 	void PutActuator(CActuator* actuator, SUBPOS_ABSOLUTE index);
 	VEKTOR HolePos() { return m_posKoord; }
-	int GetWeight(VEKTOR heroPos);
+	bool CriticalWeightChange(VEKTOR heroPos, int criticalWeight);
 
 // Overrides
 
@@ -76,6 +76,9 @@ protected:
 	CStairs* m_pStairs = NULL;
 
 	void InitDeco(CFieldDecoration* pDeco[4]);
+	int GetWeight(VEKTOR heroPos);
+
+	int m_lastWeight;
 
 	//{{AFX_MSG(CField)
 		// NOTE - the ClassWizard will add and remove member functions here.

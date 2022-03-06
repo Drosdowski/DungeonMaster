@@ -630,16 +630,6 @@ void CRaumView::MoveAnythingNearby() {
 	}
 }
 
-void CRaumView::PrepareActuators(VEKTOR heroPos) {
-	CField* field = m_pMap->GetField(heroPos);
-	std::stack<CActuator*> actuators = field->GetActuator((SUBPOS_ABSOLUTE)0);
-	while (!actuators.empty()) {
-		CActuator* actuator = actuators.top();
-		actuator->ResetWeight();
-		actuators.pop();
-	}
-}
-
 void CRaumView::TriggerActuators(VEKTOR heroPos) {
 	CField* field = m_pMap->GetField(heroPos);
 	std::stack<CActuator*> actuators = field->GetActuator((SUBPOS_ABSOLUTE)0);
@@ -651,13 +641,17 @@ void CRaumView::TriggerActuators(VEKTOR heroPos) {
 }
 
 void CRaumView::TriggerActuator(VEKTOR heroPos, CField* field , CActuator* actuator) {
-	int weight = field->GetWeight(heroPos); // todo parameter optimieren?
+	bool criticalWeightChanged = field->CriticalWeightChange(heroPos, actuator->GetCriticalWeigth()); // todo parameter optimieren?
 	
 	switch (actuator->GetType()) {
 	case 3:
-		// TODO später hier weiter
+		if (criticalWeightChanged)
+		{
+			// TODO später hier weiter
+		}
 		break;
 	}
+
 }
 
 void CRaumView::TriggerActuatorsNearby() {

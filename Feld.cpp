@@ -17,6 +17,7 @@ CField::CField()
 {
 	m_iTyp = EMPTY;
 	VEKTOR pos{ 0,0,0 };
+	m_lastWeight = 0;
 	m_posKoord = pos;
 	m_pGrpMonster = NULL;
 	InitDeco(NULL);
@@ -26,6 +27,7 @@ CField::CField(VEKTOR koord, FeldTyp fieldType, CFieldDecoration* pDeco[4])
 {
 	ASSERT(fieldType != DOOR);
 	SetType(fieldType);
+	m_lastWeight = 0;
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
 	InitDeco(pDeco);
@@ -34,6 +36,7 @@ CField::CField(VEKTOR koord, FeldTyp fieldType, CFieldDecoration* pDeco[4])
 CField::CField(VEKTOR koord, FeldTyp fieldType, CDoor::DoorType doorType, bool eastWest, CFieldDecoration* pDeco[4])
 {	
 	SetTypeDoor(fieldType, doorType, eastWest);
+	m_lastWeight = 0;
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
 	InitDeco(pDeco);
@@ -42,6 +45,7 @@ CField::CField(VEKTOR koord, FeldTyp fieldType, CDoor::DoorType doorType, bool e
 CField::CField(VEKTOR koord, FeldTyp fieldType, CStairs::StairType stairType, bool eastWest, CFieldDecoration* pDeco[4])
 {
 	SetTypeStair(fieldType, stairType, eastWest);
+	m_lastWeight = 0;
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
 	InitDeco(pDeco);
@@ -176,4 +180,15 @@ int CField::GetWeight(VEKTOR heroPos) {
 	}
 
 	return weight;
+}
+
+bool CField::CriticalWeightChange(VEKTOR heroPos, int criticalWeight) {
+	int currentWeight = GetWeight(heroPos);
+	int lastWeight = m_lastWeight;
+
+	m_lastWeight = currentWeight; // direkt speichern, darf nur 1x triggern
+	
+	if (m_lastWeight < criticalWeight && currentWeight >= criticalWeight) return true;
+	if (m_lastWeight >= criticalWeight && currentWeight < criticalWeight) return true;
+	return false;
 }
