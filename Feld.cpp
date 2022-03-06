@@ -188,7 +188,7 @@ bool CField::CriticalWeightChange(VEKTOR heroPos, int criticalWeight) {
 
 	m_lastWeight = currentWeight; // direkt speichern, darf nur 1x triggern
 	
-	if (m_lastWeight < criticalWeight && currentWeight >= criticalWeight) return true;
-	if (m_lastWeight >= criticalWeight && currentWeight < criticalWeight) return true;
+	if (lastWeight < criticalWeight && currentWeight >= criticalWeight) return true;
+	if (lastWeight >= criticalWeight && currentWeight < criticalWeight) return true;
 	return false;
 }

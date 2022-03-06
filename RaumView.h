@@ -93,7 +93,7 @@ private:
 	void PrepareMoveItems(VEKTOR heroPos);
 	void MoveItems(VEKTOR heroPos);
 
-	void TriggerActuators(VEKTOR heroPos);
+	void TriggerActuators(VEKTOR fieldPos, VEKTOR heroPos );
 	void TriggerActuator(VEKTOR heroPos, CField* field, CActuator* actuator);
 };
 

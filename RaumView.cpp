@@ -630,8 +630,8 @@ void CRaumView::MoveAnythingNearby() {
 	}
 }
 
-void CRaumView::TriggerActuators(VEKTOR heroPos) {
-	CField* field = m_pMap->GetField(heroPos);
+void CRaumView::TriggerActuators(VEKTOR fieldPos, VEKTOR heroPos) {
+	CField* field = m_pMap->GetField(fieldPos);
 	std::stack<CActuator*> actuators = field->GetActuator((SUBPOS_ABSOLUTE)0);
 	while (!actuators.empty()) {
 		CActuator* actuator = actuators.top();
@@ -643,13 +643,15 @@ void CRaumView::TriggerActuators(VEKTOR heroPos) {
 void CRaumView::TriggerActuator(VEKTOR heroPos, CField* field , CActuator* actuator) {
 	bool criticalWeightChanged = field->CriticalWeightChange(heroPos, actuator->GetCriticalWeigth()); // todo parameter optimieren?
 	
-	switch (actuator->GetType()) {
-	case 3:
-		if (criticalWeightChanged)
-		{
-			// TODO später hier weiter
+	if (criticalWeightChanged) {
+		switch (actuator->GetType()) {
+		case 3:
+			if (criticalWeightChanged)
+			{
+				// TODO später hier weiter
+			}
+			break;
 		}
-		break;
 	}
 
 }
@@ -658,7 +660,7 @@ void CRaumView::TriggerActuatorsNearby() {
 	VEKTOR held = m_pMap->GetHeroes()->GetPos();
 	for (int i = max(held.x - 4, 0); i < min(held.x + 4, m_pMap->GetMaxWidth(held.z)); i++) {
 		for (int j = max(held.y - 4, 0); j < min(held.y + 4, m_pMap->GetMaxHeight(held.z)); j++) {
-			TriggerActuators(VEKTOR{ i, j, held.z });
+			TriggerActuators(VEKTOR{ i, j, held.z }, held);
 		}
 	}
 }
