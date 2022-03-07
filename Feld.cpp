@@ -3,10 +3,12 @@
 
 #include "stdafx.h"
 #include "Feld.h"
-#include "SpecialTile\Decoration.h"
 #include "SpecialTile\CDoor.h"
 #include "Mobs\MobGroups\GrpMonster.h"
+#include "Items\Decoration.h"
 #include "Items/CMiscellaneous.h"
+#include "Items/CFloorOrnate.h"
+#include "Items\CActuator.h"
 #include "CHelpfulValues.h"
 #include <cassert>
 
@@ -19,7 +21,8 @@ CField::CField()
 	VEKTOR pos{ 0,0,0 };
 	m_lastWeight = 0;
 	m_posKoord = pos;
-	m_pGrpMonster = NULL;
+	m_pGrpMonster = NULL;	
+	m_pFloorOrnate = NULL;
 	InitDeco(NULL);
 }
 
@@ -30,6 +33,7 @@ CField::CField(VEKTOR koord, FeldTyp fieldType, CFieldDecoration* pDeco[4])
 	m_lastWeight = 0;
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
+	m_pFloorOrnate = NULL;
 	InitDeco(pDeco);
 }
 
@@ -39,6 +43,7 @@ CField::CField(VEKTOR koord, FeldTyp fieldType, CDoor::DoorType doorType, bool e
 	m_lastWeight = 0;
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
+	m_pFloorOrnate = NULL;
 	InitDeco(pDeco);
 }
 
@@ -48,6 +53,7 @@ CField::CField(VEKTOR koord, FeldTyp fieldType, CStairs::StairType stairType, bo
 	m_lastWeight = 0;
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
+	m_pFloorOrnate = NULL;
 	InitDeco(pDeco);
 }
 
@@ -74,6 +80,8 @@ CField::~CField()
 			m_pActuator[i].pop();
 		}
 	}
+	if (m_pFloorOrnate)
+		delete m_pFloorOrnate;
 }
 
 void CField::InitDeco(CFieldDecoration* pDeco[4]) {
@@ -152,6 +160,10 @@ void CField::ThrowMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index, VEKTOR force
 
 void CField::PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index) {
 	m_pMiscellaneous[index].push(misc);
+}
+
+void CField::PutFloorDeco(CFloorOrnate* deco) {
+	m_pFloorOrnate = deco;
 }
 
 void CField::PutActuator(CActuator* actuator, SUBPOS_ABSOLUTE index) {

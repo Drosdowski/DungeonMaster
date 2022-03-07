@@ -60,7 +60,7 @@
     <ClCompile Include="ZauberView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SpecialTile\Decoration.cpp">
+    <ClCompile Include="Items\Decoration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Pictures\CPictures.cpp">
@@ -150,6 +150,9 @@
     <ClCompile Include="Pictures\CFloorOrnatePic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Items\CFloorOrnate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -205,7 +208,7 @@
     <ClInclude Include="ZauberView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SpecialTile\Decoration.h">
+    <ClInclude Include="Items\Decoration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\CPictures.h">
@@ -287,6 +290,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\CFloorOrnatePic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\CFloorOrnate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

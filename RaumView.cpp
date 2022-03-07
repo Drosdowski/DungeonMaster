@@ -11,7 +11,8 @@
 #include "RaumView.h"
 #include "CDungeonMap.h"
 #include "SpecialTile/CStairs.h"
-#include "SpecialTile\Decoration.h"
+#include "Items\Decoration.h"
+#include "Items\CFloorOrnate.h"
 #include "Pictures\CPictures.h"
 #include "Pictures\CDoorPic.h"
 #include "Pictures\CWallPic.h"
@@ -335,14 +336,14 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 		actuators.pop();
 	}
 
-	CFieldDecoration* floorDeco = pField->HoleDeko((SUBPOS_ABSOLUTE)0); // Feld Deko immer an Pos 0
-	if (floorDeco->GetDecoType() != None)
+	CFloorOrnate* floorDeco = pField->HoleFloorDeco(); // Feld Deko immer an Pos 0
+	if (floorDeco && floorDeco->GetType() != None)
 	{
 		CBitmap* decoBmp = NULL;
-		if (floorDeco->GetDecoType() == Moss) {
+		if (floorDeco->GetType() == Moss) {
 			decoBmp = m_pOrnatePic->GetMossPic(ebene, xxx);
 		} 
-		else if (floorDeco->GetDecoType() == Puddle) {
+		else if (floorDeco->GetType() == Puddle) {
 			decoBmp = m_pOrnatePic->GetPuddlePic(ebene, xxx);
 		}
 		CPoint center = m_pItem3DPic->GetFloorMiddle(xxx, ebene);

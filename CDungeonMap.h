@@ -35,6 +35,7 @@ private:
 	void ParseTile(TiXmlElement* rootNode, int etage);
 	void ParseItems(TiXmlElement* rootNode, VEKTOR coords);
 	void ParseMiscellaneous(TiXmlElement* rootNode, VEKTOR coords);
+	void ParseFloorDecoration(TiXmlElement* miscItem, VEKTOR coords);
 	void ParseActuatorObjects(TiXmlElement* rootNode);
 	void ParseActuator(TiXmlElement* miscItem, VEKTOR coords);
 	CField* ParseDoor(TiXmlElement* rootNode, VEKTOR pos);

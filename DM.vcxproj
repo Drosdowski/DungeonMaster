@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Items\CFloorOrnate.cpp" />
     <ClCompile Include="Pictures\CFloorOrnatePic.cpp" />
     <ClCompile Include="Items\CActuator.cpp" />
     <ClCompile Include="ColorCursor\ColorCursor.cpp" />
@@ -153,7 +154,7 @@
     <ClCompile Include="Mobs\Mumie.cpp" />
     <ClCompile Include="Pictures\CPictures.cpp" />
     <ClCompile Include="CHelpfulValues.cpp" />
-    <ClCompile Include="SpecialTile\Decoration.cpp" />
+    <ClCompile Include="Items\Decoration.cpp" />
     <ClCompile Include="DM.cpp" />
     <ClCompile Include="DMDoc.cpp" />
     <ClCompile Include="DMView.cpp" />
@@ -183,6 +184,7 @@
     <ResourceCompile Include="DM.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Items\CFloorOrnate.h" />
     <ClInclude Include="Pictures\CFloorOrnatePic.h" />
     <ClInclude Include="Items\CActuator.h" />
     <ClInclude Include="ColorCursor\ColorCursor.h" />
@@ -208,7 +210,7 @@
     <ClInclude Include="Mobs\Mumie.h" />
     <ClInclude Include="Pictures\CPictures.h" />
     <ClInclude Include="CHelpfulValues.h" />
-    <ClInclude Include="SpecialTile\Decoration.h" />
+    <ClInclude Include="Items\Decoration.h" />
     <ClInclude Include="DM.h" />
     <ClInclude Include="DMDoc.h" />
     <ClInclude Include="DMView.h" />

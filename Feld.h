@@ -19,6 +19,7 @@ class CGrpMonster;
 class CMiscellaneous;
 class CActuator;
 class CFieldDecoration;
+class CFloorOrnate;
 class CField
 {
 protected:
@@ -52,6 +53,9 @@ public:
 	std::stack<CMiscellaneous*> GetMisc(SUBPOS_ABSOLUTE index) { return m_pMiscellaneous[index]; }
 	std::stack<CActuator*> GetActuator(SUBPOS_ABSOLUTE index) { return m_pActuator[index]; }
 
+	void PutFloorDeco(CFloorOrnate* deco);
+	CFloorOrnate* HoleFloorDeco() { return m_pFloorOrnate;  }
+
 	void PutActuator(CActuator* actuator, SUBPOS_ABSOLUTE index);
 	VEKTOR HolePos() { return m_posKoord; }
 	bool CriticalWeightChange(VEKTOR heroPos, int criticalWeight);
@@ -68,6 +72,7 @@ protected:
 	CGrpMonster* m_pGrpMonster;
 	FeldTyp m_iTyp;
 	CFieldDecoration* m_pWallDecoration[4];
+	CFloorOrnate* m_pFloorOrnate;
 	std::stack<CMiscellaneous*> m_pMiscellaneous[4];
 
 	std::stack <CActuator*> m_pActuator[4];

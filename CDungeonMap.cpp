@@ -1,9 +1,10 @@
 #include "stdafx.h"
 #include <sstream>
-#include "SpecialTile\Decoration.h"
 #include "TinyXML/tinyxml.h"
 #include "Mobs/MobGroups/GrpHeld.h"
+#include "Items\Decoration.h"
 #include "Items/CMiscellaneous.h"
+#include "Items/CFloorOrnate.h"
 #include "CDungeonMap.h"
 
 CDungeonMap::CDungeonMap()
@@ -101,7 +102,9 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	rootNode->QueryIntAttribute("type", &type);
 	int hasObjects;
 	rootNode->QueryIntAttribute("has_objects", &hasObjects);
-		
+	int allowDecorations;
+	rootNode->QueryIntAttribute("allowDecorations", &allowDecorations);
+
 	// 0 = Wall , 1 == Empty, 2 = Pit, 3 = Stair, 4 == Door
 	if (type > 4)
 	{
@@ -124,7 +127,7 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	else
 		m_pFeld[x][y][etage] = new CField(pos, iFieldType, NULL); // etage 1 / index 30 => m_levelWidth[1] kaputt!
 	
-	if (hasObjects == 1) {		
+	if (hasObjects == 1 || allowDecorations == 1) {
 		ParseItems(rootNode, VEKTOR{x ,y, etage});
 	}
 }
@@ -145,6 +148,9 @@ void CDungeonMap::ParseItems(TiXmlElement* rootNode, VEKTOR coords) {
 				}
 				else if (strcmp(miscItem->Value(), "actuator") == 0) {
 					ParseActuator(miscItem, coords);
+				}
+				else if (strcmp(miscItem->Value(), "random_floor_decoration") == 0) {
+					ParseFloorDecoration(miscItem, coords);
 				}
 			
 				miscItem = miscItem->NextSiblingElement();
@@ -167,6 +173,14 @@ void CDungeonMap::ParseMiscellaneous(TiXmlElement* miscItem, VEKTOR coords) {
 
 	CMiscellaneous* misc = new CMiscellaneous(index, mtype, msubtype);
 	m_pFeld[coords.x][coords.y][coords.z]->PutMisc(misc, (SUBPOS_ABSOLUTE)subPos);
+}
+
+void CDungeonMap::ParseFloorDecoration(TiXmlElement* decoItem, VEKTOR coords) {
+	int graphic;
+	decoItem->QueryIntAttribute("graphic", &graphic);
+	CFloorOrnate* deco = new CFloorOrnate((FloorDecorationType)graphic);
+	m_pFeld[coords.x][coords.y][coords.z]->PutFloorDeco(deco);
+
 }
 
 void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {

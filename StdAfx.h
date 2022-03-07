@@ -105,9 +105,14 @@ enum DecorationType
 {
 	None,
 	Switch,
-	Fountain,
-	Puddle,
-	Moss
+	Fountain
+};
+
+enum FloorDecorationType
+{
+	Moss = 2,
+	Crack = 6,
+	Puddle = 8
 };
 
 enum FeldTyp {

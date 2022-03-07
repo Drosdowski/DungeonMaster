@@ -9,7 +9,7 @@
 #include "Raumview.h"
 #include "CDungeonMap.h"
 #include "DMDoc.h"
-#include "SpecialTile\Decoration.h"
+#include "Items\Decoration.h"
 #include "Mobs\Held.h"
 #include "Mobs\MobGroups\GrpHeld.h"
 

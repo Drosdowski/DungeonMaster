@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "DM.h"
 #include "CPictures.h"
-#include "..\SpecialTile\Decoration.h"
+#include "..\Items\Decoration.h"
 #include "CLeverPic.h"
 #include "CWallPic.h"
 
