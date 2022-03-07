@@ -105,7 +105,9 @@ enum DecorationType
 {
 	None,
 	Switch,
-	Fountain
+	Fountain,
+	Puddle,
+	Moss
 };
 
 enum FeldTyp {

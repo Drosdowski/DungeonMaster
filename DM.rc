@@ -411,6 +411,34 @@ IDB_PRESSURE_PAD_3F     BITMAP                  "res\\SquarePressurePad_3F.bmp"
 
 IDB_PRESSURE_PAD_3L     BITMAP                  "res\\SquarePressurePad_3L.bmp"
 
+IDB_FLOOR_PUDDLE_F1     BITMAP                  "res\\FloorPuddle_F1.bmp"
+
+IDB_FLOOR_PUDDLE_L1     BITMAP                  "res\\FloorPuddle_L1.bmp"
+
+IDB_FLOOR_PUDDLE_F2     BITMAP                  "res\\FloorPuddle_F2.bmp"
+
+IDB_FLOOR_PUDDLE_L2     BITMAP                  "res\\FloorPuddle_L2.bmp"
+
+IDB_FLOOR_PUDDLE_F3     BITMAP                  "res\\FloorPuddle_F3.bmp"
+
+IDB_FLOOR_PUDDLE_L3     BITMAP                  "res\\FloorPuddle_L3.bmp"
+
+IDB_FLOOR_MOSS_F1       BITMAP                  "res\\FloorMoss_F1.bmp"
+
+IDB_FLOOR_MOSS_L1       BITMAP                  "res\\FloorMoss_L1.bmp"
+
+IDB_FLOOR_MOSS_F2       BITMAP                  "res\\FloorMos_F2.bmp"
+
+IDB_FLOOR_MOSS_L2       BITMAP                  "res\\FloorMoss_L2.bmp"
+
+IDB_FLOOR_MOSS_F3       BITMAP                  "res\\FloorMoss_F3.bmp"
+
+IDB_FLOOR_MOSS_L3       BITMAP                  "res\\FloorMoss_L3.bmp"
+
+IDB_MANACLES_L          BITMAP                  "res\\Manacles_L.bmp"
+
+IDB_MANACLES_F          BITMAP                  "res\\Manacles_F.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

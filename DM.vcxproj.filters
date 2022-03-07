@@ -147,6 +147,9 @@
     <ClCompile Include="Items\CActuator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pictures\CFloorOrnatePic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -281,6 +284,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Items\CActuator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\CFloorOrnatePic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -605,6 +611,48 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\SquarePressurePad_3L.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorMos_F2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorMoss_F1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorMoss_F3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorMoss_L1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorMoss_L2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorMoss_L3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorPuddle_F1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorPuddle_F2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorPuddle_F3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorPuddle_L1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorPuddle_L2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorPuddle_L3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Manacles_F.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Manacles_L.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

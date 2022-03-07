@@ -33,6 +33,15 @@ void CDoor::Toggle() {
 	}
 }
 
+void CDoor::Open() {
+	if (m_state == CLOSED)
+		m_state = OPENING;
+}
+void CDoor::Close() {
+	if (m_state == OPEN)
+		m_state = CLOSING;
+}
+
 bool CDoor::Visible(int heroRicht) {
 	return (getDoorFrameEastAndWest() != (heroRicht % 2 != 0));
 }

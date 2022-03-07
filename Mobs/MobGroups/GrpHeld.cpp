@@ -24,7 +24,8 @@ CGrpHeld::CGrpHeld(VEKTOR pos, int richt)
 	m_posPosition = pos;
 	//m_posPosition = VEKTOR{ 2,7,0 }; // bei Monster Gruppe
 	//m_posPosition = VEKTOR{ 7,9,1 }; // bei Items
-	m_posPosition = VEKTOR{ 6,9,0 }; // bei Pressure Pad
+	//m_posPosition = VEKTOR{ 6,9,0 }; // bei Pressure Pad
+	m_posPosition = VEKTOR{ 18,17,1 }; // bei 2 Pressure Pads
 	m_grpDirection = richt;
 }
 

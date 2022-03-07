@@ -7,6 +7,7 @@ public:
 	~CPressurePadPic();
 
 	CBitmap* GetPressurePadPic(int ebene, int xx);
+	CPoint GetPos(int x, int ebene);
 
 private:
 	void InitPressurePads();

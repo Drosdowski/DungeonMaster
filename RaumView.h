@@ -21,6 +21,7 @@ class CStairsPic;
 class CWallPic;
 class CLeverPic;
 class CPressurePadPic;
+class CFloorOrnatePic;
 class CFountainPic;
 class CItem3DPic;
 class CMonsterPic;
@@ -67,6 +68,7 @@ protected:
 	CLeverPic* m_pLeverPic;
 	CStairsPic* m_pStairsPic;
 	CPressurePadPic* m_pPressurePadPic;
+	CFloorOrnatePic* m_pOrnatePic;
 	CFountainPic* m_pFountainPic;
 	CMonsterPic* m_pMonsterPic;
 	CItem3DPic* m_pItem3DPic;
@@ -78,6 +80,7 @@ protected:
 	void DrawStairsFront(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs);
 	void DrawStairsSide(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs);
 	void DrawSquarePressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene, CActuator* pActuator);
+	void DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pField);
 	void DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene, bool left);
 	void DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField);
 	void DrawMonster(CDC* pDC, CDC* cdc, int xx, int ebene, int richt, CMonster* pMonster);
@@ -94,7 +97,7 @@ private:
 	void MoveItems(VEKTOR heroPos);
 
 	void TriggerActuators(VEKTOR fieldPos, VEKTOR heroPos );
-	void TriggerActuator(VEKTOR heroPos, CField* field, CActuator* actuator);
+	void TriggerActuator(VEKTOR heroPos, CField* field, CActuator* actuator, SUBPOS_ABSOLUTE pos);
 };
 
 /////////////////////////////////////////////////////////////////////////////

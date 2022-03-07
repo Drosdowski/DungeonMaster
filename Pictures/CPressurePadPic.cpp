@@ -38,3 +38,35 @@ CBitmap* CPressurePadPic::GetPressurePadPic(int xxx, int ebene) {
 	}
 	return NULL;
 }
+
+CPoint CPressurePadPic::GetPos(int x, int ebene) {
+	CPoint middle;
+	switch (x) {
+	case 2:
+		if (ebene == 1) middle.x = 20;
+		if (ebene == 2) middle.x = 90;
+		break;
+	case 3:
+		if (ebene == 1) middle.x = 418; // tuned for pressure plate
+		if (ebene == 2) middle.x = 360;
+		break;
+	case 4:
+		middle.x = 225;
+		break;
+	}
+	if (middle.x != 0) {
+		switch (ebene) {
+		case 0:
+			// nur oben links / rechts
+			middle.y = 325; break;
+		case 1:
+			middle.y = 290; break;
+		case 2:
+			middle.y = 235;	break;
+		case 3:
+			middle.y = 200; break;
+		}
+	}
+
+	return middle;
+}

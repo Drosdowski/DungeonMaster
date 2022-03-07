@@ -97,6 +97,20 @@
 #define IDB_PRESSURE_PAD_2L             268
 #define IDB_PRESSURE_PAD_3F             269
 #define IDB_PRESSURE_PAD_3L             270
+#define IDB_FLOOR_PUDDLE_F1             271
+#define IDB_FLOOR_PUDDLE_L1             272
+#define IDB_FLOOR_PUDDLE_F2             273
+#define IDB_FLOOR_PUDDLE_L2             274
+#define IDB_FLOOR_PUDDLE_F3             275
+#define IDB_FLOOR_PUDDLE_L3             276
+#define IDB_FLOOR_MOSS_F1               277
+#define IDB_FLOOR_MOSS_L1               278
+#define IDB_FLOOR_MOSS_F2               279
+#define IDB_FLOOR_MOSS_L2               280
+#define IDB_FLOOR_MOSS_F3               281
+#define IDB_FLOOR_MOSS_L3               282
+#define IDB_MANACLES_L                  283
+#define IDB_MANACLES_F                  284
 #define IDB_BITMAP_E0L                  1001
 #define IDB_BITMAP_E0LF                 1002
 #define IDB_BITMAP_E0R                  1004
@@ -125,7 +139,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        271
+#define _APS_NEXT_RESOURCE_VALUE        285
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

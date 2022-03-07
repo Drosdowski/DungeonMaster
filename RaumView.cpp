@@ -18,6 +18,7 @@
 #include "Pictures/CStairsPic.h"
 #include "Pictures\CLeverPic.h"
 #include "Pictures/CPressurePadPic.h"
+#include "Pictures/CFloorOrnatePic.h"
 #include "Pictures\CFountainPic.h"
 #include "Pictures\Creatures\CMonsterPic.h"
 #include "Pictures\Items3D\CItem3DPic.h"
@@ -52,6 +53,7 @@ CRaumView::CRaumView()
 	m_pWallPic = NULL;
 	m_pStairsPic = NULL;
 	m_pPressurePadPic = NULL;
+	m_pOrnatePic = NULL;
 	m_pLeverPic = NULL;
 	m_pPictures = NULL;
 	m_pFountainPic = NULL;
@@ -67,6 +69,7 @@ CRaumView::~CRaumView()
 	delete m_pStairsPic;
 	delete m_pWallPic;
 	delete m_pPressurePadPic;
+	delete m_pOrnatePic;
 	delete m_pLeverPic;
 	delete m_pFountainPic;
 	delete m_pMonsterPic;
@@ -94,7 +97,7 @@ void CRaumView::DrawSquarePressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene, CA
 	BITMAP bmpInfo;
 	CBitmap* bmp = m_pPressurePadPic->GetPressurePadPic(xxx, ebene);
 	if (bmp) {
-		CPoint floorMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
+		CPoint floorMiddlePos = m_pPressurePadPic->GetPos(xxx, ebene);
 		if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) {
 			cdc->SelectObject(bmp);
 			bmp->GetBitmap(&bmpInfo);
@@ -179,7 +182,7 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CDoo
 			cdc->SelectObject(bmp);
 			CPoint pos = m_pDoorPic->GetDoorFrontPos(xxx, ebene, wallPos);
 			bmp->GetBitmap(&bmpInfo);
-			if (pos.x != 0 && pos.y != 0) {
+			if (pos.x != 0 || pos.y != 0) {
 				int reducedWidth = min(bmpInfo.bmWidth, (MainAreaWidth - pos.x) / 2);
 				int reducedHeight = bmpInfo.bmHeight - pDoor->getDoorBottomHeight();
 				pDC->TransparentBlt(pos.x, pos.y, reducedWidth * 2, reducedHeight * 2, cdc, 0, pDoor->getDoorBottomHeight(), reducedWidth, reducedHeight, TRANS_ORA);
@@ -320,6 +323,42 @@ void test(CDC* pDC, int x, int y) {
 	pDC->Ellipse(x - 5, y - 5, x + 5, y + 5);
 }
 
+void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pField) {
+	BITMAP bmpDecoInfo;
+	
+	std::stack<CActuator*> actuators = pField->GetActuator((SUBPOS_ABSOLUTE)0);  // Boden hat immer POsition 0.
+	while (!actuators.empty()) {
+		CActuator* actuator = actuators.top();
+		if (actuator->GetType() == 3) {
+			DrawSquarePressurePad(pDC, cdc, xxx, ebene, actuator);
+		}
+		actuators.pop();
+	}
+
+	CFieldDecoration* floorDeco = pField->HoleDeko((SUBPOS_ABSOLUTE)0); // Feld Deko immer an Pos 0
+	if (floorDeco->GetDecoType() != None)
+	{
+		CBitmap* decoBmp = NULL;
+		if (floorDeco->GetDecoType() == Moss) {
+			decoBmp = m_pOrnatePic->GetMossPic(ebene, xxx);
+		} 
+		else if (floorDeco->GetDecoType() == Puddle) {
+			decoBmp = m_pOrnatePic->GetPuddlePic(ebene, xxx);
+		}
+		CPoint center = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
+		if (decoBmp && center.x > 0 && center.y > 0) {
+			double faktor = m_pPictures->getFaktor(ebene);
+			cdc->SelectObject(decoBmp);
+			decoBmp->GetBitmap(&bmpDecoInfo);
+			int decoPosX = center.x - (int)(bmpDecoInfo.bmWidth * faktor);
+			int decoPosY = center.y - (int)(bmpDecoInfo.bmHeight * faktor);
+
+			DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
+
+		}
+	}
+}
+
 void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, int heroDir, std::stack<CMiscellaneous*> pile) {
 	// TODO - besser als "nur oberstes Malen... "
 	CMiscellaneous* misc = pile.top();
@@ -443,14 +482,7 @@ void CRaumView::Zeichnen(CDC* pDC)
 				}
 				else if (fieldType == FeldTyp::EMPTY) {
 					// Platten, Pfützen, Fussabdrücke, Pit, ...
-					std::stack<CActuator*> actuators = pField->GetActuator((SUBPOS_ABSOLUTE)0);  // Boden hat immer POsition 0.
-					while (!actuators.empty()) {
-						CActuator* actuator = actuators.top();
-						if (actuator->GetType() == 3) {
-							DrawSquarePressurePad(pDC, &compCdc, xxx, ebene, actuator);
-						}
-						actuators.pop();
-					}
+					DrawOnFloor(pDC, &compCdc, xxx, ebene, pField);
 				}
 
 				if (fieldType != FeldTyp::WALL) {
@@ -635,20 +667,39 @@ void CRaumView::TriggerActuators(VEKTOR fieldPos, VEKTOR heroPos) {
 	std::stack<CActuator*> actuators = field->GetActuator((SUBPOS_ABSOLUTE)0);
 	while (!actuators.empty()) {
 		CActuator* actuator = actuators.top();
-		TriggerActuator(heroPos, field, actuator);
+		TriggerActuator(heroPos, field, actuator, (SUBPOS_ABSOLUTE)0);
 		actuators.pop();
 	}
 }
 
-void CRaumView::TriggerActuator(VEKTOR heroPos, CField* field , CActuator* actuator) {
+void CRaumView::TriggerActuator(VEKTOR heroPos, CField* field , CActuator* actuator, SUBPOS_ABSOLUTE pos) {
 	bool criticalWeightChanged = field->CriticalWeightChange(heroPos, actuator->GetCriticalWeigth()); // todo parameter optimieren?
 	
 	if (criticalWeightChanged) {
 		switch (actuator->GetType()) {
 		case 3:
-			if (criticalWeightChanged)
+			VEKTOR target = actuator->GetActionTarget(pos);
+			CActuator::ActionTypes type = actuator->GetActionType(pos);
+			// TODO: type auswerten!
+			CField* pTargetField = m_pMap->GetField(target);
+			CDoor* pDoor = pTargetField->HoleDoor(); // todo das kann nicht nur eine Tür treffen!
+			switch (type)
 			{
-				// TODO später hier weiter
+			case CActuator::Set:
+				if (pDoor != NULL) {
+					pDoor->Open();
+				}
+				break;
+			case CActuator::Toggle:
+				if (pDoor != NULL) {
+					pDoor->Toggle();
+				}
+				break;
+			case CActuator::Clear:
+				if (pDoor != NULL) {
+					pDoor->Close(); // TODO ???
+				}
+				break;
 			}
 			break;
 		}
@@ -746,6 +797,7 @@ void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
 	m_pStairsPic = new CStairsPic(pDC);
 	m_pLeverPic = new CLeverPic(pDC);
 	m_pPressurePadPic = new CPressurePadPic(pDC);
+	m_pOrnatePic = new CFloorOrnatePic(pDC);
 	m_pFountainPic = new CFountainPic(pDC);
 	m_pMonsterPic = new CMonsterPic(pDC);
 	m_pItem3DPic = new CItem3DPic(pDC);
