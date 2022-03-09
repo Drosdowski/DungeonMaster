@@ -439,6 +439,46 @@ IDB_MANACLES_L          BITMAP                  "res\\Manacles_L.bmp"
 
 IDB_MANACLES_F          BITMAP                  "res\\Manacles_F.bmp"
 
+IDB_FLOOR_PIT_CEILING_F0 BITMAP                  "res\\CeilingPit_F0.bmp"
+
+IDB_FLOOR_PIT_CEILING_L0 BITMAP                  "res\\CeilingPit_L0.bmp"
+
+IDB_FLOOR_PIT_CEILING_F1 BITMAP                  "res\\CeilingPit_F1.bmp"
+
+IDB_FLOOR_PIT_CEILING_L1 BITMAP                  "res\\CeilingPit_L1.bmp"
+
+IDB_FLOOR_PIT_CEILING_F2 BITMAP                  "res\\CeilingPit_F2.bmp"
+
+IDB_FLOOR_PIT_CEILING_L2 BITMAP                  "res\\CeilingPit_L2.bmp"
+
+IDB_FLOOR_PIT_INV_F0    BITMAP                  "res\\FloorPit_Inv_F0.bmp"
+
+IDB_FLOOR_PIT_INV_L0    BITMAP                  "res\\FloorPit_Inv_L0.bmp"
+
+IDB_FLOOR_PIT_INV_F1    BITMAP                  "res\\FloorPit_Inv_F1.bmp"
+
+IDB_FLOOR_PIT_INV_L1    BITMAP                  "res\\FloorPit_Inv_L1.bmp"
+
+IDB_FLOOR_PIT_INV_F2    BITMAP                  "res\\FloorPit_Inv_F2.bmp"
+
+IDB_FLOOR_PIT_INV_L2    BITMAP                  "res\\FloorPit_Inv_L2.bmp"
+
+IDB_FLOOR_PIT_F0        BITMAP                  "res\\FloorPit_F0.bmp"
+
+IDB_FLOOR_PIT_L0        BITMAP                  "res\\FloorPit_L0.bmp"
+
+IDB_FLOOR_PIT_F1        BITMAP                  "res\\FloorPit_F1.bmp"
+
+IDB_FLOOR_PIT_L1        BITMAP                  "res\\FloorPit_L1.bmp"
+
+IDB_FLOOR_PIT_F2        BITMAP                  "res\\FloorPit_F2.bmp"
+
+IDB_FLOOR_PIT_L2        BITMAP                  "res\\FloorPit_L2.bmp"
+
+IDB_FLOOR_PIT_F3        BITMAP                  "res\\FloorPit_F3.bmp"
+
+IDB_FLOOR_PIT_L3        BITMAP                  "res\\FloorPit_L3.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -106,6 +106,7 @@ CBitmap* CWallPic::GetWallPic(int x, int ebene, bool bMirror)
 			return m_pWallFront[ebene];
 		break;
 	}
+	return NULL;
 }
 
 CPoint CWallPic::GetWallPos(int x, int ebene) {

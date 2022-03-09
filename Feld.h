@@ -10,6 +10,7 @@
 #endif // _MSC_VER >= 1000
 #include <SpecialTile\CDoor.h>
 #include <SpecialTile\CStairs.h>
+#include <SpecialTile/CPit.h>
 // Feld.h : header file
 //
 /////////////////////////////////////////////////////////////////////////////
@@ -20,6 +21,7 @@ class CMiscellaneous;
 class CActuator;
 class CFieldDecoration;
 class CFloorOrnate;
+class CPit;
 class CField
 {
 protected:
@@ -27,7 +29,8 @@ protected:
 public:
 
 	CField(VEKTOR koord, FeldTyp fieldType, CDoor::DoorType doorType, bool doorFrameEastAndWest, CFieldDecoration* pDeco[4]);
-	CField(VEKTOR koord, FeldTyp fieldType, CStairs::StairType stairType, bool eastWest, CFieldDecoration* pDeco[4]);
+	CField(VEKTOR koord, FeldTyp fieldType, CStairs::StairType stairType, bool eastWest);
+	CField(VEKTOR koord, FeldTyp fieldType, CPit::PitType pitType, CPit::PitState state);
 	CField(VEKTOR koord, FeldTyp fieldType, CFieldDecoration* pDeco[4]);           // protected constructor used by dynamic creation
 
 
@@ -44,6 +47,7 @@ public:
 	CStairs* HoleStairs() { return m_pStairs;  }
 	void SetTypeDoor(FeldTyp iTyp, CDoor::DoorType doorType, bool doorDirectionEastWest);
 	void SetTypeStair(FeldTyp fieldType, CStairs::StairType stairsType, bool eastWest);
+	void SetTypePit(FeldTyp fieldType, CPit::PitType pitType, CPit::PitState state);
 	void SetType(FeldTyp iTyp);
 
 	void PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index);
@@ -54,7 +58,8 @@ public:
 	std::stack<CActuator*> GetActuator(SUBPOS_ABSOLUTE index) { return m_pActuator[index]; }
 
 	void PutFloorDeco(CFloorOrnate* deco);
-	CFloorOrnate* HoleFloorDeco() { return m_pFloorOrnate;  }
+	CFloorOrnate* HoleFloorDeco() { return m_pFloorOrnate; }
+	CPit* HolePit() { return m_pPit;  }
 
 	void PutActuator(CActuator* actuator, SUBPOS_ABSOLUTE index);
 	VEKTOR HolePos() { return m_posKoord; }
@@ -79,6 +84,7 @@ protected:
 
 	CDoor* m_pDoor = NULL;
 	CStairs* m_pStairs = NULL;
+	CPit* m_pPit = NULL;
 
 	void InitDeco(CFieldDecoration* pDeco[4]);
 	int GetWeight(VEKTOR heroPos);

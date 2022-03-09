@@ -153,6 +153,12 @@
     <ClCompile Include="Items\CFloorOrnate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SpecialTile\CPit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pictures\CPitPic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -293,6 +299,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Items\CFloorOrnate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialTile\CPit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\CPitPic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -659,6 +671,66 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Manacles_L.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\CeilingPit_F0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\CeilingPit_F1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\CeilingPit_F2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\CeilingPit_L0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\CeilingPit_L1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\CeilingPit_L2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorPit_F0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorPit_F1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorPit_F2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorPit_F3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorPit_Inv_F0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorPit_Inv_F1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorPit_Inv_F2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorPit_Inv_L0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorPit_Inv_L1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorPit_Inv_L2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorPit_L0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorPit_L1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorPit_L2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FloorPit_L3.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

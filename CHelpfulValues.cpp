@@ -28,6 +28,7 @@ VEKTOR CHelpfulValues::MakeVektor(int direction, int force) {
 	case 2: return VEKTOR{ 0, force, 0 };
 	case 3: return VEKTOR{ -force, 0, 0 };
 	}
+	return VEKTOR {0, 0, 0};
 }
 
 
@@ -65,6 +66,7 @@ SUBPOS_ABSOLUTE CHelpfulValues::GetAbsPosBySubposWhenFacingNorth(SUBPOS pos) {
 	case RECHTSVORNE: return SOUTHEAST;
 	case LINKSVORNE: return SOUTHWEST;
 	}
+	return MIDDLE;
 }
 
 SUBPOS CHelpfulValues::GetPosByIndexWhenFacingNorth(SUBPOS_ABSOLUTE pos) {
@@ -92,6 +94,7 @@ SUBPOS_ABSOLUTE CHelpfulValues::RightFrom(SUBPOS_ABSOLUTE pos) {
 	case SOUTHWEST:
 		return NORTHWEST;
 	}
+	return MIDDLE;
 }
 
 SUBPOS_ABSOLUTE CHelpfulValues::LeftFrom(SUBPOS_ABSOLUTE pos) {
@@ -105,6 +108,7 @@ SUBPOS_ABSOLUTE CHelpfulValues::LeftFrom(SUBPOS_ABSOLUTE pos) {
 	case SOUTHWEST:
 		return SOUTHEAST;
 	}
+	return MIDDLE;
 }
 
 SUBPOS CHelpfulValues::GetRelativeSubPosPassive(SUBPOS_ABSOLUTE pos_abs, int heroDir) {

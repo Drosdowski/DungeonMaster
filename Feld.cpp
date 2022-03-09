@@ -47,14 +47,24 @@ CField::CField(VEKTOR koord, FeldTyp fieldType, CDoor::DoorType doorType, bool e
 	InitDeco(pDeco);
 }
 
-CField::CField(VEKTOR koord, FeldTyp fieldType, CStairs::StairType stairType, bool eastWest, CFieldDecoration* pDeco[4])
+CField::CField(VEKTOR koord, FeldTyp fieldType, CStairs::StairType stairType, bool eastWest)
 {
 	SetTypeStair(fieldType, stairType, eastWest);
 	m_lastWeight = 0;
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
 	m_pFloorOrnate = NULL;
-	InitDeco(pDeco);
+	InitDeco(NULL);
+}
+
+CField::CField(VEKTOR koord, FeldTyp fieldType, CPit::PitType pitType, CPit::PitState state)
+{
+	SetTypePit(fieldType, pitType, state);
+	m_lastWeight = 0;
+	m_posKoord = koord;
+	m_pGrpMonster = NULL;
+	m_pFloorOrnate = NULL;
+	InitDeco(NULL);
 }
 
 CField::~CField()
@@ -65,6 +75,8 @@ CField::~CField()
 		delete m_pDoor;
 	if (m_pStairs)
 		delete m_pStairs;
+	if (m_pPit)
+		delete m_pPit;
 	for (int i = 0; i < 4; i++) {
 		if (m_pWallDecoration[i]) {
 			delete m_pWallDecoration[i];
@@ -147,6 +159,16 @@ void CField::SetTypeStair(FeldTyp fieldType, CStairs::StairType stairsType, bool
 	m_iTyp = fieldType;
 	if (fieldType == STAIRS) {
 		m_pStairs = new CStairs(stairsType, eastWest);
+	}
+	else {
+		assert(false);
+	}
+}
+
+void CField::SetTypePit(FeldTyp fieldType, CPit::PitType pitType, CPit::PitState state) {
+	m_iTyp = fieldType;
+	if (fieldType == PIT) {
+		m_pPit = new CPit(pitType, state);
 	}
 	else {
 		assert(false);

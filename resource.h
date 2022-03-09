@@ -111,6 +111,28 @@
 #define IDB_FLOOR_MOSS_L3               282
 #define IDB_MANACLES_L                  283
 #define IDB_MANACLES_F                  284
+#define IDB_FLOOR_PIT_CEILING_F0        285
+#define IDB_FLOOR_PIT_CEILING_L0        286
+#define IDB_FLOOR_PIT_CEILING_F1        287
+#define IDB_FLOOR_PIT_CEILING_L1        288
+#define IDB_FLOOR_PIT_CEILING_F2        289
+#define IDB_FLOOR_PIT_CEILING_L2        290
+#define IDB_FLOOR_PIT_INV_F0            291
+#define IDB_FLOOR_PIT_INV_L0            292
+#define IDB_FLOOR_PIT_INV_F1            293
+#define IDB_FLOOR_PIT_INV_L1            294
+#define IDB_FLOOR_PIT_INV_F2            295
+#define IDB_FLOOR_PIT_INV_L2            296
+#define IDB_FLOOR_PIT_F0                297
+#define IDB_FLOOR_PIT_L0                298
+#define IDB_FLOOR_PIT_F1                299
+#define IDB_FLOOR_PIT_L1                300
+#define IDB_FLOOR_PIT_F2                301
+#define IDB_FLOOR_PIT_L2                302
+#define IDB_FLOOR_PIT_F3                303
+#define IDB_FLOOR_PIT_L3                304
+#define IDB_IDB_FLOOR_PIT_CEILING_L2    317
+#define IDB_IDB_FLOOR_PIT_INV_F0        318
 #define IDB_BITMAP_E0L                  1001
 #define IDB_BITMAP_E0LF                 1002
 #define IDB_BITMAP_E0R                  1004
@@ -139,7 +161,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        285
+#define _APS_NEXT_RESOURCE_VALUE        319
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

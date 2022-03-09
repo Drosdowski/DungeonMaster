@@ -55,14 +55,29 @@ CField* CDungeonMap::ParseStairs(TiXmlElement* rootNode, VEKTOR pos) {
 	rootNode->QueryIntAttribute("direction", &direction);
 	rootNode->QueryIntAttribute("orientation", &orientation);
 	if (direction == 0)
-		return new CField(pos, FeldTyp::STAIRS, CStairs::StairType::DOWN, (orientation != 0), NULL);
+		return new CField(pos, FeldTyp::STAIRS, CStairs::StairType::DOWN, (orientation != 0));
 	else
-		return new CField(pos, FeldTyp::STAIRS, CStairs::StairType::UP, (orientation != 0), NULL);
+		return new CField(pos, FeldTyp::STAIRS, CStairs::StairType::UP, (orientation != 0));
 }
 
 CField* CDungeonMap::ParsePit(TiXmlElement* rootNode, VEKTOR pos) {
-	// TODO
-	return new CField(pos, FeldTyp::PIT, NULL);
+	int is_imaginary, is_invisible, is_open;
+	rootNode->QueryIntAttribute("is_imaginary", &is_imaginary);
+	rootNode->QueryIntAttribute("is_invisible", &is_invisible);
+	rootNode->QueryIntAttribute("is_open", &is_open);
+
+	CPit::PitType type;
+	if (is_imaginary) {
+		type = CPit::PitType::Imaginary;
+	}
+	else if (is_invisible) {
+		type = CPit::PitType::Invisible;
+	}
+	else {
+		type = CPit::PitType::Standard;
+	}
+
+	return new CField(pos, FeldTyp::PIT, type, (CPit::PitState)is_open);
 }
 
 CField* CDungeonMap::ParseDoor(TiXmlElement* rootNode, VEKTOR pos) {
@@ -102,8 +117,8 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	rootNode->QueryIntAttribute("type", &type);
 	int hasObjects;
 	rootNode->QueryIntAttribute("has_objects", &hasObjects);
-	int allowDecorations;
-	rootNode->QueryIntAttribute("allowDecorations", &allowDecorations);
+	int allowDecoration;
+	rootNode->QueryIntAttribute("allow_decoration", &allowDecoration);
 
 	// 0 = Wall , 1 == Empty, 2 = Pit, 3 = Stair, 4 == Door
 	if (type > 4)
@@ -127,7 +142,7 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	else
 		m_pFeld[x][y][etage] = new CField(pos, iFieldType, NULL); // etage 1 / index 30 => m_levelWidth[1] kaputt!
 	
-	if (hasObjects == 1 || allowDecorations == 1) {
+	if (hasObjects == 1 || allowDecoration == 1) {
 		ParseItems(rootNode, VEKTOR{x ,y, etage});
 	}
 }

@@ -110,9 +110,9 @@ enum DecorationType
 
 enum FloorDecorationType
 {
-	Moss = 2,
-	Crack = 6,
-	Puddle = 8
+	Moss = 0, // typ 2
+	Crack = 2, // typ 6
+	Puddle = 1 // typ 8
 };
 
 enum FeldTyp {

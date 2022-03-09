@@ -11,12 +11,14 @@
 #include "RaumView.h"
 #include "CDungeonMap.h"
 #include "SpecialTile/CStairs.h"
+#include "SpecialTile/CPit.h"
 #include "Items\Decoration.h"
 #include "Items\CFloorOrnate.h"
 #include "Pictures\CPictures.h"
 #include "Pictures\CDoorPic.h"
 #include "Pictures\CWallPic.h"
 #include "Pictures/CStairsPic.h"
+#include "Pictures/CPitPic.h"
 #include "Pictures\CLeverPic.h"
 #include "Pictures/CPressurePadPic.h"
 #include "Pictures/CFloorOrnatePic.h"
@@ -53,6 +55,7 @@ CRaumView::CRaumView()
 	m_pDoorPic = NULL;
 	m_pWallPic = NULL;
 	m_pStairsPic = NULL;
+	m_pPitPic = NULL;
 	m_pPressurePadPic = NULL;
 	m_pOrnatePic = NULL;
 	m_pLeverPic = NULL;
@@ -68,6 +71,7 @@ CRaumView::~CRaumView()
 	delete m_values;
 	delete m_pDoorPic;
 	delete m_pStairsPic;
+	delete m_pPitPic;
 	delete m_pWallPic;
 	delete m_pPressurePadPic;
 	delete m_pOrnatePic;
@@ -128,6 +132,33 @@ void CRaumView::DrawStairsSide(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* 
 			cdc->SelectObject(bmp);
 			bmp->GetBitmap(&bmpInfo);
 			pDC->TransparentBlt(pos.x, pos.y, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);
+		}
+	}
+}
+
+void CRaumView::DrawFloorPit(CDC *pDC, CDC* cdc, int xxx, int ebene, CPit* pit) {
+	BITMAP bmpPitInfo;
+	if (pit) {
+		CBitmap* pitBmp = NULL;
+		CPit::PitType type = pit->GetType();
+		if (type == CPit::PitType::Standard || type == CPit::PitType::Imaginary) {
+			pitBmp = m_pPitPic->GetPitPic(ebene, xxx);
+		}
+		else {
+			// Invisible Pit
+			pitBmp = m_pPitPic->GetInvPitPic(ebene, xxx);
+		}
+
+		CPoint center = m_pPressurePadPic->GetPos(xxx, ebene);
+		if (pitBmp && center.x > 0 && center.y > 0) {
+			double faktor = m_pPictures->getFaktor(ebene);
+			cdc->SelectObject(pitBmp);
+			pitBmp->GetBitmap(&bmpPitInfo);
+			int decoPosX = center.x - (int)(bmpPitInfo.bmWidth * faktor);
+			int decoPosY = center.y - (int)(bmpPitInfo.bmHeight * faktor);
+
+			DrawInArea(decoPosX, decoPosY, bmpPitInfo.bmWidth, bmpPitInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
+
 		}
 	}
 }
@@ -337,7 +368,7 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 	}
 
 	CFloorOrnate* floorDeco = pField->HoleFloorDeco(); // Feld Deko immer an Pos 0
-	if (floorDeco && floorDeco->GetType() != None)
+	if (floorDeco) // && floorDeco->GetType() != None)
 	{
 		CBitmap* decoBmp = NULL;
 		if (floorDeco->GetType() == Moss) {
@@ -346,7 +377,8 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 		else if (floorDeco->GetType() == Puddle) {
 			decoBmp = m_pOrnatePic->GetPuddlePic(ebene, xxx);
 		}
-		CPoint center = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
+		//CPoint center = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
+		CPoint center = m_pPressurePadPic->GetPos(xxx, ebene);
 		if (decoBmp && center.x > 0 && center.y > 0) {
 			double faktor = m_pPictures->getFaktor(ebene);
 			cdc->SelectObject(decoBmp);
@@ -358,6 +390,7 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 
 		}
 	}
+
 }
 
 void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, int heroDir, std::stack<CMiscellaneous*> pile) {
@@ -460,7 +493,7 @@ void CRaumView::Zeichnen(CDC* pDC)
 				CField* pField = m_pMap->GetField(addx,addy,z);
 				int fieldType = pField->HoleTyp();
 							
-
+				// TODO prüfe z -1 ob PIT
 				if (fieldType == FeldTyp::WALL && ((ebene != 0) || (xx != 0)))
 				{
 					DrawWall(pDC, &compCdc, xxx, ebene, heroDir, pField);
@@ -480,6 +513,14 @@ void CRaumView::Zeichnen(CDC* pDC)
 					else {
 						DrawStairsSide(pDC, &compCdc, xxx, ebene, pStairs);
 					}
+				}
+				else if (fieldType == FeldTyp::PIT) {
+					CPit* pit = pField->HolePit();
+					if (pit->GetType() != CPit::PitType::Invisible && 
+						pit->GetState() == CPit::PitState::Open) {
+						DrawFloorPit(pDC, &compCdc, xxx, ebene, pit);
+					}
+
 				}
 				else if (fieldType == FeldTyp::EMPTY) {
 					// Platten, Pfützen, Fussabdrücke, Pit, ...
@@ -796,6 +837,7 @@ void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
 	m_pDoorPic = new CDoorPic(pDC);
 	m_pWallPic = new CWallPic(pDC);
 	m_pStairsPic = new CStairsPic(pDC);
+	m_pPitPic = new CPitPic(pDC);
 	m_pLeverPic = new CLeverPic(pDC);
 	m_pPressurePadPic = new CPressurePadPic(pDC);
 	m_pOrnatePic = new CFloorOrnatePic(pDC);
