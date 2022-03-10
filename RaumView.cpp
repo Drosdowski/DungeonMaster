@@ -574,6 +574,16 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 		CGrpMonster* pGrpMonster = pField->GetMonsterGroup();
 		if (pGrpMonster) return fromPos;
 	}
+	else if (iTyp == FeldTyp::PIT) {
+		CPit* pit = pField->HolePit();
+		if (pit->GetState() == CPit::PitState::Open) {
+			CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
+			toPos.z++;
+			pGrpHelden->FallingDamage();
+			// todo sound
+		}
+		return toPos;
+	}
 	else if (iTyp == FeldTyp::STAIRS) {
 		CStairs* stairs = pField->HoleStairs();
 		if (stairs->GetType() == CStairs::StairType::DOWN)

@@ -44,6 +44,7 @@ public:
 	
 	VEKTOR HoleZielFeld(int iRichtung); // VORWAERTS, etc
 	void Kollision();
+	void FallingDamage();
 	void Laufen(VEKTOR WunschPos);
 	void DamageFrom(CCharacter* pMon, VEKTOR hisPos, bool DamageFrom);
 	void DoDamage(int dmg, VEKTOR hisPos, bool DamageFrom);

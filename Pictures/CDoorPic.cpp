@@ -11,19 +11,16 @@ CDoorPic::CDoorPic(CDC* pDC) : CBasePictures(pDC)
 CDoorPic::~CDoorPic()
 {
 	delete m_pDoorFrameFront;
-	delete m_pDoorFrameLeft[1];
-	delete m_pDoorFrameLeft[2];
-	delete m_pDoorFrameLeft[3];
+	for (int zwiebel = 1; zwiebel < 4; zwiebel++) {
+		delete m_pDoorFrameLeft[zwiebel];
+		delete m_pDoorFrameRight[zwiebel];
+		delete m_pDoorIron[zwiebel];
+		delete m_pDoorWood[zwiebel];
+	}
 	delete m_pDoorFrameFarLeft;
-	delete m_pDoorFrameRight[1];
-	delete m_pDoorFrameRight[2];
-	delete m_pDoorFrameRight[3];
 	delete m_pDoorFrameFarRight;
 	delete m_pDoorFrontTop[1];
 	delete m_pDoorFrontTop[2];
-	delete m_pDoorIron[1];
-	delete m_pDoorIron[2];
-	delete m_pDoorIron[3];
 }
 
 CBitmap* CDoorPic::GetDoorFrontPic(int iDoorType, int ebene) {
@@ -32,6 +29,8 @@ CBitmap* CDoorPic::GetDoorFrontPic(int iDoorType, int ebene) {
 	{
 		if (iDoorType == CDoor::DoorType::Iron)
 			return m_pDoorIron[ebene];
+		if (iDoorType == CDoor::DoorType::Wood)
+			return m_pDoorWood[ebene];
 		else
 			return NULL;
 	}
@@ -136,4 +135,7 @@ void CDoorPic::InitDoors() {
 	LoadPic(m_pDoorIron[1], IDB_DOOR_IRON_1);
 	LoadPic(m_pDoorIron[2], IDB_DOOR_IRON_2);
 	LoadPic(m_pDoorIron[3], IDB_DOOR_IRON_3);
+	LoadPic(m_pDoorWood[1], IDB_DOOR_WOOD_1);
+	LoadPic(m_pDoorWood[2], IDB_DOOR_WOOD_2);
+	LoadPic(m_pDoorWood[3], IDB_DOOR_WOOD_3);
 }

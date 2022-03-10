@@ -71,6 +71,12 @@ void CGrpChar::Kollision() {
 				m_pMember[i]->WerteTemporaerAendern(-2, 0, 0);
 }
 
+void CGrpChar::FallingDamage() {
+	for (int i = 1; i <= 4; i++)
+		if ((m_pMember[i]) && (m_pMember[i]->Hp() > 0))
+			m_pMember[i]->WerteTemporaerAendern(-25, 0, 0);
+}
+
 void CGrpChar::DoDamage(int dmg, VEKTOR hisPos, bool areaDmg) {
 	CCharacter* victim = NULL;
 	if (areaDmg) {

@@ -21,7 +21,7 @@ CGrpHeld::CGrpHeld(VEKTOR pos, int richt)
 {
 	for (int i=1; i<=4; i++)
 		m_pMember[i] = NULL;
-	m_posPosition = pos;
+	//m_posPosition = pos;
 	//m_posPosition = VEKTOR{ 2,7,0 }; // bei Monster Gruppe / orig. start position
 	//m_posPosition = VEKTOR{ 2,11,0 }; // viele items
 	//m_posPosition = VEKTOR{ 7,9,1 }; // bei Items
