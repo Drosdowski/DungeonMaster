@@ -12,7 +12,7 @@ public:
 	void LoadPicAndFlip(CBitmap*& mPic, int ID);
 
 
-private:
+protected:
 	CDC* m_pDC;
 
 };

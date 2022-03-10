@@ -120,8 +120,8 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	int allowDecoration;
 	rootNode->QueryIntAttribute("allow_decoration", &allowDecoration);
 
-	// 0 = Wall , 1 == Empty, 2 = Pit, 3 = Stair, 4 == Door
-	if (type > 4)
+	// 0 = Wall , 1 == Empty, 2 = Pit, 3 = Stair, 4 == Door, 5 = Teleport, 6 = Trickwall
+	if (type == 5)
 	{
 		type = 1; // Teleporter etc erstmal leer lassen
 	}

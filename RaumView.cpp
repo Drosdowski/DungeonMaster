@@ -163,6 +163,26 @@ void CRaumView::DrawFloorPit(CDC *pDC, CDC* cdc, int xxx, int ebene, CPit* pit) 
 	}
 }
 
+void CRaumView::DrawCeilingPit(CDC* pDC, CDC* cdc, int xxx, int ebene, CPit* pit) {
+	BITMAP bmpPitInfo;
+	if (pit) {
+		CBitmap* pitBmp = m_pPitPic->GetPitCeilingPic(ebene, xxx);
+		CPit::PitType type = pit->GetType();
+
+		CPoint center = m_pPressurePadPic->GetCeilingPos(xxx, ebene);
+		if (pitBmp && center.x > 0 && center.y > 0) {
+			double faktor = m_pPictures->getFaktor(ebene);
+			cdc->SelectObject(pitBmp);
+			pitBmp->GetBitmap(&bmpPitInfo);
+			int decoPosX = center.x - (int)(bmpPitInfo.bmWidth * faktor);
+			int decoPosY = center.y - (int)(bmpPitInfo.bmHeight * faktor);
+
+			DrawInArea(decoPosX, decoPosY, bmpPitInfo.bmWidth, bmpPitInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
+
+		}
+	}
+}
+
 void CRaumView::DrawStairsFront(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs)
 {
 	BITMAP bmpInfo;
@@ -490,11 +510,19 @@ void CRaumView::Zeichnen(CDC* pDC)
 				int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
 				int addx = x + ebene * sty + xx * stx;
 				int addy = y - ebene * stx + xx * sty;
-				CField* pField = m_pMap->GetField(addx,addy,z);
+				CField* pField = m_pMap->GetField(addx, addy, z);
+				CField* pFieldAbove = m_pMap->GetField(addx,addy,z-1);
 				int fieldType = pField->HoleTyp();
+				int fieldTypeAbove = pFieldAbove->HoleTyp();
 							
-				// TODO prüfe z -1 ob PIT
-				if (fieldType == FeldTyp::WALL && ((ebene != 0) || (xx != 0)))
+				if (fieldTypeAbove == FeldTyp::PIT) {
+					CPit* pit = pFieldAbove->HolePit();
+					if (pit->GetType() != CPit::PitType::Invisible &&
+						pit->GetState() == CPit::PitState::Open) {
+						DrawCeilingPit(pDC, &compCdc, xxx, ebene, pit);
+					}
+				}
+				if ((fieldType == FeldTyp::WALL || fieldType == FeldTyp::TRICKWALL) && ((ebene != 0) || (xx != 0)))
 				{
 					DrawWall(pDC, &compCdc, xxx, ebene, heroDir, pField);
 				}
@@ -579,6 +607,8 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 		if (pit->GetState() == CPit::PitState::Open) {
 			CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
 			toPos.z++;
+			toPos.x += (m_pMap->GetOffset(fromPos.z).x - m_pMap->GetOffset(toPos.z).x);
+			toPos.y += (m_pMap->GetOffset(fromPos.z).y - m_pMap->GetOffset(toPos.z).y);
 			pGrpHelden->FallingDamage();
 			// todo sound
 		}

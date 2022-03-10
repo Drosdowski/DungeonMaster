@@ -8,6 +8,7 @@ public:
 
 	CBitmap* GetPressurePadPic(int ebene, int xx);
 	CPoint GetPos(int x, int ebene);
+	CPoint GetCeilingPos(int x, int ebene);
 
 private:
 	void InitPressurePads();

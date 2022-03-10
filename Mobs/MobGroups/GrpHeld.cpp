@@ -27,7 +27,8 @@ CGrpHeld::CGrpHeld(VEKTOR pos, int richt)
 	//m_posPosition = VEKTOR{ 7,9,1 }; // bei Items
 	//m_posPosition = VEKTOR{ 6,9,0 }; // bei Pressure Pad
 	//m_posPosition = VEKTOR{ 18,17,1 }; // bei Pressure Pad im grossen Raum
-	m_posPosition = VEKTOR{ 24,6,1 }; // bei Pit
+	//m_posPosition = VEKTOR{ 24,6,1 }; // bei Pit
+	m_posPosition = VEKTOR{ 12,29,1 }; // bei Trickwall
 	m_grpDirection = richt;
 }
 

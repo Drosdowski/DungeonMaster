@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Pictures\CTeleportPic.cpp" />
     <ClCompile Include="Pictures\CPitPic.cpp" />
     <ClCompile Include="SpecialTile\CPit.cpp" />
     <ClCompile Include="Items\CFloorOrnate.cpp" />
@@ -186,6 +187,7 @@
     <ResourceCompile Include="DM.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Pictures\CTeleportPic.h" />
     <ClInclude Include="Pictures\CPitPic.h" />
     <ClInclude Include="SpecialTile\CPit.h" />
     <ClInclude Include="Items\CFloorOrnate.h" />
@@ -351,6 +353,7 @@
     <Image Include="res\Stairs_Up3_Left.bmp" />
     <Image Include="res\Stairs_UpSide2.bmp" />
     <Image Include="res\Steine.bmp" />
+    <Image Include="res\Teleporter_Segment.bmp" />
     <Image Include="res\Wall0_Left.bmp" />
     <Image Include="res\Wall0_LeftF.bmp" />
     <Image Include="res\Wall0_Right.bmp" />

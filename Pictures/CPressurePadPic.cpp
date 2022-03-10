@@ -39,6 +39,23 @@ CBitmap* CPressurePadPic::GetPressurePadPic(int xxx, int ebene) {
 	return NULL;
 }
 
+CPoint CPressurePadPic::GetCeilingPos(int x, int ebene) {
+	CPoint middle;
+	middle.x = GetPos(x, ebene).x;
+
+	switch (ebene) {
+	case 0:
+		middle.y = 64; break;
+	case 1:
+		middle.y = 82; break;
+	case 2:
+		middle.y = 102;	break;
+	case 3:
+		middle.y = 115; break;
+	}
+	return middle;
+}
+
 CPoint CPressurePadPic::GetPos(int x, int ebene) {
 	CPoint middle;
 	switch (x) {

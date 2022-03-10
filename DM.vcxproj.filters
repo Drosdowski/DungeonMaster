@@ -159,6 +159,9 @@
     <ClCompile Include="Pictures\CPitPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pictures\CTeleportPic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -305,6 +308,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\CPitPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\CTeleportPic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -731,6 +737,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\FloorPit_L3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Teleporter_Segment.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

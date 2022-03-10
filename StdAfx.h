@@ -120,7 +120,10 @@ enum FeldTyp {
 	EMPTY = 1,
 	PIT = 2,
 	STAIRS = 3,
-	DOOR = 4
+	DOOR = 4,
+	TELEPORT = 5,
+	TRICKWALL = 6
+
 };
 
 
