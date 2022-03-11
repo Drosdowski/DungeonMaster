@@ -57,9 +57,9 @@ CField* CDungeonMap::ParseStairs(TiXmlElement* rootNode, VEKTOR pos) {
 	rootNode->QueryIntAttribute("direction", &direction);
 	rootNode->QueryIntAttribute("orientation", &orientation);
 	if (direction == 0)
-		return new CField(pos, FeldTyp::STAIRS, CStairs::StairType::DOWN, (orientation != 0));
+		return new CField(pos, CStairs::StairType::DOWN, (orientation != 0));
 	else
-		return new CField(pos, FeldTyp::STAIRS, CStairs::StairType::UP, (orientation != 0));
+		return new CField(pos, CStairs::StairType::UP, (orientation != 0));
 }
 
 CField* CDungeonMap::ParsePit(TiXmlElement* rootNode, VEKTOR pos) {
@@ -68,18 +68,18 @@ CField* CDungeonMap::ParsePit(TiXmlElement* rootNode, VEKTOR pos) {
 	rootNode->QueryIntAttribute("is_invisible", &is_invisible);
 	rootNode->QueryIntAttribute("is_open", &is_open);
 
-	CPit::PitType type;
+	CPit::PitType pitType;
 	if (is_imaginary) {
-		type = CPit::PitType::Imaginary;
+		pitType = CPit::PitType::Imaginary;
 	}
 	else if (is_invisible) {
-		type = CPit::PitType::Invisible;
+		pitType = CPit::PitType::Invisible;
 	}
 	else {
-		type = CPit::PitType::Standard;
+		pitType = CPit::PitType::Standard;
 	}
 
-	return new CField(pos, FeldTyp::PIT, type, (CPit::PitState)is_open);
+	return new CField(pos, pitType, (CPit::PitState)is_open);
 }
 
 CField* CDungeonMap::ParseTeleport(TiXmlElement* rootNode, VEKTOR pos) {
@@ -96,6 +96,8 @@ CField* CDungeonMap::ParseTeleport(TiXmlElement* rootNode, VEKTOR pos) {
 			TiXmlElement* teleItem = parentElement->FirstChildElement();
 			if (teleItem) {
 				teleItem->QueryIntAttribute("index", &index);
+				CTeleporter* teleItem = new CTeleporter(m_teleportAtt[index], is_visible, is_open);
+				return new CField(pos, teleItem);
 			}
 
 		}
@@ -129,9 +131,9 @@ CField* CDungeonMap::ParseDoor(TiXmlElement* rootNode, VEKTOR pos) {
 
 	}
 	if (type == 0)
-		return new CField(pos, FeldTyp::DOOR, CDoor::DoorType::Iron, (orientation != 0), NULL);
+		return new CField(pos, CDoor::DoorType::Iron, (orientation != 0), NULL);
 	else
-		return new CField(pos, FeldTyp::DOOR, CDoor::DoorType::Wood, (orientation != 0), NULL);
+		return new CField(pos, CDoor::DoorType::Wood, (orientation != 0), NULL);
 }
 
 void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
@@ -390,19 +392,38 @@ void CDungeonMap::ParseActuatorObjects(TiXmlElement* rootNode) {
 	}
 }
 
-void ParseTeleporterObjects(TiXmlElement* rootNode) {
-	// m_teleportAtt
+void CDungeonMap::ParseTeleporterObjects(TiXmlElement* rootNode) {
+	/*<teleporter index = "0"
+		dest_map = "10"
+		dest_map_x = "6"
+		dest_map_y = "0"
+		rotation = "0"
+		rotation_type = "Relative"
+		scope = "All"
+		sound = "0" / >*/
 	TiXmlElement* parentElement = rootNode->FirstChildElement();
 	while (parentElement)
 	{
 		const char* parent = parentElement->Value();
 		if (strcmp(parent, "teleporter") == 0) // several existing
 		{
-			int index, rotation, sound;
-			//char* strRotation_type, ;
-
-			VEKTOR target;
-
+			int index;
+			TeleporterAttributes attribute;
+			parentElement->QueryIntAttribute("index", &index);
+			parentElement->QueryIntAttribute("dest_map_x", &attribute.target.x);
+			parentElement->QueryIntAttribute("dest_map_y", &attribute.target.y);
+			parentElement->QueryIntAttribute("dest_map", &attribute.target.z);
+			parentElement->QueryIntAttribute("rotation", &attribute.rotation);
+			const char* rotation_type = parentElement->Attribute("rotation_type");
+			attribute.rotation = rotation_type == "Relative" ? TeleporterAttributes::RotationType::Relative : TeleporterAttributes::RotationType::Absolute;
+			const char* scope = parentElement->Attribute("scope");
+			if (strcmp(scope, "All"))  attribute.scope = TeleporterAttributes::Scope::All;
+			if (strcmp(scope, "Creatures"))  attribute.scope = TeleporterAttributes::Scope::Creatures;
+			if (strcmp(scope, "Items"))  attribute.scope = TeleporterAttributes::Scope::Items;
+			if (strcmp(scope, "Items_Party"))  attribute.scope = TeleporterAttributes::Scope::Items_Party;
+			
+			parentElement->QueryIntAttribute("sound", &attribute.sound);
+			m_teleportAtt[index] = attribute;
 
 		}
 		parentElement = parentElement->NextSiblingElement();

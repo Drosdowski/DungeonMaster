@@ -1,6 +1,7 @@
 #pragma once
 #include "Feld.h"
 #include "Items/CActuator.h"
+#include "SpecialTile/CTeleporterAttributes.h"
 
 #define FELD_MAX_X 32
 #define FELD_MAX_Y 32
@@ -25,9 +26,6 @@ public:
 	CGrpHeld* GetHeroes() { return m_pGrpHelden; }
 
 private:
-	enum TeleporterAttributes {
-
-	};
 
 	void ParseDoorObjects(TiXmlElement* rootNode);
 	void ParseMiscellaneousesObjects(TiXmlElement* rootNode);

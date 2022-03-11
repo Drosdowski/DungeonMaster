@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "Feld.h"
 #include "SpecialTile\CDoor.h"
+#include "SpecialTile\CTeleporter.h"
 #include "Mobs\MobGroups\GrpMonster.h"
 #include "Items\Decoration.h"
 #include "Items/CMiscellaneous.h"
@@ -37,9 +38,9 @@ CField::CField(VEKTOR koord, FeldTyp fieldType, CFieldDecoration* pDeco[4])
 	InitDeco(pDeco);
 }
 
-CField::CField(VEKTOR koord, FeldTyp fieldType, CDoor::DoorType doorType, bool eastWest, CFieldDecoration* pDeco[4])
+CField::CField(VEKTOR koord, CDoor::DoorType doorType, bool eastWest, CFieldDecoration* pDeco[4])
 {	
-	SetTypeDoor(fieldType, doorType, eastWest);
+	SetTypeDoor(doorType, eastWest);
 	m_lastWeight = 0;
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
@@ -47,9 +48,9 @@ CField::CField(VEKTOR koord, FeldTyp fieldType, CDoor::DoorType doorType, bool e
 	InitDeco(pDeco);
 }
 
-CField::CField(VEKTOR koord, FeldTyp fieldType, CStairs::StairType stairType, bool eastWest)
+CField::CField(VEKTOR koord, CStairs::StairType stairType, bool eastWest)
 {
-	SetTypeStair(fieldType, stairType, eastWest);
+	SetTypeStair(stairType, eastWest);
 	m_lastWeight = 0;
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
@@ -57,15 +58,25 @@ CField::CField(VEKTOR koord, FeldTyp fieldType, CStairs::StairType stairType, bo
 	InitDeco(NULL);
 }
 
-CField::CField(VEKTOR koord, FeldTyp fieldType, CPit::PitType pitType, CPit::PitState state)
+CField::CField(VEKTOR koord, CPit::PitType pitType, CPit::PitState state)
 {
-	SetTypePit(fieldType, pitType, state);
+	SetTypePit(pitType, state);
 	m_lastWeight = 0;
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
 	m_pFloorOrnate = NULL;
 	InitDeco(NULL);
 }
+
+CField::CField(VEKTOR koord, CTeleporter* teleItem) {
+	SetTypeTeleporter(teleItem);
+	m_lastWeight = 0;
+	m_posKoord = koord;
+	m_pGrpMonster = NULL;
+	m_pFloorOrnate = NULL;
+	InitDeco(NULL);
+}
+
 
 CField::~CField()
 {
@@ -147,35 +158,26 @@ void CField::SetType(FeldTyp fieldType) {
 	m_iTyp = fieldType;
 }
 
-
-void CField::SetTypeDoor(FeldTyp fieldType, CDoor::DoorType doorType, bool doorFrameEastAndWest) {
-	m_iTyp = fieldType;
-	if (fieldType == DOOR) {
-		m_pDoor = new CDoor(doorType, doorFrameEastAndWest);
-	} else {
-		assert(false);
-	}
+void CField::SetTypeDoor(CDoor::DoorType doorType, bool doorFrameEastAndWest) {
+	m_iTyp = DOOR;
+	m_pDoor = new CDoor(doorType, doorFrameEastAndWest);
 }
 
-void CField::SetTypeStair(FeldTyp fieldType, CStairs::StairType stairsType, bool eastWest) {
-	m_iTyp = fieldType;
-	if (fieldType == STAIRS) {
-		m_pStairs = new CStairs(stairsType, eastWest);
-	}
-	else {
-		assert(false);
-	}
+void CField::SetTypeStair(CStairs::StairType stairsType, bool eastWest) {
+	m_iTyp = STAIRS;
+	m_pStairs = new CStairs(stairsType, eastWest);
 }
 
-void CField::SetTypePit(FeldTyp fieldType, CPit::PitType pitType, CPit::PitState state) {
-	m_iTyp = fieldType;
-	if (fieldType == PIT) {
-		m_pPit = new CPit(pitType, state);
-	}
-	else {
-		assert(false);
-	}
+void CField::SetTypePit(CPit::PitType pitType, CPit::PitState state) {
+	m_iTyp = PIT;
+	m_pPit = new CPit(pitType, state);
 }
+
+void CField::SetTypeTeleporter(CTeleporter* teleItem) {
+	m_iTyp = TELEPORT;
+	m_pTeleporter = teleItem;
+}
+
 
 void CField::ThrowMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index, VEKTOR force) {
 	misc->m_flyForce = force;
