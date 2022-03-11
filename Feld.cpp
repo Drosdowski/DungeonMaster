@@ -77,6 +77,8 @@ CField::~CField()
 		delete m_pStairs;
 	if (m_pPit)
 		delete m_pPit;
+	if (m_pTeleporter)
+		delete m_pTeleporter;
 	for (int i = 0; i < 4; i++) {
 		if (m_pWallDecoration[i]) {
 			delete m_pWallDecoration[i];

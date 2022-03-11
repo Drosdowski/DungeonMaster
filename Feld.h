@@ -22,6 +22,7 @@ class CActuator;
 class CFieldDecoration;
 class CFloorOrnate;
 class CPit;
+class CTeleporters;
 class CField
 {
 protected:
@@ -45,9 +46,10 @@ public:
 	CFieldDecoration* HoleDeko(int side) { return m_pWallDecoration[side]; }
 	CDoor* HoleDoor() { return m_pDoor;  }
 	CStairs* HoleStairs() { return m_pStairs;  }
-	void SetTypeDoor(FeldTyp iTyp, CDoor::DoorType doorType, bool doorDirectionEastWest);
-	void SetTypeStair(FeldTyp fieldType, CStairs::StairType stairsType, bool eastWest);
-	void SetTypePit(FeldTyp fieldType, CPit::PitType pitType, CPit::PitState state);
+	void SetTypeDoor(FeldTyp iTyp, CDoor::DoorType doorType, bool doorDirectionEastWest); // todo CDoor übergeben
+	void SetTypeStair(FeldTyp fieldType, CStairs::StairType stairsType, bool eastWest); // todo CStaír übergeben
+	void SetTypePit(FeldTyp fieldType, CPit::PitType pitType, CPit::PitState state); // todo CPit übergeben
+	//void SetTypeTeleporter(FeldTyp fieldType, )
 	void SetType(FeldTyp iTyp);
 
 	void PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index);
@@ -85,6 +87,7 @@ protected:
 	CDoor* m_pDoor = NULL;
 	CStairs* m_pStairs = NULL;
 	CPit* m_pPit = NULL;
+	CTeleporters* m_pTeleporter = NULL;
 
 	void InitDeco(CFieldDecoration* pDeco[4]);
 	int GetWeight(VEKTOR heroPos);

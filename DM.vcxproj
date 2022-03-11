@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SpecialTile\CTeleporter.cpp" />
     <ClCompile Include="Pictures\CTeleportPic.cpp" />
     <ClCompile Include="Pictures\CPitPic.cpp" />
     <ClCompile Include="SpecialTile\CPit.cpp" />
@@ -187,6 +188,7 @@
     <ResourceCompile Include="DM.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SpecialTile\CTeleporter.h" />
     <ClInclude Include="Pictures\CTeleportPic.h" />
     <ClInclude Include="Pictures\CPitPic.h" />
     <ClInclude Include="SpecialTile\CPit.h" />

@@ -25,6 +25,10 @@ public:
 	CGrpHeld* GetHeroes() { return m_pGrpHelden; }
 
 private:
+	enum TeleporterAttributes {
+
+	};
+
 	void ParseDoorObjects(TiXmlElement* rootNode);
 	void ParseMiscellaneousesObjects(TiXmlElement* rootNode);
 	void ParseObjects(TiXmlElement* rootNode);
@@ -38,9 +42,12 @@ private:
 	void ParseFloorDecoration(TiXmlElement* miscItem, VEKTOR coords);
 	void ParseActuatorObjects(TiXmlElement* rootNode);
 	void ParseActuator(TiXmlElement* miscItem, VEKTOR coords);
+	void ParseTeleporterObjects(TiXmlElement* rootNode);
+
 	CField* ParseDoor(TiXmlElement* rootNode, VEKTOR pos);
 	CField* ParseStairs(TiXmlElement* rootNode, VEKTOR pos);
 	CField* ParsePit(TiXmlElement* rootNode, VEKTOR pos);
+	CField* ParseTeleport(TiXmlElement* rootNode, VEKTOR pos);
 	CField* m_pFeld[FELD_MAX_X][FELD_MAX_Y][FELD_MAX_Z];
 	CField* m_pEdgeWall;
 	int m_LevelWidth[FELD_MAX_Z];
@@ -52,6 +59,7 @@ private:
 	int m_countDoors;
 	int m_countMiscellaneous;
 	int m_countActuators;
+	int m_countTeleporters;
 	CGrpHeld* m_pGrpHelden;
 
 	// dynamic arrays
@@ -59,6 +67,7 @@ private:
 	int* m_miscellaneousType;
 	int* m_miscellaneousSubtype;
 	int* m_actuatorType;
+	TeleporterAttributes* m_teleportAtt;
 	//CActuator::ActionTypes* m_actionType;
 	//VEKTOR* m_actionTarget;
 

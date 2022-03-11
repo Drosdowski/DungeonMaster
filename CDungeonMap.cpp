@@ -5,6 +5,7 @@
 #include "Items\Decoration.h"
 #include "Items/CMiscellaneous.h"
 #include "Items/CFloorOrnate.h"
+#include "SpecialTile/CTeleporter.h"
 #include "CDungeonMap.h"
 
 CDungeonMap::CDungeonMap()
@@ -29,6 +30,7 @@ CDungeonMap::~CDungeonMap()
 	delete m_miscellaneousType;
 	delete m_miscellaneousSubtype;
 	delete m_actuatorType;
+	delete m_teleportAtt;
 }
 
 CField* CDungeonMap::GetField(int x, int y, int z) {
@@ -80,6 +82,31 @@ CField* CDungeonMap::ParsePit(TiXmlElement* rootNode, VEKTOR pos) {
 	return new CField(pos, FeldTyp::PIT, type, (CPit::PitState)is_open);
 }
 
+CField* CDungeonMap::ParseTeleport(TiXmlElement* rootNode, VEKTOR pos) {
+	int is_visible, is_open, index;
+	rootNode->QueryIntAttribute("is_visible", &is_visible);
+	rootNode->QueryIntAttribute("is_open", &is_open);
+
+	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "items") == 0)
+		{
+			TiXmlElement* teleItem = parentElement->FirstChildElement();
+			if (teleItem) {
+				teleItem->QueryIntAttribute("index", &index);
+			}
+
+		}
+		parentElement = parentElement->NextSiblingElement();
+	}
+	
+	// sCTeleporter* teleporter = new CTeleporter(,,,is_visible,,,is_open);
+
+}
+
+
 CField* CDungeonMap::ParseDoor(TiXmlElement* rootNode, VEKTOR pos) {
 	int orientation, type;
 	rootNode->QueryIntAttribute("orientation", &orientation);
@@ -121,10 +148,6 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	rootNode->QueryIntAttribute("allow_decoration", &allowDecoration);
 
 	// 0 = Wall , 1 == Empty, 2 = Pit, 3 = Stair, 4 == Door, 5 = Teleport, 6 = Trickwall
-	if (type == 5)
-	{
-		type = 1; // Teleporter etc erstmal leer lassen
-	}
 	FeldTyp iFieldType = (FeldTyp)type;
 	VEKTOR pos{ x, y, etage };
 
@@ -133,11 +156,13 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 		m_pFeld[x][y][etage] = ParseDoor(rootNode, pos);
 	}
 	else if (iFieldType == FeldTyp::STAIRS) {
-		
 		m_pFeld[x][y][etage] = ParseStairs(rootNode, pos);
 	}
 	else if (iFieldType == FeldTyp::PIT) {
 		m_pFeld[x][y][etage] = ParsePit(rootNode, pos);
+	}
+	else if (iFieldType == FeldTyp::TELEPORT) {
+		m_pFeld[x][y][etage] = ParseTeleport(rootNode, pos);
 	}
 	else
 		m_pFeld[x][y][etage] = new CField(pos, iFieldType, NULL); // etage 1 / index 30 => m_levelWidth[1] kaputt!
@@ -365,6 +390,25 @@ void CDungeonMap::ParseActuatorObjects(TiXmlElement* rootNode) {
 	}
 }
 
+void ParseTeleporterObjects(TiXmlElement* rootNode) {
+	// m_teleportAtt
+	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "teleporter") == 0) // several existing
+		{
+			int index, rotation, sound;
+			//char* strRotation_type, ;
+
+			VEKTOR target;
+
+
+		}
+		parentElement = parentElement->NextSiblingElement();
+	}
+}
+
 void CDungeonMap::ParseObjects(TiXmlElement* rootNode) {
 	TiXmlElement* parentElement = rootNode->FirstChildElement();
 	while (parentElement)
@@ -381,6 +425,10 @@ void CDungeonMap::ParseObjects(TiXmlElement* rootNode) {
 		else if (strcmp(parent, "actuators") == 0)
 		{
 			ParseActuatorObjects(parentElement);
+		}
+		else if (strcmp(parent, "teleporters") == 0)
+		{
+			ParseTeleporterObjects(parentElement);
 		}
 		parentElement = parentElement->NextSiblingElement();
 	}
@@ -400,6 +448,8 @@ void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
 	m_miscellaneousSubtype = new int[m_countMiscellaneous];
 	rootNode->QueryIntAttribute("number_of_actuators", &m_countActuators);	
 	m_actuatorType = new int[m_countActuators];
+	rootNode->QueryIntAttribute("number_of_teleporters", &m_countTeleporters);
+	m_teleportAtt = new TeleporterAttributes[m_countTeleporters];
 
 	const char* startDir = rootNode->Attribute("start_facing");
 	if (strcmp(startDir, "North") == 0) m_startRicht = 0;
