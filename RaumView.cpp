@@ -12,6 +12,7 @@
 #include "CDungeonMap.h"
 #include "SpecialTile/CStairs.h"
 #include "SpecialTile/CPit.h"
+#include "SpecialTile/CTeleporter.h"
 #include "Items\Decoration.h"
 #include "Items\CFloorOrnate.h"
 #include "Pictures\CPictures.h"
@@ -19,6 +20,7 @@
 #include "Pictures\CWallPic.h"
 #include "Pictures/CStairsPic.h"
 #include "Pictures/CPitPic.h"
+#include "Pictures/CTeleportPic.h"
 #include "Pictures\CLeverPic.h"
 #include "Pictures/CPressurePadPic.h"
 #include "Pictures/CFloorOrnatePic.h"
@@ -57,6 +59,7 @@ CRaumView::CRaumView()
 	m_pStairsPic = NULL;
 	m_pPitPic = NULL;
 	m_pPressurePadPic = NULL;
+	m_pTeleportPic = NULL;
 	m_pOrnatePic = NULL;
 	m_pLeverPic = NULL;
 	m_pPictures = NULL;
@@ -74,6 +77,7 @@ CRaumView::~CRaumView()
 	delete m_pPitPic;
 	delete m_pWallPic;
 	delete m_pPressurePadPic;
+	delete m_pTeleportPic;
 	delete m_pOrnatePic;
 	delete m_pLeverPic;
 	delete m_pFountainPic;
@@ -109,6 +113,14 @@ void CRaumView::DrawSquarePressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene, CA
 			pDC->TransparentBlt(floorMiddlePos.x - bmpInfo.bmWidth, floorMiddlePos.y - bmpInfo.bmHeight, 
 								bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);
 		}
+	}
+}
+
+void CRaumView::DrawTeleporter(CDC* pDC, CDC* cdc, int xxx, int ebene, CTeleporter* tele) {
+	BITMAP bmpInfo;
+	CBitmap* bmp = m_pTeleportPic->GetFrontPic();
+	if (bmp) {
+		// CPoint pos = m_pWallPic->
 	}
 }
 
@@ -550,8 +562,14 @@ void CRaumView::Zeichnen(CDC* pDC)
 					}
 
 				}
+				else if (fieldType == FeldTyp::TELEPORT) {
+					CTeleporter* tele = pField->HoleTeleporter();
+					if (tele && tele->isVisible()) {
+						DrawTeleporter(pDC, &compCdc, xxx, ebene, tele);
+					}
+				}
 				else if (fieldType == FeldTyp::EMPTY) {
-					// Platten, Pfützen, Fussabdrücke, Pit, ...
+					// Platten, Pfützen, Fussabdrücke, ...
 					DrawOnFloor(pDC, &compCdc, xxx, ebene, pField);
 				}
 

@@ -63,6 +63,7 @@ public:
 	void PutFloorDeco(CFloorOrnate* deco);
 	CFloorOrnate* HoleFloorDeco() { return m_pFloorOrnate; }
 	CPit* HolePit() { return m_pPit;  }
+	CTeleporter* HoleTeleporter() { return m_pTeleporter; }
 
 	void PutActuator(CActuator* actuator, SUBPOS_ABSOLUTE index);
 	VEKTOR HolePos() { return m_posKoord; }

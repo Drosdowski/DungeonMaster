@@ -24,6 +24,7 @@ class CPressurePadPic;
 class CPitPic;
 class CFloorOrnatePic;
 class CFountainPic;
+class CTeleportPic;
 class CItem3DPic;
 class CMonsterPic;
 class CHelpfulValues;
@@ -70,6 +71,7 @@ protected:
 	CStairsPic* m_pStairsPic;
 	CPressurePadPic* m_pPressurePadPic;
 	CPitPic* m_pPitPic;
+	CTeleportPic* m_pTeleportPic;
 	CFloorOrnatePic* m_pOrnatePic;
 	CFountainPic* m_pFountainPic;
 	CMonsterPic* m_pMonsterPic;
@@ -83,6 +85,7 @@ protected:
 	void DrawStairsSide(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs);
 	void DrawFloorPit(CDC* pDC, CDC* cdc, int xxx, int ebene, CPit* pit);
 	void DrawCeilingPit(CDC* pDC, CDC* cdc, int xxx, int ebene, CPit* pit);
+	void DrawTeleporter(CDC* pDC, CDC* cdc, int xxx, int ebene, CTeleporter* tele);
 	void DrawSquarePressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene, CActuator* pActuator);
 	void DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pField);
 	void DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene, bool left);
