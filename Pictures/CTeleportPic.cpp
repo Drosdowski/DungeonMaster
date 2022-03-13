@@ -14,7 +14,7 @@ CTeleportPic::~CTeleportPic() {
 
 CBitmap* CTeleportPic::GetFrontPic() {
 	m_phase++;
-	if (m_phase > maxPhases) m_phase = 0;
+	if (m_phase >= maxPhases) m_phase = 0;
 
 	return m_pTeleportPic[m_phase];
 }
@@ -36,6 +36,7 @@ CBitmap* CTeleportPic::InitPic(int phase) {
 	int dx = 4 * phase % 32;
 	BITMAP bmpInfo;
 	bmp->GetBitmap(&bmpInfo);
+	compDC.SelectObject(bmp);
 
 	// dx - end an 0/0 kopieren
 	compDC.StretchBlt(	0, 0, 

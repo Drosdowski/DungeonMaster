@@ -120,7 +120,11 @@ void CRaumView::DrawTeleporter(CDC* pDC, CDC* cdc, int xxx, int ebene, CTeleport
 	BITMAP bmpInfo;
 	CBitmap* bmp = m_pTeleportPic->GetFrontPic();
 	if (bmp) {
-		// CPoint pos = m_pWallPic->
+		CPoint pos = m_pWallPic->GetWallPos(xxx, ebene);
+		cdc->SelectObject(bmp);
+		bmp->GetBitmap(&bmpInfo);
+		pDC->TransparentBlt(pos.x, pos.y,
+			bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);
 	}
 }
 
@@ -898,6 +902,7 @@ void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
 	m_pPitPic = new CPitPic(pDC);
 	m_pLeverPic = new CLeverPic(pDC);
 	m_pPressurePadPic = new CPressurePadPic(pDC);
+	m_pTeleportPic = new CTeleportPic(pDC);
 	m_pOrnatePic = new CFloorOrnatePic(pDC);
 	m_pFountainPic = new CFountainPic(pDC);
 	m_pMonsterPic = new CMonsterPic(pDC);
