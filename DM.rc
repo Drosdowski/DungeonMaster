@@ -479,7 +479,7 @@ IDB_FLOOR_PIT_F3        BITMAP                  "res\\FloorPit_F3.bmp"
 
 IDB_FLOOR_PIT_L3        BITMAP                  "res\\FloorPit_L3.bmp"
 
-IDB_TELEPORTER_SEGMENT  BITMAP                  "res\\Teleporter_Segment.bmp"
+IDB_TELEPORTER          BITMAP                  "res\\Teleporter.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

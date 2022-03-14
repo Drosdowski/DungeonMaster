@@ -754,6 +754,9 @@
     <Image Include="res\Teleporter_Segment.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Teleporter.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

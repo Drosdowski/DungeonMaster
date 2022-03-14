@@ -131,7 +131,8 @@
 #define IDB_FLOOR_PIT_L2                302
 #define IDB_FLOOR_PIT_F3                303
 #define IDB_FLOOR_PIT_L3                304
-#define IDB_TELEPORTER_SEGMENT          319
+#define IDB_BITMAP3                     320
+#define IDB_TELEPORTER                  320
 #define IDB_BITMAP_E0L                  1001
 #define IDB_BITMAP_E0LF                 1002
 #define IDB_BITMAP_E0R                  1004
@@ -160,7 +161,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        320
+#define _APS_NEXT_RESOURCE_VALUE        321
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101
