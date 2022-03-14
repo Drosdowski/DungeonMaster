@@ -120,12 +120,19 @@ void CRaumView::DrawSquarePressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene, CA
 void CRaumView::DrawTeleporter(CDC* pDC, CDC* cdc, int xxx, int ebene, CTeleporter* tele) {
 	BITMAP bmpInfo;
 	CBitmap* bmp = m_pTeleportPic->GetFrontPic();
+	CBitmap* bmpWall = m_pWallPic->GetWallPic(xxx, ebene, false);
 	if (bmp) {
 		CPoint pos = m_pWallPic->GetWallPos(xxx, ebene);
 		cdc->SelectObject(bmp);
-		bmp->GetBitmap(&bmpInfo);
-		pDC->TransparentBlt(pos.x, pos.y,
-			bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);
+		if (ebene == 0) {
+			/*pDC->TransparentBlt(pos.x, pos.y,
+				MainAreaWidth, MainAreaHeight, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);*/
+		}
+		else {
+			bmpWall->GetBitmap(&bmpInfo);
+			pDC->TransparentBlt(pos.x, pos.y,
+				bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);
+		}
 	}
 }
 
