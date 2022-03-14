@@ -8,6 +8,7 @@
 #include "DmDoc.h"
 #include "Feld.h"
 #include "Items/CMiscellaneous.h"
+#include "Items/CActuator.h"
 #include "RaumView.h"
 #include "CDungeonMap.h"
 #include "SpecialTile/CStairs.h"
@@ -278,6 +279,11 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 
 	CBitmap* bmp = m_pWallPic->GetWallPic(xxx, ebene, m_bMirror);
 	int xx = wallXFactor[xxx];
+
+	std::stack<CActuator*> actuators = pField->GetActuator((SUBPOS_ABSOLUTE)CHelpfulValues::OppositeDirection(richt));
+	if (!actuators.empty()) {
+		int a = 42;
+	}
 
 	CFieldDecoration* frontDeco = pField->HoleDeko(CHelpfulValues::OppositeDirection(richt));
 	CFieldDecoration* sideDeco;

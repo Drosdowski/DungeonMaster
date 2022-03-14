@@ -1,3 +1,8 @@
-Apfel hinter Tür: Hinten Rechts!
 Um die Ecke: Brot, Hinten links
-2. Tür: holz / schalter
+Tür: schalter
+Sounds
+Items
+Teleporter FUnktion
+Schalter: 2 Actuatoren, 
+	1 local SET verändert den Schalter (weil action = 1)
+	2 remote verändert was anderes
