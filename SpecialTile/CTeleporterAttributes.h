@@ -10,7 +10,8 @@ public:
 		Items,
 		Creatures,
 		Items_Party,
-		All
+		All,
+		None
 	};
 
 	int sound;

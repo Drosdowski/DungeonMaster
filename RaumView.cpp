@@ -124,9 +124,9 @@ void CRaumView::DrawTeleporter(CDC* pDC, CDC* cdc, int xxx, int ebene, CTeleport
 	if (bmp) {
 		CPoint pos = m_pWallPic->GetWallPos(xxx, ebene);
 		cdc->SelectObject(bmp);
-		if (ebene == 0) {
-			/*pDC->TransparentBlt(pos.x, pos.y,
-				MainAreaWidth, MainAreaHeight, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);*/
+		if (ebene == 0 && xxx == 4) {
+			pDC->TransparentBlt(0, 0,
+				MainAreaWidth, MainAreaHeight, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);
 		}
 		else {
 			bmpWall->GetBitmap(&bmpInfo);
@@ -649,6 +649,30 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 		}
 		return toPos;
 	}
+	else if (iTyp == FeldTyp::TELEPORT) {
+		CTeleporter* tele = pField->HoleTeleporter();
+		if (tele->getScope() == TeleporterAttributes::Scope::Items_Party ||
+			tele->getScope() == TeleporterAttributes::Scope::All) {
+			toPos = tele->getTargetField();
+			CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
+			if (tele->getRotationType() == TeleporterAttributes::RotationType::Absolute)
+				pGrpHelden->SetzeRichtung(tele->getTargetDirection());
+			else
+			{
+				if (tele->getTargetDirection() == 90)
+				{
+					pGrpHelden->Drehen(RECHTS);
+				}
+				else if (tele->getTargetDirection() == 180) {
+					pGrpHelden->Drehen(RECHTS);
+					pGrpHelden->Drehen(RECHTS);
+				}
+				else if (tele->getTargetDirection() == 270) {
+					pGrpHelden->Drehen(LINKS);
+				}
+			}
+		}
+	}
 	else if (iTyp == FeldTyp::STAIRS) {
 		CStairs* stairs = pField->HoleStairs();
 		if (stairs->GetType() == CStairs::StairType::DOWN)
@@ -675,10 +699,6 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 		}
 
 		return toPos;
-	}
-	else // hier div. Abfragen für Teleporter, u.ä. 
-	{
-		
 	}
 	return toPos;
 }
