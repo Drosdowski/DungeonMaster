@@ -11,6 +11,8 @@ public:
 
 	CBitmap* GetApple() { return m_pApple; }
 	CBitmap* GetBread() { return m_pBread; }
+	CBitmap* GetGoldKey() { return m_pGoldKey; }
+	CBitmap* GetIronKey() { return m_pIronKey; }
 
 
 private:
@@ -18,5 +20,7 @@ private:
 
 	CBitmap* m_pApple;
 	CBitmap* m_pBread;
+	CBitmap* m_pGoldKey;
+	CBitmap* m_pIronKey;
 };
 

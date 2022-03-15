@@ -6,6 +6,20 @@ public:
 	~CMiscellaneous();
 
 	enum ItemType {
+		IronKey = 9, 
+		KeyOfB = 10, 
+		SolidKey = 11, 
+		SquareKey = 12,
+		TurquoiseKey = 13,
+		CrossKey = 14, 
+		SkeletonKey = 16,
+		GoldKey = 17, 
+		WingedKey = 18,
+		TopazKey = 19, 
+		EmeraldKey = 21,
+		RubyKey = 22, 
+		RaKey = 23,
+		MasterKey = 24,
 		Apple = 29,
 		Bread = 31
 	};

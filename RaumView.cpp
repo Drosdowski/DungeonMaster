@@ -451,6 +451,22 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 		CBitmap* bmp;
 		if (misc->GetType() == CMiscellaneous::ItemType::Apple)
 			bmp = m_pItem3DPic->GetApple();
+		else if (misc->GetType() == CMiscellaneous::ItemType::IronKey ||
+				misc->GetType() == CMiscellaneous::ItemType::KeyOfB ||
+				misc->GetType() == CMiscellaneous::ItemType::SolidKey ||
+				misc->GetType() == CMiscellaneous::ItemType::SquareKey ||
+				misc->GetType() == CMiscellaneous::ItemType::TurquoiseKey ||
+				misc->GetType() == CMiscellaneous::ItemType::CrossKey ||
+				misc->GetType() == CMiscellaneous::ItemType::SkeletonKey)
+			bmp = m_pItem3DPic->GetIronKey();
+		else if (misc->GetType() == CMiscellaneous::ItemType::GoldKey ||
+				misc->GetType() == CMiscellaneous::ItemType::WingedKey ||
+				misc->GetType() == CMiscellaneous::ItemType::TopazKey ||
+				misc->GetType() == CMiscellaneous::ItemType::EmeraldKey ||
+				misc->GetType() == CMiscellaneous::ItemType::RubyKey ||
+				misc->GetType() == CMiscellaneous::ItemType::RaKey ||
+				misc->GetType() == CMiscellaneous::ItemType::MasterKey)
+			bmp = m_pItem3DPic->GetGoldKey();
 		else
 			bmp = m_pItem3DPic->GetBread();
 
@@ -540,17 +556,21 @@ void CRaumView::Zeichnen(CDC* pDC)
 				int addx = x + ebene * sty + xx * stx;
 				int addy = y - ebene * stx + xx * sty;
 				CField* pField = m_pMap->GetField(addx, addy, z);
-				CField* pFieldAbove = m_pMap->GetField(addx,addy,z-1);
 				int fieldType = pField->HoleTyp();
-				int fieldTypeAbove = pFieldAbove->HoleTyp();
+				
+				if (z > 0) {
+					CField* pFieldAbove = m_pMap->GetField(addx,addy,z-1);
+					int fieldTypeAbove = pFieldAbove->HoleTyp();
 							
-				if (fieldTypeAbove == FeldTyp::PIT) {
-					CPit* pit = pFieldAbove->HolePit();
-					if (pit->GetType() != CPit::PitType::Invisible &&
-						pit->GetState() == CPit::PitState::Open) {
-						DrawCeilingPit(pDC, &compCdc, xxx, ebene, pit);
+					if (fieldTypeAbove == FeldTyp::PIT) {
+						CPit* pit = pFieldAbove->HolePit();
+						if (pit->GetType() != CPit::PitType::Invisible &&
+							pit->GetState() == CPit::PitState::Open) {
+							DrawCeilingPit(pDC, &compCdc, xxx, ebene, pit);
+						}
 					}
 				}
+
 				if ((fieldType == FeldTyp::WALL || fieldType == FeldTyp::TRICKWALL) && ((ebene != 0) || (xx != 0)))
 				{
 					DrawWall(pDC, &compCdc, xxx, ebene, heroDir, pField);

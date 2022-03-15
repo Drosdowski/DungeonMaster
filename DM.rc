@@ -481,6 +481,10 @@ IDB_FLOOR_PIT_L3        BITMAP                  "res\\FloorPit_L3.bmp"
 
 IDB_TELEPORTER          BITMAP                  "res\\Teleporter.bmp"
 
+IDB_ITEM3D_GOLDKEY      BITMAP                  "res\\GoldKey.bmp"
+
+IDB_ITEM3D_IRONKEY      BITMAP                  "res\\IronKey.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

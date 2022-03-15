@@ -10,12 +10,16 @@ CItem3DPic::CItem3DPic(CDC* pDC) : CBasePictures(pDC)
 CItem3DPic ::~CItem3DPic() {
 	delete m_pApple;
 	delete m_pBread;
+	delete m_pGoldKey;
+	delete m_pIronKey;
 }
 	
 
 void CItem3DPic::InitBitmap() {
 	LoadPic(m_pApple, IDB_ITEM3D_APPLE);
 	LoadPic(m_pBread, IDB_ITEM3D_BREAD);
+	LoadPic(m_pGoldKey, IDB_ITEM3D_GOLDKEY);
+	LoadPic(m_pIronKey, IDB_ITEM3D_IRONKEY);
 }
 
 CPoint CItem3DPic::GetFloorMiddle(int x, int ebene) {

@@ -245,8 +245,26 @@ void CDMView::ParseClickFloor(CPoint point) {
 			CBitmap* bmp;
 			if (topItem->GetType() == CMiscellaneous::ItemType::Apple)
 				bmp = m_pRaumView->Get3DPics()->GetApple();
-			else
+			else if (topItem->GetType() == CMiscellaneous::ItemType::Bread)
 				bmp = m_pRaumView->Get3DPics()->GetBread();
+			else if (topItem->GetType() == CMiscellaneous::ItemType::IronKey ||
+				topItem->GetType() == CMiscellaneous::ItemType::KeyOfB ||
+				topItem->GetType() == CMiscellaneous::ItemType::SolidKey ||
+				topItem->GetType() == CMiscellaneous::ItemType::SquareKey ||
+				topItem->GetType() == CMiscellaneous::ItemType::TurquoiseKey ||
+				topItem->GetType() == CMiscellaneous::ItemType::CrossKey ||
+				topItem->GetType() == CMiscellaneous::ItemType::SkeletonKey)
+				bmp = m_pRaumView->Get3DPics()->GetIronKey();
+			else if (topItem->GetType() == CMiscellaneous::ItemType::GoldKey ||
+				topItem->GetType() == CMiscellaneous::ItemType::WingedKey ||
+				topItem->GetType() == CMiscellaneous::ItemType::TopazKey ||
+				topItem->GetType() == CMiscellaneous::ItemType::EmeraldKey ||
+				topItem->GetType() == CMiscellaneous::ItemType::RubyKey ||
+				topItem->GetType() == CMiscellaneous::ItemType::RaKey ||
+				topItem->GetType() == CMiscellaneous::ItemType::MasterKey)
+				bmp = m_pRaumView->Get3DPics()->GetGoldKey();
+			else
+				return; // Item noch nicht da
 
 			HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
 			HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);

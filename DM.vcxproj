@@ -296,9 +296,11 @@
     <Image Include="res\FloorPuddle_L3.bmp" />
     <Image Include="res\Fountain_Front.bmp" />
     <Image Include="res\Fountain_Left.bmp" />
+    <Image Include="res\GoldKey.bmp" />
     <Image Include="res\Icons.bmp" />
     <Image Include="res\Icons3d.bmp" />
     <Image Include="res\Icons3db.bmp" />
+    <Image Include="res\IronKey.bmp" />
     <Image Include="res\Items42.bmp" />
     <Image Include="res\Items43.bmp" />
     <Image Include="res\Items44.bmp" />

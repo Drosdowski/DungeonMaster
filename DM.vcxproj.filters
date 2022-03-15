@@ -757,6 +757,12 @@
     <Image Include="res\Teleporter.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\GoldKey.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\IronKey.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
