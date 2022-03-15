@@ -835,7 +835,7 @@ void CRaumView::TriggerActuator(VEKTOR heroPos, CField* field , CActuator* actua
 	if (criticalWeightChanged) {
 		switch (actuator->GetType()) {
 		case 3:
-			VEKTOR target = actuator->GetActionTarget(pos);
+			VEKTOR target = actuator->GetTarget(pos);
 			CActuator::ActionTypes type = actuator->GetActionType(pos);
 			// TODO: type auswerten!
 			CField* pTargetField = m_pMap->GetField(target);

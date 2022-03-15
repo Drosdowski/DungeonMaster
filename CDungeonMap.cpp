@@ -246,6 +246,7 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 	int index, position, type;
 	VEKTOR target = coords;
 	CActuator::ActionTypes actionType;
+	CActuator::ActionTarget actionTarget;
 	actuatorItem->QueryIntAttribute("index", &index);
 	actuatorItem->QueryIntAttribute("position", &position);
 
@@ -259,6 +260,11 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 			if (strcmp(strActionType, "Clear") == 0) actionType = CActuator::Clear;
 			if (strcmp(strActionType, "Hold") == 0) actionType = CActuator::Hold;
 			if (strcmp(strActionType, "Toggle") == 0) actionType = CActuator::Toggle;
+		}
+		else if (strcmp(actuatorAttributes->Value(), "action_target") == 0) {
+			const char* strActionTarget = actuatorAttributes->GetText();
+			if (strcmp(strActionTarget, "remote") == 0) actionTarget = CActuator::Remote;
+			if (strcmp(strActionTarget, "local") == 0) actionTarget = CActuator::Local;
 		}
 		else if (strcmp(actuatorAttributes->Value(), "type") == 0) {
 			const char* strValue = actuatorAttributes->GetText();
@@ -282,7 +288,7 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 		actuatorAttributes = actuatorAttributes->NextSiblingElement();
 	}
 
-	CActuator* actuator = new CActuator(index, position, target, actionType, type);
+	CActuator* actuator = new CActuator(index, position, target, actionType, actionTarget, type);
 	m_pFeld[coords.x][coords.y][coords.z]->PutActuator(actuator, (SUBPOS_ABSOLUTE)position);
 
 }
