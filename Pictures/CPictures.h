@@ -1,5 +1,7 @@
 #include "CBasePictures.h"
 #pragma once
+class CHeld;
+class CRucksack;
 class CPictures : CBasePictures
 {
 public:
@@ -18,6 +20,18 @@ public:
 	CBitmap* GetWizardTabs(int i) { return m_pWizardTabs[i]; }
 	CBitmap* GetOneHand() { return m_pOneHand; }
 	CBitmap* GetActionDamage(int dmg);
+
+	void KnochenZeichnen(CDC* pDC, int index);
+	void NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName);
+	void RucksackZeichnen(CDC* pDC, CHeld* pHeld);
+	void HaendeZeichnen(CDC* pDC, int index);
+	void SymbolZeichnen(CDC* pDC, int heldIndex, SUBPOS relPos);
+	void WaffeZeichnen(CDC* pDC);
+	void WerteZeichnen(CDC* pDC, CHeld* pHeld);
+	void BildZeichnen(CDC* pDC, bool aktiv, int index);
+	void SchadenZeichnen(CDC* pDC, int index);
+
+
 
 private:
 	void InitBitmaps();

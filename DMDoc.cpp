@@ -12,6 +12,8 @@
 #include "Items\Decoration.h"
 #include "Mobs\Held.h"
 #include "Mobs\MobGroups\GrpHeld.h"
+#include "Pictures/CPictures.h"
+#include "CHelpfulValues.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -41,19 +43,21 @@ CDMDoc::CDMDoc()
 	
 	((CDMApp*)AfxGetApp())->SetDoc(this);
 	
-
 }
 
 CDMDoc::~CDMDoc()
 {
 	((CDMApp*)AfxGetApp())->SetDoc(NULL);
-
+	delete m_pPictures;
 }
 
 BOOL CDMDoc::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())
 		return FALSE;
+
+	CDC* pDC = ((CDMApp*)AfxGetApp())->m_pView->GetDC();
+	m_pPictures = new CPictures(pDC);
 
 	// TODO: add reinitialization code here
 	// (SDI documents will reuse this document)
@@ -159,9 +163,18 @@ void CDMDoc::SetzeRichtung(int iRichtung)
 	m_iWunschRichtung = iRichtung;
 }
 
-void CDMDoc::InitGruppe(CPictures* pPictures, const int nr)
+void CDMDoc::InitGruppe(const int nr)
 {
-	m_pRaumView->GetHeroes()->InitHeld(pPictures, nr);
+	CGrpHeld* pGrpHelden = m_pRaumView->GetHeroes();
+	CHeld* pHeld = pGrpHelden->InitHeld(nr);
+	
+	CDC* pDC = ((CDMApp*)AfxGetApp())->m_pView->GetDC();
+	m_pPictures->HaendeZeichnen(pDC, pHeld->m_iIndex);
+	m_pPictures->NameZeichnen(pDC, pHeld->m_bAktiv, pHeld->m_iIndex, pHeld->m_strName);
+	m_pPictures->WerteZeichnen(pDC, pHeld);
+
+	SUBPOS relPos = CHelpfulValues::GetRelativeSubPosActive(pHeld->HoleSubPosition(), pGrpHelden->HoleRichtung());
+	m_pPictures->SymbolZeichnen(pDC, pHeld->m_iIndex, relPos);
 }
 
 int CDMDoc::HoleGruppenRichtung() 

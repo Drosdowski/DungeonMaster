@@ -33,7 +33,7 @@ public:
 // Implementation
 public:
 	void SetRaumView(CRaumView* pRaumView);
-	void InitGruppe(CPictures* pPictures, const int nr);
+	void InitGruppe(const int nr);
 	void SetzeRichtung(int iRichtung);
 	void Laufen();	
 	int HoleGruppenRichtung();
@@ -57,6 +57,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 private:
 	int m_iWunschRichtung;
+	CPictures* m_pPictures;
 
 	CRaumView* m_pRaumView;
 };

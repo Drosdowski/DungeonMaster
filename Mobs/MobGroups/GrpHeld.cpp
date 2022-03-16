@@ -6,6 +6,8 @@
 #include "DMView.h"
 #include "Rucksack.h"
 #include "..\Held.h"
+#include "..\..\CHelpfulValues.h"
+#include "..\..\Pictures\CPictures.h" // todo prüfen, kann das raus?
 #include "GrpHeld.h"
 
 #ifdef _DEBUG
@@ -41,29 +43,24 @@ CGrpHeld::~CGrpHeld()
 /////////////////////////////////////////////////////////////////////////////
 // Behandlungsroutinen für Nachrichten CGrpHeld 
 
-void CGrpHeld::InitHeld(CPictures* pPictures, const int nr)
+CHeld* CGrpHeld::InitHeld(const int nr)
 {
 	if (m_pMember[nr] == NULL) 
 	{
 		CString strName;
 		strName.Format("Held %i",nr);
-		m_pMember[nr] = new CHeld(pPictures, nr, strName);
+		m_pMember[nr] = new CHeld(nr, strName);
 		m_iAktiverHeld = nr;
 
 		CHeld* pHeld = (CHeld*) m_pMember[nr];
 		
-		CDC* pDC = ((CDMApp*)AfxGetApp())->m_pView->GetDC();
-		pHeld->HaendeZeichnen(pDC, pPictures);
-		pHeld->NameZeichnen(pDC);
-		pHeld->WerteZeichnen(pDC);
-
 		SetNewCharOnNextFreePos(nr);
-
-		pHeld->SymbolZeichnen(pDC, pPictures, m_grpDirection);
-
+		
 		m_iAnzHelden++;
 		if (m_iAnzHelden == 1) 
 			m_iAktiverZauberer = 1;
+
+		return pHeld;
 	}
 }
 
@@ -100,7 +97,7 @@ void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpChar* pVictims) {
 		if (pVictims) {
 			CHeld* pHero = (CHeld*)m_pMember[m_iHeroForAction];
 			if (pHero) {
-				if (pHero->Hp() > 0) {
+				if (pHero->Hp().Aktuell > 0) {
 					int dmg = pHero->CalcDmg(ActionId, pVictims);
 					pVictims->DoDamage(dmg, HolePosition(), false); // true = Schaden an alle
 					pHero->AttackModeWithDmg(dmg);
@@ -123,7 +120,7 @@ CHeld* CGrpHeld::ClosestHeroTo(CMonster* monster) {
 
 		if (m_pMember[i] != NULL)
 		{
-			if (m_pMember[i]->Hp() <= 0)
+			if (m_pMember[i]->Hp().Aktuell <= 0)
 				return (CHeld*)m_pMember[i];
 		}
 	}
@@ -149,7 +146,6 @@ bool CGrpHeld::SetzeModus(CDC* pDC, int iModus)
 			if (m_pMember[iIndex] != NULL)
 			{
 				((CHeld*)m_pMember[iIndex])->GetRucksack()->SetzeModusExtend(MOD_EXT_NORMAL);
-				((CHeld*)m_pMember[iIndex])->RucksackZeichnen(pDC);
 			}
 		return true;
 	}
@@ -164,32 +160,36 @@ void CGrpHeld::Zeichnen(CDC * pDC, CPictures* pPictures, int iModus)
 
 		if (m_pMember[i] != NULL)
 		{
-			if (m_pMember[i]->Hp() <= 0)
-				pHeld->KnochenZeichnen(pDC, pPictures);
+			if (m_pMember[i]->Hp().Aktuell <= 0)
+				pPictures->KnochenZeichnen(pDC, pHeld->m_iIndex);
 			else
 			{
 				switch (iModus)
 				{
 					case (MOD_LAUFEN):
 					{
-						pHeld->HaendeZeichnen(pDC, pPictures);
-						pHeld->NameZeichnen(pDC);
-						pHeld->WerteZeichnen(pDC);			
+						pPictures->HaendeZeichnen(pDC, pHeld->m_iIndex);
+						pPictures->NameZeichnen(pDC, pHeld->m_bAktiv, pHeld->m_iIndex, pHeld->m_strName);
+						pPictures->WerteZeichnen(pDC, pHeld);
 						break;
 					}
 					case (MOD_RUCKSACK):
 					{
 						if (i == m_iAktiverHeld)
 						{
-							pHeld->BildZeichnen(pDC);
-							pHeld->RucksackZeichnen(pDC);
+							pPictures->BildZeichnen(pDC, pHeld->m_bAktiv, pHeld->m_iIndex);
+							pPictures->RucksackZeichnen(pDC, pHeld);
 						}
 						break;
 					}
 				}
-				pHeld->WaffeZeichnen(pDC);
-				pHeld->SymbolZeichnen(pDC, pPictures, m_grpDirection);
-				pHeld->SchadenZeichnen(pDC, pPictures);
+				pPictures->WaffeZeichnen(pDC);
+				SUBPOS relPos = CHelpfulValues::GetRelativeSubPosActive(pHeld->HoleSubPosition(), m_grpDirection);
+				pPictures->SymbolZeichnen(pDC, pHeld->m_iIndex, relPos);
+				if (pHeld->m_iReceivedDmg > 0) {
+					pPictures->SchadenZeichnen(pDC, pHeld->m_iIndex);
+					pHeld->m_iReceivedDmg = 0;
+				}
 			}
 		}
 	}
@@ -201,20 +201,20 @@ void CGrpHeld::UpdateRucksack(CDC* pDC, CPictures* pPictures)
 	{
 		CHeld* pHeld = (CHeld*) m_pMember[i];
 		if (m_pMember[i])
-			if (m_pMember[i]->Hp()>0)
+			if (m_pMember[i]->Hp().Aktuell>0)
 			{
 				if (i==m_iAktiverHeld)
 				{
-					pHeld->BildZeichnen(pDC);
-					pHeld->RucksackZeichnen(pDC);
+					pPictures->BildZeichnen(pDC, pHeld->m_bAktiv, pHeld->m_iIndex);
+					pPictures->RucksackZeichnen(pDC, pHeld);
 				}
 				else {
-					pHeld->HaendeZeichnen(pDC, pPictures);
+					pPictures->HaendeZeichnen(pDC, pHeld->m_iIndex);
 				}
-				pHeld->WerteZeichnen(pDC);
+				pPictures->WerteZeichnen(pDC, pHeld);
 			}
 			else
-				pHeld->KnochenZeichnen(pDC, pPictures);
+				pPictures->KnochenZeichnen(pDC, pHeld->m_iIndex);
 	}	
 }
 
@@ -263,7 +263,7 @@ void CGrpHeld::DrinkFountain() {
 		CHeld* pHeld = (CHeld*)m_pMember[i];
 		if (pHeld)
 		{
-			if (pHeld->Hp() > 0)
+			if (pHeld->Hp().Aktuell > 0)
 				pHeld->Trinken(100);
 		}
 	}

@@ -14,19 +14,14 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CRucksack
 
-CRucksack::CRucksack(CPictures* pPictures)
+CRucksack::CRucksack()
 {
 	m_iModusExtend = MOD_EXT_NORMAL;
-	m_pPictures = pPictures;
 
 	KLASSE[1] = "FIGHTER";
     KLASSE[2] = "NINJA";
 	KLASSE[3] = "PRIEST";
 	KLASSE[4] = "WIZARD";
-}
-
-CRucksack::CRucksack()
-{
 }
 
 CRucksack::~CRucksack()
@@ -37,11 +32,11 @@ CRucksack::~CRucksack()
 /////////////////////////////////////////////////////////////////////////////
 // CRucksack message handlers
 
-void CRucksack::Zeichnen(CDC * pDC)
+void CRucksack::Zeichnen(CDC * pDC, CPictures* pPictures) // TODO das ganze zeug dringend raus hier !!!
 {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
-	tmpdc.SelectObject(m_pPictures->GetRucksack());
+	tmpdc.SelectObject(pPictures->GetRucksack());
 	pDC->BitBlt(0,64,460,270,&tmpdc,0,64,SRCCOPY);
 	
 	if (m_iModusExtend == MOD_EXT_AUGE)

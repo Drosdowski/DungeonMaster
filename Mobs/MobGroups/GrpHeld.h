@@ -19,7 +19,7 @@ public:
 
 // Implementierung
 public:
-	void InitHeld(CPictures* pPictures, int nr);
+	CHeld* InitHeld(int nr);
 	
 	void UpdateRucksack(CDC* pDC, CPictures* pPictures);
 

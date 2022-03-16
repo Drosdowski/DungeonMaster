@@ -12,32 +12,29 @@
 // CHeld view
 
 class CRucksack;
-class CPictures;
 class CHeld : public CCharacter
 {
 public:
-	CHeld(CPictures* pPictures, int iIndex, CString strName);
+	CHeld(int iIndex, CString strName);
 protected:
 	CHeld();           // protected constructor used by dynamic creation
 
 // Attributes
 public:
+	int getFood() { return m_iFood; }
+	int getWater() { return m_iWater; }
+	long* getExp() { return m_sExp; }
+	VITALS getVitals() { return m_sVitals;  }
 // Operations
 public:
-	void KnochenZeichnen(CDC* pDC, CPictures* pPictures);
-	void NameZeichnen(CDC* pDC);
-	void RucksackZeichnen(CDC* pDC);
-	void HaendeZeichnen(CDC* pDC, CPictures* pPictures);
-	void SymbolZeichnen(CDC* pDC, CPictures* pPictures, int heroGrpDir);
-	void WaffeZeichnen(CDC* pDC);
-	void WerteZeichnen(CDC* pDC);
-	void BildZeichnen(CDC* pDC);
-	void SchadenZeichnen(CDC* pDC, CPictures* pPictures);
-
 	void Trinken(int amount);
 	void Essen(int amount);
 
 	int CalcDmg(int ID, CGrpChar* pOpponents);
+	int LifePart() { return m_HP.Aktuell / m_HP.Max; }
+	int StaminaPart() { return m_ST.Aktuell / m_ST.Max; }
+	int ManaPart() { return m_MA.Aktuell / m_MA.Max; }
+	COLORREF Farbe() { return m_Farbe[m_iIndex]; }
 
 	CRucksack* GetRucksack() { return m_pRucksack; }
 
@@ -47,10 +44,11 @@ public:
 	virtual ~CHeld();
 
 	bool m_bAktiv;
+	int m_iIndex; // todo getter...
+	CString m_strName;
 
 protected:
 
-	CString m_strName;
 	long m_sExp[5];
 	VITALS m_sVitals;
 	int m_iFood;
@@ -58,7 +56,6 @@ protected:
 private:
 	CRucksack* m_pRucksack;
 	COLORREF m_Farbe[5];
-	int m_iIndex;
 	int maxFood = 200;
 	int maxWater = 200;
 };
