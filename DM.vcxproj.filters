@@ -24,7 +24,7 @@
     <ClCompile Include="DMDoc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DMView.cpp">
+    <ClCompile Include="Views\DMView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Feld.cpp">
@@ -48,7 +48,7 @@
     <ClCompile Include="Mobs\Monster.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RaumView.cpp">
+    <ClCompile Include="Views\RaumView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Rucksack.cpp">
@@ -57,7 +57,7 @@
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ZauberView.cpp">
+    <ClCompile Include="Views\ZauberView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Items\Decoration.cpp">
@@ -168,6 +168,12 @@
     <ClCompile Include="SpecialTile\CTeleporterAttributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Views\CGroupView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Views\CBackpackView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -184,7 +190,7 @@
     <ClInclude Include="DMDoc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DMView.h">
+    <ClInclude Include="Views\DMView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Feld.h">
@@ -208,7 +214,7 @@
     <ClInclude Include="Mobs\Monster.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RaumView.h">
+    <ClInclude Include="Views\RaumView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
@@ -220,7 +226,7 @@
     <ClInclude Include="StdAfx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ZauberView.h">
+    <ClInclude Include="Views\ZauberView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Items\Decoration.h">
@@ -323,6 +329,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SpecialTile\CTeleporterAttributes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Views\CGroupView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Views\CBackpackView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

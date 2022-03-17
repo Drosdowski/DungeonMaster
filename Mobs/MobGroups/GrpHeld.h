@@ -9,7 +9,6 @@
 
 class CHeld;
 class CMonster;
-class CPictures;
 class CMiscellaneous;
 class CGrpHeld: public CGrpChar
 {
@@ -21,8 +20,6 @@ public:
 public:
 	CHeld* InitHeld(int nr);
 	
-	void UpdateRucksack(CDC* pDC, CPictures* pPictures);
-
 	CHeld* GetHero(int iID) { return (CHeld*)m_pMember[iID]; }
 	CHeld* GetActiveHero() { return (CHeld*)m_pMember[m_iAktiverHeld]; }
 	CHeld* GetAttackingHero();
@@ -48,7 +45,6 @@ public:
 // überschriebene Methoden
 	
 	bool SetzeModus(CDC* pDC, int iModus);	
-	void Zeichnen(CDC* pDC, CPictures* pPictures, int iModus);
 
 	virtual ~CGrpHeld();
 
@@ -61,11 +57,6 @@ protected:
 	int m_iAnzHelden = 0;
 
 	CMiscellaneous* m_pItemInHand = NULL;
-public:
-	//{{AFX_MSG(CGrpChar)
-	afx_msg void OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point);
-	afx_msg void OnLButtonUp(CDC* pDC, UINT nFlags, CPoint point);
-	//}}AFX_MSG
 };
 
 /////////////////////////////////////////////////////////////////////////////

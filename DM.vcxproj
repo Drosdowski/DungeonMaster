@@ -128,6 +128,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Views\CBackpackView.cpp" />
+    <ClCompile Include="Views\CGroupView.cpp" />
     <ClCompile Include="SpecialTile\CTeleporterAttributes.cpp" />
     <ClCompile Include="SpecialTile\CTeleporter.cpp" />
     <ClCompile Include="Pictures\CTeleportPic.cpp" />
@@ -162,7 +164,7 @@
     <ClCompile Include="Items\Decoration.cpp" />
     <ClCompile Include="DM.cpp" />
     <ClCompile Include="DMDoc.cpp" />
-    <ClCompile Include="DMView.cpp" />
+    <ClCompile Include="Views\DMView.cpp" />
     <ClCompile Include="Feld.cpp" />
     <ClCompile Include="Mobs\MobGroups\GrpChar.cpp" />
     <ClCompile Include="Mobs\MobGroups\GrpHeld.cpp" />
@@ -170,7 +172,7 @@
     <ClCompile Include="Mobs\Held.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="Mobs\Monster.cpp" />
-    <ClCompile Include="RaumView.cpp" />
+    <ClCompile Include="Views\RaumView.cpp" />
     <ClCompile Include="Rucksack.cpp" />
     <ClCompile Include="Mobs\Skelett.cpp" />
     <ClCompile Include="StdAfx.cpp">
@@ -183,12 +185,14 @@
     <ClCompile Include="TinyXML\tinyxml.cpp" />
     <ClCompile Include="TinyXML\tinyxmlerror.cpp" />
     <ClCompile Include="TinyXML\tinyxmlparser.cpp" />
-    <ClCompile Include="ZauberView.cpp" />
+    <ClCompile Include="Views\ZauberView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Views\CBackpackView.h" />
+    <ClInclude Include="Views\CGroupView.h" />
     <ClInclude Include="SpecialTile\CTeleporterAttributes.h" />
     <ClInclude Include="SpecialTile\CTeleporter.h" />
     <ClInclude Include="Pictures\CTeleportPic.h" />
@@ -223,7 +227,7 @@
     <ClInclude Include="Items\Decoration.h" />
     <ClInclude Include="DM.h" />
     <ClInclude Include="DMDoc.h" />
-    <ClInclude Include="DMView.h" />
+    <ClInclude Include="Views\DMView.h" />
     <ClInclude Include="Feld.h" />
     <ClInclude Include="Mobs\MobGroups\GrpChar.h" />
     <ClInclude Include="Mobs\MobGroups\GrpHeld.h" />
@@ -231,14 +235,14 @@
     <ClInclude Include="Mobs\Held.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Mobs\Monster.h" />
-    <ClInclude Include="RaumView.h" />
+    <ClInclude Include="Views\RaumView.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Rucksack.h" />
     <ClInclude Include="Mobs\Skelett.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="TinyXML\tinystr.h" />
     <ClInclude Include="TinyXML\tinyxml.h" />
-    <ClInclude Include="ZauberView.h" />
+    <ClInclude Include="Views\ZauberView.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\ActionsArea.bmp" />

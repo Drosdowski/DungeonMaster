@@ -6,9 +6,9 @@
 
 #include "MainFrm.h"
 #include "DMDoc.h"
-#include "DMView.h"
 
-#include "RaumView.h"
+#include "Views\DMView.h"
+#include "Views\RaumView.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

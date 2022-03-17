@@ -35,7 +35,6 @@ public:
 // Implementierung
 public:
 	virtual bool Altern() { return true; };
-	virtual void Zeichnen(CDC* pDC, int iModus) {};
 	virtual bool SetzeModus(CDC* pDC, int iModus) {return false;};
 	virtual bool Laufbereit();
 	virtual int InReihe(int byte);

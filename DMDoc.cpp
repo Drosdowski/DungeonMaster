@@ -5,8 +5,8 @@
 #include "DM.h"
 #include <math.h>
 
-#include "DmView.h"
-#include "Raumview.h"
+#include "Views\DmView.h"
+#include "Views\Raumview.h"
 #include "CDungeonMap.h"
 #include "DMDoc.h"
 #include "Items\Decoration.h"

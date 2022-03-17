@@ -3,11 +3,10 @@
 
 #include "stdafx.h"
 #include "DM.h"
-#include "DMView.h"
+#include "Views\DMView.h"
 #include "Rucksack.h"
 #include "..\Held.h"
 #include "..\..\CHelpfulValues.h"
-#include "..\..\Pictures\CPictures.h" // todo prüfen, kann das raus?
 #include "GrpHeld.h"
 
 #ifdef _DEBUG
@@ -127,15 +126,6 @@ CHeld* CGrpHeld::ClosestHeroTo(CMonster* monster) {
 	return NULL;
 }
 
-void CGrpHeld::OnLButtonUp(CDC* pDC, UINT nFlags, CPoint point) 
-{
-	((CHeld*)m_pMember[m_iAktiverHeld])->GetRucksack()->OnLButtonUp(pDC, nFlags, point);
-}
-
-void CGrpHeld::OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point) 
-{
-	((CHeld*)m_pMember[m_iAktiverHeld])->GetRucksack()->OnLButtonDown(pDC, nFlags, point);
-}
 
 bool CGrpHeld::SetzeModus(CDC* pDC, int iModus)
 {
@@ -152,71 +142,8 @@ bool CGrpHeld::SetzeModus(CDC* pDC, int iModus)
 	return false;
 }
 
-void CGrpHeld::Zeichnen(CDC * pDC, CPictures* pPictures, int iModus)
-{
-	for (int i=1; i<=4; i++)
-	{
-		CHeld* pHeld = (CHeld*) m_pMember[i];
 
-		if (m_pMember[i] != NULL)
-		{
-			if (m_pMember[i]->Hp().Aktuell <= 0)
-				pPictures->KnochenZeichnen(pDC, pHeld->m_iIndex);
-			else
-			{
-				switch (iModus)
-				{
-					case (MOD_LAUFEN):
-					{
-						pPictures->HaendeZeichnen(pDC, pHeld->m_iIndex);
-						pPictures->NameZeichnen(pDC, pHeld->m_bAktiv, pHeld->m_iIndex, pHeld->m_strName);
-						pPictures->WerteZeichnen(pDC, pHeld);
-						break;
-					}
-					case (MOD_RUCKSACK):
-					{
-						if (i == m_iAktiverHeld)
-						{
-							pPictures->BildZeichnen(pDC, pHeld->m_bAktiv, pHeld->m_iIndex);
-							pPictures->RucksackZeichnen(pDC, pHeld);
-						}
-						break;
-					}
-				}
-				pPictures->WaffeZeichnen(pDC);
-				SUBPOS relPos = CHelpfulValues::GetRelativeSubPosActive(pHeld->HoleSubPosition(), m_grpDirection);
-				pPictures->SymbolZeichnen(pDC, pHeld->m_iIndex, relPos);
-				if (pHeld->m_iReceivedDmg > 0) {
-					pPictures->SchadenZeichnen(pDC, pHeld->m_iIndex);
-					pHeld->m_iReceivedDmg = 0;
-				}
-			}
-		}
-	}
-}
 
-void CGrpHeld::UpdateRucksack(CDC* pDC, CPictures* pPictures)
-{
-	for (int i = 1; i<5; i++)
-	{
-		CHeld* pHeld = (CHeld*) m_pMember[i];
-		if (m_pMember[i])
-			if (m_pMember[i]->Hp().Aktuell>0)
-			{
-				if (i==m_iAktiverHeld)
-				{
-					pPictures->BildZeichnen(pDC, pHeld->m_bAktiv, pHeld->m_iIndex);
-					pPictures->RucksackZeichnen(pDC, pHeld);
-				}
-				else {
-					pPictures->HaendeZeichnen(pDC, pHeld->m_iIndex);
-				}
-				pPictures->WerteZeichnen(pDC, pHeld);
-			}
-			else
-				pPictures->KnochenZeichnen(pDC, pHeld->m_iIndex);
-	}	
-}
 
 
 
