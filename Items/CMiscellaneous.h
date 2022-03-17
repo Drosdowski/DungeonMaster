@@ -24,8 +24,20 @@ public:
 		Bread = 31
 	};
 
+	enum ItemGroup {
+		Key = 1,
+		Food = 2,
+		Other = 3
+	};
+
 	ItemType GetType() {
 		return (ItemType)m_type;
+	}
+
+	ItemGroup GetGroup() {
+		if (m_type >= 9 && m_type <= 24) return ItemGroup::Key;
+		if (m_type >= 29 && m_type <= 31) return ItemGroup::Food;
+		return ItemGroup::Other;
 	}
 
 	bool IsFlying();

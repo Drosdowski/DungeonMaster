@@ -118,3 +118,11 @@ SUBPOS CScreenCoords::CheckHitAir(CPoint point) {
 	}	
 	return NONE;
 }
+
+bool CScreenCoords::CheckHitEye(CPoint point) {
+	return InRect(point, 22, 88, 56, 124);
+}
+
+bool CScreenCoords::CheckHitMouth(CPoint point) {
+	return InRect(point, 112, 88, 146, 124);
+}

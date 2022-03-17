@@ -12,6 +12,7 @@
 // CHeld view
 
 class CRucksack;
+class CMiscellaneous;
 class CHeld : public CCharacter
 {
 public:
@@ -38,6 +39,10 @@ public:
 
 	CRucksack* GetRucksack() { return m_pRucksack; }
 
+	CMiscellaneous* GetItemInHand() { return m_pItemInHand; }
+	void TakeItemInHand(CMiscellaneous* item);
+	void EmptyHand();
+
 // Implementation
 public:
 	virtual bool Altern();
@@ -58,6 +63,8 @@ private:
 	COLORREF m_Farbe[5];
 	int maxFood = 200;
 	int maxWater = 200;
+
+	CMiscellaneous* m_pItemInHand = NULL;
 };
 
 /////////////////////////////////////////////////////////////////////////////

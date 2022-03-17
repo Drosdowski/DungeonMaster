@@ -46,7 +46,7 @@ CHeld::CHeld(int iIndex, CString strName): CCharacter()
 		m_Farbe[4] = BLAU; break;
 	}
 
-	m_pRucksack = new CRucksack();
+	m_pRucksack = new CRucksack(this);
 }
 
 CHeld::CHeld()
@@ -82,7 +82,7 @@ bool CHeld::Altern()
 	if (alive)
 	{
 		WerteTemporaerAendern(1, 1, 1);
-		//m_iFood--;
+		m_iFood--;
 		//m_iWater--;
 		if (m_iFood < 50)
 			WerteTemporaerAendern(0, -1, 0);
@@ -113,4 +113,15 @@ void CHeld::Essen(int amount) {
 
 void CHeld::Trinken(int amount) {
 	m_iWater = min(maxWater, m_iWater + amount);
+}
+
+void CHeld::TakeItemInHand(CMiscellaneous* item)
+{
+	if (m_pItemInHand == NULL)
+		m_pItemInHand = item;
+}
+
+void CHeld::EmptyHand() {
+	// kein delete, Objekt ist jetzt woanders...
+	m_pItemInHand = NULL;
 }

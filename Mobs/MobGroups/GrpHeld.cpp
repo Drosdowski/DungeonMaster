@@ -143,10 +143,6 @@ bool CGrpHeld::SetzeModus(CDC* pDC, int iModus)
 }
 
 
-
-
-
-
 bool CGrpHeld::Altern()
 {
 	bool anyoneAlive = false;
@@ -198,21 +194,14 @@ void CGrpHeld::DrinkFountain() {
 
 bool CGrpHeld::SetActiveCaster(int ID)
 {
-	if (ID <= m_iAnzHelden)
+	if (ID <= m_iAnzHelden && m_iAktiverZauberer != ID)
 	{
+		CMiscellaneous* itemInHand = GetHero(ID)->GetItemInHand();
+		GetHero(m_iAktiverZauberer)->TakeItemInHand(itemInHand);
+		GetHero(ID)->EmptyHand();
 		m_iAktiverZauberer = ID;
 		return true;
 	}
 	return false;
 }
 
-void CGrpHeld::TakeItemInHand(CMiscellaneous* item) 
-{ 
-	if (m_pItemInHand == NULL) 
-		m_pItemInHand = item; 
-}
-
-void CGrpHeld::EmptyHand() {
-	// kein delete, Objekt ist jetzt woanders...
-	m_pItemInHand = NULL;
-}

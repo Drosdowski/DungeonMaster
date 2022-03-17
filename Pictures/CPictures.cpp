@@ -131,12 +131,26 @@ void CPictures::BildZeichnen(CDC* pDC, bool aktiv, int index)
 void CPictures::RucksackZeichnen(CDC* pDC, CHeld* pHeld)
 {
 	CRucksack* pRucksack = pHeld->GetRucksack();
-	pRucksack->Zeichnen(pDC, this);
-	if (pRucksack->HoleModusExtend() == MOD_EXT_NORMAL)
-		pRucksack->ZeichneHungerDurst(pDC, pHeld->getFood(), pHeld->getWater());
-	else if (pRucksack->HoleModusExtend() == MOD_EXT_AUGE)
-		pRucksack->ZeichneSkills(pDC, pHeld->getExp(), pHeld->getVitals());
-	pRucksack->ZeichneHpStMa(pDC, pHeld->Hp(), pHeld->St(), pHeld->Ma());
+	int iModusExtend = pRucksack->HoleModusExtend();
+	Zeichnen(pDC, iModusExtend);
+	if (iModusExtend == MOD_EXT_NORMAL)
+		ZeichneHungerDurst(pDC, pHeld->getFood(), pHeld->getWater());
+	else if (iModusExtend == MOD_EXT_AUGE)
+		ZeichneSkills(pDC, pHeld, pRucksack);
+	ZeichneHpStMa(pDC, pHeld->Hp(), pHeld->St(), pHeld->Ma());
+}
+
+void CPictures::Zeichnen(CDC* pDC, int iModusExtend)
+{
+	CDC tmpdc;
+	tmpdc.CreateCompatibleDC(pDC);
+	tmpdc.SelectObject(m_pBmpRuck);
+	pDC->BitBlt(0, 64, 460, 270, &tmpdc, 0, 64, SRCCOPY);
+
+	if (iModusExtend == MOD_EXT_AUGE)
+		pDC->BitBlt(22, 88, 34, 36, &tmpdc, 0, 338, SRCCOPY);
+
+	tmpdc.DeleteDC();
 }
 
 void CPictures::NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName)
@@ -160,4 +174,64 @@ void CPictures::SchadenZeichnen(CDC* pDC, int index)
 
 	tmpdc.DeleteDC();
 	DeleteDC(tmpdc);
+}
+
+void CPictures::ZeichneHungerDurst(CDC* pDC, int i, int j)
+{
+	pDC->FillSolidRect(CRect(230, 206, 230 + i, 218), SCHWARZ);
+	COLORREF col;
+	if (i > 50)
+		col = DUNKELBRAUN;
+	else if (i > 15)
+		col = GELB;
+	else
+		col = ROT;
+	pDC->FillSolidRect(CRect(226, 202, 226 + i, 214), col);
+
+	pDC->FillSolidRect(CRect(230, 252, 230 + j, 264), SCHWARZ);
+	if (j > 50)
+		col = BLAU;
+	else if (j > 15)
+		col = GELB;
+	else
+		col = ROT;
+	pDC->FillSolidRect(CRect(226, 248, 226 + j, 260), col);
+
+}
+
+void CPictures::ZeichneHpStMa(CDC* pDC, WERTE hp, WERTE st, WERTE ma)
+{
+	pDC->SetTextColor(HELLGRAU);
+	pDC->SetBkColor(GANZDUNKELGRAU);
+
+	CString str;
+	str.Format("%i / %i", hp.Aktuell, hp.Max);
+	pDC->TextOut(120, 284, str);
+	str.Format("%i / %i", st.Aktuell, st.Max);
+	pDC->TextOut(120, 300, str);
+	str.Format("%i / %i", ma.Aktuell, ma.Max);
+	pDC->TextOut(120, 316, str);
+}
+
+
+void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld, CRucksack* pRucksack)
+{
+	pDC->SetTextColor(HELLGRAU);
+	pDC->SetBkColor(GANZDUNKELGRAU);
+	CString strZeile, strTitel, strKlasse;
+
+	long* sExp = pHeld->getExp();
+	VITALS sVitals = pHeld->getVitals();
+
+	pDC->FillSolidRect(210, 170, 226, 142, GANZDUNKELGRAU);
+	for (int i = 1; i < 5; i++)
+	{
+		if (sExp[i] > 0)
+		{
+			strTitel = pRucksack->GetTitle(sExp[i]);
+			strKlasse = pRucksack->GetClass(i);
+			strZeile.Format("%s %s", strTitel, strKlasse);
+			pDC->TextOut(230, 160 + i * 16, strZeile);
+		}
+	}
 }

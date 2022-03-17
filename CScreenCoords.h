@@ -20,6 +20,8 @@ public:
 	static int CheckHitHeroes(CPoint point);
 	static bool CheckHitDeco(CPoint point);
 	static bool CheckHitMainScr(CPoint);
+	static bool CheckHitEye(CPoint);
+	static bool CheckHitMouth(CPoint);
 	static SUBPOS CheckHitFloor(CPoint point);
 	static SUBPOS CheckHitAir(CPoint point); // throwing
 };

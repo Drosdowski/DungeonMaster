@@ -36,6 +36,11 @@ public:
 private:
 	void InitBitmaps();
 	int m_iWunschRichtung;
+
+	void Zeichnen(CDC* pDC, int iModusExtended);
+	void ZeichneSkills(CDC* pDC, CHeld* pHeld, CRucksack* pRucksack);
+	void ZeichneHpStMa(CDC* pDC, WERTE hp, WERTE st, WERTE ma);
+	void ZeichneHungerDurst(CDC* pDC, int i, int j);
 	
 	CBitmap* m_pBmpRuck;
 	CBitmap* m_pBmpHintergrund;

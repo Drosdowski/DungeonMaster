@@ -9,31 +9,30 @@
 /////////////////////////////////////////////////////////////////////////////
 // CRucksack view
 
-class CPictures;
+class CHeld;
 class CRucksack 
 {
 public:
-	CRucksack();
+	CRucksack(CHeld* pHero);
 	virtual ~CRucksack();
 
 // Operations
 public:
 	virtual void OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point);
 	virtual void OnLButtonUp(CDC* pDC, UINT nFlags, CPoint point);
-	void Zeichnen(CDC* pDC, CPictures* pPictures);
 
 // Implementation
 public:
 	void SetzeModusExtend(int iModusExtend);
 	int HoleModusExtend() { return m_iModusExtend; };
+	CString GetTitle(long exp) { return m_title(exp); };
+	CString GetClass(int index) { return KLASSE[index]; }
 	
-	void ZeichneSkills(CDC* pDC, long sExp[5], VITALS sVitals);
-	void ZeichneHpStMa(CDC* pDC, WERTE hp, WERTE st, WERTE ma);
-	void ZeichneHungerDurst(CDC* pDC, int i, int j);
 protected:
-	CString Titel(long exp);
+	CString m_title(long exp);
 	int m_iModusExtend;
 	CString KLASSE[5];
+	CHeld* m_pOwner;
 };
 
 /////////////////////////////////////////////////////////////////////////////

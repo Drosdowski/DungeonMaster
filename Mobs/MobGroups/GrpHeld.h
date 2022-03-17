@@ -4,10 +4,10 @@
 // GrpHeld.h : Header-Datei
 //
 #include "GrpChar.h"
+#include "..\Held.h"
 /////////////////////////////////////////////////////////////////////////////
 // Ansicht CGrpChar 
 
-class CHeld;
 class CMonster;
 class CMiscellaneous;
 class CGrpHeld: public CGrpChar
@@ -27,16 +27,17 @@ public:
 	int GetActiveWizard() { return m_iAktiverZauberer; }
 	int GetNumberOfHeroes() { return m_iAnzHelden;  }
 	int GetActionPhase() { return m_iPhase; }
-	CMiscellaneous* GetItemInHand() { return m_pItemInHand; }
 	
+	CMiscellaneous* GetItemInHand() { return GetActiveHero()->GetItemInHand(); }
+	void TakeItemInHand(CMiscellaneous* item) { return GetActiveHero()->TakeItemInHand(item); }
+	void EmptyHand() { return GetActiveHero()->EmptyHand(); }
+
 	void Aktiviere(int n);
 	void PassAction();
 	void ChooseHeroForAction(int ID);
 	void DoActionForChosenHero(int ID, CGrpChar* pVictims);
 	bool SetActiveCaster(int ID);
-	void TakeItemInHand(CMiscellaneous* item);
-	void EmptyHand();
-
+	
 	void DrinkFountain();
 	bool Altern();
 
@@ -56,7 +57,6 @@ protected:
 	int m_iAktiverHeld = 1;
 	int m_iAnzHelden = 0;
 
-	CMiscellaneous* m_pItemInHand = NULL;
 };
 
 /////////////////////////////////////////////////////////////////////////////
