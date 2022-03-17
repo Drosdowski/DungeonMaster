@@ -46,6 +46,7 @@ void CRucksack::OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point)
 		if (item && item->GetGroup() == CMiscellaneous::ItemGroup::Food) {
 			m_pOwner->Essen(10);
 			m_pOwner->EmptyHand();
+			delete item; // destroy permanently!
 			::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
 		}
 	}
