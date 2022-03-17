@@ -125,6 +125,7 @@ void CRaumView::DrawTeleporter(CDC* pDC, CDC* cdc, int xxx, int ebene, CTeleport
 		CPoint pos = m_pWallPic->GetWallPos(xxx, ebene);
 		cdc->SelectObject(bmp);
 		if (ebene == 0 && xxx == 4) {
+			bmp->GetBitmap(&bmpInfo);
 			pDC->TransparentBlt(0, 0,
 				MainAreaWidth, MainAreaHeight, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);
 		}

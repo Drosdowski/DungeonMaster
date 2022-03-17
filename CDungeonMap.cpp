@@ -56,10 +56,13 @@ CField* CDungeonMap::ParseStairs(TiXmlElement* rootNode, VEKTOR pos) {
 	int direction;
 	rootNode->QueryIntAttribute("direction", &direction);
 	rootNode->QueryIntAttribute("orientation", &orientation);
+	CStairs* stair;
 	if (direction == 0)
-		return new CField(pos, CStairs::StairType::DOWN, (orientation != 0));
+		stair = new CStairs(CStairs::StairType::DOWN, (orientation != 0));
 	else
-		return new CField(pos, CStairs::StairType::UP, (orientation != 0));
+		stair = new CStairs(CStairs::StairType::UP, (orientation != 0));
+
+	return new CField(pos, stair);
 }
 
 CField* CDungeonMap::ParsePit(TiXmlElement* rootNode, VEKTOR pos) {
@@ -79,7 +82,7 @@ CField* CDungeonMap::ParsePit(TiXmlElement* rootNode, VEKTOR pos) {
 		pitType = CPit::PitType::Standard;
 	}
 
-	return new CField(pos, pitType, (CPit::PitState)is_open);
+	return new CField(pos, new CPit(pitType, (CPit::PitState)is_open));
 }
 
 CField* CDungeonMap::ParseTeleport(TiXmlElement* rootNode, VEKTOR pos) {
@@ -104,8 +107,7 @@ CField* CDungeonMap::ParseTeleport(TiXmlElement* rootNode, VEKTOR pos) {
 		parentElement = parentElement->NextSiblingElement();
 	}
 	
-	// sCTeleporter* teleporter = new CTeleporter(,,,is_visible,,,is_open);
-
+	return NULL;
 }
 
 
@@ -131,9 +133,9 @@ CField* CDungeonMap::ParseDoor(TiXmlElement* rootNode, VEKTOR pos) {
 
 	}
 	if (type == 0)
-		return new CField(pos, CDoor::DoorType::Iron, (orientation != 0), NULL);
+		return new CField(pos, new CDoor(CDoor::DoorType::Iron, (orientation != 0)));
 	else
-		return new CField(pos, CDoor::DoorType::Wood, (orientation != 0), NULL);
+		return new CField(pos, new CDoor(CDoor::DoorType::Wood, (orientation != 0)));
 }
 
 void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {

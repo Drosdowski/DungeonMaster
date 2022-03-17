@@ -21,7 +21,9 @@ class CMiscellaneous;
 class CActuator;
 class CFieldDecoration;
 class CFloorOrnate;
+class CDoor;
 class CPit;
+class CStairs;
 class CTeleporter;
 class CField
 {
@@ -29,9 +31,9 @@ protected:
 	CField();           // protected constructor used by dynamic creation
 public:
 
-	CField(VEKTOR koord, CDoor::DoorType doorType, bool doorFrameEastAndWest, CFieldDecoration* pDeco[4]);
-	CField(VEKTOR koord, CStairs::StairType stairType, bool eastWest);
-	CField(VEKTOR koord, CPit::PitType pitType, CPit::PitState state);
+	CField(VEKTOR koord, CDoor* pDoor);
+	CField(VEKTOR koord, CStairs* pStair);
+	CField(VEKTOR koord, CPit* pPit);
 	CField(VEKTOR koord, CTeleporter* teleItem);
 	CField(VEKTOR koord, FeldTyp fieldType, CFieldDecoration* pDeco[4]);           // protected constructor used by dynamic creation
 
@@ -47,9 +49,9 @@ public:
 	CFieldDecoration* HoleDeko(int side) { return m_pWallDecoration[side]; }
 	CDoor* HoleDoor() { return m_pDoor;  }
 	CStairs* HoleStairs() { return m_pStairs;  }
-	void SetTypeDoor(CDoor::DoorType doorType, bool doorDirectionEastWest); // todo CDoor übergeben
-	void SetTypeStair(CStairs::StairType stairsType, bool eastWest); // todo CStaír übergeben
-	void SetTypePit(CPit::PitType pitType, CPit::PitState state); // todo CPit übergeben
+	void SetTypeDoor(CDoor* pDoor); 
+	void SetTypeStair(CStairs* pStair); 
+	void SetTypePit(CPit* pPit); 
 	void SetTypeTeleporter(CTeleporter* teleItem);
 	void SetType(FeldTyp iTyp);
 

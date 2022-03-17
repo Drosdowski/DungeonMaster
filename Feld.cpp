@@ -38,19 +38,9 @@ CField::CField(VEKTOR koord, FeldTyp fieldType, CFieldDecoration* pDeco[4])
 	InitDeco(pDeco);
 }
 
-CField::CField(VEKTOR koord, CDoor::DoorType doorType, bool eastWest, CFieldDecoration* pDeco[4])
+CField::CField(VEKTOR koord, CDoor* pDoor)
 {	
-	SetTypeDoor(doorType, eastWest);
-	m_lastWeight = 0;
-	m_posKoord = koord;
-	m_pGrpMonster = NULL;
-	m_pFloorOrnate = NULL;
-	InitDeco(pDeco);
-}
-
-CField::CField(VEKTOR koord, CStairs::StairType stairType, bool eastWest)
-{
-	SetTypeStair(stairType, eastWest);
+	SetTypeDoor(pDoor);
 	m_lastWeight = 0;
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
@@ -58,9 +48,19 @@ CField::CField(VEKTOR koord, CStairs::StairType stairType, bool eastWest)
 	InitDeco(NULL);
 }
 
-CField::CField(VEKTOR koord, CPit::PitType pitType, CPit::PitState state)
+CField::CField(VEKTOR koord, CStairs* pStair)
 {
-	SetTypePit(pitType, state);
+	SetTypeStair(pStair);
+	m_lastWeight = 0;
+	m_posKoord = koord;
+	m_pGrpMonster = NULL;
+	m_pFloorOrnate = NULL;
+	InitDeco(NULL);
+}
+
+CField::CField(VEKTOR koord, CPit* pPit)
+{
+	SetTypePit(pPit);
 	m_lastWeight = 0;
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
@@ -158,19 +158,19 @@ void CField::SetType(FeldTyp fieldType) {
 	m_iTyp = fieldType;
 }
 
-void CField::SetTypeDoor(CDoor::DoorType doorType, bool doorFrameEastAndWest) {
+void CField::SetTypeDoor(CDoor* pDoor) {
 	m_iTyp = DOOR;
-	m_pDoor = new CDoor(doorType, doorFrameEastAndWest);
+	m_pDoor = pDoor;
 }
 
-void CField::SetTypeStair(CStairs::StairType stairsType, bool eastWest) {
+void CField::SetTypeStair(CStairs* pStair) {
 	m_iTyp = STAIRS;
-	m_pStairs = new CStairs(stairsType, eastWest);
+	m_pStairs = pStair;
 }
 
-void CField::SetTypePit(CPit::PitType pitType, CPit::PitState state) {
+void CField::SetTypePit(CPit* pPit) {
 	m_iTyp = PIT;
-	m_pPit = new CPit(pitType, state);
+	m_pPit = pPit;
 }
 
 void CField::SetTypeTeleporter(CTeleporter* teleItem) {

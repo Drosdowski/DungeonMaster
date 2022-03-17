@@ -27,7 +27,6 @@ public:
 	bool Altern();
 	CMonster* GetMonster(int ID);
 	// TODO bool ExistsAndDies();
-	void MoveOrAttack(VEKTOR heroPos, int heroDirection);
 	void ActionDone();
 	bool IstBereit();
 	CMonster* GetMonsterByRelSubPos(SUBPOS posIndex, int richt);
