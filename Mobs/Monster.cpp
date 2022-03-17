@@ -44,7 +44,7 @@ bool CMonster::Altern()
 			// damage
 			WerteTemporaerAendern(-m_iReceivedDmg, 0, 0);			
 			m_iReceivedDmg = 0;
-			if (Hp() <= 0) return false; // tot!
+			if (Hp().Aktuell <= 0) return false; // tot!
 		}
 		else {
 			// restore

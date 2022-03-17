@@ -322,12 +322,10 @@ void CDMView::OnRButtonDown(UINT nFlags, CPoint point)
 	switch (m_iModus)
 	{
 	case MOD_LAUFEN:
-		if (grpHelden->SetzeModus(	pDC, RUCKSACK))
-	
-		/*if (pDoc->m_pHeld[iIndex ] != NULL)
-			{*/
+		if (grpHelden->SetzeModus(pDC, RUCKSACK)) {
+			m_pPictures->RucksackZeichnen(pDC, grpHelden->GetActiveHero());
 			m_iModus = MOD_RUCKSACK;
-				//pDoc->m_pHeld[iIndex ]->RucksackZeichnen(pDC);
+		}
 		break;
 		//	}
 	case MOD_RUCKSACK:
@@ -389,7 +387,7 @@ void CDMView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			case 50:
 			case 51:
 			case 52:
-				pDoc->InitGruppe(m_pPictures, nChar-48);
+				pDoc->InitGruppe(nChar-48);
 				break;
 			default:
 				{

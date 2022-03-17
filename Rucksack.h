@@ -13,32 +13,27 @@ class CPictures;
 class CRucksack 
 {
 public:
-	CRucksack(CPictures* pPictures);
-protected:
-	CRucksack();           // protected constructor used by dynamic creation
-
-// Attributes
-public:
+	CRucksack();
+	virtual ~CRucksack();
 
 // Operations
 public:
 	virtual void OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point);
 	virtual void OnLButtonUp(CDC* pDC, UINT nFlags, CPoint point);
-	void Zeichnen(CDC* pDC);
+	void Zeichnen(CDC* pDC, CPictures* pPictures);
 
 // Implementation
 public:
 	void SetzeModusExtend(int iModusExtend);
+	int HoleModusExtend() { return m_iModusExtend; };
+	
 	void ZeichneSkills(CDC* pDC, long sExp[5], VITALS sVitals);
-	int HoleModusExtend() {return m_iModusExtend;};
 	void ZeichneHpStMa(CDC* pDC, WERTE hp, WERTE st, WERTE ma);
 	void ZeichneHungerDurst(CDC* pDC, int i, int j);
-	virtual ~CRucksack();
 protected:
 	CString Titel(long exp);
 	int m_iModusExtend;
 	CString KLASSE[5];
-	CPictures* m_pPictures;
 };
 
 /////////////////////////////////////////////////////////////////////////////

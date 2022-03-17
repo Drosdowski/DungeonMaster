@@ -381,7 +381,7 @@ void CRaumView::DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, int ric
 }
 
 void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xx, int ebene, int richt, CMonster* pMonster) {
-	if (pMonster && pMonster->Hp() > 0) // todo staubwolke hier berücksichtigen
+	if (pMonster && pMonster->Hp().Aktuell > 0) // todo staubwolke hier berücksichtigen
 	{
 		CBitmap* bmp = m_pMonsterPic->GetBitmap(pMonster, richt);
 		BITMAP bmpInfo;
@@ -675,8 +675,11 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 			tele->getScope() == TeleporterAttributes::Scope::All) {
 			toPos = tele->getTargetField();
 			CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
-			if (tele->getRotationType() == TeleporterAttributes::RotationType::Absolute)
+			if (tele->getRotationType() == TeleporterAttributes::RotationType::Absolute) 
+			{
 				pGrpHelden->SetzeRichtung(tele->getTargetDirection());
+				// todo sound
+			}
 			else
 			{
 				if (tele->getTargetDirection() == 90)

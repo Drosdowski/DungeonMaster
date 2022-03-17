@@ -18,9 +18,9 @@ public:
 
 // Operationen
 public:
-	virtual int Hp()				 { return m_HP.Aktuell;};
-	virtual int St()				 { return m_ST.Aktuell;};
-	virtual int Ma()				 { return m_MA.Aktuell;};
+	virtual WERTE Hp()				 { return m_HP;};
+	virtual WERTE St()				 { return m_ST;};
+	virtual WERTE Ma()				 { return m_MA;};
 	virtual bool IstBereit()		 { return m_iReady == 0;};
 
 // Implementierung

@@ -46,7 +46,7 @@ bool CGrpChar::Laufbereit()
 	for (int i=1; i<5; i++)
 		if (m_pMember[i])
 		{
-			bLaufbereit &= (m_pMember[i]->St() > 0);
+			bLaufbereit &= (m_pMember[i]->St().Aktuell > 0);
 		}
 	
 	return bLaufbereit;
@@ -58,7 +58,7 @@ int CGrpChar::InReihe(int byte)
 	for (int i=1; i<5;i++)
 	{
 		if ((m_pMember[i]!=NULL) && (m_pMember[i]->HoleSubPosition() & byte) > 0)
-			if (m_pMember[i]->Hp()>0)
+			if (m_pMember[i]->Hp().Aktuell >0)
 				iAnz++;
 	}
 	return iAnz;
@@ -66,14 +66,14 @@ int CGrpChar::InReihe(int byte)
 
 void CGrpChar::Kollision() {
 	for (int i = 1; i <= 4; i++)
-		if ((m_pMember[i]) && (m_pMember[i]->Hp() > 0))
+		if ((m_pMember[i]) && (m_pMember[i]->Hp().Aktuell > 0))
 			if (m_pMember[i]->Kollision(m_grpDirection, (CGrpChar*)this))
 				m_pMember[i]->WerteTemporaerAendern(-2, 0, 0);
 }
 
 void CGrpChar::FallingDamage() {
 	for (int i = 1; i <= 4; i++)
-		if ((m_pMember[i]) && (m_pMember[i]->Hp() > 0))
+		if ((m_pMember[i]) && (m_pMember[i]->Hp().Aktuell > 0))
 			m_pMember[i]->WerteTemporaerAendern(-25, 0, 0);
 }
 
@@ -82,14 +82,14 @@ void CGrpChar::DoDamage(int dmg, VEKTOR hisPos, bool areaDmg) {
 	if (areaDmg) {
 		for (int dmgTgt = 1; dmgTgt <= 4; dmgTgt++) {
 			victim = m_pMember[dmgTgt];
-			if (victim && (victim->Hp() > 0)) {
+			if (victim && (victim->Hp().Aktuell > 0)) {
 				victim->m_iReceivedDmg += dmg; // Schaden aufsummieren, Abrechnung folgt im Altern.
 			}
 		}
 	}
 	else {
 		victim = NearestTarget(hisPos);
-		if (victim && (victim->Hp() > 0)) {
+		if (victim && (victim->Hp().Aktuell > 0)) {
 			victim->m_iReceivedDmg += dmg; 
 		}
 	}
@@ -99,7 +99,7 @@ void CGrpChar::DoDamage(int dmg, VEKTOR hisPos, bool areaDmg) {
 CCharacter* CGrpChar::NearestTarget(VEKTOR hisPos) {
 	for (int i = 1; i < 5; i++) {
 		CCharacter* pChar = m_pMember[i];
-		if (pChar && pChar->Hp() > 0) {
+		if (pChar && pChar->Hp().Aktuell > 0) {
 			if (pChar->InFrontOfOpponent(GetPos(), hisPos))
 				return pChar;
 		}
@@ -117,7 +117,7 @@ void CGrpChar::DamageFrom(CCharacter* pEnemy, VEKTOR hisPos, bool areaDmg) {
 
 void CGrpChar::Laufen(VEKTOR WunschPos) {
 	for (int i = 1; i <= 4; i++)
-		if ((m_pMember[i]) && (m_pMember[i]->Hp() > 0))
+		if ((m_pMember[i]) && (m_pMember[i]->Hp().Aktuell > 0))
 		{
 			//m_pMember[i]->posi
 			m_pMember[i]->WerteTemporaerAendern(0, -1, 0);
