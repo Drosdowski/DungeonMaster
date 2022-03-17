@@ -59,7 +59,6 @@ BOOL CDMDoc::OnNewDocument()
 	CDC* pDC = ((CDMApp*)AfxGetApp())->m_pView->GetDC();
 	m_pPictures = new CPictures(pDC);
 
-	// TODO: add reinitialization code here
 	// (SDI documents will reuse this document)
 
 	return TRUE;
@@ -169,12 +168,12 @@ void CDMDoc::InitGruppe(const int nr)
 	CHeld* pHeld = pGrpHelden->InitHeld(nr);
 	
 	CDC* pDC = ((CDMApp*)AfxGetApp())->m_pView->GetDC();
-	m_pPictures->HaendeZeichnen(pDC, pHeld->m_iIndex);
-	m_pPictures->NameZeichnen(pDC, pHeld->m_bAktiv, pHeld->m_iIndex, pHeld->m_strName);
+	m_pPictures->HaendeZeichnen(pDC, nr);
+	m_pPictures->NameZeichnen(pDC, pHeld->isActive(), nr, pHeld->getName());
 	m_pPictures->WerteZeichnen(pDC, pHeld);
 
 	SUBPOS relPos = CHelpfulValues::GetRelativeSubPosActive(pHeld->HoleSubPosition(), pGrpHelden->HoleRichtung());
-	m_pPictures->SymbolZeichnen(pDC, pHeld->m_iIndex, relPos);
+	m_pPictures->SymbolZeichnen(pDC, nr, relPos);
 }
 
 int CDMDoc::HoleGruppenRichtung() 

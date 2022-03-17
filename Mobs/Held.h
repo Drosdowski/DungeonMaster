@@ -22,10 +22,14 @@ protected:
 
 // Attributes
 public:
+	int getIndex() { return m_iIndex; }
+	bool isActive() { return m_bAktiv; }
 	int getFood() { return m_iFood; }
 	int getWater() { return m_iWater; }
 	long* getExp() { return m_sExp; }
 	VITALS getVitals() { return m_sVitals;  }
+	CString getName() { return m_strName; }
+
 // Operations
 public:
 	void Trinken(int amount);
@@ -40,6 +44,8 @@ public:
 	CRucksack* GetRucksack() { return m_pRucksack; }
 
 	CMiscellaneous* GetItemInHand() { return m_pItemInHand; }
+	void setActive() { m_bAktiv = true; }
+	void setInactive() { m_bAktiv = false; }
 	void TakeItemInHand(CMiscellaneous* item);
 	void EmptyHand();
 
@@ -48,11 +54,11 @@ public:
 	virtual bool Altern();
 	virtual ~CHeld();
 
-	bool m_bAktiv;
-	int m_iIndex; // todo getter...
-	CString m_strName;
 
 protected:
+	int m_iIndex; 
+	bool m_bAktiv;
+	CString m_strName;
 
 	long m_sExp[5];
 	VITALS m_sVitals;

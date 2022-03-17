@@ -30,7 +30,7 @@ void CGroupView::Zeichnen(CDC* pDC, CPictures* pPictures, int iModus, CGrpHeld* 
 				case (MOD_LAUFEN):
 				{
 					pPictures->HaendeZeichnen(pDC, i);
-					pPictures->NameZeichnen(pDC, pHeroToDraw->m_bAktiv, i, pHeroToDraw->m_strName);
+					pPictures->NameZeichnen(pDC, pHeroToDraw->isActive(), i, pHeroToDraw->getName());
 					pPictures->WerteZeichnen(pDC, pHeroToDraw);
 					break;
 				}
@@ -38,7 +38,7 @@ void CGroupView::Zeichnen(CDC* pDC, CPictures* pPictures, int iModus, CGrpHeld* 
 				{
 					if (pHeroToDraw == pGrpHeld->GetActiveHero())
 					{
-						pPictures->BildZeichnen(pDC, pHeroToDraw->m_bAktiv, i);
+						pPictures->BildZeichnen(pDC, pHeroToDraw->isActive(), i);
 						pPictures->RucksackZeichnen(pDC, pHeroToDraw);
 					}
 					break;

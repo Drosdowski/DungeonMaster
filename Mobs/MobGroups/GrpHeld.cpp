@@ -2,8 +2,6 @@
 //
 
 #include "stdafx.h"
-#include "DM.h"
-#include "Views\DMView.h"
 #include "Rucksack.h"
 #include "..\Held.h"
 #include "..\..\CHelpfulValues.h"
@@ -67,9 +65,9 @@ void CGrpHeld::Aktiviere(int n)
 {
 	if (m_pMember[n])
 	{
-		((CHeld*)m_pMember[m_iAktiverHeld])->m_bAktiv=false;
+		((CHeld*)m_pMember[m_iAktiverHeld])->setInactive();
 		m_iAktiverHeld = n;
-		((CHeld*)m_pMember[m_iAktiverHeld])->m_bAktiv=true;
+		((CHeld*)m_pMember[m_iAktiverHeld])->setActive();
 	}
 }
 

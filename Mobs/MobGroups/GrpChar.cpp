@@ -2,7 +2,6 @@
 //
 
 #include "stdafx.h"
-#include "DMDoc.h"
 #include "..\Character.h"
 #include "GrpChar.h"
 #include "CHelpfulValues.h"
