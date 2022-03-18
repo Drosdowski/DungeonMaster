@@ -101,7 +101,7 @@ struct VITALS
 	WERTE am;
 };
 
-enum DecorationType 
+enum WallDecorationType 
 {
 	None = 0,
 	IronLock = 5,

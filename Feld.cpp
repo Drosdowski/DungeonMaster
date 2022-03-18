@@ -8,7 +8,6 @@
 #include "Mobs\MobGroups\GrpMonster.h"
 #include "Items\Decoration.h"
 #include "Items/CMiscellaneous.h"
-#include "Items/CFloorOrnate.h"
 #include "Items\CActuator.h"
 #include "CHelpfulValues.h"
 #include <cassert>
@@ -23,19 +22,17 @@ CField::CField()
 	m_lastWeight = 0;
 	m_posKoord = pos;
 	m_pGrpMonster = NULL;	
-	m_pFloorOrnate = NULL;
-	InitDeco(NULL);
+	m_floorOrnateType = NULL;
 }
 
-CField::CField(VEKTOR koord, FeldTyp fieldType, CFieldDecoration* pDeco[4])
+CField::CField(VEKTOR koord, FeldTyp fieldType)
 {
 	ASSERT(fieldType != DOOR);
 	SetType(fieldType);
 	m_lastWeight = 0;
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
-	m_pFloorOrnate = NULL;
-	InitDeco(pDeco);
+	m_floorOrnateType = NULL;
 }
 
 CField::CField(VEKTOR koord, CDoor* pDoor)
@@ -44,8 +41,7 @@ CField::CField(VEKTOR koord, CDoor* pDoor)
 	m_lastWeight = 0;
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
-	m_pFloorOrnate = NULL;
-	InitDeco(NULL);
+	m_floorOrnateType = NULL;
 }
 
 CField::CField(VEKTOR koord, CStairs* pStair)
@@ -54,8 +50,7 @@ CField::CField(VEKTOR koord, CStairs* pStair)
 	m_lastWeight = 0;
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
-	m_pFloorOrnate = NULL;
-	InitDeco(NULL);
+	m_floorOrnateType = NULL;
 }
 
 CField::CField(VEKTOR koord, CPit* pPit)
@@ -64,8 +59,7 @@ CField::CField(VEKTOR koord, CPit* pPit)
 	m_lastWeight = 0;
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
-	m_pFloorOrnate = NULL;
-	InitDeco(NULL);
+	m_floorOrnateType = NULL;
 }
 
 CField::CField(VEKTOR koord, CTeleporter* teleItem) {
@@ -73,8 +67,7 @@ CField::CField(VEKTOR koord, CTeleporter* teleItem) {
 	m_lastWeight = 0;
 	m_posKoord = koord;
 	m_pGrpMonster = NULL;
-	m_pFloorOrnate = NULL;
-	InitDeco(NULL);
+	m_floorOrnateType = NULL;
 }
 
 
@@ -90,10 +83,9 @@ CField::~CField()
 		delete m_pPit;
 	if (m_pTeleporter)
 		delete m_pTeleporter;
+	if (m_floorOrnateType)
+		delete m_floorOrnateType;
 	for (int i = 0; i < 4; i++) {
-		if (m_pWallDecoration[i]) {
-			delete m_pWallDecoration[i];
-		}
 		while (!m_pMiscellaneous[i].empty()) {
 			CMiscellaneous* item = m_pMiscellaneous[i].top();
 			delete item;
@@ -103,20 +95,6 @@ CField::~CField()
 			CActuator* actuator = m_pActuator[i].top();
 			delete actuator;
 			m_pActuator[i].pop();
-		}
-	}
-	if (m_pFloorOrnate)
-		delete m_pFloorOrnate;
-}
-
-void CField::InitDeco(CFieldDecoration* pDeco[4]) {
-	for (int i = 0; i < 4; i++) {
-		if (pDeco != NULL)
-		{
-			m_pWallDecoration[i] = pDeco[i];
-		}
-		else {
-			m_pWallDecoration[i] = new CFieldDecoration(None);
 		}
 	}
 }
@@ -188,8 +166,8 @@ void CField::PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index) {
 	m_pMiscellaneous[index].push(misc);
 }
 
-void CField::PutFloorDeco(CFloorOrnate* deco) {
-	m_pFloorOrnate = deco;
+void CField::PutFloorDeco(CFieldDecoration* deco) {
+	m_floorOrnateType = deco;
 }
 
 void CField::PutActuator(CActuator* actuator, SUBPOS_ABSOLUTE index) {

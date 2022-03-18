@@ -20,7 +20,6 @@ class CGrpMonster;
 class CMiscellaneous;
 class CActuator;
 class CFieldDecoration;
-class CFloorOrnate;
 class CDoor;
 class CPit;
 class CStairs;
@@ -35,7 +34,7 @@ public:
 	CField(VEKTOR koord, CStairs* pStair);
 	CField(VEKTOR koord, CPit* pPit);
 	CField(VEKTOR koord, CTeleporter* teleItem);
-	CField(VEKTOR koord, FeldTyp fieldType, CFieldDecoration* pDeco[4]);           // protected constructor used by dynamic creation
+	CField(VEKTOR koord, FeldTyp fieldType);           // protected constructor used by dynamic creation
 
 
 // Operations
@@ -46,7 +45,13 @@ public:
 	void SetMonsterGroup(CGrpMonster* pGrpMonster);
 	FeldTyp HoleTyp()	{ return m_iTyp;};
 	bool Blocked();
-	CFieldDecoration* HoleDeko(int side) { return m_pWallDecoration[side]; }
+	
+	CFieldDecoration* GetFloorDeco() {	return  m_floorOrnateType; }
+	void PutFloorDeco(CFieldDecoration* deco);
+
+	int GetWallDeco(int position) { return m_pWallDecoration[position]; }
+	void PutWallDeco(int position, int type) { m_pWallDecoration[position] = type; };
+
 	CDoor* HoleDoor() { return m_pDoor;  }
 	CStairs* HoleStairs() { return m_pStairs;  }
 	void SetTypeDoor(CDoor* pDoor); 
@@ -62,8 +67,6 @@ public:
 	std::stack<CMiscellaneous*> GetMisc(SUBPOS_ABSOLUTE index) { return m_pMiscellaneous[index]; }
 	std::stack<CActuator*> GetActuator(SUBPOS_ABSOLUTE index) { return m_pActuator[index]; }
 
-	void PutFloorDeco(CFloorOrnate* deco);
-	CFloorOrnate* HoleFloorDeco() { return m_pFloorOrnate; }
 	CPit* HolePit() { return m_pPit;  }
 	CTeleporter* HoleTeleporter() { return m_pTeleporter; }
 
@@ -82,8 +85,8 @@ protected:
 
 	CGrpMonster* m_pGrpMonster;
 	FeldTyp m_iTyp;
-	CFieldDecoration* m_pWallDecoration[4];
-	CFloorOrnate* m_pFloorOrnate;
+	int m_pWallDecoration[4];
+	CFieldDecoration* m_floorOrnateType;
 	std::stack<CMiscellaneous*> m_pMiscellaneous[4];
 
 	std::stack <CActuator*> m_pActuator[4];
@@ -93,7 +96,6 @@ protected:
 	CPit* m_pPit = NULL;
 	CTeleporter* m_pTeleporter = NULL;
 
-	void InitDeco(CFieldDecoration* pDeco[4]);
 	int GetWeight(VEKTOR heroPos);
 
 	int m_lastWeight;

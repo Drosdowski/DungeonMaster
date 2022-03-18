@@ -19,11 +19,10 @@ class CPictures;
 class CDoorPic;
 class CStairsPic;
 class CWallPic;
-class CLeverPic;
 class CPressurePadPic;
 class CPitPic;
 class CFloorOrnatePic;
-class CFountainPic;
+class CWallDecoPic;
 class CTeleportPic;
 class CItem3DPic;
 class CMonsterPic;
@@ -67,13 +66,12 @@ protected:
 	CPictures* m_pPictures;
 	CDoorPic* m_pDoorPic;	
 	CWallPic* m_pWallPic;
-	CLeverPic* m_pLeverPic;
 	CStairsPic* m_pStairsPic;
 	CPressurePadPic* m_pPressurePadPic;
 	CPitPic* m_pPitPic;
 	CTeleportPic* m_pTeleportPic;
 	CFloorOrnatePic* m_pOrnatePic;
-	CFountainPic* m_pFountainPic;
+	CWallDecoPic* m_pWallDecoPic;
 	CMonsterPic* m_pMonsterPic;
 	CItem3DPic* m_pItem3DPic;
 

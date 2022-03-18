@@ -59,6 +59,7 @@ CHeld* CGrpHeld::InitHeld(const int nr)
 
 		return pHeld;
 	}
+	return NULL;
 }
 
 void CGrpHeld::Aktiviere(int n)

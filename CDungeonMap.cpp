@@ -4,7 +4,6 @@
 #include "Mobs/MobGroups/GrpHeld.h"
 #include "Items\Decoration.h"
 #include "Items/CMiscellaneous.h"
-#include "Items/CFloorOrnate.h"
 #include "SpecialTile/CTeleporter.h"
 #include "CDungeonMap.h"
 
@@ -12,7 +11,7 @@ CDungeonMap::CDungeonMap()
 { 
 	VEKTOR v{ 0,0,0 };
 
-	m_pEdgeWall = new CField(v, FeldTyp::WALL, NULL);
+	m_pEdgeWall = new CField(v, FeldTyp::WALL);
 	LoadMap();
 	m_pGrpHelden = new CGrpHeld(m_start, m_startRicht);
 }
@@ -170,7 +169,7 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 		m_pFeld[x][y][etage] = ParseTeleport(rootNode, pos);
 	}
 	else
-		m_pFeld[x][y][etage] = new CField(pos, iFieldType, NULL); // etage 1 / index 30 => m_levelWidth[1] kaputt!
+		m_pFeld[x][y][etage] = new CField(pos, iFieldType); // etage 1 / index 30 => m_levelWidth[1] kaputt!
 	
 	if (hasObjects == 1 || allowDecoration == 1) {
 		ParseItems(rootNode, VEKTOR{x ,y, etage});
@@ -223,7 +222,7 @@ void CDungeonMap::ParseMiscellaneous(TiXmlElement* miscItem, VEKTOR coords) {
 void CDungeonMap::ParseFloorDecoration(TiXmlElement* decoItem, VEKTOR coords) {
 	int graphic;
 	decoItem->QueryIntAttribute("graphic", &graphic);
-	CFloorOrnate* deco = new CFloorOrnate((FloorDecorationType)graphic);
+	CFieldDecoration* deco = new CFieldDecoration((FloorDecorationType)graphic);
 	m_pFeld[coords.x][coords.y][coords.z]->PutFloorDeco(deco);
 
 }
@@ -299,7 +298,7 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 
 	CActuator* actuator = new CActuator(index, position, target, actionType, actionTarget, type, graphic);
 	m_pFeld[coords.x][coords.y][coords.z]->PutActuator(actuator, (SUBPOS_ABSOLUTE)position);
-
+	m_pFeld[coords.x][coords.y][coords.z]->PutWallDeco(position, m_wallDecorationTypes[graphic]);
 }
 
 void CDungeonMap::ParseWallDecorationGraphic(TiXmlElement* rootNode, int etage) {
@@ -309,6 +308,7 @@ void CDungeonMap::ParseWallDecorationGraphic(TiXmlElement* rootNode, int etage) 
 	rootNode->QueryIntAttribute("type", &type);
 	
 	m_wallDecorationTypes[index] = type;
+	// todo deco setzen?
 }
 
 void CDungeonMap::ParseWallDecorationGraphics(TiXmlElement* rootNode, int etage) {

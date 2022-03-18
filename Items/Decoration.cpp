@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Decoration.h"
 
-CFieldDecoration::CFieldDecoration(DecorationType type) {
+CFieldDecoration::CFieldDecoration(FloorDecorationType  type) {
 	m_Type = type;
 	m_State = 0;
 }
@@ -9,7 +9,7 @@ CFieldDecoration::CFieldDecoration(DecorationType type) {
 CFieldDecoration::~CFieldDecoration() {
 }
 
-DecorationType CFieldDecoration::GetDecoType() {
+FloorDecorationType CFieldDecoration::GetDecoType() {
 	return m_Type;
 }
 

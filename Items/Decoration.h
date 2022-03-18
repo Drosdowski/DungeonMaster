@@ -2,14 +2,14 @@
 class CFieldDecoration
 {
 public:
-	CFieldDecoration(DecorationType type);
+	CFieldDecoration(FloorDecorationType type);
 	~CFieldDecoration();
 
-	DecorationType GetDecoType();
+	FloorDecorationType GetDecoType();
 	int GetState();
 	void SetState(int state);
 
 private:
-	DecorationType m_Type;
+	FloorDecorationType m_Type;
 	int m_State;
 };

@@ -128,7 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Pictures\CLockPic.cpp" />
+    <ClCompile Include="Pictures\CWallDecoPic.cpp" />
     <ClCompile Include="Views\CBackpackView.cpp" />
     <ClCompile Include="Views\CGroupView.cpp" />
     <ClCompile Include="SpecialTile\CTeleporterAttributes.cpp" />
@@ -136,7 +136,6 @@
     <ClCompile Include="Pictures\CTeleportPic.cpp" />
     <ClCompile Include="Pictures\CPitPic.cpp" />
     <ClCompile Include="SpecialTile\CPit.cpp" />
-    <ClCompile Include="Items\CFloorOrnate.cpp" />
     <ClCompile Include="Pictures\CFloorOrnatePic.cpp" />
     <ClCompile Include="Items\CActuator.cpp" />
     <ClCompile Include="ColorCursor\ColorCursor.cpp" />
@@ -151,12 +150,10 @@
     <ClCompile Include="Pictures\Creatures\CMonsterPic.cpp" />
     <ClCompile Include="Pictures\Creatures\CMummyPic.cpp" />
     <ClCompile Include="CScreenCoords.cpp" />
-    <ClCompile Include="Pictures\CFountainPic.cpp" />
     <ClCompile Include="Pictures\Creatures\CSkeletonPic.cpp" />
     <ClCompile Include="Pictures\CWallPic.cpp" />
     <ClCompile Include="Pictures\CBasePictures.cpp" />
     <ClCompile Include="SpecialTile\CDoor.cpp" />
-    <ClCompile Include="Pictures\CLeverPic.cpp" />
     <ClCompile Include="Pictures\CDoorPic.cpp" />
     <ClCompile Include="Mobs\Character.cpp" />
     <ClCompile Include="Mobs\Mumie.cpp" />
@@ -193,6 +190,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Pictures\CLockPic.h" />
+    <ClInclude Include="Pictures\CWallDecoPic.h" />
     <ClInclude Include="Views\CBackpackView.h" />
     <ClInclude Include="Views\CGroupView.h" />
     <ClInclude Include="SpecialTile\CTeleporterAttributes.h" />
@@ -200,7 +198,6 @@
     <ClInclude Include="Pictures\CTeleportPic.h" />
     <ClInclude Include="Pictures\CPitPic.h" />
     <ClInclude Include="SpecialTile\CPit.h" />
-    <ClInclude Include="Items\CFloorOrnate.h" />
     <ClInclude Include="Pictures\CFloorOrnatePic.h" />
     <ClInclude Include="Items\CActuator.h" />
     <ClInclude Include="ColorCursor\ColorCursor.h" />
@@ -220,7 +217,6 @@
     <ClInclude Include="Pictures\CWallPic.h" />
     <ClInclude Include="Pictures\CBasePictures.h" />
     <ClInclude Include="SpecialTile\CDoor.h" />
-    <ClInclude Include="Pictures\CLeverPic.h" />
     <ClInclude Include="Pictures\CDoorPic.h" />
     <ClInclude Include="Mobs\Character.h" />
     <ClInclude Include="Mobs\Mumie.h" />

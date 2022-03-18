@@ -15,17 +15,15 @@
 #include "SpecialTile/CPit.h"
 #include "SpecialTile/CTeleporter.h"
 #include "Items\Decoration.h"
-#include "Items\CFloorOrnate.h"
 #include "Pictures\CPictures.h"
 #include "Pictures\CDoorPic.h"
 #include "Pictures\CWallPic.h"
 #include "Pictures/CStairsPic.h"
 #include "Pictures/CPitPic.h"
 #include "Pictures/CTeleportPic.h"
-#include "Pictures\CLeverPic.h"
 #include "Pictures/CPressurePadPic.h"
 #include "Pictures/CFloorOrnatePic.h"
-#include "Pictures\CFountainPic.h"
+#include "Pictures\CWallDecoPic.h"
 #include "Pictures\Creatures\CMonsterPic.h"
 #include "Pictures\Items3D\CItem3DPic.h"
 #include "Mobs\Monster.h"
@@ -62,9 +60,8 @@ CRaumView::CRaumView()
 	m_pPressurePadPic = NULL;
 	m_pTeleportPic = NULL;
 	m_pOrnatePic = NULL;
-	m_pLeverPic = NULL;
 	m_pPictures = NULL;
-	m_pFountainPic = NULL;
+	m_pWallDecoPic = NULL;
 	m_pMonsterPic = NULL;
 	m_pItem3DPic = NULL;
 }
@@ -80,8 +77,7 @@ CRaumView::~CRaumView()
 	delete m_pPressurePadPic;
 	delete m_pTeleportPic;
 	delete m_pOrnatePic;
-	delete m_pLeverPic;
-	delete m_pFountainPic;
+	delete m_pWallDecoPic;
 	delete m_pMonsterPic;
 	delete m_pItem3DPic;
 }
@@ -282,27 +278,27 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CDoo
 }
 
 void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField) {
-	BITMAP bmpDecoInfo;
+	//BITMAP bmpDecoInfo;
 	BITMAP bmpInfo;
 
 	CBitmap* bmp = m_pWallPic->GetWallPic(xxx, ebene, m_bMirror);
 	int xx = wallXFactor[xxx];
 
-	std::stack<CActuator*> actuators = pField->GetActuator((SUBPOS_ABSOLUTE)CHelpfulValues::OppositeDirection(richt));
+	/*std::stack<CActuator*> actuators = pField->GetActuator((SUBPOS_ABSOLUTE)CHelpfulValues::OppositeDirection(richt));
 	if (!actuators.empty()) {
 		int graphicId = actuators.top()->GetGraphic();
 		int graphicType = m_pMap->GetWallDecorationType(graphicId);
 		// 5 = iron Lock, 35 = Fountain, 45 = Lever down, 44 Up, 
-	}
+	}*/
 
-	CFieldDecoration* frontDeco = pField->HoleDeko(CHelpfulValues::OppositeDirection(richt));
-	CFieldDecoration* sideDeco;
+	int frontDeco = pField->GetWallDeco(CHelpfulValues::OppositeDirection(richt));
+	int sideDeco;
 	if (xx > 0)
 	{
-		sideDeco = pField->HoleDeko((4 + 2 - richt) % 4);
+		sideDeco = pField->GetWallDeco((4 + 2 - richt) % 4);
 	}
 	else if (xx < 0) {
-		sideDeco = pField->HoleDeko((4 - richt) % 4);
+		sideDeco = pField->GetWallDeco((4 - richt) % 4);
 	}
 	else {
 		sideDeco = NULL;
@@ -419,14 +415,14 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 		actuators.pop();
 	}
 
-	CFloorOrnate* floorDeco = pField->HoleFloorDeco(); // Feld Deko immer an Pos 0
-	if (floorDeco) // && floorDeco->GetType() != None)
-	{
-		CBitmap* decoBmp = NULL;
-		if (floorDeco->GetType() == Moss) {
+	CFieldDecoration* floorDeco = pField->GetFloorDeco(); 
+	CBitmap* decoBmp = NULL;
+	if (floorDeco)
+	{ 
+		if (floorDeco->GetDecoType() == Moss) {
 			decoBmp = m_pOrnatePic->GetMossPic(ebene, xxx);
 		} 
-		else if (floorDeco->GetType() == Puddle) {
+		else if (floorDeco->GetDecoType() == Puddle) {
 			decoBmp = m_pOrnatePic->GetPuddlePic(ebene, xxx);
 		}
 		//CPoint center = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
@@ -439,7 +435,6 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 			int decoPosY = center.y - (int)(bmpDecoInfo.bmHeight * faktor);
 
 			DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
-
 		}
 	}
 
@@ -959,11 +954,10 @@ void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
 	m_pWallPic = new CWallPic(pDC);
 	m_pStairsPic = new CStairsPic(pDC);
 	m_pPitPic = new CPitPic(pDC);
-	m_pLeverPic = new CLeverPic(pDC);
 	m_pPressurePadPic = new CPressurePadPic(pDC);
 	m_pTeleportPic = new CTeleportPic(pDC);
 	m_pOrnatePic = new CFloorOrnatePic(pDC);
-	m_pFountainPic = new CFountainPic(pDC);
+	m_pWallDecoPic = new CWallDecoPic(pDC);
 	m_pMonsterPic = new CMonsterPic(pDC);
 	m_pItem3DPic = new CItem3DPic(pDC);
 	m_pMap = new CDungeonMap();

@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <Keyword>MFCProj</Keyword>
+    <ProjectGuid>{93D6663F-D870-4234-B6AD-65D03184E788}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Release\DM.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ObjectFileName>.\Release\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Release\DM.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <RedirectOutputAndErrors>NUL</RedirectOutputAndErrors>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0407</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\DM.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>.\Release\DM.exe</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <MinimalRebuild>true</MinimalRebuild>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Debug\DM.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <ObjectFileName>.\Debug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Debug\DM.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <RedirectOutputAndErrors>NUL</RedirectOutputAndErrors>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0407</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug\DM.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>.\Debug\DM.exe</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Pictures\CWallDecoPic.cpp" />
+    <ClCompile Include="Views\CBackpackView.cpp" />
+    <ClCompile Include="Views\CGroupView.cpp" />
+    <ClCompile Include="SpecialTile\CTeleporterAttributes.cpp" />
+    <ClCompile Include="SpecialTile\CTeleporter.cpp" />
+    <ClCompile Include="Pictures\CTeleportPic.cpp" />
+    <ClCompile Include="Pictures\CPitPic.cpp" />
+    <ClCompile Include="SpecialTile\CPit.cpp" />
+    <ClCompile Include="Items\CFloorOrnate.cpp" />
+    <ClCompile Include="Pictures\CFloorOrnatePic.cpp" />
+    <ClCompile Include="Items\CActuator.cpp" />
+    <ClCompile Include="ColorCursor\ColorCursor.cpp" />
+    <ClCompile Include="Pictures\CPressurePadPic.cpp" />
+    <ClCompile Include="Pictures\Items3D\CItem3DPic.cpp" />
+    <ClCompile Include="CDungeonMap.cpp" />
+    <ClCompile Include="Pictures\Items2D\CItemPic.cpp" />
+    <ClCompile Include="Items\CMiscellaneous.cpp" />
+    <ClCompile Include="SpecialTile\CTile.cpp" />
+    <ClCompile Include="SpecialTile\CStairs.cpp" />
+    <ClCompile Include="Pictures\CStairsPic.cpp" />
+    <ClCompile Include="Pictures\Creatures\CMonsterPic.cpp" />
+    <ClCompile Include="Pictures\Creatures\CMummyPic.cpp" />
+    <ClCompile Include="CScreenCoords.cpp" />
+    <ClCompile Include="Pictures\CFountainPic.cpp" />
+    <ClCompile Include="Pictures\Creatures\CSkeletonPic.cpp" />
+    <ClCompile Include="Pictures\CWallPic.cpp" />
+    <ClCompile Include="Pictures\CBasePictures.cpp" />
+    <ClCompile Include="SpecialTile\CDoor.cpp" />
+    <ClCompile Include="Pictures\CLeverPic.cpp" />
+    <ClCompile Include="Pictures\CDoorPic.cpp" />
+    <ClCompile Include="Mobs\Character.cpp" />
+    <ClCompile Include="Mobs\Mumie.cpp" />
+    <ClCompile Include="Pictures\CPictures.cpp" />
+    <ClCompile Include="CHelpfulValues.cpp" />
+    <ClCompile Include="Items\Decoration.cpp" />
+    <ClCompile Include="DM.cpp" />
+    <ClCompile Include="DMDoc.cpp" />
+    <ClCompile Include="Views\DMView.cpp" />
+    <ClCompile Include="Feld.cpp" />
+    <ClCompile Include="Mobs\MobGroups\GrpChar.cpp" />
+    <ClCompile Include="Mobs\MobGroups\GrpHeld.cpp" />
+    <ClCompile Include="Mobs\MobGroups\GrpMonster.cpp" />
+    <ClCompile Include="Mobs\Held.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="Mobs\Monster.cpp" />
+    <ClCompile Include="Views\RaumView.cpp" />
+    <ClCompile Include="Rucksack.cpp" />
+    <ClCompile Include="Mobs\Skelett.cpp" />
+    <ClCompile Include="StdAfx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="TinyXML\tinystr.cpp" />
+    <ClCompile Include="TinyXML\tinyxml.cpp" />
+    <ClCompile Include="TinyXML\tinyxmlerror.cpp" />
+    <ClCompile Include="TinyXML\tinyxmlparser.cpp" />
+    <ClCompile Include="Views\ZauberView.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DM.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Pictures\CLockPic.h" />
+    <ClInclude Include="Pictures\CWallDecoPic.h" />
+    <ClInclude Include="Views\CBackpackView.h" />
+    <ClInclude Include="Views\CGroupView.h" />
+    <ClInclude Include="SpecialTile\CTeleporterAttributes.h" />
+    <ClInclude Include="SpecialTile\CTeleporter.h" />
+    <ClInclude Include="Pictures\CTeleportPic.h" />
+    <ClInclude Include="Pictures\CPitPic.h" />
+    <ClInclude Include="SpecialTile\CPit.h" />
+    <ClInclude Include="Items\CFloorOrnate.h" />
+    <ClInclude Include="Pictures\CFloorOrnatePic.h" />
+    <ClInclude Include="Items\CActuator.h" />
+    <ClInclude Include="ColorCursor\ColorCursor.h" />
+    <ClInclude Include="Pictures\CPressurePadPic.h" />
+    <ClInclude Include="Pictures\Items3D\CItem3DPic.h" />
+    <ClInclude Include="CDungeonMap.h" />
+    <ClInclude Include="Pictures\Items2D\CItemPic.h" />
+    <ClInclude Include="Items\CMiscellaneous.h" />
+    <ClInclude Include="SpecialTile\CTile.h" />
+    <ClInclude Include="SpecialTile\CStairs.h" />
+    <ClInclude Include="Pictures\CStairsPic.h" />
+    <ClInclude Include="Pictures\Creatures\CMonsterPic.h" />
+    <ClInclude Include="Pictures\Creatures\CMummyPic.h" />
+    <ClInclude Include="CScreenCoords.h" />
+    <ClInclude Include="Pictures\CFountainPic.h" />
+    <ClInclude Include="Pictures\Creatures\CSkeletonPic.h" />
+    <ClInclude Include="Pictures\CWallPic.h" />
+    <ClInclude Include="Pictures\CBasePictures.h" />
+    <ClInclude Include="SpecialTile\CDoor.h" />
+    <ClInclude Include="Pictures\CLeverPic.h" />
+    <ClInclude Include="Pictures\CDoorPic.h" />
+    <ClInclude Include="Mobs\Character.h" />
+    <ClInclude Include="Mobs\Mumie.h" />
+    <ClInclude Include="Pictures\CPictures.h" />
+    <ClInclude Include="CHelpfulValues.h" />
+    <ClInclude Include="Items\Decoration.h" />
+    <ClInclude Include="DM.h" />
+    <ClInclude Include="DMDoc.h" />
+    <ClInclude Include="Views\DMView.h" />
+    <ClInclude Include="Feld.h" />
+    <ClInclude Include="Mobs\MobGroups\GrpChar.h" />
+    <ClInclude Include="Mobs\MobGroups\GrpHeld.h" />
+    <ClInclude Include="Mobs\MobGroups\GrpMonster.h" />
+    <ClInclude Include="Mobs\Held.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="Mobs\Monster.h" />
+    <ClInclude Include="Views\RaumView.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="Rucksack.h" />
+    <ClInclude Include="Mobs\Skelett.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="TinyXML\tinystr.h" />
+    <ClInclude Include="TinyXML\tinyxml.h" />
+    <ClInclude Include="Views\ZauberView.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\ActionsArea.bmp" />
+    <Image Include="res\ActionsDamage.bmp" />
+    <Image Include="res\bitmap1.bmp" />
+    <Image Include="res\CeilingPit_F0.bmp" />
+    <Image Include="res\CeilingPit_F1.bmp" />
+    <Image Include="res\CeilingPit_F2.bmp" />
+    <Image Include="res\CeilingPit_L0.bmp" />
+    <Image Include="res\CeilingPit_L1.bmp" />
+    <Image Include="res\CeilingPit_L2.bmp" />
+    <Image Include="res\DM.ico" />
+    <Image Include="res\DMDoc.ico" />
+    <Image Include="res\Door_Frame_0_Front.bmp" />
+    <Image Include="res\Door_Frame_1_Left.bmp" />
+    <Image Include="res\Door_Frame_2_Left.bmp" />
+    <Image Include="res\Door_Frame_3_FarLeft.bmp" />
+    <Image Include="res\Door_Frame_3_Left.bmp" />
+    <Image Include="res\Door_Frame_3_Left.png" />
+    <Image Include="res\Door_Front_Top_1.bmp" />
+    <Image Include="res\Door_Front_Top_2.bmp" />
+    <Image Include="res\Door_Iron_1.bmp" />
+    <Image Include="res\Door_Iron_2.bmp" />
+    <Image Include="res\Door_Iron_3.bmp" />
+    <Image Include="res\Door_Mask_Bashed.bmp" />
+    <Image Include="res\Door_Wood_1.bmp" />
+    <Image Include="res\Door_Wood_2.bmp" />
+    <Image Include="res\Door_Wood_3.bmp" />
+    <Image Include="res\E.bmp" />
+    <Image Include="res\FloorMoss_F1.bmp" />
+    <Image Include="res\FloorMoss_F3.bmp" />
+    <Image Include="res\FloorMoss_L1.bmp" />
+    <Image Include="res\FloorMoss_L2.bmp" />
+    <Image Include="res\FloorMoss_L3.bmp" />
+    <Image Include="res\FloorMos_F2.bmp" />
+    <Image Include="res\FloorPit_F0.bmp" />
+    <Image Include="res\FloorPit_F1.bmp" />
+    <Image Include="res\FloorPit_F2.bmp" />
+    <Image Include="res\FloorPit_F3.bmp" />
+    <Image Include="res\FloorPit_Inv_F0.bmp" />
+    <Image Include="res\FloorPit_Inv_F1.bmp" />
+    <Image Include="res\FloorPit_Inv_F2.bmp" />
+    <Image Include="res\FloorPit_Inv_L0.bmp" />
+    <Image Include="res\FloorPit_Inv_L1.bmp" />
+    <Image Include="res\FloorPit_Inv_L2.bmp" />
+    <Image Include="res\FloorPit_L0.bmp" />
+    <Image Include="res\FloorPit_L1.bmp" />
+    <Image Include="res\FloorPit_L2.bmp" />
+    <Image Include="res\FloorPit_L3.bmp" />
+    <Image Include="res\FloorPuddle_F1.bmp" />
+    <Image Include="res\FloorPuddle_F2.bmp" />
+    <Image Include="res\FloorPuddle_F3.bmp" />
+    <Image Include="res\FloorPuddle_L1.bmp" />
+    <Image Include="res\FloorPuddle_L2.bmp" />
+    <Image Include="res\FloorPuddle_L3.bmp" />
+    <Image Include="res\Fountain_Front.bmp" />
+    <Image Include="res\Fountain_Left.bmp" />
+    <Image Include="res\GoldKey.bmp" />
+    <Image Include="res\Icons.bmp" />
+    <Image Include="res\Icons3d.bmp" />
+    <Image Include="res\Icons3db.bmp" />
+    <Image Include="res\IronKey.bmp" />
+    <Image Include="res\Items42.bmp" />
+    <Image Include="res\Items43.bmp" />
+    <Image Include="res\Items44.bmp" />
+    <Image Include="res\Items45.bmp" />
+    <Image Include="res\items46.bmp" />
+    <Image Include="res\Items47.bmp" />
+    <Image Include="res\Items48.bmp" />
+    <Image Include="res\Item_3d_Apple.bmp" />
+    <Image Include="res\Item_3d_Bread.bmp" />
+    <Image Include="res\Kram.bmp" />
+    <Image Include="res\LeverDown_Front.bmp" />
+    <Image Include="res\LeverDown_Right.bmp" />
+    <Image Include="res\LeverUp_Right.bmp" />
+    <Image Include="res\LeverUp_Front.bmp" />
+    <Image Include="res\LockCross-Front.bmp" />
+    <Image Include="res\LockCross-Left.bmp" />
+    <Image Include="res\LockDoubleIron-Front.bmp" />
+    <Image Include="res\LockDoubleIron-Left.bmp" />
+    <Image Include="res\LockEmerald-Front.bmp" />
+    <Image Include="res\LockEmerald-Left.bmp" />
+    <Image Include="res\LockGold-Front.bmp" />
+    <Image Include="res\LockGold-Left.bmp" />
+    <Image Include="res\LockIron-Front.bmp" />
+    <Image Include="res\LockIron-Left.bmp" />
+    <Image Include="res\LockMaster-Front.bmp" />
+    <Image Include="res\LockMaster-Left.bmp" />
+    <Image Include="res\LockOnyx-Front.bmp" />
+    <Image Include="res\LockOnyx-Left.bmp" />
+    <Image Include="res\LockQuare-Front.bmp" />
+    <Image Include="res\LockRa-Front.bmp" />
+    <Image Include="res\LockRa-Left.bmp" />
+    <Image Include="res\LockRuby-Front.bmp" />
+    <Image Include="res\LockRuby-Left.bmp" />
+    <Image Include="res\LockSkeleton-Front.bmp" />
+    <Image Include="res\LockSkeleton-Left.bmp" />
+    <Image Include="res\LockSquare-Front.bmp" />
+    <Image Include="res\LockSquare-Left.bmp" />
+    <Image Include="res\LockStone-Front.bmp" />
+    <Image Include="res\LockStone-Left.bmp" />
+    <Image Include="res\LockTopaz-Front.bmp" />
+    <Image Include="res\LockTopaz-Left.bmp" />
+    <Image Include="res\LockTourquoise-Front.bmp" />
+    <Image Include="res\LockTourquoise-Left.bmp" />
+    <Image Include="res\LockWinged-Front.bmp" />
+    <Image Include="res\LockWinged-Left.bmp" />
+    <Image Include="res\Manacles_F.bmp" />
+    <Image Include="res\Manacles_L.bmp" />
+    <Image Include="res\Mummy_Attack.bmp" />
+    <Image Include="res\Mummy_Back.bmp" />
+    <Image Include="res\Mummy_Front.bmp" />
+    <Image Include="res\Mummy_Right.bmp" />
+    <Image Include="res\OneHand.bmp" />
+    <Image Include="res\Pcst_042.bmp" />
+    <Image Include="res\Pinv.bmp" />
+    <Image Include="res\Reiter3.bmp" />
+    <Image Include="res\Reiter4.bmp" />
+    <Image Include="res\Ruck.bmp" />
+    <Image Include="res\Runes1.bmp" />
+    <Image Include="res\Runes2.bmp" />
+    <Image Include="res\Runes3.bmp" />
+    <Image Include="res\Skeleton_Attack.bmp" />
+    <Image Include="res\Skeleton_Back.bmp" />
+    <Image Include="res\Skeleton_Front.bmp" />
+    <Image Include="res\Skeleton_Right.bmp" />
+    <Image Include="res\SquarePressurePad_1F.bmp" />
+    <Image Include="res\SquarePressurePad_1L.bmp" />
+    <Image Include="res\SquarePressurePad_2F.bmp" />
+    <Image Include="res\SquarePressurePad_2L.bmp" />
+    <Image Include="res\SquarePressurePad_3F.bmp" />
+    <Image Include="res\SquarePressurePad_3L.bmp" />
+    <Image Include="res\Stairs_Down0_Front.bmp" />
+    <Image Include="res\Stairs_Down1_Front.bmp" />
+    <Image Include="res\Stairs_Down1_Left.bmp" />
+    <Image Include="res\Stairs_Down2_Front.bmp" />
+    <Image Include="res\Stairs_Down2_Left.bmp" />
+    <Image Include="res\Stairs_Down3_Front.bmp" />
+    <Image Include="res\Stairs_Down3_Left.bmp" />
+    <Image Include="res\Stairs_DownSide2.bmp" />
+    <Image Include="res\Stairs_Side1.bmp" />
+    <Image Include="res\Stairs_Side3.bmp" />
+    <Image Include="res\Stairs_Up0_Front.bmp" />
+    <Image Include="res\Stairs_Up1_Front.bmp" />
+    <Image Include="res\Stairs_Up1_Left.bmp" />
+    <Image Include="res\Stairs_Up2_Front.bmp" />
+    <Image Include="res\Stairs_Up2_Left.bmp" />
+    <Image Include="res\Stairs_Up3_Front.bmp" />
+    <Image Include="res\Stairs_Up3_Left.bmp" />
+    <Image Include="res\Stairs_UpSide2.bmp" />
+    <Image Include="res\Steine.bmp" />
+    <Image Include="res\Teleporter.bmp" />
+    <Image Include="res\Teleporter_Segment.bmp" />
+    <Image Include="res\Wall0_Left.bmp" />
+    <Image Include="res\Wall0_LeftF.bmp" />
+    <Image Include="res\Wall0_Right.bmp" />
+    <Image Include="res\Wall0_RightF.bmp" />
+    <Image Include="res\Wall1_Front.bmp" />
+    <Image Include="res\Wall1_FrontF.bmp" />
+    <Image Include="res\Wall1_Left.bmp" />
+    <Image Include="res\Wall1_LeftF.bmp" />
+    <Image Include="res\Wall1_Right.bmp" />
+    <Image Include="res\Wall1_RightF.bmp" />
+    <Image Include="res\Wall2_FarLeft.bmp" />
+    <Image Include="res\Wall2_FarRight.bmp" />
+    <Image Include="res\Wall2_Front.bmp" />
+    <Image Include="res\Wall2_FrontF.bmp" />
+    <Image Include="res\Wall2_Left.bmp" />
+    <Image Include="res\Wall2_LeftF.bmp" />
+    <Image Include="res\Wall2_Right.bmp" />
+    <Image Include="res\Wall2_RightF.bmp" />
+    <Image Include="res\Wall3_FarLeft.bmp" />
+    <Image Include="res\Wall3_FarRight.bmp" />
+    <Image Include="res\Wall3_Front.bmp" />
+    <Image Include="res\Wall3_FrontF.bmp" />
+    <Image Include="res\Wall3_Left.bmp" />
+    <Image Include="res\Wall3_LeftF.bmp" />
+    <Image Include="res\Wall3_Right.bmp" />
+    <Image Include="res\Wall3_RightF.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="res\DM.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="sound\DMCSB-SoundEffect-Door.mp3" />
+    <Media Include="sound\DMCSB-SoundEffect-Move(Skeleton).mp3" />
+    <Media Include="sound\DMCSB-SoundEffect-RunningIntoAWall.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Maps\0000.DUNGEON [Dungeon].xml" />
+    <Xml Include="Maps\_dungeon.dat.xml" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

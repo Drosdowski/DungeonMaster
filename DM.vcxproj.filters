@@ -81,16 +81,10 @@
     <ClCompile Include="Pictures\CDoorPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Pictures\CLeverPic.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Pictures\CBasePictures.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Pictures\CWallPic.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Pictures\CFountainPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CScreenCoords.cpp">
@@ -150,9 +144,6 @@
     <ClCompile Include="Pictures\CFloorOrnatePic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Items\CFloorOrnate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SpecialTile\CPit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -174,7 +165,7 @@
     <ClCompile Include="Views\CBackpackView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Pictures\CLockPic.cpp">
+    <ClCompile Include="Pictures\CWallDecoPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -253,9 +244,6 @@
     <ClInclude Include="Pictures\CDoorPic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Pictures\CLeverPic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Pictures\CBasePictures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -316,9 +304,6 @@
     <ClInclude Include="Pictures\CFloorOrnatePic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Items\CFloorOrnate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SpecialTile\CPit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -341,6 +326,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\CLockPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\CWallDecoPic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
