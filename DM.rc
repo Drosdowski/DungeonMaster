@@ -485,6 +485,66 @@ IDB_ITEM3D_GOLDKEY      BITMAP                  "res\\GoldKey.bmp"
 
 IDB_ITEM3D_IRONKEY      BITMAP                  "res\\IronKey.bmp"
 
+IDB_LOCK_MASTER_F       BITMAP                  "res\\LockMaster-Front.bmp"
+
+IDB_LOCK_MASTER_L       BITMAP                  "res\\LockMaster-Left.bmp"
+
+IDB_LOCK_RA_F           BITMAP                  "res\\LockRa-Front.bmp"
+
+IDB_LOCK_RA_L           BITMAP                  "res\\LockRa-Left.bmp"
+
+IDB_LOCK_RUBY_F         BITMAP                  "res\\LockRuby-Front.bmp"
+
+IDB_LOCK_RUBY_L         BITMAP                  "res\\LockRuby-Left.bmp"
+
+IDB_LOCK_EMERALD_F      BITMAP                  "res\\LockEmerald-Front.bmp"
+
+IDB_LOCK_EMERALD_L      BITMAP                  "res\\LockEmerald-Left.bmp"
+
+IDB_LOCK_TOURQUOISE_F   BITMAP                  "res\\LockTourquoise-Front.bmp"
+
+IDB_LOCK_TOURQUOISE_L   BITMAP                  "res\\LockTourquoise-Left.bmp"
+
+IDB_LOCK_GOLD_F         BITMAP                  "res\\LockGold-Front.bmp"
+
+IDB_LOCK_GOLD_L         BITMAP                  "res\\LockGold-Left.bmp"
+
+IDB_LOCK_SKELETON_F     BITMAP                  "res\\LockSkeleton-Front.bmp"
+
+IDB_LOCK_SKELETON_L     BITMAP                  "res\\LockSkeleton-Left.bmp"
+
+IDB_LOCK_TOPAZ_F        BITMAP                  "res\\LockTopaz-Front.bmp"
+
+IDB_LOCK_TOPAZ_L        BITMAP                  "res\\LockTopaz-Left.bmp"
+
+IDB_LOCK_CROSS_F        BITMAP                  "res\\LockCross-Front.bmp"
+
+IDB_LOCK_CROSS_L        BITMAP                  "res\\LockCross-Left.bmp"
+
+IDB_LOCK_STONE_F        BITMAP                  "res\\LockStone-Front.bmp"
+
+IDB_LOCK_STONE_L        BITMAP                  "res\\LockStone-Left.bmp"
+
+IDB_LOCK_ONYX_F         BITMAP                  "res\\LockOnyx-Front.bmp"
+
+IDB_LOCK_ONYX_L         BITMAP                  "res\\LockOnyx-Left.bmp"
+
+IDB_LOCK_WINGED_F       BITMAP                  "res\\LockWinged-Front.bmp"
+
+IDB_LOCK_WINGED_L       BITMAP                  "res\\LockWinged-Left.bmp"
+
+IDB_LOCK_SQUARE_F       BITMAP                  "res\\LockSquare-Front.bmp"
+
+IDB_LOCK_SQUARE_L       BITMAP                  "res\\LockSquare-Left.bmp"
+
+IDB_LOCK_DOUBLEIRON_F   BITMAP                  "res\\LockDoubleIron-Front.bmp"
+
+IDB_LOCK_DOUBLEIRON_L   BITMAP                  "res\\LockDoubleIron-Left.bmp"
+
+IDB_LOCK_IRON_F         BITMAP                  "res\\LockIron-Front.bmp"
+
+IDB_LOCK_IRON_L         BITMAP                  "res\\LockIron-Left.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

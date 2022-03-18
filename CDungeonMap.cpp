@@ -31,6 +31,7 @@ CDungeonMap::~CDungeonMap()
 	delete m_miscellaneousSubtype;
 	delete m_actuatorType;
 	delete m_teleportAtt;
+	delete m_wallDecorationTypes;
 }
 
 CField* CDungeonMap::GetField(int x, int y, int z) {
@@ -245,13 +246,13 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 			<direction>North< / direction> <!--remote specific-->
 			< / actuator> <!--North / TopLeft-->
 			< / items> */
-	int index, position, type;
+	int index, position, type, graphic;
 	VEKTOR target = coords;
 	CActuator::ActionTypes actionType;
 	CActuator::ActionTarget actionTarget;
 	actuatorItem->QueryIntAttribute("index", &index);
 	actuatorItem->QueryIntAttribute("position", &position);
-
+	
 	// todo ab hier children
 	TiXmlElement* actuatorAttributes = actuatorItem->FirstChildElement();
 	while (actuatorAttributes)
@@ -274,6 +275,12 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 			streamValue << strValue;
 			streamValue >> type;
 		}
+		else if (strcmp(actuatorAttributes->Value(), "graphic") == 0) {
+			const char* strValue = actuatorAttributes->GetText();
+			std::stringstream streamValue;
+			streamValue << strValue;
+			streamValue >> graphic;
+		}
 		else if (strcmp(actuatorAttributes->Value(), "target_x") == 0) {
 			const char* strValue = actuatorAttributes->GetText();
 			std::stringstream streamValue;
@@ -290,15 +297,35 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 		actuatorAttributes = actuatorAttributes->NextSiblingElement();
 	}
 
-	CActuator* actuator = new CActuator(index, position, target, actionType, actionTarget, type);
+	CActuator* actuator = new CActuator(index, position, target, actionType, actionTarget, type, graphic);
 	m_pFeld[coords.x][coords.y][coords.z]->PutActuator(actuator, (SUBPOS_ABSOLUTE)position);
 
 }
 
+void CDungeonMap::ParseWallDecorationGraphic(TiXmlElement* rootNode, int etage) {
+	int index;
+	rootNode->QueryIntAttribute("index", &index);
+	int type;
+	rootNode->QueryIntAttribute("type", &type);
 	
+	m_wallDecorationTypes[index] = type;
+}
 
-void CDungeonMap::ParseTiles(TiXmlElement* rootNode, int etage) {
+void CDungeonMap::ParseWallDecorationGraphics(TiXmlElement* rootNode, int etage) {
 	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "wall_decoration_graphic") == 0)
+		{
+			ParseWallDecorationGraphic(parentElement, etage);
+		}
+		parentElement = parentElement->NextSiblingElement();
+	}
+}
+
+void CDungeonMap::ParseTiles(TiXmlElement* tiles, int etage) {
+	TiXmlElement* parentElement = tiles->FirstChildElement();
 	while (parentElement)
 	{
 		const char* parent = parentElement->Value();
@@ -319,6 +346,10 @@ void CDungeonMap::ParseMap(TiXmlElement* rootNode, int etage) {
 		if (strcmp(parent, "tiles") == 0)
 		{
 			ParseTiles(parentElement, etage);
+		}
+		else if (strcmp(parent, "wall_decoration_graphics") == 0)
+		{
+			ParseWallDecorationGraphics(parentElement, etage);
 		}
 		parentElement = parentElement->NextSiblingElement();
 	}
@@ -479,6 +510,8 @@ void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
 	m_actuatorType = new int[m_countActuators];
 	rootNode->QueryIntAttribute("number_of_teleporters", &m_countTeleporters);
 	m_teleportAtt = new TeleporterAttributes[m_countTeleporters];
+
+	m_wallDecorationTypes = new int[15]; // todo - da gibt's kein Max!
 
 	const char* startDir = rootNode->Attribute("start_facing");
 	if (strcmp(startDir, "North") == 0) m_startRicht = 0;

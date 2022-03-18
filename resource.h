@@ -134,6 +134,37 @@
 #define IDB_TELEPORTER                  320
 #define IDB_ITEM3D_GOLDKEY              321
 #define IDB_ITEM3D_IRONKEY              322
+#define IDB_LOCK_MASTER_F               323
+#define IDB_LOCK_MASTER_L               324
+#define IDB_LOCK_RA_F                   325
+#define IDB_LOCK_RA_L                   326
+#define IDB_LOCK_RUBY_F                 327
+#define IDB_BITMAP8                     328
+#define IDB_LOCK_RUBY_L                 328
+#define IDB_LOCK_EMERALD_F              329
+#define IDB_LOCK_EMERALD_L              330
+#define IDB_LOCK_TOURQUOISE_F           331
+#define IDB_LOCK_TOURQUOISE_L           332
+#define IDB_LOCK_GOLD_F                 333
+#define IDB_LOCK_GOLD_L                 334
+#define IDB_LOCK_SKELETON_F             335
+#define IDB_LOCK_SKELETON_L             336
+#define IDB_LOCK_TOPAZ_F                337
+#define IDB_LOCK_TOPAZ_L                338
+#define IDB_LOCK_CROSS_F                339
+#define IDB_LOCK_CROSS_L                340
+#define IDB_LOCK_STONE_F                341
+#define IDB_LOCK_STONE_L                342
+#define IDB_LOCK_ONYX_F                 343
+#define IDB_LOCK_ONYX_L                 344
+#define IDB_LOCK_WINGED_F               345
+#define IDB_LOCK_WINGED_L               346
+#define IDB_LOCK_SQUARE_F               347
+#define IDB_LOCK_SQUARE_L               348
+#define IDB_LOCK_DOUBLEIRON_F           349
+#define IDB_LOCK_DOUBLEIRON_L           350
+#define IDB_LOCK_IRON_F                 351
+#define IDB_LOCK_IRON_L                 352
 #define IDB_BITMAP_E0L                  1001
 #define IDB_BITMAP_E0LF                 1002
 #define IDB_BITMAP_E0R                  1004
@@ -162,7 +193,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        323
+#define _APS_NEXT_RESOURCE_VALUE        353
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

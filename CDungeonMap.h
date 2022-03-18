@@ -24,6 +24,7 @@ public:
 	VEKTOR GetStart() { return m_start; }
 	int GetStartDirection() { return m_startRicht; }
 	CGrpHeld* GetHeroes() { return m_pGrpHelden; }
+	int GetWallDecorationType(int graphic) { return m_wallDecorationTypes[graphic - 1]; }
 
 private:
 
@@ -33,6 +34,8 @@ private:
 	void ParseMaps(TiXmlElement* rootNode);
 	void ParseMap(TiXmlElement* rootNode, int etage);
 	void ParseDungeon(TiXmlElement* rootNode);
+	void ParseWallDecorationGraphics(TiXmlElement* rootNode, int etage);
+	void ParseWallDecorationGraphic(TiXmlElement* rootNode, int etage);
 	void ParseTiles(TiXmlElement* rootNode, int etage);
 	void ParseTile(TiXmlElement* rootNode, int etage);
 	void ParseItems(TiXmlElement* rootNode, VEKTOR coords);
@@ -66,6 +69,7 @@ private:
 	int* m_miscellaneousSubtype;
 	int* m_actuatorType;
 	TeleporterAttributes* m_teleportAtt;
+	int* m_wallDecorationTypes; 
 	//CActuator::ActionTypes* m_actionType;
 	//VEKTOR* m_actionTarget;
 

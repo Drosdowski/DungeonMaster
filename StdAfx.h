@@ -103,9 +103,11 @@ struct VITALS
 
 enum DecorationType 
 {
-	None,
-	Switch,
-	Fountain
+	None = 0,
+	IronLock = 5,
+	Fountain = 35,
+	LeverUp = 44,
+	LeverDown = 45
 };
 
 enum FloorDecorationType

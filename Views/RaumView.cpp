@@ -290,7 +290,9 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 
 	std::stack<CActuator*> actuators = pField->GetActuator((SUBPOS_ABSOLUTE)CHelpfulValues::OppositeDirection(richt));
 	if (!actuators.empty()) {
-		int a = 42;
+		int graphicId = actuators.top()->GetGraphic();
+		int graphicType = m_pMap->GetWallDecorationType(graphicId);
+		// 5 = iron Lock, 35 = Fountain, 45 = Lever down, 44 Up, 
 	}
 
 	CFieldDecoration* frontDeco = pField->HoleDeko(CHelpfulValues::OppositeDirection(richt));
@@ -315,7 +317,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 	pDC->TransparentBlt(pos.x, pos.y, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_VIO);
 
 	// Deko auf FRONT Wand zeichnen
-	if (frontDeco->GetDecoType() != None)
+	/*if (frontDeco->GetDecoType() != None) // TODO ist das alles Schrott?
 	{
 		CBitmap* decoBmp = NULL;
 		if (((xxx == 4) && (ebene == 1)) ||
@@ -365,7 +367,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 					DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
 				}
 			}
-		}
+		}*/
 }
 
 void CRaumView::DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField) {
@@ -984,7 +986,7 @@ void CRaumView::OnTrigger()
 
 	// Testweise. Space = Wand vor Spieler erzeugen/löschen
 
-	if (iFeld == FeldTyp::WALL)
+	/*if (iFeld == FeldTyp::WALL)
 	{
 		CFieldDecoration* deco = (feld->HoleDeko(CHelpfulValues::OppositeDirection(richt)));
 		if (deco->GetDecoType() == Switch) {
@@ -994,7 +996,7 @@ void CRaumView::OnTrigger()
 			m_pMap->GetHeroes()->DrinkFountain();
 		}
 	}
-	else if (iFeld == FeldTyp::DOOR)
+	else*/ if (iFeld == FeldTyp::DOOR)
 	{
 		CDoor* door = feld->HoleDoor();
 		if (door) {

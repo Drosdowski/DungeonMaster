@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Pictures\CLockPic.cpp" />
     <ClCompile Include="Views\CBackpackView.cpp" />
     <ClCompile Include="Views\CGroupView.cpp" />
     <ClCompile Include="SpecialTile\CTeleporterAttributes.cpp" />
@@ -191,6 +192,7 @@
     <ResourceCompile Include="DM.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Pictures\CLockPic.h" />
     <ClInclude Include="Views\CBackpackView.h" />
     <ClInclude Include="Views\CGroupView.h" />
     <ClInclude Include="SpecialTile\CTeleporterAttributes.h" />
@@ -319,6 +321,37 @@
     <Image Include="res\LeverDown_Right.bmp" />
     <Image Include="res\LeverUp_Right.bmp" />
     <Image Include="res\LeverUp_Front.bmp" />
+    <Image Include="res\LockCross-Front.bmp" />
+    <Image Include="res\LockCross-Left.bmp" />
+    <Image Include="res\LockDoubleIron-Front.bmp" />
+    <Image Include="res\LockDoubleIron-Left.bmp" />
+    <Image Include="res\LockEmerald-Front.bmp" />
+    <Image Include="res\LockEmerald-Left.bmp" />
+    <Image Include="res\LockGold-Front.bmp" />
+    <Image Include="res\LockGold-Left.bmp" />
+    <Image Include="res\LockIron-Front.bmp" />
+    <Image Include="res\LockIron-Left.bmp" />
+    <Image Include="res\LockMaster-Front.bmp" />
+    <Image Include="res\LockMaster-Left.bmp" />
+    <Image Include="res\LockOnyx-Front.bmp" />
+    <Image Include="res\LockOnyx-Left.bmp" />
+    <Image Include="res\LockQuare-Front.bmp" />
+    <Image Include="res\LockRa-Front.bmp" />
+    <Image Include="res\LockRa-Left.bmp" />
+    <Image Include="res\LockRuby-Front.bmp" />
+    <Image Include="res\LockRuby-Left.bmp" />
+    <Image Include="res\LockSkeleton-Front.bmp" />
+    <Image Include="res\LockSkeleton-Left.bmp" />
+    <Image Include="res\LockSquare-Front.bmp" />
+    <Image Include="res\LockSquare-Left.bmp" />
+    <Image Include="res\LockStone-Front.bmp" />
+    <Image Include="res\LockStone-Left.bmp" />
+    <Image Include="res\LockTopaz-Front.bmp" />
+    <Image Include="res\LockTopaz-Left.bmp" />
+    <Image Include="res\LockTourquoise-Front.bmp" />
+    <Image Include="res\LockTourquoise-Left.bmp" />
+    <Image Include="res\LockWinged-Front.bmp" />
+    <Image Include="res\LockWinged-Left.bmp" />
     <Image Include="res\Manacles_F.bmp" />
     <Image Include="res\Manacles_L.bmp" />
     <Image Include="res\Mummy_Attack.bmp" />
