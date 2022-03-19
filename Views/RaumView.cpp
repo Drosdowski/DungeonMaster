@@ -419,10 +419,10 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 	CBitmap* decoBmp = NULL;
 	if (floorDeco)
 	{ 
-		if (floorDeco->GetDecoType() == Moss) {
+		if (floorDeco->GetDecoType() == FloorMoss) {
 			decoBmp = m_pOrnatePic->GetMossPic(ebene, xxx);
 		} 
-		else if (floorDeco->GetDecoType() == Puddle) {
+		else if (floorDeco->GetDecoType() == FloorPuddle) {
 			decoBmp = m_pOrnatePic->GetPuddlePic(ebene, xxx);
 		}
 		//CPoint center = m_pItem3DPic->GetFloorMiddle(xxx, ebene);

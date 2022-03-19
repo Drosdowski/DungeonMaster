@@ -205,7 +205,7 @@ END
 
 IDB_BITMAP_KRAM         BITMAP                  "res\\Kram.bmp"
 
-IDB_BITMAP_E            BITMAP                  "res\\E.bmp"
+IDB_BITMAP_E            BITMAP                  "res\\Walls\\E.bmp"
 
 IDB_BITMAP_ICONS        BITMAP                  "res\\Icons.bmp"
 
@@ -219,15 +219,13 @@ IDB_BITMAP_RUCK         BITMAP                  "res\\Ruck.bmp"
 
 IDB_BITMAP_PINV         BITMAP                  "res\\Pinv.bmp"
 
-IDB_BITMAP_STEINE       BITMAP                  "res\\Steine.bmp"
+IDB_MUMMY_FRONT         BITMAP                  "res\\Monster\\Mummy_Front.bmp"
 
-IDB_MUMMY_FRONT         BITMAP                  "res\\Mummy_Front.bmp"
+IDB_MUMMY_ATTACK        BITMAP                  "res\\Monster\\Mummy_Attack.bmp"
 
-IDB_MUMMY_ATTACK        BITMAP                  "res\\Mummy_Attack.bmp"
+IDB_MUMMY_BACK          BITMAP                  "res\\Monster\\Mummy_Back.bmp"
 
-IDB_MUMMY_BACK          BITMAP                  "res\\Mummy_Back.bmp"
-
-IDB_MUMMY_RIGHT         BITMAP                  "res\\Mummy_Right.bmp"
+IDB_MUMMY_RIGHT         BITMAP                  "res\\Monster\\Mummy_Right.bmp"
 
 IDB_RUNES1              BITMAP                  "res\\Runes1.bmp"
 
@@ -239,121 +237,113 @@ IDB_REITER3             BITMAP                  "res\\Reiter3.bmp"
 
 IDB_REITER4             BITMAP                  "res\\Reiter4.bmp"
 
-IDB_BITMAP_E0L          BITMAP                  "res\\Wall0_Left.bmp"
+IDB_BITMAP_E0L          BITMAP                  "res\\Walls\\Wall0_Left.bmp"
 
-IDB_BITMAP_E0LF         BITMAP                  "res\\Wall0_LeftF.bmp"
+IDB_BITMAP_E0LF         BITMAP                  "res\\Walls\\Wall0_LeftF.bmp"
 
-IDB_BITMAP_E0R          BITMAP                  "res\\Wall0_Right.bmp"
+IDB_BITMAP_E0R          BITMAP                  "res\\Walls\\Wall0_Right.bmp"
 
-IDB_BITMAP_E0RF         BITMAP                  "res\\Wall0_RightF.bmp"
+IDB_BITMAP_E0RF         BITMAP                  "res\\Walls\\Wall0_RightF.bmp"
 
-IDB_BITMAP_E1M          BITMAP                  "res\\Wall1_Front.bmp"
+IDB_BITMAP_E1M          BITMAP                  "res\\Walls\\Wall1_Front.bmp"
 
-IDB_BITMAP_E1MF         BITMAP                  "res\\Wall1_FrontF.bmp"
+IDB_BITMAP_E1MF         BITMAP                  "res\\Walls\\Wall1_FrontF.bmp"
 
-IDB_BITMAP_E1L          BITMAP                  "res\\Wall1_Left.bmp"
+IDB_BITMAP_E1L          BITMAP                  "res\\Walls\\Wall1_Left.bmp"
 
-IDB_BITMAP_E1LF         BITMAP                  "res\\Wall1_LeftF.bmp"
+IDB_BITMAP_E1LF         BITMAP                  "res\\Walls\\Wall1_LeftF.bmp"
 
-IDB_BITMAP_E1R          BITMAP                  "res\\Wall1_Right.bmp"
+IDB_BITMAP_E1R          BITMAP                  "res\\Walls\\Wall1_Right.bmp"
 
-IDB_BITMAP_E1RF         BITMAP                  "res\\Wall1_RightF.bmp"
+IDB_BITMAP_E1RF         BITMAP                  "res\\Walls\\Wall1_RightF.bmp"
 
-IDB_BITMAP_E2FL         BITMAP                  "res\\Wall2_FarLeft.bmp"
+IDB_BITMAP_E2FL         BITMAP                  "res\\Walls\\Wall2_FarLeft.bmp"
 
-IDB_BITMAP_E2FR         BITMAP                  "res\\Wall2_FarRight.bmp"
+IDB_BITMAP_E2FR         BITMAP                  "res\\Walls\\Wall2_FarRight.bmp"
 
-IDB_BITMAP_E2M          BITMAP                  "res\\Wall2_Front.bmp"
+IDB_BITMAP_E2M          BITMAP                  "res\\Walls\\Wall2_Front.bmp"
 
-IDB_BITMAP_E2MF         BITMAP                  "res\\Wall2_FrontF.bmp"
+IDB_BITMAP_E2MF         BITMAP                  "res\\Walls\\Wall2_FrontF.bmp"
 
-IDB_BITMAP_E2L          BITMAP                  "res\\Wall2_Left.bmp"
+IDB_BITMAP_E2L          BITMAP                  "res\\Walls\\Wall2_Left.bmp"
 
-IDB_BITMAP_E2LF         BITMAP                  "res\\Wall2_LeftF.bmp"
+IDB_BITMAP_E2LF         BITMAP                  "res\\Walls\\Wall2_LeftF.bmp"
 
-IDB_BITMAP_E2R          BITMAP                  "res\\Wall2_Right.bmp"
+IDB_BITMAP_E2R          BITMAP                  "res\\Walls\\Wall2_Right.bmp"
 
-IDB_BITMAP_E2RF         BITMAP                  "res\\Wall2_RightF.bmp"
+IDB_BITMAP_E2RF         BITMAP                  "res\\Walls\\Wall2_RightF.bmp"
 
-IDB_BITMAP_E3FL         BITMAP                  "res\\Wall3_FarLeft.bmp"
+IDB_BITMAP_E3FL         BITMAP                  "res\\Walls\\Wall3_FarLeft.bmp"
 
-IDB_BITMAP_E3FR         BITMAP                  "res\\Wall3_FarRight.bmp"
+IDB_BITMAP_E3FR         BITMAP                  "res\\Walls\\Wall3_FarRight.bmp"
 
-IDB_BITMAP_E3M          BITMAP                  "res\\Wall3_Front.bmp"
+IDB_BITMAP_E3M          BITMAP                  "res\\Walls\\Wall3_Front.bmp"
 
-IDB_BITMAP_E3MF         BITMAP                  "res\\Wall3_FrontF.bmp"
+IDB_BITMAP_E3MF         BITMAP                  "res\\Walls\\Wall3_FrontF.bmp"
 
-IDB_BITMAP_E3L          BITMAP                  "res\\Wall3_Left.bmp"
+IDB_BITMAP_E3L          BITMAP                  "res\\Walls\\Wall3_Left.bmp"
 
-IDB_BITMAP_E3LF         BITMAP                  "res\\Wall3_LeftF.bmp"
+IDB_BITMAP_E3LF         BITMAP                  "res\\Walls\\Wall3_LeftF.bmp"
 
-IDB_BITMAP_E3R          BITMAP                  "res\\Wall3_Right.bmp"
+IDB_BITMAP_E3R          BITMAP                  "res\\Walls\\Wall3_Right.bmp"
 
-IDB_BITMAP_E3RF         BITMAP                  "res\\Wall3_RightF.bmp"
+IDB_BITMAP_E3RF         BITMAP                  "res\\Walls\\Wall3_RightF.bmp"
 
-IDB_SKELETON_ATTACK     BITMAP                  "res\\Skeleton_Attack.bmp"
+IDB_SKELETON_ATTACK     BITMAP                  "res\\Monster\\Skeleton_Attack.bmp"
 
-IDB_SKELETON_BACK       BITMAP                  "res\\Skeleton_Back.bmp"
+IDB_SKELETON_BACK       BITMAP                  "res\\Monster\\Skeleton_Back.bmp"
 
-IDB_SKELETON_FRONT      BITMAP                  "res\\Skeleton_Front.bmp"
+IDB_SKELETON_FRONT      BITMAP                  "res\\Monster\\Skeleton_Front.bmp"
 
-IDB_SKELETON_RIGHT      BITMAP                  "res\\Skeleton_Right.bmp"
+IDB_SKELETON_RIGHT      BITMAP                  "res\\Monster\\Skeleton_Right.bmp"
 
-IDB_LEVER_UP_FRONT      BITMAP                  "res\\LeverUp_Front.bmp"
+IDB_DOOR_FRAME_0        BITMAP                  "res\\Door\\Door_Frame_0_Front.bmp"
 
-IDB_LEVER_UP_RIGHT      BITMAP                  "res\\LeverUp_Right.bmp"
+IDB_DOOR_FRAME_1L       BITMAP                  "res\\Door\\Door_Frame_1_Left.bmp"
 
-IDB_LEVER_DOWN_FRONT    BITMAP                  "res\\LeverDown_Front.bmp"
+IDB_DOOR_FRAME_2L       BITMAP                  "res\\Door\\Door_Frame_2_Left.bmp"
 
-IDB_LEVER_DOWN_RIGHT    BITMAP                  "res\\LeverDown_Right.bmp"
+IDB_DOOR_FRAME_3L       BITMAP                  "res\\Door\\Door_Frame_3_Left.bmp"
 
-IDB_DOOR_FRAME_0        BITMAP                  "res\\Door_Frame_0_Front.bmp"
+IDB_DOOR_FRAME_3FL      BITMAP                  "res\\Door\\Door_Frame_3_FarLeft.bmp"
 
-IDB_DOOR_FRAME_1L       BITMAP                  "res\\Door_Frame_1_Left.bmp"
+IDB_DOOR_FRONT_1T       BITMAP                  "res\\Door\\Door_Front_Top_1.bmp"
 
-IDB_DOOR_FRAME_2L       BITMAP                  "res\\Door_Frame_2_Left.bmp"
+IDB_DOOR_FRONT_2T       BITMAP                  "res\\Door\\Door_Front_Top_2.bmp"
 
-IDB_DOOR_FRAME_3L       BITMAP                  "res\\Door_Frame_3_Left.bmp"
+IDB_DOOR_IRON_1         BITMAP                  "res\\Door\\Door_Iron_1.bmp"
 
-IDB_DOOR_FRAME_3FL      BITMAP                  "res\\Door_Frame_3_FarLeft.bmp"
+IDB_DOOR_IRON_2         BITMAP                  "res\\Door\\Door_Iron_2.bmp"
 
-IDB_DOOR_FRONT_1T       BITMAP                  "res\\Door_Front_Top_1.bmp"
+IDB_DOOR_IRON_3         BITMAP                  "res\\Door\\Door_Iron_3.bmp"
 
-IDB_DOOR_FRONT_2T       BITMAP                  "res\\Door_Front_Top_2.bmp"
+IDB_STAIRS_DOWN_0F      BITMAP                  "res\\Stair\\Stairs_Down0_Front.bmp"
 
-IDB_DOOR_IRON_1         BITMAP                  "res\\Door_Iron_1.bmp"
+IDB_STAIRS_DOWN_1F      BITMAP                  "res\\Stair\\Stairs_Down1_Front.bmp"
 
-IDB_DOOR_IRON_2         BITMAP                  "res\\Door_Iron_2.bmp"
+IDB_STAIRS_DOWN_1L      BITMAP                  "res\\Stair\\Stairs_Down1_Left.bmp"
 
-IDB_DOOR_IRON_3         BITMAP                  "res\\Door_Iron_3.bmp"
+IDB_STAIRS_DOWN_2F      BITMAP                  "res\\Stair\\Stairs_Down2_Front.bmp"
 
-IDB_STAIRS_DOWN_0F      BITMAP                  "res\\Stairs_Down0_Front.bmp"
+IDB_STAIRS_DOWN_2L      BITMAP                  "res\\Stair\\Stairs_Down2_Left.bmp"
 
-IDB_STAIRS_DOWN_1F      BITMAP                  "res\\Stairs_Down1_Front.bmp"
+IDB_STAIRS_DOWN_3F      BITMAP                  "res\\Stair\\Stairs_Down3_Front.bmp"
 
-IDB_STAIRS_DOWN_1L      BITMAP                  "res\\Stairs_Down1_Left.bmp"
+IDB_STAIRS_DOWN_3L      BITMAP                  "res\\Stair\\Stairs_Down3_Left.bmp"
 
-IDB_STAIRS_DOWN_2F      BITMAP                  "res\\Stairs_Down2_Front.bmp"
+IDB_STAIRS_UP_0F        BITMAP                  "res\\Stair\\Stairs_Up0_Front.bmp"
 
-IDB_STAIRS_DOWN_2L      BITMAP                  "res\\Stairs_Down2_Left.bmp"
+IDB_STAIRS_UP_1F        BITMAP                  "res\\Stair\\Stairs_Up1_Front.bmp"
 
-IDB_STAIRS_DOWN_3F      BITMAP                  "res\\Stairs_Down3_Front.bmp"
+IDB_STAIRS_UP_1L        BITMAP                  "res\\Stair\\Stairs_Up1_Left.bmp"
 
-IDB_STAIRS_DOWN_3L      BITMAP                  "res\\Stairs_Down3_Left.bmp"
+IDB_STAIRS_UP_2F        BITMAP                  "res\\Stair\\Stairs_Up2_Front.bmp"
 
-IDB_STAIRS_UP_0F        BITMAP                  "res\\Stairs_Up0_Front.bmp"
+IDB_STAIRS_UP_2L        BITMAP                  "res\\Stair\\Stairs_Up2_Left.bmp"
 
-IDB_STAIRS_UP_1F        BITMAP                  "res\\Stairs_Up1_Front.bmp"
+IDB_STAIRS_UP_3F        BITMAP                  "res\\Stair\\Stairs_Up3_Front.bmp"
 
-IDB_STAIRS_UP_1L        BITMAP                  "res\\Stairs_Up1_Left.bmp"
-
-IDB_STAIRS_UP_2F        BITMAP                  "res\\Stairs_Up2_Front.bmp"
-
-IDB_STAIRS_UP_2L        BITMAP                  "res\\Stairs_Up2_Left.bmp"
-
-IDB_STAIRS_UP_3F        BITMAP                  "res\\Stairs_Up3_Front.bmp"
-
-IDB_STAIRS_UP_3L        BITMAP                  "res\\Stairs_Up3_Left.bmp"
+IDB_STAIRS_UP_3L        BITMAP                  "res\\Stair\\Stairs_Up3_Left.bmp"
 
 IDB_ACTIONS_AREA        BITMAP                  "res\\ActionsArea.bmp"
 
@@ -361,43 +351,39 @@ IDB_ONE_HAND            BITMAP                  "res\\oneHand.bmp"
 
 IDB_ACTIONS_DAMAGE      BITMAP                  "res\\ActionsDamage.bmp"
 
-IDB_FOUNTAIN_F          BITMAP                  "res\\Fountain_Front.bmp"
+IDB_STAIRS_DOWN_S2L     BITMAP                  "res\\Stair\\Stairs_DownSide2.bmp"
 
-IDB_FOUNTAIN_L          BITMAP                  "res\\Fountain_Left.bmp"
+IDB_STAIRS_S1L          BITMAP                  "res\\Stair\\Stairs_Side1.bmp"
 
-IDB_STAIRS_DOWN_S2L     BITMAP                  "res\\Stairs_DownSide2.bmp"
+IDB_STAIRS_S3L          BITMAP                  "res\\Stair\\Stairs_Side3.bmp"
 
-IDB_STAIRS_S1L          BITMAP                  "res\\Stairs_Side1.bmp"
+IDB_STAIRS_UP_S2L       BITMAP                  "res\\Stair\\Stairs_UpSide2.bmp"
 
-IDB_STAIRS_S3L          BITMAP                  "res\\Stairs_Side3.bmp"
+IDB_ITEMS_42            BITMAP                  "res\\Items2D\\Items42.bmp"
 
-IDB_STAIRS_UP_S2L       BITMAP                  "res\\Stairs_UpSide2.bmp"
+IDB_ITEMS_43            BITMAP                  "res\\Items2D\\Items43.bmp"
 
-IDB_ITEMS_42            BITMAP                  "res\\Items42.bmp"
+IDB_ITEMS_44            BITMAP                  "res\\Items2D\\Items44.bmp"
 
-IDB_ITEMS_43            BITMAP                  "res\\Items43.bmp"
+IDB_ITEMS_45            BITMAP                  "res\\Items2D\\Items45.bmp"
 
-IDB_ITEMS_44            BITMAP                  "res\\Items44.bmp"
+IDB_ITEMS_46            BITMAP                  "res\\Items2D\\items46.bmp"
 
-IDB_ITEMS_45            BITMAP                  "res\\Items45.bmp"
+IDB_ITEMS_47            BITMAP                  "res\\Items2D\\Items47.bmp"
 
-IDB_ITEMS_46            BITMAP                  "res\\items46.bmp"
+IDB_ITEMS_48            BITMAP                  "res\\Items2D\\Items48.bmp"
 
-IDB_ITEMS_47            BITMAP                  "res\\Items47.bmp"
+IDB_DOOR_WOOD_1         BITMAP                  "res\\Door\\Door_Wood_1.bmp"
 
-IDB_ITEMS_48            BITMAP                  "res\\Items48.bmp"
+IDB_DOOR_WOOD_2         BITMAP                  "res\\Door\\Door_Wood_2.bmp"
 
-IDB_DOOR_WOOD_1         BITMAP                  "res\\Door_Wood_1.bmp"
+IDB_DOOR_WOOD_3         BITMAP                  "res\\Door\\Door_Wood_3.bmp"
 
-IDB_DOOR_WOOD_2         BITMAP                  "res\\Door_Wood_2.bmp"
+IDB_DOOR_WOOD_BASHED    BITMAP                  "res\\Door\\Door_Mask_Bashed.bmp"
 
-IDB_DOOR_WOOD_3         BITMAP                  "res\\Door_Wood_3.bmp"
+IDB_ITEM3D_APPLE        BITMAP                  "res\\Items3D\\Item_3d_Apple.bmp"
 
-IDB_DOOR_WOOD_BASHED    BITMAP                  "res\\Door_Mask_Bashed.bmp"
-
-IDB_ITEM3D_APPLE        BITMAP                  "res\\Item_3d_Apple.bmp"
-
-IDB_ITEM3D_BREAD        BITMAP                  "res\\Item_3d_Bread.bmp"
+IDB_ITEM3D_BREAD        BITMAP                  "res\\Items3D\\Item_3d_Bread.bmp"
 
 IDB_PRESSURE_PAD_1F     BITMAP                  "res\\SquarePressurePad_1F.bmp"
 
@@ -411,139 +397,147 @@ IDB_PRESSURE_PAD_3F     BITMAP                  "res\\SquarePressurePad_3F.bmp"
 
 IDB_PRESSURE_PAD_3L     BITMAP                  "res\\SquarePressurePad_3L.bmp"
 
-IDB_FLOOR_PUDDLE_F1     BITMAP                  "res\\FloorPuddle_F1.bmp"
+IDB_FLOOR_PUDDLE_F1     BITMAP                  "res\\Floor\\FloorPuddle_F1.bmp"
 
-IDB_FLOOR_PUDDLE_L1     BITMAP                  "res\\FloorPuddle_L1.bmp"
+IDB_FLOOR_PUDDLE_L1     BITMAP                  "res\\Floor\\FloorPuddle_L1.bmp"
 
-IDB_FLOOR_PUDDLE_F2     BITMAP                  "res\\FloorPuddle_F2.bmp"
+IDB_FLOOR_PUDDLE_F2     BITMAP                  "res\\Floor\\FloorPuddle_F2.bmp"
 
-IDB_FLOOR_PUDDLE_L2     BITMAP                  "res\\FloorPuddle_L2.bmp"
+IDB_FLOOR_PUDDLE_L2     BITMAP                  "res\\Floor\\FloorPuddle_L2.bmp"
 
-IDB_FLOOR_PUDDLE_F3     BITMAP                  "res\\FloorPuddle_F3.bmp"
+IDB_FLOOR_PUDDLE_F3     BITMAP                  "res\\Floor\\FloorPuddle_F3.bmp"
 
-IDB_FLOOR_PUDDLE_L3     BITMAP                  "res\\FloorPuddle_L3.bmp"
+IDB_FLOOR_PUDDLE_L3     BITMAP                  "res\\Floor\\FloorPuddle_L3.bmp"
 
-IDB_FLOOR_MOSS_F1       BITMAP                  "res\\FloorMoss_F1.bmp"
+IDB_FLOOR_MOSS_F1       BITMAP                  "res\\Floor\\FloorMoss_F1.bmp"
 
-IDB_FLOOR_MOSS_L1       BITMAP                  "res\\FloorMoss_L1.bmp"
+IDB_FLOOR_MOSS_L1       BITMAP                  "res\\Floor\\FloorMoss_L1.bmp"
 
-IDB_FLOOR_MOSS_F2       BITMAP                  "res\\FloorMos_F2.bmp"
+IDB_FLOOR_MOSS_F2       BITMAP                  "res\\Floor\\FloorMos_F2.bmp"
 
-IDB_FLOOR_MOSS_L2       BITMAP                  "res\\FloorMoss_L2.bmp"
+IDB_FLOOR_MOSS_L2       BITMAP                  "res\\Floor\\FloorMoss_L2.bmp"
 
-IDB_FLOOR_MOSS_F3       BITMAP                  "res\\FloorMoss_F3.bmp"
+IDB_FLOOR_MOSS_F3       BITMAP                  "res\\Floor\\FloorMoss_F3.bmp"
 
-IDB_FLOOR_MOSS_L3       BITMAP                  "res\\FloorMoss_L3.bmp"
+IDB_FLOOR_MOSS_L3       BITMAP                  "res\\Floor\\FloorMoss_L3.bmp"
 
-IDB_MANACLES_L          BITMAP                  "res\\Manacles_L.bmp"
+IDB_FLOOR_PIT_CEILING_F0 BITMAP                  "res\\Ceiling\\CeilingPit_F0.bmp"
 
-IDB_MANACLES_F          BITMAP                  "res\\Manacles_F.bmp"
+IDB_FLOOR_PIT_CEILING_L0 BITMAP                  "res\\Ceiling\\CeilingPit_L0.bmp"
 
-IDB_FLOOR_PIT_CEILING_F0 BITMAP                  "res\\CeilingPit_F0.bmp"
+IDB_FLOOR_PIT_CEILING_F1 BITMAP                  "res\\Ceiling\\CeilingPit_F1.bmp"
 
-IDB_FLOOR_PIT_CEILING_L0 BITMAP                  "res\\CeilingPit_L0.bmp"
+IDB_FLOOR_PIT_CEILING_L1 BITMAP                  "res\\Ceiling\\CeilingPit_L1.bmp"
 
-IDB_FLOOR_PIT_CEILING_F1 BITMAP                  "res\\CeilingPit_F1.bmp"
+IDB_FLOOR_PIT_CEILING_F2 BITMAP                  "res\\Ceiling\\CeilingPit_F2.bmp"
 
-IDB_FLOOR_PIT_CEILING_L1 BITMAP                  "res\\CeilingPit_L1.bmp"
+IDB_FLOOR_PIT_CEILING_L2 BITMAP                  "res\\Ceiling\\CeilingPit_L2.bmp"
 
-IDB_FLOOR_PIT_CEILING_F2 BITMAP                  "res\\CeilingPit_F2.bmp"
+IDB_FLOOR_PIT_INV_F0    BITMAP                  "res\\Floor\\FloorPit_Inv_F0.bmp"
 
-IDB_FLOOR_PIT_CEILING_L2 BITMAP                  "res\\CeilingPit_L2.bmp"
+IDB_FLOOR_PIT_INV_L0    BITMAP                  "res\\Floor\\FloorPit_Inv_L0.bmp"
 
-IDB_FLOOR_PIT_INV_F0    BITMAP                  "res\\FloorPit_Inv_F0.bmp"
+IDB_FLOOR_PIT_INV_F1    BITMAP                  "res\\Floor\\FloorPit_Inv_F1.bmp"
 
-IDB_FLOOR_PIT_INV_L0    BITMAP                  "res\\FloorPit_Inv_L0.bmp"
+IDB_FLOOR_PIT_INV_L1    BITMAP                  "res\\Floor\\FloorPit_Inv_L1.bmp"
 
-IDB_FLOOR_PIT_INV_F1    BITMAP                  "res\\FloorPit_Inv_F1.bmp"
+IDB_FLOOR_PIT_INV_F2    BITMAP                  "res\\Floor\\FloorPit_Inv_F2.bmp"
 
-IDB_FLOOR_PIT_INV_L1    BITMAP                  "res\\FloorPit_Inv_L1.bmp"
+IDB_FLOOR_PIT_INV_L2    BITMAP                  "res\\Floor\\FloorPit_Inv_L2.bmp"
 
-IDB_FLOOR_PIT_INV_F2    BITMAP                  "res\\FloorPit_Inv_F2.bmp"
+IDB_FLOOR_PIT_F0        BITMAP                  "res\\Floor\\FloorPit_F0.bmp"
 
-IDB_FLOOR_PIT_INV_L2    BITMAP                  "res\\FloorPit_Inv_L2.bmp"
+IDB_FLOOR_PIT_L0        BITMAP                  "res\\Floor\\FloorPit_L0.bmp"
 
-IDB_FLOOR_PIT_F0        BITMAP                  "res\\FloorPit_F0.bmp"
+IDB_FLOOR_PIT_F1        BITMAP                  "res\\Floor\\FloorPit_F1.bmp"
 
-IDB_FLOOR_PIT_L0        BITMAP                  "res\\FloorPit_L0.bmp"
+IDB_FLOOR_PIT_L1        BITMAP                  "res\\Floor\\FloorPit_L1.bmp"
 
-IDB_FLOOR_PIT_F1        BITMAP                  "res\\FloorPit_F1.bmp"
+IDB_FLOOR_PIT_F2        BITMAP                  "res\\Floor\\FloorPit_F2.bmp"
 
-IDB_FLOOR_PIT_L1        BITMAP                  "res\\FloorPit_L1.bmp"
+IDB_FLOOR_PIT_L2        BITMAP                  "res\\Floor\\FloorPit_L2.bmp"
 
-IDB_FLOOR_PIT_F2        BITMAP                  "res\\FloorPit_F2.bmp"
+IDB_FLOOR_PIT_F3        BITMAP                  "res\\Floor\\FloorPit_F3.bmp"
 
-IDB_FLOOR_PIT_L2        BITMAP                  "res\\FloorPit_L2.bmp"
-
-IDB_FLOOR_PIT_F3        BITMAP                  "res\\FloorPit_F3.bmp"
-
-IDB_FLOOR_PIT_L3        BITMAP                  "res\\FloorPit_L3.bmp"
+IDB_FLOOR_PIT_L3        BITMAP                  "res\\Floor\\FloorPit_L3.bmp"
 
 IDB_TELEPORTER          BITMAP                  "res\\Teleporter.bmp"
 
-IDB_ITEM3D_GOLDKEY      BITMAP                  "res\\GoldKey.bmp"
+IDB_ITEM3D_GOLDKEY      BITMAP                  "res\\Items3D\\Item_3d_GoldKey.bmp"
 
-IDB_ITEM3D_IRONKEY      BITMAP                  "res\\IronKey.bmp"
+IDB_ITEM3D_IRONKEY      BITMAP                  "res\\Items3D\\Item_3d_IronKey.bmp"
 
-IDB_LOCK_MASTER_F       BITMAP                  "res\\LockMaster-Front.bmp"
+IDB_WALLDECO_5F         BITMAP                  "res\\WallDeco\\WallDeco_5-Front.bmp"
 
-IDB_LOCK_MASTER_L       BITMAP                  "res\\LockMaster-Left.bmp"
+IDB_WALLDECO_5L         BITMAP                  "res\\WallDeco\\WallDeco_5-Left.bmp"
 
-IDB_LOCK_RA_F           BITMAP                  "res\\LockRa-Front.bmp"
+IDB_WALLDECO_19F        BITMAP                  "res\\WallDeco\\WallDeco_19-Front.bmp"
 
-IDB_LOCK_RA_L           BITMAP                  "res\\LockRa-Left.bmp"
+IDB_WALLDECO_19L        BITMAP                  "res\\WallDeco\\WallDeco_19-Left.bmp"
 
-IDB_LOCK_RUBY_F         BITMAP                  "res\\LockRuby-Front.bmp"
+IDB_WALLDECO_20F        BITMAP                  "res\\WallDeco\\WallDeco_20-Front.bmp"
 
-IDB_LOCK_RUBY_L         BITMAP                  "res\\LockRuby-Left.bmp"
+IDB_WALLDECO_20L        BITMAP                  "res\\WallDeco\\WallDeco_20-Left.bmp"
 
-IDB_LOCK_EMERALD_F      BITMAP                  "res\\LockEmerald-Front.bmp"
+IDB_WALLDECO_21F        BITMAP                  "res\\WallDeco\\WallDeco_21-Front.bmp"
 
-IDB_LOCK_EMERALD_L      BITMAP                  "res\\LockEmerald-Left.bmp"
+IDB_WALLDECO_21L        BITMAP                  "res\\WallDeco\\WallDeco_21-Left.bmp"
 
-IDB_LOCK_TOURQUOISE_F   BITMAP                  "res\\LockTourquoise-Front.bmp"
+IDB_WALLDECO_22F        BITMAP                  "res\\WallDeco\\WallDeco_22-Front.bmp"
 
-IDB_LOCK_TOURQUOISE_L   BITMAP                  "res\\LockTourquoise-Left.bmp"
+IDB_WALLDECO_22L        BITMAP                  "res\\WallDeco\\WallDeco_22-Left.bmp"
 
-IDB_LOCK_GOLD_F         BITMAP                  "res\\LockGold-Front.bmp"
+IDB_WALLDECO_23F        BITMAP                  "res\\WallDeco\\WallDeco_23-Front.bmp"
 
-IDB_LOCK_GOLD_L         BITMAP                  "res\\LockGold-Left.bmp"
+IDB_WALLDECO_23L        BITMAP                  "res\\WallDeco\\WallDeco_23-Left.bmp"
 
-IDB_LOCK_SKELETON_F     BITMAP                  "res\\LockSkeleton-Front.bmp"
+IDB_WALLDECO_24F        BITMAP                  "res\\WallDeco\\WallDeco_24-Front.bmp"
 
-IDB_LOCK_SKELETON_L     BITMAP                  "res\\LockSkeleton-Left.bmp"
+IDB_WALLDECO_24L        BITMAP                  "res\\WallDeco\\WallDeco_24-Left.bmp"
 
-IDB_LOCK_TOPAZ_F        BITMAP                  "res\\LockTopaz-Front.bmp"
+IDB_WALLDECO_25F        BITMAP                  "res\\WallDeco\\WallDeco_25-Front.bmp"
 
-IDB_LOCK_TOPAZ_L        BITMAP                  "res\\LockTopaz-Left.bmp"
+IDB_WALLDECO_25L        BITMAP                  "res\\WallDeco\\WallDeco_25-Left.bmp"
 
-IDB_LOCK_CROSS_F        BITMAP                  "res\\LockCross-Front.bmp"
+IDB_WALLDECO_26F        BITMAP                  "res\\WallDeco\\WallDeco_26-Front.bmp"
 
-IDB_LOCK_CROSS_L        BITMAP                  "res\\LockCross-Left.bmp"
+IDB_WALLDECO_26L        BITMAP                  "res\\WallDeco\\WallDeco_26-Left.bmp"
 
-IDB_LOCK_STONE_F        BITMAP                  "res\\LockStone-Front.bmp"
+IDB_WALLDECO_27F        BITMAP                  "res\\WallDeco\\WallDeco_27-Front.bmp"
 
-IDB_LOCK_STONE_L        BITMAP                  "res\\LockStone-Left.bmp"
+IDB_WALLDECO_27L        BITMAP                  "res\\WallDeco\\WallDeco_27-Left.bmp"
 
-IDB_LOCK_ONYX_F         BITMAP                  "res\\LockOnyx-Front.bmp"
+IDB_WALLDECO_28F        BITMAP                  "res\\WallDeco\\WallDeco_28-Front.bmp"
 
-IDB_LOCK_ONYX_L         BITMAP                  "res\\LockOnyx-Left.bmp"
+IDB_WALLDECO_28L        BITMAP                  "res\\WallDeco\\WallDeco_28-Left.bmp"
 
-IDB_LOCK_WINGED_F       BITMAP                  "res\\LockWinged-Front.bmp"
+IDB_WALLDECO_29F        BITMAP                  "res\\WallDeco\\WallDeco_29-Front.bmp"
 
-IDB_LOCK_WINGED_L       BITMAP                  "res\\LockWinged-Left.bmp"
+IDB_WALLDECO_29L        BITMAP                  "res\\WallDeco\\WallDeco_29-Left.bmp"
 
-IDB_LOCK_SQUARE_F       BITMAP                  "res\\LockSquare-Front.bmp"
+IDB_WALLDECO_30F        BITMAP                  "res\\WallDeco\\WallDeco_30-Front.bmp"
 
-IDB_LOCK_SQUARE_L       BITMAP                  "res\\LockSquare-Left.bmp"
+IDB_WALLDECO_30L        BITMAP                  "res\\WallDeco\\WallDeco_30-Left.bmp"
 
-IDB_LOCK_DOUBLEIRON_F   BITMAP                  "res\\LockDoubleIron-Front.bmp"
+IDB_WALLDECO_31F        BITMAP                  "res\\WallDeco\\WallDeco_31-Front.bmp"
 
-IDB_LOCK_DOUBLEIRON_L   BITMAP                  "res\\LockDoubleIron-Left.bmp"
+IDB_WALLDECO_31L        BITMAP                  "res\\WallDeco\\WallDeco_31-Left.bmp"
 
-IDB_LOCK_IRON_F         BITMAP                  "res\\LockIron-Front.bmp"
+IDB_WALLDECO_35F        BITMAP                  "res\\WallDeco\\WallDeco_35_Front.bmp"
 
-IDB_LOCK_IRON_L         BITMAP                  "res\\LockIron-Left.bmp"
+IDB_WALLDECO_35L        BITMAP                  "res\\WallDeco\\WallDeco_35_Left.bmp"
+
+IDB_WALLDECO_36F        BITMAP                  "res\\WallDeco\\WallDeco_36_Front.bmp"
+
+IDB_WALLDECO_36L        BITMAP                  "res\\WallDeco\\WallDeco_36_Left.bmp"
+
+IDB_WALLDECO_44F        BITMAP                  "res\\WallDeco\\WallDeco_44_Front.bmp"
+
+IDB_WALLDECO_44L        BITMAP                  "res\\WallDeco\\WallDeco_44_Left.bmp"
+
+IDB_WALLDECO_45F        BITMAP                  "res\\WallDeco\\WallDeco_45_Front.bmp"
+
+IDB_WALLDECO_45L        BITMAP                  "res\\WallDeco\\WallDeco_45_Left.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

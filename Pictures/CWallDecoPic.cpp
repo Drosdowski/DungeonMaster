@@ -36,16 +36,16 @@ void CWallDecoPic::InitPics() {
 		m_pDecoRight[gullideckel] = NULL;
 	}
 
-	LoadPic(m_pDecoFront[WallDecorationType::Fountain], IDB_FOUNTAIN_F);
-	LoadPic(m_pDecoRight[WallDecorationType::Fountain], IDB_FOUNTAIN_L);
-	LoadPicAndFlip(m_pDecoLeft[WallDecorationType::Fountain], IDB_FOUNTAIN_L);
+	LoadPic(m_pDecoFront[WallDecorationType::Fountain], IDB_WALLDECO_35F);
+	LoadPic(m_pDecoLeft[WallDecorationType::Fountain], IDB_WALLDECO_35L);
+	LoadPicAndFlip(m_pDecoRight[WallDecorationType::Fountain], IDB_WALLDECO_35L);
 
-	LoadPic(m_pDecoFront[WallDecorationType::LeverUp], IDB_LEVER_UP_FRONT);
-	LoadPic(m_pDecoRight[WallDecorationType::LeverUp], IDB_LEVER_UP_RIGHT);
-	LoadPicAndFlip(m_pDecoLeft[WallDecorationType::LeverUp], IDB_LEVER_UP_RIGHT);
-	LoadPic(m_pDecoFront[WallDecorationType::LeverDown], IDB_LEVER_DOWN_FRONT);
-	LoadPic(m_pDecoRight[WallDecorationType::LeverDown], IDB_LEVER_DOWN_RIGHT);
-	LoadPicAndFlip(m_pDecoLeft[WallDecorationType::LeverDown], IDB_LEVER_DOWN_RIGHT);
+	LoadPic(m_pDecoFront[WallDecorationType::LeverUp], IDB_WALLDECO_44F);
+	LoadPic(m_pDecoLeft[WallDecorationType::LeverUp], IDB_WALLDECO_44L);
+	LoadPicAndFlip(m_pDecoRight[WallDecorationType::LeverUp], IDB_WALLDECO_44L);
+	LoadPic(m_pDecoFront[WallDecorationType::LeverDown], IDB_WALLDECO_45F);
+	LoadPic(m_pDecoLeft[WallDecorationType::LeverDown], IDB_WALLDECO_45L);
+	LoadPicAndFlip(m_pDecoRight[WallDecorationType::LeverDown], IDB_WALLDECO_45L);
 
 
 }

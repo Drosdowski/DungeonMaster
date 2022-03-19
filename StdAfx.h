@@ -104,17 +104,67 @@ struct VITALS
 enum WallDecorationType 
 {
 	None = 0,
+	SquareAlcove = 1,
+	ViAltar = 2,
+	ArchedAlcove = 3,
+	Hook = 4,
 	IronLock = 5,
+	WoodRing = 6,
+	SmallSwitch = 7,
+	Dent1 = 8,
+	IronRing = 10,
+	Crack = 11,
+	SlimeOutlet = 12,
+	TinySwitch = 14,
+	GreenSwitchOut = 15,
+	BlueSwitchOut = 16,
+	CoinSlot = 17,
+	SquareLock = 19,
+	WingedLock = 20,
+	OnyxLock = 21,
+	StoneLock = 22,
+	CrossLock = 23,
+	TopazLock = 24,
+	SkeletonLock = 25, 
+	GoldLock = 26,
+	TourquoiseLock = 27,
+	EmeraldLock = 28,
+	RubyLock = 29,
+	RaLock = 30,
+	MasterLock = 31,
+	GemHole = 32,
+	Slime = 33,
+	Grate = 34,
 	Fountain = 35,
+	Manacles = 36,
+	GhoulsHead = 37,
+	EmptyTorchHolder = 38,
+	Scratches = 39,
+	PoisonHole = 40,
+	FireballHoles = 41,
+	DaggerHoles = 42,
+	ChampionMirror = 43,
 	LeverUp = 44,
-	LeverDown = 45
+	LeverDown = 45,
+	FullTorchHolder = 46,
+	RedSwitchOut = 47,
+	EyeSwitch = 48,
+	BigSwitchOut = 49,
+	GreenSwitchIn = 51,
+	BlueSwitchIn = 52,
+	RedSwitchIn = 53,
+	BigSwitchIn = 54,
+	AmalgamEncasedGem = 56,
+	AmalgamFreeGem = 57,
+	AmalgamWithoutGem = 58,
+	LordOrder = 59
 };
 
 enum FloorDecorationType
 {
-	Moss = 0, // typ 2
-	Crack = 2, // typ 6
-	Puddle = 1 // typ 8
+	FloorMoss = 0, // typ 2
+	FloorPuddle = 1, // typ 8
+	FloorCrack = 2 // typ 6
 };
 
 enum FeldTyp {
