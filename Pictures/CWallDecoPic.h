@@ -1,5 +1,6 @@
 #pragma once
 #include "CBasePictures.h"
+const int maxAnz = 46;
 class CWallDecoPic : public CBasePictures
 {
 public:
@@ -11,17 +12,9 @@ public:
 
 private:
 	void InitPics();
-
-	CBitmap* m_pFountainFront;
-	CBitmap* m_pFountainRight;
-	CBitmap* m_pFountainLeft;
-
-	CBitmap* m_pLeverUpFront;
-	CBitmap* m_pLeverUpRight;
-	CBitmap* m_pLeverUpLeft;
-	CBitmap* m_pLeverDownFront;
-	CBitmap* m_pLeverDownRight;
-	CBitmap* m_pLeverDownLeft;
+	CBitmap* m_pDecoFront[maxAnz];
+	CBitmap* m_pDecoRight[maxAnz];
+	CBitmap* m_pDecoLeft[maxAnz];
 
 };
 
