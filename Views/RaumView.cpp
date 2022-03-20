@@ -278,20 +278,23 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CDoo
 }
 
 void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField) {
-	//BITMAP bmpDecoInfo;
+	BITMAP bmpDecoInfo;
 	BITMAP bmpInfo;
 
 	CBitmap* bmp = m_pWallPic->GetWallPic(xxx, ebene, m_bMirror);
+	CBitmap* bmpDecoFront = NULL;
+	CBitmap* bmpDecoSide = NULL;
 	int xx = wallXFactor[xxx];
 
-	/*std::stack<CActuator*> actuators = pField->GetActuator((SUBPOS_ABSOLUTE)CHelpfulValues::OppositeDirection(richt));
+	std::stack<CActuator*> actuators = pField->GetActuator((SUBPOS_ABSOLUTE)CHelpfulValues::OppositeDirection(richt));
 	if (!actuators.empty()) {
 		int graphicId = actuators.top()->GetGraphic();
-		int graphicType = m_pMap->GetWallDecorationType(graphicId);
+		WallDecorationType graphicType = m_pMap->GetWallDecorationType(ebene, graphicId);
+		bmpDecoFront = m_pWallDecoPic->GetPicFront(graphicType);
 		// 5 = iron Lock, 35 = Fountain, 45 = Lever down, 44 Up, 
-	}*/
+	}
 
-	int frontDeco = pField->GetWallDeco(CHelpfulValues::OppositeDirection(richt));
+	/*int frontDeco = pField->GetWallDeco(CHelpfulValues::OppositeDirection(richt));
 	int sideDeco;
 	if (xx > 0)
 	{
@@ -302,7 +305,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 	}
 	else {
 		sideDeco = NULL;
-	}
+	}*/
 	
 	cdc->SelectObject(bmp);
 	CPoint pos = m_pWallPic->GetWallPos(xxx, ebene);
@@ -313,33 +316,27 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 	pDC->TransparentBlt(pos.x, pos.y, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_VIO);
 
 	// Deko auf FRONT Wand zeichnen
-	/*if (frontDeco->GetDecoType() != None) // TODO ist das alles Schrott?
+	if (bmpDecoFront) 
 	{
-		CBitmap* decoBmp = NULL;
 		if (((xxx == 4) && (ebene == 1)) ||
 			((xxx > 1) && (ebene == 2)) ||
 			(ebene == 3)) {
-			if (frontDeco->GetDecoType() == Switch) {
-				decoBmp = m_pLeverPic->GetLeverFront(frontDeco->GetState());
-			}
-			else if (frontDeco->GetDecoType() == Fountain) {
-				decoBmp = m_pFountainPic->GetFountainFront();
+			CPoint center = m_pWallPic->GetCenterFromFrontWall(xxx, ebene);
+			if (bmpDecoFront && center.x > 0 && center.y > 0) {
+				cdc->SelectObject(bmpDecoFront);
+				bmpDecoFront->GetBitmap(&bmpDecoInfo);
+				int decoPosX = pos.x + center.x - (int)(bmpDecoInfo.bmWidth * faktor);
+				int decoPosY = pos.y + center.y - (int)(bmpDecoInfo.bmHeight * faktor);
+
+				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
+
 			}
 		}
 
-		CPoint center = m_pWallPic->GetCenterFromFrontWall(xxx, ebene);
-		if (decoBmp && center.x > 0 && center.y > 0) {
-			cdc->SelectObject(decoBmp);
-			decoBmp->GetBitmap(&bmpDecoInfo);
-			int decoPosX = pos.x + center.x - (int)(bmpDecoInfo.bmWidth * faktor);
-			int decoPosY = pos.y + center.y - (int)(bmpDecoInfo.bmHeight * faktor);
-
-			DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
-
-		}
+		
 	}
 	// Deko auf SIDE Wand zeichnen
-	if (xx != 0)
+	/*if (xx != 0)
 		if (sideDeco->GetDecoType() != None)
 		{
 			if (ebene > 0 && xxx < 4) {

@@ -24,7 +24,7 @@ public:
 	VEKTOR GetStart() { return m_start; }
 	int GetStartDirection() { return m_startRicht; }
 	CGrpHeld* GetHeroes() { return m_pGrpHelden; }
-	int GetWallDecorationType(int graphic) { return m_wallDecorationTypes[graphic - 1]; }
+	WallDecorationType GetWallDecorationType(int ebene, int graphic) { return m_wallDecorationTypes[graphic - 1, ebene]; }
 
 private:
 
@@ -61,6 +61,7 @@ private:
 	int m_countMiscellaneous;
 	int m_countActuators;
 	int m_countTeleporters;
+	int m_countFloors;
 	CGrpHeld* m_pGrpHelden;
 
 	// dynamic arrays
@@ -69,7 +70,7 @@ private:
 	int* m_miscellaneousSubtype;
 	int* m_actuatorType;
 	TeleporterAttributes* m_teleportAtt;
-	int* m_wallDecorationTypes; 
+	WallDecorationType* m_wallDecorationTypes;
 	//CActuator::ActionTypes* m_actionType;
 	//VEKTOR* m_actionTarget;
 

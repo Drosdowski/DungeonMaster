@@ -17,57 +17,53 @@
 
 CField::CField()
 {
+	InitVars();
 	m_iTyp = EMPTY;
 	VEKTOR pos{ 0,0,0 };
-	m_lastWeight = 0;
 	m_posKoord = pos;
-	m_pGrpMonster = NULL;	
-	m_floorOrnateType = NULL;
 }
 
 CField::CField(VEKTOR koord, FeldTyp fieldType)
 {
-	ASSERT(fieldType != DOOR);
+	InitVars();
 	SetType(fieldType);
-	m_lastWeight = 0;
 	m_posKoord = koord;
-	m_pGrpMonster = NULL;
-	m_floorOrnateType = NULL;
 }
 
 CField::CField(VEKTOR koord, CDoor* pDoor)
 {	
+	InitVars();
 	SetTypeDoor(pDoor);
-	m_lastWeight = 0;
 	m_posKoord = koord;
-	m_pGrpMonster = NULL;
-	m_floorOrnateType = NULL;
 }
 
 CField::CField(VEKTOR koord, CStairs* pStair)
 {
+	InitVars();
 	SetTypeStair(pStair);
-	m_lastWeight = 0;
 	m_posKoord = koord;
-	m_pGrpMonster = NULL;
-	m_floorOrnateType = NULL;
 }
 
 CField::CField(VEKTOR koord, CPit* pPit)
 {
+	InitVars();
 	SetTypePit(pPit);
-	m_lastWeight = 0;
 	m_posKoord = koord;
-	m_pGrpMonster = NULL;
-	m_floorOrnateType = NULL;
 }
 
 CField::CField(VEKTOR koord, CTeleporter* teleItem) {
+	InitVars();
 	SetTypeTeleporter(teleItem);
-	m_lastWeight = 0;
 	m_posKoord = koord;
+}
+
+void CField::InitVars() {
+	m_lastWeight = 0;
 	m_pGrpMonster = NULL;
 	m_floorOrnateType = NULL;
+	/*for (int p = 0; p < 4; p++) {
+		m_pWallDecoration[p] = NULL;
+	}*/
 }
 
 

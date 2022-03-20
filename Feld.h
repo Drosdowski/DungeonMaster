@@ -49,8 +49,14 @@ public:
 	CFieldDecoration* GetFloorDeco() {	return  m_floorOrnateType; }
 	void PutFloorDeco(CFieldDecoration* deco);
 
-	int GetWallDeco(int position) { return m_pWallDecoration[position]; }
-	void PutWallDeco(int position, int type) { m_pWallDecoration[position] = type; };
+	/*int GetWallDeco(int position) { return m_pWallDecoration[position]; }
+	void PutWallDeco(int position, int type) {
+		if (!m_pWallDecoration[position])
+			m_pWallDecoration[position] = type;
+		else
+			Blocked();
+
+	};*/
 
 	CDoor* HoleDoor() { return m_pDoor;  }
 	CStairs* HoleStairs() { return m_pStairs;  }
@@ -81,11 +87,12 @@ public:
 
 	// Generated message map functions
 protected:
+	void InitVars();
 	VEKTOR m_posKoord;
 
 	CGrpMonster* m_pGrpMonster;
 	FeldTyp m_iTyp;
-	int m_pWallDecoration[4];
+	//int m_pWallDecoration[4];
 	CFieldDecoration* m_floorOrnateType;
 	std::stack<CMiscellaneous*> m_pMiscellaneous[4];
 

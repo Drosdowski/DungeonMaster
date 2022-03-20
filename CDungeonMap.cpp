@@ -296,9 +296,10 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 		actuatorAttributes = actuatorAttributes->NextSiblingElement();
 	}
 
+	WallDecorationType graphicType = graphic > 0 ? m_wallDecorationTypes[graphic-1, coords.z] : None;
+	if (graphicType < 0 || graphicType > 255) graphicType = None; 
 	CActuator* actuator = new CActuator(index, position, target, actionType, actionTarget, type, graphic);
 	m_pFeld[coords.x][coords.y][coords.z]->PutActuator(actuator, (SUBPOS_ABSOLUTE)position);
-	m_pFeld[coords.x][coords.y][coords.z]->PutWallDeco(position, m_wallDecorationTypes[graphic]);
 }
 
 void CDungeonMap::ParseWallDecorationGraphic(TiXmlElement* rootNode, int etage) {
@@ -307,7 +308,7 @@ void CDungeonMap::ParseWallDecorationGraphic(TiXmlElement* rootNode, int etage) 
 	int type;
 	rootNode->QueryIntAttribute("type", &type);
 	
-	m_wallDecorationTypes[index] = type;
+	m_wallDecorationTypes[index, etage] = (WallDecorationType)type;
 	// todo deco setzen?
 }
 
@@ -510,8 +511,8 @@ void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
 	m_actuatorType = new int[m_countActuators];
 	rootNode->QueryIntAttribute("number_of_teleporters", &m_countTeleporters);
 	m_teleportAtt = new TeleporterAttributes[m_countTeleporters];
-
-	m_wallDecorationTypes = new int[15]; // todo - da gibt's kein Max!
+	rootNode->QueryIntAttribute("number_of_maps", &m_countFloors);
+	m_wallDecorationTypes = new WallDecorationType[15, m_countFloors];
 
 	const char* startDir = rootNode->Attribute("start_facing");
 	if (strcmp(startDir, "North") == 0) m_startRicht = 0;
