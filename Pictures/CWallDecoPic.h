@@ -1,6 +1,6 @@
 #pragma once
 #include "CBasePictures.h"
-const int maxAnz = 46;
+const int maxAnz = 60;
 class CWallDecoPic : public CBasePictures
 {
 public:
