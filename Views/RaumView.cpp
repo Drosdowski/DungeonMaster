@@ -286,26 +286,27 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 	CBitmap* bmpDecoSide = NULL;
 	int xx = wallXFactor[xxx];
 
-	std::stack<CActuator*> actuators = pField->GetActuator((SUBPOS_ABSOLUTE)CHelpfulValues::OppositeDirection(richt));
-	if (!actuators.empty()) {
-		int graphicId = actuators.top()->GetGraphic();
+	std::stack<CActuator*> actuatorsFront = pField->GetActuator((SUBPOS_ABSOLUTE)CHelpfulValues::OppositeDirection(richt));
+	if (!actuatorsFront.empty()) {
+		int graphicId = actuatorsFront.top()->GetGraphic();
 		WallDecorationType graphicType = m_pMap->GetWallDecorationType(pField->HolePos().z, graphicId);
 		bmpDecoFront = m_pWallDecoPic->GetPicFront(graphicType);
-		// 5 = iron Lock, 35 = Fountain, 45 = Lever down, 44 Up, 
 	}
 
-	/*int frontDeco = pField->GetWallDeco(CHelpfulValues::OppositeDirection(richt));
-	int sideDeco;
+	std::stack<CActuator*> actuatorsSide;
 	if (xx > 0)
 	{
-		sideDeco = pField->GetWallDeco((4 + 2 - richt) % 4);
+		actuatorsSide = pField->GetActuator((SUBPOS_ABSOLUTE)((richt + 3) % 4));
 	}
 	else if (xx < 0) {
-		sideDeco = pField->GetWallDeco((4 - richt) % 4);
+		actuatorsSide = pField->GetActuator((SUBPOS_ABSOLUTE)((richt + 1) % 4));
+	} 
+
+	if (!actuatorsSide.empty()) {
+		int graphicId = actuatorsSide.top()->GetGraphic();
+		WallDecorationType graphicType = m_pMap->GetWallDecorationType(pField->HolePos().z, graphicId);
+		bmpDecoSide = m_pWallDecoPic->GetPicSide(graphicType, (xx < 0));
 	}
-	else {
-		sideDeco = NULL;
-	}*/
 	
 	cdc->SelectObject(bmp);
 	CPoint pos = m_pWallPic->GetWallPos(xxx, ebene);
@@ -336,22 +337,15 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 		
 	}
 	// Deko auf SIDE Wand zeichnen
-	/*if (xx != 0)
-		if (sideDeco->GetDecoType() != None)
+	if (xx != 0)
+		if (bmpDecoSide)
 		{
 			if (ebene > 0 && xxx < 4) {
-				CBitmap* decoBmp = NULL;
-				if (frontDeco->GetDecoType() == Switch) {
-					decoBmp = m_pLeverPic->GetLeverSide(sideDeco->GetState(), (xx > 0));
-				}
-				else if (frontDeco->GetDecoType() == Fountain) {
-					decoBmp = m_pFountainPic->GetFountainSide(xx > 0);
-				}
-
+				
 				CPoint center = m_pWallPic->GetCenterFromSideWall(xxx, ebene);
-				if (decoBmp && center.x > 0 && center.y > 0) {
-					cdc->SelectObject(decoBmp);
-					decoBmp->GetBitmap(&bmpDecoInfo);
+				if (center.x > 0 && center.y > 0) {
+					cdc->SelectObject(bmpDecoSide);
+					bmpDecoSide->GetBitmap(&bmpDecoInfo);
 					int decoPosX = pos.x + center.x; // die Mitte für die linke Seite ist links im Bild, also nix abziehen
 					if (xx > 0)
 						decoPosX -= (int)(bmpDecoInfo.bmWidth * 2 * faktor);
@@ -360,7 +354,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 					DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
 				}
 			}
-		}*/
+		}
 }
 
 void CRaumView::DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField) {

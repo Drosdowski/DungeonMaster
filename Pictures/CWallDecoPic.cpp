@@ -46,16 +46,4 @@ void CWallDecoPic::InitPics() {
 		}
 	}
 
-	/*LoadPic(m_pDecoFront[WallDecorationType::Fountain], IDB_WALLDECO_35F);
-	LoadPic(m_pDecoLeft[WallDecorationType::Fountain], IDB_WALLDECO_35L);
-	LoadPi+cAndFlip(m_pDecoRight[WallDecorationType::Fountain], IDB_WALLDECO_35L);
-
-	LoadPic(m_pDecoFront[WallDecorationType::LeverUp], IDB_WALLDECO_44F);
-	LoadPic(m_pDecoLeft[WallDecorationType::LeverUp], IDB_WALLDECO_44L);
-	LoadPicAndFlip(m_pDecoRight[WallDecorationType::LeverUp], IDB_WALLDECO_44L);
-	LoadPic(m_pDecoFront[WallDecorationType::LeverDown], IDB_WALLDECO_45F);
-	LoadPic(m_pDecoLeft[WallDecorationType::LeverDown], IDB_WALLDECO_45L);
-	LoadPicAndFlip(m_pDecoRight[WallDecorationType::LeverDown], IDB_WALLDECO_45L);*/
-
-
 }
