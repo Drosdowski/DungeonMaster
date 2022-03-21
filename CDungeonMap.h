@@ -24,7 +24,8 @@ public:
 	VEKTOR GetStart() { return m_start; }
 	int GetStartDirection() { return m_startRicht; }
 	CGrpHeld* GetHeroes() { return m_pGrpHelden; }
-	WallDecorationType GetWallDecorationType(int ebene, int graphic) { return m_wallDecorationTypes[graphic - 1, ebene]; }
+	WallDecorationType GetWallDecorationType(int ebene, int graphic) { return m_wallDecorationTypes[ebene][graphic - 1];
+}
 
 private:
 
@@ -70,7 +71,7 @@ private:
 	int* m_miscellaneousSubtype;
 	int* m_actuatorType;
 	TeleporterAttributes* m_teleportAtt;
-	WallDecorationType* m_wallDecorationTypes;
+	WallDecorationType** m_wallDecorationTypes;
 	//CActuator::ActionTypes* m_actionType;
 	//VEKTOR* m_actionTarget;
 

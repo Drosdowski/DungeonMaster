@@ -289,7 +289,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 	std::stack<CActuator*> actuators = pField->GetActuator((SUBPOS_ABSOLUTE)CHelpfulValues::OppositeDirection(richt));
 	if (!actuators.empty()) {
 		int graphicId = actuators.top()->GetGraphic();
-		WallDecorationType graphicType = m_pMap->GetWallDecorationType(ebene, graphicId);
+		WallDecorationType graphicType = m_pMap->GetWallDecorationType(pField->HolePos().z, graphicId);
 		bmpDecoFront = m_pWallDecoPic->GetPicFront(graphicType);
 		// 5 = iron Lock, 35 = Fountain, 45 = Lever down, 44 Up, 
 	}

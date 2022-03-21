@@ -20,17 +20,21 @@ CDungeonMap::~CDungeonMap()
 {
 	delete m_pEdgeWall;
 	delete m_pGrpHelden;
-	for (int z = 0; z < FELD_MAX_Z; z++)
+	for (int z = 0; z < FELD_MAX_Z; z++) {
+		if (m_wallDecorationTypes[z])
+			delete m_wallDecorationTypes[z];
 		for (int i = 0; i < m_LevelWidth[z]; i++)
 			for (int j = 0; j < m_LevelHeight[z]; j++) {
 				delete m_pFeld[i][j][z];
 			}
+	}
+	delete m_wallDecorationTypes;
+		
 	delete m_doorType;
 	delete m_miscellaneousType;
 	delete m_miscellaneousSubtype;
 	delete m_actuatorType;
-	delete m_teleportAtt;
-	delete m_wallDecorationTypes;
+	delete m_teleportAtt;	
 }
 
 CField* CDungeonMap::GetField(int x, int y, int z) {
@@ -296,8 +300,8 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 		actuatorAttributes = actuatorAttributes->NextSiblingElement();
 	}
 
-	WallDecorationType graphicType = graphic > 0 ? m_wallDecorationTypes[graphic-1, coords.z] : None;
-	if (graphicType < 0 || graphicType > 255) graphicType = None; 
+	//WallDecorationType graphicType = graphic > 0 ? m_wallDecorationTypes[graphic, coords.z] : None;
+	//if (graphicType < 0 || graphicType > 255) graphicType = None; 
 	CActuator* actuator = new CActuator(index, position, target, actionType, actionTarget, type, graphic);
 	m_pFeld[coords.x][coords.y][coords.z]->PutActuator(actuator, (SUBPOS_ABSOLUTE)position);
 }
@@ -308,7 +312,7 @@ void CDungeonMap::ParseWallDecorationGraphic(TiXmlElement* rootNode, int etage) 
 	int type;
 	rootNode->QueryIntAttribute("type", &type);
 	
-	m_wallDecorationTypes[index, etage] = (WallDecorationType)type;
+	m_wallDecorationTypes[etage][index] = (WallDecorationType)type;
 	// todo deco setzen?
 }
 
@@ -340,6 +344,7 @@ void CDungeonMap::ParseTiles(TiXmlElement* tiles, int etage) {
 
 
 void CDungeonMap::ParseMap(TiXmlElement* rootNode, int etage) {
+	m_wallDecorationTypes[etage] = NULL;
 	TiXmlElement* parentElement = rootNode->FirstChildElement();
 	while (parentElement)
 	{
@@ -350,6 +355,7 @@ void CDungeonMap::ParseMap(TiXmlElement* rootNode, int etage) {
 		}
 		else if (strcmp(parent, "wall_decoration_graphics") == 0)
 		{
+			m_wallDecorationTypes[etage] = new WallDecorationType[m_countFloors];
 			ParseWallDecorationGraphics(parentElement, etage);
 		}
 		parentElement = parentElement->NextSiblingElement();
@@ -362,11 +368,13 @@ void CDungeonMap::ParseMaps(TiXmlElement* rootNode) {
 	{
 		const char* parent = parentElement->Value();
 		int etage;
+
 		parentElement->QueryIntAttribute("index", &etage);
 		parentElement->QueryIntAttribute("width", &m_LevelWidth[etage]);
 		parentElement->QueryIntAttribute("height", &m_LevelHeight[etage]);
 		parentElement->QueryIntAttribute("offsetx", &m_offsetX[etage]);
 		parentElement->QueryIntAttribute("offsety", &m_offsetY[etage]);
+
 		ParseMap(parentElement, etage);
 		parentElement = parentElement->NextSiblingElement();
 	}
@@ -512,7 +520,7 @@ void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
 	rootNode->QueryIntAttribute("number_of_teleporters", &m_countTeleporters);
 	m_teleportAtt = new TeleporterAttributes[m_countTeleporters];
 	rootNode->QueryIntAttribute("number_of_maps", &m_countFloors);
-	m_wallDecorationTypes = new WallDecorationType[15, m_countFloors];
+	m_wallDecorationTypes = new WallDecorationType * [m_countFloors];
 
 	const char* startDir = rootNode->Attribute("start_facing");
 	if (strcmp(startDir, "North") == 0) m_startRicht = 0;
