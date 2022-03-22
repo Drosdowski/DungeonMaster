@@ -23,8 +23,8 @@ CHeld::CHeld(int iIndex, CString strName): CCharacter()
 	m_ST.Max = 100;
 	
 	m_HP.Aktuell = m_HP.Max;
-	m_ST.Aktuell = m_MA.Max;
-	m_MA.Aktuell = m_ST.Max;
+	m_ST.Aktuell = m_ST.Max;
+	m_MA.Aktuell = m_MA.Max;
 	m_bAktiv = true;
 	m_attacking = false;
 	m_strName = strName;
@@ -82,7 +82,7 @@ bool CHeld::Altern()
 	if (alive)
 	{
 		WerteTemporaerAendern(1, 1, 1);
-		m_iFood--;
+		//m_iFood--;
 		//m_iWater--;
 		if (m_iFood < 50)
 			WerteTemporaerAendern(0, -1, 0);

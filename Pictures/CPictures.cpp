@@ -73,9 +73,10 @@ void CPictures::WerteZeichnen(CDC* pDC, CHeld* pHeld)
 	// Hp, St, Ma - Balken
 	int x = (pHeld->getIndex() - 1) * 138 + 94;
 	pDC->FillSolidRect(CRect(x, 4, x + 35, 52), GANZDUNKELGRAU);
-	pDC->FillSolidRect(CRect(x, 52 - (48 * pHeld->LifePart()), x + 7, 52), pHeld->Farbe());
-	pDC->FillSolidRect(CRect(x + 14, 52 - (48 * pHeld->StaminaPart()), x + 21, 52), pHeld->Farbe());
-	pDC->FillSolidRect(CRect(x + 28, 52 - (48 * pHeld->ManaPart()), x + 35, 52), pHeld->Farbe());
+	pDC->FillSolidRect(CRect(x, 52 - int(48 * pHeld->LifePart()), x + 7, 52), pHeld->Farbe());
+	int s = int(48 * pHeld->StaminaPart());
+	pDC->FillSolidRect(CRect(x + 14, 52 - int(48 * pHeld->StaminaPart()), x + 21, 52), pHeld->Farbe());
+	pDC->FillSolidRect(CRect(x + 28, 52 - int(48 * pHeld->ManaPart()), x + 35, 52), pHeld->Farbe());
 }
 
 void CPictures::WaffeZeichnen(CDC* pDC)

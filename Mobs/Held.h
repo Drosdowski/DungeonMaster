@@ -36,9 +36,9 @@ public:
 	void Essen(int amount);
 
 	int CalcDmg(int ID, CGrpChar* pOpponents);
-	int LifePart() { return m_HP.Aktuell / m_HP.Max; }
-	int StaminaPart() { return m_ST.Aktuell / m_ST.Max; }
-	int ManaPart() { return m_MA.Aktuell / m_MA.Max; }
+	double LifePart() { return (double)m_HP.Aktuell / (double)m_HP.Max; }
+	double StaminaPart() { return (double)m_ST.Aktuell / (double)m_ST.Max; }
+	double ManaPart() { return (double)m_MA.Aktuell / (double)m_MA.Max; }
 	COLORREF Farbe() { return m_Farbe[m_iIndex]; }
 
 	CRucksack* GetRucksack() { return m_pRucksack; }
