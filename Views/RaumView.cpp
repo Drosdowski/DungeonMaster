@@ -351,42 +351,12 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 				else 
 					decoPosX = max(0, decoPosX - (int)(bmpDecoInfo.bmWidth * faktor));
 				int decoPosY = (int)(posWall.y + centerSideWall.y - bmpDecoInfo.bmHeight * faktor);
-					cdc->SelectObject(decoBmp);
+					cdc->SelectObject(bmpDecoSide);
 				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
 			}
 
 		}
 	}
-					int decoPosY = (int)(pos.y + center.y - bmpDecoInfo.bmHeight * faktor);
-					cdc->SelectObject(decoBmp);
-					decoBmp->GetBitmap(&bmpDecoInfo);
-					int decoPosX = pos.x + center.x; // die Mitte für die linke Seite ist links im Bild, also nix abziehen
-					if (xx > 0)
-						decoPosX -= (int)(bmpDecoInfo.bmWidth * 2 * faktor);
-					int decoPosY = (int)(pos.y + center.y - bmpDecoInfo.bmHeight * faktor);
-					cdc->SelectObject(decoBmp);
-					decoBmp->GetBitmap(&bmpDecoInfo);
-					int decoPosX = pos.x + center.x; // die Mitte für die linke Seite ist links im Bild, also nix abziehen
-					if (xx > 0)
-						decoPosX -= (int)(bmpDecoInfo.bmWidth * 2 * faktor);
-					int decoPosY = (int)(pos.y + center.y - bmpDecoInfo.bmHeight * faktor);
-					cdc->SelectObject(decoBmp);
-					decoBmp->GetBitmap(&bmpDecoInfo);
-					int decoPosX = pos.x + center.x; // die Mitte für die linke Seite ist links im Bild, also nix abziehen
-					if (xx > 0)
-						decoPosX -= (int)(bmpDecoInfo.bmWidth * 2 * faktor);
-					int decoPosY = (int)(pos.y + center.y - bmpDecoInfo.bmHeight * faktor);
-					cdc->SelectObject(decoBmp);
-					decoBmp->GetBitmap(&bmpDecoInfo);
-					int decoPosX = pos.x + center.x; // die Mitte für die linke Seite ist links im Bild, also nix abziehen
-					if (xx > 0)
-						decoPosX -= (int)(bmpDecoInfo.bmWidth * 2 * faktor);
-					int decoPosY = (int)(pos.y + center.y - bmpDecoInfo.bmHeight * faktor);
-
-					DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
-				}
-			}
-		}*/
 }
 
 void CRaumView::DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField) {
