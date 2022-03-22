@@ -355,7 +355,7 @@ void CDungeonMap::ParseMap(TiXmlElement* rootNode, int etage) {
 		}
 		else if (strcmp(parent, "wall_decoration_graphics") == 0)
 		{
-			m_wallDecorationTypes[etage] = new WallDecorationType[m_countFloors];
+			m_wallDecorationTypes[etage] = new WallDecorationType[15];
 			ParseWallDecorationGraphics(parentElement, etage);
 		}
 		parentElement = parentElement->NextSiblingElement();
