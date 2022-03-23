@@ -212,9 +212,10 @@ void CDMView::ParseClickAir(CPoint point) {
 	}
 }
 
-void CDMView::ParseClickActuator(CPoint point, CActuator* activeActuator) {
+void CDMView::ParseClickActuator(CPoint point, std::stack<CActuator*> actuators) {
+	CActuator* activeActuator = actuators.top();
 	if (activeActuator)
-		if (CScreenCoords::CheckHitMainScr(point))
+		if (CScreenCoords::CheckHitDeco(point))
 		{
 
 		}
@@ -314,9 +315,9 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
 			if (FeldVorHeld) {
 				if (FeldVorHeld->Blocked()) {
-					CActuator* activeActuator = (FeldVorHeld->GetActuator(grpHelden->HoleRichtung())).top();
-					if (activeActuator)
-						ParseClickActuator(point, activeActuator);
+					std::stack<CActuator*> actuators = (FeldVorHeld->GetActuator(grpHelden->HoleRichtung()));
+					if (!actuators.empty())
+						ParseClickActuator(point, actuators);
 				}
 				else {
 					ParseClickAir(point);

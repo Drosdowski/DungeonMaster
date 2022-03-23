@@ -9,6 +9,10 @@
 #pragma once
 #endif // _MSC_VER >= 1000
 
+#include <stack>
+
+
+class CActuator;
 class CDMDoc;
 class CHeld;
 class CGrpHeld;
@@ -88,7 +92,7 @@ protected:
 	void ParseClickHeroes(CPoint point);
 	void ParseClickFloor(CPoint point);
 	void ParseClickAir(CPoint point);
-	void ParseClickActuator(CPoint point, CActuator* activeActuator);
+	void ParseClickActuator(CPoint point, std::stack<CActuator*> activeActuator);
 };
 
 #ifndef _DEBUG  // debug version in DMView.cpp
