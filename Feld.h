@@ -39,7 +39,7 @@ public:
 
 // Operations
 public:
-	void InitMonsterGruppe(CMonster::MonsterTyp iTyp, int iAnz, int richt);
+	void InitMonsterGruppe(CMonster::MonsterTyp iTyp, int iAnz, COMPASS_DIRECTION richt);
 	CGrpMonster* GetMonsterGroup();
 	void RemoveMonsterGroup();
 	void SetMonsterGroup(CGrpMonster* pGrpMonster);
@@ -71,7 +71,7 @@ public:
 	//void PutMisc(CMiscellaneous* misc, SUBPOS subPos);
 	CMiscellaneous* TakeMisc(SUBPOS_ABSOLUTE subPos);
 	std::stack<CMiscellaneous*> GetMisc(SUBPOS_ABSOLUTE index) { return m_pMiscellaneous[index]; }
-	std::stack<CActuator*> GetActuator(SUBPOS_ABSOLUTE index) { return m_pActuator[index]; }
+	std::stack<CActuator*> GetActuator(COMPASS_DIRECTION index) { return m_pActuator[index]; }
 
 	CPit* HolePit() { return m_pPit;  }
 	CTeleporter* HoleTeleporter() { return m_pTeleporter; }

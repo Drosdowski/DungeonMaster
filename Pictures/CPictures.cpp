@@ -235,3 +235,32 @@ void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld, CRucksack* pRucksack)
 		}
 	}
 }
+
+void CPictures::PfeilZeichnen(CDC* pDC, int index)
+{
+	CDC tmpdc;
+	tmpdc.CreateCompatibleDC(pDC);
+	tmpdc.SelectObject(m_pBmpInversePfeile);
+	switch (index)
+	{
+	case VORWAERTS:
+		pDC->BitBlt(526, 248, 54, 42, &tmpdc, 62, 3, SRCCOPY);
+		break;
+	case RUECKWAERTS:
+		pDC->BitBlt(526, 292, 54, 42, &tmpdc, 62, 47, SRCCOPY);
+		break;
+	case LINKS_STRAFE:
+		pDC->BitBlt(468, 292, 56, 42, &tmpdc, 4, 47, SRCCOPY);
+		break;
+	case RECHTS_STRAFE:
+		pDC->BitBlt(582, 292, 56, 42, &tmpdc, 118, 47, SRCCOPY);
+		break;
+	case LINKS_DREHEN:
+		pDC->BitBlt(468, 248, 56, 42, &tmpdc, 4, 3, SRCCOPY);
+		break;
+	case RECHTS_DREHEN:
+		pDC->BitBlt(582, 248, 56, 42, &tmpdc, 118, 3, SRCCOPY);
+		break;
+	}
+	tmpdc.DeleteDC();
+}

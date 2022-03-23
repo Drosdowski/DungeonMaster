@@ -15,7 +15,7 @@ class CGrpMonster : public CGrpChar
 {
 public:
 	
-	CGrpMonster(VEKTOR pos, int richt);
+	CGrpMonster(VEKTOR pos, COMPASS_DIRECTION richt);
 protected:
 	CGrpMonster();           // Dynamische Erstellung verwendet geschützten Konstruktor
 
@@ -29,7 +29,7 @@ public:
 	// TODO bool ExistsAndDies();
 	void ActionDone();
 	bool IstBereit();
-	CMonster* GetMonsterByRelSubPos(SUBPOS posIndex, int richt);
+	CMonster* GetMonsterByRelSubPos(SUBPOS posIndex, COMPASS_DIRECTION richt);
 
 
 // Implementierung

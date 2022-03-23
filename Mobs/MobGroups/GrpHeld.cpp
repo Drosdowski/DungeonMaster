@@ -16,7 +16,7 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CGrpHeld
 
-CGrpHeld::CGrpHeld(VEKTOR pos, int richt)
+CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 {
 	for (int i=1; i<=4; i++)
 		m_pMember[i] = NULL;

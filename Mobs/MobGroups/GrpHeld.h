@@ -13,7 +13,7 @@ class CMiscellaneous;
 class CGrpHeld: public CGrpChar
 {
 public:
-	CGrpHeld(VEKTOR pos, int richt);
+	CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt);
 	
 
 // Implementierung

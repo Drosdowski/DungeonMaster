@@ -66,7 +66,6 @@ protected:
 	void ActionAreaZeichnen(CDC* pDC);
 	void ActionDamageZeichnen(CDC* pDC, int dmg);
 	void WaffenZeichnen(CDC* pDC, CGrpHeld* pGrpHeroes);
-	void PfeilZeichnen(CDC* pDC, int i);
 	void DrawBMP(CDC* pDC, CBitmap* pBMP, int posX, int posY);
 	//void HeroDoesDamage(CHeld* pHeld, CGrpMonster* pGrpMonster);
 	bool m_bPause;
@@ -89,7 +88,7 @@ protected:
 	void ParseClickHeroes(CPoint point);
 	void ParseClickFloor(CPoint point);
 	void ParseClickAir(CPoint point);
-
+	void ParseClickActuator(CPoint point, CActuator* activeActuator);
 };
 
 #ifndef _DEBUG  // debug version in DMView.cpp

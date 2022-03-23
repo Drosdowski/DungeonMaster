@@ -523,10 +523,10 @@ void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
 	m_wallDecorationTypes = new WallDecorationType * [m_countFloors];
 
 	const char* startDir = rootNode->Attribute("start_facing");
-	if (strcmp(startDir, "North") == 0) m_startRicht = 0;
-	if (strcmp(startDir, "East") == 0) m_startRicht = 1;
-	if (strcmp(startDir, "South") == 0) m_startRicht = 2;
-	if (strcmp(startDir, "West") == 0) m_startRicht = 3;
+	if (strcmp(startDir, "North") == 0) m_startRicht = COMPASS_DIRECTION::NORTH;
+	if (strcmp(startDir, "East") == 0) m_startRicht = COMPASS_DIRECTION::EAST;
+	if (strcmp(startDir, "South") == 0) m_startRicht = COMPASS_DIRECTION::SOUTH;
+	if (strcmp(startDir, "West") == 0) m_startRicht = COMPASS_DIRECTION::WEST;
 	
 
 	TiXmlElement* parentElement = rootNode->FirstChildElement();
@@ -606,5 +606,5 @@ void CDungeonMap::DemoMap() {
 			}
 		}
 		*/
-		m_pFeld[3][7][0]->InitMonsterGruppe(CMonster::MonsterTyp::SKELETT, 4, 0);
+		m_pFeld[3][7][0]->InitMonsterGruppe(CMonster::MonsterTyp::SKELETT, 4, COMPASS_DIRECTION::NORTH);
 }

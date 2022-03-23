@@ -77,8 +77,8 @@ protected:
 
 	VEKTOR MonsterMoveOrAttack(CGrpMonster* pGrpMon);
 	void DrawPile(CDC* pDC, CDC* cdc, int xx, int ebene, SUBPOS_ABSOLUTE SubPos, int heroDir, std::stack<CMiscellaneous*> pile);
-	void DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField);
-	void DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CDoor* pDoor);
+	void DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTION richt, CField* pField);
+	void DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTION richt, CDoor* pDoor);
 	void DrawStairsFront(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs);
 	void DrawStairsSide(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs);
 	void DrawFloorPit(CDC* pDC, CDC* cdc, int xxx, int ebene, CPit* pit);
@@ -87,8 +87,8 @@ protected:
 	void DrawSquarePressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene, CActuator* pActuator);
 	void DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pField);
 	void DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene, bool left);
-	void DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField);
-	void DrawMonster(CDC* pDC, CDC* cdc, int xx, int ebene, int richt, CMonster* pMonster);
+	void DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTION richt, CField* pField);
+	void DrawMonster(CDC* pDC, CDC* cdc, int xx, int ebene, COMPASS_DIRECTION richt, CMonster* pMonster);
 	void DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, CDC* cdc, COLORREF col);
 	// VEKTOR NextFieldWithoutTurn(CGrpMonster* pGrpMon, VEKTOR heroPos);
 
@@ -102,7 +102,7 @@ private:
 	void MoveItems(VEKTOR heroPos);
 
 	void TriggerActuators(VEKTOR fieldPos, VEKTOR heroPos );
-	void TriggerActuator(VEKTOR heroPos, CField* field, CActuator* actuator, SUBPOS_ABSOLUTE pos);
+	void TriggerActuator(VEKTOR heroPos, CField* field, CActuator* actuator, COMPASS_DIRECTION pos);
 };
 
 /////////////////////////////////////////////////////////////////////////////

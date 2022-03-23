@@ -19,7 +19,7 @@ static char THIS_FILE[] = __FILE__;
 
 CGrpChar::CGrpChar() 
 {
-	m_grpDirection = 0;
+	m_grpDirection = COMPASS_DIRECTION::NORTH;
 	m_values = new CHelpfulValues();
 }
 
@@ -158,7 +158,7 @@ VEKTOR CGrpChar::HoleZielFeld(int iRichtung)
 	return WunschPos;
 }
 
-void CGrpChar::DrehenAbsolut(int iRichtung) {
+void CGrpChar::DrehenAbsolut(COMPASS_DIRECTION iRichtung) {
 	int oldDir = m_grpDirection;
 	m_grpDirection = iRichtung;
 	
@@ -185,15 +185,15 @@ void CGrpChar::DrehenAbsolut(int iRichtung) {
 	}
 }
 
-void CGrpChar::DrehenRelativ(int iRichtung)
+void CGrpChar::DrehenRelativ(int iRelRichtung)
 {
-	switch (iRichtung)
+	switch (iRelRichtung)
 	{
 	case LINKS:
-		DrehenAbsolut((m_grpDirection + 3) %4);
+		DrehenAbsolut((COMPASS_DIRECTION)((m_grpDirection + 3) %4));
 		break;
 	case RECHTS:
-		DrehenAbsolut((m_grpDirection + 1) %4);
+		DrehenAbsolut((COMPASS_DIRECTION)((m_grpDirection + 1) %4)); // todo auslagern
 		break;
 	}
 

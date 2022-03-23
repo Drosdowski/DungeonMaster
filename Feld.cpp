@@ -96,7 +96,7 @@ CField::~CField()
 }
 
 
-void CField::InitMonsterGruppe(CMonster::MonsterTyp iTyp, int iAnz, int richt)
+void CField::InitMonsterGruppe(CMonster::MonsterTyp iTyp, int iAnz, COMPASS_DIRECTION richt)
 {
 	if (m_pGrpMonster)
 		AfxMessageBox("Fehler: Versuch, zwei Monstergruppen auf gleichem Feld zu initialisiern");

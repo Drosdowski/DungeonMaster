@@ -230,7 +230,7 @@ void CRaumView::DrawStairsFront(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs*
 }
 
 
-void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CDoor* pDoor) {
+void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTION richt, CDoor* pDoor) {
 	BITMAP bmpInfo;
 
 	int xx = wallXFactor[xxx];
@@ -277,7 +277,7 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CDoo
 
 }
 
-void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField) {
+void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTION richt, CField* pField) {
 	BITMAP bmpDecoInfo;
 	BITMAP bmpInfo;
 
@@ -286,7 +286,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 	CBitmap* bmpDecoSide = NULL;
 	int xx = wallXFactor[xxx];
 
-	std::stack<CActuator*> actuatorsFront = pField->GetActuator((SUBPOS_ABSOLUTE)CHelpfulValues::OppositeDirection(richt));
+	std::stack<CActuator*> actuatorsFront = pField->GetActuator((COMPASS_DIRECTION)CHelpfulValues::OppositeDirection(richt));
 	if (!actuatorsFront.empty()) {
 		int graphicId = actuatorsFront.top()->GetGraphic();
 		WallDecorationType graphicType = m_pMap->GetWallDecorationType(pField->HolePos().z, graphicId);
@@ -296,10 +296,10 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 	std::stack<CActuator*> actuatorsSide;
 	if (xx > 0)
 	{
-		actuatorsSide = pField->GetActuator((SUBPOS_ABSOLUTE)((richt + 3) % 4));
+		actuatorsSide = pField->GetActuator((COMPASS_DIRECTION)((richt + 3) % 4));
 	}
 	else if (xx < 0) {
-		actuatorsSide = pField->GetActuator((SUBPOS_ABSOLUTE)((richt + 1) % 4));
+		actuatorsSide = pField->GetActuator((COMPASS_DIRECTION)((richt + 1) % 4));
 	} 
 
 	if (!actuatorsSide.empty()) {
@@ -359,7 +359,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CFie
 	}
 }
 
-void CRaumView::DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, int richt, CField* pField) {
+void CRaumView::DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTION richt, CField* pField) {
 	CGrpMonster* pGrpMon = (CGrpMonster*)pField->GetMonsterGroup();
 	if (pGrpMon)
 	{
@@ -372,7 +372,7 @@ void CRaumView::DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, int ric
 	}
 }
 
-void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xx, int ebene, int richt, CMonster* pMonster) {
+void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xx, int ebene, COMPASS_DIRECTION richt, CMonster* pMonster) {
 	if (pMonster && pMonster->Hp().Aktuell > 0) // todo staubwolke hier berücksichtigen
 	{
 		CBitmap* bmp = m_pMonsterPic->GetBitmap(pMonster, richt);
@@ -399,7 +399,7 @@ void test(CDC* pDC, int x, int y) {
 void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pField) {
 	BITMAP bmpDecoInfo;
 	
-	std::stack<CActuator*> actuators = pField->GetActuator((SUBPOS_ABSOLUTE)0);  // Boden hat immer POsition 0.
+	std::stack<CActuator*> actuators = pField->GetActuator((COMPASS_DIRECTION)0);  // Boden hat immer POsition 0.
 	while (!actuators.empty()) {
 		CActuator* actuator = actuators.top();
 		if (actuator->GetType() == 3) {
@@ -480,19 +480,7 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 				}
 				cdc->SelectObject(bmp);
 				DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
-				/*test(pDC, 130, 370);
-				test(pDC, 150, 325);
-				test(pDC, 165, 300);
-				test(pDC, 177, 280);
-				test(pDC, 185, 265);
-				test(pDC, 191, 255);
 
-				test(pDC, 320, 370);
-				test(pDC, 300, 325);
-				test(pDC, 285, 300);
-				test(pDC, 273, 280);
-				test(pDC, 265, 265);
-				test(pDC, 259, 255);*/
 			}
 		}
 	}
@@ -533,7 +521,7 @@ void CRaumView::Zeichnen(CDC* pDC)
 	int y = m_pMap->GetHeroes()->HolePosition().y;
 	int z = m_pMap->GetHeroes()->HolePosition().z;
 
-	int heroDir = m_pMap->GetHeroes()->HoleRichtung();
+	COMPASS_DIRECTION heroDir = m_pMap->GetHeroes()->HoleRichtung();
 	int stx = m_values->m_stx[heroDir];
 	int sty = m_values->m_sty[heroDir];
 
@@ -703,11 +691,11 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 		for (int i = -1; i <= 1; i += 2) {
 			if (!m_pMap->GetField(toPos.x + i, toPos.y, toPos.z)->HoleTyp() == FeldTyp::WALL) {
 				CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
-				pGrpHelden->DrehenAbsolut((i == -1) ? 3 : 1);
+				pGrpHelden->DrehenAbsolut((COMPASS_DIRECTION)((i == -1) ? 3 : 1));
 			}
 			if (!m_pMap->GetField(toPos.x, toPos.y + i, toPos.z)->HoleTyp() == FeldTyp::WALL) {
 				CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
-				pGrpHelden->DrehenAbsolut((i == -1) ? 0 : 2);
+				pGrpHelden->DrehenAbsolut((COMPASS_DIRECTION)((i == -1) ? 0 : 2));
 			}
 
 		}
@@ -815,15 +803,15 @@ void CRaumView::MoveAnythingNearby() {
 
 void CRaumView::TriggerActuators(VEKTOR fieldPos, VEKTOR heroPos) {
 	CField* field = m_pMap->GetField(fieldPos);
-	std::stack<CActuator*> actuators = field->GetActuator((SUBPOS_ABSOLUTE)0);
+	std::stack<CActuator*> actuators = field->GetActuator((COMPASS_DIRECTION)0);
 	while (!actuators.empty()) {
 		CActuator* actuator = actuators.top();
-		TriggerActuator(heroPos, field, actuator, (SUBPOS_ABSOLUTE)0);
+		TriggerActuator(heroPos, field, actuator, (COMPASS_DIRECTION)0);
 		actuators.pop();
 	}
 }
 
-void CRaumView::TriggerActuator(VEKTOR heroPos, CField* field , CActuator* actuator, SUBPOS_ABSOLUTE pos) {
+void CRaumView::TriggerActuator(VEKTOR heroPos, CField* field , CActuator* actuator, COMPASS_DIRECTION pos) {
 	bool criticalWeightChanged = field->CriticalWeightChange(heroPos, actuator->GetCriticalWeigth()); // todo parameter optimieren?
 	
 	if (criticalWeightChanged) {
@@ -965,7 +953,7 @@ void CRaumView::OnTrigger()
 	int y = m_pMap->GetHeroes()->HolePosition().y;
 	int z = m_pMap->GetHeroes()->HolePosition().z;
 
-	int richt = m_pMap->GetHeroes()->HoleRichtung();
+	COMPASS_DIRECTION richt = m_pMap->GetHeroes()->HoleRichtung();
 	int addx = x + m_values->m_sty[richt];
 	int addy = y - m_values->m_stx[richt];
 	CField* feld = m_pMap->GetField(addx, addy, z);

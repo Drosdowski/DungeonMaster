@@ -13,7 +13,6 @@ public:
 
 	CBitmap* GetRucksack() { return m_pBmpRuck; }
 	CBitmap* GetHintergrund() { return m_pBmpHintergrund; }
-	CBitmap* GetInversePfeile() { return m_pBmpInversePfeile; }
 	CBitmap* GetActionsArea() { return m_pActionsArea; }
 	CBitmap* GetKram() { return m_pBmpKram; }
 	CBitmap* GetRunes(int i) { return m_pRunes[i]; }
@@ -30,7 +29,7 @@ public:
 	void WerteZeichnen(CDC* pDC, CHeld* pHeld);
 	void BildZeichnen(CDC* pDC, bool aktiv, int index);
 	void SchadenZeichnen(CDC* pDC, int index);
-
+	void PfeilZeichnen(CDC* pDC, int index);
 
 
 private:

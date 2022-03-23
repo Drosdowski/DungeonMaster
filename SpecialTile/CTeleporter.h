@@ -7,7 +7,7 @@ public:
 	~CTeleporter() {};
 
 	VEKTOR getTargetField() { return m_attributes.target; }
-	int getTargetDirection() { return m_attributes.rotation; }
+	COMPASS_DIRECTION getTargetDirection() { return (COMPASS_DIRECTION)m_attributes.rotation; }
 	TeleporterAttributes::RotationType getRotationType() { return m_attributes.rotationType; }
 	TeleporterAttributes::Scope getScope() { if (m_open) return m_attributes.scope; else return TeleporterAttributes::Scope::None; }
 	bool isVisible() { return m_isVisible; }

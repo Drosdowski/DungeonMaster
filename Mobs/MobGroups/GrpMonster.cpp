@@ -21,7 +21,7 @@ CGrpMonster::CGrpMonster()
 {
 }
 
-CGrpMonster::CGrpMonster(VEKTOR pos, int richt)
+CGrpMonster::CGrpMonster(VEKTOR pos, COMPASS_DIRECTION richt)
 {
 	for (int i=1; i<=4; i++)
 		m_pMember[i] = NULL;
@@ -52,7 +52,7 @@ void CGrpMonster::InitMonster(int nr, CMonster::MonsterTyp iTyp)
 			ASSERT(false); // unexpected monster type
 		} 
 		
-		m_grpDirection = 0;
+		m_grpDirection = COMPASS_DIRECTION::NORTH;
 		SetNewCharOnNextFreePos(nr);
 
 		m_pMember[nr]->SetDirection(m_grpDirection);
@@ -208,7 +208,7 @@ CMonster* CGrpMonster::GetMonster(int ID) {
 	return (CMonster*)m_pMember[ID];
 }
 
-CMonster* CGrpMonster::GetMonsterByRelSubPos(SUBPOS pos, int richt) {
+CMonster* CGrpMonster::GetMonsterByRelSubPos(SUBPOS pos, COMPASS_DIRECTION richt) {
 	for (int i = 1; i < 5; i++)
 	{
 		CMonster* pMonster = (CMonster*)m_pMember[i];
@@ -227,20 +227,20 @@ CMonster* CGrpMonster::GetMonsterByRelSubPos(SUBPOS pos, int richt) {
 //   2
 void CGrpMonster::TurnToHero(VEKTOR heroPos) {
 	VEKTOR monPos = HolePosition();
-	int monDir = m_grpDirection;
+	COMPASS_DIRECTION monDir = m_grpDirection;
 
-	int newDirection;
+	COMPASS_DIRECTION newDirection;
 	if (heroPos.x < monPos.x) {
-		newDirection = 3;
+		newDirection = COMPASS_DIRECTION::WEST;
 	}
 	else if (heroPos.x > monPos.x) {
-		newDirection = 1;
+		newDirection = COMPASS_DIRECTION::EAST;
 	}
 	else if (heroPos.y < monPos.y) {
-		newDirection = 0;
+		newDirection = COMPASS_DIRECTION::NORTH;
 	}
 	else {
-		newDirection = 2;
+		newDirection = COMPASS_DIRECTION::SOUTH;
 	}
 
 	for (int i = 1; i < 5; i++)

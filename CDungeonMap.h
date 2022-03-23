@@ -22,7 +22,7 @@ public:
 	int GetMaxHeight(int ebene) { return m_LevelHeight[ebene]; }
 	CPoint GetOffset(int ebene);
 	VEKTOR GetStart() { return m_start; }
-	int GetStartDirection() { return m_startRicht; }
+	COMPASS_DIRECTION GetStartDirection() { return m_startRicht; }
 	CGrpHeld* GetHeroes() { return m_pGrpHelden; }
 	WallDecorationType GetWallDecorationType(int ebene, int graphic) { return m_wallDecorationTypes[ebene][graphic - 1];
 }
@@ -57,7 +57,7 @@ private:
 	int m_offsetX[FELD_MAX_Z]; // shifting when changing floor level
 	int m_offsetY[FELD_MAX_Z]; // shifting when changing floor level
 	VEKTOR m_start;
-	int m_startRicht;
+	COMPASS_DIRECTION m_startRicht;
 	int m_countDoors;
 	int m_countMiscellaneous;
 	int m_countActuators;

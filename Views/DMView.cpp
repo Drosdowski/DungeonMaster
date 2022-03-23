@@ -210,6 +210,14 @@ void CDMView::ParseClickAir(CPoint point) {
 
 		}
 	}
+}
+
+void CDMView::ParseClickActuator(CPoint point, CActuator* activeActuator) {
+	if (activeActuator)
+		if (CScreenCoords::CheckHitMainScr(point))
+		{
+
+		}
 
 }
 
@@ -298,11 +306,24 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 		if (grpHelden && grpHelden->GetNumberOfHeroes() > 0)
 		{
 			ParseClickFloor(point);
-			ParseClickAir(point);
 			ParseClickWizard(point);
 			ParseClickAction(point);
 			ParseClickHeroes(point);
 		
+			// Feld vorne frei?
+			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
+			if (FeldVorHeld) {
+				if (FeldVorHeld->Blocked()) {
+					CActuator* activeActuator = (FeldVorHeld->GetActuator(grpHelden->HoleRichtung())).top();
+					if (activeActuator)
+						ParseClickActuator(point, activeActuator);
+				}
+				else {
+					ParseClickAir(point);
+				}
+			}
+
+
 		}
 
 		if (CScreenCoords::CheckHitDeco(point)) {
@@ -431,34 +452,6 @@ void CDMView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 // Zeichenmethoden
 
 
-void CDMView::PfeilZeichnen(CDC* pDC, int i)
-{
-	CDC tmpdc;
-	tmpdc.CreateCompatibleDC(pDC);
-	tmpdc.SelectObject(m_pPictures->GetInversePfeile());
-	switch (i)
-	{
-	case VORWAERTS:
-		pDC->BitBlt(526,248,54,42,&tmpdc,62,3,SRCCOPY);
-		break;
-	case RUECKWAERTS:
-		pDC->BitBlt(526,292,54,42,&tmpdc,62,47,SRCCOPY);
-		break;
-	case LINKS_STRAFE:
-		pDC->BitBlt(468,292,56,42,&tmpdc,4,47,SRCCOPY);
-		break;
-	case RECHTS_STRAFE:
-		pDC->BitBlt(582,292,56,42,&tmpdc,118,47,SRCCOPY);
-		break;
-	case LINKS_DREHEN:
-		pDC->BitBlt(468,248,56,42,&tmpdc,4,3,SRCCOPY);
-		break;
-	case RECHTS_DREHEN:
-		pDC->BitBlt(582,248,56,42,&tmpdc,118,3,SRCCOPY);
-		break;
-	}
-	tmpdc.DeleteDC();
-}
 
 void CDMView::HeldenGrafikZeichnen(CGrpHeld* pGrpHelden, CDC* pDC, CPictures* pPictures)
 {
@@ -509,8 +502,7 @@ void CDMView::UpdateGrafik()
 {
 	CDC* pDC = GetDC();
 
-	CDMDoc* pDoc = GetDocument();
-	CDC* pDC_=new CDC();
+	CDC* pDC_ = new CDC();
 	pDC_->CreateCompatibleDC(pDC);
 	CBitmap tmpbmp;
 	tmpbmp.CreateCompatibleBitmap(pDC, 640, 400);
@@ -521,7 +513,7 @@ void CDMView::UpdateGrafik()
 		{
 			m_pRaumView->Zeichnen(pDC_);
 			if (m_iDir>0)
-				PfeilZeichnen(pDC_, m_iDir);
+				m_pPictures->PfeilZeichnen(pDC_, m_iDir);
 		}
 		else
 			// You are asleep

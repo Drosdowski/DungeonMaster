@@ -27,8 +27,8 @@ protected:
 // Operationen
 public:
 	void SetNewCharOnNextFreePos(int nr);
-	int HoleRichtung() {return m_grpDirection;};
-	void SetzeRichtung(int richt) { m_grpDirection = richt; }
+	COMPASS_DIRECTION HoleRichtung() { return m_grpDirection; };
+	void SetzeRichtung(COMPASS_DIRECTION richt) { m_grpDirection = richt; }
 	VEKTOR HolePosition() {return m_posPosition;};
 
 
@@ -48,11 +48,11 @@ public:
 	void DamageFrom(CCharacter* pMon, VEKTOR hisPos, bool DamageFrom);
 	void DoDamage(int dmg, VEKTOR hisPos, bool DamageFrom);
 
-	void DrehenRelativ(int iRichtung);
-	void DrehenAbsolut(int iRichtung);
+	void DrehenRelativ(int iRelRichtung);
+	void DrehenAbsolut(COMPASS_DIRECTION iRichtung);
 	virtual ~CGrpChar();
 protected:
-	int m_grpDirection; // TODO enum bauen
+	COMPASS_DIRECTION m_grpDirection; 
 	VEKTOR m_posPosition;
 	CHelpfulValues* m_values;
 	CCharacter* NearestTarget(VEKTOR hisPos);

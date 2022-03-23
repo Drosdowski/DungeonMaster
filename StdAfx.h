@@ -81,6 +81,14 @@ enum SUBPOS_ABSOLUTE
 	MIDDLE = 4
 };
 
+enum COMPASS_DIRECTION
+{
+	NORTH = 0,
+	EAST = 1,
+	SOUTH = 2,
+	WEST = 3
+};
+
 struct VEKTOR
 {
 	int x,y,z;
