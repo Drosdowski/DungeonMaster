@@ -82,14 +82,14 @@ void CGrpChar::DoDamage(int dmg, VEKTOR hisPos, bool areaDmg) {
 		for (int dmgTgt = 1; dmgTgt <= 4; dmgTgt++) {
 			victim = m_pMember[dmgTgt];
 			if (victim && (victim->Hp().Aktuell > 0)) {
-				victim->m_iReceivedDmg += dmg; // Schaden aufsummieren, Abrechnung folgt im Altern.
+				victim->AddDmg(dmg); // Schaden aufsummieren, Abrechnung folgt im Altern.
 			}
 		}
 	}
 	else {
 		victim = NearestTarget(hisPos);
 		if (victim && (victim->Hp().Aktuell > 0)) {
-			victim->m_iReceivedDmg += dmg; 
+			victim->AddDmg(dmg);
 		}
 	}
 
@@ -129,8 +129,6 @@ void CGrpChar::Laufen(VEKTOR WunschPos) {
 
 VEKTOR CGrpChar::HoleZielFeld(int iRichtung)
 {
-	CPictures* x = NULL;
-
 	int sx = m_values->m_stx[m_grpDirection];
 	int sy = m_values->m_sty[m_grpDirection];
 
@@ -160,38 +158,43 @@ VEKTOR CGrpChar::HoleZielFeld(int iRichtung)
 	return WunschPos;
 }
 
-
-void CGrpChar::Drehen(int iRichtung)
-{
-	switch (iRichtung)
-	{
-	case LINKS:
-		m_grpDirection = (m_grpDirection + 3) %4;		
-		break;
-	case RECHTS:
-		m_grpDirection = (m_grpDirection + 1) %4;
-		break;
-	}
-
+void CGrpChar::DrehenAbsolut(int iRichtung) {
+	int oldDir = m_grpDirection;
+	m_grpDirection = iRichtung;
+	
 	for (int i = 1; i < 5; i++)
 	{
 		if (m_pMember[i] != NULL) {
-			m_pMember[i]->m_chrDirection = m_grpDirection;
+			m_pMember[i]->SetDirection(m_grpDirection);
 			SUBPOS_ABSOLUTE pos = m_pMember[i]->HoleSubPosition();
-			
-			switch (iRichtung)
+
+			if (((iRichtung + 4 - oldDir) % 4) == 3) // nö - geht nur bei relativ
 			{
-			case LINKS:
 				pos = CHelpfulValues::RightFrom(pos);
-				break;
-			case RECHTS:
+			}
+			else if (((iRichtung + 4 - oldDir) % 4) == 1) {
 				pos = CHelpfulValues::LeftFrom(pos);
-				break;
+			}
+			else if (((iRichtung + 4 - oldDir) % 4) == 2) {
+				pos = CHelpfulValues::LeftFrom(CHelpfulValues::LeftFrom(pos));
 			}
 
 			m_pMember[i]->SetzeSubPosition(pos);
 			m_pMember[i]->ActionDone();
 		}
+	}
+}
+
+void CGrpChar::DrehenRelativ(int iRichtung)
+{
+	switch (iRichtung)
+	{
+	case LINKS:
+		DrehenAbsolut((m_grpDirection + 3) %4);
+		break;
+	case RECHTS:
+		DrehenAbsolut((m_grpDirection + 1) %4);
+		break;
 	}
 
 }

@@ -48,7 +48,8 @@ public:
 	void DamageFrom(CCharacter* pMon, VEKTOR hisPos, bool DamageFrom);
 	void DoDamage(int dmg, VEKTOR hisPos, bool DamageFrom);
 
-	void Drehen(int iRichtung);
+	void DrehenRelativ(int iRichtung);
+	void DrehenAbsolut(int iRichtung);
 	virtual ~CGrpChar();
 protected:
 	int m_grpDirection; // TODO enum bauen

@@ -675,14 +675,14 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 			{
 				if (tele->getTargetDirection() == 90)
 				{
-					pGrpHelden->Drehen(RECHTS);
+					pGrpHelden->DrehenRelativ(RECHTS);
 				}
 				else if (tele->getTargetDirection() == 180) {
-					pGrpHelden->Drehen(RECHTS);
-					pGrpHelden->Drehen(RECHTS);
+					pGrpHelden->DrehenRelativ(RECHTS);
+					pGrpHelden->DrehenRelativ(RECHTS);
 				}
 				else if (tele->getTargetDirection() == 270) {
-					pGrpHelden->Drehen(LINKS);
+					pGrpHelden->DrehenRelativ(LINKS);
 				}
 			}
 		}
@@ -703,11 +703,11 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 		for (int i = -1; i <= 1; i += 2) {
 			if (!m_pMap->GetField(toPos.x + i, toPos.y, toPos.z)->HoleTyp() == FeldTyp::WALL) {
 				CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
-				pGrpHelden->SetzeRichtung((i == -1) ? 3 : 1);
+				pGrpHelden->DrehenAbsolut((i == -1) ? 3 : 1);
 			}
 			if (!m_pMap->GetField(toPos.x, toPos.y + i, toPos.z)->HoleTyp() == FeldTyp::WALL) {
 				CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
-				pGrpHelden->SetzeRichtung((i == -1) ? 0 : 2);
+				pGrpHelden->DrehenAbsolut((i == -1) ? 0 : 2);
 			}
 
 		}

@@ -55,20 +55,18 @@ public:
 	virtual ~CHeld();
 
 
-protected:
-	int m_iIndex; 
-	bool m_bAktiv;
-	CString m_strName;
-
-	long m_sExp[5];
-	VITALS m_sVitals;
-	int m_iFood;
-	int m_iWater;
 private:
 	CRucksack* m_pRucksack;
 	COLORREF m_Farbe[5];
+	long m_sExp[5];
+	VITALS m_sVitals;
 	int maxFood = 200;
 	int maxWater = 200;
+	int m_iFood;
+	int m_iWater;
+	int m_iIndex;
+	bool m_bAktiv;
+	CString m_strName;
 
 	CMiscellaneous* m_pItemInHand = NULL;
 };

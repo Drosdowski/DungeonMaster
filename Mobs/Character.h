@@ -6,7 +6,6 @@
 /////////////////////////////////////////////////////////////////////////////
 // Ansicht CCharacter 
 
-class CPictures;
 class CGrpChar;
 class CCharacter
 {
@@ -15,18 +14,27 @@ protected:
 
 // Attribute
 public:
+	virtual WERTE Hp() { return m_HP; };
+	virtual WERTE St() { return m_ST; };
+	virtual WERTE Ma() { return m_MA; };
+
+	int ReceivedDmg() { return m_iReceivedDmg;}
+	int GetDirection() { return m_chrDirection; }
+	bool IstBereit() { return m_iReady == 0; };
+	bool isAttacking() { return m_attacking; }
 
 // Operationen
 public:
-	virtual WERTE Hp()				 { return m_HP;};
-	virtual WERTE St()				 { return m_ST;};
-	virtual WERTE Ma()				 { return m_MA;};
-	virtual bool IstBereit()		 { return m_iReady == 0;};
+	void SetzeSubPosition(SUBPOS_ABSOLUTE pos) { m_subPosition = pos; };
+	void SetDirection(int direction) { m_chrDirection = direction; }
+	void AddDmg(int value) { m_iReceivedDmg += value; }
+	void ResetDmg() { m_iReceivedDmg = 0; }
+
+	
 
 // Implementierung
 public:
 	virtual bool Altern();
-	virtual void SetzeSubPosition(SUBPOS_ABSOLUTE pos) {m_subPosition = pos;};
 	virtual SUBPOS_ABSOLUTE HoleSubPosition() { return m_subPosition;};
 	virtual bool Kollision(int richt, CGrpChar* pGrpChar);
 	virtual void WerteTemporaerAendern(int hp, int st, int ma);
@@ -35,17 +43,11 @@ public:
 	bool InFrontOfOpponent(VEKTOR myPos, VEKTOR hisPos);
 	virtual ~CCharacter();
 
-	bool isAttacking() { return m_attacking; }
 	void ActionDone() { m_iReady = m_SpeedDelay; } // wartezeit triggern, abhängig von Speed
 	void AttackModeWithDmg(int damage);
 	void EndAttack();
 
 	int GetDealingDamage() { return m_dealingDmg; }
-
-	// TODO möglichst viel nach PROTECTED
-	int m_iReceivedDmg; // PASSIV- Erhaltener Schaden, zur Anzeige.
-	int m_chrDirection;	// initial und bei Grp.-Bewegung gleich der Gruppenvariable; ändert sich nur bei angriffen
-
 
 	bool westOf(VEKTOR myPos, VEKTOR hisPos);
 	bool eastOf(VEKTOR myPos, VEKTOR hisPos);
@@ -53,7 +55,10 @@ public:
 	bool southOf(VEKTOR myPos, VEKTOR hisPos);
 
 	// Generierte Nachrichtenzuordnungsfunktionen
+
 protected:
+	int m_iReceivedDmg; // PASSIV- Erhaltener Schaden, zur Anzeige.
+	int m_chrDirection;	// initial und bei Grp.-Bewegung gleich der Gruppenvariable; ändert sich nur bei angriffen
 	int m_ApproxDmg; // AKTIV - Durchschnittlicher Schaden plus minus random
 	int m_SpeedDelay; // 0 = Schnellstes (Zyklen bis zur Aktion)
 	int m_dealingDmg; // AKTIV - tatsächlicher aktueller Schaden, zur Anzeige.

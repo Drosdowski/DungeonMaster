@@ -55,7 +55,7 @@ void CGrpMonster::InitMonster(int nr, CMonster::MonsterTyp iTyp)
 		m_grpDirection = 0;
 		SetNewCharOnNextFreePos(nr);
 
-		m_pMember[nr]->m_chrDirection= m_grpDirection;
+		m_pMember[nr]->SetDirection(m_grpDirection);
 	}
 }
 
@@ -103,14 +103,14 @@ CMonster* CGrpMonster::AttackHero(VEKTOR myPos, VEKTOR hisPos) {
 		CMonster* pMonster = (CMonster*)m_pMember[i];
 		if (pMonster && pMonster->IstBereit()) {	
 			if (pMonster->InFrontOfOpponent(myPos, hisPos)) {
-				if (pMonster->m_chrDirection == m_grpDirection)
+				if (pMonster->GetDirection() == m_grpDirection)
 				{
 					int dmg = pMonster->CalcDmg(1); // todo monster attacke random
 					pMonster->AttackModeWithDmg(dmg);
 					return pMonster; // pro Tick nur ein Angriff / Gruppe
 				}
 				else {
-					pMonster->m_chrDirection = m_grpDirection; // Einzeldrehung zur Attacke
+					pMonster->SetDirection(m_grpDirection); // Einzeldrehung zur Attacke
 				}
 			}
 			else {

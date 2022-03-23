@@ -15,7 +15,7 @@ CMonsterPic::~CMonsterPic() {
 }
 
 CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
-	int iRicht = (6 - pMonster->m_chrDirection + richtHero) % 4;
+	int iRicht = (6 - pMonster->GetDirection() + richtHero) % 4;
 	switch (pMonster->getType())
 	{
 	case CMonster::MonsterTyp::MUMIE:

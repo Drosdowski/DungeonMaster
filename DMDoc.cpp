@@ -120,9 +120,9 @@ void CDMDoc::Laufen()
 		}
 		else {
 			if (m_iWunschRichtung == LINKS_DREHEN)
-				pGrpHeroes->Drehen(LINKS);
+				pGrpHeroes->DrehenRelativ(LINKS);
 			else
-				pGrpHeroes->Drehen(RECHTS);
+				pGrpHeroes->DrehenRelativ(RECHTS);
 		}
 
 		break;
