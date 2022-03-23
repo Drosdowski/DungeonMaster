@@ -16,8 +16,8 @@ int CHelpfulValues::stx(int i) {
 int CHelpfulValues::sty(int i) {
 	return int(sin(i * PI / 2)); // 1, 0, -1, 0;
 }
-int CHelpfulValues::OppositeDirection(int direction) {
-	return (direction + 2) % 4;
+COMPASS_DIRECTION CHelpfulValues::OppositeDirection(COMPASS_DIRECTION direction) {
+	return (COMPASS_DIRECTION) ((direction + 2) % 4);
 }
 
 VEKTOR CHelpfulValues::MakeVektor(int direction, int force) {

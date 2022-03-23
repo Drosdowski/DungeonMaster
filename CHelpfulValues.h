@@ -9,7 +9,7 @@ public:
 	int m_stx[4];
 	int m_sty[4];
 
-	int static OppositeDirection(int direction);
+	COMPASS_DIRECTION static OppositeDirection(COMPASS_DIRECTION direction);
 
 	static SUBPOS_ABSOLUTE FindNextSubposWithoutFieldChange(SUBPOS_ABSOLUTE posAbs, VEKTOR force);
 

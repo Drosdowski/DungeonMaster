@@ -302,8 +302,8 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 
 	//WallDecorationType graphicType = graphic > 0 ? m_wallDecorationTypes[graphic, coords.z] : None;
 	//if (graphicType < 0 || graphicType > 255) graphicType = None; 
-	CActuator* actuator = new CActuator(index, position, target, actionType, actionTarget, type, graphic);
-	m_pFeld[coords.x][coords.y][coords.z]->PutActuator(actuator, (SUBPOS_ABSOLUTE)position);
+	CActuator* actuator = new CActuator(index, (COMPASS_DIRECTION)position, target, actionType, actionTarget, type, graphic);
+	m_pFeld[coords.x][coords.y][coords.z]->PutActuator(actuator, (COMPASS_DIRECTION)position);
 }
 
 void CDungeonMap::ParseWallDecorationGraphic(TiXmlElement* rootNode, int etage) {

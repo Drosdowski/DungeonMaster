@@ -517,11 +517,11 @@ void CRaumView::Zeichnen(CDC* pDC)
 		pDC->StretchBlt(0, 64, MainAreaWidth, 269, &compCdc, MainAreaWidth, 64, -MainAreaWidth, 269, SRCCOPY);
 	}
 
-	int x = m_pMap->GetHeroes()->HolePosition().x;
-	int y = m_pMap->GetHeroes()->HolePosition().y;
-	int z = m_pMap->GetHeroes()->HolePosition().z;
+	int x = m_pMap->GetHeroes()->GetVector().x;
+	int y = m_pMap->GetHeroes()->GetVector().y;
+	int z = m_pMap->GetHeroes()->GetVector().z;
 
-	COMPASS_DIRECTION heroDir = m_pMap->GetHeroes()->HoleRichtung();
+	COMPASS_DIRECTION heroDir = m_pMap->GetHeroes()->GetDirection();
 	int stx = m_values->m_stx[heroDir];
 	int sty = m_values->m_sty[heroDir];
 
@@ -865,7 +865,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	VEKTOR targetPos = pGrpMon->HoleZielFeld(VORWAERTS);
 	CField* targetField = m_pMap->GetField(targetPos);
 
-	int heroRicht = m_pMap->GetHeroes()->HoleRichtung();
+	int heroRicht = m_pMap->GetHeroes()->GetDirection();
 
 	int xDist = monPos.x - heroPos.x;
 	int yDist = monPos.y - heroPos.y;
@@ -876,7 +876,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 		{
 			m_pDoc->PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
 
-			m_pMap->GetHeroes()->DamageFrom(attackingMonster, pGrpMon->HolePosition(), false);
+			m_pMap->GetHeroes()->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
 		}
 		return monPos;
 	}
@@ -924,7 +924,7 @@ void CRaumView::TriggerMoveAnimation() {
 }
 
 bool CRaumView::OnStairs() {
-	return m_pMap->GetField(m_pMap->GetHeroes()->HolePosition())->HoleTyp() == FeldTyp::STAIRS;
+	return m_pMap->GetField(m_pMap->GetHeroes()->GetVector())->HoleTyp() == FeldTyp::STAIRS;
 }
 
 void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
@@ -949,11 +949,11 @@ void CRaumView::OnTrigger()
 {
 	// Hier werden sämtliche Trigger angestoßen: Schalter, Türen, etc.
 
-	int x = m_pMap->GetHeroes()->HolePosition().x;
-	int y = m_pMap->GetHeroes()->HolePosition().y;
-	int z = m_pMap->GetHeroes()->HolePosition().z;
+	int x = m_pMap->GetHeroes()->GetVector().x;
+	int y = m_pMap->GetHeroes()->GetVector().y;
+	int z = m_pMap->GetHeroes()->GetVector().z;
 
-	COMPASS_DIRECTION richt = m_pMap->GetHeroes()->HoleRichtung();
+	COMPASS_DIRECTION richt = m_pMap->GetHeroes()->GetDirection();
 	int addx = x + m_values->m_sty[richt];
 	int addy = y - m_values->m_stx[richt];
 	CField* feld = m_pMap->GetField(addx, addy, z);

@@ -76,7 +76,7 @@ public:
 	CPit* HolePit() { return m_pPit;  }
 	CTeleporter* HoleTeleporter() { return m_pTeleporter; }
 
-	void PutActuator(CActuator* actuator, SUBPOS_ABSOLUTE index);
+	void PutActuator(CActuator* actuator, COMPASS_DIRECTION index);
 	VEKTOR HolePos() { return m_posKoord; }
 	bool CriticalWeightChange(VEKTOR heroPos, int criticalWeight);
 

@@ -166,7 +166,7 @@ void CField::PutFloorDeco(CFieldDecoration* deco) {
 	m_floorOrnateType = deco;
 }
 
-void CField::PutActuator(CActuator* actuator, SUBPOS_ABSOLUTE index) {
+void CField::PutActuator(CActuator* actuator, COMPASS_DIRECTION index) {
 	m_pActuator[index].push(actuator);
 }
 

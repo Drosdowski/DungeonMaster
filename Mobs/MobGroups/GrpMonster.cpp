@@ -226,7 +226,7 @@ CMonster* CGrpMonster::GetMonsterByRelSubPos(SUBPOS pos, COMPASS_DIRECTION richt
 //   |
 //   2
 void CGrpMonster::TurnToHero(VEKTOR heroPos) {
-	VEKTOR monPos = HolePosition();
+	VEKTOR monPos = GetVector();
 	COMPASS_DIRECTION monDir = m_grpDirection;
 
 	COMPASS_DIRECTION newDirection;

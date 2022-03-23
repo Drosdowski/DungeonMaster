@@ -30,7 +30,7 @@ public:
 	virtual int GetIDB(int index);
 	int getDealingDmg() { return m_dealingDmg; }
 	int getType() { return m_iTyp; }
-	bool TurnTo(int iDirection);
+	bool TurnTo(COMPASS_DIRECTION iDirection);
 	int CalcDmg(int ID);
 
 	int transCol;

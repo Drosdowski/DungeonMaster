@@ -199,7 +199,7 @@ void CDMView::ParseClickAir(CPoint point) {
 				}
 				else 
 				{
-					int grpDir = grpHelden->HoleRichtung();
+					int grpDir = grpHelden->GetDirection();
 					SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(airRegionClicked, grpDir);
 					VEKTOR force = CHelpfulValues::MakeVektor(grpDir, 6);
 					FeldVorHeld->ThrowMisc(pItemInHand, itemRegionReal, force);
@@ -212,12 +212,23 @@ void CDMView::ParseClickAir(CPoint point) {
 	}
 }
 
-void CDMView::ParseClickActuator(CPoint point, std::stack<CActuator*> actuators) {
-	CActuator* activeActuator = actuators.top();
+void CDMView::ParseClickActuator(CPoint point, std::stack<CActuator*> actuators, COMPASS_DIRECTION dir) {
+	CActuator* activeActuator = NULL;
+	COMPASS_DIRECTION pos;
+	while (!actuators.empty() && (activeActuator == NULL)) {
+		pos = actuators.top()->GetPosition();
+		if (pos == dir)
+			activeActuator = actuators.top();
+
+	}
 	if (activeActuator)
 		if (CScreenCoords::CheckHitDeco(point))
 		{
-
+			int type = activeActuator->GetType();
+			if (type == 1) {
+				// Schalter 
+				type = type;
+			}
 		}
 
 }
@@ -227,7 +238,7 @@ void CDMView::ParseClickFloor(CPoint point) {
 	CMiscellaneous* pItemInHand = grpHelden->GetItemInHand();
 
 	SUBPOS itemRegionClicked = CScreenCoords::CheckHitFloor(point);
-	SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(itemRegionClicked, grpHelden->HoleRichtung());
+	SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(itemRegionClicked, grpHelden->GetDirection());
 	CMiscellaneous* topItem = NULL;
 	if (itemRegionClicked == LINKSVORNE || itemRegionClicked == RECHTSVORNE)
 	{
@@ -315,9 +326,10 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
 			if (FeldVorHeld) {
 				if (FeldVorHeld->Blocked()) {
-					std::stack<CActuator*> actuators = (FeldVorHeld->GetActuator(grpHelden->HoleRichtung()));
+					COMPASS_DIRECTION dir = CHelpfulValues::OppositeDirection( grpHelden->GetDirection());
+					std::stack<CActuator*> actuators = (FeldVorHeld->GetActuator(dir));
 					if (!actuators.empty())
-						ParseClickActuator(point, actuators);
+						ParseClickActuator(point, actuators, dir);
 				}
 				else {
 					ParseClickAir(point);

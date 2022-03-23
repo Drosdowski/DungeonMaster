@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CActuator.h"
 
-CActuator::CActuator(int index, int position, VEKTOR target, ActionTypes actionType, ActionTarget actionTarget, int type, int graphic) {
+CActuator::CActuator(int index, COMPASS_DIRECTION position, VEKTOR target, ActionTypes actionType, ActionTarget actionTarget, int type, int graphic) {
 	m_index = index;
 	m_target[position] = target;
 	m_actionType[position] = actionType;

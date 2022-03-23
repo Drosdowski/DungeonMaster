@@ -27,9 +27,9 @@ protected:
 // Operationen
 public:
 	void SetNewCharOnNextFreePos(int nr);
-	COMPASS_DIRECTION HoleRichtung() { return m_grpDirection; };
+	COMPASS_DIRECTION GetDirection() { return m_grpDirection; };
 	void SetzeRichtung(COMPASS_DIRECTION richt) { m_grpDirection = richt; }
-	VEKTOR HolePosition() {return m_posPosition;};
+	VEKTOR GetVector() {return m_posPosition;};
 
 
 // Implementierung

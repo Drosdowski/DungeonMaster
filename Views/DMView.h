@@ -92,7 +92,7 @@ protected:
 	void ParseClickHeroes(CPoint point);
 	void ParseClickFloor(CPoint point);
 	void ParseClickAir(CPoint point);
-	void ParseClickActuator(CPoint point, std::stack<CActuator*> activeActuator);
+	void ParseClickActuator(CPoint point, std::stack<CActuator*> activeActuator, COMPASS_DIRECTION dir);
 };
 
 #ifndef _DEBUG  // debug version in DMView.cpp
