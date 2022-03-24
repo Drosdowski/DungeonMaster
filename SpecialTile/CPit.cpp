@@ -10,3 +10,18 @@ CPit::CPit(PitType type, PitState state) {
 CPit::~CPit() {
 
 };
+
+void CPit::Open() {
+	m_state = PitState::Opened;
+}
+
+void CPit::Close() {
+	m_state = PitState::Closed;
+}
+
+void CPit::Toggle() {
+	if (m_state == PitState::Opened)
+		m_state = PitState::Closed; 
+	else 
+		m_state = PitState::Opened;
+}

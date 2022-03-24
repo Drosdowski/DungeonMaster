@@ -544,7 +544,7 @@ void CRaumView::Zeichnen(CDC* pDC)
 					if (fieldTypeAbove == FeldTyp::PIT) {
 						CPit* pit = pFieldAbove->HolePit();
 						if (pit->GetType() != CPit::PitType::Invisible &&
-							pit->GetState() == CPit::PitState::Open) {
+							pit->GetState() == CPit::PitState::Opened) {
 							DrawCeilingPit(pDC, &compCdc, xxx, ebene, pit);
 						}
 					}
@@ -573,7 +573,7 @@ void CRaumView::Zeichnen(CDC* pDC)
 				else if (fieldType == FeldTyp::PIT) {
 					CPit* pit = pField->HolePit();
 					if (pit->GetType() != CPit::PitType::Invisible && 
-						pit->GetState() == CPit::PitState::Open) {
+						pit->GetState() == CPit::PitState::Opened) {
 						DrawFloorPit(pDC, &compCdc, xxx, ebene, pit);
 					}
 
@@ -638,7 +638,7 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 	}
 	else if (iTyp == FeldTyp::PIT) {
 		CPit* pit = pField->HolePit();
-		if (pit->GetState() == CPit::PitState::Open) {
+		if (pit->GetState() == CPit::PitState::Opened) {
 			CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
 			toPos.z++;
 			toPos.x += (m_pMap->GetOffset(fromPos.z).x - m_pMap->GetOffset(toPos.z).x);

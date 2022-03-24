@@ -3,25 +3,27 @@
 #include "stdafx.h"
 #include "DM.h"
 
-#include "DMDoc.h"
+#include <CScreenCoords.h>
+#include <winuser.rh>
+
+#include "..\DMDoc.h"
 #include "DMView.h"
 #include "RaumView.h"
 #include "ZauberView.h"
 #include "CGroupView.h"
 #include "CBackpackView.h"
-#include "CDungeonMap.h"
-#include "Rucksack.h"
-#include "Pictures\CPictures.h"
-#include "Pictures/Items3D/CItem3DPic.h"
-#include "Mobs\MobGroups\GrpHeld.h"
-#include "Mobs\MobGroups\GrpMonster.h"
-#include "Mobs\Held.h"
-#include "ColorCursor/ColorCursor.h"
-#include <CScreenCoords.h>
-#include "CHelpfulValues.h"
-#include "SpecialTile/CDoor.h"
-#include <winuser.rh>
-#include <Items/CMiscellaneous.h>
+#include "..\CDungeonMap.h"
+#include "..\Rucksack.h"
+#include "..\Pictures\CPictures.h"
+#include "..\Pictures/Items3D/CItem3DPic.h"
+#include "..\Mobs\MobGroups\GrpHeld.h"
+#include "..\Mobs\MobGroups\GrpMonster.h"
+#include "..\Mobs\Held.h"
+#include "..\ColorCursor/ColorCursor.h"
+#include "..\CHelpfulValues.h"
+#include "..\SpecialTile/CDoor.h"
+#include "..\SpecialTile\CPit.h"
+#include "..\Items/CMiscellaneous.h""
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -227,7 +229,29 @@ void CDMView::ParseClickActuator(CPoint point, std::stack<CActuator*> actuators,
 			int type = activeActuator->GetType();
 			if (type == 1) {
 				// Schalter 
-				type = type;
+				CActuator::ActionTarget actionTarget = activeActuator->GetActionTarget(pos);
+				if (actionTarget == CActuator::Remote) {
+					VEKTOR target = activeActuator->GetTarget(pos);
+					CField* pTargetField = m_pRaumView->GetMap()->GetField(target);
+					CDoor* door;
+					CPit* pit;
+
+					switch (pTargetField->HoleTyp()) {
+					case FeldTyp::DOOR:
+						door = pTargetField->HoleDoor();
+						if (activeActuator->GetActionType(pos) == CActuator::Toggle) door->Toggle();
+						if (activeActuator->GetActionType(pos) == CActuator::Set) door->Open();
+						if (activeActuator->GetActionType(pos) == CActuator::Clear) door->Close();
+						break;
+					case FeldTyp::PIT:
+						pit = pTargetField->HolePit();
+						if (activeActuator->GetActionType(pos) == CActuator::Toggle) pit->Toggle();
+						if (activeActuator->GetActionType(pos) == CActuator::Set) pit->Open();
+						if (activeActuator->GetActionType(pos) == CActuator::Clear) pit->Close();
+						break;
+					}
+				}
+
 			}
 		}
 
@@ -322,7 +346,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 			ParseClickAction(point);
 			ParseClickHeroes(point);
 		
-			// Feld vorne frei?
+			// Unterscheiden: Anklicken oder werfen?
 			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
 			if (FeldVorHeld) {
 				if (FeldVorHeld->Blocked()) {

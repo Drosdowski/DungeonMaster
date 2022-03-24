@@ -187,7 +187,6 @@ enum FeldTyp {
 };
 
 
-
 bool InRect(CPoint p, int x1, int y1, int x2, int y2);
 
 #define MainAreaWidth 448

@@ -10,7 +10,7 @@ public:
 
 	enum PitState {
 		Closed = 0,
-		Open = 1
+		Opened = 1
 	};
 
 	CPit(PitType type, PitState state);
@@ -19,6 +19,9 @@ public:
 	PitType GetType() { return m_type; }
 	PitState GetState() { return m_state; }
 
+	void Open();
+	void Close();
+	void Toggle();
 
 private:
 	PitType m_type;
