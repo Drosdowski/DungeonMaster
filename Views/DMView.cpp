@@ -214,13 +214,13 @@ void CDMView::ParseClickAir(CPoint point) {
 	}
 }
 
-void CDMView::ParseClickActuator(CPoint point, std::stack<CActuator*> actuators, COMPASS_DIRECTION dir) {
+bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators, COMPASS_DIRECTION dir) {
 	CActuator* activeActuator = NULL;
 	COMPASS_DIRECTION pos;
 	while (!actuators.empty() && (activeActuator == NULL)) {
-		pos = actuators.top()->GetPosition();
+		pos = actuators.back()->GetPosition();
 		if (pos == dir)
-			activeActuator = actuators.top();
+			activeActuator = actuators.back();
 
 	}
 	if (activeActuator)
@@ -249,9 +249,14 @@ void CDMView::ParseClickActuator(CPoint point, std::stack<CActuator*> actuators,
 						if (activeActuator->GetActionType(pos) == CActuator::Set) pit->Open();
 						if (activeActuator->GetActionType(pos) == CActuator::Clear) pit->Close();
 						break;
+					default:
+						break;
 					}
 				}
-
+				else {
+					type = type;
+				}
+				return true; // RotateActuators
 			}
 		}
 
@@ -351,9 +356,11 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 			if (FeldVorHeld) {
 				if (FeldVorHeld->Blocked()) {
 					COMPASS_DIRECTION dir = CHelpfulValues::OppositeDirection( grpHelden->GetDirection());
-					std::stack<CActuator*> actuators = (FeldVorHeld->GetActuator(dir));
-					if (!actuators.empty())
-						ParseClickActuator(point, actuators, dir);
+					std::deque<CActuator*> actuators = (FeldVorHeld->GetActuator(dir));
+					if (!actuators.empty()) {
+						if (ParseClickActuator(point, actuators, dir))
+							FeldVorHeld->RotateActuators(dir);
+					}
 				}
 				else {
 					ParseClickAir(point);
@@ -643,5 +650,6 @@ void CDMView::InitDungeon(CDMDoc* pDoc)
 	m_pRaumView->InitDungeon(pDoc, pDC, m_pPictures);
 	pDoc->SetRaumView(m_pRaumView);
 }
+
 
 

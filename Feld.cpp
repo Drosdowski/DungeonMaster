@@ -82,15 +82,11 @@ CField::~CField()
 	if (m_floorOrnateType)
 		delete m_floorOrnateType;
 	for (int i = 0; i < 4; i++) {
-		while (!m_pMiscellaneous[i].empty()) {
-			CMiscellaneous* item = m_pMiscellaneous[i].top();
+		for (CMiscellaneous* item : m_pMiscellaneous[i]) {
 			delete item;
-			m_pMiscellaneous[i].pop();
 		}
-		while (!m_pActuator[i].empty()) {
-			CActuator* actuator = m_pActuator[i].top();
+		for (CActuator* actuator : m_pActuator[i]) {
 			delete actuator;
-			m_pActuator[i].pop();
 		}
 	}
 }
@@ -155,11 +151,11 @@ void CField::SetTypeTeleporter(CTeleporter* teleItem) {
 
 void CField::ThrowMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index, VEKTOR force) {
 	misc->m_flyForce = force;
-	m_pMiscellaneous[index].push(misc);
+	m_pMiscellaneous[index].push_back(misc);
 }
 
 void CField::PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index) {
-	m_pMiscellaneous[index].push(misc);
+	m_pMiscellaneous[index].push_back(misc);
 }
 
 void CField::PutFloorDeco(CFieldDecoration* deco) {
@@ -167,15 +163,15 @@ void CField::PutFloorDeco(CFieldDecoration* deco) {
 }
 
 void CField::PutActuator(CActuator* actuator, COMPASS_DIRECTION index) {
-	m_pActuator[index].push(actuator);
+	m_pActuator[index].push_back(actuator);
 }
 
 // Item von Stapel nehmen - ist dann "in der Hand"
-CMiscellaneous* CField::TakeMisc(SUBPOS_ABSOLUTE subPos) {
+CMiscellaneous* CField::TakeMisc(SUBPOS_ABSOLUTE subPos) {	
 	if (m_pMiscellaneous[subPos].size() > 0)
 	{
-		CMiscellaneous* topItem = m_pMiscellaneous[subPos].top();
-		m_pMiscellaneous[subPos].pop();
+		CMiscellaneous* topItem = m_pMiscellaneous[subPos].back();
+		m_pMiscellaneous[subPos].pop_back();
 
 		return topItem;
 	}
@@ -203,4 +199,10 @@ bool CField::CriticalWeightChange(VEKTOR heroPos, int criticalWeight) {
 	if (lastWeight < criticalWeight && currentWeight >= criticalWeight) return true;
 	if (lastWeight >= criticalWeight && currentWeight < criticalWeight) return true;
 	return false;
+}
+
+void CField::RotateActuators(COMPASS_DIRECTION position) {
+	CActuator* actuator = m_pActuator[position].back();
+	m_pActuator[position].pop_back();
+	m_pActuator[position].push_front(actuator);
 }

@@ -3,7 +3,7 @@
 
 
 #include "stdafx.h"
-#include <stack>
+#include <deque>
 #include "CHelpfulValues.h"
 #include "DmDoc.h"
 #include "Feld.h"
@@ -286,14 +286,14 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 	CBitmap* bmpDecoSide = NULL;
 	int xx = wallXFactor[xxx];
 
-	std::stack<CActuator*> actuatorsFront = pField->GetActuator((COMPASS_DIRECTION)CHelpfulValues::OppositeDirection(richt));
+	std::deque<CActuator*> actuatorsFront = pField->GetActuator((COMPASS_DIRECTION)CHelpfulValues::OppositeDirection(richt));
 	if (!actuatorsFront.empty()) {
-		int graphicId = actuatorsFront.top()->GetGraphic();
+		int graphicId = actuatorsFront.back()->GetGraphic();
 		WallDecorationType graphicType = m_pMap->GetWallDecorationType(pField->HolePos().z, graphicId);
 		bmpDecoFront = m_pWallDecoPic->GetPicFront(graphicType);
 	}
 
-	std::stack<CActuator*> actuatorsSide;
+	std::deque<CActuator*> actuatorsSide;
 	if (xx > 0)
 	{
 		actuatorsSide = pField->GetActuator((COMPASS_DIRECTION)((richt + 3) % 4));
@@ -303,7 +303,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 	} 
 
 	if (!actuatorsSide.empty()) {
-		int graphicId = actuatorsSide.top()->GetGraphic();
+		int graphicId = actuatorsSide.back()->GetGraphic();
 		WallDecorationType graphicType = m_pMap->GetWallDecorationType(pField->HolePos().z, graphicId);
 		bmpDecoSide = m_pWallDecoPic->GetPicSide(graphicType, (xx < 0));
 	}
@@ -399,15 +399,13 @@ void test(CDC* pDC, int x, int y) {
 void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pField) {
 	BITMAP bmpDecoInfo;
 	
-	std::stack<CActuator*> actuators = pField->GetActuator((COMPASS_DIRECTION)0);  // Boden hat immer POsition 0.
-	while (!actuators.empty()) {
-		CActuator* actuator = actuators.top();
+	std::deque<CActuator*> actuators = pField->GetActuator((COMPASS_DIRECTION)0);  // Boden hat immer POsition 0.
+	for (CActuator* actuator: actuators) {
 		if (actuator->GetType() == 3) {
 			DrawSquarePressurePad(pDC, cdc, xxx, ebene, actuator);
 		}
-		actuators.pop();
 	}
-
+	
 	CFieldDecoration* floorDeco = pField->GetFloorDeco(); 
 	CBitmap* decoBmp = NULL;
 	if (floorDeco)
@@ -433,9 +431,9 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 
 }
 
-void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, int heroDir, std::stack<CMiscellaneous*> pile) {
+void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, int heroDir, std::deque<CMiscellaneous*> pile) {
 	// TODO - besser als "nur oberstes Malen... "
-	CMiscellaneous* misc = pile.top();
+	CMiscellaneous* misc = pile.back();
 	if (misc) {
 		int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
 	
@@ -592,7 +590,7 @@ void CRaumView::Zeichnen(CDC* pDC)
 				if (fieldType != FeldTyp::WALL) {
 					for (int pos = 0; pos < 4; pos++)
 					{
-						std::stack<CMiscellaneous*> pile = pField->GetMisc((SUBPOS_ABSOLUTE)pos);
+						std::deque<CMiscellaneous*> pile = pField->GetMisc((SUBPOS_ABSOLUTE)pos);
 						if (pile.size() > 0) {
 							DrawPile(pDC, &compCdc, xxx, ebene, (SUBPOS_ABSOLUTE)pos, heroDir, pile);
 						}
@@ -744,9 +742,9 @@ void CRaumView::PrepareMoveItems(VEKTOR heroPos) {
 	// Flag setzen, Item muss sich ggf. noch bewegen
 	for (int s = 0; s < 4; s++) {
 		SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
-		std::stack<CMiscellaneous*> pile = field->GetMisc(posAbs);
+		std::deque<CMiscellaneous*> pile = field->GetMisc(posAbs);		
 		if (!pile.empty()) {
-			CMiscellaneous* topItem = pile.top();
+			CMiscellaneous* topItem = pile.back();
 			topItem->ResethasMoved();
 		}
 	}
@@ -757,9 +755,9 @@ void CRaumView::MoveItems(VEKTOR heroPos) {
 	
 	for (int s = 0; s < 4; s++) {
 		SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
-		std::stack<CMiscellaneous*> pile = field->GetMisc(posAbs);
+		std::deque<CMiscellaneous*> pile = field->GetMisc(posAbs);
 		if (!pile.empty()) {
-			CMiscellaneous* topItem = pile.top(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Items je Feld
+			CMiscellaneous* topItem = pile.back(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Items je Feld
 			if (topItem->IsFlying() && !topItem->HasMovedThisTick()) {
 				// fliegendes Item gefunden
 				SUBPOS_ABSOLUTE newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, topItem->m_flyForce);
@@ -803,11 +801,9 @@ void CRaumView::MoveAnythingNearby() {
 
 void CRaumView::TriggerActuators(VEKTOR fieldPos, VEKTOR heroPos) {
 	CField* field = m_pMap->GetField(fieldPos);
-	std::stack<CActuator*> actuators = field->GetActuator((COMPASS_DIRECTION)0);
-	while (!actuators.empty()) {
-		CActuator* actuator = actuators.top();
+	std::deque<CActuator*> actuators = field->GetActuator((COMPASS_DIRECTION)0);
+	for (CActuator* actuator : actuators) {
 		TriggerActuator(heroPos, field, actuator, (COMPASS_DIRECTION)0);
-		actuators.pop();
 	}
 }
 

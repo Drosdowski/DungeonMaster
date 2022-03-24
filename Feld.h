@@ -3,7 +3,7 @@
 
 #include "StdAfx.h"	// Hinzugefügt von ClassView
 #include "Mobs\Monster.h"
-#include <stack>
+#include <deque>
 
 #if _MSC_VER >= 1000
 #pragma once
@@ -70,8 +70,8 @@ public:
 	void ThrowMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index, VEKTOR force);
 	//void PutMisc(CMiscellaneous* misc, SUBPOS subPos);
 	CMiscellaneous* TakeMisc(SUBPOS_ABSOLUTE subPos);
-	std::stack<CMiscellaneous*> GetMisc(SUBPOS_ABSOLUTE index) { return m_pMiscellaneous[index]; }
-	std::stack<CActuator*> GetActuator(COMPASS_DIRECTION index) { return m_pActuator[index]; }
+	std::deque<CMiscellaneous*> GetMisc(SUBPOS_ABSOLUTE index) { return m_pMiscellaneous[index]; }
+	std::deque<CActuator*> GetActuator(COMPASS_DIRECTION index) { return m_pActuator[index]; }
 
 	CPit* HolePit() { return m_pPit;  }
 	CTeleporter* HoleTeleporter() { return m_pTeleporter; }
@@ -79,6 +79,9 @@ public:
 	void PutActuator(CActuator* actuator, COMPASS_DIRECTION index);
 	VEKTOR HolePos() { return m_posKoord; }
 	bool CriticalWeightChange(VEKTOR heroPos, int criticalWeight);
+
+	void RotateActuators(COMPASS_DIRECTION position);
+
 
 // Overrides
 
@@ -94,9 +97,9 @@ protected:
 	FeldTyp m_iTyp;
 	//int m_pWallDecoration[4];
 	CFieldDecoration* m_floorOrnateType;
-	std::stack<CMiscellaneous*> m_pMiscellaneous[4];
+	std::deque<CMiscellaneous*> m_pMiscellaneous[4];
 
-	std::stack <CActuator*> m_pActuator[4];
+	std::deque <CActuator*> m_pActuator[4];
 
 	CDoor* m_pDoor = NULL;
 	CStairs* m_pStairs = NULL;

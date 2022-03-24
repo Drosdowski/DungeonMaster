@@ -9,7 +9,7 @@
 #pragma once
 #endif // _MSC_VER >= 1000
 
-#include <stack>
+#include <deque>
 
 
 class CActuator;
@@ -92,7 +92,8 @@ protected:
 	void ParseClickHeroes(CPoint point);
 	void ParseClickFloor(CPoint point);
 	void ParseClickAir(CPoint point);
-	void ParseClickActuator(CPoint point, std::stack<CActuator*> activeActuator, COMPASS_DIRECTION dir);
+	bool ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators, COMPASS_DIRECTION dir);
+
 };
 
 #ifndef _DEBUG  // debug version in DMView.cpp
