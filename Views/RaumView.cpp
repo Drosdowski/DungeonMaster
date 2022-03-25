@@ -799,22 +799,22 @@ void CRaumView::MoveAnythingNearby() {
 	}
 }
 
-void CRaumView::TriggerActuators(VEKTOR fieldPos, VEKTOR heroPos) {
+void CRaumView::TriggerPassiveActuators(VEKTOR fieldPos, VEKTOR heroPos) {
 	CField* field = m_pMap->GetField(fieldPos);
 	std::deque<CActuator*> actuators = field->GetActuator((COMPASS_DIRECTION)0);
 	for (CActuator* actuator : actuators) {
-		TriggerActuator(heroPos, field, actuator, (COMPASS_DIRECTION)0);
+		TriggerPassiveActuator(heroPos, field, actuator);
 	}
 }
 
-void CRaumView::TriggerActuator(VEKTOR heroPos, CField* field , CActuator* actuator, COMPASS_DIRECTION pos) {
+void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field , CActuator* actuator) {
 	bool criticalWeightChanged = field->CriticalWeightChange(heroPos, actuator->GetCriticalWeigth()); // todo parameter optimieren?
 	
 	if (criticalWeightChanged) {
 		switch (actuator->GetType()) {
 		case 3:
-			VEKTOR target = actuator->GetTarget(pos);
-			CActuator::ActionTypes type = actuator->GetActionType(pos);
+			VEKTOR target = actuator->GetTarget();
+			CActuator::ActionTypes type = actuator->GetActionType();
 			// TODO: type auswerten!
 			CField* pTargetField = m_pMap->GetField(target);
 			CDoor* pDoor = pTargetField->HoleDoor(); // todo das kann nicht nur eine Tür treffen!
@@ -846,7 +846,7 @@ void CRaumView::TriggerActuatorsNearby() {
 	VEKTOR held = m_pMap->GetHeroes()->GetPos();
 	for (int i = max(held.x - 4, 0); i < min(held.x + 4, m_pMap->GetMaxWidth(held.z)); i++) {
 		for (int j = max(held.y - 4, 0); j < min(held.y + 4, m_pMap->GetMaxHeight(held.z)); j++) {
-			TriggerActuators(VEKTOR{ i, j, held.z }, held);
+			TriggerPassiveActuators(VEKTOR{ i, j, held.z }, held);
 		}
 	}
 }

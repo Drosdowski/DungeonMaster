@@ -24,6 +24,7 @@
 #include "..\SpecialTile/CDoor.h"
 #include "..\SpecialTile\CPit.h"
 #include "..\Items/CMiscellaneous.h""
+#include <cassert>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -215,43 +216,37 @@ void CDMView::ParseClickAir(CPoint point) {
 }
 
 bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators, COMPASS_DIRECTION dir) {
-	CActuator* activeActuator = NULL;
+	std::deque<CActuator*> actuatorsAtPosition;
 	COMPASS_DIRECTION pos;
-	while (!actuators.empty() && (activeActuator == NULL)) {
-		pos = actuators.back()->GetPosition();
-		if (pos == dir)
-			activeActuator = actuators.back();
+	for (CActuator* actuator : actuators) {
+		// Alle Aktuatoren sammeln, die an der angeschauten Position sind.
+		pos = actuator->GetPosition();
+		if (pos == dir) {
+			actuatorsAtPosition.push_back(actuator);
+		}
 
 	}
-	if (activeActuator)
+	if (actuatorsAtPosition.size() > 0)
 		if (CScreenCoords::CheckHitDeco(point))
 		{
-			int type = activeActuator->GetType();
+			int type = actuatorsAtPosition.back()->GetType();
 			if (type == 1) {
 				// Schalter 
-				CActuator::ActionTarget actionTarget = activeActuator->GetActionTarget(pos);
-				if (actionTarget == CActuator::Remote) {
-					VEKTOR target = activeActuator->GetTarget(pos);
-					CField* pTargetField = m_pRaumView->GetMap()->GetField(target);
-					CDoor* door;
-					CPit* pit;
+				VEKTOR target;
+				CActuator::ActionTarget actionTarget = actuatorsAtPosition.back()->GetActionTarget();
+				// TODO Unklar - Logik korrekt? Target aus 2. Actuator nehmen, wenn 1. LOCAL ist, und 2. vorhanden und 2. remote.
+				if (actuatorsAtPosition.size() > 1 && actionTarget == CActuator::Local) {
+					assert(("too many actuators", actuatorsAtPosition.size() < 3));
+					actionTarget = actuatorsAtPosition.front()->GetActionTarget();
+					if (actionTarget == CActuator::Remote)
+						target = actuatorsAtPosition.front()->GetTarget();
+				}
+				else if (actionTarget == CActuator::Remote) {
+					target = actuatorsAtPosition.back()->GetTarget();
+				}
 
-					switch (pTargetField->HoleTyp()) {
-					case FeldTyp::DOOR:
-						door = pTargetField->HoleDoor();
-						if (activeActuator->GetActionType(pos) == CActuator::Toggle) door->Toggle();
-						if (activeActuator->GetActionType(pos) == CActuator::Set) door->Open();
-						if (activeActuator->GetActionType(pos) == CActuator::Clear) door->Close();
-						break;
-					case FeldTyp::PIT:
-						pit = pTargetField->HolePit();
-						if (activeActuator->GetActionType(pos) == CActuator::Toggle) pit->Toggle();
-						if (activeActuator->GetActionType(pos) == CActuator::Set) pit->Open();
-						if (activeActuator->GetActionType(pos) == CActuator::Clear) pit->Close();
-						break;
-					default:
-						break;
-					}
+				if (actionTarget == CActuator::Remote) {
+					InvokeRemoteActuator(actuatorsAtPosition.back(), target);
 				}
 				else {
 					type = type;
@@ -260,6 +255,30 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators
 			}
 		}
 
+}
+
+void CDMView::InvokeRemoteActuator(CActuator* activeActuator, VEKTOR target) {
+	
+	CField* pTargetField = m_pRaumView->GetMap()->GetField(target);
+	CDoor* door;
+	CPit* pit;
+
+	switch (pTargetField->HoleTyp()) {
+	case FeldTyp::DOOR:
+		door = pTargetField->HoleDoor();
+		if (activeActuator->GetActionType() == CActuator::Toggle) door->Toggle();
+		if (activeActuator->GetActionType() == CActuator::Set) door->Open();
+		if (activeActuator->GetActionType() == CActuator::Clear) door->Close();
+		break;
+	case FeldTyp::PIT:
+		pit = pTargetField->HolePit();
+		if (activeActuator->GetActionType() == CActuator::Toggle) pit->Toggle();
+		if (activeActuator->GetActionType() == CActuator::Set) pit->Open();
+		if (activeActuator->GetActionType() == CActuator::Clear) pit->Close();
+		break;
+	default:
+		break;
+	}
 }
 
 void CDMView::ParseClickFloor(CPoint point) {

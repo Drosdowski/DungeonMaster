@@ -166,14 +166,15 @@ void CDMDoc::InitGruppe(const int nr)
 {
 	CGrpHeld* pGrpHelden = m_pRaumView->GetHeroes();
 	CHeld* pHeld = pGrpHelden->InitHeld(nr);
-	
-	CDC* pDC = ((CDMApp*)AfxGetApp())->m_pView->GetDC();
-	m_pPictures->HaendeZeichnen(pDC, nr);
-	m_pPictures->NameZeichnen(pDC, pHeld->isActive(), nr, pHeld->getName());
-	m_pPictures->WerteZeichnen(pDC, pHeld);
+	if (pHeld) {
+		CDC* pDC = ((CDMApp*)AfxGetApp())->m_pView->GetDC();
+		m_pPictures->HaendeZeichnen(pDC, nr);
+		m_pPictures->NameZeichnen(pDC, pHeld->isActive(), nr, pHeld->getName());
+		m_pPictures->WerteZeichnen(pDC, pHeld);
 
-	SUBPOS relPos = CHelpfulValues::GetRelativeSubPosActive(pHeld->HoleSubPosition(), pGrpHelden->GetDirection());
-	m_pPictures->SymbolZeichnen(pDC, nr, relPos);
+		SUBPOS relPos = CHelpfulValues::GetRelativeSubPosActive(pHeld->HoleSubPosition(), pGrpHelden->GetDirection());
+		m_pPictures->SymbolZeichnen(pDC, nr, relPos);
+	}
 }
 
 int CDMDoc::HoleGruppenRichtung() 

@@ -101,8 +101,8 @@ private:
 	void PrepareMoveItems(VEKTOR heroPos);
 	void MoveItems(VEKTOR heroPos);
 
-	void TriggerActuators(VEKTOR fieldPos, VEKTOR heroPos );
-	void TriggerActuator(VEKTOR heroPos, CField* field, CActuator* actuator, COMPASS_DIRECTION pos);
+	void TriggerPassiveActuators(VEKTOR fieldPos, VEKTOR heroPos );
+	void TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator* actuator);
 };
 
 /////////////////////////////////////////////////////////////////////////////

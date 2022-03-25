@@ -94,6 +94,8 @@ protected:
 	void ParseClickAir(CPoint point);
 	bool ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators, COMPASS_DIRECTION dir);
 
+	void InvokeRemoteActuator(CActuator* activeActuator, VEKTOR target);
+
 };
 
 #ifndef _DEBUG  // debug version in DMView.cpp
