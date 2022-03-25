@@ -232,33 +232,26 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators
 			int type = actuatorsAtPosition.back()->GetType();
 			if (type == 1) {
 				// Schalter 
-				VEKTOR target;
-				CActuator::ActionTarget actionTarget = actuatorsAtPosition.back()->GetActionTarget();
+				//VEKTOR target;
+				CActuator* currentActuator = actuatorsAtPosition.back();
+				CActuator::ActionTarget actionTarget = currentActuator->GetActionTarget();
 				// TODO Unklar - Logik korrekt? Target aus 2. Actuator nehmen, wenn 1. LOCAL ist, und 2. vorhanden und 2. remote.
 				if (actuatorsAtPosition.size() > 1 && actionTarget == CActuator::Local) {
 					assert(("too many actuators", actuatorsAtPosition.size() < 3));
-					actionTarget = actuatorsAtPosition.front()->GetActionTarget();
-					if (actionTarget == CActuator::Remote)
-						target = actuatorsAtPosition.front()->GetTarget();
-				}
-				else if (actionTarget == CActuator::Remote) {
-					target = actuatorsAtPosition.back()->GetTarget();
+					currentActuator = actuatorsAtPosition.front();
 				}
 
-				if (actionTarget == CActuator::Remote) {
-					InvokeRemoteActuator(actuatorsAtPosition.back(), target);
-				}
-				else {
-					type = type;
-				}
+				if (currentActuator->GetActionTarget() == CActuator::Remote) {
+					InvokeRemoteActuator(currentActuator);
+				}				
 				return true; // RotateActuators
 			}
 		}
 
 }
 
-void CDMView::InvokeRemoteActuator(CActuator* activeActuator, VEKTOR target) {
-	
+void CDMView::InvokeRemoteActuator(CActuator* activeActuator) {
+	VEKTOR target = activeActuator->GetTarget();
 	CField* pTargetField = m_pRaumView->GetMap()->GetField(target);
 	CDoor* door;
 	CPit* pit;

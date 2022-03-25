@@ -8,7 +8,7 @@ CDoor::CDoor(DoorType type, bool doorFrameEastAndWest) {
 	m_doorFrameEastAndWest = doorFrameEastAndWest;
 }
 
-void CDoor::Toggle() {
+void CDoor::ContinueMoving() {
 	switch (m_state) {
 	case (OPEN):
 		m_state = CLOSING;
@@ -29,6 +29,19 @@ void CDoor::Toggle() {
 	case (CLOSED):
 		m_state = OPENING;
 		//m_bottomHeight = movingHeight;
+		break;
+	}
+}
+
+void CDoor::Toggle() {
+	switch (m_state) {
+	case (OPEN):
+	case (OPENING):
+		m_state = CLOSING;
+		break;
+	case (CLOSING):
+	case (CLOSED):
+		m_state = OPENING;
 		break;
 	}
 }

@@ -732,7 +732,7 @@ void CRaumView::MoveDoors(VEKTOR heroPos) {
 		if ((pDoor->getState() == CDoor::DoorState::OPENING) ||
 			(pDoor->getState() == CDoor::DoorState::CLOSING))
 		{
-			pDoor->Toggle();
+			pDoor->ContinueMoving();
 		}
 	}
 }

@@ -21,6 +21,7 @@ public:
 	int getDoorBottomHeight() { return m_bottomHeight; }
 	bool getDoorFrameEastAndWest() { return m_doorFrameEastAndWest; }
 	void Toggle();
+	void ContinueMoving();
 	void Open();
 	void Close();
 
