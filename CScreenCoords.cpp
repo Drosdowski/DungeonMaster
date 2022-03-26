@@ -93,6 +93,22 @@ int CScreenCoords::CheckHitHeroes(CPoint point) {
 	return 0;
 }
 
+int CScreenCoords::CheckHitPortraitHands(CPoint point) {
+	// 1. Hand 6/16  - 41/51
+	// 2. Hand 46/16 - 81/51
+	// 3. Hand 144/16 - ...
+	if (point.y > 15 && point.y < 52) {
+		int x = point.x % 138;
+		if (x > 5 && x < 42) {
+			return 1 + 2 * int(point.x / 138);
+		}
+		else if (x > 45 && x < 82) {
+			return 2 + 2 * int(point.x / 138);
+		}
+	}
+	return 0;
+}
+
 bool CScreenCoords::CheckHitDeco(CPoint point) {
 	return (point.x > 200 && point.x < 250 && point.y > 140 && point.y < 180);
 }

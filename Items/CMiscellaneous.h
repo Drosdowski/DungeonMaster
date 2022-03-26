@@ -1,4 +1,5 @@
 #pragma once
+class CItem3DPic;
 class CMiscellaneous
 {
 public:
@@ -45,7 +46,8 @@ public:
 	void ResethasMoved();
 	void ReduceSpeed();
 
-	
+	CBitmap* GetPicByType(CItem3DPic* p3DPics);
+		
 	VEKTOR m_flyForce;
 
 private:

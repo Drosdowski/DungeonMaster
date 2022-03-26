@@ -14,7 +14,6 @@ public:
 	CBitmap* GetGoldKey() { return m_pGoldKey; }
 	CBitmap* GetIronKey() { return m_pIronKey; }
 
-
 private:
 	void InitBitmap();
 

@@ -46,12 +46,13 @@ CHeld::CHeld(int iIndex, CString strName): CCharacter()
 		m_Farbe[4] = BLAU; break;
 	}
 
+	for (int i = 0; i < 30; i++) {
+		m_itemCarrying[i] = NULL;
+	}
+
 	m_pRucksack = new CRucksack(this);
 }
 
-CHeld::CHeld()
-{
-}
 
 CHeld::~CHeld()
 {
@@ -124,4 +125,11 @@ void CHeld::TakeItemInHand(CMiscellaneous* item)
 void CHeld::EmptyHand() {
 	// kein delete, Objekt ist jetzt woanders...
 	m_pItemInHand = NULL;
+}
+
+CMiscellaneous* CHeld::SwitchItemAt(int index, CMiscellaneous* item)
+{
+	CMiscellaneous* carryingBefore = m_itemCarrying[index];
+	m_itemCarrying[index] = item;
+	return carryingBefore;
 }

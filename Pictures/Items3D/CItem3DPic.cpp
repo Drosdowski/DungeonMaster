@@ -53,4 +53,3 @@ CPoint CItem3DPic::GetFloorMiddle(int x, int ebene) {
 
 	return middle;
 }
-

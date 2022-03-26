@@ -175,13 +175,47 @@ void CDMView::ParseClickAction(CPoint point) {
 
 }
 
-void CDMView::ParseClickHeroes(CPoint point) {
-	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+void CDMView::ParseClickPortrait(CPoint point) {
 	int heroID = CScreenCoords::CheckHitHeroes(point);
 	if (heroID > 0)
 	{
+		CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 		grpHelden->Aktiviere(heroID);
 	}
+}
+
+bool CDMView::ParseClickPortraitHands(CPoint point) {
+	int hand = CScreenCoords::CheckHitPortraitHands(point);
+	if (hand > 0) {
+		CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+		CMiscellaneous* itemInHand = grpHelden->GetItemInHand();
+		CMiscellaneous* newItemInHand;
+		// 1 2 3 4 5 6 7 8	HandId
+		// 1 1 2 2 3 3 4 4  HeroId
+		// 0 1 0 1 0 1 0 1  HandOfHeroId
+		CHeld* clickedHero = grpHelden->GetHero((int)((hand + 1) / 2));
+		if (itemInHand) {
+			newItemInHand = clickedHero->SwitchItemAt((hand -1) % 2, itemInHand);
+			
+			if (newItemInHand == NULL) {
+				::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
+			}
+			else {
+				CBitmap* bmp = newItemInHand->GetPicByType(m_pRaumView->Get3DPics());
+				if (bmp) {
+					HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
+					HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
+					SetSystemCursor(hCursor, OCR_NORMAL);
+					grpHelden->TakeItemInHand(newItemInHand);
+				}
+			}
+
+		}
+
+		return true;
+	}
+	else
+		return false;
 }
 
 /// <summary>
@@ -342,34 +376,13 @@ void CDMView::ParseClickFloor(CPoint point) {
 	if (itemRegionClicked != NONE) {
 		if (topItem != NULL) {
 			// etwas genommen!
-			CBitmap* bmp;
-			if (topItem->GetType() == CMiscellaneous::ItemType::Apple)
-				bmp = m_pRaumView->Get3DPics()->GetApple();
-			else if (topItem->GetType() == CMiscellaneous::ItemType::Bread)
-				bmp = m_pRaumView->Get3DPics()->GetBread();
-			else if (topItem->GetType() == CMiscellaneous::ItemType::IronKey ||
-				topItem->GetType() == CMiscellaneous::ItemType::KeyOfB ||
-				topItem->GetType() == CMiscellaneous::ItemType::SolidKey ||
-				topItem->GetType() == CMiscellaneous::ItemType::SquareKey ||
-				topItem->GetType() == CMiscellaneous::ItemType::TurquoiseKey ||
-				topItem->GetType() == CMiscellaneous::ItemType::CrossKey ||
-				topItem->GetType() == CMiscellaneous::ItemType::SkeletonKey)
-				bmp = m_pRaumView->Get3DPics()->GetIronKey();
-			else if (topItem->GetType() == CMiscellaneous::ItemType::GoldKey ||
-				topItem->GetType() == CMiscellaneous::ItemType::WingedKey ||
-				topItem->GetType() == CMiscellaneous::ItemType::TopazKey ||
-				topItem->GetType() == CMiscellaneous::ItemType::EmeraldKey ||
-				topItem->GetType() == CMiscellaneous::ItemType::RubyKey ||
-				topItem->GetType() == CMiscellaneous::ItemType::RaKey ||
-				topItem->GetType() == CMiscellaneous::ItemType::MasterKey)
-				bmp = m_pRaumView->Get3DPics()->GetGoldKey();
-			else
-				return; // Item noch nicht da
-
-			HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
-			HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
-			SetSystemCursor(hCursor, OCR_NORMAL);
-			grpHelden->TakeItemInHand(topItem);
+			CBitmap* bmp = topItem->GetPicByType(m_pRaumView->Get3DPics());
+			if (bmp) {
+				HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
+				HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
+				SetSystemCursor(hCursor, OCR_NORMAL);
+				grpHelden->TakeItemInHand(topItem);
+			}
 		}
 		else {
 			::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
@@ -393,7 +406,8 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 			ParseClickFloor(point);
 			ParseClickWizard(point);
 			ParseClickAction(point);
-			ParseClickHeroes(point);
+			if (!ParseClickPortraitHands(point))
+				ParseClickPortrait(point);
 		
 			// Unterscheiden: Anklicken oder werfen?
 			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));

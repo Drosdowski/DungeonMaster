@@ -49,6 +49,9 @@ public:
 	void TakeItemInHand(CMiscellaneous* item);
 	void EmptyHand();
 
+	CMiscellaneous* GetItemCarrying(int index) { return m_itemCarrying[index]; }
+	CMiscellaneous* SwitchItemAt(int index, CMiscellaneous* item);
+
 // Implementation
 public:
 	virtual bool Altern();
@@ -67,6 +70,7 @@ private:
 	int m_iIndex;
 	bool m_bAktiv;
 	CString m_strName;
+	CMiscellaneous* m_itemCarrying[30];
 
 	CMiscellaneous* m_pItemInHand = NULL;
 };

@@ -18,6 +18,7 @@ public:
 	static int CheckHitActiveWizard(CPoint point, int activeWizardID);
 	static int CheckHitAction(CPoint point, int phase);
 	static int CheckHitHeroes(CPoint point);
+	static int CheckHitPortraitHands(CPoint point);
 	static bool CheckHitDeco(CPoint point);
 	static bool CheckHitMainScr(CPoint);
 	static bool CheckHitEye(CPoint);
