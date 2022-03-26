@@ -13,7 +13,7 @@ public:
 		Local
 	};
 
-	CActuator(int index, COMPASS_DIRECTION position, VEKTOR target, ActionTypes actionTypes, ActionTarget actionTarget, int type, int data, int graphic);
+	CActuator(int index, COMPASS_DIRECTION position, VEKTOR target, ActionTypes actionTypes, ActionTarget actionTarget, int type, int data, int graphic, int once_only);
 	~CActuator();
  
 	int GetType() { return m_type; } // todo muss hier kein POSITIOn rein ??
@@ -24,6 +24,9 @@ public:
 	int GetCriticalWeigth() { return 100; } // todo wo steht das?
 	int GetGraphic() { return m_graphic; }
 	COMPASS_DIRECTION GetPosition() { return m_position; } // todo COMPASS...
+	bool IsActive() { return m_active;  }
+	void Deactivate() { m_active = false; }
+	bool IsOnceOnly() { return m_once_only > 0; }
 
 private:
 	int m_index;
@@ -31,6 +34,8 @@ private:
 	int m_type;
 	int m_graphic;
 	int m_data;
+	bool m_active;
+	int m_once_only;
 	VEKTOR m_target;
 	ActionTypes m_actionType;
 	ActionTarget m_actionTarget;

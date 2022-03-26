@@ -230,11 +230,13 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators
 		if (CScreenCoords::CheckHitDeco(point))
 		{
 			int type = actuatorsAtPosition.back()->GetType();
+			CActuator* currentActuator = actuatorsAtPosition.back();
+			CActuator::ActionTarget actionTarget = currentActuator->GetActionTarget();
+			if (!currentActuator->IsActive()) return false;
+			
 			if (type == 1) {
 				// Schalter 
 				//VEKTOR target;
-				CActuator* currentActuator = actuatorsAtPosition.back();
-				CActuator::ActionTarget actionTarget = currentActuator->GetActionTarget();
 				// TODO Unklar - Logik korrekt? Target aus 2. Actuator nehmen, wenn 1. LOCAL ist, und 2. vorhanden und 2. remote.
 				if (actuatorsAtPosition.size() > 1 && actionTarget == CActuator::Local) {
 					assert(("too many actuators", actuatorsAtPosition.size() < 3));
@@ -243,7 +245,9 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators
 
 				if (currentActuator->GetActionTarget() == CActuator::Remote) {
 					InvokeRemoteActuator(currentActuator);
-				}				
+				}		
+				else assert(false); // todo ...
+
 				return true; // RotateActuators
 			}
 			else if (type == 4) {
@@ -251,7 +255,27 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators
 				CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 				CMiscellaneous* itemInHand = grpHelden->GetItemInHand();
 				if (itemInHand) {
-					//if (itemInHand->GetType() == 
+					int data = currentActuator->GetData();
+					int neededItemId;
+					if (data > 167) {
+						neededItemId = data - 167;
+					}
+					else assert(false); // todo formel verstehen.
+					if (neededItemId == itemInHand->GetType()) {
+						// Match !
+						if (currentActuator->GetActionTarget() == CActuator::Remote) {
+							InvokeRemoteActuator(currentActuator);
+						}
+						else assert(false); // todo ...
+
+						grpHelden->EmptyHand();
+						delete (itemInHand);
+						::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
+						if (currentActuator->IsOnceOnly()) {
+							currentActuator->Deactivate();
+						}
+						return true; // RotateActuators
+					}
 				}
 			}
 		}
