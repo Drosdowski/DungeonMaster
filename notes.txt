@@ -1,0 +1,65 @@
+Fehlende Teile:
+Blaue Stecker (klein)
+Schwarze Technik Stange 3x1, rund.
+Schwarze Technik Platte 5x1, rund.
+    
+	-155 -55 -70
+	
+	
+KEY HOLE GOLD KEY	
+	Tile 96 - Objekte & Dekoration
+	  Actuator 552 - data 184 graphic 12
+	  
+	 Index 11 => Iron Lock (=Typ 5)
+		
+	Actuator 552 - data 184 - graphic 12 (iron lock) - bits 196 word3 6208 (Bit 7, 12, 13)
+		12 13 14 15
+		x   x  -  -
+		1100 = 12 = graphic 12 = 11 + 1 // 11 = Type 5 = IRON LOCK
+		
+	Actuator 3 - data 186 (topaz key) - graphic 12 (iron lock) 
+	
+		
+	Actuator 1  - type 4 - data 184 - graphic 12 - bits 196 / 10624 (Bits 8, 9, 12, 14)
+	    12 + 14 = 26 Gold Lock: 4 / 26
+		
+		Gold Key: Misc. Index 84 - type 17  (167 + 17 = 184)
+		Topaz Key: Index 15 - type 19 (167 + 19 = 186)
+		
+Wall decoration 4 = Typ 26 = Gold Lock
+		
+LEVER
+	Tile 324 - objekte & Dekoration
+	 Actuator 270 - data 0 - graphic 10
+	 Actuator 2 - data 0 - graphic 11
+	 
+	 Actuator 2 - bits 196  word3 10496 (Bit 9, 12, 14)
+	 12 13 14 15
+	 x   -  x  - 
+	 1010 = 10 = 9 + 1 = Lever Down !
+	 
+	 Actuator 270 - word3 = 16 = Bit 6
+	 
+FOUNTAIN
+	Tile 196 - Dekoration
+	
+	
+Typ 4 - Data
+125
+126
+127
+129
+176
+177
+178
+179
+180
+181
+183
+184  = 17 (Gold Key)
+185
+186  = 19 (Topaz Key)
+188
+189
+190
+191

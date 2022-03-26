@@ -249,7 +249,7 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 			<direction>North< / direction> <!--remote specific-->
 			< / actuator> <!--North / TopLeft-->
 			< / items> */
-	int index, position, type, graphic;
+	int index, position, type, graphic, data;
 	VEKTOR target = coords;
 	CActuator::ActionTypes actionType;
 	CActuator::ActionTarget actionTarget;
@@ -278,6 +278,12 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 			streamValue << strValue;
 			streamValue >> type;
 		}
+		else if (strcmp(actuatorAttributes->Value(), "data") == 0 && type != 5) {
+			const char* strValue = actuatorAttributes->GetText();
+			std::stringstream streamValue; // todo type 5 hat anderes Format für data
+			streamValue << strValue;
+			streamValue >> data;
+		}
 		else if (strcmp(actuatorAttributes->Value(), "graphic") == 0) {
 			const char* strValue = actuatorAttributes->GetText();
 			std::stringstream streamValue;
@@ -302,7 +308,7 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 
 	//WallDecorationType graphicType = graphic > 0 ? m_wallDecorationTypes[graphic, coords.z] : None;
 	//if (graphicType < 0 || graphicType > 255) graphicType = None; 
-	CActuator* actuator = new CActuator(index, (COMPASS_DIRECTION)position, target, actionType, actionTarget, type, graphic);
+	CActuator* actuator = new CActuator(index, (COMPASS_DIRECTION)position, target, actionType, actionTarget, type, data, graphic);
 	m_pFeld[coords.x][coords.y][coords.z]->PutActuator(actuator, (COMPASS_DIRECTION)position);
 }
 
@@ -607,4 +613,12 @@ void CDungeonMap::DemoMap() {
 		}
 		*/
 		m_pFeld[3][7][0]->InitMonsterGruppe(CMonster::MonsterTyp::SKELETT, 4, COMPASS_DIRECTION::NORTH);
+}
+
+WallDecorationType CDungeonMap::GetWallDecorationType(int ebene, int graphic)
+{
+	if (graphic > 0)
+		return m_wallDecorationTypes[ebene][graphic - 1];
+	else
+		return None;
 }

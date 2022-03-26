@@ -246,6 +246,14 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators
 				}				
 				return true; // RotateActuators
 			}
+			else if (type == 4) {
+				// Item Receiver - Lock / ... ?
+				CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+				CMiscellaneous* itemInHand = grpHelden->GetItemInHand();
+				if (itemInHand) {
+					//if (itemInHand->GetType() == 
+				}
+			}
 		}
 
 }

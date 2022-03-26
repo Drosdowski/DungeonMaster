@@ -24,8 +24,8 @@ public:
 	VEKTOR GetStart() { return m_start; }
 	COMPASS_DIRECTION GetStartDirection() { return m_startRicht; }
 	CGrpHeld* GetHeroes() { return m_pGrpHelden; }
-	WallDecorationType GetWallDecorationType(int ebene, int graphic) { return m_wallDecorationTypes[ebene][graphic - 1];
-}
+	WallDecorationType GetWallDecorationType(int ebene, int graphic);
+
 
 private:
 
