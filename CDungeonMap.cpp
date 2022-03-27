@@ -307,8 +307,7 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 			std::stringstream streamValue;
 			streamValue << strValue;
 			streamValue >> once_only;
-		}
-		
+		}		
 
 		actuatorAttributes = actuatorAttributes->NextSiblingElement();
 	}
@@ -326,7 +325,6 @@ void CDungeonMap::ParseWallDecorationGraphic(TiXmlElement* rootNode, int etage) 
 	rootNode->QueryIntAttribute("type", &type);
 	
 	m_wallDecorationTypes[etage][index] = (WallDecorationType)type;
-	// todo deco setzen?
 }
 
 void CDungeonMap::ParseWallDecorationGraphics(TiXmlElement* rootNode, int etage) {

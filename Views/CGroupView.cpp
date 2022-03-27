@@ -29,9 +29,9 @@ void CGroupView::Zeichnen(CDC* pDC, CPictures* pPictures, int iModus, CGrpHeld* 
 				{
 				case (MOD_LAUFEN):
 				{
-					pPictures->HaendeZeichnen(pDC, i);
-					pPictures->NameZeichnen(pDC, pHeroToDraw->isActive(), i, pHeroToDraw->getName());
+					pPictures->HaendeZeichnen(pDC, i, pHeroToDraw);
 					pPictures->WerteZeichnen(pDC, pHeroToDraw);
+					pPictures->NameZeichnen(pDC, pHeroToDraw->isActive(), i, pHeroToDraw->getName());
 					break;
 				}
 				case (MOD_RUCKSACK):

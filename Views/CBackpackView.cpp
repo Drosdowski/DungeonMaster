@@ -27,7 +27,7 @@ void CBackpackView::UpdateRucksack(CDC* pDC, CPictures* pPictures, CGrpHeld* grp
 					pPictures->RucksackZeichnen(pDC, pActiveHero);
 				}
 				else {
-					pPictures->HaendeZeichnen(pDC, i);
+					pPictures->HaendeZeichnen(pDC, i, pHeroToDraw);
 				}
 				pPictures->WerteZeichnen(pDC, pHeroToDraw);
 			}

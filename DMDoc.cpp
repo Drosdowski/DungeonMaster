@@ -168,7 +168,7 @@ void CDMDoc::InitGruppe(const int nr)
 	CHeld* pHeld = pGrpHelden->InitHeld(nr);
 	if (pHeld) {
 		CDC* pDC = ((CDMApp*)AfxGetApp())->m_pView->GetDC();
-		m_pPictures->HaendeZeichnen(pDC, nr);
+		m_pPictures->HaendeZeichnen(pDC, nr, pHeld);
 		m_pPictures->NameZeichnen(pDC, pHeld->isActive(), nr, pHeld->getName());
 		m_pPictures->WerteZeichnen(pDC, pHeld);
 

@@ -100,15 +100,22 @@ void CPictures::SymbolZeichnen(CDC* pDC, int heldIndex, SUBPOS relPos)
 	tmpdc.DeleteDC();
 }
 
-void CPictures::HaendeZeichnen(CDC* pDC, int index)
+void CPictures::HaendeZeichnen(CDC* pDC, int index, CHeld* pHeld)
 {
 	// wird ggf. mit Waffezeichnen verschmelzen
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 
 	tmpdc.SelectObject(m_pBmpRuck);
-	pDC->BitBlt((index - 1) * 138, 0, 138, 64, &tmpdc, 0, 0, SRCCOPY);
+	// todo rechteck wenn zeichnen, dann 
+	RECT r = { (index - 1) * 138, 0, (index - 1) * 138 + 138, 64 };
+	CBrush* b = new CBrush(GANZDUNKELGRAU);
+	pDC->FillRect(&r, b);
+	pDC->BitBlt((index - 1) * 138 + 5, 16, 37, 37, &tmpdc, 5, 16, SRCCOPY);
+	pDC->BitBlt((index - 1) * 138 + 45, 16, 37, 37, &tmpdc, 45, 16, SRCCOPY);
+	// pDC->BitBlt((index - 1) * 138, 0, 138, 64, &tmpdc, 0, 0, SRCCOPY);
 
+	DeleteObject(b);
 	tmpdc.DeleteDC();
 }
 
@@ -161,7 +168,7 @@ void CPictures::NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName)
 		pDC->SetTextColor(HELLBRAUN);
 	pDC->SetBkColor(DUNKELGRAU);
 	int x = (index - 1) * 138;
-	pDC->ExtTextOut(x + 4, -3, ETO_CLIPPED | ETO_OPAQUE, CRect(x, 0, x + 86, 10), strName, NULL);
+	pDC->ExtTextOut(x + 4, -3, ETO_CLIPPED | ETO_OPAQUE, CRect(x, 0, x + 86, 12), strName, NULL);
 }
 
 void CPictures::SchadenZeichnen(CDC* pDC, int index)

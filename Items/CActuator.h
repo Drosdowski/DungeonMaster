@@ -16,7 +16,7 @@ public:
 	CActuator(int index, COMPASS_DIRECTION position, VEKTOR target, ActionTypes actionTypes, ActionTarget actionTarget, int type, int data, int graphic, int once_only);
 	~CActuator();
  
-	int GetType() { return m_type; } // todo muss hier kein POSITIOn rein ??
+	int GetType() { return m_type; }
 	int GetData() { return m_data; }
 	VEKTOR GetTarget() { return m_target; }
 	ActionTypes GetActionType() { return m_actionType; }
