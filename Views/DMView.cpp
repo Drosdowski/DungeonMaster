@@ -197,16 +197,16 @@ bool CDMView::ParseClickPortraitHands(CPoint point) {
 		CHeld* clickedHero = grpHelden->GetHero(heroId);
 		
 		CMiscellaneous* itemInHand = grpHelden->GetItemInHand();
-		CMiscellaneous* itemCarryingAtPos = clickedHero->GetItemCarrying(handId - 1);
+		CMiscellaneous* itemCarryingAtPos = clickedHero->GetItemCarrying(handOfHeroId);
 		CMiscellaneous* newItemInHand = NULL;
 		
 		if (itemInHand) {
 			// Item tauschen oder ablegen
-			newItemInHand = clickedHero->SwitchItemAt(handId - 1, itemInHand);
+			newItemInHand = clickedHero->SwitchItemAt(handOfHeroId, itemInHand);
 		}
 		else {
 			// item holen (Hand leer)
-			newItemInHand = clickedHero->GetItemCarrying(handId - 1);
+			newItemInHand = clickedHero->GetItemCarrying(handOfHeroId);
 		}
 		if (newItemInHand == NULL) {
 			::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
@@ -219,7 +219,7 @@ bool CDMView::ParseClickPortraitHands(CPoint point) {
 				HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
 				SetSystemCursor(hCursor, OCR_NORMAL);
 				grpHelden->TakeItemInHand(newItemInHand);
-				clickedHero->RemoveItemCarrying(handId);
+				clickedHero->RemoveItemCarrying(handOfHeroId);
 			}
 		}
 

@@ -109,9 +109,12 @@ void CPictures::HaendeZeichnen(CDC* pDC, int index, CHeld* pHeld)
 	// wird ggf. mit Waffezeichnen verschmelzen
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
+	CBitmap* b = m_pItemPic->GetBitmap((CMiscellaneous::ItemType)9, 1);
+	tmpdc.SelectObject(b);
+	pDC->BitBlt(0, 16, 200, 100, &tmpdc, 0, 0, SRCCOPY);
 
-	// todo rechteck wenn zeichnen, dann 
-	RECT r = { (index - 1) * 138, 0, (index - 1) * 138 + 138, 64 };
+
+/*	RECT r = {(index - 1) * 138, 0, (index - 1) * 138 + 138, 64};
 	CBrush* b = new CBrush(GANZDUNKELGRAU);
 	pDC->FillRect(&r, b);
 	
@@ -127,7 +130,7 @@ void CPictures::HaendeZeichnen(CDC* pDC, int index, CHeld* pHeld)
 	{
 		CBitmap* bmp = m_pItemPic->GetBitmap(itemInLeftHand->GetType(), itemInLeftHand->GetSubtype());
 		tmpdc.SelectObject(bmp);
-		pDC->BitBlt((index - 1) * 138 + 5, 16, 37, 37, &tmpdc, 0, 0, SRCCOPY);
+		pDC->BitBlt((index - 1) * 138 + 5, 16, 32, 32, &tmpdc, 0, 0, SRCCOPY);
 	}
 	
 	if (itemInRightHand == NULL) {
@@ -137,11 +140,10 @@ void CPictures::HaendeZeichnen(CDC* pDC, int index, CHeld* pHeld)
 	else {
 		CBitmap* bmp = m_pItemPic->GetBitmap(itemInRightHand->GetType(), itemInRightHand->GetSubtype());
 		tmpdc.SelectObject(bmp);
-		pDC->BitBlt((index - 1) * 138 + 45, 16, 37, 37, &tmpdc, 0, 0, SRCCOPY);
+		pDC->BitBlt((index - 1) * 138 + 45, 16, 32, 32, &tmpdc, 0, 0, SRCCOPY);
 	}
-	// pDC->BitBlt((index - 1) * 138, 0, 138, 64, &tmpdc, 0, 0, SRCCOPY);
 
-	delete b;
+	delete b; */
 	tmpdc.DeleteDC();
 }
 
