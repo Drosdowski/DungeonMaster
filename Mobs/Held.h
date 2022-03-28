@@ -50,6 +50,7 @@ public:
 	void EmptyHand();
 
 	CMiscellaneous* GetItemCarrying(int index) { return m_itemCarrying[index]; }
+	void RemoveItemCarrying(int index) { m_itemCarrying[index] = NULL; }
 	CMiscellaneous* SwitchItemAt(int index, CMiscellaneous* item);
 
 // Implementation

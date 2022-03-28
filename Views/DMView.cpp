@@ -185,31 +185,42 @@ void CDMView::ParseClickPortrait(CPoint point) {
 }
 
 bool CDMView::ParseClickPortraitHands(CPoint point) {
-	int hand = CScreenCoords::CheckHitPortraitHands(point);
-	if (hand > 0) {
-		CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
-		CMiscellaneous* itemInHand = grpHelden->GetItemInHand();
-		CMiscellaneous* newItemInHand;
+	int handId = CScreenCoords::CheckHitPortraitHands(point);
+	if (handId > 0) {
 		// 1 2 3 4 5 6 7 8	HandId
 		// 1 1 2 2 3 3 4 4  HeroId
 		// 0 1 0 1 0 1 0 1  HandOfHeroId
-		CHeld* clickedHero = grpHelden->GetHero((int)((hand + 1) / 2));
+		int heroId = (int)((handId + 1) / 2);
+		int handOfHeroId = (handId - 1) % 2;
+		
+		CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+		CHeld* clickedHero = grpHelden->GetHero(heroId);
+		
+		CMiscellaneous* itemInHand = grpHelden->GetItemInHand();
+		CMiscellaneous* itemCarryingAtPos = clickedHero->GetItemCarrying(handId - 1);
+		CMiscellaneous* newItemInHand = NULL;
+		
 		if (itemInHand) {
-			newItemInHand = clickedHero->SwitchItemAt((hand -1) % 2, itemInHand);
-			
-			if (newItemInHand == NULL) {
-				::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
+			// Item tauschen oder ablegen
+			newItemInHand = clickedHero->SwitchItemAt(handId - 1, itemInHand);
+		}
+		else {
+			// item holen (Hand leer)
+			newItemInHand = clickedHero->GetItemCarrying(handId - 1);
+		}
+		if (newItemInHand == NULL) {
+			::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
+			grpHelden->EmptyHand();
+		}
+		else {
+			CBitmap* bmp = newItemInHand->GetPicByType(m_pRaumView->Get3DPics());
+			if (bmp) {
+				HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
+				HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
+				SetSystemCursor(hCursor, OCR_NORMAL);
+				grpHelden->TakeItemInHand(newItemInHand);
+				clickedHero->RemoveItemCarrying(handId);
 			}
-			else {
-				CBitmap* bmp = newItemInHand->GetPicByType(m_pRaumView->Get3DPics());
-				if (bmp) {
-					HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
-					HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
-					SetSystemCursor(hCursor, OCR_NORMAL);
-					grpHelden->TakeItemInHand(newItemInHand);
-				}
-			}
-
 		}
 
 		return true;

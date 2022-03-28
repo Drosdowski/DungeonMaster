@@ -128,9 +128,9 @@ SUBPOS CScreenCoords::CheckHitFloor(CPoint point) {
 }
 
 SUBPOS CScreenCoords::CheckHitAir(CPoint point) {
-	if (point.y < 250) {
+	if (point.y > 63 && point.y < 250) {
 		if (point.x < 230) return LINKSHINTEN; // Wurf von links
-		if (point.x > 230) return RECHTSHINTEN; // Wurf von rechts
+		if (point.x >= 230) return RECHTSHINTEN; // Wurf von rechts
 	}	
 	return NONE;
 }
