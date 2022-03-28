@@ -219,7 +219,7 @@ void CDungeonMap::ParseMiscellaneous(TiXmlElement* miscItem, VEKTOR coords) {
 	mtype = m_miscellaneousType[index];
 	msubtype = m_miscellaneousSubtype[index];
 
-	CMiscellaneous* misc = new CMiscellaneous(index, mtype, msubtype);
+	CMiscellaneous* misc = new CMiscellaneous(index, (CMiscellaneous::ItemType) mtype, msubtype);
 	m_pFeld[coords.x][coords.y][coords.z]->PutMisc(misc, (SUBPOS_ABSOLUTE)subPos);
 }
 

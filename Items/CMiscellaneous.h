@@ -3,9 +3,6 @@ class CItem3DPic;
 class CMiscellaneous
 {
 public:
-	CMiscellaneous(int index, int type, int subtype);
-	~CMiscellaneous();
-
 	enum ItemType {
 		IronKey = 9, 
 		KeyOfB = 10, 
@@ -31,8 +28,17 @@ public:
 		Other = 3
 	};
 
+	CMiscellaneous(int index, ItemType type, int subtype);
+	~CMiscellaneous();
+
+
+
 	ItemType GetType() {
-		return (ItemType)m_type;
+		return m_type;
+	}
+
+	int GetSubtype() {
+		return m_subtype;
 	}
 
 	ItemGroup GetGroup() {
@@ -52,7 +58,7 @@ public:
 
 private:
 	int m_index;
-	int m_type;
+	ItemType m_type;
 	int m_subtype;
 	bool m_done;
 };

@@ -2,13 +2,16 @@
 #include "DM.h"
 #include "CPictures.h"
 #include "CWallPic.h"
+#include "Items2D/CItemPic.h"
 #include "..\Mobs\Held.h"
 #include "..\Items\Decoration.h"
+#include "..\Items\CMiscellaneous.h"
 #include "..\Rucksack.h"
 
 CPictures::CPictures(CDC* pDC) : CBasePictures(pDC)
 {	
 	InitBitmaps();
+	m_pItemPic = new CItemPic(pDC);
 }
 
 CPictures::~CPictures() 
@@ -27,6 +30,7 @@ CPictures::~CPictures()
 	delete m_pActionsArea;
 	delete m_pActionsDamage;
 	delete m_pOneHand;
+	delete m_pItemPic;
 }
 
 
@@ -106,16 +110,38 @@ void CPictures::HaendeZeichnen(CDC* pDC, int index, CHeld* pHeld)
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 
-	tmpdc.SelectObject(m_pBmpRuck);
 	// todo rechteck wenn zeichnen, dann 
 	RECT r = { (index - 1) * 138, 0, (index - 1) * 138 + 138, 64 };
 	CBrush* b = new CBrush(GANZDUNKELGRAU);
 	pDC->FillRect(&r, b);
-	pDC->BitBlt((index - 1) * 138 + 5, 16, 37, 37, &tmpdc, 5, 16, SRCCOPY);
-	pDC->BitBlt((index - 1) * 138 + 45, 16, 37, 37, &tmpdc, 45, 16, SRCCOPY);
+	
+	CMiscellaneous* itemInLeftHand = pHeld->GetItemCarrying(0);
+	CMiscellaneous* itemInRightHand = pHeld->GetItemCarrying(1);
+
+	if (itemInLeftHand == NULL)
+	{
+		tmpdc.SelectObject(m_pBmpRuck);
+		pDC->BitBlt((index - 1) * 138 + 5, 16, 37, 37, &tmpdc, 5, 16, SRCCOPY);
+	}
+	else
+	{
+		CBitmap* bmp = m_pItemPic->GetBitmap(itemInLeftHand->GetType(), itemInLeftHand->GetSubtype());
+		tmpdc.SelectObject(bmp);
+		pDC->BitBlt((index - 1) * 138 + 5, 16, 37, 37, &tmpdc, 0, 0, SRCCOPY);
+	}
+	
+	if (itemInRightHand == NULL) {
+		tmpdc.SelectObject(m_pBmpRuck);
+		pDC->BitBlt((index - 1) * 138 + 45, 16, 37, 37, &tmpdc, 45, 16, SRCCOPY);
+	}
+	else {
+		CBitmap* bmp = m_pItemPic->GetBitmap(itemInRightHand->GetType(), itemInRightHand->GetSubtype());
+		tmpdc.SelectObject(bmp);
+		pDC->BitBlt((index - 1) * 138 + 45, 16, 37, 37, &tmpdc, 0, 0, SRCCOPY);
+	}
 	// pDC->BitBlt((index - 1) * 138, 0, 138, 64, &tmpdc, 0, 0, SRCCOPY);
 
-	DeleteObject(b);
+	delete b;
 	tmpdc.DeleteDC();
 }
 
@@ -139,7 +165,7 @@ void CPictures::RucksackZeichnen(CDC* pDC, CHeld* pHeld)
 {
 	CRucksack* pRucksack = pHeld->GetRucksack();
 	int iModusExtend = pRucksack->HoleModusExtend();
-	Zeichnen(pDC, iModusExtend);
+	ZeichnenHauptbereichHintergrund(pDC, iModusExtend);
 	if (iModusExtend == MOD_EXT_NORMAL)
 		ZeichneHungerDurst(pDC, pHeld->getFood(), pHeld->getWater());
 	else if (iModusExtend == MOD_EXT_AUGE)
@@ -147,7 +173,7 @@ void CPictures::RucksackZeichnen(CDC* pDC, CHeld* pHeld)
 	ZeichneHpStMa(pDC, pHeld->Hp(), pHeld->St(), pHeld->Ma());
 }
 
-void CPictures::Zeichnen(CDC* pDC, int iModusExtend)
+void CPictures::ZeichnenHauptbereichHintergrund(CDC* pDC, int iModusExtend)
 {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);

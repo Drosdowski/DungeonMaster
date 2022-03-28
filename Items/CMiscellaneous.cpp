@@ -2,7 +2,7 @@
 #include "CMiscellaneous.h"
 #include "..\Pictures\Items3D\CItem3DPic.h"
 
-CMiscellaneous::CMiscellaneous(int index, int type, int subtype) {
+CMiscellaneous::CMiscellaneous(int index, ItemType type, int subtype) {
 	m_index = index;
 	m_type = type;
 	m_subtype = subtype;
@@ -38,25 +38,25 @@ void CMiscellaneous::ResethasMoved() {
 CBitmap* CMiscellaneous::GetPicByType(CItem3DPic* p3DPics) {
 
 	CBitmap* bmp;
-	if (GetType() == CMiscellaneous::ItemType::Apple)
+	if (m_type == CMiscellaneous::ItemType::Apple)
 		bmp = p3DPics->GetApple();
-	else if (GetType() == CMiscellaneous::ItemType::Bread)
+	else if (m_type == CMiscellaneous::ItemType::Bread)
 		bmp = p3DPics->GetBread();
-	else if (GetType() == CMiscellaneous::ItemType::IronKey ||
-		GetType() == CMiscellaneous::ItemType::KeyOfB ||
-		GetType() == CMiscellaneous::ItemType::SolidKey ||
-		GetType() == CMiscellaneous::ItemType::SquareKey ||
-		GetType() == CMiscellaneous::ItemType::TurquoiseKey ||
-		GetType() == CMiscellaneous::ItemType::CrossKey ||
-		GetType() == CMiscellaneous::ItemType::SkeletonKey)
+	else if (m_type == CMiscellaneous::ItemType::IronKey ||
+		m_type == CMiscellaneous::ItemType::KeyOfB ||
+		m_type == CMiscellaneous::ItemType::SolidKey ||
+		m_type == CMiscellaneous::ItemType::SquareKey ||
+		m_type == CMiscellaneous::ItemType::TurquoiseKey ||
+		m_type == CMiscellaneous::ItemType::CrossKey ||
+		m_type == CMiscellaneous::ItemType::SkeletonKey)
 		bmp = p3DPics->GetIronKey();
-	else if (GetType() == CMiscellaneous::ItemType::GoldKey ||
-		GetType() == CMiscellaneous::ItemType::WingedKey ||
-		GetType() == CMiscellaneous::ItemType::TopazKey ||
-		GetType() == CMiscellaneous::ItemType::EmeraldKey ||
-		GetType() == CMiscellaneous::ItemType::RubyKey ||
-		GetType() == CMiscellaneous::ItemType::RaKey ||
-		GetType() == CMiscellaneous::ItemType::MasterKey)
+	else if (m_type == CMiscellaneous::ItemType::GoldKey ||
+		m_type == CMiscellaneous::ItemType::WingedKey ||
+		m_type == CMiscellaneous::ItemType::TopazKey ||
+		m_type == CMiscellaneous::ItemType::EmeraldKey ||
+		m_type == CMiscellaneous::ItemType::RubyKey ||
+		m_type == CMiscellaneous::ItemType::RaKey ||
+		m_type == CMiscellaneous::ItemType::MasterKey)
 		bmp = p3DPics->GetGoldKey();
 	else
 		return NULL; // Item noch nicht da

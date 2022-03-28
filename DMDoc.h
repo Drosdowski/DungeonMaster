@@ -39,7 +39,7 @@ public:
 	int HoleGruppenRichtung();
 	VEKTOR HoleGruppenPosition();
 	void PlayDMSound(std::string file);
-
+	CPictures* GetIconPictures() { return m_pPictures; }
 	
 	virtual ~CDMDoc();
 #ifdef _DEBUG

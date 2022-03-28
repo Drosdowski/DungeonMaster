@@ -2,6 +2,7 @@
 #pragma once
 class CHeld;
 class CRucksack;
+class CItemPic;
 class CPictures : CBasePictures
 {
 public:
@@ -36,7 +37,7 @@ private:
 	void InitBitmaps();
 	int m_iWunschRichtung;
 
-	void Zeichnen(CDC* pDC, int iModusExtended);
+	void ZeichnenHauptbereichHintergrund(CDC* pDC, int iModusExtended);
 	void ZeichneSkills(CDC* pDC, CHeld* pHeld, CRucksack* pRucksack);
 	void ZeichneHpStMa(CDC* pDC, WERTE hp, WERTE st, WERTE ma);
 	void ZeichneHungerDurst(CDC* pDC, int i, int j);
@@ -50,6 +51,8 @@ private:
 	CBitmap* m_pActionsArea;
 	CBitmap* m_pActionsDamage;
 	CBitmap* m_pOneHand;
+
+	CItemPic* m_pItemPic;
 	
 };
 

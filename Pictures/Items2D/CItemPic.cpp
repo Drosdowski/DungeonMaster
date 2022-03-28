@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "..\..\resource.h"
+#include "..\..\Items\CMiscellaneous.h"
 #include "..\CBasePictures.h"
 #include "CItemPic.h"
 
@@ -10,11 +11,11 @@ CItemPic::CItemPic(CDC* pDC) : CBasePictures(pDC)
 }
 CItemPic::~CItemPic() {
 	for (int i = 0; i < numberPics; i++) {
-		delete m_items[i];
+		DeleteObject( m_items[i]);
 	}
 }
 
-CBitmap* CItemPic::GetBitmap(int type, int subType) {
+CBitmap* CItemPic::GetBitmap(CMiscellaneous::ItemType type, int subType) {
 	// todo subtype in item pics
 	return m_items[type];
 }
@@ -38,12 +39,13 @@ void CItemPic::InitItems() {
 			CBitmap newBitmap;
 			newBitmap.CreateCompatibleBitmap(&targetDC, 16, 16);
 			targetDC.StretchBlt(0, 0, 16, 16, &sourceDC, x, y, 16, 16, SRCCOPY);
+			DeleteObject(newBitmap);
 
 			m_items[index] = &newBitmap;
 		}
 		delete tempPic;
 	}
-	delete sourceDC;
-	delete targetDC;
+	DeleteObject(sourceDC);
+	DeleteObject(targetDC);
 
 }
