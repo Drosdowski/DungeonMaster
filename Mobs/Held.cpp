@@ -56,6 +56,10 @@ CHeld::CHeld(int iIndex, CString strName): CCharacter()
 
 CHeld::~CHeld()
 {
+	for (int i = 0; i < 30; i++) {
+		if (m_itemCarrying[i])
+			delete m_itemCarrying[i];
+	}
 	delete m_pRucksack;
 }
 

@@ -47,7 +47,6 @@ void CRucksack::OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point)
 			m_pOwner->Essen(50);
 			m_pOwner->EmptyHand();
 			delete item; // destroy permanently!
-			::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
 		}
 	}
 	else {

@@ -196,7 +196,7 @@ bool CDMView::ParseClickPortraitHands(CPoint point) {
 		CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 		CHeld* clickedHero = grpHelden->GetHero(heroId);
 
-		grpHelden->PutGetItem(handOfHeroId, heroId, m_pRaumView->Get3DPics());
+		grpHelden->PutGetItem(handOfHeroId, heroId);
 		
 		return true;
 	}
@@ -227,7 +227,6 @@ void CDMView::ParseClickAir(CPoint point) {
 					VEKTOR force = CHelpfulValues::MakeVektor(grpDir, 6);
 					FeldVorHeld->ThrowMisc(pItemInHand, itemRegionReal, force);
 					grpHelden->EmptyHand();
-					::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
 				}
 			}
 
@@ -336,7 +335,7 @@ void CDMView::ParseClickFloor(CPoint point) {
 	if (itemRegionClicked == LINKSVORNE || itemRegionClicked == RECHTSVORNE)
 	{
 		CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
-		if (FeldVorHeld)
+		if (FeldVorHeld && !FeldVorHeld->Blocked())
 		{
 			if (pItemInHand == NULL)
 				topItem = FeldVorHeld->TakeMisc(itemRegionReal);

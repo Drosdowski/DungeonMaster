@@ -6,9 +6,7 @@
 #include "..\Held.h"
 #include "..\..\CHelpfulValues.h"
 #include "..\..\Items\CMiscellaneous.h"
-#include "..\..\ColorCursor\ColorCursor.h"
 #include "GrpHeld.h"
-#include <winuser.rh>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -215,7 +213,7 @@ CMiscellaneous* CGrpHeld::GetItemInHand() {
 		return NULL;
 }
 
-void CGrpHeld::PutGetItem(int handOfHeroId, int heroId, CItem3DPic* pics) {
+void CGrpHeld::PutGetItem(int handOfHeroId, int heroId) {
 
 	CMiscellaneous* itemInHand = GetActiveHero()->GetItemInHand();
 	CMiscellaneous* itemCarryingAtPos = GetHero(heroId)->GetItemCarrying(handOfHeroId);
@@ -230,19 +228,10 @@ void CGrpHeld::PutGetItem(int handOfHeroId, int heroId, CItem3DPic* pics) {
 		newItemInHand = itemCarryingAtPos;
 	}
 	if (newItemInHand == NULL) {
-		::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
 		EmptyHand();
 	}
 	else {
-		CBitmap* bmp = newItemInHand->GetPicByType(pics);
-		if (bmp) {
-			// TODO Zuweisung Bild zu Cursor nicht sofort machen, lieber nur das Objekt zuweisen, später in Zeichnen dann abfragen und setzen!
-			// TODO danach Verwendung von PIC in diversen klassen abrüsten!
-			HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
-			HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
-			SetSystemCursor(hCursor, OCR_NORMAL);
-			TakeItemInHand(newItemInHand);
-			GetHero(heroId)->RemoveItemCarrying(handOfHeroId);
-		}
+		TakeItemInHand(newItemInHand);
+		GetHero(heroId)->RemoveItemCarrying(handOfHeroId);
 	}
 }
