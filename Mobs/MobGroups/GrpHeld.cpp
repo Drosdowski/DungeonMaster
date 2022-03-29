@@ -207,6 +207,13 @@ bool CGrpHeld::SetActiveCaster(int ID)
 	return false;
 }
 
+CMiscellaneous* CGrpHeld::GetItemInHand() {
+	CHeld* held = GetActiveHero();
+	if (held)
+		return held->GetItemInHand();
+	else
+		return NULL;
+}
 
 void CGrpHeld::PutGetItem(int handOfHeroId, int heroId, CItem3DPic* pics) {
 

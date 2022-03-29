@@ -29,7 +29,7 @@ public:
 	int GetNumberOfHeroes() { return m_iAnzHelden;  }
 	int GetActionPhase() { return m_iPhase; }
 	
-	CMiscellaneous* GetItemInHand() { return GetActiveHero()->GetItemInHand(); }
+	CMiscellaneous* GetItemInHand();
 	void TakeItemInHand(CMiscellaneous* item) { return GetActiveHero()->TakeItemInHand(item); }
 	void EmptyHand() { return GetActiveHero()->EmptyHand(); }
 	

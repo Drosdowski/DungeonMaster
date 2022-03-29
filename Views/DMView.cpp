@@ -360,19 +360,8 @@ void CDMView::ParseClickFloor(CPoint point) {
 		}
 	}
 	if (itemRegionClicked != NONE) {
-		if (topItem != NULL) {
-			// etwas genommen!
-			CBitmap* bmp = topItem->GetPicByType(m_pRaumView->Get3DPics());
-			if (bmp) {
-				HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
-				HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
-				SetSystemCursor(hCursor, OCR_NORMAL);
-				grpHelden->TakeItemInHand(topItem);
-			}
-		}
-		else {
-			::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
-		}
+		grpHelden->TakeItemInHand(topItem);
+		ChangeMouseCursor();
 	}
 
 }
@@ -614,6 +603,7 @@ void CDMView::UpdateGrafik()
 	CGrpHeld* pGrpHeroes = m_pRaumView->GetHeroes();
 	if (pGrpHeroes != NULL) 
 	{		
+		ChangeMouseCursor();
 		HeldenGrafikZeichnen(pGrpHeroes, pDC_, m_pPictures);
 
 		int phase = pGrpHeroes->GetActionPhase();
@@ -696,5 +686,20 @@ void CDMView::InitDungeon(CDMDoc* pDoc)
 	pDoc->SetRaumView(m_pRaumView);
 }
 
-
-
+void CDMView::ChangeMouseCursor() {
+	CGrpHeld* heroes = m_pRaumView->GetHeroes();
+	if (heroes && heroes->GetItemInHand()) {
+		CBitmap* bmp = heroes->GetItemInHand()->GetPicByType(m_pRaumView->Get3DPics());
+		if (bmp) {
+			HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
+			HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
+			SetSystemCursor(hCursor, OCR_NORMAL);
+		}
+		else {
+			::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
+		}
+	}
+	else {
+		::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
+	}
+}

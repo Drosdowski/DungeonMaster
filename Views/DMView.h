@@ -96,6 +96,7 @@ protected:
 	bool ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators, COMPASS_DIRECTION dir);
 
 	void InvokeRemoteActuator(CActuator* activeActuator);
+	void ChangeMouseCursor();
 
 };
 
