@@ -166,7 +166,7 @@ int CScreenCoords::CheckHitBackpackSlots(CPoint point) {
 			return (int)(15 + (point.x - 166) / 34); // Backpack 1st row
 		}
 		else if (point.x >= 166 && point.y >= 130 && point.x <= 435 && point.y <= 161) {
-			return (int)(31 + (point.x - 166) / 34); // Backpack 2nd row
+			return (int)(23 + (point.x - 166) / 34); // Backpack 2nd row
 		}
 	}
 	return 0;
