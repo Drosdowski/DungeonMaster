@@ -206,7 +206,7 @@ bool CDMView::ParseClickPortraitHands(CPoint point) {
 		}
 		else {
 			// item holen (Hand leer)
-			newItemInHand = clickedHero->GetItemCarrying(handOfHeroId);
+			newItemInHand = itemCarryingAtPos;
 		}
 		if (newItemInHand == NULL) {
 			::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);

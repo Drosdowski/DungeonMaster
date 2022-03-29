@@ -104,47 +104,36 @@ void CPictures::SymbolZeichnen(CDC* pDC, int heldIndex, SUBPOS relPos)
 	tmpdc.DeleteDC();
 }
 
-void CPictures::HaendeZeichnen(CDC* pDC, int index, CHeld* pHeld)
-{
-	// wird ggf. mit Waffezeichnen verschmelzen
+void CPictures::DrawHand(CDC* pDC, CHeld* pHeld, int handId) {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
-	CBitmap* b = m_pItemPic->GetBitmap((CMiscellaneous::ItemType)9, 1);
-	tmpdc.SelectObject(b);
-	pDC->BitBlt(0, 16, 200, 100, &tmpdc, 0, 0, SRCCOPY);
-
-
-/*	RECT r = {(index - 1) * 138, 0, (index - 1) * 138 + 138, 64};
-	CBrush* b = new CBrush(GANZDUNKELGRAU);
-	pDC->FillRect(&r, b);
 	
-	CMiscellaneous* itemInLeftHand = pHeld->GetItemCarrying(0);
-	CMiscellaneous* itemInRightHand = pHeld->GetItemCarrying(1);
+	CMiscellaneous* itemInThistHand = pHeld->GetItemCarrying(handId);
 
-	if (itemInLeftHand == NULL)
-	{
+	if (itemInThistHand == NULL) {
 		tmpdc.SelectObject(m_pBmpRuck);
-		pDC->BitBlt((index - 1) * 138 + 5, 16, 37, 37, &tmpdc, 5, 16, SRCCOPY);
-	}
-	else
-	{
-		CBitmap* bmp = m_pItemPic->GetBitmap(itemInLeftHand->GetType(), itemInLeftHand->GetSubtype());
-		tmpdc.SelectObject(bmp);
-		pDC->BitBlt((index - 1) * 138 + 5, 16, 32, 32, &tmpdc, 0, 0, SRCCOPY);
-	}
-	
-	if (itemInRightHand == NULL) {
-		tmpdc.SelectObject(m_pBmpRuck);
-		pDC->BitBlt((index - 1) * 138 + 45, 16, 37, 37, &tmpdc, 45, 16, SRCCOPY);
+		pDC->BitBlt((pHeld->getIndex() - 1) * 138 + 5 + 40 * handId, 16, 37, 37, &tmpdc, 5 + 40 * handId, 16, SRCCOPY);
 	}
 	else {
-		CBitmap* bmp = m_pItemPic->GetBitmap(itemInRightHand->GetType(), itemInRightHand->GetSubtype());
+		CBitmap* bmp = m_pItemPic->GetBitmap(itemInThistHand);
+		CPoint pos = m_pItemPic->GetSheetKoords(itemInThistHand);
 		tmpdc.SelectObject(bmp);
-		pDC->BitBlt((index - 1) * 138 + 45, 16, 32, 32, &tmpdc, 0, 0, SRCCOPY);
+		pDC->StretchBlt((pHeld->getIndex() - 1) * 138 + 5 + 40 * handId, 16, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, SRCCOPY);
 	}
-
-	delete b; */
 	tmpdc.DeleteDC();
+
+}
+
+void CPictures::HaendeZeichnen(CDC* pDC, int index, CHeld* pHeld)
+{
+	RECT r = { (index - 1) * 138, 0, (index - 1) * 138 + 138, 64 };
+	CBrush* b = new CBrush(GANZDUNKELGRAU);
+	pDC->FillRect(&r, b);
+	delete b;
+	
+	DrawHand(pDC, pHeld, 0);
+	DrawHand(pDC, pHeld, 1);
+
 }
 
 void CPictures::KnochenZeichnen(CDC* pDC, int index)

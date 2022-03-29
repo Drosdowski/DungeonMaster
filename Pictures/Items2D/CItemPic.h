@@ -9,13 +9,12 @@ public:
 	CItemPic(CDC* pDC);
 	~CItemPic();
 
-	CBitmap* GetBitmap(CMiscellaneous::ItemType type, int subType);
-	CPoint GetSheetKoords(CMiscellaneous::ItemType type, int subType);
+	CBitmap* GetBitmap(CMiscellaneous* misc);
+	CPoint GetSheetKoords(CMiscellaneous* misc);
 
 private:
 	void InitItems();
 
-	CBitmap* m_items[numberPics];
 	CBitmap* m_itemSheet[7];
 };
 

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "CMiscellaneous.h"
 #include "..\Pictures\Items3D\CItem3DPic.h"
+#include <cassert>
 
 CMiscellaneous::CMiscellaneous(int index, ItemType type, int subtype) {
 	m_index = index;
@@ -60,4 +61,28 @@ CBitmap* CMiscellaneous::GetPicByType(CItem3DPic* p3DPics) {
 		bmp = p3DPics->GetGoldKey();
 	else
 		return NULL; // Item noch nicht da
+}
+
+int CMiscellaneous::GetOffsetForGroup() {
+	ItemGroup group = GetGroup();
+	switch (group) {
+	case Key:
+		return 16 - IronKey + m_type;
+	case Food:
+		return 8 - Apple + m_type;
+	case Other:
+		assert(false); // todo !!
+	}
+}
+
+int CMiscellaneous::GetSheetForGroup() {
+	ItemGroup group = GetGroup();
+	switch (group) {
+	case Key:
+		return 5;
+	case Food:
+		return 5;
+	case Other:
+		assert(false); // todo !!
+	}
 }

@@ -4,3 +4,4 @@ Sounds
 Items
 
 Treppe rückwärts laufen
+Dinge auf Treppe legen/werfen

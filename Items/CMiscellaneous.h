@@ -28,6 +28,9 @@ public:
 		Other = 3
 	};
 
+	int GetSheetForGroup();
+	int GetOffsetForGroup();
+
 	CMiscellaneous(int index, ItemType type, int subtype);
 	~CMiscellaneous();
 

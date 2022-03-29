@@ -11,13 +11,12 @@ CItemPic::CItemPic(CDC* pDC) : CBasePictures(pDC)
 }
 CItemPic::~CItemPic() {
 	for (int i = 0; i < 7; i++) {
-		DeleteObject(m_itemSheet);
+		delete m_itemSheet[i];
 	}
 }
 
-CBitmap* CItemPic::GetBitmap(CMiscellaneous::ItemType type, int subType) {
-	// todo subtype in item pics
-	int sheet = (int)(type / 32);
+CBitmap* CItemPic::GetBitmap(CMiscellaneous* misc) {
+	int sheet = misc->GetSheetForGroup();
 	return m_itemSheet[sheet];
 }
 
@@ -27,9 +26,10 @@ void CItemPic::InitItems() {
 	}
 }
 
-CPoint CItemPic::GetSheetKoords(CMiscellaneous::ItemType type, int subType) {
-	int x = type % 16;
-	int y = int(type / 16);
+CPoint CItemPic::GetSheetKoords(CMiscellaneous* misc) {
+	int pos = misc->GetOffsetForGroup();
+	int x = pos % 16;
+	int y = int(pos / 16);
 
 	return CPoint(x * 16, y * 16);
 }

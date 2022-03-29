@@ -41,6 +41,8 @@ private:
 	void ZeichneSkills(CDC* pDC, CHeld* pHeld, CRucksack* pRucksack);
 	void ZeichneHpStMa(CDC* pDC, WERTE hp, WERTE st, WERTE ma);
 	void ZeichneHungerDurst(CDC* pDC, int i, int j);
+
+	void DrawHand(CDC* pDC, CHeld* pHeld, int index);
 	
 	CBitmap* m_pBmpRuck;
 	CBitmap* m_pBmpHintergrund;
