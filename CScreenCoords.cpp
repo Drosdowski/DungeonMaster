@@ -93,17 +93,80 @@ int CScreenCoords::CheckHitHeroes(CPoint point) {
 	return 0;
 }
 
+bool CScreenCoords::CheckHitSlot(CPoint clickPoint, CPoint topLeftCorner) {
+	return ((clickPoint.x >= topLeftCorner.x) &&
+		(clickPoint.y >= topLeftCorner.y) &&
+		(clickPoint.x <= topLeftCorner.x + 31) &&
+		(clickPoint.y <= topLeftCorner.y + 31));
+
+}
+
 int CScreenCoords::CheckHitPortraitHands(CPoint point) {
 	// 1. Hand 6/16  - 41/51
 	// 2. Hand 46/16 - 81/51
 	// 3. Hand 144/16 - ...
-	if (point.y > 15 && point.y < 52) {
-		int x = point.x % 138;
-		if (x > 5 && x < 42) {
-			return 1 + 2 * int(point.x / 138);
+	int handId = int(point.x / 138);
+	point.x = point.x % 138;
+	if (CheckHitSlot(point, CPoint(8, 18))) {
+		return 1 + 2 * handId;
+	}
+	if (CheckHitSlot(point, CPoint(48, 18))) {
+		return 2 + 2 * handId;
+	}
+	
+	return 0;
+}
+
+
+int CScreenCoords::CheckHitBackpackSlots(CPoint point) {
+	if (CheckHitSlot(point, CPoint(12, 170))) {
+		return 1; // Left Hand
+	}
+	else if (CheckHitSlot(point, CPoint(124, 170))) {
+		return 2; // Right Hand
+	}
+	else if (CheckHitSlot(point, CPoint(68, 116))) {
+		return 3; // Head
+	}
+	else if (CheckHitSlot(point, CPoint(12, 130))) {
+		return 4; // Neck
+	}
+	else if (CheckHitSlot(point, CPoint(68, 156))) {
+		return 5; // Torso
+	}
+	else if (CheckHitSlot(point, CPoint(68, 196))) {
+		return 6; // Legs
+	}
+	else if (CheckHitSlot(point, CPoint(68, 236))) {
+		return 7; // Feet
+	}
+	else if (CheckHitSlot(point, CPoint(12, 210))) {
+		return 8; // Belt 1
+	}
+	else if (CheckHitSlot(point, CPoint(12, 244))) {
+		return 9; // Belt 2
+	}
+	else if (CheckHitSlot(point, CPoint(124, 210))) {
+		return 10; // Quiver 1
+	}
+	else if (CheckHitSlot(point, CPoint(158, 210))) {
+		return 11; // Quiver 2
+	}
+	else if (CheckHitSlot(point, CPoint(124, 244))) {
+		return 12; // Quiver 3
+	}
+	else if (CheckHitSlot(point, CPoint(158, 244))) {
+		return 13; // Quiver 4
+	}
+	else if (CheckHitSlot(point, CPoint(132, 130))) {
+		return 14; // Backpack
+	}
+	else {
+		if (point.x >= 166 && point.y >= 96 && point.x <= 435 && point.y <= 127) {
+			return (int)(15 + (point.x - 166) / 34); // Backpack 1st row
 		}
-		else if (x > 45 && x < 82) {
-			return 2 + 2 * int(point.x / 138);
+		else if (point.x >= 166 && point.y >= 130 && point.x <= 435 && point.y <= 161) {
+			return (int)(31 + (point.x - 166) / 34); // Backpack 2nd row
 		}
 	}
 	return 0;

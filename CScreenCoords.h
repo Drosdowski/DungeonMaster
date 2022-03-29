@@ -19,11 +19,15 @@ public:
 	static int CheckHitAction(CPoint point, int phase);
 	static int CheckHitHeroes(CPoint point);
 	static int CheckHitPortraitHands(CPoint point);
+	static int CheckHitBackpackSlots(CPoint point);
 	static bool CheckHitDeco(CPoint point);
 	static bool CheckHitMainScr(CPoint);
 	static bool CheckHitEye(CPoint);
 	static bool CheckHitMouth(CPoint);
 	static SUBPOS CheckHitFloor(CPoint point);
 	static SUBPOS CheckHitAir(CPoint point); // throwing
+
+private:
+	static bool CheckHitSlot(CPoint clickPoint, CPoint topLeftCorner);
 };
 

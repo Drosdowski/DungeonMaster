@@ -34,8 +34,6 @@ public:
 	CMiscellaneous(int index, ItemType type, int subtype);
 	~CMiscellaneous();
 
-
-
 	ItemType GetType() {
 		return m_type;
 	}

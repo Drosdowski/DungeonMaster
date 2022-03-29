@@ -40,7 +40,7 @@ void CRucksack::OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point)
 {
 	if (CScreenCoords::CheckHitEye(point))
 		m_iModusExtend = MOD_EXT_AUGE;
-	if (CScreenCoords::CheckHitMouth(point))
+	else if (CScreenCoords::CheckHitMouth(point))
 	{
 		CMiscellaneous* item = m_pOwner->GetItemInHand();
 		if (item && item->GetGroup() == CMiscellaneous::ItemGroup::Food) {
@@ -48,6 +48,12 @@ void CRucksack::OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point)
 			m_pOwner->EmptyHand();
 			delete item; // destroy permanently!
 			::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
+		}
+	}
+	else {
+		int slot = CScreenCoords::CheckHitBackpackSlots(point);
+		if (slot > 0) {
+
 		}
 	}
 

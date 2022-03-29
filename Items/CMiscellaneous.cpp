@@ -36,6 +36,7 @@ void CMiscellaneous::ResethasMoved() {
 	m_done = false;
 }
 
+// todo abrüsten, es muss das 2D BIld verwendet werden !
 CBitmap* CMiscellaneous::GetPicByType(CItem3DPic* p3DPics) {
 
 	CBitmap* bmp;
@@ -86,3 +87,4 @@ int CMiscellaneous::GetSheetForGroup() {
 		assert(false); // todo !!
 	}
 }
+

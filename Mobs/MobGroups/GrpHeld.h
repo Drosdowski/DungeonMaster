@@ -10,6 +10,7 @@
 
 class CMonster;
 class CMiscellaneous;
+class CItem3DPic; // todo raus
 class CGrpHeld: public CGrpChar
 {
 public:
@@ -31,6 +32,8 @@ public:
 	CMiscellaneous* GetItemInHand() { return GetActiveHero()->GetItemInHand(); }
 	void TakeItemInHand(CMiscellaneous* item) { return GetActiveHero()->TakeItemInHand(item); }
 	void EmptyHand() { return GetActiveHero()->EmptyHand(); }
+	
+	void PutGetItem(int handOfHeroId, int heroId, CItem3DPic* pics);
 
 	void Aktiviere(int n);
 	void PassAction();

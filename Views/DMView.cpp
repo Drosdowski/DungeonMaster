@@ -191,38 +191,13 @@ bool CDMView::ParseClickPortraitHands(CPoint point) {
 		// 1 1 2 2 3 3 4 4  HeroId
 		// 0 1 0 1 0 1 0 1  HandOfHeroId
 		int heroId = (int)((handId + 1) / 2);
-		int handOfHeroId = (handId - 1) % 2;
+		int handOfHeroId = (handId - 1) % 2;					// TODO auslagern, und dann auch in Backpack nutzen!
 		
 		CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 		CHeld* clickedHero = grpHelden->GetHero(heroId);
-		
-		CMiscellaneous* itemInHand = grpHelden->GetItemInHand();
-		CMiscellaneous* itemCarryingAtPos = clickedHero->GetItemCarrying(handOfHeroId);
-		CMiscellaneous* newItemInHand = NULL;
-		
-		if (itemInHand) {
-			// Item tauschen oder ablegen
-			newItemInHand = clickedHero->SwitchItemAt(handOfHeroId, itemInHand);
-		}
-		else {
-			// item holen (Hand leer)
-			newItemInHand = itemCarryingAtPos;
-		}
-		if (newItemInHand == NULL) {
-			::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
-			grpHelden->EmptyHand();
-		}
-		else {
-			CBitmap* bmp = newItemInHand->GetPicByType(m_pRaumView->Get3DPics());
-			if (bmp) {
-				HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
-				HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
-				SetSystemCursor(hCursor, OCR_NORMAL);
-				grpHelden->TakeItemInHand(newItemInHand);
-				clickedHero->RemoveItemCarrying(handOfHeroId);
-			}
-		}
 
+		grpHelden->PutGetItem(handOfHeroId, heroId, m_pRaumView->Get3DPics());
+		
 		return true;
 	}
 	else
@@ -448,8 +423,9 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 	{
 		CDC* pDC = GetDC();
 
-		if (CScreenCoords::CheckHitMainScr(point))
+		if (CScreenCoords::CheckHitMainScr(point)) {
 			grpHelden->GetActiveHero()->GetRucksack()->OnLButtonDown(pDC, nFlags, point);
+		}
 	}
 	CView::OnLButtonDown(nFlags, point);
 }
