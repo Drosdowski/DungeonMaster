@@ -2,7 +2,32 @@
 #include "CScreenCoords.h"
 
 CScreenCoords::CScreenCoords() {
+}
 
+CPoint CScreenCoords::GetbackPackSlotKoords(int index)
+{
+	switch (index) {
+
+	case 0: return CPoint(12, 170);// Left Hand
+	case 1: return CPoint(124, 170);// Right Hand
+	case 2: return CPoint(68, 116);// Head
+	case 3: return CPoint(12, 130);// Neck
+	case 4: return CPoint(68, 156);// Torso
+	case 5: return CPoint(68, 196);// Legs
+	case 6: return CPoint(68, 236);// Feet
+	case 7: return CPoint(12, 210);// Belt 1
+	case 8: return CPoint(12, 244);// Belt 2
+	case 9: return CPoint(124, 210);// Quiver 1
+	case 10: return CPoint(158, 210);// Quiver 2
+	case 11: return CPoint(124, 244);// Quiver 3
+	case 12: return CPoint(158, 244);// Quiver 4
+	case 13: return CPoint(132, 130);// Backpack
+	default:
+		if (index >13 && index < 22)		
+			return CPoint(166 + 34 * index, 96);// Backpack 1st row
+		else if (index > 21 && index < 30)
+			return CPoint(166 + 34 * index, 130);// Backpack 2nd row		
+	}
 }
 
 int CScreenCoords::CheckHitArrows(CPoint point) {
@@ -119,56 +144,10 @@ int CScreenCoords::CheckHitPortraitHands(CPoint point) {
 
 
 int CScreenCoords::CheckHitBackpackSlots(CPoint point) {
-	if (CheckHitSlot(point, CPoint(12, 170))) {
-		return 1; // Left Hand
-	}
-	else if (CheckHitSlot(point, CPoint(124, 170))) {
-		return 2; // Right Hand
-	}
-	else if (CheckHitSlot(point, CPoint(68, 116))) {
-		return 3; // Head
-	}
-	else if (CheckHitSlot(point, CPoint(12, 130))) {
-		return 4; // Neck
-	}
-	else if (CheckHitSlot(point, CPoint(68, 156))) {
-		return 5; // Torso
-	}
-	else if (CheckHitSlot(point, CPoint(68, 196))) {
-		return 6; // Legs
-	}
-	else if (CheckHitSlot(point, CPoint(68, 236))) {
-		return 7; // Feet
-	}
-	else if (CheckHitSlot(point, CPoint(12, 210))) {
-		return 8; // Belt 1
-	}
-	else if (CheckHitSlot(point, CPoint(12, 244))) {
-		return 9; // Belt 2
-	}
-	else if (CheckHitSlot(point, CPoint(124, 210))) {
-		return 10; // Quiver 1
-	}
-	else if (CheckHitSlot(point, CPoint(158, 210))) {
-		return 11; // Quiver 2
-	}
-	else if (CheckHitSlot(point, CPoint(124, 244))) {
-		return 12; // Quiver 3
-	}
-	else if (CheckHitSlot(point, CPoint(158, 244))) {
-		return 13; // Quiver 4
-	}
-	else if (CheckHitSlot(point, CPoint(132, 130))) {
-		return 14; // Backpack
-	}
-	else {
-		if (point.x >= 166 && point.y >= 96 && point.x <= 435 && point.y <= 127) {
-			return (int)(15 + (point.x - 166) / 34); // Backpack 1st row
-		}
-		else if (point.x >= 166 && point.y >= 130 && point.x <= 435 && point.y <= 161) {
-			return (int)(23 + (point.x - 166) / 34); // Backpack 2nd row
-		}
-	}
+	for (int i = 0; i< 30; i++)
+		if (CheckHitSlot(point, GetbackPackSlotKoords(i))) {
+			return i; 
+		}	
 	return 0;
 }
 

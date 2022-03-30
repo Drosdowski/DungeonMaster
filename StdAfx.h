@@ -49,10 +49,6 @@
 #define TRANS_BLU RGB(0, 208, 208)
 #define TRANS_VIO RGB(255, 0, 255)
 
-#define MOD_LAUFEN 1
-#define MOD_RUCKSACK 2
-#define MOD_PAUSE 3
-
 #define MOD_EXT_NORMAL 0
 #define MOD_EXT_AUGE 1
 

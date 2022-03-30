@@ -27,7 +27,11 @@ public:
 	static SUBPOS CheckHitFloor(CPoint point);
 	static SUBPOS CheckHitAir(CPoint point); // throwing
 
+	static CPoint GetbackPackSlotKoords(int index);
+
+
 private:
 	static bool CheckHitSlot(CPoint clickPoint, CPoint topLeftCorner);
+
 };
 

@@ -3,6 +3,7 @@
 #include "..\Pictures\CPictures.h"
 #include "..\Mobs\Held.h"
 #include "..\Mobs\MobGroups\GrpHeld.h"
+#include "DMView.h"
 #include "CGroupView.h"
 
 CGroupView::CGroupView()
@@ -27,14 +28,14 @@ void CGroupView::Zeichnen(CDC* pDC, CPictures* pPictures, int iModus, CGrpHeld* 
 			{
 				switch (iModus)
 				{
-				case (MOD_LAUFEN):
+				case (CDMView::MOD_LAUFEN):
 				{
 					pPictures->HaendeZeichnen(pDC, i, pHeroToDraw);
 					pPictures->WerteZeichnen(pDC, pHeroToDraw);
 					pPictures->NameZeichnen(pDC, pHeroToDraw->isActive(), i, pHeroToDraw->getName());
 					break;
 				}
-				case (MOD_RUCKSACK):
+				case (CDMView::MOD_RUCKSACK):
 				{
 					if (pHeroToDraw == pGrpHeld->GetActiveHero())
 					{

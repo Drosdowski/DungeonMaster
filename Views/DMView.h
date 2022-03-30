@@ -31,6 +31,12 @@ protected: // create from serialization only
 
 // Attributes
 public:
+	enum DMMode {
+		MOD_LAUFEN = 1,
+		MOD_RUCKSACK = 2,
+		MOD_PAUSE = 3
+	};
+
 	CDMDoc* GetDocument();
 
 // Operations
@@ -74,8 +80,8 @@ protected:
 	//void HeroDoesDamage(CHeld* pHeld, CGrpMonster* pGrpMonster);
 	bool m_bPause;
 	bool m_bSleep;
-	int m_iModus;
-	int lastModus;
+	DMMode m_iModus;
+	DMMode lastModus;
 	//{{AFX_MSG(CDMView)
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);

@@ -174,6 +174,8 @@ void CPictures::ZeichnenHauptbereichHintergrund(CDC* pDC, int iModusExtend)
 	if (iModusExtend == MOD_EXT_AUGE)
 		pDC->BitBlt(22, 88, 34, 36, &tmpdc, 0, 338, SRCCOPY);
 
+	// TODO Items in Rucksack malen!
+
 	tmpdc.DeleteDC();
 }
 

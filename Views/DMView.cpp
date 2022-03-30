@@ -413,6 +413,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 
 		if (CScreenCoords::CheckHitMainScr(point)) {
 			grpHelden->GetActiveHero()->GetRucksack()->OnLButtonDown(pDC, nFlags, point);
+			ChangeMouseCursor();
 		}
 	}
 	CView::OnLButtonDown(nFlags, point);
@@ -423,12 +424,12 @@ void CDMView::OnRButtonDown(UINT nFlags, CPoint point)
 	CDMDoc* pDoc = (CDMDoc*) GetDocument();
 	CDC* pDC = GetDC();
 	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+	if (grpHelden->GetActiveHero() == NULL) return;
 
 	switch (m_iModus)
 	{
 	case MOD_LAUFEN:
 		if (grpHelden->SetzeModus(pDC, RUCKSACK)) {
-			m_pPictures->RucksackZeichnen(pDC, grpHelden->GetActiveHero());
 			m_iModus = MOD_RUCKSACK;
 		}
 		break;
@@ -588,7 +589,14 @@ void CDMView::UpdateGrafik()
 	if (!m_bPause)
 		if (!m_bSleep)
 		{
-			m_pRaumView->Zeichnen(pDC_);
+			if (m_iModus == MOD_LAUFEN)
+				m_pRaumView->Zeichnen(pDC_);
+			else if (m_iModus == MOD_RUCKSACK)
+			{
+				CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+				m_pPictures->RucksackZeichnen(pDC, grpHelden->GetActiveHero());
+			}
+
 			if (m_iDir>0)
 				m_pPictures->PfeilZeichnen(pDC_, m_iDir);
 		}
@@ -643,20 +651,20 @@ void CDMView::OnTimer(UINT nIDEvent)
 			m_pRaumView->TriggerActuatorsNearby();
 		}
 
-		if (m_iModus == MOD_LAUFEN)
-		{
+		//if (m_iModus == MOD_LAUFEN)
+		//{
 			if (m_iDir > 0)
 			{
 				pDoc->Laufen();
 				m_iDir = 0;
 			}
 			UpdateGrafik();
-		}
+		/* }
 		else if (m_iModus == MOD_RUCKSACK)
 		{
 			CDC* pDC = GetDC();
 			m_pBackpackView->UpdateRucksack(pDC, m_pPictures, m_pRaumView->GetHeroes());
-		}
+		}*/
 	}
 	else {
 		UpdateGrafik();
