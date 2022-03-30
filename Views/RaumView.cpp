@@ -501,12 +501,10 @@ void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, 
 	}
 }
 
-void CRaumView::Zeichnen(CDC* pDC)
+void CRaumView::RaumZeichnen(CDC* pDC)
 {
 	CDC compCdc;
 	compCdc.CreateCompatibleDC(pDC);
-
-//	lpDDSPrimary->BltFast( 0, 0, lpDDSOffOne, NULL, DDBLTFAST_WAIT);
 
 	compCdc.SelectObject(m_pPictures->GetHintergrund());
 
