@@ -162,6 +162,7 @@ void CPictures::RucksackZeichnen(CDC* pDC, CHeld* pHeld)
 	else if (iModusExtend == MOD_EXT_AUGE)
 		ZeichneSkills(pDC, pHeld, pRucksack);
 	ZeichneHpStMa(pDC, pHeld->Hp(), pHeld->St(), pHeld->Ma());
+	ZeichneIcons(pDC, pHeld);
 }
 
 void CPictures::ZeichnenHauptbereichHintergrund(CDC* pDC, int iModusExtend)
@@ -174,10 +175,17 @@ void CPictures::ZeichnenHauptbereichHintergrund(CDC* pDC, int iModusExtend)
 	if (iModusExtend == MOD_EXT_AUGE)
 		pDC->BitBlt(22, 88, 34, 36, &tmpdc, 0, 338, SRCCOPY);
 
-	// TODO Items in Rucksack malen!
-
 	tmpdc.DeleteDC();
 }
+
+void CPictures::ZeichneIcons(CDC* pDC, CHeld* pHeld) {
+	CDC tmpdc;
+	tmpdc.CreateCompatibleDC(pDC);
+
+	tmpdc.DeleteDC();
+
+}
+
 
 void CPictures::NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName)
 {

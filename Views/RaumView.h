@@ -54,7 +54,7 @@ public:
 	CDungeonMap* GetMap() { return m_pMap; }
 	CGrpHeld* GetHeroes() { return m_pMap->GetHeroes(); }
 	void TriggerMoveAnimation();
-	void Zeichnen(CDC* pDC);
+	void RaumZeichnen(CDC* pDC);
 	bool OnStairs();
 
 	CItem3DPic* Get3DPics() { return m_pItem3DPic; }
