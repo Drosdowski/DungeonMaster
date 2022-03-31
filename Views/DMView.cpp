@@ -590,7 +590,7 @@ void CDMView::UpdateGrafik()
 		if (!m_bSleep)
 		{
 			if (m_iModus == MOD_LAUFEN)
-				m_pRaumView->Zeichnen(pDC_);
+				m_pRaumView->RaumZeichnen(pDC_);
 			else if (m_iModus == MOD_RUCKSACK)
 			{
 				CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
