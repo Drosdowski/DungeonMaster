@@ -5,14 +5,12 @@
 #include "DM.h"
 #include <math.h>
 
-#include "Views\DmView.h"
 #include "Views\Raumview.h"
 #include "CDungeonMap.h"
 #include "DMDoc.h"
 #include "Items\Decoration.h"
 #include "Mobs\Held.h"
 #include "Mobs\MobGroups\GrpHeld.h"
-#include "Pictures/CPictures.h"
 #include "CHelpfulValues.h"
 
 #ifdef _DEBUG
@@ -48,16 +46,12 @@ CDMDoc::CDMDoc()
 CDMDoc::~CDMDoc()
 {
 	((CDMApp*)AfxGetApp())->SetDoc(NULL);
-	delete m_pPictures;
 }
 
 BOOL CDMDoc::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())
 		return FALSE;
-
-	CDC* pDC = ((CDMApp*)AfxGetApp())->m_pView->GetDC();
-	m_pPictures = new CPictures(pDC);
 
 	// (SDI documents will reuse this document)
 
@@ -177,15 +171,6 @@ void CDMDoc::InitGruppe(const int nr)
 {
 	CGrpHeld* pGrpHelden = m_pRaumView->GetHeroes();
 	CHeld* pHeld = pGrpHelden->InitHeld(nr);
-	if (pHeld) {
-		CDC* pDC = ((CDMApp*)AfxGetApp())->m_pView->GetDC();
-		m_pPictures->HaendeZeichnen(pDC, nr, pHeld);
-		m_pPictures->NameZeichnen(pDC, pHeld->isActive(), nr, pHeld->getName());
-		m_pPictures->WerteZeichnen(pDC, pHeld);
-
-		SUBPOS relPos = CHelpfulValues::GetRelativeSubPosActive(pHeld->HoleSubPosition(), pGrpHelden->GetDirection());
-		m_pPictures->SymbolZeichnen(pDC, nr, relPos);
-	}
 }
 
 int CDMDoc::HoleGruppenRichtung() 

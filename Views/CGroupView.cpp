@@ -14,7 +14,7 @@ CGroupView::~CGroupView()
 {
 }
 
-void CGroupView::Zeichnen(CDC* pDC, CPictures* pPictures, int iModus, CGrpHeld* pGrpHeld)
+void CGroupView::GroupZeichnen(CDC* pDC, CPictures* pPictures, int iModus, CGrpHeld* pGrpHeld)
 {
 	for (int i = 1; i <= 4; i++)
 	{
@@ -30,17 +30,21 @@ void CGroupView::Zeichnen(CDC* pDC, CPictures* pPictures, int iModus, CGrpHeld* 
 				{
 				case (CDMView::MOD_LAUFEN):
 				{
-					pPictures->HaendeZeichnen(pDC, i, pHeroToDraw);
 					pPictures->WerteZeichnen(pDC, pHeroToDraw);
 					pPictures->NameZeichnen(pDC, pHeroToDraw->isActive(), i, pHeroToDraw->getName());
+					pPictures->HaendeZeichnen(pDC, pHeroToDraw);
 					break;
 				}
 				case (CDMView::MOD_RUCKSACK):
 				{
+					pPictures->WerteZeichnen(pDC, pHeroToDraw);
 					if (pHeroToDraw == pGrpHeld->GetActiveHero())
 					{
 						pPictures->BildZeichnen(pDC, pHeroToDraw->isActive(), i);
-						pPictures->RucksackZeichnen(pDC, pHeroToDraw);
+					}
+					else {
+						pPictures->HaendeZeichnen(pDC, pHeroToDraw);
+						pPictures->NameZeichnen(pDC, pHeroToDraw->isActive(), i, pHeroToDraw->getName());
 					}
 					break;
 				}

@@ -342,9 +342,6 @@
     <Image Include="res\Walls\E.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\Kram.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\Pinv.bmp">
       <Filter>Resource Files</Filter>
     </Image>
@@ -847,18 +844,6 @@
     <Image Include="res\WallDeco\WallDeco_19-Front.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\Icons.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\Icons3d.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\Icons3db.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\Pcst_042.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\Steine.bmp">
       <Filter>Resource Files</Filter>
     </Image>
@@ -914,6 +899,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\WallDeco\WallDeco_45_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\P.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

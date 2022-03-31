@@ -514,6 +514,7 @@ void CDMView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		}
 		else if (m_iModus == MOD_RUCKSACK)
 		{
+			// todo update grafik?
 			CDC* pDC = GetDC();
 			m_pBackpackView->UpdateRucksack(pDC, m_pPictures, m_pRaumView->GetHeroes());
 		}
@@ -533,7 +534,7 @@ void CDMView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CDMView::HeldenGrafikZeichnen(CGrpHeld* pGrpHelden, CDC* pDC, CPictures* pPictures)
 {
-	m_pGroupView->Zeichnen(pDC, pPictures, m_iModus, pGrpHelden);
+	m_pGroupView->GroupZeichnen(pDC, pPictures, m_iModus, pGrpHelden);
 }
 
 void CDMView::ZauberReiterZeichnen(CDC* pDC, int iActiveWizard)
@@ -575,6 +576,38 @@ void CDMView::DrawBMP(CDC* pDC, CBitmap* pBMP, int posX, int posY) {
 	DeleteDC(tmpdc);
 }
 
+void CDMView::FrameZeichnen(CDC* pDC) {
+	ChangeMouseCursor();
+	
+	CGrpHeld* pGrpHeroes = m_pRaumView->GetHeroes();
+
+	if (pGrpHeroes != NULL)
+	{
+		HeldenGrafikZeichnen(pGrpHeroes, pDC, m_pPictures);
+
+		int phase = pGrpHeroes->GetActionPhase();
+		if (phase == 1) {
+			WaffenZeichnen(pDC, pGrpHeroes);
+		}
+		else if (phase == 2) {
+			ActionAreaZeichnen(pDC);
+		}
+		else if (phase == 3) {
+			CHeld* pHeld = pGrpHeroes->GetAttackingHero();
+			if (pHeld)
+			{
+				ActionDamageZeichnen(pDC, pHeld->GetDealingDamage());
+			}
+		}
+
+		int iActiveWizard = pGrpHeroes->GetActiveWizard();
+		if (iActiveWizard > 0)
+			ZauberReiterZeichnen(pDC, iActiveWizard);
+	}
+
+	m_pPictures->PfeilZeichnen(pDC, m_iDir);
+
+}
 
 void CDMView::UpdateGrafik()
 {
@@ -586,6 +619,8 @@ void CDMView::UpdateGrafik()
 	tmpbmp.CreateCompatibleBitmap(pDC, 640, 400);
 	pDC_->SelectObject(tmpbmp);
 
+	FrameZeichnen(pDC_);
+
 	if (!m_bPause)
 		if (!m_bSleep)
 		{
@@ -594,11 +629,9 @@ void CDMView::UpdateGrafik()
 			else if (m_iModus == MOD_RUCKSACK)
 			{
 				CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
-				m_pPictures->RucksackZeichnen(pDC, grpHelden->GetActiveHero());
+				m_pPictures->RucksackZeichnen(pDC_, grpHelden->GetActiveHero());
 			}
 
-			if (m_iDir>0)
-				m_pPictures->PfeilZeichnen(pDC_, m_iDir);
 		}
 		else
 			// You are asleep
@@ -606,32 +639,6 @@ void CDMView::UpdateGrafik()
 	else
 		// Game frozen
 		;
-
-	CGrpHeld* pGrpHeroes = m_pRaumView->GetHeroes();
-	if (pGrpHeroes != NULL) 
-	{		
-		ChangeMouseCursor();
-		HeldenGrafikZeichnen(pGrpHeroes, pDC_, m_pPictures);
-
-		int phase = pGrpHeroes->GetActionPhase();
-		if (phase == 1) {
-			WaffenZeichnen(pDC_, pGrpHeroes);
-		}
-		else if (phase == 2) {
-			ActionAreaZeichnen(pDC_);			
-		}
-		else if (phase == 3) {
-			CHeld* pHeld = pGrpHeroes->GetAttackingHero();
-			if (pHeld)
-			{
-				ActionDamageZeichnen(pDC_, pHeld->GetDealingDamage());
-			}
-		}
-		int iActiveWizard = pGrpHeroes->GetActiveWizard();
-		if (iActiveWizard > 0)
-			ZauberReiterZeichnen(pDC_, iActiveWizard);
-	
-	}
 
 	pDC->BitBlt(0, 0, 640, 400, pDC_, 0, 0, SRCCOPY);
 	delete pDC_;

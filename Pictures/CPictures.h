@@ -24,7 +24,7 @@ public:
 	void KnochenZeichnen(CDC* pDC, int index);
 	void NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName);
 	void RucksackZeichnen(CDC* pDC, CHeld* pHeld);
-	void HaendeZeichnen(CDC* pDC, int index, CHeld* pHeld);
+	void HaendeZeichnen(CDC* pDC, CHeld* pHeld);
 	void SymbolZeichnen(CDC* pDC, int heldIndex, SUBPOS relPos);
 	void WaffeZeichnen(CDC* pDC);
 	void WerteZeichnen(CDC* pDC, CHeld* pHeld);
@@ -48,6 +48,7 @@ private:
 	CBitmap* m_pBmpRuck;
 	CBitmap* m_pBmpHintergrund;
 	CBitmap* m_pBmpInversePfeile;
+	CBitmap* m_pBmpPfeile;
 	CBitmap* m_pBmpKram;
 	CBitmap* m_pRunes[4];
 	CBitmap* m_pWizardTabs[5];

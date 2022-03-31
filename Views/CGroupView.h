@@ -7,7 +7,7 @@ public:
 	CGroupView();           
 	virtual ~CGroupView();
 
-	void Zeichnen(CDC* pDC, CPictures* pPictures, int iModus, CGrpHeld* pGrpHeld);
+	void GroupZeichnen(CDC* pDC, CPictures* pPictures, int iModus, CGrpHeld* pGrpHeld);
 
 };
 

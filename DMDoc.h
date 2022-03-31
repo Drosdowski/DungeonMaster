@@ -16,7 +16,6 @@
 #endif // _MSC_VER >= 1000
 
 class CRaumView;
-class CPictures;
 class CDMDoc : public CDocument
 {
 protected: // create from serialization only
@@ -39,7 +38,6 @@ public:
 	int HoleGruppenRichtung();
 	VEKTOR HoleGruppenPosition();
 	void PlayDMSound(std::string file);
-	CPictures* GetIconPictures() { return m_pPictures; }
 	
 	virtual ~CDMDoc();
 #ifdef _DEBUG
@@ -57,7 +55,6 @@ protected:
 	DECLARE_MESSAGE_MAP()
 private:
 	int m_iWunschRichtung;
-	CPictures* m_pPictures;
 
 	CRaumView* m_pRaumView;
 };

@@ -508,9 +508,9 @@ void CRaumView::RaumZeichnen(CDC* pDC)
 
 	compCdc.SelectObject(m_pPictures->GetHintergrund());
 
-	pDC->BitBlt(0, 0, 640, 400, &compCdc, 0, 0, SRCCOPY);
+	pDC->BitBlt(0, 64, MainAreaWidth, 336, &compCdc, 0, 0, SRCCOPY);
 	if (m_bMirror) {
-		pDC->StretchBlt(0, 64, MainAreaWidth, 269, &compCdc, MainAreaWidth, 64, -MainAreaWidth, 269, SRCCOPY);
+		pDC->StretchBlt(0, 64, MainAreaWidth, 269, &compCdc, MainAreaWidth, 0, -MainAreaWidth, 269, SRCCOPY);
 	}
 
 	int x = m_pMap->GetHeroes()->GetVector().x;

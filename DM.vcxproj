@@ -283,10 +283,7 @@
     <Image Include="res\Door_Wood_1.bmp" />
     <Image Include="res\Door_Wood_2.bmp" />
     <Image Include="res\Door_Wood_3.bmp" />
-    <Image Include="res\Icons.bmp" />
-    <Image Include="res\Icons3d.bmp" />
-    <Image Include="res\Icons3db.bmp" />
-    <Image Include="res\Pcst_042.bmp" />
+    <Image Include="res\P.bmp" />
     <Image Include="res\Steine.bmp" />
     <Image Include="res\WallDeco\WallDeco_36_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_36_Left.bmp" />
@@ -332,7 +329,6 @@
     <Image Include="res\Items2D\Items48.bmp" />
     <Image Include="res\Items3D\Item_3d_Apple.bmp" />
     <Image Include="res\Items3D\Item_3d_Bread.bmp" />
-    <Image Include="res\Kram.bmp" />
     <Image Include="res\WallDeco\WallDeco_45_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_45_Right.bmp" />
     <Image Include="res\WallDeco\WallDeco_44_Right.bmp" />

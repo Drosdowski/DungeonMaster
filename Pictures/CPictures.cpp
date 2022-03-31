@@ -7,6 +7,7 @@
 #include "..\Items\Decoration.h"
 #include "..\Items\CMiscellaneous.h"
 #include "..\Rucksack.h"
+#include "..\CScreenCoords.h"
 
 CPictures::CPictures(CDC* pDC) : CBasePictures(pDC)
 {	
@@ -19,6 +20,7 @@ CPictures::~CPictures()
 
 	delete m_pBmpHintergrund;
 	delete m_pBmpInversePfeile;
+	delete m_pBmpPfeile;
 	delete m_pBmpRuck;
 	delete m_pBmpKram;
 	for (int i = 1; i < 5; i++) {
@@ -49,6 +51,7 @@ void CPictures::InitBitmaps()
 
 	LoadPic(m_pBmpHintergrund, IDB_BITMAP_E);
 	LoadPic(m_pBmpInversePfeile, IDB_BITMAP_PINV);
+	LoadPic(m_pBmpPfeile, IDB_BITMAP_P);
 
 	LoadPic(m_pBmpRuck, IDB_BITMAP_RUCK);
 	LoadPic(m_pBmpKram, IDB_BITMAP_KRAM);
@@ -74,6 +77,13 @@ CBitmap* CPictures::GetActionDamage(int dmg) {
 
 void CPictures::WerteZeichnen(CDC* pDC, CHeld* pHeld)
 {
+	int index = pHeld->getIndex();
+
+	RECT r = { (index - 1) * 138, 0, (index - 1) * 138 + 138, 64 };
+	CBrush* b = new CBrush(GANZDUNKELGRAU);
+	pDC->FillRect(&r, b);
+	delete b;
+
 	// Hp, St, Ma - Balken
 	int x = (pHeld->getIndex() - 1) * 138 + 94;
 	pDC->FillSolidRect(CRect(x, 4, x + 35, 52), GANZDUNKELGRAU);
@@ -124,13 +134,8 @@ void CPictures::DrawHand(CDC* pDC, CHeld* pHeld, int handId) {
 
 }
 
-void CPictures::HaendeZeichnen(CDC* pDC, int index, CHeld* pHeld)
+void CPictures::HaendeZeichnen(CDC* pDC, CHeld* pHeld)
 {
-	RECT r = { (index - 1) * 138, 0, (index - 1) * 138 + 138, 64 };
-	CBrush* b = new CBrush(GANZDUNKELGRAU);
-	pDC->FillRect(&r, b);
-	delete b;
-	
 	DrawHand(pDC, pHeld, 0);
 	DrawHand(pDC, pHeld, 1);
 
@@ -182,8 +187,18 @@ void CPictures::ZeichneIcons(CDC* pDC, CHeld* pHeld) {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 
-	tmpdc.DeleteDC();
+	for (int iconID = 0; iconID < 30; iconID++) {
+		CMiscellaneous* item = pHeld->GetItemCarrying(iconID);
+		if (item) {
+			CPoint posBackpack = CScreenCoords::GetbackPackSlotKoords(iconID);
+			CBitmap* bmp = m_pItemPic->GetBitmap(item);
+			CPoint pos = m_pItemPic->GetSheetKoords(item);
+			tmpdc.SelectObject(bmp);
+			pDC->StretchBlt(posBackpack.x, posBackpack.y, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, SRCCOPY);
+		}
+	}
 
+	tmpdc.DeleteDC();
 }
 
 
@@ -274,6 +289,9 @@ void CPictures::PfeilZeichnen(CDC* pDC, int index)
 {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
+ 	tmpdc.SelectObject(m_pBmpPfeile);
+	pDC->BitBlt(468, 248, 168, 90, &tmpdc, 0, 0, SRCCOPY);
+
 	tmpdc.SelectObject(m_pBmpInversePfeile);
 	switch (index)
 	{

@@ -77,6 +77,7 @@ protected:
 	void ActionDamageZeichnen(CDC* pDC, int dmg);
 	void WaffenZeichnen(CDC* pDC, CGrpHeld* pGrpHeroes);
 	void DrawBMP(CDC* pDC, CBitmap* pBMP, int posX, int posY);
+	void FrameZeichnen(CDC* pDC);
 	//void HeroDoesDamage(CHeld* pHeld, CGrpMonster* pGrpMonster);
 	bool m_bPause;
 	bool m_bSleep;

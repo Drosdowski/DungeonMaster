@@ -14,6 +14,7 @@
 #define IDB_BITMAP_RUCK                 142
 #define IDB_BITMAP_TREP                 143
 #define IDB_BITMAP_PINV                 144
+
 #define IDB_MAGICBG                     162
 #define IDB_LEVER_UP_FRONT              163
 #define IDB_LEVER_UP_RIGHT              164
@@ -125,6 +126,7 @@
 #define IDB_TELEPORTER                  320
 #define IDB_ITEM3D_GOLDKEY              321
 #define IDB_ITEM3D_IRONKEY              322
+#define IDB_BITMAP_P                    391
 #define IDB_BITMAP_E0L                  1001
 #define IDB_BITMAP_E0LF                 1002
 #define IDB_BITMAP_E0R                  1004
@@ -189,7 +191,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        391
+#define _APS_NEXT_RESOURCE_VALUE        392
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

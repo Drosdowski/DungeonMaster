@@ -203,17 +203,7 @@ END
 // Bitmap
 //
 
-IDB_BITMAP_KRAM         BITMAP                  "res\\Kram.bmp"
-
 IDB_BITMAP_E            BITMAP                  "res\\Walls\\E.bmp"
-
-IDB_BITMAP_ICONS        BITMAP                  "res\\Icons.bmp"
-
-IDB_BITMAP_ICONS3D      BITMAP                  "res\\Icons3d.bmp"
-
-IDB_BITMAP_ICONS3DB     BITMAP                  "res\\Icons3db.bmp"
-
-IDB_BITMAP_PCST042      BITMAP                  "res\\Pcst_042.bmp"
 
 IDB_BITMAP_RUCK         BITMAP                  "res\\Ruck.bmp"
 
@@ -538,6 +528,8 @@ IDB_WALLDECO_44L        BITMAP                  "res\\WallDeco\\WallDeco_44_Left
 IDB_WALLDECO_45F        BITMAP                  "res\\WallDeco\\WallDeco_45_Front.bmp"
 
 IDB_WALLDECO_45L        BITMAP                  "res\\WallDeco\\WallDeco_45_Left.bmp"
+
+IDB_BITMAP_P            BITMAP                  "res\\P.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
