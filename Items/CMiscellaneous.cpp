@@ -88,7 +88,7 @@ int CMiscellaneous::GetSheetForGroup() {
 	}
 }
 
-bool CheckGroup(int slotId) {
+bool CMiscellaneous::CheckGroup(int slotId) {
 	//if (slotId == 2) return (GetGroup() == ItemGroup.Helmet);
 	return true;
 }
