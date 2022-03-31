@@ -89,6 +89,12 @@ int CMiscellaneous::GetSheetForGroup() {
 }
 
 bool CMiscellaneous::CheckGroup(int slotId) {
-	//if (slotId == 2) return (GetGroup() == ItemGroup.Helmet);
+	if (slotId == 2) return (GetGroup() == Helmet);
+	if (slotId == 3) return (GetGroup() == Amulet);
+	if (slotId == 4) return (GetGroup() == Torso);
+	if (slotId == 5) return (GetGroup() == Legs);
+	if (slotId == 6) return (GetGroup() == Shoes);
+	if (slotId >= 8 && slotId <=11) return (GetGroup() == Throwable);
+	
 	return true;
 }
