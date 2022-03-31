@@ -20,7 +20,6 @@ class CGrpMonster;
 class CRaumView;
 class CZauberView;
 class CGroupView;
-class CBackpackView;
 class CPictures;
 
 class CDMView : public CView
@@ -68,7 +67,6 @@ protected:
 	CZauberView* m_pZauberView;
 	CGroupView* m_pGroupView;
 	CRaumView* m_pRaumView;
-	CBackpackView* m_pBackpackView;
 
 	void UpdateGrafik();
 	void HeldenGrafikZeichnen(CGrpHeld* pGrpHeld, CDC* pDC, CPictures* pPictures);

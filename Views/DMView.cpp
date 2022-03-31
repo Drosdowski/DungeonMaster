@@ -11,7 +11,6 @@
 #include "RaumView.h"
 #include "ZauberView.h"
 #include "CGroupView.h"
-#include "CBackpackView.h"
 #include "..\CDungeonMap.h"
 #include "..\Rucksack.h"
 #include "..\Pictures\CPictures.h"
@@ -57,7 +56,6 @@ CDMView::CDMView()
 	m_pRaumView = new CRaumView();
 	m_pZauberView = new CZauberView();
 	m_pGroupView = new CGroupView();
-	m_pBackpackView = new CBackpackView();
 	m_bSleep = false;
 	m_bPause = false;
 	m_iModus = MOD_LAUFEN;
@@ -76,7 +74,6 @@ CDMView::~CDMView()
 	delete m_pRaumView;
 	delete m_pZauberView;
 	delete m_pGroupView;
-	delete m_pBackpackView;
 	delete m_pPictures;
 //	KillTimer(this, idTimer ); 
 	((CDMApp*)AfxGetApp())->SetView(NULL);
@@ -514,9 +511,7 @@ void CDMView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		}
 		else if (m_iModus == MOD_RUCKSACK)
 		{
-			// todo update grafik?
-			CDC* pDC = GetDC();
-			m_pBackpackView->UpdateRucksack(pDC, m_pPictures, m_pRaumView->GetHeroes());
+			UpdateGrafik();
 		}
 	}
 	CView::OnKeyDown(nChar, nRepCnt, nFlags);
@@ -658,20 +653,12 @@ void CDMView::OnTimer(UINT nIDEvent)
 			m_pRaumView->TriggerActuatorsNearby();
 		}
 
-		//if (m_iModus == MOD_LAUFEN)
-		//{
-			if (m_iDir > 0)
-			{
-				pDoc->Laufen();
-				m_iDir = 0;
-			}
-			UpdateGrafik();
-		/* }
-		else if (m_iModus == MOD_RUCKSACK)
+		if (m_iDir > 0)
 		{
-			CDC* pDC = GetDC();
-			m_pBackpackView->UpdateRucksack(pDC, m_pPictures, m_pRaumView->GetHeroes());
-		}*/
+			pDoc->Laufen();
+			m_iDir = 0;
+		}
+		UpdateGrafik();
 	}
 	else {
 		UpdateGrafik();

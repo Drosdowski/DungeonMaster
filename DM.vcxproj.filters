@@ -162,9 +162,6 @@
     <ClCompile Include="Views\CGroupView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Views\CBackpackView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Pictures\CWallDecoPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -320,9 +317,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Views\CGroupView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Views\CBackpackView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\CLockPic.h">
