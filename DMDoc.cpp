@@ -107,48 +107,59 @@ void CDMDoc::Laufen()
 	VEKTOR posTarget, posFrom, posFinal;
 	CGrpHeld* pGrpHeroes = m_pRaumView->GetHeroes();
 	posFrom = pGrpHeroes->GetPos();
+	bool bLaufbereit = m_pRaumView->GetHeroes()->Laufbereit();
 
 	switch(m_iWunschRichtung)
 	{
 	case LINKS_DREHEN:
 	case RECHTS_DREHEN:
-		m_pRaumView->TriggerMoveAnimation();
-		if (m_pRaumView->OnStairs()) {
-			// auf Treppe drehen = Treppe nutzen!
-			posFinal = m_pRaumView->Betrete(posFrom, posFrom);
-			pGrpHeroes->Laufen(posFinal);
+		if (bLaufbereit)
+		{
+			m_pRaumView->TriggerMoveAnimation();
+			if (m_pRaumView->OnStairs()) {
+				// auf Treppe drehen = Treppe nutzen!
+				posFinal = m_pRaumView->Betrete(posFrom, posFrom);
+				pGrpHeroes->Laufen(posFinal);
+			}
+			else {
+				if (m_iWunschRichtung == LINKS_DREHEN)
+					pGrpHeroes->DrehenRelativ(LINKS);
+				else
+					pGrpHeroes->DrehenRelativ(RECHTS);
+			}
 		}
-		else {
-			if (m_iWunschRichtung == LINKS_DREHEN)
-				pGrpHeroes->DrehenRelativ(LINKS);
-			else
-				pGrpHeroes->DrehenRelativ(RECHTS);
-		}
-
 		break;
 	case LINKS_STRAFE:
 	case RUECKWAERTS:
 	case RECHTS_STRAFE:
 	case VORWAERTS:
-		bool bLaufbereit = m_pRaumView->GetHeroes()->Laufbereit();
 		if (bLaufbereit)
 		{
-			posTarget = pGrpHeroes->HoleZielFeld(m_iWunschRichtung);
-			posFinal = m_pRaumView->Betrete(posFrom, posTarget);
-			if (posFinal.x == posFrom.x && posFinal.y == posFrom.y && posFinal.z == posFrom.z)
-			{
-				pGrpHeroes->Kollision();
-				PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-RunningIntoAWall.mp3");
-			}
-			else
-			{
+			if (m_pRaumView->OnStairs() && m_iWunschRichtung == RUECKWAERTS) {
+				// Sonderregel: Treppe rückwärts läuft nicht gegen die Wand hinter der Gruppe, sondern rauf/runter
+				posFinal = m_pRaumView->Betrete(posFrom, posFrom);
 				m_pRaumView->TriggerMoveAnimation();
 				pGrpHeroes->Laufen(posFinal);
-				/*std::stack<CActuator*> actuatorsFrom = m_pRaumView->GetMap()->GetField(posFrom)->GetActuator((SUBPOS_ABSOLUTE)0);
-				std::stack<CActuator*> actuatorsTarget = m_pRaumView->GetMap()->GetField(posFinal)->GetActuator((SUBPOS_ABSOLUTE)0);
-				while (!actuators.empty()) {
+			}
+			else {
 
-				}*/
+				posTarget = pGrpHeroes->HoleZielFeld(m_iWunschRichtung);
+				posFinal = m_pRaumView->Betrete(posFrom, posTarget);
+				if (posFinal.x == posFrom.x && posFinal.y == posFrom.y && posFinal.z == posFrom.z)
+				{
+					pGrpHeroes->Kollision();
+					PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-RunningIntoAWall.mp3");
+				}
+				else
+				{
+					m_pRaumView->TriggerMoveAnimation();
+					pGrpHeroes->Laufen(posFinal);
+					/*std::stack<CActuator*> actuatorsFrom = m_pRaumView->GetMap()->GetField(posFrom)->GetActuator((SUBPOS_ABSOLUTE)0);
+					std::stack<CActuator*> actuatorsTarget = m_pRaumView->GetMap()->GetField(posFinal)->GetActuator((SUBPOS_ABSOLUTE)0);
+					while (!actuators.empty()) {
+
+					}*/
+				}
 			}
 		}
 		break;
