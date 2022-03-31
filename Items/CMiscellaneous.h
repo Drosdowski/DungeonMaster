@@ -24,8 +24,19 @@ public:
 
 	enum ItemGroup {
 		Key = 1,
-		Food = 2,
-		Other = 3
+		Consumable = 2,
+		Helmet = 3,
+		Amulet = 4,
+		Torso = 5,
+		Legs = 6,
+		Shoes = 7,
+		Weapon = 8,
+		Shield = 9,
+		Container = 10,
+		Quiver = 11,
+		Throwable = 12,
+		Flask = 13,
+		Other = 99
 	};
 
 	int GetSheetForGroup();
@@ -44,7 +55,7 @@ public:
 
 	ItemGroup GetGroup() {
 		if (m_type >= 9 && m_type <= 24) return ItemGroup::Key;
-		if (m_type >= 29 && m_type <= 31) return ItemGroup::Food;
+		if (m_type >= 29 && m_type <= 31) return ItemGroup::Consumable;
 		return ItemGroup::Other;
 	}
 
@@ -52,6 +63,7 @@ public:
 	bool HasMovedThisTick();
 	void ResethasMoved();
 	void ReduceSpeed();
+	bool CheckGroup(int slotId);
 
 	CBitmap* GetPicByType(CItem3DPic* p3DPics);
 		

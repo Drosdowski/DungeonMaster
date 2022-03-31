@@ -43,7 +43,7 @@ void CRucksack::OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point)
 	else if (CScreenCoords::CheckHitMouth(point))
 	{
 		CMiscellaneous* item = m_pOwner->GetItemInHand();
-		if (item && item->GetGroup() == CMiscellaneous::ItemGroup::Food) {
+		if (item && item->GetGroup() == CMiscellaneous::ItemGroup::Consumable) {
 			m_pOwner->Essen(50);
 			m_pOwner->EmptyHand();
 			delete item; // destroy permanently!
@@ -55,19 +55,21 @@ void CRucksack::OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point)
 			CMiscellaneous* itemInHand = m_pOwner->GetItemInHand();
 			CMiscellaneous* newItemInHand = NULL;
 			CMiscellaneous* itemCarryingAtPos = m_pOwner->GetItemCarrying(slot);
-			// todo: group check!
-			if (itemInHand) {
-				newItemInHand = m_pOwner->SwitchItemAt(slot, itemInHand);
-			}
-			else {
-				newItemInHand = itemCarryingAtPos;
-			}
-			if (newItemInHand == NULL) {
-				m_pOwner->EmptyHand();
-			}
-			else {
-				m_pOwner->TakeItemInHand(newItemInHand);
-				m_pOwner->RemoveItemCarrying(slot);
+			if (newItemInHand->CheckGroup(slot)) {
+				// todo: group check!
+				if (itemInHand) {
+					newItemInHand = m_pOwner->SwitchItemAt(slot, itemInHand);
+				}
+				else {
+					newItemInHand = itemCarryingAtPos;
+				}
+				if (newItemInHand == NULL) {
+					m_pOwner->EmptyHand();
+				}
+				else {
+					m_pOwner->TakeItemInHand(newItemInHand);
+					m_pOwner->RemoveItemCarrying(slot);
+				}
 			}
 		}
 	}

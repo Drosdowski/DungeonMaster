@@ -69,7 +69,7 @@ int CMiscellaneous::GetOffsetForGroup() {
 	switch (group) {
 	case Key:
 		return 16 - IronKey + m_type;
-	case Food:
+	case Consumable:
 		return 8 - Apple + m_type;
 	case Other:
 		assert(false); // todo !!
@@ -81,10 +81,14 @@ int CMiscellaneous::GetSheetForGroup() {
 	switch (group) {
 	case Key:
 		return 5;
-	case Food:
+	case Consumable:
 		return 5;
 	case Other:
 		assert(false); // todo !!
 	}
 }
 
+bool CheckGroup(int slotId) {
+	//if (slotId == 2) return (GetGroup() == ItemGroup.Helmet);
+	return true;
+}
