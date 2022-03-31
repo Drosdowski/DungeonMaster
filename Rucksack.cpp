@@ -51,7 +51,7 @@ void CRucksack::OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point)
 	}
 	else {
 		int slot = CScreenCoords::CheckHitBackpackSlots(point);
-		if (slot > 0) {
+		if (slot >= 0) {
 			CMiscellaneous* itemInHand = m_pOwner->GetItemInHand();
 			CMiscellaneous* newItemInHand = NULL;
 			CMiscellaneous* itemCarryingAtPos = m_pOwner->GetItemCarrying(slot);

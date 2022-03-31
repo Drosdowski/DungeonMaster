@@ -24,9 +24,9 @@ CPoint CScreenCoords::GetbackPackSlotKoords(int index)
 	case 13: return CPoint(132, 130);// Backpack
 	default:
 		if (index >13 && index < 22)		
-			return CPoint(166 + 34 * index, 96);// Backpack 1st row
+			return CPoint(166 + 34 * (index-14), 96);// Backpack 1st row
 		else if (index > 21 && index < 30)
-			return CPoint(166 + 34 * index, 130);// Backpack 2nd row		
+			return CPoint(166 + 34 * (index-22), 130);// Backpack 2nd row		
 	}
 }
 
@@ -148,7 +148,7 @@ int CScreenCoords::CheckHitBackpackSlots(CPoint point) {
 		if (CheckHitSlot(point, GetbackPackSlotKoords(i))) {
 			return i; 
 		}	
-	return 0;
+	return -1;
 }
 
 bool CScreenCoords::CheckHitDeco(CPoint point) {
