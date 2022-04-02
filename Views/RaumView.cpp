@@ -806,9 +806,10 @@ void CRaumView::TriggerPassiveActuators(VEKTOR fieldPos, VEKTOR heroPos) {
 }
 
 void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field , CActuator* actuator) {
-	bool criticalWeightChanged = field->CriticalWeightChange(heroPos, actuator->GetCriticalWeigth()); // todo parameter optimieren?
+	bool criticalWeightBreached = field->CriticalWeightBreached(heroPos, actuator->GetCriticalWeigth()); // todo parameter optimieren?
+	bool criticalWeightGone	= field->CriticalWeightGone(heroPos, actuator->GetCriticalWeigth()); // todo parameter optimieren?
 	
-	if (criticalWeightChanged) {
+	if (criticalWeightBreached || criticalWeightGone) {
 		switch (actuator->GetType()) {
 		case 3:
 			VEKTOR target = actuator->GetTarget();
@@ -819,20 +820,24 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field , CActuator
 			switch (type)
 			{
 			case CActuator::Set:
-				if (pDoor != NULL) {
+				if (pDoor != NULL && criticalWeightBreached) {
 					pDoor->Open();
 				}
 				break;
 			case CActuator::Toggle:
-				if (pDoor != NULL) {
+				if (pDoor != NULL && criticalWeightBreached) {
 					pDoor->Toggle();
 				}
 				break;
 			case CActuator::Clear:
-				if (pDoor != NULL) {
+				if (pDoor != NULL && criticalWeightBreached) {
 					pDoor->Close(); // TODO ???
 				}
 				break;
+			case CActuator::Hold:
+				if (pDoor != NULL && criticalWeightGone) {
+					pDoor->Toggle(); // todo prüfen 
+				}
 			}
 			break;
 		}
