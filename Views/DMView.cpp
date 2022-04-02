@@ -689,18 +689,18 @@ void CDMView::InitDungeon(CDMDoc* pDoc)
 
 void CDMView::ChangeMouseCursor() {
 	CGrpHeld* heroes = m_pRaumView->GetHeroes();
-	if (heroes && heroes->GetItemInHand()) {
-		CBitmap* bmp = heroes->GetItemInHand()->GetPicByType(m_pRaumView->Get3DPics());
-		if (bmp) {
-			HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
-			HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
-			SetSystemCursor(hCursor, OCR_NORMAL);
-		}
-		else {
-			::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
+	if (heroes) {
+		CMiscellaneous* item = heroes->GetItemInHand();
+		if (item) {
+			HBITMAP hBmp = m_pPictures->GetIconBitmap(item); //heroes->GetItemInHand()->GetPicByType(m_pRaumView->Get3DPics());
+			if (hBmp) {
+				
+				//HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
+				HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
+				SetSystemCursor(hCursor, OCR_NORMAL);
+				return;
+			}
 		}
 	}
-	else {
-		::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
-	}
+	::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
 }
