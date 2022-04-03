@@ -21,7 +21,7 @@ public:
 	CBitmap* GetWizardTabs(int i) { return m_pWizardTabs[i]; }
 	CBitmap* GetOneHand() { return m_pOneHand; }
 	CBitmap* GetActionDamage(int dmg);
-	HBITMAP GetIconBitmap(CMiscellaneous* pMisc);
+	CBitmap* GetIconBitmap(CMiscellaneous* pMisc);
 
 	void KnochenZeichnen(CDC* pDC, int index);
 	void NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName);

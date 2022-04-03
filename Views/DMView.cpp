@@ -692,10 +692,9 @@ void CDMView::ChangeMouseCursor() {
 	if (heroes) {
 		CMiscellaneous* item = heroes->GetItemInHand();
 		if (item) {
-			HBITMAP hBmp = m_pPictures->GetIconBitmap(item); //heroes->GetItemInHand()->GetPicByType(m_pRaumView->Get3DPics());
-			if (hBmp) {
-				
-				//HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
+			CBitmap* bmp = m_pPictures->GetIconBitmap(item); //heroes->GetItemInHand()->GetPicByType(m_pRaumView->Get3DPics());
+			if (bmp) {
+				HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
 				HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
 				SetSystemCursor(hCursor, OCR_NORMAL);
 				return;
