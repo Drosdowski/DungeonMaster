@@ -83,6 +83,16 @@ int CMiscellaneous::GetSheetForGroup() {
 		return 5;
 	case Consumable:
 		return 5;
+	case Helmet:
+	case Shield:
+	case Shoes:
+	case Amulet:
+		return 3;
+	case Torso:
+	case Legs:
+		return 2;
+	case Throwable:
+		return 1;
 	case Other:
 		assert(false); // todo !!
 	}
