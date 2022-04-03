@@ -9,7 +9,7 @@ public:
 	CItemPic(CDC* pDC);
 	~CItemPic();
 
-	CBitmap* GetBitmap(CMiscellaneous* misc);
+	CBitmap* GetBitmapSheet(CMiscellaneous* misc);
 	CPoint GetSheetKoords(CMiscellaneous* misc);
 
 private:

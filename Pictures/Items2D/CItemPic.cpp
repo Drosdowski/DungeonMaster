@@ -15,7 +15,7 @@ CItemPic::~CItemPic() {
 	}
 }
 
-CBitmap* CItemPic::GetBitmap(CMiscellaneous* misc) {
+CBitmap* CItemPic::GetBitmapSheet(CMiscellaneous* misc) {
 	int sheet = misc->GetSheetForGroup();
 	return m_itemSheet[sheet];
 }

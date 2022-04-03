@@ -74,6 +74,25 @@ CBitmap* CPictures::GetActionDamage(int dmg) {
 	return m_pActionsDamage;
 }
 
+HBITMAP CPictures::GetIconBitmap(CMiscellaneous* pMisc) {
+	CDC iconDC;
+	CDC sheetDC;
+	iconDC.CreateCompatibleDC(m_pDC);
+	sheetDC.CreateCompatibleDC(m_pDC);
+	//HDC hdcIcon = iconDC.GetSafeHdc();
+	//HDC hdcSheet = m_pDC->GetSafeHdc();
+	CBitmap* bmpSheet = m_pItemPic->GetBitmapSheet(pMisc); 
+	CPoint p = m_pItemPic->GetSheetKoords(pMisc);
+	//HBITMAP bmpIcon = ::CreateCompatibleBitmap(hdcIcon, 32, 32);
+	//SelectObject(hdcSheet, bmpSheet);
+	//SelectObject(hdcIcon, bmpIcon);
+	sheetDC.SelectObject(bmpSheet);
+	//BitBlt(hdcIcon, 0, 0, 32, 32, hdcSheet, p.x, p.y, SRCCOPY);
+	iconDC.StretchBlt(0, 0, 32, 32, &sheetDC, p.x, p.y, 16, 16, SRCCOPY);
+	//DeleteObject(iconDC);
+	return (HBITMAP)bmpSheet->GetSafeHandle();
+}
+
 
 void CPictures::WerteZeichnen(CDC* pDC, CHeld* pHeld)
 {
@@ -125,7 +144,7 @@ void CPictures::DrawHand(CDC* pDC, CHeld* pHeld, int handId) {
 		pDC->BitBlt((pHeld->getIndex() - 1) * 138 + 5 + 40 * handId, 16, 37, 37, &tmpdc, 5 + 40 * handId, 16, SRCCOPY);
 	}
 	else {
-		CBitmap* bmp = m_pItemPic->GetBitmap(itemInThistHand);
+		CBitmap* bmp = m_pItemPic->GetBitmapSheet(itemInThistHand);
 		CPoint pos = m_pItemPic->GetSheetKoords(itemInThistHand);
 		tmpdc.SelectObject(bmp);
 		pDC->StretchBlt((pHeld->getIndex() - 1) * 138 + 5 + 40 * handId, 16, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, SRCCOPY);
@@ -191,7 +210,7 @@ void CPictures::ZeichneIcons(CDC* pDC, CHeld* pHeld) {
 		CMiscellaneous* item = pHeld->GetItemCarrying(iconID);
 		if (item) {
 			CPoint posBackpack = CScreenCoords::GetbackPackSlotKoords(iconID);
-			CBitmap* bmp = m_pItemPic->GetBitmap(item);
+			CBitmap* bmp = m_pItemPic->GetBitmapSheet(item);
 			CPoint pos = m_pItemPic->GetSheetKoords(item);
 			tmpdc.SelectObject(bmp);
 			pDC->StretchBlt(posBackpack.x, posBackpack.y, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, SRCCOPY);

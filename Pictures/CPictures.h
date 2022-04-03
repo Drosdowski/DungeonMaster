@@ -1,8 +1,9 @@
 #include "CBasePictures.h"
+#include "Items2D/CItemPic.h"
+
 #pragma once
 class CHeld;
 class CRucksack;
-class CItemPic;
 class CPictures : CBasePictures
 {
 public:
@@ -20,6 +21,7 @@ public:
 	CBitmap* GetWizardTabs(int i) { return m_pWizardTabs[i]; }
 	CBitmap* GetOneHand() { return m_pOneHand; }
 	CBitmap* GetActionDamage(int dmg);
+	HBITMAP GetIconBitmap(CMiscellaneous* pMisc);
 
 	void KnochenZeichnen(CDC* pDC, int index);
 	void NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName);
