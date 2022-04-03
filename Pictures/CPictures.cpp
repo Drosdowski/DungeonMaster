@@ -76,17 +76,21 @@ CBitmap* CPictures::GetActionDamage(int dmg) {
 
 HBITMAP CPictures::GetIconBitmap(CMiscellaneous* pMisc) {
 	CDC iconDC;
+	CDC sheetDC;
 	iconDC.CreateCompatibleDC(m_pDC);
-	HDC hdcIcon = m_pDC->GetSafeHdc();
-	HDC hdcSheet = iconDC.GetSafeHdc();
+	sheetDC.CreateCompatibleDC(m_pDC);
+	//HDC hdcIcon = iconDC.GetSafeHdc();
+	//HDC hdcSheet = m_pDC->GetSafeHdc();
 	CBitmap* bmpSheet = m_pItemPic->GetBitmapSheet(pMisc); 
 	CPoint p = m_pItemPic->GetSheetKoords(pMisc);
-	HBITMAP bmpIcon = ::CreateCompatibleBitmap(hdcIcon, 32, 32);
-	SelectObject(hdcSheet, bmpSheet);
-	SelectObject(hdcIcon, bmpIcon);
-	BitBlt(hdcIcon, 0, 0, 32, 32, hdcSheet, p.x, p.y, SRCCOPY);
-	DeleteObject(iconDC);
-	return bmpIcon;
+	//HBITMAP bmpIcon = ::CreateCompatibleBitmap(hdcIcon, 32, 32);
+	//SelectObject(hdcSheet, bmpSheet);
+	//SelectObject(hdcIcon, bmpIcon);
+	sheetDC.SelectObject(bmpSheet);
+	//BitBlt(hdcIcon, 0, 0, 32, 32, hdcSheet, p.x, p.y, SRCCOPY);
+	iconDC.StretchBlt(0, 0, 32, 32, &sheetDC, p.x, p.y, 16, 16, SRCCOPY);
+	//DeleteObject(iconDC);
+	return (HBITMAP)bmpSheet->GetSafeHandle();
 }
 
 
