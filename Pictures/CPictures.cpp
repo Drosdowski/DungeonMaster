@@ -74,23 +74,26 @@ CBitmap* CPictures::GetActionDamage(int dmg) {
 	return m_pActionsDamage;
 }
 
-CBitmap* CPictures::GetIconBitmap(CMiscellaneous* pMisc) {
+CBitmap* CPictures::GetIconBitmap(CDC* pDC, CMiscellaneous* pMisc) {
 	CDC iconDC;
 	CDC sheetDC;
-	iconDC.CreateCompatibleDC(m_pDC);
-	sheetDC.CreateCompatibleDC(m_pDC);
+	iconDC.CreateCompatibleDC(pDC);
+	sheetDC.CreateCompatibleDC(pDC);
 	CBitmap* bmpSheet = m_pItemPic->GetBitmapSheet(pMisc); 
 	CBitmap bmpIcon;
 	bmpIcon.CreateCompatibleBitmap(&iconDC, 32, 32);
 
-	//CPoint p = m_pItemPic->GetSheetKoords(pMisc);
-	//sheetDC.SelectObject(bmpSheet);
-	//iconDC.SelectObject(bmpIcon);
-	//iconDC.StretchBlt(0, 0, 32, 32, &sheetDC, p.x, p.y, 16, 16, SRCCOPY);
-	//m_pDC->StretchBlt(0, 370, 32, 32, &sheetDC, p.x, p.y, 16, 16, SRCCOPY);
+	CPoint p = m_pItemPic->GetSheetKoords(pMisc);
+	sheetDC.SelectObject(bmpSheet);
+	iconDC.SelectObject(bmpIcon);
+	iconDC.StretchBlt(0, 0, 32, 32, &sheetDC, p.x, p.y, 16, 16, SRCCOPY);
+
+	pDC->StretchBlt(0, 360, 32, 32, &sheetDC, p.x, p.y, 16, 16, SRCCOPY);
+
+
 	DeleteObject(iconDC);
 	DeleteObject(sheetDC);
-	return bmpSheet; //&bmpIcon;
+	return &bmpIcon;
 }
 
 
