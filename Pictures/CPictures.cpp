@@ -79,21 +79,23 @@ CBitmap* CPictures::GetIconBitmap(CDC* pDC, CMiscellaneous* pMisc) {
 	CDC sheetDC;
 	iconDC.CreateCompatibleDC(pDC);
 	sheetDC.CreateCompatibleDC(pDC);
+	
 	CBitmap* bmpSheet = m_pItemPic->GetBitmapSheet(pMisc); 
-	CBitmap bmpIcon;
-	bmpIcon.CreateCompatibleBitmap(&iconDC, 32, 32);
+	CBitmap* bmpIcon = new CBitmap();
+	bmpIcon->CreateCompatibleBitmap(pDC, 32, 32);
+	
 
 	CPoint p = m_pItemPic->GetSheetKoords(pMisc);
 	sheetDC.SelectObject(bmpSheet);
 	iconDC.SelectObject(bmpIcon);
 	iconDC.StretchBlt(0, 0, 32, 32, &sheetDC, p.x, p.y, 16, 16, SRCCOPY);
 
-	pDC->StretchBlt(0, 360, 32, 32, &sheetDC, p.x, p.y, 16, 16, SRCCOPY);
-
+	//sheetDC.SelectObject(oldSheet);
+	//iconDC.SelectObject(oldIcon);
 
 	DeleteObject(iconDC);
 	DeleteObject(sheetDC);
-	return &bmpIcon;
+	return bmpIcon;
 }
 
 
