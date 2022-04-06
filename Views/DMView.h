@@ -95,7 +95,7 @@ protected:
 	void ParseClickWizard(CPoint point);
 	void ParseClickAction(CPoint point);
 	void ParseClickPortrait(CPoint point);
-	bool ParseClickPortraitHands(CPoint point);
+	bool ParseClickPortraitHands(CPoint point, bool backpackMode);
 	void ParseClickFloor(CPoint point);
 	void ParseClickAir(CPoint point);
 	bool ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators, COMPASS_DIRECTION dir);

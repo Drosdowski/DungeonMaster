@@ -213,6 +213,7 @@ void CPictures::ZeichneIcons(CDC* pDC, CHeld* pHeld) {
 			CBitmap* bmp = m_pItemPic->GetBitmapSheet(item);
 			CPoint pos = m_pItemPic->GetSheetKoords(item);
 			tmpdc.SelectObject(bmp);
+			//pDC->TransparentBlt(posBackpack.x, posBackpack.y, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, TRANS_GRA);
 			pDC->StretchBlt(posBackpack.x, posBackpack.y, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, SRCCOPY);
 		}
 	}

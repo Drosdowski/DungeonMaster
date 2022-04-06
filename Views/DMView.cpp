@@ -181,7 +181,7 @@ void CDMView::ParseClickPortrait(CPoint point) {
 	}
 }
 
-bool CDMView::ParseClickPortraitHands(CPoint point) {
+bool CDMView::ParseClickPortraitHands(CPoint point, bool backpackMode) {
 	int handId = CScreenCoords::CheckHitPortraitHands(point);
 	if (handId > 0) {
 		// 1 2 3 4 5 6 7 8	HandId
@@ -192,6 +192,8 @@ bool CDMView::ParseClickPortraitHands(CPoint point) {
 		
 		CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 		CHeld* clickedHero = grpHelden->GetHero(heroId);
+		if ((clickedHero == NULL) || (clickedHero->isActive() && backpackMode))
+			return false; // Hände durch Portrait überdeckt.
 
 		grpHelden->PutGetItem(handOfHeroId, heroId);
 		
@@ -377,7 +379,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 			ParseClickFloor(point);
 			ParseClickWizard(point);
 			ParseClickAction(point);
-			if (!ParseClickPortraitHands(point))
+			if (!ParseClickPortraitHands(point, false))
 				ParseClickPortrait(point);
 		
 			// Unterscheiden: Anklicken oder werfen?
@@ -408,6 +410,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 	{
 		CDC* pDC = GetDC();
 
+		ParseClickPortraitHands(point, true);
 		if (CScreenCoords::CheckHitMainScr(point)) {
 			grpHelden->GetActiveHero()->GetRucksack()->OnLButtonDown(pDC, nFlags, point);
 			ChangeMouseCursor();
@@ -698,6 +701,7 @@ void CDMView::ChangeMouseCursor() {
 				HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
 				HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_GRA, 0, 0);
 				SetSystemCursor(hCursor, OCR_NORMAL);
+				delete bmp;
 				return;
 			}
 		}
