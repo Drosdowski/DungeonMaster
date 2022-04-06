@@ -65,8 +65,6 @@ public:
 	void ReduceSpeed();
 	bool CheckGroup(int slotId);
 
-	CBitmap* GetPicByType(CItem3DPic* p3DPics);
-		
 	VEKTOR m_flyForce;
 
 private:

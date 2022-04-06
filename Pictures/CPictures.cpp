@@ -83,15 +83,11 @@ CBitmap* CPictures::GetIconBitmap(CDC* pDC, CMiscellaneous* pMisc) {
 	CBitmap* bmpSheet = m_pItemPic->GetBitmapSheet(pMisc); 
 	CBitmap* bmpIcon = new CBitmap();
 	bmpIcon->CreateCompatibleBitmap(pDC, 32, 32);
-	
 
 	CPoint p = m_pItemPic->GetSheetKoords(pMisc);
 	sheetDC.SelectObject(bmpSheet);
 	iconDC.SelectObject(bmpIcon);
 	iconDC.StretchBlt(0, 0, 32, 32, &sheetDC, p.x, p.y, 16, 16, SRCCOPY);
-
-	//sheetDC.SelectObject(oldSheet);
-	//iconDC.SelectObject(oldIcon);
 
 	DeleteObject(iconDC);
 	DeleteObject(sheetDC);
@@ -143,16 +139,15 @@ void CPictures::DrawHand(CDC* pDC, CHeld* pHeld, int handId) {
 	tmpdc.CreateCompatibleDC(pDC);
 	
 	CMiscellaneous* itemInThistHand = pHeld->GetItemCarrying(handId);
+	
+	tmpdc.SelectObject(m_pBmpRuck);
+	pDC->BitBlt((pHeld->getIndex() - 1) * 138 + 5 + 40 * handId, 16, 37, 37, &tmpdc, 5 + 40 * handId, 16, SRCCOPY);
 
-	if (itemInThistHand == NULL) {
-		tmpdc.SelectObject(m_pBmpRuck);
-		pDC->BitBlt((pHeld->getIndex() - 1) * 138 + 5 + 40 * handId, 16, 37, 37, &tmpdc, 5 + 40 * handId, 16, SRCCOPY);
-	}
-	else {
+	if (itemInThistHand != NULL) {
 		CBitmap* bmp = m_pItemPic->GetBitmapSheet(itemInThistHand);
 		CPoint pos = m_pItemPic->GetSheetKoords(itemInThistHand);
 		tmpdc.SelectObject(bmp);
-		pDC->StretchBlt((pHeld->getIndex() - 1) * 138 + 5 + 40 * handId, 16, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, SRCCOPY);
+		pDC->StretchBlt((pHeld->getIndex() - 1) * 138 + 7 + 40 * handId, 18, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, SRCCOPY);
 	}
 	tmpdc.DeleteDC();
 

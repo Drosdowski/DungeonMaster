@@ -295,7 +295,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators
 				}
 			}
 		}
-
+	return false;
 }
 
 void CDMView::InvokeRemoteActuator(CActuator* activeActuator) {
@@ -696,7 +696,7 @@ void CDMView::ChangeMouseCursor() {
 			CBitmap* bmp = m_pPictures->GetIconBitmap(pDC, item); //heroes->GetItemInHand()->GetPicByType(m_pRaumView->Get3DPics());
 			if (bmp) {
 				HBITMAP hBmp = (HBITMAP)bmp->GetSafeHandle();
-				HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_ORA, 0, 0);
+				HCURSOR hCursor = CColorCursor::CreateCursorFromBitmap(hBmp, TRANS_GRA, 0, 0);
 				SetSystemCursor(hCursor, OCR_NORMAL);
 				return;
 			}

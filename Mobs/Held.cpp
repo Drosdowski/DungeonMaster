@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "Rucksack.h"
 #include "..\CHelpfulValues.h"
+#include "..\Items\CMiscellaneous.h"
 #include "Monster.h"
 #include "Held.h"
 

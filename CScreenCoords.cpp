@@ -23,10 +23,12 @@ CPoint CScreenCoords::GetbackPackSlotKoords(int index)
 	case 12: return CPoint(158, 244);// Quiver 4
 	case 13: return CPoint(132, 130);// Backpack
 	default:
-		if (index >13 && index < 22)		
-			return CPoint(166 + 34 * (index-14), 96);// Backpack 1st row
+		if (index > 13 && index < 22)
+			return CPoint(166 + 34 * (index - 14), 96);// Backpack 1st row
 		else if (index > 21 && index < 30)
-			return CPoint(166 + 34 * (index-22), 130);// Backpack 2nd row		
+			return CPoint(166 + 34 * (index - 22), 130);// Backpack 2nd row		
+		else
+			return CPoint(0, 0);
 	}
 }
 

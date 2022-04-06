@@ -36,34 +36,6 @@ void CMiscellaneous::ResethasMoved() {
 	m_done = false;
 }
 
-// todo abrüsten, es muss das 2D BIld verwendet werden !
-CBitmap* CMiscellaneous::GetPicByType(CItem3DPic* p3DPics) {
-
-	CBitmap* bmp;
-	if (m_type == CMiscellaneous::ItemType::Apple)
-		bmp = p3DPics->GetApple();
-	else if (m_type == CMiscellaneous::ItemType::Bread)
-		bmp = p3DPics->GetBread();
-	else if (m_type == CMiscellaneous::ItemType::IronKey ||
-		m_type == CMiscellaneous::ItemType::KeyOfB ||
-		m_type == CMiscellaneous::ItemType::SolidKey ||
-		m_type == CMiscellaneous::ItemType::SquareKey ||
-		m_type == CMiscellaneous::ItemType::TurquoiseKey ||
-		m_type == CMiscellaneous::ItemType::CrossKey ||
-		m_type == CMiscellaneous::ItemType::SkeletonKey)
-		bmp = p3DPics->GetIronKey();
-	else if (m_type == CMiscellaneous::ItemType::GoldKey ||
-		m_type == CMiscellaneous::ItemType::WingedKey ||
-		m_type == CMiscellaneous::ItemType::TopazKey ||
-		m_type == CMiscellaneous::ItemType::EmeraldKey ||
-		m_type == CMiscellaneous::ItemType::RubyKey ||
-		m_type == CMiscellaneous::ItemType::RaKey ||
-		m_type == CMiscellaneous::ItemType::MasterKey)
-		bmp = p3DPics->GetGoldKey();
-	else
-		return NULL; // Item noch nicht da
-}
-
 int CMiscellaneous::GetOffsetForGroup() {
 	ItemGroup group = GetGroup();
 	switch (group) {
@@ -73,6 +45,7 @@ int CMiscellaneous::GetOffsetForGroup() {
 		return 8 - Apple + m_type;
 	case Other:
 		assert(false); // todo !!
+		return -1;
 	}
 }
 
@@ -95,6 +68,7 @@ int CMiscellaneous::GetSheetForGroup() {
 		return 1;
 	case Other:
 		assert(false); // todo !!
+		return -1;
 	}
 }
 

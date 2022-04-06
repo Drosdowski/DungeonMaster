@@ -48,6 +48,7 @@
 #define TRANS_ORA RGB(208, 144, 112)
 #define TRANS_BLU RGB(0, 208, 208)
 #define TRANS_VIO RGB(255, 0, 255)
+#define TRANS_GRA RGB(80, 80, 80)
 
 #define MOD_EXT_NORMAL 0
 #define MOD_EXT_AUGE 1
