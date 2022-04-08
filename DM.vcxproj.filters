@@ -165,6 +165,9 @@
     <ClCompile Include="Pictures\CWallDecoPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SpecialTile\CCreatureAttributes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -323,6 +326,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\CWallDecoPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialTile\CCreatureAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

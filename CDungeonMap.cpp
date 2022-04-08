@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <sstream>
+#include <string>
 #include "TinyXML/tinyxml.h"
 #include "Mobs/MobGroups/GrpHeld.h"
 #include "Items\Decoration.h"
@@ -35,6 +36,7 @@ CDungeonMap::~CDungeonMap()
 	delete m_miscellaneousSubtype;
 	delete m_actuatorType;
 	delete m_teleportAtt;	
+	delete m_creatureAtt;
 }
 
 CField* CDungeonMap::GetField(int x, int y, int z) {
@@ -200,6 +202,9 @@ void CDungeonMap::ParseItems(TiXmlElement* rootNode, VEKTOR coords) {
 				else if (strcmp(miscItem->Value(), "random_floor_decoration") == 0) {
 					ParseFloorDecoration(miscItem, coords);
 				}
+				else if (strcmp(miscItem->Value(), "creature") == 0) {
+					ParseCreature(miscItem, coords);
+				}
 			
 				miscItem = miscItem->NextSiblingElement();
 			}
@@ -228,6 +233,14 @@ void CDungeonMap::ParseFloorDecoration(TiXmlElement* decoItem, VEKTOR coords) {
 	decoItem->QueryIntAttribute("graphic", &graphic);
 	CFieldDecoration* deco = new CFieldDecoration((FloorDecorationType)graphic);
 	m_pFeld[coords.x][coords.y][coords.z]->PutFloorDeco(deco);
+
+}
+
+void CDungeonMap::ParseCreature(TiXmlElement* creatureItem, VEKTOR coords) {
+	int index, position;
+	creatureItem->QueryIntAttribute("index", &index);
+	creatureItem->QueryIntAttribute("position", &position);
+	// todo
 
 }
 
@@ -426,6 +439,48 @@ void CDungeonMap::ParseMiscellaneousesObjects(TiXmlElement* rootNode) {
 	}
 }
 
+void CDungeonMap::ParseCreatureObjects(TiXmlElement* rootNode) {
+	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "creature") == 0)
+		{
+			/*<creature index = "0"
+				type = "6"
+				number_of_creatures = "4"
+				position_1 = "1"
+				position_2 = "0"
+				position_3 = "3"
+				position_4 = "2"
+				hit_point_1 = "46"
+				hit_point_2 = "52"
+				hit_point_3 = "49"
+				hit_point_4 = "46"
+				facing = "North"*/
+			int index, type, count;
+			int position[4], hitPoints[4];
+			COMPASS_DIRECTION dir;
+			parentElement->QueryIntAttribute("index", &index);
+			parentElement->QueryIntAttribute("type", &type);
+			parentElement->QueryIntAttribute("number_of_creatures", &count);
+			for (int monsterId = 1; monsterId <= count; monsterId++) {
+				parentElement->QueryIntAttribute("position_" + monsterId, &position[count]);
+				parentElement->QueryIntAttribute("hit_point_" + monsterId, &hitPoints[count]);
+			}
+			const char* facing = parentElement->Attribute("facing");
+			if (strcmp(facing, "North")) dir = NORTH;
+			if (strcmp(facing, "East")) dir = EAST;
+			if (strcmp(facing, "South")) dir = SOUTH;
+			if (strcmp(facing, "West")) dir = WEST;
+
+		}
+		parentElement = parentElement->NextSiblingElement();
+
+	}
+}
+
+
 void CDungeonMap::ParseActuatorObjects(TiXmlElement* rootNode) {
 	TiXmlElement* parentElement = rootNode->FirstChildElement();
 	while (parentElement)
@@ -510,6 +565,10 @@ void CDungeonMap::ParseObjects(TiXmlElement* rootNode) {
 		{
 			ParseTeleporterObjects(parentElement);
 		}
+		else if (strcmp(parent, "creatures") == 0)
+		{
+			ParseCreatureObjects(parentElement);
+		}
 		parentElement = parentElement->NextSiblingElement();
 	}
 }
@@ -532,6 +591,8 @@ void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
 	m_teleportAtt = new TeleporterAttributes[m_countTeleporters];
 	rootNode->QueryIntAttribute("number_of_maps", &m_countFloors);
 	m_wallDecorationTypes = new WallDecorationType * [m_countFloors];
+	rootNode->QueryIntAttribute("number_of_creatures", &m_countCreatures);
+	m_creatureAtt = new CCreatureAttributes[m_countCreatures];
 
 	const char* startDir = rootNode->Attribute("start_facing");
 	if (strcmp(startDir, "North") == 0) m_startRicht = COMPASS_DIRECTION::NORTH;
