@@ -47,6 +47,10 @@ CHeld* CGrpHeld::InitHeld(const int nr)
 	{
 		CString strName;
 		strName.Format("Held %i",nr);
+
+		if (m_pMember[m_iAktiverHeld])
+			((CHeld*)m_pMember[m_iAktiverHeld])->setInactive();
+
 		m_pMember[nr] = new CHeld(nr, strName);
 		m_iAktiverHeld = nr;
 

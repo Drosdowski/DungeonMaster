@@ -1,8 +1,6 @@
 Um die Ecke: Brot, Hinten links
 Tür: schalter
 Sounds
-Items: Put in Hands while backpack
-Namen nur einer gelb !
 zaubern 
 kämpfen besser
 
