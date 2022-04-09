@@ -1,0 +1,624 @@
+.tf {
+  position: relative;
+  height: 16px; width: 16px;
+  background-image: url(../images/floor.png);
+  background-repeat: no-repeat;  
+  z-index: 1;
+  vertical-align: top;
+}
+.tw {
+  position: relative;
+  width: 16px; height: 16px;
+  background-image: url(../images/black.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_offset {
+  position: relative;
+  width: 16px; height: 16px;
+  background-image: url(../images/black_offset.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_wall_trick {
+  position: relative;
+  height: 16px; width: 16px;
+  background-image: url(../images/wall_trick.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_wall_illusion {
+  position: relative;
+  height: 16px; width: 16px;
+  background-image: url(../images/wall_illusion.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_pit {
+  position: relative;
+  height: 16px; width: 16px;
+  background: url(../images/pit.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_pit_hidden {
+  position: relative;
+  height: 16px; width: 16px;
+  background: url(../images/pit_hidden.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_door_0_h {
+  position: relative;
+  height: 16px; width: 16px;
+  background: url(../images/door_grate_h.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_door_0_v {
+  position: relative;
+  height: 16px; width: 16px;
+  background: url(../images/door_grate_v.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_door_1_h {
+  position: relative;
+  height: 16px; width: 16px;
+  background: url(../images/door_wood_h.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_door_1_v {
+  position: relative;
+  height: 16px; width: 16px;
+  background: url(../images/door_wood_v.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_door_2_h {
+  position: relative;
+  height: 16px; width: 16px;
+  background: url(../images/door_iron_h.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_door_2_v {
+  position: relative;
+  height: 16px; width: 16px;
+  background: url(../images/door_iron_v.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_door_3_h {
+  position: relative;
+  height: 16px; width: 16px;
+  background: url(../images/door_ra_h.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_door_3_v {
+  position: relative;
+  height: 16px; width: 16px;
+  background: url(../images/door_ra_v.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_stairs_up_north {
+  position: relative;
+  height: 16px; width: 16px;
+  background: url(../images/stairs_up_north.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_stairs_up_east{
+  position: relative;
+  height: 16px; width: 16px;
+  background: url(../images/stairs_up_east.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_stairs_up_south {
+  position: relative;
+  height: 16px; width: 16px;
+  background: url(../images/stairs_up_south.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_stairs_up_west {
+  position: relative;
+  height: 16px; width: 16px;
+  background: url(../images/stairs_up_west.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_stairs_down_north {
+  position: relative;
+  height: 16px; width: 16px;
+  background: url(../images/stairs_down_north.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_stairs_down_east{
+  position: relative;
+  height: 16px; width: 16px;
+  background: url(../images/stairs_down_east.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_stairs_down_south {
+  position: relative;
+  height: 16px; width: 16px;
+  background: url(../images/stairs_down_south.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_stairs_down_west {
+  position: relative;
+  height: 16px; width: 16px;
+  background: url(../images/stairs_down_west.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.tile_teleporter {
+  position: absolute;
+  height: 16px; width: 16px;
+  background: url(../images/teleporter.png);
+  background-repeat: no-repeat;
+  z-index: 2;
+}
+.tile_teleporter_hidden {
+  position: absolute;
+  height: 16px; width: 16px;
+  background: url(../images/teleporter_hidden.png);
+  background-repeat: no-repeat;
+  z-index: 2;
+}
+.tile_unknown {
+  position: relative;
+  height: 16px; width: 16px;
+  background: url(../images/unknown.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+  vertical-align: top;
+}
+.offset {
+  position: relative;
+  height: 16px; width: 16px;
+  font-size: 10px;
+  color: #000000;
+  background-color: #dddddd;
+  text-indent: 2px;
+  vertical-align: top;
+}
+.offset_rel {
+  position: relative;
+  height: 16px; width: 16px;  
+  font-size: 10px;
+  color: #000000;
+  background-color: #ffffff;
+  text-indent: 2px;
+  vertical-align: top;
+}
+.offset_rel_r {
+  position: relative;
+  height: 16px; width: 16px;  
+  font-size: 10px;
+  color: #000000;
+  background-color: #ffffff;
+  vertical-align: top;
+}
+.item_text_north {
+  position: absolute;
+  height: 16px; width: 16px;
+  background: url(../images/text_north.png);
+  background-repeat: no-repeat;
+  z-index: 10;
+}
+.item_text_east {
+  position: absolute;
+  height: 16px; width: 16px;
+  background: url(../images/text_east.png);
+  background-repeat: no-repeat;
+  z-index: 10;
+}
+.item_text_south {
+  position: absolute;
+  height: 16px; width: 16px;
+  background: url(../images/text_south.png);
+  background-repeat: no-repeat;
+  z-index: 10;
+}
+.item_text_west {
+  position: absolute;
+  height: 16px; width: 16px;
+  background: url(../images/text_west.png);
+  background-repeat: no-repeat;
+  z-index: 10;
+}
+.party_north {
+  position: absolute;
+  height: 16px; width: 16px;
+  background: url(../images/party_north.png);
+  background-repeat: no-repeat;
+  z-index: 20;
+}
+.party_east {
+  position: absolute;
+  height: 16px; width: 16px;
+  background: url(../images/party_east.png);
+  background-repeat: no-repeat;
+  z-index: 20;
+}
+.party_south {
+  position: absolute;
+  height: 16px; width: 16px;
+  background: url(../images/party_south.png);
+  background-repeat: no-repeat;
+  z-index: 20;
+}
+.party_west {
+  position: absolute;
+  height: 16px; width: 16px;
+  background: url(../images/party_west.png);
+  background-repeat: no-repeat;
+  z-index: 20;
+}
+
+.wall_type_1_north, .wall_type_2_north, .wall_type_3_north, .wall_type_4_north, .wall_type_5_north, .wall_type_6_north, .wall_type_7_north, .wall_type_8_north, .wall_type_9_north, .wall_type_10_north, .wall_type_11_north, .wall_type_12_north, .wall_type_13_north, .wall_type_14_north, .wall_type_15_north, .wall_type_16_north, .wall_type_17_north, .wall_type_18_north, .wall_type_127_north {
+  background: url(../images/wall_actuator_north.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_type_1_east , .wall_type_2_east , .wall_type_3_east , .wall_type_4_east , .wall_type_5_east , .wall_type_6_east , .wall_type_7_east , .wall_type_8_east , .wall_type_9_east , .wall_type_10_east , .wall_type_11_east , .wall_type_12_east , .wall_type_13_east , .wall_type_14_east , .wall_type_15_east , .wall_type_16_east , .wall_type_17_east , .wall_type_18_east , .wall_type_127_east  {
+  background: url(../images/wall_actuator_east.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_type_1_south, .wall_type_2_south, .wall_type_3_south, .wall_type_4_south, .wall_type_5_south, .wall_type_6_south, .wall_type_7_south, .wall_type_8_south, .wall_type_9_south, .wall_type_10_south, .wall_type_11_south, .wall_type_12_south, .wall_type_13_south, .wall_type_14_south, .wall_type_15_south, .wall_type_16_south, .wall_type_17_south, .wall_type_18_south, .wall_type_127_south {
+  background: url(../images/wall_actuator_south.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_type_1_west , .wall_type_2_west , .wall_type_3_west , .wall_type_4_west , .wall_type_5_west , .wall_type_6_west , .wall_type_7_west , .wall_type_8_west , .wall_type_9_west , .wall_type_10_west , .wall_type_11_west , .wall_type_12_west , .wall_type_13_west , .wall_type_14_west , .wall_type_15_west , .wall_type_16_west , .wall_type_17_west , .wall_type_18_west , .wall_type_127_west  {
+  background: url(../images/wall_actuator_west.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+  
+.wall_graphic_1_north, .wall_graphic_3_north {
+  background: url(../images/alcove_north.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_1_east,  .wall_graphic_3_east  {
+  background: url(../images/alcove_east.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_1_south, .wall_graphic_3_south {
+  background: url(../images/alcove_south.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_1_west,  .wall_graphic_3_west  {
+  background: url(../images/alcove_west.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+
+.wall_graphic_2_north {
+  background: url(../images/vialtar_north.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_2_east  {
+  background: url(../images/vialtar_east.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_2_south {
+  background: url(../images/vialtar_south.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_2_west  {
+  background: url(../images/vialtar_west.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+
+.wall_graphic_5_north, .wall_graphic_17_north, .wall_graphic_18_north, .wall_graphic_19_north, .wall_graphic_20_north, .wall_graphic_21_north, .wall_graphic_22_north, .wall_graphic_23_north, .wall_graphic_24_north, .wall_graphic_25_north, .wall_graphic_26_north, .wall_graphic_27_north, .wall_graphic_28_north, .wall_graphic_29_north, .wall_graphic_30_north, .wall_graphic_31_north, .wall_graphic_32_north {
+  background: url(../images/lock_north.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_5_east,  .wall_graphic_17_east,  .wall_graphic_18_east,  .wall_graphic_19_east,  .wall_graphic_20_east,  .wall_graphic_21_east,  .wall_graphic_22_east,  .wall_graphic_23_east,  .wall_graphic_23_east,  .wall_graphic_25_east,  .wall_graphic_26_east,  .wall_graphic_27_east,  .wall_graphic_28_east,  .wall_graphic_29_east,  .wall_graphic_30_east,  .wall_graphic_31_east,  .wall_graphic_32_east  {
+  background: url(../images/lock_east.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_5_south, .wall_graphic_17_south, .wall_graphic_18_south, .wall_graphic_19_south, .wall_graphic_20_south, .wall_graphic_21_south, .wall_graphic_22_south, .wall_graphic_23_south, .wall_graphic_24_south, .wall_graphic_25_south, .wall_graphic_26_south, .wall_graphic_27_south, .wall_graphic_28_south, .wall_graphic_29_south, .wall_graphic_30_south, .wall_graphic_31_south, .wall_graphic_32_south {
+  background: url(../images/lock_south.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_5_west,  .wall_graphic_17_west,  .wall_graphic_18_west,  .wall_graphic_19_west,  .wall_graphic_20_west,  .wall_graphic_21_west,  .wall_graphic_22_west,  .wall_graphic_23_west,  .wall_graphic_24_west,  .wall_graphic_25_west,  .wall_graphic_26_west,  .wall_graphic_27_west,  .wall_graphic_28_west,  .wall_graphic_29_west,  .wall_graphic_30_west,  .wall_graphic_31_west,  .wall_graphic_32_west  {
+  background: url(../images/lock_west.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+
+.wall_graphic_7_north, .wall_graphic_14_north, .wall_graphic_15_north, .wall_graphic_16_north, .wall_graphic_17_north, .wall_graphic_44_north, .wall_graphic_45_north, .wall_graphic_47_north, .wall_graphic_48_north, .wall_graphic_49_north, .wall_graphic_50_north, .wall_graphic_51_north, .wall_graphic_52_north, .wall_graphic_53_north, .wall_graphic_54_north, .wall_graphic_55_north {
+  background: url(../images/switch_north.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_7_east,  .wall_graphic_14_east,  .wall_graphic_15_east,  .wall_graphic_16_east,  .wall_graphic_17_east,  .wall_graphic_44_east,  .wall_graphic_45_east,  .wall_graphic_47_east,  .wall_graphic_48_east,  .wall_graphic_49_east,  .wall_graphic_50_east,  .wall_graphic_51_east,  .wall_graphic_52_east,  .wall_graphic_53_east,  .wall_graphic_54_east,  .wall_graphic_55_east  {
+  background: url(../images/switch_east.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_7_south, .wall_graphic_14_south, .wall_graphic_15_south, .wall_graphic_16_south, .wall_graphic_17_south, .wall_graphic_44_south, .wall_graphic_45_south, .wall_graphic_47_south, .wall_graphic_48_south, .wall_graphic_49_south, .wall_graphic_50_south, .wall_graphic_51_south, .wall_graphic_52_south, .wall_graphic_53_south, .wall_graphic_54_south, .wall_graphic_55_south {
+  background: url(../images/switch_south.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_7_west,  .wall_graphic_14_west,  .wall_graphic_15_west,  .wall_graphic_16_west,  .wall_graphic_17_west,  .wall_graphic_44_west,  .wall_graphic_45_west,  .wall_graphic_47_west,  .wall_graphic_48_west,  .wall_graphic_49_west,  .wall_graphic_50_west,  .wall_graphic_51_west,  .wall_graphic_52_west,  .wall_graphic_53_west,  .wall_graphic_54_west,  .wall_graphic_55_west  {
+  background: url(../images/switch_west.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+
+.wall_graphic_35_north {
+  background: url(../images/fountain_north.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_35_east  {
+  background: url(../images/fountain_east.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_35_south {
+  background: url(../images/fountain_south.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_35_west  {
+  background: url(../images/fountain_west.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+
+.wall_graphic_36_north {
+  background: url(../images/manacle_north.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_36_east  {
+  background: url(../images/manacle_east.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_36_south {
+  background: url(../images/manacle_south.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_36_west  {
+  background: url(../images/manacle_west.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+  
+.wall_graphic_37_north {
+  background: url(../images/ghoul_north.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_37_east  {
+  background: url(../images/ghoul_east.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_37_south {
+  background: url(../images/ghoul_south.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_37_west  {
+  background: url(../images/ghoul_west.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+  
+.wall_graphic_38_north, .wall_graphic_46_north {
+  background: url(../images/torch_north.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 14; }
+.wall_graphic_38_east,  .wall_graphic_46_east  {
+  background: url(../images/torch_east.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 14; }
+.wall_graphic_38_south, .wall_graphic_46_south {
+  background: url(../images/torch_south.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 14; }
+.wall_graphic_38_west,  .wall_graphic_46_west  {
+  background: url(../images/torch_west.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 14; }  
+
+.wall_graphic_40_north {
+  background: url(../images/poison_north.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_40_east  {
+  background: url(../images/poison_east.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_40_south {
+  background: url(../images/poison_south.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_40_west  {
+  background: url(../images/poison_west.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+
+.wall_graphic_41_north {
+  background: url(../images/missile_north.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_41_east  {
+  background: url(../images/missile_east.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_41_south {
+  background: url(../images/missile_south.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_41_west  {
+  background: url(../images/missile_west.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+
+.wall_graphic_42_north {
+  background: url(../images/dagger_north.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_42_east  {
+  background: url(../images/dagger_east.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_42_south {
+  background: url(../images/dagger_south.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_42_west  {
+  background: url(../images/dagger_west.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+
+.wall_graphic_43_north {
+  background: url(../images/mirror_north.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_43_east  {
+  background: url(../images/mirror_east.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_43_south {
+  background: url(../images/mirror_south.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_43_west  {
+  background: url(../images/mirror_west.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+
+.wall_graphic_56_north, .wall_graphic_57_north, .wall_graphic_58_north {
+  background: url(../images/amalgam_north.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_56_east,  .wall_graphic_57_east,  .wall_graphic_58_east {
+  background: url(../images/amalgam_east.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_56_south, .wall_graphic_57_south, .wall_graphic_58_south {
+  background: url(../images/amalgam_south.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_56_west,  .wall_graphic_57_west,  .wall_graphic_58_west  {
+  background: url(../images/amalgam_west.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+
+.wall_graphic_59_north {
+  background: url(../images/lord_north.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_59_east  {
+  background: url(../images/lord_east.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_59_south {
+  background: url(../images/lord_south.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+.wall_graphic_59_west  {
+  background: url(../images/lord_west.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 10; }
+
+.floor_graphic_1 {
+  background: url(../images/square_pressure_pad.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 5; }
+.floor_graphic_4 {
+  background: url(../images/round_pressure_pad.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 5; }
+.floor_graphic_5 {
+  background: url(../images/flame.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 5; }
+.floor_graphic_7 {
+  background: url(../images/tiny_pressure_pad.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 5; }
+
+.floor_type_1 {
+  background: url(../images/actuator.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 6; }
+.floor_type_2 {
+  background: url(../images/actuator.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 6; }
+.floor_type_3 {
+  background: url(../images/actuator.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 6; }
+.floor_type_4 {
+  background: url(../images/actuator.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 6; }
+.floor_type_5 {
+  background: url(../images/actuator.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 6; }
+.floor_type_6 {
+  background: url(../images/generator.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 6; }
+.floor_type_7 {
+  background: url(../images/actuator.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 6; }
+.floor_type_8 {
+  background: url(../images/actuator.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 6; }
+.floor_type_9 {
+  background: url(../images/actuator.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 6; }
+  
+.item_north {
+  background: url(../images/item_north.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 12; }
+.item_east {
+  background: url(../images/item_east.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 12; }
+.item_south {
+  background: url(../images/item_south.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 12; }
+.item_west {
+  background: url(../images/item_west.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 12; }
+
+.creature_north {
+  background: url(../images/creature_north.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 15; }
+.creature_east {
+  background: url(../images/creature_east.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 15; }
+.creature_south {
+  background: url(../images/creature_south.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 15; }
+.creature_west {
+  background: url(../images/creature_west.png);
+  position: absolute; height: 16px; width: 16px; background-repeat: no-repeat; z-index: 15; }
+
+
+.legend_title {
+ text-align: center;
+ background-color: #dddddd;
+ color: #000000;
+ font-weight: bold;
+}
+.legend {
+ background-color: #000000;
+ color: #ffffff;
+}
+.map_title {
+  text-align: center;
+  background-color: #dddddd;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000000;
+  color: #000000;
+  font-weight: bold;
+}
+.map {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000000;
+}
+.tiles_content_title {
+  text-align: center;
+  background-color: #dddddd;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000000;
+  color: #000000;
+  font-weight: bold;
+}
+.tiles_content {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000000;
+  color: #ffffff;  
+}
+
+body {
+  background-color: #663300;
+  background-image:url(../images/stone.png);
+  color: #ffffff;
+}
+
+.tpContent {
+  padding-top: 4px;
+  padding-left: 8px;
+} 
+
+.map_entry {
+  font-weight: bold;
+}
+.map_intro {
+  font-size: larger;
+  margin-left: 40;
+}
+.map_scroll {
+  border: 0;
+  vertical-align:middle;
+  margin: 10;
+  margin-left: 80;
+}
+.map_entry A:link { color: #FFAA00; text-decoration: none}
+.map_entry A:visited { color: #FFAA00; text-decoration: none}
+.map_entry A:active { color: #FFAA00; text-decoration: underline;}
+.map_entry A:hover { color: #FFAA00; text-decoration: underline;}
+.tiles_content tr td {
+  vertical-align: top;
+}
+

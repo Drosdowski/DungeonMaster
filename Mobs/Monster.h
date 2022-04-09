@@ -11,9 +11,9 @@ class CMonster : public CCharacter
 {
 public:
 	enum MonsterTyp {
-		MUMIE = 1,
-		STEINE = 2,
-		SKELETT = 3
+		STEINE = 7,
+		MUMIE = 10,
+		SKELETT = 12
 	};
 
 	explicit CMonster();

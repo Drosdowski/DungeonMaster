@@ -240,8 +240,20 @@ void CDungeonMap::ParseCreature(TiXmlElement* creatureItem, VEKTOR coords) {
 	int index, position;
 	creatureItem->QueryIntAttribute("index", &index);
 	creatureItem->QueryIntAttribute("position", &position);
-	// todo
 
+	TiXmlElement* parentElement = creatureItem->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "items") == 0)
+		{
+			TiXmlElement* monsterItem = parentElement->FirstChildElement();
+			if (monsterItem) {
+				// todo  monster with items
+			}
+		}
+		parentElement = parentElement->NextSiblingElement();
+	}
 }
 
 void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
@@ -458,22 +470,22 @@ void CDungeonMap::ParseCreatureObjects(TiXmlElement* rootNode) {
 				hit_point_3 = "49"
 				hit_point_4 = "46"
 				facing = "North"*/
-			int index, type, count;
-			int position[4], hitPoints[4];
-			COMPASS_DIRECTION dir;
+			CCreatureAttributes attribute;
+			int index;
 			parentElement->QueryIntAttribute("index", &index);
-			parentElement->QueryIntAttribute("type", &type);
-			parentElement->QueryIntAttribute("number_of_creatures", &count);
-			for (int monsterId = 1; monsterId <= count; monsterId++) {
-				parentElement->QueryIntAttribute("position_" + monsterId, &position[count]);
-				parentElement->QueryIntAttribute("hit_point_" + monsterId, &hitPoints[count]);
+			parentElement->QueryIntAttribute("type", &attribute.type);
+			parentElement->QueryIntAttribute("number_of_creatures", &attribute.count);
+			for (int monsterId = 1; monsterId <= attribute.count; monsterId++) {
+				parentElement->QueryIntAttribute("position_" + monsterId, &attribute.position[attribute.count]);
+				parentElement->QueryIntAttribute("hit_point_" + monsterId, &attribute.hitPoints[attribute.count]);
 			}
 			const char* facing = parentElement->Attribute("facing");
-			if (strcmp(facing, "North")) dir = NORTH;
-			if (strcmp(facing, "East")) dir = EAST;
-			if (strcmp(facing, "South")) dir = SOUTH;
-			if (strcmp(facing, "West")) dir = WEST;
+			if (strcmp(facing, "North")) attribute.direction = NORTH;
+			if (strcmp(facing, "East")) attribute.direction = EAST;
+			if (strcmp(facing, "South")) attribute.direction = SOUTH;
+			if (strcmp(facing, "West")) attribute.direction = WEST;
 
+			m_creatureAtt[index] = attribute;
 		}
 		parentElement = parentElement->NextSiblingElement();
 
