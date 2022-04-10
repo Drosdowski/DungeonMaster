@@ -18,9 +18,6 @@ static char THIS_FILE[] = __FILE__;
 
 CMonster::CMonster(): CCharacter()
 {
-	m_attacking = false;
-	
-	m_iReceivedDmg = 0;
 }
 
 
@@ -42,7 +39,7 @@ bool CMonster::Altern()
 	{
 		if (m_iReceivedDmg > 0) {
 			// damage
-			WerteTemporaerAendern(-m_iReceivedDmg, 0, 0);			
+			ReceiveDamage(m_iReceivedDmg);
 			m_iReceivedDmg = 0;
 			if (Hp().Aktuell <= 0) return false; // tot!
 		}

@@ -34,6 +34,8 @@ public:
 public:
 	void Trinken(int amount);
 	void Essen(int amount);
+	void WerteTemporaerAendern(int hp, int st, int ma);
+	//virtual void WertePermanentAendern(int hp, int st, int ma);
 
 	int CalcDmg(int ID, CGrpChar* pOpponents);
 	double LifePart() { return (double)m_HP.Aktuell / (double)m_HP.Max; }
@@ -57,6 +59,8 @@ public:
 public:
 	virtual bool Altern();
 	virtual ~CHeld();
+	virtual WERTE St() { return m_ST; };
+	virtual WERTE Ma() { return m_MA; };
 
 
 private:
@@ -70,6 +74,9 @@ private:
 	int m_iWater;
 	int m_iIndex;
 	bool m_bAktiv;
+	WERTE m_MA;	// Mana
+	WERTE m_ST;	// Stamina
+
 	CString m_strName;
 	CMiscellaneous* m_itemCarrying[30];
 

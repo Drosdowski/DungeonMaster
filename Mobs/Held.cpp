@@ -27,10 +27,8 @@ CHeld::CHeld(int iIndex, CString strName): CCharacter()
 	m_ST.Aktuell = m_ST.Max;
 	m_MA.Aktuell = m_MA.Max;
 	m_bAktiv = true;
-	m_attacking = false;
 	m_strName = strName;
 	m_iIndex = iIndex;
-	m_iReceivedDmg = 0;
 	m_iFood = maxFood;
 	m_iWater = maxWater;
 	for (int i = 1; i<5; i++)
@@ -105,6 +103,13 @@ bool CHeld::Altern()
 		}
 	}
 	return alive;
+}
+
+void CHeld::WerteTemporaerAendern(int hp, int st, int ma)
+{
+	m_HP.Aktuell = min(max(hp + m_HP.Aktuell, 0), m_HP.Max);
+	m_ST.Aktuell = min(max(st + m_ST.Aktuell, 0), m_ST.Max);
+	m_MA.Aktuell = min(max(ma + m_MA.Aktuell, 0), m_MA.Max);
 }
 
 int CHeld::CalcDmg(int ID, CGrpChar* pOpponents) {

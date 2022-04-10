@@ -1,9 +1,10 @@
+#include "..\Mobs\Monster.h"
 #pragma once
 class CCreatureAttributes
 {
 public:
 	COMPASS_DIRECTION direction;
-	int type;
+	CMonster::MonsterTyp type;
 	int count;
 	int position[4];
 	int hitPoints[4];

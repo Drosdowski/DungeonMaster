@@ -7,6 +7,7 @@
 #include "..\..\CHelpfulValues.h"
 #include "..\..\Items\CMiscellaneous.h"
 #include "GrpHeld.h"
+#include <iostream>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -24,8 +25,8 @@ CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 	//m_posPosition = pos;
 	//m_posPosition = VEKTOR{ 2,7,0 }; // bei Monster Gruppe / orig. start position
 	//m_posPosition = VEKTOR{ 2,11,0 }; // viele items
-	m_posPosition = VEKTOR{ 7,9,1 }; // bei Items
-	//m_posPosition = VEKTOR{ 6,9,0 }; // bei 1. Pressure Pad
+	//m_posPosition = VEKTOR{ 7,9,1 }; // bei Items
+	m_posPosition = VEKTOR{ 6,9,0 }; // bei 1. Pressure Pad
 	//m_posPosition = VEKTOR{ 16,0,1 }; // bei 9 Pressure Pad
 	//m_posPosition = VEKTOR{ 18,17,1 }; // bei UND Schalter
 	//m_posPosition = VEKTOR{ 4,11,1 }; // bei Schalter für Tür
@@ -238,4 +239,31 @@ void CGrpHeld::PutGetItem(int handOfHeroId, int heroId) {
 		TakeItemInHand(newItemInHand);
 		GetHero(heroId)->RemoveItemCarrying(handOfHeroId);
 	}
+}
+
+bool CGrpHeld::Laufbereit()
+{
+	bool bLaufbereit = true;
+	for (int i = 1; i < 5; i++)
+		if (m_pMember[i])
+		{
+			bLaufbereit &= (((CHeld*)m_pMember[i])->St().Aktuell > 0);
+		}
+
+	return bLaufbereit;
+}
+
+void CGrpHeld::Laufen(VEKTOR WunschPos) {
+	for (int i = 1; i <= 4; i++)
+	{
+		CHeld* pHero = (CHeld*)m_pMember[i];
+		if (pHero && (pHero->Hp().Aktuell > 0))
+		{
+			pHero->WerteTemporaerAendern(0, -1, 0);
+			pHero->ActionDone();
+		}
+	}
+	m_posPosition = WunschPos;
+	std::cout << "New Position: " << m_posPosition.x << " - " << m_posPosition.y << std::endl;
+
 }

@@ -28,6 +28,7 @@ public:
 public:
 	virtual bool Altern();
 	virtual int GetIDB(int index);
+	void ReceiveDamage(int dmg) { m_HP.Aktuell -= dmg; }
 	int getDealingDmg() { return m_dealingDmg; }
 	int getType() { return m_iTyp; }
 	bool TurnTo(COMPASS_DIRECTION iDirection);

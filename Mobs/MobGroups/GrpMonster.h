@@ -5,6 +5,7 @@
 //
 #include "GrpChar.h"
 #include "..\Monster.h"
+#include "..\..\SpecialTile\CCreatureAttributes.h"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -15,7 +16,8 @@ class CGrpMonster : public CGrpChar
 {
 public:
 	
-	CGrpMonster(VEKTOR pos, COMPASS_DIRECTION richt);
+	CGrpMonster(VEKTOR pos, COMPASS_DIRECTION richt); // todo eliminieren.
+	CGrpMonster(VEKTOR pos, CCreatureAttributes attributes);
 protected:
 	CGrpMonster();           // Dynamische Erstellung verwendet geschützten Konstruktor
 
@@ -38,6 +40,7 @@ public:
 	bool SetzeModus(int iModus);	
 	CMonster* AttackHero(VEKTOR myPos, VEKTOR hisPos);
 	void TurnToHero(VEKTOR heroPos);
+	void Laufen(VEKTOR WunschPos);
 	void EndAttack();
 	virtual ~CGrpMonster();
 private:

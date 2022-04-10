@@ -9,8 +9,6 @@ CSkelett::CSkelett() : CMonster() {
 
 void CSkelett::InitValues() {
 	m_HP.Max = m_HP.Aktuell = 2;
-	m_ST.Max = m_ST.Aktuell = 100;
-	m_MA.Max = m_MA.Aktuell = 0;
 	m_SpeedDelay = 8;
 	m_ApproxDmg = 2;
 	transCol = TRANS_BLU;

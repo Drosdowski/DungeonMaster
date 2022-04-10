@@ -15,9 +15,7 @@ protected:
 // Attribute
 public:
 	virtual WERTE Hp() { return m_HP; };
-	virtual WERTE St() { return m_ST; };
-	virtual WERTE Ma() { return m_MA; };
-
+	
 	int ReceivedDmg() { return m_iReceivedDmg;}
 	int GetDirection() { return m_chrDirection; }
 	bool IstBereit() { return m_iReady == 0; };
@@ -27,7 +25,7 @@ public:
 public:
 	void SetzeSubPosition(SUBPOS_ABSOLUTE pos) { m_subPosition = pos; };
 	void SetDirection(int direction) { m_chrDirection = direction; }
-	void AddDmg(int value) { m_iReceivedDmg += value; }
+	void AddDmg(int value);
 	void ResetDmg() { m_iReceivedDmg = 0; }
 
 	
@@ -36,11 +34,8 @@ public:
 public:
 	virtual bool Altern();
 	virtual SUBPOS_ABSOLUTE HoleSubPosition() { return m_subPosition;};
-	virtual bool Kollision(int richt, CGrpChar* pGrpChar);
-	virtual void WerteTemporaerAendern(int hp, int st, int ma);
-	virtual void WertePermanentAendern(int hp, int st, int ma);
 	virtual int CalcDmg(int ID, CGrpChar* pOpponents);
-	bool InFrontOfOpponent(VEKTOR myPos, VEKTOR hisPos);
+	bool InFrontOfOpponent(VEKTOR myPos, VEKTOR hisPos, bool emptyNorthRow, bool emptyEastRow, bool emptySouthRow, bool emptyWestRow);
 	virtual ~CCharacter();
 
 	void ActionDone() { m_iReady = m_SpeedDelay; } // wartezeit triggern, abhängig von Speed
@@ -65,8 +60,6 @@ protected:
 	bool m_attacking = false;
 	CDC* m_pDC;
 
-	WERTE m_MA;	// Mana
-	WERTE m_ST;	// Stamina
 	WERTE m_HP;	// Hitpoints	
 
 	SUBPOS_ABSOLUTE m_subPosition;

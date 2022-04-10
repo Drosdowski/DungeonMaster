@@ -31,7 +31,9 @@ public:
 	CMiscellaneous* GetItemInHand();
 	void TakeItemInHand(CMiscellaneous* item) { return GetActiveHero()->TakeItemInHand(item); }
 	void EmptyHand() { return GetActiveHero()->EmptyHand(); }
-	
+	virtual bool Laufbereit();
+	void Laufen(VEKTOR WunschPos);
+
 	void PutGetItem(int handOfHeroId, int heroId);
 
 	void Aktiviere(int n);

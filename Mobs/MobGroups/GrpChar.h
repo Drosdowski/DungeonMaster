@@ -36,15 +36,18 @@ public:
 public:
 	virtual bool Altern() { return true; };
 	virtual bool SetzeModus(CDC* pDC, int iModus) {return false;};
-	virtual bool Laufbereit();
 	virtual int InReihe(int byte);
+	bool emptyNorthRow();
+	bool emptySouthRow();
+	bool emptyEastRow();
+	bool emptyWestRow();
+
 	VEKTOR GetPos() { return m_posPosition;  }
 	CCharacter* GetChar(int ID) { return m_pMember[ID]; }
 	
 	VEKTOR HoleZielFeld(int iRichtung); // VORWAERTS, etc
 	void Kollision();
 	void FallingDamage();
-	void Laufen(VEKTOR WunschPos);
 	void DamageFrom(CCharacter* pMon, VEKTOR hisPos, bool DamageFrom);
 	void DoDamage(int dmg, VEKTOR hisPos, bool DamageFrom);
 
@@ -56,6 +59,7 @@ protected:
 	VEKTOR m_posPosition;
 	CHelpfulValues* m_values;
 	CCharacter* NearestTarget(VEKTOR hisPos);
+	bool CharCollision(int index);
 };
 
 /////////////////////////////////////////////////////////////////////////////

@@ -39,17 +39,6 @@ CGrpChar::~CGrpChar()
 /////////////////////////////////////////////////////////////////////////////
 // Behandlungsroutinen für Nachrichten CGrpChar 
 
-bool CGrpChar::Laufbereit()
-{
-	bool bLaufbereit = true;
-	for (int i=1; i<5; i++)
-		if (m_pMember[i])
-		{
-			bLaufbereit &= (m_pMember[i]->St().Aktuell > 0);
-		}
-	
-	return bLaufbereit;
-}
 
 int CGrpChar::InReihe(int byte)
 {	
@@ -66,14 +55,38 @@ int CGrpChar::InReihe(int byte)
 void CGrpChar::Kollision() {
 	for (int i = 1; i <= 4; i++)
 		if ((m_pMember[i]) && (m_pMember[i]->Hp().Aktuell > 0))
-			if (m_pMember[i]->Kollision(m_grpDirection, (CGrpChar*)this))
-				m_pMember[i]->WerteTemporaerAendern(-2, 0, 0);
+		{
+			if (CharCollision(i)) 
+				m_pMember[i]->AddDmg(2);
+		}
 }
+
+bool CGrpChar::CharCollision(int index) {
+	SUBPOS_ABSOLUTE pos = m_pMember[index]->HoleSubPosition();
+	switch (m_grpDirection)
+	{
+	case VORWAERTS:
+		return (((pos & 0x0100) > 0) || (InReihe(0x0100) == 0));
+		break;
+	case RUECKWAERTS:
+		return (((pos & 0x0001) > 0) || (InReihe(0x0001) == 0));
+		break;
+	case LINKS_STRAFE:
+		return (((pos & 0x1000) > 0) || (InReihe(0x1000) == 0));
+		break;
+	case RECHTS_STRAFE:
+		return (((pos & 0x0010) > 0) || (InReihe(0x0010) == 0));
+		break;
+	default:	// links & rechts drehen
+		return false;
+	}
+}
+
 
 void CGrpChar::FallingDamage() {
 	for (int i = 1; i <= 4; i++)
 		if ((m_pMember[i]) && (m_pMember[i]->Hp().Aktuell > 0))
-			m_pMember[i]->WerteTemporaerAendern(-25, 0, 0);
+			m_pMember[i]->AddDmg(25);
 }
 
 void CGrpChar::DoDamage(int dmg, VEKTOR hisPos, bool areaDmg) {
@@ -96,14 +109,17 @@ void CGrpChar::DoDamage(int dmg, VEKTOR hisPos, bool areaDmg) {
 }
 
 CCharacter* CGrpChar::NearestTarget(VEKTOR hisPos) {
+	// Prüfen: Monster ist in vorderster (nicht zwingend 1.) Reihe, Held ebenso!
+	// Ferner: Monster steht nicht zwingend in Blickrichtung vor dem Held!
+	CCharacter* nearestTarget  = NULL;
 	for (int i = 1; i < 5; i++) {
-		CCharacter* pChar = m_pMember[i];
+		CCharacter* pChar = m_pMember[i];		
 		if (pChar && pChar->Hp().Aktuell > 0) {
-			if (pChar->InFrontOfOpponent(GetPos(), hisPos))
+			if (pChar->InFrontOfOpponent(GetPos(), hisPos, emptyNorthRow(), emptyEastRow(), emptySouthRow(), emptyWestRow()))
 				return pChar;
 		}
 	}
-	return NULL; // Kein Nahkampf von Hinten
+	return nearestTarget; // Kein Nahkampf von Hinten
 }
 
 void CGrpChar::DamageFrom(CCharacter* pEnemy, VEKTOR hisPos, bool areaDmg) {
@@ -114,18 +130,6 @@ void CGrpChar::DamageFrom(CCharacter* pEnemy, VEKTOR hisPos, bool areaDmg) {
 	}
 }
 
-void CGrpChar::Laufen(VEKTOR WunschPos) {
-	for (int i = 1; i <= 4; i++)
-		if ((m_pMember[i]) && (m_pMember[i]->Hp().Aktuell > 0))
-		{
-			//m_pMember[i]->posi
-			m_pMember[i]->WerteTemporaerAendern(0, -1, 0);
-			m_pMember[i]->ActionDone();
-		}
-	m_posPosition = WunschPos;	
-	std::cout << "New Position: " << m_posPosition.x << " - " << m_posPosition.y << std::endl;
-
-}
 
 VEKTOR CGrpChar::HoleZielFeld(int iRichtung)
 {
@@ -223,5 +227,42 @@ void CGrpChar::SetNewCharOnNextFreePos(int nr) {
 		pos = RECHTSHINTEN;
 
 	m_pMember[nr]->SetzeSubPosition(CHelpfulValues::GetRelativeSubPosPassive(pos, m_grpDirection));
+}
+
+bool CGrpChar::emptyNorthRow() {
+	for (int i = 1; i < 5; i++) {
+		if (m_pMember[i] && m_pMember[i]->Hp().Aktuell > 0) {
+			SUBPOS_ABSOLUTE pos = m_pMember[i]->HoleSubPosition();
+			if (pos == NORTHEAST || pos == NORTHWEST) return false;
+		}
+	}
+	return true;
+}
+bool CGrpChar::emptySouthRow() {
+	for (int i = 1; i < 5; i++) {
+		if (m_pMember[i] && m_pMember[i]->Hp().Aktuell > 0) {
+			SUBPOS_ABSOLUTE pos = m_pMember[i]->HoleSubPosition();
+			if (pos == SOUTHEAST || pos == SOUTHWEST) return false;
+		}
+	}
+	return true;
+}
+bool CGrpChar::emptyEastRow() {
+	for (int i = 1; i < 5; i++) {
+		if (m_pMember[i] && m_pMember[i]->Hp().Aktuell > 0) {
+			SUBPOS_ABSOLUTE pos = m_pMember[i]->HoleSubPosition();
+			if (pos == SOUTHEAST || pos == NORTHEAST) return false;
+		}
+	}
+	return true;
+}
+bool CGrpChar::emptyWestRow() {
+	for (int i = 1; i < 5; i++) {
+		if (m_pMember[i] && m_pMember[i]->Hp().Aktuell > 0) {
+			SUBPOS_ABSOLUTE pos = m_pMember[i]->HoleSubPosition();
+			if (pos == NORTHWEST || pos == SOUTHWEST) return false;
+		}
+	}
+	return true;
 }
 

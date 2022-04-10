@@ -25,9 +25,25 @@ CGrpMonster::CGrpMonster(VEKTOR pos, COMPASS_DIRECTION richt)
 {
 	for (int i=1; i<=4; i++)
 		m_pMember[i] = NULL;
-	m_posPosition=pos;
+	m_posPosition = pos;
 	m_grpDirection = richt;
 }
+
+CGrpMonster::CGrpMonster(VEKTOR pos, CCreatureAttributes attributes) {
+	for (int i = 1; i <= 4; i++)
+		m_pMember[i] = NULL;
+	
+	for (int i = 1; i <= attributes.count; i++)
+	{
+		if (i <= attributes.count) {
+			InitMonster(i, attributes.type); // todo mehr Attribute übergeben!
+		}
+	}
+	m_posPosition = pos;
+	m_grpDirection = attributes.direction;
+
+}
+
 
 CGrpMonster::~CGrpMonster()
 {
@@ -49,7 +65,7 @@ void CGrpMonster::InitMonster(int nr, CMonster::MonsterTyp iTyp)
 			m_pMember[nr] = new CMumie();
 			break;
 		default:
-			ASSERT(false); // unexpected monster type
+			return; // todo other monster types!
 		} 
 		
 		m_grpDirection = COMPASS_DIRECTION::NORTH;
@@ -102,7 +118,7 @@ CMonster* CGrpMonster::AttackHero(VEKTOR myPos, VEKTOR hisPos) {
 	{
 		CMonster* pMonster = (CMonster*)m_pMember[i];
 		if (pMonster && pMonster->IstBereit()) {	
-			if (pMonster->InFrontOfOpponent(myPos, hisPos)) {
+			if (pMonster->InFrontOfOpponent(myPos, hisPos, emptyNorthRow(), emptyEastRow(), emptySouthRow(), emptyWestRow())) {
 				if (pMonster->GetDirection() == m_grpDirection)
 				{
 					int dmg = pMonster->CalcDmg(1); // todo monster attacke random
@@ -253,4 +269,13 @@ void CGrpMonster::TurnToHero(VEKTOR heroPos) {
 		}
 	}
 	
+}
+
+void CGrpMonster::Laufen(VEKTOR WunschPos) {
+	for (int i = 1; i <= 4; i++)
+		if ((m_pMember[i]) && (m_pMember[i]->Hp().Aktuell > 0))
+		{
+			m_pMember[i]->ActionDone();
+		}
+	m_posPosition = WunschPos;
 }

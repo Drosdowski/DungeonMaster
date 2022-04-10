@@ -3,6 +3,7 @@
 #include <string>
 #include "TinyXML/tinyxml.h"
 #include "Mobs/MobGroups/GrpHeld.h"
+#include "Mobs/MobGroups/GrpMonster.h"
 #include "Items\Decoration.h"
 #include "Items/CMiscellaneous.h"
 #include "SpecialTile/CTeleporter.h"
@@ -241,6 +242,11 @@ void CDungeonMap::ParseCreature(TiXmlElement* creatureItem, VEKTOR coords) {
 	creatureItem->QueryIntAttribute("index", &index);
 	creatureItem->QueryIntAttribute("position", &position);
 
+	CCreatureAttributes attribute = m_creatureAtt[index];
+	CGrpMonster* pGrpMonster = new CGrpMonster(coords, attribute);
+
+	m_pFeld[coords.x][coords.y][coords.z]->SetMonsterGroup(pGrpMonster);
+
 	TiXmlElement* parentElement = creatureItem->FirstChildElement();
 	while (parentElement)
 	{
@@ -471,9 +477,10 @@ void CDungeonMap::ParseCreatureObjects(TiXmlElement* rootNode) {
 				hit_point_4 = "46"
 				facing = "North"*/
 			CCreatureAttributes attribute;
-			int index;
+			int index, type;
 			parentElement->QueryIntAttribute("index", &index);
-			parentElement->QueryIntAttribute("type", &attribute.type);
+			parentElement->QueryIntAttribute("type", &type);
+			attribute.type = (CMonster::MonsterTyp)type;
 			parentElement->QueryIntAttribute("number_of_creatures", &attribute.count);
 			for (int monsterId = 1; monsterId <= attribute.count; monsterId++) {
 				parentElement->QueryIntAttribute("position_" + monsterId, &attribute.position[attribute.count]);
