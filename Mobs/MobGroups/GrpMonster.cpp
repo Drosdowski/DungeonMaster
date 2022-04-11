@@ -27,6 +27,7 @@ CGrpMonster::CGrpMonster(VEKTOR pos, COMPASS_DIRECTION richt)
 		m_pMember[i] = NULL;
 	m_posPosition = pos;
 	m_grpDirection = richt;
+	carriedItem = NULL;
 }
 
 CGrpMonster::CGrpMonster(VEKTOR pos, CCreatureAttributes attributes) {
@@ -41,12 +42,14 @@ CGrpMonster::CGrpMonster(VEKTOR pos, CCreatureAttributes attributes) {
 	}
 	m_posPosition = pos;
 	m_grpDirection = attributes.direction;
-
+	carriedItem = NULL;
 }
 
 
 CGrpMonster::~CGrpMonster()
 {
+	if (carriedItem)
+		delete carriedItem;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -278,4 +281,9 @@ void CGrpMonster::Laufen(VEKTOR WunschPos) {
 			m_pMember[i]->ActionDone();
 		}
 	m_posPosition = WunschPos;
+}
+
+void CGrpMonster::CarryItem(CMiscellaneous* item, SUBPOS_ABSOLUTE pos) {
+	carriedItem = item;
+	carriedItemPos = pos;
 }

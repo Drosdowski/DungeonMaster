@@ -253,9 +253,33 @@ void CDungeonMap::ParseCreature(TiXmlElement* creatureItem, VEKTOR coords) {
 		const char* parent = parentElement->Value();
 		if (strcmp(parent, "items") == 0)
 		{
+			int index, position;
 			TiXmlElement* monsterItem = parentElement->FirstChildElement();
-			if (monsterItem) {
-				// todo  monster with items
+			while (monsterItem) 
+			{
+				const char* subParent = monsterItem->Value();
+				if (strcmp(subParent, "miscellaneous") == 0)
+				{
+					monsterItem->QueryIntAttribute("index", &index);
+					monsterItem->QueryIntAttribute("position", &position);
+					int mtype = m_miscellaneousType[index];
+					int msubtype = m_miscellaneousSubtype[index];
+					CMiscellaneous* misc = new CMiscellaneous(index, (CMiscellaneous::ItemType)mtype, msubtype);
+					pGrpMonster->CarryItem(misc, (SUBPOS_ABSOLUTE)position);
+
+				}
+				else if (strcmp(subParent, "weapon") == 0) {
+					//parentElement->QueryIntAttribute("index", &index);
+					//parentElement->QueryIntAttribute("position", &position);
+					//int mtype = m_miscellaneousType[index];
+					//int msubtype = m_miscellaneousSubtype[index];
+					// CMiscellaneous* misc = new CMiscellaneous(index, (CMiscellaneous::ItemType)mtype, msubtype);
+					// pGrpMonster->CarryItem(misc, (SUBPOS_ABSOLUTE)position);
+					// Todo weapon items ?
+
+				}
+				monsterItem = parentElement->NextSiblingElement();
+
 			}
 		}
 		parentElement = parentElement->NextSiblingElement();

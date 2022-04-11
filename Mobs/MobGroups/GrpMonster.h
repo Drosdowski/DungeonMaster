@@ -12,6 +12,7 @@
 // Ansicht CGrpMonster 
 class CMonster;
 class CGrpHeld;
+class CMiscellaneous;
 class CGrpMonster : public CGrpChar
 {
 public:
@@ -42,13 +43,15 @@ public:
 	void TurnToHero(VEKTOR heroPos);
 	void Laufen(VEKTOR WunschPos);
 	void EndAttack();
+	void CarryItem(CMiscellaneous* item, SUBPOS_ABSOLUTE pos);
 	virtual ~CGrpMonster();
 private:
 	void TryToAdavanceToFirstRow(int index, VEKTOR monPos, VEKTOR heroPos);
 	bool isSubPosAbsoluteFree(SUBPOS_ABSOLUTE pos);
 
 	CMonster* GetBySubpos(SUBPOS pos);
-
+	CMiscellaneous* carriedItem;
+	SUBPOS_ABSOLUTE carriedItemPos;
 };
 
 /////////////////////////////////////////////////////////////////////////////
