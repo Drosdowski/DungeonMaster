@@ -531,6 +531,58 @@ IDB_WALLDECO_45L        BITMAP                  "res\\WallDeco\\WallDeco_45_Left
 
 IDB_BITMAP_P            BITMAP                  "res\\P.bmp"
 
+IDB_WALLDECO_51L        BITMAP                  "res\\WallDeco\\WallDeco_51_Left.bmp"
+
+IDB_WALLDECO_51F        BITMAP                  "res\\WallDeco\\WallDeco_51_Front.bmp"
+
+IDB_WALLDECO_6F         BITMAP                  "res\\WallDeco\\WallDeco_6_Front.bmp"
+
+IDB_WALLDECO_6L         BITMAP                  "res\\WallDeco\\WallDeco_6_Left.bmp"
+
+IDB_WALLDECO_34F        BITMAP                  "res\\WallDeco\\WallDeco_34_Front.bmp"
+
+IDB_WALLDECO_34L        BITMAP                  "res\\WallDeco\\WallDeco_34_Left.bmp"
+
+IDB_WALLDECO_33F        BITMAP                  "res\\WallDeco\\WallDeco_33_Front.bmp"
+
+IDB_WALLDECO_33L        BITMAP                  "res\\WallDeco\\WallDeco_33_Left.bmp"
+
+IDB_WALLDECO_4F         BITMAP                  "res\\WallDeco\\WallDeco_4_Front.bmp"
+
+IDB_WALLDECO_4L         BITMAP                  "res\\WallDeco\\WallDeco_4_Left.bmp"
+
+IDB_WALLDECO_15L        BITMAP                  "res\\WallDeco\\WallDeco_15_Left.bmp"
+
+IDB_WALLDECO_15F        BITMAP                  "res\\WallDeco\\WallDeco_15_Front.bmp"
+
+IDB_WALLDECO_14L        BITMAP                  "res\\WallDeco\\WallDeco_14_Left.bmp"
+
+IDB_WALLDECO_14F        BITMAP                  "res\\WallDeco\\WallDeco_14_Front.bmp"
+
+IDB_WALLDECO_17F        BITMAP                  "res\\WallDeco\\WallDeco_17_Front.bmp"
+
+IDB_WALLDECO_17L        BITMAP                  "res\\WallDeco\\WallDeco_17_Left.bmp"
+
+IDB_WALLDECO_7L         BITMAP                  "res\\WallDeco\\WallDeco_7_Left.bmp"
+
+IDB_WALLDECO_7F         BITMAP                  "res\\WallDeco\\WallDeco_7_Front.bmp"
+
+IDB_WALLDECO_49L        BITMAP                  "res\\WallDeco\\WallDeco_49_Left.bmp"
+
+IDB_WALLDECO_54F        BITMAP                  "res\\WallDeco\\WallDeco_54_Front.bmp"
+
+IDB_WALLDECO_49F        BITMAP                  "res\\WallDeco\\WallDeco_49_Front.bmp"
+
+IDB_WALLDECO_54L        BITMAP                  "res\\WallDeco\\WallDeco_54_Left.bmp"
+
+IDB_WALLDECO_3L         BITMAP                  "res\\WallDeco\\WallDeco_3_Left.bmp"
+
+IDB_WALLDECO_3F         BITMAP                  "res\\WallDeco\\WallDeco_3_Front.bmp"
+
+IDB_WALLDECO_1F         BITMAP                  "res\\WallDeco\\WallDeco_1_Front.bmp"
+
+IDB_WALLDECO_1L         BITMAP                  "res\\WallDeco\\WallDeco_1_Left.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
