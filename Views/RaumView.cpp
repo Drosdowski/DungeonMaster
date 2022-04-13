@@ -14,7 +14,7 @@
 #include "SpecialTile/CStairs.h"
 #include "SpecialTile/CPit.h"
 #include "SpecialTile/CTeleporter.h"
-#include "Items\Decoration.h"
+#include "Items\FloorDecoration.h"
 #include "Pictures\CPictures.h"
 #include "Pictures\CDoorPic.h"
 #include "Pictures\CWallPic.h"
@@ -406,7 +406,7 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 		}
 	}
 	
-	CFieldDecoration* floorDeco = pField->GetFloorDeco(); 
+	CFloorDecoration* floorDeco = pField->GetFloorDeco(); 
 	CBitmap* decoBmp = NULL;
 	if (floorDeco)
 	{ 

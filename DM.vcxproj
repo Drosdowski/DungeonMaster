@@ -159,7 +159,7 @@
     <ClCompile Include="Mobs\Mumie.cpp" />
     <ClCompile Include="Pictures\CPictures.cpp" />
     <ClCompile Include="CHelpfulValues.cpp" />
-    <ClCompile Include="Items\Decoration.cpp" />
+    <ClCompile Include="Items\FloorDecoration.cpp" />
     <ClCompile Include="DM.cpp" />
     <ClCompile Include="DMDoc.cpp" />
     <ClCompile Include="Views\DMView.cpp" />
@@ -222,7 +222,7 @@
     <ClInclude Include="Mobs\Mumie.h" />
     <ClInclude Include="Pictures\CPictures.h" />
     <ClInclude Include="CHelpfulValues.h" />
-    <ClInclude Include="Items\Decoration.h" />
+    <ClInclude Include="Items\FloorDecoration.h" />
     <ClInclude Include="DM.h" />
     <ClInclude Include="DMDoc.h" />
     <ClInclude Include="Views\DMView.h" />

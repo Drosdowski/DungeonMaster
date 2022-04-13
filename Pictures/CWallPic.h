@@ -1,6 +1,6 @@
 #pragma once
 #include "CBasePictures.h"
-class CFieldDecoration;
+class CFloorDecoration;
 class CWallPic : public CBasePictures
 {
 public:

@@ -60,7 +60,7 @@
     <ClCompile Include="Views\ZauberView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Items\Decoration.cpp">
+    <ClCompile Include="Items\FloorDecoration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Pictures\CPictures.cpp">
@@ -223,7 +223,7 @@
     <ClInclude Include="Views\ZauberView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Items\Decoration.h">
+    <ClInclude Include="Items\FloorDecoration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\CPictures.h">

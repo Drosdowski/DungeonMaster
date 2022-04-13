@@ -4,7 +4,7 @@
 #include "CWallPic.h"
 #include "Items2D/CItemPic.h"
 #include "..\Mobs\Held.h"
-#include "..\Items\Decoration.h"
+#include "..\Items\FloorDecoration.h"
 #include "..\Items\CMiscellaneous.h"
 #include "..\Rucksack.h"
 #include "..\CScreenCoords.h"

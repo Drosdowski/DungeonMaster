@@ -8,7 +8,7 @@
 #include "Views\Raumview.h"
 #include "CDungeonMap.h"
 #include "DMDoc.h"
-#include "Items\Decoration.h"
+#include "Items\FloorDecoration.h"
 #include "Mobs\Held.h"
 #include "Mobs\MobGroups\GrpHeld.h"
 #include "CHelpfulValues.h"

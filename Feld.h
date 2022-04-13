@@ -19,7 +19,7 @@
 class CGrpMonster;
 class CMiscellaneous;
 class CActuator;
-class CFieldDecoration;
+class CFloorDecoration;
 class CDoor;
 class CPit;
 class CStairs;
@@ -46,8 +46,8 @@ public:
 	FeldTyp HoleTyp()	{ return m_iTyp;};
 	bool Blocked();
 	
-	CFieldDecoration* GetFloorDeco() {	return  m_floorOrnateType; }
-	void PutFloorDeco(CFieldDecoration* deco);
+	CFloorDecoration* GetFloorDeco() {	return  m_floorOrnateType; }
+	void PutFloorDeco(CFloorDecoration* deco);
 
 	/*int GetWallDeco(int position) { return m_pWallDecoration[position]; }
 	void PutWallDeco(int position, int type) {
@@ -97,7 +97,7 @@ protected:
 	CGrpMonster* m_pGrpMonster;
 	FeldTyp m_iTyp;
 	//int m_pWallDecoration[4];
-	CFieldDecoration* m_floorOrnateType;
+	CFloorDecoration* m_floorOrnateType;
 	std::deque<CMiscellaneous*> m_pMiscellaneous[4];
 
 	std::deque <CActuator*> m_pActuator[4];

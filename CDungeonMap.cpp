@@ -4,7 +4,7 @@
 #include "TinyXML/tinyxml.h"
 #include "Mobs/MobGroups/GrpHeld.h"
 #include "Mobs/MobGroups/GrpMonster.h"
-#include "Items\Decoration.h"
+#include "Items\FloorDecoration.h"
 #include "Items/CMiscellaneous.h"
 #include "SpecialTile/CTeleporter.h"
 #include "CDungeonMap.h"
@@ -203,6 +203,9 @@ void CDungeonMap::ParseItems(TiXmlElement* rootNode, VEKTOR coords) {
 				else if (strcmp(miscItem->Value(), "random_floor_decoration") == 0) {
 					ParseFloorDecoration(miscItem, coords);
 				}
+				else if (strcmp(miscItem->Value(), "random_wall_decoration") == 0) {
+					ParseWallDecoration(miscItem, coords);
+				}
 				else if (strcmp(miscItem->Value(), "creature") == 0 && monsterAktiv) {
 					ParseCreature(miscItem, coords);
 				}
@@ -232,9 +235,16 @@ void CDungeonMap::ParseMiscellaneous(TiXmlElement* miscItem, VEKTOR coords) {
 void CDungeonMap::ParseFloorDecoration(TiXmlElement* decoItem, VEKTOR coords) {
 	int graphic;
 	decoItem->QueryIntAttribute("graphic", &graphic);
-	CFieldDecoration* deco = new CFieldDecoration((FloorDecorationType)graphic);
+	CFloorDecoration* deco = new CFloorDecoration((FloorDecorationType)graphic);
 	m_pFeld[coords.x][coords.y][coords.z]->PutFloorDeco(deco);
+}
 
+void CDungeonMap::ParseWallDecoration(TiXmlElement* decoItem, VEKTOR coords) {
+	int graphic, position;
+	decoItem->QueryIntAttribute("graphic", &graphic);
+	decoItem->QueryIntAttribute("position", &position);
+
+	// TODO WallDeco !!
 }
 
 void CDungeonMap::ParseCreature(TiXmlElement* creatureItem, VEKTOR coords) {

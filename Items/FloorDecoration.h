@@ -1,9 +1,9 @@
 
-class CFieldDecoration
+class CFloorDecoration
 {
 public:
-	CFieldDecoration(FloorDecorationType type);
-	~CFieldDecoration();
+	CFloorDecoration(FloorDecorationType type);
+	~CFloorDecoration();
 
 	FloorDecorationType GetDecoType();
 	int GetState();

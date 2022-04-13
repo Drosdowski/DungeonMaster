@@ -6,7 +6,7 @@
 #include "SpecialTile\CDoor.h"
 #include "SpecialTile\CTeleporter.h"
 #include "Mobs\MobGroups\GrpMonster.h"
-#include "Items\Decoration.h"
+#include "Items\FloorDecoration.h"
 #include "Items/CMiscellaneous.h"
 #include "Items\CActuator.h"
 #include "CHelpfulValues.h"
@@ -158,7 +158,7 @@ void CField::PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index) {
 	m_pMiscellaneous[index].push_back(misc);
 }
 
-void CField::PutFloorDeco(CFieldDecoration* deco) {
+void CField::PutFloorDeco(CFloorDecoration* deco) {
 	m_floorOrnateType = deco;
 }
 
