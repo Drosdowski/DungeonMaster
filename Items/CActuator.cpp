@@ -1,8 +1,16 @@
 #include "stdafx.h"
 #include "CActuator.h"
 
-CActuator::CActuator(int index, COMPASS_DIRECTION position, VEKTOR target, ActionTypes actionType, ActionTarget actionTarget, 
-					 int type, int data, int graphic, int once_only) {
+CActuator::CActuator(int index, 
+					 COMPASS_DIRECTION position, 
+					 VEKTOR target, 
+					 ActionTypes actionType, 
+					 ActionTarget actionTarget, 
+					 int type, 
+					 int data, 
+					 int graphic, 
+					 int once_only,
+					 bool action) {
 	m_index = index;
 	m_target = target;
 	m_actionType = actionType;
@@ -13,6 +21,7 @@ CActuator::CActuator(int index, COMPASS_DIRECTION position, VEKTOR target, Actio
 	m_graphic = graphic;
 	m_once_only = once_only;
 	m_active = true;
+	m_action = action;
 }
 
 CActuator::~CActuator() {

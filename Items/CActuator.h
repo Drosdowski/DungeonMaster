@@ -13,7 +13,7 @@ public:
 		Local
 	};
 
-	CActuator(int index, COMPASS_DIRECTION position, VEKTOR target, ActionTypes actionTypes, ActionTarget actionTarget, int type, int data, int graphic, int once_only);
+	CActuator(int index, COMPASS_DIRECTION position, VEKTOR target, ActionTypes actionTypes, ActionTarget actionTarget, int type, int data, int graphic, int once_only, bool action);
 	~CActuator();
  
 	int GetType() { return m_type; }
@@ -27,6 +27,7 @@ public:
 	bool IsActive() { return m_active;  }
 	void Deactivate() { m_active = false; }
 	bool IsOnceOnly() { return m_once_only > 0; }
+	bool Action() { return m_action; }
 
 private:
 	int m_index;
@@ -36,6 +37,7 @@ private:
 	int m_data;
 	bool m_active;
 	int m_once_only;
+	bool m_action;
 	VEKTOR m_target;
 	ActionTypes m_actionType;
 	ActionTarget m_actionTarget;

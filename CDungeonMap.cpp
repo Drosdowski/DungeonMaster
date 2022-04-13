@@ -203,7 +203,7 @@ void CDungeonMap::ParseItems(TiXmlElement* rootNode, VEKTOR coords) {
 				else if (strcmp(miscItem->Value(), "random_floor_decoration") == 0) {
 					ParseFloorDecoration(miscItem, coords);
 				}
-				else if (strcmp(miscItem->Value(), "creature") == 0) {
+				else if (strcmp(miscItem->Value(), "creature") == 0 && monsterAktiv) {
 					ParseCreature(miscItem, coords);
 				}
 			
@@ -305,6 +305,7 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 			< / actuator> <!--North / TopLeft-->
 			< / items> */
 	int index, position, type, graphic, data, once_only;
+	int action = 0;
 	VEKTOR target = coords;
 	CActuator::ActionTypes actionType;
 	CActuator::ActionTarget actionTarget;
@@ -362,14 +363,20 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 			std::stringstream streamValue;
 			streamValue << strValue;
 			streamValue >> once_only;
-		}		
+		}	
+		else if (strcmp(actuatorAttributes->Value(), "action") == 0) {
+			const char* strValue = actuatorAttributes->GetText();
+			std::stringstream streamValue;
+			streamValue << strValue;
+			streamValue >> action;
+		}
 
 		actuatorAttributes = actuatorAttributes->NextSiblingElement();
 	}
 
 	//WallDecorationType graphicType = graphic > 0 ? m_wallDecorationTypes[graphic, coords.z] : None;
 	//if (graphicType < 0 || graphicType > 255) graphicType = None; 
-	CActuator* actuator = new CActuator(index, (COMPASS_DIRECTION)position, target, actionType, actionTarget, type, data, graphic, once_only);
+	CActuator* actuator = new CActuator(index, (COMPASS_DIRECTION)position, target, actionType, actionTarget, type, data, graphic, once_only, (action == 1));
 	m_pFeld[coords.x][coords.y][coords.z]->PutActuator(actuator, (COMPASS_DIRECTION)position);
 }
 

@@ -19,6 +19,8 @@
 #include <afxcmn.h>			// MFC support for Windows Common Controls
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
+#define monsterAktiv false
+
 #define VORWAERTS 1
 #define RUECKWAERTS 2
 #define LINKS_STRAFE 3

@@ -256,14 +256,17 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators
 				// Schalter 
 				//VEKTOR target;
 				// TODO Unklar - Logik korrekt? Target aus 2. Actuator nehmen, wenn 1. LOCAL ist, und 2. vorhanden und 2. remote.
-				if (actuatorsAtPosition.size() > 1 && actionTarget == CActuator::Local) {
+				if (currentActuator->GetActionTarget() == CActuator::Local && currentActuator->Action()) {
+					currentActuator = actuatorsAtPosition.front();
+				}
+				else if (currentActuator->GetActionTarget() == CActuator::Remote) {
+					InvokeRemoteActuator(currentActuator);
+				}
+				else if (actuatorsAtPosition.size() > 1 && actionTarget == CActuator::Local) {
 					assert(("too many actuators", actuatorsAtPosition.size() < 3));
 					currentActuator = actuatorsAtPosition.front();
 				}
 
-				if (currentActuator->GetActionTarget() == CActuator::Remote) {
-					InvokeRemoteActuator(currentActuator);
-				}		
 				else assert(false); // todo ...
 
 				return true; // RotateActuators
