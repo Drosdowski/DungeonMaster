@@ -7,6 +7,7 @@
 #include "..\Skelett.h"
 #include "..\Mumie.h"
 #include "..\MobGroups\GrpHeld.h"
+#include "..\..\Items\CMiscellaneous.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

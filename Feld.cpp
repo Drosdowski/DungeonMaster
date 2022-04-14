@@ -61,6 +61,7 @@ void CField::InitVars() {
 	m_lastWeight = 0;
 	m_pGrpMonster = NULL;
 	m_floorOrnateType = NULL;
+	m_wallOrnateType = NULL;
 	/*for (int p = 0; p < 4; p++) {
 		m_pWallDecoration[p] = NULL;
 	}*/
@@ -81,6 +82,8 @@ CField::~CField()
 		delete m_pTeleporter;
 	if (m_floorOrnateType)
 		delete m_floorOrnateType;
+	if (m_wallOrnateType)
+		delete m_wallOrnateType;
 	for (int i = 0; i < 4; i++) {
 		for (CMiscellaneous* item : m_pMiscellaneous[i]) {
 			delete item;
@@ -160,6 +163,10 @@ void CField::PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index) {
 
 void CField::PutFloorDeco(CFloorDecoration* deco) {
 	m_floorOrnateType = deco;
+}
+
+void CField::PutWallDeco(CWallDecoration* deco) {
+	m_wallOrnateType = deco;
 }
 
 void CField::PutActuator(CActuator* actuator, COMPASS_DIRECTION index) {

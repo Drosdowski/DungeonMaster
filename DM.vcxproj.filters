@@ -168,6 +168,9 @@
     <ClCompile Include="SpecialTile\CCreatureAttributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Items\WallDecoration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -329,6 +332,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SpecialTile\CCreatureAttributes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\WallDecoration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -980,6 +986,54 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\WallDeco\WallDeco_54_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_47_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_47_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_48_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_48_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_50_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_50_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_52_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_52_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_53_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_53_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_55_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_55_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_32_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_32_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_16_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_16_Front.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

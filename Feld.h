@@ -20,6 +20,7 @@ class CGrpMonster;
 class CMiscellaneous;
 class CActuator;
 class CFloorDecoration;
+class CWallDecoration;
 class CDoor;
 class CPit;
 class CStairs;
@@ -47,16 +48,9 @@ public:
 	bool Blocked();
 	
 	CFloorDecoration* GetFloorDeco() {	return  m_floorOrnateType; }
+	CWallDecoration* GetWallDeco() { return  m_wallOrnateType; }
 	void PutFloorDeco(CFloorDecoration* deco);
-
-	/*int GetWallDeco(int position) { return m_pWallDecoration[position]; }
-	void PutWallDeco(int position, int type) {
-		if (!m_pWallDecoration[position])
-			m_pWallDecoration[position] = type;
-		else
-			Blocked();
-
-	};*/
+	void PutWallDeco(CWallDecoration* deco);
 
 	CDoor* HoleDoor() { return m_pDoor;  }
 	CStairs* HoleStairs() { return m_pStairs;  }
@@ -98,6 +92,7 @@ protected:
 	FeldTyp m_iTyp;
 	//int m_pWallDecoration[4];
 	CFloorDecoration* m_floorOrnateType;
+	CWallDecoration* m_wallOrnateType;
 	std::deque<CMiscellaneous*> m_pMiscellaneous[4];
 
 	std::deque <CActuator*> m_pActuator[4];

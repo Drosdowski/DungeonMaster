@@ -45,8 +45,8 @@ int CMiscellaneous::GetOffsetForGroup() {
 		return 8 - Apple + m_type;
 	case Other:
 		assert(false); // todo !!
-		return -1;
 	}
+	return -1;
 }
 
 int CMiscellaneous::GetSheetForGroup() {
@@ -68,8 +68,8 @@ int CMiscellaneous::GetSheetForGroup() {
 		return 1;
 	case Other:
 		assert(false); // todo !!
-		return -1;
 	}
+	return -1;
 }
 
 bool CMiscellaneous::CheckGroup(int slotId) {

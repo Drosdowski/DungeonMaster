@@ -5,6 +5,7 @@
 #include "Mobs/MobGroups/GrpHeld.h"
 #include "Mobs/MobGroups/GrpMonster.h"
 #include "Items\FloorDecoration.h"
+#include "Items\WallDecoration.h"
 #include "Items/CMiscellaneous.h"
 #include "SpecialTile/CTeleporter.h"
 #include "CDungeonMap.h"
@@ -243,8 +244,8 @@ void CDungeonMap::ParseWallDecoration(TiXmlElement* decoItem, VEKTOR coords) {
 	int graphic, position;
 	decoItem->QueryIntAttribute("graphic", &graphic);
 	decoItem->QueryIntAttribute("position", &position);
-
-	// TODO WallDeco !!
+	CWallDecoration* deco = new CWallDecoration(m_wallDecorationTypes[coords.z][graphic]);
+	m_pFeld[coords.x][coords.y][coords.z]->PutWallDeco(deco);
 }
 
 void CDungeonMap::ParseCreature(TiXmlElement* creatureItem, VEKTOR coords) {
@@ -432,14 +433,20 @@ void CDungeonMap::ParseMap(TiXmlElement* rootNode, int etage) {
 	while (parentElement)
 	{
 		const char* parent = parentElement->Value();
-		if (strcmp(parent, "tiles") == 0)
-		{
-			ParseTiles(parentElement, etage);
-		}
-		else if (strcmp(parent, "wall_decoration_graphics") == 0)
+		if (strcmp(parent, "wall_decoration_graphics") == 0)
 		{
 			m_wallDecorationTypes[etage] = new WallDecorationType[15];
 			ParseWallDecorationGraphics(parentElement, etage);
+		}
+		parentElement = parentElement->NextSiblingElement();
+	}
+	parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "tiles") == 0)
+		{
+			ParseTiles(parentElement, etage);
 		}
 		parentElement = parentElement->NextSiblingElement();
 	}

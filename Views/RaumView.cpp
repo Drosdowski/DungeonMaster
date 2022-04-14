@@ -15,6 +15,7 @@
 #include "SpecialTile/CPit.h"
 #include "SpecialTile/CTeleporter.h"
 #include "Items\FloorDecoration.h"
+#include "Items\WallDecoration.h"
 #include "Pictures\CPictures.h"
 #include "Pictures\CDoorPic.h"
 #include "Pictures\CWallPic.h"
@@ -306,6 +307,13 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 		int graphicId = actuatorsSide.back()->GetGraphic();
 		WallDecorationType graphicType = m_pMap->GetWallDecorationType(pField->HolePos().z, graphicId);
 		bmpDecoSide = m_pWallDecoPic->GetPicSide(graphicType, (xx < 0));
+	}
+	else {
+		CWallDecoration* pWallDeco = pField->GetWallDeco();
+		if (pWallDeco) {
+			WallDecorationType graphicType = pField->GetWallDeco()->GetDecoType();
+			bmpDecoSide = m_pWallDecoPic->GetPicSide(graphicType, (xx < 0));
+		}
 	}
 	
 	cdc->SelectObject(bmp);
