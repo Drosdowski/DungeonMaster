@@ -209,14 +209,14 @@ CPoint CWallPic::GetCenterFromSideWall(int x, int ebene) {
 }
 
 CPoint CWallPic::GetBottomCenterFromSideWall(int x, int ebene) {
-	CPoint p = GetCenterFromFrontWall(x, ebene);
+	CPoint p = GetCenterFromSideWall(x, ebene);
 	switch (ebene) {
 	case 1:
-		p.y = 40 * 2; break;
+		p.y = 92 * 2; break;
 	case 2:
-		p.y = 34 * 2; break;
+		p.y = 61 * 2; break;
 	case 3:
-		p.y = 21 * 2; break;
+		p.y = 39 * 2; break;
 	}
 	return p;
 }

@@ -81,10 +81,10 @@ CField::~CField()
 		delete m_pTeleporter;
 	if (m_floorOrnateType)
 		delete m_floorOrnateType;
-	/*for (int p = 0; p < 4; p++) {
+	for (int p = 0; p < 4; p++) {
 		if (m_wallOrnateType[p])
 			delete m_wallOrnateType[p];
-	}*/
+	}
 
 	for (int i = 0; i < 4; i++) {
 		for (CMiscellaneous* item : m_pMiscellaneous[i]) {
