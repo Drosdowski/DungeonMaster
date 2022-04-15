@@ -9,6 +9,7 @@ public:
 
 	CBitmap* GetPicFront(WallDecorationType index);
 	CBitmap* GetPicSide(WallDecorationType index, bool left);
+	bool DrawNearFloor(WallDecorationType index);
 
 private:
 	void InitPics();

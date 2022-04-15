@@ -47,3 +47,8 @@ void CWallDecoPic::InitPics() {
 	}
 
 }
+
+bool CWallDecoPic::DrawNearFloor(WallDecorationType index) {
+	std::set<int> listOfFloorPics{ 33, 34 };
+	return (listOfFloorPics.find(index) != listOfFloorPics.end());
+}

@@ -11,6 +11,8 @@ public:
 
 	CPoint GetCenterFromFrontWall(int x, int ebene);
 	CPoint GetCenterFromSideWall(int x, int ebene);
+	CPoint GetBottomCenterFromFrontWall(int x, int ebene);
+	CPoint GetBottomCenterFromSideWall(int x, int ebene);
 	CBitmap* GetWallPic(int x, int ebene, bool bMirror);
 
 private:

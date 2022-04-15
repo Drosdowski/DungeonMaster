@@ -289,18 +289,20 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 
 	COMPASS_DIRECTION richtOppo = (COMPASS_DIRECTION)CHelpfulValues::OppositeDirection(richt);
 	std::deque<CActuator*> actuatorsFront = pField->GetActuator(richtOppo);
+	WallDecorationType graphicTypeFront = None;
 	if (!actuatorsFront.empty()) {
 		int graphicId = actuatorsFront.back()->GetGraphic();
-		WallDecorationType graphicType = m_pMap->GetWallDecorationType(pField->HolePos().z, graphicId);
-		bmpDecoFront = m_pWallDecoPic->GetPicFront(graphicType);
+		graphicTypeFront = m_pMap->GetWallDecorationType(pField->HolePos().z, graphicId);
 	}
 	else {
 		CWallDecoration* pWallDeco = pField->GetWallDeco(richtOppo);
 		if (pWallDeco) {
-			WallDecorationType graphicType = pWallDeco->GetDecoType();
-			bmpDecoFront = m_pWallDecoPic->GetPicFront(graphicType);
+			graphicTypeFront = pWallDeco->GetDecoType();
 		}
 	}
+	if (graphicTypeFront != None)
+		bmpDecoFront = m_pWallDecoPic->GetPicFront(graphicTypeFront);
+
 
 	std::deque<CActuator*> actuatorsSide;
 	COMPASS_DIRECTION richtSide;
@@ -314,18 +316,20 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 	if (xx != 0)
 		actuatorsSide = pField->GetActuator(richtSide);
 
+	WallDecorationType graphicTypeSide = None;
 	if (!actuatorsSide.empty()) {
 		int graphicId = actuatorsSide.back()->GetGraphic();
-		WallDecorationType graphicType = m_pMap->GetWallDecorationType(pField->HolePos().z, graphicId);
-		bmpDecoSide = m_pWallDecoPic->GetPicSide(graphicType, (xx < 0));
+		graphicTypeSide = m_pMap->GetWallDecorationType(pField->HolePos().z, graphicId);
 	}
 	else if(xx != 0) {
 		CWallDecoration* pWallDeco = pField->GetWallDeco(richtSide);
 		if (pWallDeco) {
-			WallDecorationType graphicType = pWallDeco->GetDecoType();
-			bmpDecoSide = m_pWallDecoPic->GetPicSide(graphicType, (xx < 0));
+			graphicTypeSide = pWallDeco->GetDecoType();
 		}
 	}
+	if (graphicTypeSide != None)
+		bmpDecoSide = m_pWallDecoPic->GetPicSide(graphicTypeSide, (xx < 0));
+
 	
 	cdc->SelectObject(bmp);
 	CPoint posWall = m_pWallPic->GetWallPos(xxx, ebene);
@@ -341,7 +345,11 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 		if (((xxx == 4) && (ebene == 1)) ||
 			((xxx > 1) && (ebene == 2)) ||
 			(ebene == 3)) {
-			CPoint centerFrontWall = m_pWallPic->GetCenterFromFrontWall(xxx, ebene);
+			CPoint centerFrontWall;
+			if (m_pWallDecoPic->DrawNearFloor(graphicTypeFront))
+				centerFrontWall = m_pWallPic->GetBottomCenterFromFrontWall(xxx, ebene);
+			else
+				centerFrontWall = m_pWallPic->GetCenterFromFrontWall(xxx, ebene);
 			if (bmpDecoFront && centerFrontWall.x > 0 && centerFrontWall.y > 0) {
 				cdc->SelectObject(bmpDecoFront);
 				bmpDecoFront->GetBitmap(&bmpDecoInfo);
@@ -360,7 +368,11 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 	{
 		if (ebene > 0 && xxx < 4) {
 
-			CPoint centerSideWall = m_pWallPic->GetCenterFromSideWall(xxx, ebene);
+			CPoint centerSideWall;
+			if (m_pWallDecoPic->DrawNearFloor(graphicTypeSide))
+				centerSideWall = m_pWallPic->GetBottomCenterFromSideWall(xxx, ebene);
+			else
+				centerSideWall = m_pWallPic->GetCenterFromSideWall(xxx, ebene);
 			if (centerSideWall.x > 0 && centerSideWall.y > 0) {
 				cdc->SelectObject(bmpDecoSide);
 				bmpDecoSide->GetBitmap(&bmpDecoInfo);
@@ -979,17 +991,18 @@ void CRaumView::OnTrigger()
 
 	// Testweise. Space = Wand vor Spieler erzeugen/löschen
 
-	/*if (iFeld == FeldTyp::WALL)
+	if (iFeld == FeldTyp::WALL)
 	{
-		CFieldDecoration* deco = (feld->HoleDeko(CHelpfulValues::OppositeDirection(richt)));
-		if (deco->GetDecoType() == Switch) {
-			deco->SetState(1 - deco->GetState());
-			m_pDoc->PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-Switch.mp3");
-		} else if	(deco->GetDecoType() == Fountain) {
-			m_pMap->GetHeroes()->DrinkFountain();
-		}
+		//CFieldDecoration* deco = (feld->HoleDeko(CHelpfulValues::OppositeDirection(richt)));
+		//if (deco->GetDecoType() == Switch) {
+			//deco->SetState(1 - deco->GetState());
+			//m_pDoc->PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-Switch.mp3");
+		//} else if	(deco->GetDecoType() == Fountain) {
+			//m_pMap->GetHeroes()->DrinkFountain();
+		//}
+		feld->SetType(FeldTyp::EMPTY);
 	}
-	else*/ if (iFeld == FeldTyp::DOOR)
+	else if (iFeld == FeldTyp::DOOR)
 	{
 		CDoor* door = feld->HoleDoor();
 		if (door) {
@@ -998,7 +1011,7 @@ void CRaumView::OnTrigger()
 
 		}
 	}
-	//else
-		//feld->SetType(FeldTyp::WALL);
+	else
+		feld->SetType(FeldTyp::WALL);
 }
 
