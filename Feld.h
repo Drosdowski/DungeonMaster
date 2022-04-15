@@ -48,9 +48,9 @@ public:
 	bool Blocked();
 	
 	CFloorDecoration* GetFloorDeco() {	return  m_floorOrnateType; }
-	CWallDecoration* GetWallDeco() { return  m_wallOrnateType; }
+	CWallDecoration* GetWallDeco(int position) { return  m_wallOrnateType[position]; }
 	void PutFloorDeco(CFloorDecoration* deco);
-	void PutWallDeco(CWallDecoration* deco);
+	void PutWallDeco(CWallDecoration* deco, int position);
 
 	CDoor* HoleDoor() { return m_pDoor;  }
 	CStairs* HoleStairs() { return m_pStairs;  }
@@ -92,7 +92,7 @@ protected:
 	FeldTyp m_iTyp;
 	//int m_pWallDecoration[4];
 	CFloorDecoration* m_floorOrnateType;
-	CWallDecoration* m_wallOrnateType;
+	CWallDecoration* m_wallOrnateType[4];
 	std::deque<CMiscellaneous*> m_pMiscellaneous[4];
 
 	std::deque <CActuator*> m_pActuator[4];

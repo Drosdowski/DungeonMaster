@@ -287,31 +287,42 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 	CBitmap* bmpDecoSide = NULL;
 	int xx = wallXFactor[xxx];
 
-	std::deque<CActuator*> actuatorsFront = pField->GetActuator((COMPASS_DIRECTION)CHelpfulValues::OppositeDirection(richt));
+	COMPASS_DIRECTION richtOppo = (COMPASS_DIRECTION)CHelpfulValues::OppositeDirection(richt);
+	std::deque<CActuator*> actuatorsFront = pField->GetActuator(richtOppo);
 	if (!actuatorsFront.empty()) {
 		int graphicId = actuatorsFront.back()->GetGraphic();
 		WallDecorationType graphicType = m_pMap->GetWallDecorationType(pField->HolePos().z, graphicId);
 		bmpDecoFront = m_pWallDecoPic->GetPicFront(graphicType);
 	}
+	else {
+		CWallDecoration* pWallDeco = pField->GetWallDeco(richtOppo);
+		if (pWallDeco) {
+			WallDecorationType graphicType = pWallDeco->GetDecoType();
+			bmpDecoFront = m_pWallDecoPic->GetPicFront(graphicType);
+		}
+	}
 
 	std::deque<CActuator*> actuatorsSide;
+	COMPASS_DIRECTION richtSide;
 	if (xx > 0)
 	{
-		actuatorsSide = pField->GetActuator((COMPASS_DIRECTION)((richt + 3) % 4));
+		richtSide = (COMPASS_DIRECTION)((richt + 3) % 4);
 	}
 	else if (xx < 0) {
-		actuatorsSide = pField->GetActuator((COMPASS_DIRECTION)((richt + 1) % 4));
+		richtSide = (COMPASS_DIRECTION)((richt + 1) % 4);
 	} 
+	if (xx != 0)
+		actuatorsSide = pField->GetActuator(richtSide);
 
 	if (!actuatorsSide.empty()) {
 		int graphicId = actuatorsSide.back()->GetGraphic();
 		WallDecorationType graphicType = m_pMap->GetWallDecorationType(pField->HolePos().z, graphicId);
 		bmpDecoSide = m_pWallDecoPic->GetPicSide(graphicType, (xx < 0));
 	}
-	else {
-		CWallDecoration* pWallDeco = pField->GetWallDeco();
+	else if(xx != 0) {
+		CWallDecoration* pWallDeco = pField->GetWallDeco(richtSide);
 		if (pWallDeco) {
-			WallDecorationType graphicType = pField->GetWallDeco()->GetDecoType();
+			WallDecorationType graphicType = pWallDeco->GetDecoType();
 			bmpDecoSide = m_pWallDecoPic->GetPicSide(graphicType, (xx < 0));
 		}
 	}

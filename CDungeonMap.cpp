@@ -245,7 +245,7 @@ void CDungeonMap::ParseWallDecoration(TiXmlElement* decoItem, VEKTOR coords) {
 	decoItem->QueryIntAttribute("graphic", &graphic);
 	decoItem->QueryIntAttribute("position", &position);
 	CWallDecoration* deco = new CWallDecoration(m_wallDecorationTypes[coords.z][graphic]);
-	m_pFeld[coords.x][coords.y][coords.z]->PutWallDeco(deco);
+	m_pFeld[coords.x][coords.y][coords.z]->PutWallDeco(deco, position);
 }
 
 void CDungeonMap::ParseCreature(TiXmlElement* creatureItem, VEKTOR coords) {
