@@ -209,14 +209,22 @@ CPoint CWallPic::GetCenterFromSideWall(int x, int ebene) {
 }
 
 CPoint CWallPic::GetBottomCenterFromSideWall(int x, int ebene) {
-	CPoint p = GetCenterFromSideWall(x, ebene);
+	CPoint p = CPoint(0, 0);
 	switch (ebene) {
 	case 1:
-		p.y = 92 * 2; break;
+		if (x == 2) { p.x = 54 * 2; p.y = 86 * 2; }  // Linke Schr‰ge Mitte des groﬂen Steins
+		if (x == 3) { p.x = 14 * 2; p.y = 86 * 2; }  // Rechte Schr‰ge Mitte des groﬂen Steins
+		break;
 	case 2:
-		p.y = 61 * 2; break;
+		if (x == 2) { p.x = 71 * 2; p.y = 60 * 2; }  // Linke Schr‰ge Mitte des groﬂen Steins
+		if (x == 3) { p.x = 14 * 2; p.y = 60 * 2; }  // Rechte Schr‰ge Mitte des groﬂen Steins
+		break;
 	case 3:
-		p.y = 39 * 2; break;
+		if (x == 0) { p.x = 29 * 2; p.y = 40 * 2; }  // Entfernte Schr‰ge links 
+		if (x == 1) { p.x = 13 * 2; p.y = 40 * 2; }
+		if (x == 2) { p.x = 79 * 2; p.y = 40 * 2; }
+		if (x == 3) { p.x = 10 * 2; p.y = 40 * 2; }
+		break;
 	}
 	return p;
 }
