@@ -31,7 +31,8 @@ public:
 	CMonster* GetMonster(int ID);
 	// TODO bool ExistsAndDies();
 	void ActionDone();
-	bool IstBereit();
+	bool AnyoneReady();
+	bool EveryoneReady();
 	CMonster* GetMonsterByRelSubPos(SUBPOS posIndex, COMPASS_DIRECTION richt);
 
 

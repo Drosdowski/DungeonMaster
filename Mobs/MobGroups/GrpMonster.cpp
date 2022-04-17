@@ -127,6 +127,7 @@ CMonster* CGrpMonster::AttackHero(VEKTOR myPos, VEKTOR hisPos) {
 				{
 					int dmg = pMonster->CalcDmg(1); // todo monster attacke random
 					pMonster->AttackModeWithDmg(dmg);
+					pMonster->ActionDone();
 					return pMonster; // pro Tick nur ein Angriff / Gruppe
 				}
 				else {
@@ -201,7 +202,19 @@ CMonster* CGrpMonster::GetBySubpos(SUBPOS pos) {
 	return NULL;
 }
 
-bool CGrpMonster::IstBereit() {
+bool CGrpMonster::AnyoneReady() {
+	for (int i = 1; i < 5; i++)
+	{
+		CMonster* pMonster = (CMonster*)m_pMember[i];
+		if (pMonster) {
+			if (pMonster->IstBereit())
+				return true;
+		}
+	}
+	return false;
+}
+
+bool CGrpMonster::EveryoneReady() {
 	for (int i = 1; i < 5; i++)
 	{
 		CMonster* pMonster = (CMonster*)m_pMember[i];

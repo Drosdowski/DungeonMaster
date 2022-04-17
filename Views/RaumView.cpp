@@ -741,15 +741,15 @@ void CRaumView::MoveMonsters(VEKTOR heroPos) {
 			// Gruppe ausgestorben!
 			field->RemoveMonsterGroup();
 		}
-		else if (pGrpMon->IstBereit())
+		else if (pGrpMon->AnyoneReady())
 		{
 			VEKTOR target = MonsterMoveOrAttack(pGrpMon);
 			if (target.x != heroPos.x || target.y != heroPos.y) {
 				CField* targetField = m_pMap->GetField(target);
 				field->SetMonsterGroup(NULL);
 				targetField->SetMonsterGroup(pGrpMon);
+				pGrpMon->ActionDone();
 			}
-			pGrpMon->ActionDone();
 		}
 	}
 }
@@ -913,34 +913,36 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	else {
 		pGrpMon->EndAttack(); // Attacke ggf. beenden
 	}
-	if (absDist == 1) {
-		// Steht neben Held, falsch gedreht -> drehen!
-		pGrpMon->TurnToHero(heroPos);
-		return monPos;
-	}
-	// Nein: Bewege näher / drehe hin
-	// todo: schlauer bewegungsalgorithmus!
-		
-	if ((targetPos.x != monPos.x || targetPos.y != monPos.y) && 
-		(targetField->HoleTyp() == FeldTyp::EMPTY && targetField->GetMonsterGroup() == NULL) ||
-		(targetField->HoleTyp() == FeldTyp::DOOR && targetField->GetMonsterGroup() == NULL)) // TODO nur Open!
-		// Feld vorhanden - Monster drauf?
-		// TODO: prüfen, ob Monster da sind, ggf. Merge
-
-		if (absDist > (abs(targetPos.x - heroPos.x) + abs(targetPos.y - heroPos.y)))
-		{
-			// Kommt näher => Move!
-
-			pGrpMon->Laufen(targetPos);
-			m_pDoc->PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-Move(Skeleton).mp3");
-
-			return targetPos;
+	if (pGrpMon->EveryoneReady()) {
+		if (absDist == 1) {
+			// Steht neben Held, falsch gedreht -> drehen!
+			pGrpMon->TurnToHero(heroPos);
+			return monPos;
 		}
-	// TODO stairs
-	if (abs(xDist) >= abs(yDist)) {
-		if (xDist > 0) {
-			// Monster steht tendenziel rechts vom mir -> versuch nach links zu gehen (+drehen)
-			// TODO
+		// Nein: Bewege näher / drehe hin
+		// todo: schlauer bewegungsalgorithmus!
+
+		if ((targetPos.x != monPos.x || targetPos.y != monPos.y) &&
+			(targetField->HoleTyp() == FeldTyp::EMPTY && targetField->GetMonsterGroup() == NULL) ||
+			(targetField->HoleTyp() == FeldTyp::DOOR && targetField->GetMonsterGroup() == NULL)) // TODO nur Open!
+			// Feld vorhanden - Monster drauf?
+			// TODO: prüfen, ob Monster da sind, ggf. Merge
+
+			if (absDist > (abs(targetPos.x - heroPos.x) + abs(targetPos.y - heroPos.y)))
+			{
+				// Kommt näher => Move!
+
+				pGrpMon->Laufen(targetPos);
+				m_pDoc->PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-Move(Skeleton).mp3");
+
+				return targetPos;
+			}
+		// TODO stairs
+		if (abs(xDist) >= abs(yDist)) {
+			if (xDist > 0) {
+				// Monster steht tendenziel rechts vom mir -> versuch nach links zu gehen (+drehen)
+				// TODO
+			}
 		}
 	}
 
