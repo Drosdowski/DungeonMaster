@@ -236,7 +236,7 @@ void CDungeonMap::ParseMiscellaneous(TiXmlElement* miscItem, VEKTOR coords) {
 void CDungeonMap::ParseFloorDecoration(TiXmlElement* decoItem, VEKTOR coords) {
 	int graphic;
 	decoItem->QueryIntAttribute("graphic", &graphic);
-	CFloorDecoration* deco = new CFloorDecoration((FloorDecorationType)graphic);
+	CFloorDecoration* deco = new CFloorDecoration((FloorDecorationType)(graphic-1));
 	m_pFeld[coords.x][coords.y][coords.z]->PutFloorDeco(deco);
 }
 
@@ -244,7 +244,7 @@ void CDungeonMap::ParseWallDecoration(TiXmlElement* decoItem, VEKTOR coords) {
 	int graphic, position;
 	decoItem->QueryIntAttribute("graphic", &graphic);
 	decoItem->QueryIntAttribute("position", &position);
-	CWallDecoration* deco = new CWallDecoration(m_wallDecorationTypes[coords.z][graphic]);
+	CWallDecoration* deco = new CWallDecoration(m_wallDecorationTypes[coords.z][graphic-1]);
 	m_pFeld[coords.x][coords.y][coords.z]->PutWallDeco(deco, position);
 }
 
