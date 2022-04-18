@@ -28,9 +28,9 @@ CBitmap* CDoorPic::GetDoorFrontPic(int iDoorType, int ebene) {
 
 	if (ebene > 0)
 	{
-		if (iDoorType == CDoor::DoorType::Iron)
+		if (iDoorType == CDoorAttributes::DoorType::Iron)
 			return m_pDoorIron[ebene];
-		if (iDoorType == CDoor::DoorType::Wood)
+		if (iDoorType == CDoorAttributes::DoorType::Wood)
 			return m_pDoorWood[ebene];
 		else
 			return NULL;
@@ -55,6 +55,30 @@ CBitmap* CDoorPic::GetDoorFramePic(int ebene, bool left) {
 		return m_pDoorFrameRight[ebene];
 	}
 }
+
+CBitmap* CDoorPic::GetButtonPic(int ebene) {
+	return m_pDoorSwitch;
+}
+
+CPoint CDoorPic::GetButtonPos(int x, int ebene, CPoint wallPos) {
+	switch (ebene)
+	{
+	case 1:
+		if (x == 2 || x == 4)
+			return CPoint(wallPos.x + 128 * 2, wallPos.y + 34 * 2);
+		break;
+	case 2:
+		if (x == 2 || x == 4)   
+			return CPoint(wallPos.x + 84 * 2, wallPos.y + 22 * 2);
+		break;
+	case 3:
+		if (x != 1) 
+			return CPoint(wallPos.x + 57 * 2, wallPos.y + 15 * 2);
+		break;
+	}
+	return CPoint(0, 0);
+}
+
 
 CPoint CDoorPic::GetDoorFrontPos(int x, int ebene, CPoint wallPos) {
 	

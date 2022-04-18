@@ -1,4 +1,6 @@
 #pragma once
+#include "CDoorAttributes.h"
+
 class CDoor
 {
 public:
@@ -8,15 +10,12 @@ public:
 		OPENING = 2,
 		CLOSED =3
 	};
-	enum DoorType {
-		Iron = 0,
-		Wood = 1
-	};
-
-	CDoor(DoorType type, bool doorFrameEastAndWest);
+	
+	CDoor(CDoorAttributes attribute, bool doorFrameEastAndWest);
 
 	DoorState getState() { return m_state; }
-	DoorType getType() { return m_type; }
+	CDoorAttributes::DoorType getType() { return m_attributes.type; }
+	bool hasButton() { return m_attributes.button; }
 	bool Visible(int heroDir);
 	int getDoorBottomHeight() { return m_bottomHeight; }
 	bool getDoorFrameEastAndWest() { return m_doorFrameEastAndWest; }
@@ -27,7 +26,7 @@ public:
 
 private:
 	DoorState m_state;
-	DoorType m_type;
+	CDoorAttributes m_attributes;
 	int m_bottomHeight = 0;
 	bool m_doorFrameEastAndWest; // Wall at 00 / 02
 	const int fullHeight = 88;

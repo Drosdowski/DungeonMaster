@@ -141,10 +141,7 @@ CField* CDungeonMap::ParseDoor(TiXmlElement* rootNode, VEKTOR pos) {
 		parentElement = parentElement->NextSiblingElement();
 
 	}
-	if (attribute.type == 0) // todo !!!!!!!!!!
-		return new CField(pos, new CDoor(CDoor::DoorType::Iron, (orientation != 0)));
-	else
-		return new CField(pos, new CDoor(CDoor::DoorType::Wood, (orientation != 0)));
+	return new CField(pos, new CDoor(attribute, (orientation != 0)));
 }
 
 void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
@@ -478,10 +475,10 @@ void CDungeonMap::ParseDoorObjects(TiXmlElement* rootNode) {
 		const char* parent = parentElement->Value();
 		if (strcmp(parent, "door") == 0) // several existing
 		{
-			int index, button, fireball, force;
+			int index, button, fireball, force, type;
 			CDoorAttributes attribute;
 			parentElement->QueryIntAttribute("index", &index);
-			parentElement->QueryIntAttribute("type", &attribute.type);
+			parentElement->QueryIntAttribute("type", &type);
 			parentElement->QueryIntAttribute("ornate", &attribute.ornate);
 			parentElement->QueryIntAttribute("button", &button);
 			parentElement->QueryIntAttribute("fireball", &fireball);
@@ -489,6 +486,7 @@ void CDungeonMap::ParseDoorObjects(TiXmlElement* rootNode) {
 			attribute.button = (button == 1);
 			attribute.fireball = (fireball == 1);
 			attribute.force = (force == 1);
+			attribute.type = (CDoorAttributes::DoorType)type;
 			const char* opening = parentElement->Attribute("opening");
 			if (strcmp(opening, "Vertical")) attribute.openingDir = CDoorAttributes::Vertical;
 			if (strcmp(opening, "Horizontal")) attribute.openingDir = CDoorAttributes::Horizontal;

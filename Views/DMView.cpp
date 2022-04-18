@@ -172,6 +172,17 @@ void CDMView::ParseClickAction(CPoint point) {
 
 }
 
+void CDMView::ParseClickDoorButton(CPoint point, CField* FeldVorHeld) {
+
+	CDoor* door = FeldVorHeld->HoleDoor();
+	if (door && door->hasButton()) {
+		if (CScreenCoords::CheckHitDoorButton(point)) {
+			door->Toggle();
+		}
+	}
+}
+
+
 void CDMView::ParseClickPortrait(CPoint point) {
 	int heroID = CScreenCoords::CheckHitHeroes(point);
 	if (heroID > 0)
@@ -395,6 +406,8 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 						if (ParseClickActuator(point, actuators, dir))
 							FeldVorHeld->RotateActuators(dir);
 					}
+					ParseClickDoorButton(point, FeldVorHeld);
+
 				}
 				else {
 					ParseClickAir(point);

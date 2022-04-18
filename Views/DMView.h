@@ -15,6 +15,7 @@
 class CActuator;
 class CDMDoc;
 class CHeld;
+class CField;
 class CGrpHeld;
 class CGrpMonster;
 class CRaumView;
@@ -99,6 +100,7 @@ protected:
 	void ParseClickFloor(CPoint point);
 	void ParseClickAir(CPoint point);
 	bool ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators, COMPASS_DIRECTION dir);
+	void ParseClickDoorButton(CPoint point, CField* FeldVorHeld);
 
 	void InvokeRemoteActuator(CActuator* activeActuator);
 	void ChangeMouseCursor();

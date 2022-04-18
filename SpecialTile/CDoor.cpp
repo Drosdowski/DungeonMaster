@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "CDoor.h"
 
-CDoor::CDoor(DoorType type, bool doorFrameEastAndWest) {
-	m_type = type;
+CDoor::CDoor(CDoorAttributes attribute, bool doorFrameEastAndWest) {
+	m_attributes = attribute;
 	m_state = CLOSED;
 	m_bottomHeight = 0;
 	m_doorFrameEastAndWest = doorFrameEastAndWest;

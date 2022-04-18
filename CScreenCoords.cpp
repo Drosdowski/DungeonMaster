@@ -157,6 +157,12 @@ bool CScreenCoords::CheckHitDeco(CPoint point) {
 	return (point.x > 200 && point.x < 250 && point.y > 140 && point.y < 180);
 }
 
+bool CScreenCoords::CheckHitDoorButton(CPoint point) {
+	return (point.x >= 64 + 128 * 2 && point.y >= 82 + 34 * 2 &&
+		point.x <= 64 + 32 + 128 * 2 && point.y <= 82 + 18 + 34 * 2);
+}
+
+
 bool CScreenCoords::CheckHitMainScr(CPoint point) {
 	return (point.y > 63) && (point.x < 460) && (point.y < 335);
 }

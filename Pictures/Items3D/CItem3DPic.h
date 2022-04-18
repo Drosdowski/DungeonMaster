@@ -22,6 +22,6 @@ private:
 	CBitmap* m_pBread;
 	CBitmap* m_pGoldKey;
 	CBitmap* m_pIronKey;
-	CBitmap* m_pWaterskin[1];
+	CBitmap* m_pWaterskin[2];
 };
 

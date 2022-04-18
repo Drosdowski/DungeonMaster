@@ -6,7 +6,12 @@ public:
 		Horizontal,
 		Vertical
 	};
-	int type;
+	enum DoorType {
+		Iron = 0,
+		Wood = 1
+	};
+
+	DoorType type;
 	bool button;
 	bool force; // todo
 	bool fireball; // todo

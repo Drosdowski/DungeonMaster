@@ -9,9 +9,11 @@ public:
 	CBitmap* GetDoorFrontPic(int iDoorType, int ebene);
 	CBitmap* GetDoorTopPic(int ebene);
 	CBitmap* GetDoorFramePic(int ebene, bool left);
+	CBitmap* GetButtonPic(int ebene);
 	CPoint GetDoorFrontPos(int x, int ebene, CPoint wallPos);
 	CPoint GetDoorTopPos(int x, int ebene, CPoint wallPos);
 	CPoint GetDoorFramePos(int x, int ebene, bool left, CPoint wallPos);
+	CPoint GetButtonPos(int x, int ebene, CPoint wallPos);
 
 private:
 	void InitDoors();
