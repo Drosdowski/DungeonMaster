@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SpecialTile\CDoorAttributes.cpp" />
     <ClCompile Include="SpecialTile\CCreatureAttributes.cpp" />
     <ClCompile Include="Pictures\CWallDecoPic.cpp" />
     <ClCompile Include="Views\CGroupView.cpp" />
@@ -190,6 +191,7 @@
     <ResourceCompile Include="DM.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SpecialTile\CDoorAttributes.h" />
     <ClInclude Include="SpecialTile\CCreatureAttributes.h" />
     <ClInclude Include="Pictures\CLockPic.h" />
     <ClInclude Include="Pictures\CWallDecoPic.h" />
@@ -256,6 +258,7 @@
     <Image Include="res\Ceiling\CeilingPit_L2.bmp" />
     <Image Include="res\DM.ico" />
     <Image Include="res\DMDoc.ico" />
+    <Image Include="res\Door\DoorSwitch.bmp" />
     <Image Include="res\Door\Door_Frame_0_Front.bmp" />
     <Image Include="res\Door\Door_Frame_1_Left.bmp" />
     <Image Include="res\Door\Door_Frame_2_Left.bmp" />
@@ -285,6 +288,8 @@
     <Image Include="res\Door_Wood_1.bmp" />
     <Image Include="res\Door_Wood_2.bmp" />
     <Image Include="res\Door_Wood_3.bmp" />
+    <Image Include="res\Items3D\Item_3d_Waterskin_Empty.bmp" />
+    <Image Include="res\Items3D\Item_3d_Waterskin_Full.bmp" />
     <Image Include="res\P.bmp" />
     <Image Include="res\Steine.bmp" />
     <Image Include="res\WallDeco\WallDeco_14_Front.bmp" />
@@ -295,6 +300,8 @@
     <Image Include="res\WallDeco\WallDeco_16_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_17_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_17_Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_18_Front.bmp" />
+    <Image Include="res\WallDeco\WallDeco_18_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_1_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_1_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_32_Front.bmp" />

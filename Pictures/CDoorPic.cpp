@@ -21,6 +21,7 @@ CDoorPic::~CDoorPic()
 	delete m_pDoorFrameFarRight;
 	delete m_pDoorFrontTop[1];
 	delete m_pDoorFrontTop[2];
+	delete m_pDoorSwitch;
 }
 
 CBitmap* CDoorPic::GetDoorFrontPic(int iDoorType, int ebene) {
@@ -138,4 +139,5 @@ void CDoorPic::InitDoors() {
 	LoadPic(m_pDoorWood[1], IDB_DOOR_WOOD_1);
 	LoadPic(m_pDoorWood[2], IDB_DOOR_WOOD_2);
 	LoadPic(m_pDoorWood[3], IDB_DOOR_WOOD_3);
+	LoadPic(m_pDoorSwitch, IDB_DOOR_SWITCH);
 }

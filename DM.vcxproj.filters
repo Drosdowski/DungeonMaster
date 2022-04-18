@@ -171,6 +171,9 @@
     <ClCompile Include="Items\WallDecoration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SpecialTile\CDoorAttributes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -335,6 +338,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Items\WallDecoration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialTile\CDoorAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1034,6 +1040,21 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\WallDeco\WallDeco_16_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_18_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_18_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door\DoorSwitch.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Item_3d_Waterskin_Empty.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Item_3d_Waterskin_Full.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

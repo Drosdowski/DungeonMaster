@@ -84,6 +84,8 @@
 #define IDB_DOOR_WOOD_BASHED            260
 #define IDB_ITEM3D_APPLE                261
 #define IDB_ITEM3D_BREAD                262
+#define IDB_ITEM3D_WATERSKIN_E          263
+#define IDB_ITEM3D_WATERSKIN_F          264
 #define IDB_PRESSURE_PAD_1F             265
 #define IDB_PRESSURE_PAD_1L             266
 #define IDB_PRESSURE_PAD_2F             267
@@ -126,6 +128,7 @@
 #define IDB_ITEM3D_GOLDKEY              321
 #define IDB_ITEM3D_IRONKEY              322
 #define IDB_BITMAP_P                    391
+#define IDB_DOOR_SWITCH                 436
 #define IDB_BITMAP_E0L                  1001
 #define IDB_BITMAP_E0LF                 1002
 #define IDB_BITMAP_E0R                  1004
@@ -158,6 +161,7 @@
 #define IDB_WALLDECO_15F                2015
 #define IDB_WALLDECO_16F                2016
 #define IDB_WALLDECO_17F                2017
+#define IDB_WALLDECO_18F                2018
 #define IDB_WALLDECO_19F                2019
 #define IDB_WALLDECO_20F                2020
 #define IDB_WALLDECO_21F                2021
@@ -197,6 +201,7 @@
 #define IDB_WALLDECO_15L                2115
 #define IDB_WALLDECO_16L                2116
 #define IDB_WALLDECO_17L                2117
+#define IDB_WALLDECO_18L                2118
 #define IDB_WALLDECO_19L                2119
 #define IDB_WALLDECO_20L                2120
 #define IDB_WALLDECO_21L                2121
@@ -227,13 +232,12 @@
 #define IDB_WALLDECO_54L                2154
 #define IDB_WALLDECO_55L                2155
 
-
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        434
+#define _APS_NEXT_RESOURCE_VALUE        439
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

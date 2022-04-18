@@ -7,6 +7,7 @@
 #include "SpecialTile\CTeleporter.h"
 #include "Mobs\MobGroups\GrpMonster.h"
 #include "Items\FloorDecoration.h"
+#include "Items\WallDecoration.h"
 #include "Items/CMiscellaneous.h"
 #include "Items\CActuator.h"
 #include "CHelpfulValues.h"

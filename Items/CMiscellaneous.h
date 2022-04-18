@@ -4,6 +4,7 @@ class CMiscellaneous
 {
 public:
 	enum ItemType {
+		Water = 1,
 		IronKey = 9, 
 		KeyOfB = 10, 
 		SolidKey = 11, 
@@ -55,7 +56,7 @@ public:
 
 	ItemGroup GetGroup() {
 		if (m_type >= 9 && m_type <= 24) return ItemGroup::Key;
-		if (m_type >= 29 && m_type <= 31) return ItemGroup::Consumable;
+		if (m_type >= 29 && m_type <= 31 || m_type == 1) return ItemGroup::Consumable;
 		return ItemGroup::Other;
 	}
 

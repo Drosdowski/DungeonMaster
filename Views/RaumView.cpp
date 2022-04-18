@@ -469,24 +469,29 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 		int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
 	
 		CBitmap* bmp;
-		if (misc->GetType() == CMiscellaneous::ItemType::Apple)
+		if (misc->GetType() == CMiscellaneous::ItemType::Apple) // TODO Logik auslagern!
 			bmp = m_pItem3DPic->GetApple();
 		else if (misc->GetType() == CMiscellaneous::ItemType::IronKey ||
-				misc->GetType() == CMiscellaneous::ItemType::KeyOfB ||
-				misc->GetType() == CMiscellaneous::ItemType::SolidKey ||
-				misc->GetType() == CMiscellaneous::ItemType::SquareKey ||
-				misc->GetType() == CMiscellaneous::ItemType::TurquoiseKey ||
-				misc->GetType() == CMiscellaneous::ItemType::CrossKey ||
-				misc->GetType() == CMiscellaneous::ItemType::SkeletonKey)
+			misc->GetType() == CMiscellaneous::ItemType::KeyOfB ||
+			misc->GetType() == CMiscellaneous::ItemType::SolidKey ||
+			misc->GetType() == CMiscellaneous::ItemType::SquareKey ||
+			misc->GetType() == CMiscellaneous::ItemType::TurquoiseKey ||
+			misc->GetType() == CMiscellaneous::ItemType::CrossKey ||
+			misc->GetType() == CMiscellaneous::ItemType::SkeletonKey)
 			bmp = m_pItem3DPic->GetIronKey();
 		else if (misc->GetType() == CMiscellaneous::ItemType::GoldKey ||
-				misc->GetType() == CMiscellaneous::ItemType::WingedKey ||
-				misc->GetType() == CMiscellaneous::ItemType::TopazKey ||
-				misc->GetType() == CMiscellaneous::ItemType::EmeraldKey ||
-				misc->GetType() == CMiscellaneous::ItemType::RubyKey ||
-				misc->GetType() == CMiscellaneous::ItemType::RaKey ||
-				misc->GetType() == CMiscellaneous::ItemType::MasterKey)
+			misc->GetType() == CMiscellaneous::ItemType::WingedKey ||
+			misc->GetType() == CMiscellaneous::ItemType::TopazKey ||
+			misc->GetType() == CMiscellaneous::ItemType::EmeraldKey ||
+			misc->GetType() == CMiscellaneous::ItemType::RubyKey ||
+			misc->GetType() == CMiscellaneous::ItemType::RaKey ||
+			misc->GetType() == CMiscellaneous::ItemType::MasterKey)
 			bmp = m_pItem3DPic->GetGoldKey();
+		else if (misc->GetType() == CMiscellaneous::ItemType::Water)
+			if (misc->GetSubtype() > 0) 
+				bmp = m_pItem3DPic->GetWaterskin(1);
+			else
+				bmp = m_pItem3DPic->GetWaterskin(0);
 		else
 			bmp = m_pItem3DPic->GetBread();
 

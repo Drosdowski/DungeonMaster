@@ -12,6 +12,8 @@ CItem3DPic ::~CItem3DPic() {
 	delete m_pBread;
 	delete m_pGoldKey;
 	delete m_pIronKey;
+	for (int w = 0; w<2; w++)
+		delete m_pWaterskin[w];
 }
 	
 
@@ -20,6 +22,8 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pBread, IDB_ITEM3D_BREAD);
 	LoadPic(m_pGoldKey, IDB_ITEM3D_GOLDKEY);
 	LoadPic(m_pIronKey, IDB_ITEM3D_IRONKEY);
+	LoadPic(m_pWaterskin[0], IDB_ITEM3D_WATERSKIN_E);
+	LoadPic(m_pWaterskin[1], IDB_ITEM3D_WATERSKIN_F);
 }
 
 CPoint CItem3DPic::GetFloorMiddle(int x, int ebene) {

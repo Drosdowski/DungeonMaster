@@ -3,6 +3,7 @@
 #include "Items/CActuator.h"
 #include "SpecialTile/CTeleporterAttributes.h"
 #include "SpecialTile/CCreatureAttributes.h"
+#include "SpecialTile/CDoorAttributes.h"
 
 #define FELD_MAX_X 32
 #define FELD_MAX_Y 32
@@ -72,10 +73,10 @@ private:
 	CGrpHeld* m_pGrpHelden;
 
 	// dynamic arrays
-	int* m_doorType; 
 	int* m_miscellaneousType;
 	int* m_miscellaneousSubtype;
 	int* m_actuatorType;
+	CDoorAttributes* m_doorAtt;
 	TeleporterAttributes* m_teleportAtt;
 	CCreatureAttributes* m_creatureAtt;
 	WallDecorationType** m_wallDecorationTypes;

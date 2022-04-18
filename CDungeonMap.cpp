@@ -33,7 +33,7 @@ CDungeonMap::~CDungeonMap()
 	}
 	delete m_wallDecorationTypes;
 		
-	delete m_doorType;
+	delete m_doorAtt;
 	delete m_miscellaneousType;
 	delete m_miscellaneousSubtype;
 	delete m_actuatorType;
@@ -120,7 +120,8 @@ CField* CDungeonMap::ParseTeleport(TiXmlElement* rootNode, VEKTOR pos) {
 
 
 CField* CDungeonMap::ParseDoor(TiXmlElement* rootNode, VEKTOR pos) {
-	int orientation, type;
+	int orientation;
+	CDoorAttributes attribute;
 	rootNode->QueryIntAttribute("orientation", &orientation);
 	
 	TiXmlElement* parentElement = rootNode->FirstChildElement();
@@ -133,14 +134,14 @@ CField* CDungeonMap::ParseDoor(TiXmlElement* rootNode, VEKTOR pos) {
 			if (doorItem && strcmp(doorItem->Value(), "door") == 0) {
 				int index;
 				doorItem->QueryIntAttribute("index", &index);
-				type = m_doorType[index];
+				attribute = m_doorAtt[index];
 			}
 
 		}
 		parentElement = parentElement->NextSiblingElement();
 
 	}
-	if (type == 0)
+	if (attribute.type == 0) // todo !!!!!!!!!!
 		return new CField(pos, new CDoor(CDoor::DoorType::Iron, (orientation != 0)));
 	else
 		return new CField(pos, new CDoor(CDoor::DoorType::Wood, (orientation != 0)));
@@ -477,10 +478,21 @@ void CDungeonMap::ParseDoorObjects(TiXmlElement* rootNode) {
 		const char* parent = parentElement->Value();
 		if (strcmp(parent, "door") == 0) // several existing
 		{
-			int index, type;
+			int index, button, fireball, force;
+			CDoorAttributes attribute;
 			parentElement->QueryIntAttribute("index", &index);
-			parentElement->QueryIntAttribute("type", &type);
-			m_doorType[index] = type; // todo mehr attribute zulassen - knopf, ...
+			parentElement->QueryIntAttribute("type", &attribute.type);
+			parentElement->QueryIntAttribute("ornate", &attribute.ornate);
+			parentElement->QueryIntAttribute("button", &button);
+			parentElement->QueryIntAttribute("fireball", &fireball);
+			parentElement->QueryIntAttribute("force", &force);
+			attribute.button = (button == 1);
+			attribute.fireball = (fireball == 1);
+			attribute.force = (force == 1);
+			const char* opening = parentElement->Attribute("opening");
+			if (strcmp(opening, "Vertical")) attribute.openingDir = CDoorAttributes::Vertical;
+			if (strcmp(opening, "Horizontal")) attribute.openingDir = CDoorAttributes::Horizontal;
+			m_doorAtt[index] = attribute;
 		}
 		parentElement = parentElement->NextSiblingElement();
 	}
@@ -648,7 +660,7 @@ void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
 	m_start.y = y;
 	m_start.z = 0;	
 	rootNode->QueryIntAttribute("number_of_doors", &m_countDoors);
-	m_doorType = new int[m_countDoors];
+	m_doorAtt = new CDoorAttributes[m_countDoors];
 	rootNode->QueryIntAttribute("number_of_miscellaneous", &m_countMiscellaneous);
 	m_miscellaneousType = new int[m_countMiscellaneous];
 	m_miscellaneousSubtype = new int[m_countMiscellaneous];

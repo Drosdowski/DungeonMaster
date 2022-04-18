@@ -615,6 +615,16 @@ IDB_WALLDECO_16L        BITMAP                  "res\\WallDeco\\WallDeco_16_Left
 
 IDB_WALLDECO_16F        BITMAP                  "res\\WallDeco\\WallDeco_16_Front.bmp"
 
+IDB_WALLDECO_18F        BITMAP                  "res\\WallDeco\\WallDeco_18_Front.bmp"
+
+IDB_WALLDECO_18L        BITMAP                  "res\\WallDeco\\WallDeco_18_Left.bmp"
+
+IDB_DOOR_SWITCH         BITMAP                  "res\\Door\\DoorSwitch.bmp"
+
+IDB_ITEM3D_WATERSKIN_E  BITMAP                  "res\\Items3D\\Item_3d_Waterskin_Empty.bmp"
+
+IDB_ITEM3D_WATERSKIN_F  BITMAP                  "res\\Items3D\\Item_3d_Waterskin_Full.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

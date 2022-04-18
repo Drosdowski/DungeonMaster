@@ -16,6 +16,7 @@ public:
 private:
 	void InitDoors();
 
+	CBitmap* m_pDoorSwitch;
 	CBitmap* m_pDoorFrameFront;
 	CBitmap* m_pDoorFrameLeft[4];
 	CBitmap* m_pDoorFrameRight[4];
