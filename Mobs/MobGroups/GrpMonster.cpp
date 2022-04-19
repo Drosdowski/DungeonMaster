@@ -38,7 +38,7 @@ CGrpMonster::CGrpMonster(VEKTOR pos, CCreatureAttributes attributes) {
 	for (int i = 1; i <= attributes.count; i++)
 	{
 		if (i <= attributes.count) {
-			InitMonster(i, attributes.type); // todo mehr Attribute übergeben!
+			InitMonster(i, attributes);
 		}
 	}
 	m_posPosition = pos;
@@ -56,17 +56,18 @@ CGrpMonster::~CGrpMonster()
 /////////////////////////////////////////////////////////////////////////////
 // Behandlungsroutinen für Nachrichten CGrpMonster 
 
-void CGrpMonster::InitMonster(int nr, CMonster::MonsterTyp iTyp)
+void CGrpMonster::InitMonster(int nr, CCreatureAttributes attributes)
 {
 	if (m_pMember[nr] == NULL)
 	{
-		switch (iTyp)
+		int hp = attributes.hitPoints[nr - 1];
+		switch (attributes.type)
 		{
 		case CMonster::MonsterTyp::SKELETT:
-			m_pMember[nr] = new CSkelett();
+			m_pMember[nr] = new CSkelett(hp);
 			break;
 		case CMonster::MonsterTyp::MUMIE:
-			m_pMember[nr] = new CMumie();
+			m_pMember[nr] = new CMumie(hp);
 			break;
 		default:
 			return; // todo other monster types!

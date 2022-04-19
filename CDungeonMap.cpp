@@ -540,10 +540,15 @@ void CDungeonMap::ParseCreatureObjects(TiXmlElement* rootNode) {
 			parentElement->QueryIntAttribute("type", &type);
 			attribute.type = (CMonster::MonsterTyp)type;
 			parentElement->QueryIntAttribute("number_of_creatures", &attribute.count);
-			for (int monsterId = 1; monsterId <= attribute.count; monsterId++) {
-				parentElement->QueryIntAttribute("position_" + monsterId, &attribute.position[attribute.count]);
-				parentElement->QueryIntAttribute("hit_point_" + monsterId, &attribute.hitPoints[attribute.count]);
-			}
+			parentElement->QueryIntAttribute("position_1", &attribute.position[0]);
+			parentElement->QueryIntAttribute("hit_point_1", &attribute.hitPoints[0]);
+			parentElement->QueryIntAttribute("position_2", &attribute.position[1]);
+			parentElement->QueryIntAttribute("hit_point_2", &attribute.hitPoints[1]);
+			parentElement->QueryIntAttribute("position_3", &attribute.position[2]);
+			parentElement->QueryIntAttribute("hit_point_3", &attribute.hitPoints[2]);
+			parentElement->QueryIntAttribute("position_4", &attribute.position[3]);
+			parentElement->QueryIntAttribute("hit_point_4", &attribute.hitPoints[3]);
+
 			const char* facing = parentElement->Attribute("facing");
 			if (strcmp(facing, "North")) attribute.direction = NORTH;
 			if (strcmp(facing, "East")) attribute.direction = EAST;
@@ -710,52 +715,6 @@ void CDungeonMap::LoadMap() {
 		ParseDungeon(rootElement);
 	}
 
-}
-
-void CDungeonMap::DemoMap() {
-/*	m_LevelWidth[0] = FELD_MAX_X;
-	m_LevelHeight[0] = FELD_MAX_Y;
-	for (int i = 0; i < m_LevelWidth[0]; i++)
-		for (int j = 0; j < m_LevelHeight[0]; j++)
-		{
-			CField::FeldTyp iFieldType = ((((j % 4) != 0) || (i == m_LevelWidth[0] / 2))
-				&& (j > 3) && (j < m_LevelHeight[0] - 3)
-				&& (i > 3) && (i < m_LevelWidth[0] - 3)
-				) ? CField::FeldTyp::EMPTY : CField::FeldTyp::WALL;
-
-			if ((i == m_LevelWidth[0] / 2) && (j == m_LevelHeight[0] / 2 + 1)) {
-				iFieldType = CField::FeldTyp::DOOR;
-			}
-			VEKTOR pos; pos.x = i; pos.y = j; pos.z = 0;
-
-			CFieldDecoration* deco[4];
-			for (int b = 0; b < 4; b++) {
-				if (i % 4 == 1) {
-					deco[b] = new CFieldDecoration(Switch);
-				}
-				else if (i % 4 == 3) {
-					deco[b] = new CFieldDecoration(Fountain);
-				}
-				else {
-					deco[b] = new CFieldDecoration(None);
-				}
-			}
-
-			if (iFieldType == CField::FeldTyp::DOOR)
-				m_pFeld[i][j][0] = new CField(pos, iFieldType, CDoor::DoorType::Iron, true, deco);
-			else
-				m_pFeld[i][j][0] = new CField(pos, iFieldType, deco);
-			//if ((i == m_LevelWidth[0] / 2) && (j == m_LevelHeight[0] / 2 + 1)) {
-				//m_pFeld[i][j][0]->InitMonsterGruppe(m_pPictures, pDC, CMonster::MonsterTyp::MUMIE, 1);
-			//}
-			//else
-
-			if ((i == m_LevelWidth[0] / 2) && (j == m_LevelHeight[0] / 2 + 5)) {
-				m_pFeld[i][j][0]->InitMonsterGruppe(CMonster::MonsterTyp::SKELETT, 1);
-			}
-		}
-		*/
-		m_pFeld[3][7][0]->InitMonsterGruppe(CMonster::MonsterTyp::SKELETT, 4, COMPASS_DIRECTION::NORTH);
 }
 
 WallDecorationType CDungeonMap::GetWallDecorationType(int ebene, int graphic)

@@ -16,7 +16,6 @@ class CDungeonMap
 public:
 	CDungeonMap();
 	~CDungeonMap();
-	void DemoMap();
 	void LoadMap();
 	CField* GetField(int, int, int);
 	CField* GetField(VEKTOR);

@@ -266,7 +266,7 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 					CBitmap* bmpButton = m_pDoorPic->GetButtonPic(ebene);
 					cdc->SelectObject(bmpButton);
 					CPoint posButton = m_pDoorPic->GetButtonPos(xxx, ebene, m_pWallPic->GetWallPos(xxx, ebene));
-					pDC->TransparentBlt(posButton.x, posButton.y, 16 * 2 * faktor, 9 * 2 * faktor, cdc, 0, 0, 16, 9, TRANS_ORA);
+					pDC->TransparentBlt(posButton.x, posButton.y, (int)(16 * 2 * faktor), (int)(9 * 2 * faktor), cdc, 0, 0, 16, 9, TRANS_ORA);
 
 				}
 			}
@@ -988,7 +988,6 @@ void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
 	m_pMonsterPic = new CMonsterPic(pDC);
 	m_pItem3DPic = new CItem3DPic(pDC);
 	m_pMap = new CDungeonMap();
-	m_pMap->DemoMap();	
 }
 
 void CRaumView::OnTrigger()

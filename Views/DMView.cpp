@@ -481,7 +481,8 @@ void CDMView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				}
 				break;
 			case 32:
-				m_pRaumView->OnTrigger();
+				if (cheatAktiv)
+					m_pRaumView->OnTrigger();
 				break;
 			case 38:
 			case 101:

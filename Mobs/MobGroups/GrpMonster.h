@@ -38,7 +38,6 @@ public:
 
 // Implementierung
 public:
-	void InitMonster(int nr, CMonster::MonsterTyp iTyp);
 	bool SetzeModus(int iModus);	
 	CMonster* AttackHero(VEKTOR myPos, VEKTOR hisPos);
 	void TurnToHero(VEKTOR heroPos);
@@ -47,6 +46,7 @@ public:
 	void CarryItem(CMiscellaneous* item, SUBPOS_ABSOLUTE pos);
 	virtual ~CGrpMonster();
 private:
+	void InitMonster(int nr, CCreatureAttributes attributes);
 	void TryToAdavanceToFirstRow(int index, VEKTOR monPos, VEKTOR heroPos);
 	bool isSubPosAbsoluteFree(SUBPOS_ABSOLUTE pos);
 

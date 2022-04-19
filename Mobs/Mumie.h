@@ -5,9 +5,8 @@ class CPictures;
 class CMumie : public CMonster
 {
 public:
-	CMumie();
+	CMumie(int hp);
 
 	void InitValues();
-	int GetIDB(int index); // todo raus
 };
 

@@ -40,7 +40,6 @@ public:
 
 // Operations
 public:
-	void InitMonsterGruppe(CMonster::MonsterTyp iTyp, int iAnz, COMPASS_DIRECTION richt);
 	CGrpMonster* GetMonsterGroup();
 	void RemoveMonsterGroup();
 	void SetMonsterGroup(CGrpMonster* pGrpMonster);
