@@ -1,5 +1,9 @@
 Um die Ecke: Brot, Hinten links
-Tür: schalter
+Waffen
+Rüstung
+Info Texte
+Experience / Level
+
 Sounds
 zaubern 
 kämpfen besser

@@ -42,7 +42,15 @@ int CMiscellaneous::GetOffsetForGroup() {
 	case Key:
 		return 16 - IronKey + m_type;
 	case Consumable:
-		return 8 - Apple + m_type;
+		if (m_type >= Apple)
+			return 8 - Apple + m_type;
+		else if (m_type == Water)
+			if (m_subtype == 0)
+				return 8;
+			else
+				return 9;
+		else
+			assert(false);
 	case Other:
 		assert(false); // todo !!
 	}
@@ -55,7 +63,10 @@ int CMiscellaneous::GetSheetForGroup() {
 	case Key:
 		return 5;
 	case Consumable:
-		return 5;
+		if (m_type >= Apple)
+			return 5;
+		else
+			return 0;
 	case Helmet:
 	case Shield:
 	case Shoes:
@@ -81,4 +92,10 @@ bool CMiscellaneous::CheckGroup(int slotId) {
 	if (slotId >= 8 && slotId <=11) return (GetGroup() == Throwable);
 	
 	return true;
+}
+
+CMiscellaneous::ItemGroup CMiscellaneous::GetGroup() {
+	if (m_type >= 9 && m_type <= 24) return ItemGroup::Key;
+	if (m_type >= 29 && m_type <= 31 || m_type == 1) return ItemGroup::Consumable;
+	return ItemGroup::Other;
 }

@@ -44,9 +44,17 @@ void CRucksack::OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point)
 	{
 		CMiscellaneous* item = m_pOwner->GetItemInHand();
 		if (item && item->GetGroup() == CMiscellaneous::ItemGroup::Consumable) {
-			m_pOwner->Essen(50);
-			m_pOwner->EmptyHand();
-			delete item; // destroy permanently!
+			if (item->GetType() == CMiscellaneous::ItemType::Water) {
+				if (item->GetSubtype() > 0) {
+					m_pOwner->Trinken(50);
+					item->SetSubtype(item->GetSubtype() - 1);
+				}
+			}
+			else {
+				m_pOwner->Essen(50);
+				m_pOwner->EmptyHand();
+				delete item; // destroy permanently!
+			}
 		}
 	}
 	else {
