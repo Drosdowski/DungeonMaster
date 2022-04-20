@@ -43,8 +43,8 @@ void CRucksack::OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point)
 	else if (CScreenCoords::CheckHitMouth(point))
 	{
 		CMiscellaneous* item = m_pOwner->GetItemInHand();
-		if (item && item->GetGroup() == CMiscellaneous::ItemGroup::Consumable) {
-			if (item->GetType() == CMiscellaneous::ItemType::Water) {
+		if (item && item->GetGroup(item->GetType()) == CMiscellaneous::ItemGroup::Consumable) {
+			if (item->GetType() == CMiscellaneous::MiscItemType::Water) {
 				if (item->GetSubtype() > 0) {
 					m_pOwner->Trinken(50);
 					item->SetSubtype(item->GetSubtype() - 1);
@@ -63,7 +63,7 @@ void CRucksack::OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point)
 			CMiscellaneous* itemInHand = m_pOwner->GetItemInHand();
 			CMiscellaneous* newItemInHand = NULL;
 			CMiscellaneous* itemCarryingAtPos = m_pOwner->GetItemCarrying(slot);
-			if ((itemInHand == NULL) || (itemInHand && itemInHand->CheckGroup(slot))) {
+			if ((itemInHand == NULL) || (itemInHand && itemInHand->CheckGroup(slot, itemInHand->GetType()))) {
 				// todo: group check!
 				if (itemInHand) {
 					newItemInHand = m_pOwner->SwitchItemAt(slot, itemInHand);

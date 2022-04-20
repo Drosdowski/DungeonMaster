@@ -227,7 +227,7 @@ void CDungeonMap::ParseMiscellaneous(TiXmlElement* miscItem, VEKTOR coords) {
 	mtype = m_miscellaneousType[index];
 	msubtype = m_miscellaneousSubtype[index];
 
-	CMiscellaneous* misc = new CMiscellaneous(index, (CMiscellaneous::ItemType) mtype, msubtype);
+	CMiscellaneous* misc = new CMiscellaneous(index, (CMiscellaneous::MiscItemType) mtype, msubtype);
 	m_pFeld[coords.x][coords.y][coords.z]->PutMisc(misc, (SUBPOS_ABSOLUTE)subPos);
 }
 
@@ -273,7 +273,7 @@ void CDungeonMap::ParseCreature(TiXmlElement* creatureItem, VEKTOR coords) {
 					monsterItem->QueryIntAttribute("position", &position);
 					int mtype = m_miscellaneousType[index];
 					int msubtype = m_miscellaneousSubtype[index];
-					CMiscellaneous* misc = new CMiscellaneous(index, (CMiscellaneous::ItemType)mtype, msubtype);
+					CMiscellaneous* misc = new CMiscellaneous(index, (CMiscellaneous::MiscItemType)mtype, msubtype);
 					pGrpMonster->CarryItem(misc, (SUBPOS_ABSOLUTE)position);
 
 				}

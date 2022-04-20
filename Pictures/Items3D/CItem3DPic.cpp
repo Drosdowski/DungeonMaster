@@ -12,8 +12,16 @@ CItem3DPic ::~CItem3DPic() {
 	delete m_pBread;
 	delete m_pGoldKey;
 	delete m_pIronKey;
-	for (int w = 0; w<2; w++)
-		delete m_pWaterskin[w];
+	for (int w = 0; w < 4; w++)
+	{
+		delete m_pClub[w];
+		if (w < 3)
+		{
+			delete m_pSword[w];
+			if (w < 2)
+				delete m_pWaterskin[w];
+		}
+	}
 }
 	
 
@@ -24,6 +32,13 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pIronKey, IDB_ITEM3D_IRONKEY);
 	LoadPic(m_pWaterskin[0], IDB_ITEM3D_WATERSKIN_E);
 	LoadPic(m_pWaterskin[1], IDB_ITEM3D_WATERSKIN_F);
+	LoadPic(m_pClub[0], IDB_ITEM3D_CLUB);
+	LoadPic(m_pClub[1], IDB_MISSILE_CLUB_B);
+	LoadPic(m_pClub[2], IDB_MISSILE_CLUB_F);
+	LoadPic(m_pClub[3], IDB_MISSILE_CLUB_S);
+	LoadPic(m_pSword[0], IDB_ITEM3D_SWORD);
+	LoadPic(m_pSword[1], IDB_MISSILE_SWORD_B);
+	LoadPic(m_pSword[2], IDB_MISSILE_SWORD_F);
 }
 
 CPoint CItem3DPic::GetFloorMiddle(int x, int ebene) {
@@ -56,4 +71,24 @@ CPoint CItem3DPic::GetFloorMiddle(int x, int ebene) {
 	}
 
 	return middle;
+}
+
+CBitmap* CItem3DPic::GetClub(bool inAir) {
+	if (inAir) {
+		return m_pClub[rotationCnt];
+		rotationCnt = (rotationCnt % 3) + 1;
+	}
+	else {
+		return m_pClub[0];
+	}
+}
+
+CBitmap* CItem3DPic::GetSword(bool inAir) {
+	if (inAir) {
+		return m_pSword[rotationCnt];
+		rotationCnt = (rotationCnt % 2) + 1;
+	}
+	else {
+		return m_pSword[0];
+	}
 }

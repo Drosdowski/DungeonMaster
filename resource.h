@@ -82,10 +82,7 @@
 #define IDB_DOOR_WOOD_2                 258
 #define IDB_DOOR_WOOD_3                 259
 #define IDB_DOOR_WOOD_BASHED            260
-#define IDB_ITEM3D_APPLE                261
-#define IDB_ITEM3D_BREAD                262
-#define IDB_ITEM3D_WATERSKIN_E          263
-#define IDB_ITEM3D_WATERSKIN_F          264
+#define IDB_DOOR_SWITCH                 261
 #define IDB_PRESSURE_PAD_1F             265
 #define IDB_PRESSURE_PAD_1L             266
 #define IDB_PRESSURE_PAD_2F             267
@@ -125,10 +122,20 @@
 #define IDB_FLOOR_PIT_F3                303
 #define IDB_FLOOR_PIT_L3                304
 #define IDB_TELEPORTER                  320
-#define IDB_ITEM3D_GOLDKEY              321
-#define IDB_ITEM3D_IRONKEY              322
 #define IDB_BITMAP_P                    391
-#define IDB_DOOR_SWITCH                 436
+#define IDB_ITEM3D_GOLDKEY              400
+#define IDB_ITEM3D_IRONKEY              401
+#define IDB_ITEM3D_APPLE                402
+#define IDB_ITEM3D_BREAD                403
+#define IDB_ITEM3D_WATERSKIN_E          404
+#define IDB_ITEM3D_WATERSKIN_F          405
+#define IDB_ITEM3D_SWORD                406
+#define IDB_ITEM3D_CLUB                 407
+#define IDB_MISSILE_CLUB_B              440
+#define IDB_MISSILE_CLUB_F              441
+#define IDB_MISSILE_CLUB_S              442
+#define IDB_MISSILE_SWORD_B             443
+#define IDB_MISSILE_SWORD_F             444
 #define IDB_BITMAP_E0L                  1001
 #define IDB_BITMAP_E0LF                 1002
 #define IDB_BITMAP_E0R                  1004
@@ -237,7 +244,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        439
+#define _APS_NEXT_RESOURCE_VALUE        446
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

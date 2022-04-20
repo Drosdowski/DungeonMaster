@@ -1,9 +1,11 @@
 #pragma once
+#include "Item.h"
+
 class CItem3DPic;
-class CMiscellaneous
+class CMiscellaneous : public CItem
 {
 public:
-	enum ItemType {
+	enum MiscItemType {
 		Water = 1,
 		IronKey = 9, 
 		KeyOfB = 10, 
@@ -23,30 +25,30 @@ public:
 		Bread = 31
 	};
 
-	enum ItemGroup {
-		Key = 1,
-		Consumable = 2,
-		Helmet = 3,
-		Amulet = 4,
-		Torso = 5,
-		Legs = 6,
-		Shoes = 7,
-		Weapon = 8,
-		Shield = 9,
-		Container = 10,
-		Quiver = 11,
-		Throwable = 12,
-		Flask = 13,
-		Other = 99
+	enum WeaponType {
+		Torch = 2,
+		BoltBlade = 5,
+		Falchion = 9,
+		Sword = 10,
+		Rapier = 11,
+		Sabre = 12,
+		SamuraiSword = 13,
+		Delta = 14,
+		DiamondEdge = 15,
+		Inquisitor = 17,
+		Hardcleave = 19,
+		Club = 23
 	};
+
+	
 
 	int GetSheetForGroup();
 	int GetOffsetForGroup();
 
-	CMiscellaneous(int index, ItemType type, int subtype);
+	CMiscellaneous(int index, MiscItemType type, int subtype);
 	~CMiscellaneous();
 
-	ItemType GetType() {
+	MiscItemType GetType() {
 		return m_type;
 	}
 
@@ -58,20 +60,8 @@ public:
 		m_subtype = value;
 	}
 
-	ItemGroup GetGroup();
-
-	bool IsFlying();
-	bool HasMovedThisTick();
-	void ResethasMoved();
-	void ReduceSpeed();
-	bool CheckGroup(int slotId);
-
-	VEKTOR m_flyForce;
-
 private:
-	int m_index;
-	ItemType m_type;
+	MiscItemType m_type;
 	int m_subtype;
-	bool m_done;
 };
 

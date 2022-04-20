@@ -3,41 +3,18 @@
 #include "..\Pictures\Items3D\CItem3DPic.h"
 #include <cassert>
 
-CMiscellaneous::CMiscellaneous(int index, ItemType type, int subtype) {
-	m_index = index;
+CMiscellaneous::CMiscellaneous(int index, MiscItemType type, int subtype) : CItem(index) {
 	m_type = type;
 	m_subtype = subtype;
-	m_flyForce = VEKTOR{ 0,0,0 };
-	m_done = false;
 }
 
 CMiscellaneous::~CMiscellaneous() {
 
 }
 
-bool CMiscellaneous::IsFlying()
-{
-	return (m_flyForce.x != 0 || m_flyForce.y != 0);
-}
-
-void CMiscellaneous::ReduceSpeed() {
-	if (m_flyForce.x > 0) m_flyForce.x--;
-	if (m_flyForce.y > 0) m_flyForce.y--;
-	if (m_flyForce.x < 0) m_flyForce.x++;
-	if (m_flyForce.y < 0) m_flyForce.y++;
-	m_done = true;
-}
-
-bool CMiscellaneous::HasMovedThisTick() {
-	return m_done;
-}
-
-void CMiscellaneous::ResethasMoved() {
-	m_done = false;
-}
 
 int CMiscellaneous::GetOffsetForGroup() {
-	ItemGroup group = GetGroup();
+	ItemGroup group = GetGroup(m_type);
 	switch (group) {
 	case Key:
 		return 16 - IronKey + m_type;
@@ -58,7 +35,7 @@ int CMiscellaneous::GetOffsetForGroup() {
 }
 
 int CMiscellaneous::GetSheetForGroup() {
-	ItemGroup group = GetGroup();
+	ItemGroup group = GetGroup(m_type);
 	switch (group) {
 	case Key:
 		return 5;
@@ -83,19 +60,4 @@ int CMiscellaneous::GetSheetForGroup() {
 	return -1;
 }
 
-bool CMiscellaneous::CheckGroup(int slotId) {
-	if (slotId == 2) return (GetGroup() == Helmet);
-	if (slotId == 3) return (GetGroup() == Amulet);
-	if (slotId == 4) return (GetGroup() == Torso);
-	if (slotId == 5) return (GetGroup() == Legs);
-	if (slotId == 6) return (GetGroup() == Shoes);
-	if (slotId >= 8 && slotId <=11) return (GetGroup() == Throwable);
-	
-	return true;
-}
 
-CMiscellaneous::ItemGroup CMiscellaneous::GetGroup() {
-	if (m_type >= 9 && m_type <= 24) return ItemGroup::Key;
-	if (m_type >= 29 && m_type <= 31 || m_type == 1) return ItemGroup::Consumable;
-	return ItemGroup::Other;
-}

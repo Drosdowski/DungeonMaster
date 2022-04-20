@@ -625,6 +625,20 @@ IDB_ITEM3D_WATERSKIN_E  BITMAP                  "res\\Items3D\\Item_3d_Waterskin
 
 IDB_ITEM3D_WATERSKIN_F  BITMAP                  "res\\Items3D\\Item_3d_Waterskin_Full.bmp"
 
+IDB_ITEM3D_SWORD        BITMAP                  "res\\Items3D\\Item_3d_Sword.bmp"
+
+IDB_MISSILE_CLUB_B      BITMAP                  "res\\Items3D\\Missile_Club_B.bmp"
+
+IDB_MISSILE_CLUB_F      BITMAP                  "res\\Items3D\\Missile_Club_F.bmp"
+
+IDB_MISSILE_CLUB_S      BITMAP                  "res\\Items3D\\Missile_Club_S.bmp"
+
+IDB_MISSILE_SWORD_B     BITMAP                  "res\\Items3D\\Missile_Sword_B.bmp"
+
+IDB_MISSILE_SWORD_F     BITMAP                  "res\\Items3D\\Missile_Sword_F.bmp"
+
+IDB_ITEM3D_CLUB         BITMAP                  "res\\Items3D\\Item_3d_Club.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

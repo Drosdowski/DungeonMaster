@@ -473,34 +473,37 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 
 void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, int heroDir, std::deque<CMiscellaneous*> pile) {
 	// TODO - besser als "nur oberstes Malen... "
+	// TODO refaktorieren: Es gibt nicht nur MISC items ! -> Weapon, Clothes, ...
 	CMiscellaneous* misc = pile.back();
 	if (misc) {
 		int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
 	
 		CBitmap* bmp;
-		if (misc->GetType() == CMiscellaneous::ItemType::Apple) // TODO Logik auslagern!
+		if (misc->GetType() == CMiscellaneous::MiscItemType::Apple) // TODO Logik auslagern!
 			bmp = m_pItem3DPic->GetApple();
-		else if (misc->GetType() == CMiscellaneous::ItemType::IronKey ||
-			misc->GetType() == CMiscellaneous::ItemType::KeyOfB ||
-			misc->GetType() == CMiscellaneous::ItemType::SolidKey ||
-			misc->GetType() == CMiscellaneous::ItemType::SquareKey ||
-			misc->GetType() == CMiscellaneous::ItemType::TurquoiseKey ||
-			misc->GetType() == CMiscellaneous::ItemType::CrossKey ||
-			misc->GetType() == CMiscellaneous::ItemType::SkeletonKey)
+		else if (misc->GetType() == CMiscellaneous::MiscItemType::IronKey ||
+			misc->GetType() == CMiscellaneous::MiscItemType::KeyOfB ||
+			misc->GetType() == CMiscellaneous::MiscItemType::SolidKey ||
+			misc->GetType() == CMiscellaneous::MiscItemType::SquareKey ||
+			misc->GetType() == CMiscellaneous::MiscItemType::TurquoiseKey ||
+			misc->GetType() == CMiscellaneous::MiscItemType::CrossKey ||
+			misc->GetType() == CMiscellaneous::MiscItemType::SkeletonKey)
 			bmp = m_pItem3DPic->GetIronKey();
-		else if (misc->GetType() == CMiscellaneous::ItemType::GoldKey ||
-			misc->GetType() == CMiscellaneous::ItemType::WingedKey ||
-			misc->GetType() == CMiscellaneous::ItemType::TopazKey ||
-			misc->GetType() == CMiscellaneous::ItemType::EmeraldKey ||
-			misc->GetType() == CMiscellaneous::ItemType::RubyKey ||
-			misc->GetType() == CMiscellaneous::ItemType::RaKey ||
-			misc->GetType() == CMiscellaneous::ItemType::MasterKey)
+		else if (misc->GetType() == CMiscellaneous::MiscItemType::GoldKey ||
+			misc->GetType() == CMiscellaneous::MiscItemType::WingedKey ||
+			misc->GetType() == CMiscellaneous::MiscItemType::TopazKey ||
+			misc->GetType() == CMiscellaneous::MiscItemType::EmeraldKey ||
+			misc->GetType() == CMiscellaneous::MiscItemType::RubyKey ||
+			misc->GetType() == CMiscellaneous::MiscItemType::RaKey ||
+			misc->GetType() == CMiscellaneous::MiscItemType::MasterKey)
 			bmp = m_pItem3DPic->GetGoldKey();
-		else if (misc->GetType() == CMiscellaneous::ItemType::Water)
+		else if (misc->GetType() == CMiscellaneous::MiscItemType::Water)
 			if (misc->GetSubtype() > 0) 
 				bmp = m_pItem3DPic->GetWaterskin(1);
 			else
 				bmp = m_pItem3DPic->GetWaterskin(0);
+		//else if (misc->GetType() == CMiscellaneous::MiscItemType::Sword)
+		//else if (misc->GetType() == CMiscellaneous::MiscItemType::Club)
 		else
 			bmp = m_pItem3DPic->GetBread();
 

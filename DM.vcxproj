@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Items\Item.cpp" />
     <ClCompile Include="SpecialTile\CDoorAttributes.cpp" />
     <ClCompile Include="SpecialTile\CCreatureAttributes.cpp" />
     <ClCompile Include="Pictures\CWallDecoPic.cpp" />
@@ -191,6 +192,7 @@
     <ResourceCompile Include="DM.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Items\Item.h" />
     <ClInclude Include="SpecialTile\CDoorAttributes.h" />
     <ClInclude Include="SpecialTile\CCreatureAttributes.h" />
     <ClInclude Include="Pictures\CLockPic.h" />
@@ -288,8 +290,15 @@
     <Image Include="res\Door_Wood_1.bmp" />
     <Image Include="res\Door_Wood_2.bmp" />
     <Image Include="res\Door_Wood_3.bmp" />
+    <Image Include="res\Items3D\Item_3d_Club.bmp" />
+    <Image Include="res\Items3D\Item_3d_Sword.bmp" />
     <Image Include="res\Items3D\Item_3d_Waterskin_Empty.bmp" />
     <Image Include="res\Items3D\Item_3d_Waterskin_Full.bmp" />
+    <Image Include="res\Items3D\Missile_Club_B.bmp" />
+    <Image Include="res\Items3D\Missile_Club_F.bmp" />
+    <Image Include="res\Items3D\Missile_Club_S.bmp" />
+    <Image Include="res\Items3D\Missile_Sword_B.bmp" />
+    <Image Include="res\Items3D\Missile_Sword_F.bmp" />
     <Image Include="res\P.bmp" />
     <Image Include="res\Steine.bmp" />
     <Image Include="res\WallDeco\WallDeco_14_Front.bmp" />
