@@ -10,6 +10,7 @@
 #include "Feld.h"
 #include "Items/Item.h"
 #include "Items/CMiscellaneous.h"
+#include "Items/Weapon.h"
 #include "Items/CActuator.h"
 #include "RaumView.h"
 #include "CDungeonMap.h"
@@ -268,7 +269,8 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 					CBitmap* bmpButton = m_pDoorPic->GetButtonPic(ebene);
 					cdc->SelectObject(bmpButton);
 					CPoint posButton = m_pDoorPic->GetButtonPos(xxx, ebene, m_pWallPic->GetWallPos(xxx, ebene));
-					pDC->TransparentBlt(posButton.x, posButton.y, (int)(16 * 2 * faktor), (int)(9 * 2 * faktor), cdc, 0, 0, 16, 9, TRANS_ORA);
+					if (posButton != CPoint(0, 0))
+						pDC->TransparentBlt(posButton.x, posButton.y, (int)(16 * 2 * faktor), (int)(9 * 2 * faktor), cdc, 0, 0, 16, 9, TRANS_ORA);
 
 				}
 			}
@@ -474,73 +476,75 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 }
 
 void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, int heroDir, std::deque<CItem*> pile) {
+	int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
+	CBitmap* bmp;
 	// TODO - besser als "nur oberstes Malen... "
-	// TODO refaktorieren: Es gibt nicht nur MISC items ! -> Weapon, Clothes, ...
 	CItem* item = pile.back();
-	CMiscellaneous* misc = NULL;
 	CWeapon* weapon = NULL;
 	CItem::ItemType typ = item->getItemType();
 	if (typ == CItem::ItemType::MiscItem) {
-		misc = (CMiscellaneous*) item;
+		bmp = GetMiscBitmap((CMiscellaneous*)item);
 	}
 	else if (typ == CItem::ItemType::WeaponItem) {
-		weapon = (CWeapon*)item;
+		bmp = GetWeaponBitmap((CWeapon*)item, false);
 	}
-	if (misc) {
-		int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
 	
-		CBitmap* bmp;
-		if (misc->GetType() == CMiscellaneous::MiscItemType::Apple) // TODO Logik auslagern!
-			bmp = m_pItem3DPic->GetApple();
-		else if (misc->GetType() == CMiscellaneous::MiscItemType::IronKey ||
-			misc->GetType() == CMiscellaneous::MiscItemType::KeyOfB ||
-			misc->GetType() == CMiscellaneous::MiscItemType::SolidKey ||
-			misc->GetType() == CMiscellaneous::MiscItemType::SquareKey ||
-			misc->GetType() == CMiscellaneous::MiscItemType::TurquoiseKey ||
-			misc->GetType() == CMiscellaneous::MiscItemType::CrossKey ||
-			misc->GetType() == CMiscellaneous::MiscItemType::SkeletonKey)
-			bmp = m_pItem3DPic->GetIronKey();
-		else if (misc->GetType() == CMiscellaneous::MiscItemType::GoldKey ||
-			misc->GetType() == CMiscellaneous::MiscItemType::WingedKey ||
-			misc->GetType() == CMiscellaneous::MiscItemType::TopazKey ||
-			misc->GetType() == CMiscellaneous::MiscItemType::EmeraldKey ||
-			misc->GetType() == CMiscellaneous::MiscItemType::RubyKey ||
-			misc->GetType() == CMiscellaneous::MiscItemType::RaKey ||
-			misc->GetType() == CMiscellaneous::MiscItemType::MasterKey)
-			bmp = m_pItem3DPic->GetGoldKey();
-		else if (misc->GetType() == CMiscellaneous::MiscItemType::Water)
-			if (misc->GetSubtype() > 0) 
-				bmp = m_pItem3DPic->GetWaterskin(1);
-			else
-				bmp = m_pItem3DPic->GetWaterskin(0);
-		//else if (misc->GetType() == CMiscellaneous::MiscItemType::Sword)
-		//else if (misc->GetType() == CMiscellaneous::MiscItemType::Club)
-		else
-			bmp = m_pItem3DPic->GetBread();
+	BITMAP bmpInfo;
+	bmp->GetBitmap(&bmpInfo);
+	double faktor = m_pPictures->getFaktor(ebene);
 
-		BITMAP bmpInfo;
-		bmp->GetBitmap(&bmpInfo);
-		double faktor = m_pPictures->getFaktor(ebene);
-
-		CPoint floorMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
-		if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) {
-			SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(itemSubPos, heroDir); // todo subpos angleichen
-			if (ebene > 0 || subPos == LINKSHINTEN || subPos == RECHTSHINTEN)
-			{			
-				if (subPos == LINKSHINTEN || subPos == RECHTSHINTEN)
-				{
-					faktor = m_pPictures->getFaktor(ebene+1);
-				}
-				CPoint pos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, floorMiddlePos, subPos, faktor, xx, ebene);
-				if (misc->IsFlying() && pos.y != 0) {
-					pos.y = 250 - pos.y / 2; 
-				}
-				cdc->SelectObject(bmp);
-				DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
-
+	CPoint floorMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
+	if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) {
+		SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(itemSubPos, heroDir); // todo subpos angleichen
+		if (ebene > 0 || subPos == LINKSHINTEN || subPos == RECHTSHINTEN)
+		{			
+			if (subPos == LINKSHINTEN || subPos == RECHTSHINTEN)
+			{
+				faktor = m_pPictures->getFaktor(ebene+1);
 			}
+			CPoint pos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, floorMiddlePos, subPos, faktor, xx, ebene);
+			if (item->IsFlying() && pos.y != 0) {
+				pos.y = 250 - pos.y / 2; 
+			}
+			cdc->SelectObject(bmp);
+			DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
 		}
 	}
+}
+
+CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {
+	CBitmap* bmp;
+	if (misc->GetType() == CMiscellaneous::MiscItemType::Apple) // TODO Logik auslagern!
+		bmp = m_pItem3DPic->GetApple();
+	else if (misc->GetType() >= CMiscellaneous::MiscItemType::IronKey &&
+		misc->GetType() <= CMiscellaneous::MiscItemType::SkeletonKey)
+		bmp = m_pItem3DPic->GetIronKey();
+	else if (misc->GetType() >= CMiscellaneous::MiscItemType::GoldKey &&
+		misc->GetType() <= CMiscellaneous::MiscItemType::MasterKey)
+		bmp = m_pItem3DPic->GetGoldKey();
+	else if (misc->GetType() == CMiscellaneous::MiscItemType::Water)
+		if (misc->GetSubtype() > 0)
+			bmp = m_pItem3DPic->GetWaterskin(1);
+		else
+			bmp = m_pItem3DPic->GetWaterskin(0);
+	else
+		bmp = m_pItem3DPic->GetBread();
+
+	return bmp;
+}
+
+CBitmap* CRaumView::GetWeaponBitmap(CWeapon* weapon, bool inAir) {
+	CBitmap* bmp;
+	if (weapon->GetType() >= CWeapon::WeaponType::Falchion &&
+		weapon->GetType() <= CWeapon::WeaponType::DiamondEdge ||
+		weapon->GetType() <= CWeapon::WeaponType::Inquisitor)
+		bmp = m_pItem3DPic->GetSword(inAir);
+	else if (weapon->GetType() == CWeapon::WeaponType::Club)
+		bmp = m_pItem3DPic->GetClub(inAir);
+	else
+		bmp = m_pItem3DPic->GetBread();
+
+	return bmp;
 }
 
 

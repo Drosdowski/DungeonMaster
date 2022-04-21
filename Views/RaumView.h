@@ -98,6 +98,8 @@ private:
 	void MoveDoors(VEKTOR heroPos);
 	void PrepareMoveItems(VEKTOR heroPos);
 	void MoveItems(VEKTOR heroPos);
+	CBitmap* GetMiscBitmap(CMiscellaneous* misc);
+	CBitmap* GetWeaponBitmap(CWeapon* weapon, bool inAir);
 
 	void TriggerPassiveActuators(VEKTOR fieldPos, VEKTOR heroPos );
 	void TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator* actuator);
