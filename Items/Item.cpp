@@ -1,10 +1,11 @@
 #include "stdafx.h"
 #include "Item.h"
 
-CItem::CItem(int index) {
+CItem::CItem(int index, ItemType type) {
 	m_index = index;
 	m_done = false;
 	m_flyForce = VEKTOR{ 0,0,0 };
+	m_itemType = type;
 }
 
 

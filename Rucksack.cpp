@@ -1,10 +1,12 @@
 // Rucksack.cpp : implementation file
 //
 
+#include <typeinfo>
 #include "stdafx.h"
 #include "CScreenCoords.h"
 #include "Rucksack.h"
 #include "Items/CMiscellaneous.h"
+#include "Items/Weapon.h"
 #include "Mobs/Held.h"
 
 #ifdef _DEBUG
@@ -42,27 +44,31 @@ void CRucksack::OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point)
 		m_iModusExtend = MOD_EXT_AUGE;
 	else if (CScreenCoords::CheckHitMouth(point))
 	{
-		CMiscellaneous* item = m_pOwner->GetItemInHand();
-		if (item && item->GetGroup(item->GetType()) == CMiscellaneous::ItemGroup::Consumable) {
-			if (item->GetType() == CMiscellaneous::MiscItemType::Water) {
-				if (item->GetSubtype() > 0) {
-					m_pOwner->Trinken(50);
-					item->SetSubtype(item->GetSubtype() - 1);
+		CItem* item = m_pOwner->GetItemInHand();
+		CWeapon* weapon = NULL;
+		if (item->getItemType() == CItem::ItemType::MiscItem) {
+			CMiscellaneous* misc = (CMiscellaneous*)item;
+			if (misc && misc->GetGroup(misc->GetType()) == CMiscellaneous::ItemGroup::Consumable) {
+				if (misc->GetType() == CMiscellaneous::MiscItemType::Water) {
+					if (misc->GetSubtype() > 0) {
+						m_pOwner->Trinken(50);
+						misc->SetSubtype(misc->GetSubtype() - 1);
+					}
 				}
-			}
-			else {
-				m_pOwner->Essen(50);
-				m_pOwner->EmptyHand();
-				delete item; // destroy permanently!
+				else {
+					m_pOwner->Essen(50);
+					m_pOwner->EmptyHand();
+					delete item; // destroy permanently!
+				}
 			}
 		}
 	}
 	else {
 		int slot = CScreenCoords::CheckHitBackpackSlots(point);
 		if (slot >= 0) {
-			CMiscellaneous* itemInHand = m_pOwner->GetItemInHand();
-			CMiscellaneous* newItemInHand = NULL;
-			CMiscellaneous* itemCarryingAtPos = m_pOwner->GetItemCarrying(slot);
+			CItem* itemInHand = m_pOwner->GetItemInHand();
+			CItem* newItemInHand = NULL;
+			CItem* itemCarryingAtPos = m_pOwner->GetItemCarrying(slot);
 			if ((itemInHand == NULL) || (itemInHand && itemInHand->CheckGroup(slot, itemInHand->GetType()))) {
 				// todo: group check!
 				if (itemInHand) {

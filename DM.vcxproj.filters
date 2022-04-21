@@ -177,6 +177,9 @@
     <ClCompile Include="Items\Item.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Items\Weapon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -347,6 +350,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Items\Item.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\Weapon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

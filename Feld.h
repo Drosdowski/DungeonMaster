@@ -17,7 +17,9 @@
 // CField view
 
 class CGrpMonster;
+class CItem;
 class CMiscellaneous;
+class CWeapon;
 class CActuator;
 class CFloorDecoration;
 class CWallDecoration;
@@ -59,11 +61,13 @@ public:
 	void SetTypeTeleporter(CTeleporter* teleItem);
 	void SetType(FeldTyp iTyp);
 
-	void PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index);
-	void ThrowMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index, VEKTOR force);
-	//void PutMisc(CMiscellaneous* misc, SUBPOS subPos);
-	CMiscellaneous* TakeMisc(SUBPOS_ABSOLUTE subPos);
-	std::deque<CMiscellaneous*> GetMisc(SUBPOS_ABSOLUTE index) { return m_pMiscellaneous[index]; }
+	void PutItem(CItem* item, SUBPOS_ABSOLUTE index);
+	void PutMisc(CMiscellaneous* item, SUBPOS_ABSOLUTE index);
+	void PutWeapon(CWeapon* item, SUBPOS_ABSOLUTE index);
+	void ThrowItem(CItem* item, SUBPOS_ABSOLUTE index, VEKTOR force);
+	//void PutItem(CItem* item, SUBPOS subPos);
+	CItem* TakeItem(SUBPOS_ABSOLUTE subPos);
+	std::deque<CItem*> GetItem(SUBPOS_ABSOLUTE index) { return m_pItem[index]; }
 	std::deque<CActuator*> GetActuator(COMPASS_DIRECTION index) { return m_pActuator[index]; }
 
 	CPit* HolePit() { return m_pPit;  }
@@ -92,7 +96,7 @@ protected:
 	//int m_pWallDecoration[4];
 	CFloorDecoration* m_floorOrnateType;
 	CWallDecoration* m_wallOrnateType[4];
-	std::deque<CMiscellaneous*> m_pMiscellaneous[4];
+	std::deque<CItem*> m_pItem[4];
 
 	std::deque <CActuator*> m_pActuator[4];
 

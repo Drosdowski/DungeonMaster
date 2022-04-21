@@ -3,7 +3,7 @@
 #include "..\Pictures\Items3D\CItem3DPic.h"
 #include <cassert>
 
-CMiscellaneous::CMiscellaneous(int index, MiscItemType type, int subtype) : CItem(index) {
+CMiscellaneous::CMiscellaneous(int index, MiscItemType type, int subtype) : CItem(index, MiscItem) {
 	m_type = type;
 	m_subtype = subtype;
 }

@@ -4,9 +4,11 @@
 
 #include "stdafx.h"
 #include <deque>
+#include <typeinfo>
 #include "CHelpfulValues.h"
 #include "DmDoc.h"
 #include "Feld.h"
+#include "Items/Item.h"
 #include "Items/CMiscellaneous.h"
 #include "Items/CActuator.h"
 #include "RaumView.h"
@@ -471,10 +473,19 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 
 }
 
-void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, int heroDir, std::deque<CMiscellaneous*> pile) {
+void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, int heroDir, std::deque<CItem*> pile) {
 	// TODO - besser als "nur oberstes Malen... "
 	// TODO refaktorieren: Es gibt nicht nur MISC items ! -> Weapon, Clothes, ...
-	CMiscellaneous* misc = pile.back();
+	CItem* item = pile.back();
+	CMiscellaneous* misc = NULL;
+	CWeapon* weapon = NULL;
+	CItem::ItemType typ = item->getItemType();
+	if (typ == CItem::ItemType::MiscItem) {
+		misc = (CMiscellaneous*) item;
+	}
+	else if (typ == CItem::ItemType::WeaponItem) {
+		weapon = (CWeapon*)item;
+	}
 	if (misc) {
 		int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
 	
@@ -636,7 +647,7 @@ void CRaumView::RaumZeichnen(CDC* pDC)
 				if (fieldType != FeldTyp::WALL) {
 					for (int pos = 0; pos < 4; pos++)
 					{
-						std::deque<CMiscellaneous*> pile = pField->GetMisc((SUBPOS_ABSOLUTE)pos);
+						std::deque<CItem*> pile = pField->GetItem((SUBPOS_ABSOLUTE)pos);
 						if (pile.size() > 0) {
 							DrawPile(pDC, &compCdc, xxx, ebene, (SUBPOS_ABSOLUTE)pos, heroDir, pile);
 						}
@@ -788,9 +799,9 @@ void CRaumView::PrepareMoveItems(VEKTOR heroPos) {
 	// Flag setzen, Item muss sich ggf. noch bewegen
 	for (int s = 0; s < 4; s++) {
 		SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
-		std::deque<CMiscellaneous*> pile = field->GetMisc(posAbs);		
+		std::deque<CItem*> pile = field->GetItem(posAbs);		
 		if (!pile.empty()) {
-			CMiscellaneous* topItem = pile.back();
+			CItem* topItem = pile.back();
 			topItem->ResethasMoved();
 		}
 	}
@@ -801,9 +812,9 @@ void CRaumView::MoveItems(VEKTOR heroPos) {
 	
 	for (int s = 0; s < 4; s++) {
 		SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
-		std::deque<CMiscellaneous*> pile = field->GetMisc(posAbs);
+		std::deque<CItem*> pile = field->GetItem(posAbs);
 		if (!pile.empty()) {
-			CMiscellaneous* topItem = pile.back(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Items je Feld
+			CItem* topItem = pile.back(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Items je Feld
 			if (topItem->IsFlying() && !topItem->HasMovedThisTick()) {
 				// fliegendes Item gefunden
 				SUBPOS_ABSOLUTE newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, topItem->m_flyForce);
@@ -813,9 +824,9 @@ void CRaumView::MoveItems(VEKTOR heroPos) {
 					CField* newField = m_pMap->GetField(heroPos.x + sign(topItem->m_flyForce.x), heroPos.y + sign(topItem->m_flyForce.y), heroPos.z);
 					if (!newField->Blocked()) {
 						// westlich von west ist ost => anders rum subpos suchen
-						topItem = field->TakeMisc(posAbs);
+						topItem = field->TakeItem(posAbs);
 						newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topItem->m_flyForce.x, -topItem->m_flyForce.y, 0 });
-						newField->PutMisc(topItem, newPos);
+						newField->PutItem(topItem, newPos);
 					}
 					else {
 						// nicht bewegen, sondern stehen bleiben (unten)
@@ -823,9 +834,9 @@ void CRaumView::MoveItems(VEKTOR heroPos) {
 					}
 				}
 				else {
-					topItem = field->TakeMisc(posAbs);
+					topItem = field->TakeItem(posAbs);
 					topItem->ReduceSpeed();
-					field->PutMisc(topItem, newPos);
+					field->PutItem(topItem, newPos);
 				}
 			}
 		}

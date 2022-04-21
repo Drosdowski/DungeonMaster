@@ -5,7 +5,7 @@
 #include "Items2D/CItemPic.h"
 #include "..\Mobs\Held.h"
 #include "..\Items\FloorDecoration.h"
-#include "..\Items\CMiscellaneous.h"
+#include "..\Items\Item.h"
 #include "..\Rucksack.h"
 #include "..\CScreenCoords.h"
 
@@ -74,17 +74,17 @@ CBitmap* CPictures::GetActionDamage(int dmg) {
 	return m_pActionsDamage;
 }
 
-CBitmap* CPictures::GetIconBitmap(CDC* pDC, CMiscellaneous* pMisc) {
+CBitmap* CPictures::GetIconBitmap(CDC* pDC, CItem* pItem) {
 	CDC iconDC;
 	CDC sheetDC;
 	iconDC.CreateCompatibleDC(pDC);
 	sheetDC.CreateCompatibleDC(pDC);
 	
-	CBitmap* bmpSheet = m_pItemPic->GetBitmapSheet(pMisc); 
+	CBitmap* bmpSheet = m_pItemPic->GetBitmapSheet(pItem);
 	CBitmap* bmpIcon = new CBitmap();
 	bmpIcon->CreateCompatibleBitmap(pDC, 32, 32);
 
-	CPoint p = m_pItemPic->GetSheetKoords(pMisc);
+	CPoint p = m_pItemPic->GetSheetKoords(pItem);
 	sheetDC.SelectObject(bmpSheet);
 	iconDC.SelectObject(bmpIcon);
 	iconDC.StretchBlt(0, 0, 32, 32, &sheetDC, p.x, p.y, 16, 16, SRCCOPY);
@@ -138,7 +138,7 @@ void CPictures::DrawHand(CDC* pDC, CHeld* pHeld, int handId) {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 	
-	CMiscellaneous* itemInThistHand = pHeld->GetItemCarrying(handId);
+	CItem* itemInThistHand = pHeld->GetItemCarrying(handId);
 	
 	tmpdc.SelectObject(m_pBmpRuck);
 	pDC->BitBlt((pHeld->getIndex() - 1) * 138 + 5 + 40 * handId, 16, 37, 37, &tmpdc, 5 + 40 * handId, 16, SRCCOPY);
@@ -207,7 +207,7 @@ void CPictures::ZeichneIcons(CDC* pDC, CHeld* pHeld) {
 	tmpdc.CreateCompatibleDC(pDC);
 
 	for (int iconID = 0; iconID < 30; iconID++) {
-		CMiscellaneous* item = pHeld->GetItemCarrying(iconID);
+		CItem* item = pHeld->GetItemCarrying(iconID);
 		if (item) {
 			CPoint posBackpack = CScreenCoords::GetbackPackSlotKoords(iconID);
 			CBitmap* bmp = m_pItemPic->GetBitmapSheet(item);

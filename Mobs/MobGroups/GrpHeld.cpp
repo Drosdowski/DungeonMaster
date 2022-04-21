@@ -5,7 +5,7 @@
 #include "Rucksack.h"
 #include "..\Held.h"
 #include "..\..\CHelpfulValues.h"
-#include "..\..\Items\CMiscellaneous.h"
+#include "..\..\Items\Item.h"
 #include "GrpHeld.h"
 #include <iostream>
 
@@ -201,7 +201,7 @@ bool CGrpHeld::SetActiveCaster(int ID)
 {
 	if (ID <= m_iAnzHelden && m_iAktiverZauberer != ID)
 	{
-		CMiscellaneous* itemInHand = GetHero(ID)->GetItemInHand();
+		CItem* itemInHand = GetHero(ID)->GetItemInHand();
 		GetHero(m_iAktiverZauberer)->TakeItemInHand(itemInHand);
 		GetHero(ID)->EmptyHand();
 		m_iAktiverZauberer = ID;
@@ -210,7 +210,7 @@ bool CGrpHeld::SetActiveCaster(int ID)
 	return false;
 }
 
-CMiscellaneous* CGrpHeld::GetItemInHand() {
+CItem* CGrpHeld::GetItemInHand() {
 	CHeld* held = GetActiveHero();
 	if (held)
 		return held->GetItemInHand();
@@ -220,9 +220,9 @@ CMiscellaneous* CGrpHeld::GetItemInHand() {
 
 void CGrpHeld::PutGetItem(int handOfHeroId, int heroId) {
 
-	CMiscellaneous* itemInHand = GetActiveHero()->GetItemInHand();
-	CMiscellaneous* itemCarryingAtPos = GetHero(heroId)->GetItemCarrying(handOfHeroId);
-	CMiscellaneous* newItemInHand = NULL;
+	CItem* itemInHand = GetActiveHero()->GetItemInHand();
+	CItem* itemCarryingAtPos = GetHero(heroId)->GetItemCarrying(handOfHeroId);
+	CItem* newItemInHand = NULL;
 
 	if (itemInHand) {
 		// Item tauschen oder ablegen

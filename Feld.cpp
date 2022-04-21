@@ -8,7 +8,7 @@
 #include "Mobs\MobGroups\GrpMonster.h"
 #include "Items\FloorDecoration.h"
 #include "Items\WallDecoration.h"
-#include "Items/CMiscellaneous.h"
+#include "Items/Item.h"
 #include "Items\CActuator.h"
 #include "CHelpfulValues.h"
 #include <cassert>
@@ -88,7 +88,7 @@ CField::~CField()
 	}
 
 	for (int i = 0; i < 4; i++) {
-		for (CMiscellaneous* item : m_pMiscellaneous[i]) {
+		for (CItem* item : m_pItem[i]) {
 			delete item;
 		}
 		for (CActuator* actuator : m_pActuator[i]) {
@@ -145,13 +145,21 @@ void CField::SetTypeTeleporter(CTeleporter* teleItem) {
 }
 
 
-void CField::ThrowMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index, VEKTOR force) {
-	misc->m_flyForce = force;
-	m_pMiscellaneous[index].push_back(misc);
+void CField::ThrowItem(CItem* item, SUBPOS_ABSOLUTE index, VEKTOR force) {
+	item->m_flyForce = force;
+	m_pItem[index].push_back(item);
+}
+
+void CField::PutItem(CItem* item, SUBPOS_ABSOLUTE index) {
+	m_pItem[index].push_back(item);
+}
+
+void CField::PutWeapon(CWeapon* weapon, SUBPOS_ABSOLUTE index) {
+	m_pItem[index].push_back((CItem*)weapon);
 }
 
 void CField::PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index) {
-	m_pMiscellaneous[index].push_back(misc);
+	m_pItem[index].push_back((CItem*)misc);
 }
 
 void CField::PutFloorDeco(CFloorDecoration* deco) {
@@ -167,11 +175,11 @@ void CField::PutActuator(CActuator* actuator, COMPASS_DIRECTION index) {
 }
 
 // Item von Stapel nehmen - ist dann "in der Hand"
-CMiscellaneous* CField::TakeMisc(SUBPOS_ABSOLUTE subPos) {	
-	if (m_pMiscellaneous[subPos].size() > 0)
+CItem* CField::TakeItem(SUBPOS_ABSOLUTE subPos) {	
+	if (m_pItem[subPos].size() > 0)
 	{
-		CMiscellaneous* topItem = m_pMiscellaneous[subPos].back();
-		m_pMiscellaneous[subPos].pop_back();
+		CItem* topItem = m_pItem[subPos].back();
+		m_pItem[subPos].pop_back();
 
 		return topItem;
 	}
@@ -184,7 +192,7 @@ int CField::GetWeight(VEKTOR heroPos) {
 	if (GetMonsterGroup() != NULL) weight = 100; // max
 	if (m_posKoord.x == heroPos.x && m_posKoord.y == heroPos.y && m_posKoord.z == heroPos.z) weight = 100; // max
 	for (int i = 0; i < 4; i++) {
-		weight += m_pMiscellaneous[i].size(); // todo bessere Lösung als Anzahl Items als Gewicht zu nehmen
+		weight += m_pItem[i].size(); // todo bessere Lösung als Anzahl Items als Gewicht zu nehmen
 	}
 
 	return weight;

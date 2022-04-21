@@ -1,6 +1,6 @@
 #pragma once
 #include "..\CBasePictures.h"
-#include "..\..\Items\CMiscellaneous.h"
+#include "..\..\Items\Item.h"
 
 class CItemPic : public CBasePictures
 {
@@ -9,8 +9,8 @@ public:
 	CItemPic(CDC* pDC);
 	~CItemPic();
 
-	CBitmap* GetBitmapSheet(CMiscellaneous* misc);
-	CPoint GetSheetKoords(CMiscellaneous* misc);
+	CBitmap* GetBitmapSheet(CItem* misc);
+	CPoint GetSheetKoords(CItem* misc);
 
 private:
 	void InitItems();

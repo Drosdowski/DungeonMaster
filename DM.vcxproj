@@ -103,6 +103,7 @@
       <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <ObjectFileName>.\Debug\</ObjectFileName>
       <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
     </ClCompile>
     <Midl>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -187,6 +188,7 @@
     <ClCompile Include="TinyXML\tinyxmlparser.cpp" />
     <ClCompile Include="Views\ZauberView.cpp" />
     <ClCompile Include="Items\WallDecoration.cpp" />
+    <ClCompile Include="Items\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc" />
@@ -247,6 +249,7 @@
     <ClInclude Include="TinyXML\tinyxml.h" />
     <ClInclude Include="Views\ZauberView.h" />
     <ClInclude Include="Items\WallDecoration.h" />
+    <ClInclude Include="Items\Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\ActionsArea.bmp" />

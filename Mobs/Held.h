@@ -12,7 +12,7 @@
 // CHeld view
 
 class CRucksack;
-class CMiscellaneous;
+class CItem;
 class CHeld : public CCharacter
 {
 public:
@@ -45,15 +45,15 @@ public:
 
 	CRucksack* GetRucksack() { return m_pRucksack; }
 
-	CMiscellaneous* GetItemInHand() { return m_pItemInHand; }
+	CItem* GetItemInHand() { return m_pItemInHand; }
 	void setActive() { m_bAktiv = true; }
 	void setInactive() { m_bAktiv = false; }
-	void TakeItemInHand(CMiscellaneous* item);
+	void TakeItemInHand(CItem* item);
 	void EmptyHand();
 
-	CMiscellaneous* GetItemCarrying(int index) { return m_itemCarrying[index]; }
+	CItem* GetItemCarrying(int index) { return m_itemCarrying[index]; }
 	void RemoveItemCarrying(int index) { m_itemCarrying[index] = NULL; }
-	CMiscellaneous* SwitchItemAt(int index, CMiscellaneous* item);
+	CItem* SwitchItemAt(int index, CItem* item);
 
 // Implementation
 public:
@@ -78,9 +78,9 @@ private:
 	WERTE m_ST;	// Stamina
 
 	CString m_strName;
-	CMiscellaneous* m_itemCarrying[30];
+	CItem* m_itemCarrying[30];
 
-	CMiscellaneous* m_pItemInHand = NULL;
+	CItem* m_pItemInHand = NULL;
 };
 
 /////////////////////////////////////////////////////////////////////////////

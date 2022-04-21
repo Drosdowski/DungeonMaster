@@ -9,7 +9,7 @@
 // Ansicht CGrpChar 
 
 class CMonster;
-class CMiscellaneous;
+class CItem;
 class CGrpHeld: public CGrpChar
 {
 public:
@@ -28,8 +28,8 @@ public:
 	int GetNumberOfHeroes() { return m_iAnzHelden;  }
 	int GetActionPhase() { return m_iPhase; }
 	
-	CMiscellaneous* GetItemInHand();
-	void TakeItemInHand(CMiscellaneous* item) { return GetActiveHero()->TakeItemInHand(item); }
+	CItem* GetItemInHand();
+	void TakeItemInHand(CItem* item) { return GetActiveHero()->TakeItemInHand(item); }
 	void EmptyHand() { return GetActiveHero()->EmptyHand(); }
 	virtual bool Laufbereit();
 	void Laufen(VEKTOR WunschPos);

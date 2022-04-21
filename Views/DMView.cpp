@@ -22,7 +22,7 @@
 #include "..\CHelpfulValues.h"
 #include "..\SpecialTile/CDoor.h"
 #include "..\SpecialTile\CPit.h"
-#include "..\Items/CMiscellaneous.h""
+#include "..\Items/Item.h""
 #include <cassert>
 
 #ifdef _DEBUG
@@ -220,7 +220,7 @@ bool CDMView::ParseClickPortraitHands(CPoint point, bool backpackMode) {
 /// <param name="point"></param>
 void CDMView::ParseClickAir(CPoint point) {
 	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
-	CMiscellaneous* pItemInHand = grpHelden->GetItemInHand();
+	CItem* pItemInHand = grpHelden->GetItemInHand();
 
 	if (pItemInHand != NULL) {
 		SUBPOS airRegionClicked = CScreenCoords::CheckHitAir(point);
@@ -235,7 +235,7 @@ void CDMView::ParseClickAir(CPoint point) {
 					int grpDir = grpHelden->GetDirection();
 					SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(airRegionClicked, grpDir);
 					VEKTOR force = CHelpfulValues::MakeVektor(grpDir, 6);
-					FeldVorHeld->ThrowMisc(pItemInHand, itemRegionReal, force);
+					FeldVorHeld->ThrowItem(pItemInHand, itemRegionReal, force);
 					grpHelden->EmptyHand();
 				}
 			}
@@ -285,7 +285,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators
 			else if (type == 4) {
 				// Item Receiver - Lock / ... ?
 				CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
-				CMiscellaneous* itemInHand = grpHelden->GetItemInHand();
+				CItem* itemInHand = grpHelden->GetItemInHand();
 				if (itemInHand) {
 					int data = currentActuator->GetData();
 					int neededItemId;
@@ -340,20 +340,20 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator) {
 
 void CDMView::ParseClickFloor(CPoint point) {
 	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
-	CMiscellaneous* pItemInHand = grpHelden->GetItemInHand();
+	CItem* pItemInHand = grpHelden->GetItemInHand();
 
 	SUBPOS itemRegionClicked = CScreenCoords::CheckHitFloor(point);
 	SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(itemRegionClicked, grpHelden->GetDirection());
-	CMiscellaneous* topItem = NULL;
+	CItem* topItem = NULL;
 	if (itemRegionClicked == LINKSVORNE || itemRegionClicked == RECHTSVORNE)
 	{
 		CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
 		if (FeldVorHeld && !FeldVorHeld->Blocked())
 		{
 			if (pItemInHand == NULL)
-				topItem = FeldVorHeld->TakeMisc(itemRegionReal);
+				topItem = FeldVorHeld->TakeItem(itemRegionReal);
 			else {
-				FeldVorHeld->PutMisc(pItemInHand, itemRegionReal);
+				FeldVorHeld->PutItem(pItemInHand, itemRegionReal);
 				grpHelden->EmptyHand();
 			}
 
@@ -364,9 +364,9 @@ void CDMView::ParseClickFloor(CPoint point) {
 		if (FeldUnterHeld)
 		{
 			if (pItemInHand == NULL)
-				topItem = FeldUnterHeld->TakeMisc(itemRegionReal);
+				topItem = FeldUnterHeld->TakeItem(itemRegionReal);
 			else {
-				FeldUnterHeld->PutMisc(pItemInHand, itemRegionReal);
+				FeldUnterHeld->PutItem(pItemInHand, itemRegionReal);
 				grpHelden->EmptyHand();
 			}
 		}
@@ -417,9 +417,9 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 
 		}
 
-		if (CScreenCoords::CheckHitDeco(point)) {
+		/*if (CScreenCoords::CheckHitDeco(point)) { // todo aufräumen
 			m_pRaumView->OnTrigger();
-		}
+		}*/
 		
 	}
 	else if (m_iModus == MOD_RUCKSACK)
@@ -710,7 +710,7 @@ void CDMView::InitDungeon(CDMDoc* pDoc)
 void CDMView::ChangeMouseCursor() {
 	CGrpHeld* heroes = m_pRaumView->GetHeroes();
 	if (heroes) {
-		CMiscellaneous* item = heroes->GetItemInHand();
+		CItem* item = heroes->GetItemInHand();
 		if (item) {
 			CDC* pDC = GetDC();
 			CBitmap* bmp = m_pPictures->GetIconBitmap(pDC, item); //heroes->GetItemInHand()->GetPicByType(m_pRaumView->Get3DPics());

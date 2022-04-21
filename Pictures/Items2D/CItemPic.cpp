@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "..\..\resource.h"
-#include "..\..\Items\CMiscellaneous.h"
+#include "..\..\Items\Item.h"
 #include "..\CBasePictures.h"
 #include "CItemPic.h"
 
@@ -15,8 +15,8 @@ CItemPic::~CItemPic() {
 	}
 }
 
-CBitmap* CItemPic::GetBitmapSheet(CMiscellaneous* misc) {
-	int sheet = misc->GetSheetForGroup();
+CBitmap* CItemPic::GetBitmapSheet(CItem* item) {
+	int sheet = item->GetSheetForGroup();
 	return m_itemSheet[sheet];
 }
 
@@ -26,8 +26,8 @@ void CItemPic::InitItems() {
 	}
 }
 
-CPoint CItemPic::GetSheetKoords(CMiscellaneous* misc) {
-	int pos = misc->GetOffsetForGroup();
+CPoint CItemPic::GetSheetKoords(CItem* item) {
+	int pos = item->GetOffsetForGroup();
 	int x = pos % 16;
 	int y = int(pos / 16);
 

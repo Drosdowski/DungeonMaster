@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "Rucksack.h"
 #include "..\CHelpfulValues.h"
-#include "..\Items\CMiscellaneous.h"
+#include "..\Items\Item.h"
 #include "Monster.h"
 #include "Held.h"
 
@@ -126,7 +126,7 @@ void CHeld::Trinken(int amount) {
 	m_iWater = min(maxWater, m_iWater + amount);
 }
 
-void CHeld::TakeItemInHand(CMiscellaneous* item)
+void CHeld::TakeItemInHand(CItem* item)
 {
 	if (m_pItemInHand == NULL)
 		m_pItemInHand = item;
@@ -137,9 +137,9 @@ void CHeld::EmptyHand() {
 	m_pItemInHand = NULL;
 }
 
-CMiscellaneous* CHeld::SwitchItemAt(int index, CMiscellaneous* item)
+CItem* CHeld::SwitchItemAt(int index, CItem* item)
 {
-	CMiscellaneous* carryingBefore = m_itemCarrying[index];
+	CItem* carryingBefore = m_itemCarrying[index];
 	m_itemCarrying[index] = item;
 	return carryingBefore;
 }

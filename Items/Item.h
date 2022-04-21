@@ -2,6 +2,10 @@
 class CItem
 {
 public:
+	enum ItemType {
+		WeaponItem,
+		MiscItem
+	};
 	enum ItemGroup {
 		Key = 1,
 		Consumable = 2,
@@ -21,19 +25,24 @@ public:
 
 	ItemGroup GetGroup(int type);
 
-	CItem(int index);
+	CItem(int index, ItemType m_itemType);
 
 	bool IsFlying();
 	bool HasMovedThisTick();
 	void ResethasMoved();
 	void ReduceSpeed();
 	bool CheckGroup(int slotId, int type);
+	ItemType getItemType() { return m_itemType; }
+	
+	virtual int GetType() { return -1; };
+	virtual int GetSheetForGroup() { return -1; };
+	virtual int GetOffsetForGroup() { return -1; };;
 
 	VEKTOR m_flyForce;
 
 private:
 	int m_index;
 	bool m_done;
-
+	ItemType m_itemType;
 };
 
