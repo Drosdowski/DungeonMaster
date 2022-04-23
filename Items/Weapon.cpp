@@ -2,9 +2,8 @@
 #include "Weapon.h"
 #include <cassert>
 
-CWeapon::CWeapon(int index, WeaponType type, int charges) : CItem(index, WeaponItem ) {
-	m_type = type;
-	m_charges = charges;
+CWeapon::CWeapon(int index, CWeaponAttributes attribute) : CItem(index, WeaponItem ) {
+	m_attribute = attribute;
 }
 
 CWeapon::~CWeapon() {
@@ -12,28 +11,28 @@ CWeapon::~CWeapon() {
 }
 
 void CWeapon::reduceCharges() {
-	m_charges = max(0, m_charges - 1);
+	m_attribute.charges = max(0, m_attribute.charges - 1);
 }
 
 int CWeapon::GetOffsetForGroup() {
-	if (m_type == 2) { // Torch
-		return 4 + (int)(m_charges / 4);
+	if (m_attribute.type == 2) { // Torch
+		return 4 + (int)(m_attribute.charges / 4);
 	}
-	else if (m_type == 5) // Bolt blade
+	else if (m_attribute.type == 5) // Bolt blade
 	{
-		if (m_charges > 0)
+		if (m_attribute.charges > 0)
 			return 25;
 		else
 			return 24;
-	} else if (m_type >= 9 && m_type <= 23) {
-		return m_type - 8;
+	} else if (m_attribute.type >= 9 && m_attribute.type <= 23) {
+		return m_attribute.type - 8;
 	}
 }
 
 int CWeapon::GetSheetForGroup() {
-	if (m_type < 9)
+	if (m_attribute.type < 9)
 		return 0;
-	else if (m_type < 24)
+	else if (m_attribute.type < 24)
 		return 1;
 	else
 		assert(false); // todo !!

@@ -1,50 +1,30 @@
 #pragma once
 #include "Item.h"
+#include <SpecialTile\MiscellaneousAttributes.h>
 
 class CItem3DPic;
 class CMiscellaneous : public CItem
 {
 public:
-	enum MiscItemType {
-		Water = 1,
-		IronKey = 9, 
-		KeyOfB = 10, 
-		SolidKey = 11, 
-		SquareKey = 12,
-		TurquoiseKey = 13,
-		CrossKey = 14, 
-		SkeletonKey = 16,
-		GoldKey = 17, 
-		WingedKey = 18,
-		TopazKey = 19, 
-		EmeraldKey = 21,
-		RubyKey = 22, 
-		RaKey = 23,
-		MasterKey = 24,
-		Apple = 29,
-		Corn = 30,
-		Bread = 31
-	};
 
 	int GetSheetForGroup();
 	int GetOffsetForGroup();
 	ItemGroup GetGroup();
 
-	CMiscellaneous(int index, MiscItemType type, int subtype);
+	CMiscellaneous(int index, CMiscellaneousAttributes att);
 	~CMiscellaneous();
 
-	int GetType() { return m_type; };
+	int GetType() { return m_attributes.type; };
 
 	int GetSubtype() {
-		return m_subtype;
+		return m_attributes.subtype;
 	}
 
 	void SetSubtype(int value) {
-		m_subtype = value;
+		m_attributes.subtype = value;
 	}
 
 private:
-	MiscItemType m_type;
-	int m_subtype;
+	CMiscellaneousAttributes m_attributes;
 };
 

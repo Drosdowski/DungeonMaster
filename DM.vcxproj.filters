@@ -180,6 +180,12 @@
     <ClCompile Include="Items\Weapon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SpecialTile\CMiscellaneousAttributes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialTile\CWeaponAttributes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -353,6 +359,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Items\Weapon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialTile\MiscellaneousAttributes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialTile\WeaponAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

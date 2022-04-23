@@ -35,11 +35,7 @@ CDungeonMap::~CDungeonMap()
 	delete m_wallDecorationTypes;
 		
 	delete m_doorAtt;
-	for (int i=0; i< m_countMiscellaneous; i++)
-		delete m_miscellaneousAtt[i];
 	delete m_miscellaneousAtt;
-	for (int i = 0; i < m_countWeapons; i++)
-		delete m_weaponAtt[i];
 	delete m_weaponAtt;
 	
 	delete m_actuatorType;
@@ -231,7 +227,7 @@ void CDungeonMap::ParseMiscellaneous(TiXmlElement* miscItem, VEKTOR coords) {
 	int index, subPos;
 	miscItem->QueryIntAttribute("index", &index);
 	miscItem->QueryIntAttribute("position", &subPos);
-	m_pFeld[coords.x][coords.y][coords.z]->PutMisc(m_miscellaneousAtt[index], (SUBPOS_ABSOLUTE)subPos);
+	m_pFeld[coords.x][coords.y][coords.z]->PutMisc(new CMiscellaneous(index, m_miscellaneousAtt[index]), (SUBPOS_ABSOLUTE)subPos);
 }
 
 void CDungeonMap::ParseWeapons(TiXmlElement* weaponItem, VEKTOR coords) {
@@ -239,7 +235,7 @@ void CDungeonMap::ParseWeapons(TiXmlElement* weaponItem, VEKTOR coords) {
 	weaponItem->QueryIntAttribute("index", &index);
 	weaponItem->QueryIntAttribute("position", &subPos);
 
-	m_pFeld[coords.x][coords.y][coords.z]->PutWeapon(m_weaponAtt[index], (SUBPOS_ABSOLUTE)subPos);
+	m_pFeld[coords.x][coords.y][coords.z]->PutWeapon(new CWeapon(index, m_weaponAtt[index]), (SUBPOS_ABSOLUTE)subPos);
 }
 
 
@@ -283,9 +279,7 @@ void CDungeonMap::ParseCreature(TiXmlElement* creatureItem, VEKTOR coords) {
 				{
 					monsterItem->QueryIntAttribute("index", &index);
 					monsterItem->QueryIntAttribute("position", &position);
-					int mtype = m_miscellaneousAtt[index]->GetType();
-					int msubtype = m_miscellaneousAtt[index]->GetSubtype();
-					CMiscellaneous* misc = new CMiscellaneous(index, (CMiscellaneous::MiscItemType)mtype, msubtype);
+					CMiscellaneous* misc = new CMiscellaneous(index, m_miscellaneousAtt[index]);
 					pGrpMonster->CarryItem(misc, (SUBPOS_ABSOLUTE)position);
 
 				}
@@ -515,11 +509,13 @@ void CDungeonMap::ParseMiscellaneousObjects(TiXmlElement* rootNode) {
 		const char* parent = parentElement->Value();
 		if (strcmp(parent, "miscellaneous") == 0) // several existing
 		{
-			int index, subtype, type;
+			int index, type;
+			CMiscellaneousAttributes att;
 			parentElement->QueryIntAttribute("index", &index);
-			parentElement->QueryIntAttribute("subtype", &subtype);
+			parentElement->QueryIntAttribute("subtype", &att.subtype);
 			parentElement->QueryIntAttribute("type", &type);
-			m_miscellaneousAtt[index] = new CMiscellaneous(index, (CMiscellaneous::MiscItemType)type, subtype);
+			att.type = (CMiscellaneousAttributes::MiscItemType)type;
+			m_miscellaneousAtt[index] = att;
 		}
 		parentElement = parentElement->NextSiblingElement();
 	}
@@ -532,11 +528,13 @@ void CDungeonMap::ParseWeaponObjects(TiXmlElement* rootNode) {
 		const char* parent = parentElement->Value();
 		if (strcmp(parent, "weapon") == 0) // several existing
 		{
-			int index, charges, type;
+			int index, type;
+			CWeaponAttributes att;
 			parentElement->QueryIntAttribute("index", &index);
-			parentElement->QueryIntAttribute("charges", &charges);
+			parentElement->QueryIntAttribute("charges", &att.charges);
 			parentElement->QueryIntAttribute("type", &type);
-			m_weaponAtt[index] = new CWeapon(index, (CWeapon::WeaponType)type, charges);
+			att.type = (CWeaponAttributes::WeaponType)type;
+			m_weaponAtt[index] = att;
 		}
 		parentElement = parentElement->NextSiblingElement();
 	}
@@ -696,9 +694,9 @@ void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
 	rootNode->QueryIntAttribute("number_of_doors", &m_countDoors);
 	m_doorAtt = new CDoorAttributes[m_countDoors];
 	rootNode->QueryIntAttribute("number_of_miscellaneous", &m_countMiscellaneous);
-	m_miscellaneousAtt = new CMiscellaneous*[m_countMiscellaneous];
+	m_miscellaneousAtt = new CMiscellaneousAttributes[m_countMiscellaneous];
 	rootNode->QueryIntAttribute("number_of_weapons", &m_countWeapons);
-	m_weaponAtt = new CWeapon*[m_countWeapons];
+	m_weaponAtt = new CWeaponAttributes[m_countWeapons];
 	rootNode->QueryIntAttribute("number_of_actuators", &m_countActuators);	
 	m_actuatorType = new int[m_countActuators];
 	rootNode->QueryIntAttribute("number_of_teleporters", &m_countTeleporters);

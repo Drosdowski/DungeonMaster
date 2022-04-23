@@ -4,6 +4,8 @@
 #include "SpecialTile/CTeleporterAttributes.h"
 #include "SpecialTile/CCreatureAttributes.h"
 #include "SpecialTile/CDoorAttributes.h"
+#include "SpecialTile/WeaponAttributes.h"
+#include "SpecialTile/MiscellaneousAttributes.h" // todo nicht class...?
 
 #define FELD_MAX_X 32
 #define FELD_MAX_Y 32
@@ -76,8 +78,8 @@ private:
 	CGrpHeld* m_pGrpHelden;
 
 	// dynamic arrays
-	CMiscellaneous** m_miscellaneousAtt;
-	CWeapon** m_weaponAtt;
+	CMiscellaneousAttributes* m_miscellaneousAtt;
+	CWeaponAttributes* m_weaponAtt;
 
 	int* m_actuatorType;
 	CDoorAttributes* m_doorAtt;
