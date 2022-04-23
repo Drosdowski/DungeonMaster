@@ -639,6 +639,8 @@ IDB_MISSILE_SWORD_F     BITMAP                  "res\\Items3D\\Missile_Sword_F.b
 
 IDB_ITEM3D_CLUB         BITMAP                  "res\\Items3D\\Item_3d_Club.bmp"
 
+IDB_ITEM3D_CORN         BITMAP                  "res\\Items3D\\Item_3d_Corn.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

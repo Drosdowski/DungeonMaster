@@ -28,6 +28,7 @@ public:
 
 	int GetSheetForGroup();
 	int GetOffsetForGroup();
+	ItemGroup GetGroup();
 
 private:
 	WeaponType m_type;

@@ -11,6 +11,7 @@ public:
 
 	CBitmap* GetApple() { return m_pApple; }
 	CBitmap* GetBread() { return m_pBread; }
+	CBitmap* GetCorn() { return m_pCorn; }
 	CBitmap* GetGoldKey() { return m_pGoldKey; }
 	CBitmap* GetIronKey() { return m_pIronKey; }
 	CBitmap* GetWaterskin(int subtype) { return m_pWaterskin[subtype]; }
@@ -23,6 +24,7 @@ private:
 
 	CBitmap* m_pApple;
 	CBitmap* m_pBread;
+	CBitmap* m_pCorn;
 	CBitmap* m_pGoldKey;
 	CBitmap* m_pIronKey;
 	CBitmap* m_pWaterskin[2];

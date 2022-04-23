@@ -22,11 +22,13 @@ public:
 		RaKey = 23,
 		MasterKey = 24,
 		Apple = 29,
+		Corn = 30,
 		Bread = 31
 	};
 
 	int GetSheetForGroup();
 	int GetOffsetForGroup();
+	ItemGroup GetGroup();
 
 	CMiscellaneous(int index, MiscItemType type, int subtype);
 	~CMiscellaneous();

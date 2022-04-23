@@ -33,7 +33,8 @@ private:
 	void ParseActuatorObjects(TiXmlElement* rootNode);
 	void ParseCreatureObjects(TiXmlElement* rootNode);
 	void ParseDoorObjects(TiXmlElement* rootNode);
-	void ParseMiscellaneousesObjects(TiXmlElement* rootNode);
+	void ParseMiscellaneousObjects(TiXmlElement* rootNode);
+	void ParseWeaponObjects(TiXmlElement* rootNode);
 	void ParseObjects(TiXmlElement* rootNode);
 	void ParseTeleporterObjects(TiXmlElement* rootNode);
 
@@ -47,6 +48,7 @@ private:
 	void ParseItems(TiXmlElement* rootNode, VEKTOR coords);
 	void ParseActuator(TiXmlElement* miscItem, VEKTOR coords);
 	void ParseMiscellaneous(TiXmlElement* rootNode, VEKTOR coords);
+	void ParseWeapons(TiXmlElement* rootNode, VEKTOR coords);
 	void ParseFloorDecoration(TiXmlElement* miscItem, VEKTOR coords);
 	void ParseWallDecoration(TiXmlElement* miscItem, VEKTOR coords);
 	void ParseCreature(TiXmlElement* miscItem, VEKTOR coords);
@@ -55,6 +57,7 @@ private:
 	CField* ParseStairs(TiXmlElement* rootNode, VEKTOR pos);
 	CField* ParsePit(TiXmlElement* rootNode, VEKTOR pos);
 	CField* ParseTeleport(TiXmlElement* rootNode, VEKTOR pos);
+
 	CField* m_pFeld[FELD_MAX_X][FELD_MAX_Y][FELD_MAX_Z];
 	CField* m_pEdgeWall;
 	int m_LevelWidth[FELD_MAX_Z];
@@ -65,6 +68,7 @@ private:
 	COMPASS_DIRECTION m_startRicht;
 	int m_countDoors;
 	int m_countMiscellaneous;
+	int m_countWeapons;
 	int m_countActuators;
 	int m_countTeleporters;
 	int m_countCreatures;
@@ -72,8 +76,9 @@ private:
 	CGrpHeld* m_pGrpHelden;
 
 	// dynamic arrays
-	int* m_miscellaneousType;
-	int* m_miscellaneousSubtype;
+	CMiscellaneous** m_miscellaneousAtt;
+	CWeapon** m_weaponAtt;
+
 	int* m_actuatorType;
 	CDoorAttributes* m_doorAtt;
 	TeleporterAttributes* m_teleportAtt;

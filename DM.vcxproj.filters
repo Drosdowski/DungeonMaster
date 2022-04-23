@@ -1090,6 +1090,12 @@
     <Image Include="res\Items3D\Item_3d_Club.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\walldeco\bitmap1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Item_3d_Corn.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

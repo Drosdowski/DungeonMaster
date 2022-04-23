@@ -42,8 +42,4 @@ bool CItem::CheckGroup(int slotId, int type) {
 }
 
 
-CItem::ItemGroup CItem::GetGroup(int type) {
-	if (type >= 9 && type <= 24) return ItemGroup::Key;
-	if (type >= 29 && type <= 31 || type == 1) return ItemGroup::Consumable;
-	return ItemGroup::Other;
-}
+

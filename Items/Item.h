@@ -20,10 +20,11 @@ public:
 		Quiver = 11,
 		Throwable = 12,
 		Flask = 13,
+		
 		Other = 99
 	};
 
-	ItemGroup GetGroup(int type);
+	virtual ItemGroup GetGroup(int type) { return Other; };
 
 	CItem(int index, ItemType m_itemType);
 

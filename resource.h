@@ -131,6 +131,7 @@
 #define IDB_ITEM3D_WATERSKIN_F          405
 #define IDB_ITEM3D_SWORD                406
 #define IDB_ITEM3D_CLUB                 407
+#define IDB_ITEM3D_CORN                 408
 #define IDB_MISSILE_CLUB_B              440
 #define IDB_MISSILE_CLUB_F              441
 #define IDB_MISSILE_CLUB_S              442
@@ -244,7 +245,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        446
+#define _APS_NEXT_RESOURCE_VALUE        448
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

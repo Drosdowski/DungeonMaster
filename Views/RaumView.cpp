@@ -516,6 +516,8 @@ CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {
 	CBitmap* bmp;
 	if (misc->GetType() == CMiscellaneous::MiscItemType::Apple) // TODO Logik auslagern!
 		bmp = m_pItem3DPic->GetApple();
+	else if (misc->GetType() == CMiscellaneous::MiscItemType::Corn) 
+		bmp = m_pItem3DPic->GetCorn();
 	else if (misc->GetType() >= CMiscellaneous::MiscItemType::IronKey &&
 		misc->GetType() <= CMiscellaneous::MiscItemType::SkeletonKey)
 		bmp = m_pItem3DPic->GetIronKey();

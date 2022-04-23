@@ -7,6 +7,7 @@
 #include "Items\FloorDecoration.h"
 #include "Items\WallDecoration.h"
 #include "Items/CMiscellaneous.h"
+#include "Items/Weapon.h"
 #include "SpecialTile/CTeleporter.h"
 #include "CDungeonMap.h"
 
@@ -34,8 +35,13 @@ CDungeonMap::~CDungeonMap()
 	delete m_wallDecorationTypes;
 		
 	delete m_doorAtt;
-	delete m_miscellaneousType;
-	delete m_miscellaneousSubtype;
+	for (int i=0; i< m_countMiscellaneous; i++)
+		delete m_miscellaneousAtt[i];
+	delete m_miscellaneousAtt;
+	for (int i = 0; i < m_countWeapons; i++)
+		delete m_weaponAtt[i];
+	delete m_weaponAtt;
+	
 	delete m_actuatorType;
 	delete m_teleportAtt;	
 	delete m_creatureAtt;
@@ -188,28 +194,30 @@ void CDungeonMap::ParseItems(TiXmlElement* rootNode, VEKTOR coords) {
 	{
 		const char* parent = parentElement->Value();
 		if (strcmp(parent, "items") == 0)
-		{ // 16851
-			TiXmlElement* miscItem = parentElement->FirstChildElement();
-			while (miscItem)
+		{
+			TiXmlElement* item = parentElement->FirstChildElement();
+			while (item)
 			{
-				if (strcmp(miscItem->Value(), "miscellaneous") == 0) {
-
-					ParseMiscellaneous(miscItem, coords);
+				if (strcmp(item->Value(), "miscellaneous") == 0) {
+					ParseMiscellaneous(item, coords);
 				}
-				else if (strcmp(miscItem->Value(), "actuator") == 0) {
-					ParseActuator(miscItem, coords);
+				else if (strcmp(item->Value(), "weapon") == 0) {
+					ParseWeapons(item, coords);
 				}
-				else if (strcmp(miscItem->Value(), "random_floor_decoration") == 0) {
-					ParseFloorDecoration(miscItem, coords);
+				else if (strcmp(item->Value(), "actuator") == 0) {
+					ParseActuator(item, coords);
 				}
-				else if (strcmp(miscItem->Value(), "random_wall_decoration") == 0) {
-					ParseWallDecoration(miscItem, coords);
+				else if (strcmp(item->Value(), "random_floor_decoration") == 0) {
+					ParseFloorDecoration(item, coords);
 				}
-				else if (strcmp(miscItem->Value(), "creature") == 0 && monsterAktiv) {
-					ParseCreature(miscItem, coords);
+				else if (strcmp(item->Value(), "random_wall_decoration") == 0) {
+					ParseWallDecoration(item, coords);
+				}
+				else if (strcmp(item->Value(), "creature") == 0 && monsterAktiv) {
+					ParseCreature(item, coords);
 				}
 			
-				miscItem = miscItem->NextSiblingElement();
+				item = item->NextSiblingElement();
 			}
 
 
@@ -220,16 +228,20 @@ void CDungeonMap::ParseItems(TiXmlElement* rootNode, VEKTOR coords) {
 }
 
 void CDungeonMap::ParseMiscellaneous(TiXmlElement* miscItem, VEKTOR coords) {
-	int msubtype, mtype = 0;
 	int index, subPos;
 	miscItem->QueryIntAttribute("index", &index);
 	miscItem->QueryIntAttribute("position", &subPos);
-	mtype = m_miscellaneousType[index];
-	msubtype = m_miscellaneousSubtype[index];
-
-	CMiscellaneous* misc = new CMiscellaneous(index, (CMiscellaneous::MiscItemType) mtype, msubtype);
-	m_pFeld[coords.x][coords.y][coords.z]->PutMisc(misc, (SUBPOS_ABSOLUTE)subPos);
+	m_pFeld[coords.x][coords.y][coords.z]->PutMisc(m_miscellaneousAtt[index], (SUBPOS_ABSOLUTE)subPos);
 }
+
+void CDungeonMap::ParseWeapons(TiXmlElement* weaponItem, VEKTOR coords) {
+	int index, subPos;
+	weaponItem->QueryIntAttribute("index", &index);
+	weaponItem->QueryIntAttribute("position", &subPos);
+
+	m_pFeld[coords.x][coords.y][coords.z]->PutWeapon(m_weaponAtt[index], (SUBPOS_ABSOLUTE)subPos);
+}
+
 
 void CDungeonMap::ParseFloorDecoration(TiXmlElement* decoItem, VEKTOR coords) {
 	int graphic;
@@ -271,8 +283,8 @@ void CDungeonMap::ParseCreature(TiXmlElement* creatureItem, VEKTOR coords) {
 				{
 					monsterItem->QueryIntAttribute("index", &index);
 					monsterItem->QueryIntAttribute("position", &position);
-					int mtype = m_miscellaneousType[index];
-					int msubtype = m_miscellaneousSubtype[index];
+					int mtype = m_miscellaneousAtt[index]->GetType();
+					int msubtype = m_miscellaneousAtt[index]->GetSubtype();
 					CMiscellaneous* misc = new CMiscellaneous(index, (CMiscellaneous::MiscItemType)mtype, msubtype);
 					pGrpMonster->CarryItem(misc, (SUBPOS_ABSOLUTE)position);
 
@@ -496,7 +508,7 @@ void CDungeonMap::ParseDoorObjects(TiXmlElement* rootNode) {
 	}
 }
 
-void CDungeonMap::ParseMiscellaneousesObjects(TiXmlElement* rootNode) {
+void CDungeonMap::ParseMiscellaneousObjects(TiXmlElement* rootNode) {
 	TiXmlElement* parentElement = rootNode->FirstChildElement();
 	while (parentElement)
 	{
@@ -507,9 +519,24 @@ void CDungeonMap::ParseMiscellaneousesObjects(TiXmlElement* rootNode) {
 			parentElement->QueryIntAttribute("index", &index);
 			parentElement->QueryIntAttribute("subtype", &subtype);
 			parentElement->QueryIntAttribute("type", &type);
-			m_miscellaneousType[index] = type;
-			m_miscellaneousSubtype[index] = subtype;
+			m_miscellaneousAtt[index] = new CMiscellaneous(index, (CMiscellaneous::MiscItemType)type, subtype);
+		}
+		parentElement = parentElement->NextSiblingElement();
+	}
+}
 
+void CDungeonMap::ParseWeaponObjects(TiXmlElement* rootNode) {
+	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "weapon") == 0) // several existing
+		{
+			int index, charges, type;
+			parentElement->QueryIntAttribute("index", &index);
+			parentElement->QueryIntAttribute("charges", &charges);
+			parentElement->QueryIntAttribute("type", &type);
+			m_weaponAtt[index] = new CWeapon(index, (CWeapon::WeaponType)type, charges);
 		}
 		parentElement = parentElement->NextSiblingElement();
 	}
@@ -637,7 +664,11 @@ void CDungeonMap::ParseObjects(TiXmlElement* rootNode) {
 		}
 		else if (strcmp(parent, "miscellaneouses") == 0)
 		{
-			ParseMiscellaneousesObjects(parentElement);
+			ParseMiscellaneousObjects(parentElement);
+		}
+		else if (strcmp(parent, "weapons") == 0)
+		{
+			ParseWeaponObjects(parentElement);
 		}
 		else if (strcmp(parent, "actuators") == 0)
 		{
@@ -665,8 +696,9 @@ void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
 	rootNode->QueryIntAttribute("number_of_doors", &m_countDoors);
 	m_doorAtt = new CDoorAttributes[m_countDoors];
 	rootNode->QueryIntAttribute("number_of_miscellaneous", &m_countMiscellaneous);
-	m_miscellaneousType = new int[m_countMiscellaneous];
-	m_miscellaneousSubtype = new int[m_countMiscellaneous];
+	m_miscellaneousAtt = new CMiscellaneous*[m_countMiscellaneous];
+	rootNode->QueryIntAttribute("number_of_weapons", &m_countWeapons);
+	m_weaponAtt = new CWeapon*[m_countWeapons];
 	rootNode->QueryIntAttribute("number_of_actuators", &m_countActuators);	
 	m_actuatorType = new int[m_countActuators];
 	rootNode->QueryIntAttribute("number_of_teleporters", &m_countTeleporters);

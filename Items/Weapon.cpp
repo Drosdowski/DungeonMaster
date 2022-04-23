@@ -16,22 +16,30 @@ void CWeapon::reduceCharges() {
 }
 
 int CWeapon::GetOffsetForGroup() {
-	CItem::ItemGroup group = GetGroup(m_type);
-	switch (group) {	
-	case Other:
-		assert(false); // todo !!
+	if (m_type == 2) { // Torch
+		return 4 + (int)(m_charges / 4);
 	}
-	return -1;
+	else if (m_type == 5) // Bolt blade
+	{
+		if (m_charges > 0)
+			return 25;
+		else
+			return 24;
+	} else if (m_type >= 9 && m_type <= 23) {
+		return m_type - 8;
+	}
 }
 
 int CWeapon::GetSheetForGroup() {
-	CItem::ItemGroup group = GetGroup(m_type);
-	switch (group) {
-	case Shield:
-	case Throwable:
+	if (m_type < 9)
+		return 0;
+	else if (m_type < 24)
 		return 1;
-	case Other:
+	else
 		assert(false); // todo !!
-	}
 	return -1;
+}
+
+CItem::ItemGroup CWeapon::GetGroup() {
+	return ItemGroup::Weapon;
 }

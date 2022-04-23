@@ -294,6 +294,7 @@
     <Image Include="res\Door_Wood_2.bmp" />
     <Image Include="res\Door_Wood_3.bmp" />
     <Image Include="res\Items3D\Item_3d_Club.bmp" />
+    <Image Include="res\Items3D\Item_3d_Corn.bmp" />
     <Image Include="res\Items3D\Item_3d_Sword.bmp" />
     <Image Include="res\Items3D\Item_3d_Waterskin_Empty.bmp" />
     <Image Include="res\Items3D\Item_3d_Waterskin_Full.bmp" />
@@ -304,6 +305,7 @@
     <Image Include="res\Items3D\Missile_Sword_F.bmp" />
     <Image Include="res\P.bmp" />
     <Image Include="res\Steine.bmp" />
+    <Image Include="res\walldeco\bitmap1.bmp" />
     <Image Include="res\WallDeco\WallDeco_14_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_14_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_15_Front.bmp" />
