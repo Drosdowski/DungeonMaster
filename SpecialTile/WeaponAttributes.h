@@ -5,6 +5,7 @@ public:
 	enum WeaponType {
 		Torch = 2,
 		BoltBlade = 5,
+		Dagger = 8,
 		Falchion = 9,
 		Sword = 10,
 		Rapier = 11,

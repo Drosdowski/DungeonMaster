@@ -539,8 +539,10 @@ CBitmap* CRaumView::GetWeaponBitmap(CWeapon* weapon, bool inAir) {
 	CBitmap* bmp;
 	if (weapon->GetType() >= CWeaponAttributes::WeaponType::Falchion &&
  		weapon->GetType() <= CWeaponAttributes::WeaponType::DiamondEdge ||
-		weapon->GetType() <= CWeaponAttributes::WeaponType::Inquisitor)
+		weapon->GetType() == CWeaponAttributes::WeaponType::Inquisitor)
 		bmp = m_pItem3DPic->GetSword(inAir);
+	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Dagger)
+		bmp = m_pItem3DPic->GetDagger(inAir);
 	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Club)
 		bmp = m_pItem3DPic->GetClub(inAir);
 	else

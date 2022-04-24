@@ -40,6 +40,7 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pSword[1], IDB_MISSILE_SWORD_B);
 	LoadPic(m_pSword[2], IDB_MISSILE_SWORD_F);
 	LoadPic(m_pSword[3], IDB_MISSILE_SWORD_S);
+	LoadPic(m_pDagger[0], IDB_ITEM3D_DAGGER);
 	LoadPic(m_pDagger[1], IDB_MISSILE_DAGGER_B);
 	LoadPic(m_pDagger[2], IDB_MISSILE_DAGGER_F);
 	LoadPic(m_pDagger[3], IDB_MISSILE_DAGGER_S);
@@ -89,10 +90,20 @@ CBitmap* CItem3DPic::GetClub(bool inAir) {
 
 CBitmap* CItem3DPic::GetSword(bool inAir) {
 	if (inAir) {
-		return m_pSword[rotationCnt];
-		rotationCnt = (rotationCnt % 2) + 1;
+		return m_pSword[1]; // todo !!	
 	}
 	else {
 		return m_pSword[0];
 	}
 }
+
+CBitmap* CItem3DPic::GetDagger(bool inAir) {
+	if (inAir) {
+		return m_pDagger[1]; // todo !!	
+	}
+	else {
+		return m_pDagger[0];
+	}
+}
+
+
