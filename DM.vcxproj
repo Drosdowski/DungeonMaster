@@ -129,6 +129,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SpecialTile\CWeaponAttributes.cpp" />
+    <ClCompile Include="SpecialTile\CMiscellaneousAttributes.cpp" />
     <ClCompile Include="Items\Item.cpp" />
     <ClCompile Include="SpecialTile\CDoorAttributes.cpp" />
     <ClCompile Include="SpecialTile\CCreatureAttributes.cpp" />
@@ -195,6 +197,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Items\Item.h" />
+    <ClInclude Include="SpecialTile\MiscellaneousAttributes.h" />
     <ClInclude Include="SpecialTile\CDoorAttributes.h" />
     <ClInclude Include="SpecialTile\CCreatureAttributes.h" />
     <ClInclude Include="Pictures\CLockPic.h" />
@@ -250,6 +253,7 @@
     <ClInclude Include="Views\ZauberView.h" />
     <ClInclude Include="Items\WallDecoration.h" />
     <ClInclude Include="Items\Weapon.h" />
+    <ClInclude Include="SpecialTile\WeaponAttributes.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\ActionsArea.bmp" />

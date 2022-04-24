@@ -49,7 +49,7 @@ void CRucksack::OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point)
 		if (item->getItemType() == CItem::ItemType::MiscItem) {
 			CMiscellaneous* misc = (CMiscellaneous*)item;
 			if (misc && misc->GetGroup() == CMiscellaneous::ItemGroup::Consumable) {
-				if (misc->GetType() == CMiscellaneous::MiscItemType::Water) {
+				if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Water) {
 					if (misc->GetSubtype() > 0) {
 						m_pOwner->Trinken(50);
 						misc->SetSubtype(misc->GetSubtype() - 1);

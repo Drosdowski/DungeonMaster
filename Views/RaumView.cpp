@@ -514,17 +514,17 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 
 CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {
 	CBitmap* bmp;
-	if (misc->GetType() == CMiscellaneous::MiscItemType::Apple) // TODO Logik auslagern!
+	if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Apple) // TODO Logik auslagern!
 		bmp = m_pItem3DPic->GetApple();
-	else if (misc->GetType() == CMiscellaneous::MiscItemType::Corn) 
+	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Corn)
 		bmp = m_pItem3DPic->GetCorn();
-	else if (misc->GetType() >= CMiscellaneous::MiscItemType::IronKey &&
-		misc->GetType() <= CMiscellaneous::MiscItemType::SkeletonKey)
+	else if (misc->GetType() >= CMiscellaneousAttributes::MiscItemType::IronKey &&
+		misc->GetType() <= CMiscellaneousAttributes::MiscItemType::SkeletonKey)
 		bmp = m_pItem3DPic->GetIronKey();
-	else if (misc->GetType() >= CMiscellaneous::MiscItemType::GoldKey &&
-		misc->GetType() <= CMiscellaneous::MiscItemType::MasterKey)
+	else if (misc->GetType() >= CMiscellaneousAttributes::MiscItemType::GoldKey &&
+		misc->GetType() <= CMiscellaneousAttributes::MiscItemType::MasterKey)
 		bmp = m_pItem3DPic->GetGoldKey();
-	else if (misc->GetType() == CMiscellaneous::MiscItemType::Water)
+	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Water)
 		if (misc->GetSubtype() > 0)
 			bmp = m_pItem3DPic->GetWaterskin(1);
 		else
@@ -537,11 +537,11 @@ CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {
 
 CBitmap* CRaumView::GetWeaponBitmap(CWeapon* weapon, bool inAir) {
 	CBitmap* bmp;
-	if (weapon->GetType() >= CWeapon::WeaponType::Falchion &&
-		weapon->GetType() <= CWeapon::WeaponType::DiamondEdge ||
-		weapon->GetType() <= CWeapon::WeaponType::Inquisitor)
+	if (weapon->GetType() >= CWeaponAttributes::WeaponType::Falchion &&
+ 		weapon->GetType() <= CWeaponAttributes::WeaponType::DiamondEdge ||
+		weapon->GetType() <= CWeaponAttributes::WeaponType::Inquisitor)
 		bmp = m_pItem3DPic->GetSword(inAir);
-	else if (weapon->GetType() == CWeapon::WeaponType::Club)
+	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Club)
 		bmp = m_pItem3DPic->GetClub(inAir);
 	else
 		bmp = m_pItem3DPic->GetBread();

@@ -89,7 +89,10 @@ CField::~CField()
 
 	for (int i = 0; i < 4; i++) {
 		for (CItem* item : m_pItem[i]) {
-			delete item;
+			if (item->getItemType() == CItem::ItemType::WeaponItem)
+				delete (CWeapon*)item;
+			else if (item->getItemType() == CItem::ItemType::MiscItem)
+				delete (CMiscellaneous*)item;
 		}
 		for (CActuator* actuator : m_pActuator[i]) {
 			delete actuator;
