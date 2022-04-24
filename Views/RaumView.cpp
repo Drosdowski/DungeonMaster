@@ -486,7 +486,7 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 		bmp = GetMiscBitmap((CMiscellaneous*)item);
 	}
 	else if (typ == CItem::ItemType::WeaponItem) {
-		bmp = GetWeaponBitmap((CWeapon*)item, false);
+		bmp = GetWeaponBitmap((CWeapon*)item, item->IsFlying());
 	}
 	
 	BITMAP bmpInfo;

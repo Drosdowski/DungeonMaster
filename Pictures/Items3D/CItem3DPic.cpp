@@ -16,12 +16,10 @@ CItem3DPic ::~CItem3DPic() {
 	for (int w = 0; w < 4; w++)
 	{
 		delete m_pClub[w];
-		if (w < 3)
-		{
-			delete m_pSword[w];
-			if (w < 2)
-				delete m_pWaterskin[w];
-		}
+		delete m_pSword[w];
+		delete m_pDagger[w];
+		if (w < 2)
+			delete m_pWaterskin[w];
 	}
 }
 	
@@ -41,6 +39,10 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pSword[0], IDB_ITEM3D_SWORD);
 	LoadPic(m_pSword[1], IDB_MISSILE_SWORD_B);
 	LoadPic(m_pSword[2], IDB_MISSILE_SWORD_F);
+	LoadPic(m_pSword[3], IDB_MISSILE_SWORD_S);
+	LoadPic(m_pDagger[1], IDB_MISSILE_DAGGER_B);
+	LoadPic(m_pDagger[2], IDB_MISSILE_DAGGER_F);
+	LoadPic(m_pDagger[3], IDB_MISSILE_DAGGER_S);
 }
 
 CPoint CItem3DPic::GetFloorMiddle(int x, int ebene) {
@@ -77,8 +79,8 @@ CPoint CItem3DPic::GetFloorMiddle(int x, int ebene) {
 
 CBitmap* CItem3DPic::GetClub(bool inAir) {
 	if (inAir) {
-		return m_pClub[rotationCnt];
 		rotationCnt = (rotationCnt % 3) + 1;
+		return m_pClub[rotationCnt];
 	}
 	else {
 		return m_pClub[0];

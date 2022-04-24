@@ -132,11 +132,16 @@
 #define IDB_ITEM3D_SWORD                406
 #define IDB_ITEM3D_CLUB                 407
 #define IDB_ITEM3D_CORN                 408
+#define IDB_ITEM3D_DAGGER               409
 #define IDB_MISSILE_CLUB_B              440
 #define IDB_MISSILE_CLUB_F              441
 #define IDB_MISSILE_CLUB_S              442
 #define IDB_MISSILE_SWORD_B             443
 #define IDB_MISSILE_SWORD_F             444
+#define IDB_MISSILE_SWORD_S             445
+#define IDB_MISSILE_DAGGER_B            450
+#define IDB_MISSILE_DAGGER_F            451
+#define IDB_MISSILE_DAGGER_S            452
 #define IDB_BITMAP_E0L                  1001
 #define IDB_BITMAP_E0LF                 1002
 #define IDB_BITMAP_E0R                  1004
@@ -245,7 +250,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        448
+#define _APS_NEXT_RESOURCE_VALUE        453
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

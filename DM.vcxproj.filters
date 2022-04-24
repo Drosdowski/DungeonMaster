@@ -1096,6 +1096,18 @@
     <Image Include="res\Items3D\Item_3d_Corn.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Items3D\Item_3d_Dagger.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_Dagger_S.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_Dagger_B.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_Dagger_F.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
