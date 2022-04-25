@@ -15,10 +15,10 @@ void CWeapon::reduceCharges() {
 }
 
 int CWeapon::GetOffsetForGroup() {
-	if (m_attribute.type == 2) { // Torch
+	if (m_attribute.type == CWeaponAttributes::WeaponType::Torch) { 
 		return 4 + (int)(m_attribute.charges / 4);
 	}
-	else if (m_attribute.type == 5) // Bolt blade
+	else if (m_attribute.type == CWeaponAttributes::WeaponType::BoltBlade) 
 	{
 		if (m_attribute.charges > 0)
 			return 25;

@@ -69,7 +69,7 @@ void CRucksack::OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point)
 			CItem* itemInHand = m_pOwner->GetItemInHand();
 			CItem* newItemInHand = NULL;
 			CItem* itemCarryingAtPos = m_pOwner->GetItemCarrying(slot);
-			if ((itemInHand == NULL) || (itemInHand && itemInHand->CheckGroup(slot, itemInHand->GetType()))) {
+			if ((itemInHand == NULL) || (itemInHand && itemInHand->CheckGroup(slot, itemInHand->GetGroup()))) {
 				// todo: group check!
 				if (itemInHand) {
 					newItemInHand = m_pOwner->SwitchItemAt(slot, itemInHand);

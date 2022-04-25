@@ -25,7 +25,7 @@ public:
 		Other = 99
 	};
 
-	virtual ItemGroup GetGroup(int type) { return Other; };
+	virtual ItemGroup GetGroup() { return Other; };
 
 	CItem(int index, ItemType m_itemType);
 
@@ -33,7 +33,7 @@ public:
 	bool HasMovedThisTick();
 	void ResethasMoved();
 	void ReduceSpeed();
-	bool CheckGroup(int slotId, int type);
+	bool CheckGroup(int slotId, ItemGroup group);
 	ItemType getItemType() { return m_itemType; }
 	
 	virtual int GetType() { return -1; };

@@ -30,13 +30,13 @@ void CItem::ResethasMoved() {
 	m_done = false;
 }
 
-bool CItem::CheckGroup(int slotId, int type) {
-	if (slotId == 2) return (GetGroup(type) == Helmet);
-	if (slotId == 3) return (GetGroup(type) == Amulet);
-	if (slotId == 4) return (GetGroup(type) == Torso);
-	if (slotId == 5) return (GetGroup(type) == Legs);
-	if (slotId == 6) return (GetGroup(type) == Shoes);
-	if (slotId >= 8 && slotId <= 11) return (GetGroup(type) == Throwable);
+bool CItem::CheckGroup(int slotId, ItemGroup group) {
+	if (slotId == 2) return (group == Helmet);
+	if (slotId == 3) return (group == Amulet);
+	if (slotId == 4) return (group == Torso);
+	if (slotId == 5) return (group == Legs);
+	if (slotId == 6) return (group == Shoes);
+	if (slotId >= 8 && slotId <= 11) return (group == Throwable);
 
 	return true;
 }

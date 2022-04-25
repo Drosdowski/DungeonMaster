@@ -26,7 +26,8 @@ CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 	//m_posPosition = VEKTOR{ 2,7,0 }; // bei Monster Gruppe / orig. start position
 	//m_posPosition = VEKTOR{ 2,11,0 }; // viele items
 	//m_posPosition = VEKTOR{ 7,9,1 }; // bei Items
-	m_posPosition = VEKTOR{ 6,9,0 }; // bei 1. Pressure Pad
+	m_posPosition = VEKTOR{ 14,8,1 }; // bei Stiefel
+	//m_posPosition = VEKTOR{ 6,9,0 }; // bei 1. Pressure Pad
 	//m_posPosition = VEKTOR{ 16,0,1 }; // bei 9 Pressure Pad
 	//m_posPosition = VEKTOR{ 18,17,1 }; // bei UND Schalter
 	//m_posPosition = VEKTOR{ 4,11,1 }; // bei Schalter für Tür
