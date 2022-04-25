@@ -8,6 +8,9 @@ public:
 	CCloth(int index, CClothAttributes attribute);
 	~CCloth();
 
+	int GetType() { return m_attribute.type; }
+
+
 private:
 	CClothAttributes m_attribute;
 };
