@@ -100,6 +100,7 @@ private:
 	void MoveItems(VEKTOR heroPos);
 	CBitmap* GetMiscBitmap(CMiscellaneous* misc);
 	CBitmap* GetWeaponBitmap(CWeapon* weapon, bool inAir);
+	CBitmap* GetClothBitmap(CCloth* cloth, bool inAir);
 
 	void TriggerPassiveActuators(VEKTOR fieldPos, VEKTOR heroPos );
 	void TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator* actuator);

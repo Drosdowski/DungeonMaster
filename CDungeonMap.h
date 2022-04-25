@@ -1,11 +1,12 @@
 #pragma once
 #include "Feld.h"
 #include "Items/CActuator.h"
-#include "SpecialTile/CTeleporterAttributes.h"
-#include "SpecialTile/CCreatureAttributes.h"
-#include "SpecialTile/CDoorAttributes.h"
-#include "SpecialTile/WeaponAttributes.h"
-#include "SpecialTile/MiscellaneousAttributes.h" // todo nicht class...?
+#include "Attributes/CTeleporterAttributes.h"
+#include "Attributes/CCreatureAttributes.h"
+#include "Attributes/CDoorAttributes.h"
+#include "Attributes/WeaponAttributes.h"
+#include "Attributes/ClothAttributes.h"
+#include "Attributes/MiscellaneousAttributes.h" // todo nicht class...?
 
 #define FELD_MAX_X 32
 #define FELD_MAX_Y 32
@@ -37,6 +38,7 @@ private:
 	void ParseDoorObjects(TiXmlElement* rootNode);
 	void ParseMiscellaneousObjects(TiXmlElement* rootNode);
 	void ParseWeaponObjects(TiXmlElement* rootNode);
+	void ParseClothObjects(TiXmlElement* rootNode);
 	void ParseObjects(TiXmlElement* rootNode);
 	void ParseTeleporterObjects(TiXmlElement* rootNode);
 
@@ -51,6 +53,7 @@ private:
 	void ParseActuator(TiXmlElement* miscItem, VEKTOR coords);
 	void ParseMiscellaneous(TiXmlElement* rootNode, VEKTOR coords);
 	void ParseWeapons(TiXmlElement* rootNode, VEKTOR coords);
+	void ParseCloth(TiXmlElement* rootNode, VEKTOR coords);
 	void ParseFloorDecoration(TiXmlElement* miscItem, VEKTOR coords);
 	void ParseWallDecoration(TiXmlElement* miscItem, VEKTOR coords);
 	void ParseCreature(TiXmlElement* miscItem, VEKTOR coords);
@@ -71,6 +74,7 @@ private:
 	int m_countDoors;
 	int m_countMiscellaneous;
 	int m_countWeapons;
+	int m_countClothes;
 	int m_countActuators;
 	int m_countTeleporters;
 	int m_countCreatures;
@@ -80,6 +84,7 @@ private:
 	// dynamic arrays
 	CMiscellaneousAttributes* m_miscellaneousAtt;
 	CWeaponAttributes* m_weaponAtt;
+	CClothAttributes* m_clothAtt;
 
 	int* m_actuatorType;
 	CDoorAttributes* m_doorAtt;

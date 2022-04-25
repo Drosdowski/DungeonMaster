@@ -19,6 +19,7 @@
 class CGrpMonster;
 class CItem;
 class CMiscellaneous;
+class CCloth;
 class CWeapon;
 class CActuator;
 class CFloorDecoration;
@@ -64,6 +65,7 @@ public:
 	void PutItem(CItem* item, SUBPOS_ABSOLUTE index);
 	void PutMisc(CMiscellaneous* item, SUBPOS_ABSOLUTE index);
 	void PutWeapon(CWeapon* item, SUBPOS_ABSOLUTE index);
+	void PutCloth(CCloth* item, SUBPOS_ABSOLUTE index);
 	void ThrowItem(CItem* item, SUBPOS_ABSOLUTE index, VEKTOR force);
 	//void PutItem(CItem* item, SUBPOS subPos);
 	CItem* TakeItem(SUBPOS_ABSOLUTE subPos);

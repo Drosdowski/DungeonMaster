@@ -1,6 +1,6 @@
 #pragma once
 #include "Item.h"
-#include <SpecialTile\MiscellaneousAttributes.h>
+#include <Attributes\MiscellaneousAttributes.h>
 
 class CItem3DPic;
 class CMiscellaneous : public CItem

@@ -15,7 +15,8 @@ public:
 		DiamondEdge = 15,
 		Inquisitor = 17,
 		Hardcleave = 19,
-		Club = 23
+		Club = 23,
+		Arrow = 27
 	};
 
 	WeaponType type;

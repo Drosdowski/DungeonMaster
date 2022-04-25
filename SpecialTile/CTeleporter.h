@@ -1,5 +1,5 @@
 #pragma once
-#include "CTeleporterAttributes.h"
+#include "..\Attributes\CTeleporterAttributes.h"
 class CTeleporter
 {
 public:

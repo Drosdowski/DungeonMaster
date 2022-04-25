@@ -4,7 +4,8 @@ class CItem
 public:
 	enum ItemType {
 		WeaponItem,
-		MiscItem
+		MiscItem,
+		ClothItem
 	};
 	enum ItemGroup {
 		Key = 1,

@@ -5,7 +5,7 @@
 //
 #include "GrpChar.h"
 #include "..\Monster.h"
-#include "..\..\SpecialTile\CCreatureAttributes.h"
+#include "..\..\Attributes\CCreatureAttributes.h"
 
 
 /////////////////////////////////////////////////////////////////////////////

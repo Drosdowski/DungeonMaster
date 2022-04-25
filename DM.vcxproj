@@ -129,14 +129,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="SpecialTile\CWeaponAttributes.cpp" />
-    <ClCompile Include="SpecialTile\CMiscellaneousAttributes.cpp" />
+    <ClCompile Include="Attributes\CWeaponAttributes.cpp" />
+    <ClCompile Include="Attributes\CMiscellaneousAttributes.cpp" />
+    <ClCompile Include="Attributes\ClothAttributes.cpp" />
+    <ClCompile Include="Items\CCloth.cpp" />
     <ClCompile Include="Items\Item.cpp" />
-    <ClCompile Include="SpecialTile\CDoorAttributes.cpp" />
-    <ClCompile Include="SpecialTile\CCreatureAttributes.cpp" />
+    <ClCompile Include="Attributes\CDoorAttributes.cpp" />
+    <ClCompile Include="Attributes\CCreatureAttributes.cpp" />
     <ClCompile Include="Pictures\CWallDecoPic.cpp" />
     <ClCompile Include="Views\CGroupView.cpp" />
-    <ClCompile Include="SpecialTile\CTeleporterAttributes.cpp" />
+    <ClCompile Include="Attributes\CTeleporterAttributes.cpp" />
     <ClCompile Include="SpecialTile\CTeleporter.cpp" />
     <ClCompile Include="Pictures\CTeleportPic.cpp" />
     <ClCompile Include="Pictures\CPitPic.cpp" />
@@ -196,14 +198,16 @@
     <ResourceCompile Include="DM.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Attributes\ClothAttributes.h" />
+    <ClInclude Include="Items\Cloth.h" />
     <ClInclude Include="Items\Item.h" />
-    <ClInclude Include="SpecialTile\MiscellaneousAttributes.h" />
-    <ClInclude Include="SpecialTile\CDoorAttributes.h" />
-    <ClInclude Include="SpecialTile\CCreatureAttributes.h" />
+    <ClInclude Include="Attributes\MiscellaneousAttributes.h" />
+    <ClInclude Include="Attributes\CDoorAttributes.h" />
+    <ClInclude Include="Attributes\CCreatureAttributes.h" />
     <ClInclude Include="Pictures\CLockPic.h" />
     <ClInclude Include="Pictures\CWallDecoPic.h" />
     <ClInclude Include="Views\CGroupView.h" />
-    <ClInclude Include="SpecialTile\CTeleporterAttributes.h" />
+    <ClInclude Include="Attributes\CTeleporterAttributes.h" />
     <ClInclude Include="SpecialTile\CTeleporter.h" />
     <ClInclude Include="Pictures\CTeleportPic.h" />
     <ClInclude Include="Pictures\CPitPic.h" />
@@ -253,7 +257,7 @@
     <ClInclude Include="Views\ZauberView.h" />
     <ClInclude Include="Items\WallDecoration.h" />
     <ClInclude Include="Items\Weapon.h" />
-    <ClInclude Include="SpecialTile\WeaponAttributes.h" />
+    <ClInclude Include="Attributes\WeaponAttributes.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\ActionsArea.bmp" />
@@ -297,12 +301,20 @@
     <Image Include="res\Door_Wood_1.bmp" />
     <Image Include="res\Door_Wood_2.bmp" />
     <Image Include="res\Door_Wood_3.bmp" />
+    <Image Include="res\Items3D\Item_3d_Arrow.bmp" />
     <Image Include="res\Items3D\Item_3d_Club.bmp" />
     <Image Include="res\Items3D\Item_3d_Corn.bmp" />
     <Image Include="res\Items3D\Item_3d_Dagger.bmp" />
+    <Image Include="res\Items3D\Item_3d_ElvenDoublet.bmp" />
+    <Image Include="res\Items3D\Item_3d_FineRobe.bmp" />
+    <Image Include="res\Items3D\Item_3d_LeatherBoots.bmp" />
     <Image Include="res\Items3D\Item_3d_Sword.bmp" />
+    <Image Include="res\Items3D\Item_3d_Torch.bmp" />
     <Image Include="res\Items3D\Item_3d_Waterskin_Empty.bmp" />
     <Image Include="res\Items3D\Item_3d_Waterskin_Full.bmp" />
+    <Image Include="res\Items3D\Missile_Arrow_B.bmp" />
+    <Image Include="res\Items3D\Missile_Arrow_F.bmp" />
+    <Image Include="res\Items3D\Missile_Arrow_S.bmp" />
     <Image Include="res\Items3D\Missile_Club_B.bmp" />
     <Image Include="res\Items3D\Missile_Club_F.bmp" />
     <Image Include="res\Items3D\Missile_Club_S.bmp" />
@@ -311,6 +323,7 @@
     <Image Include="res\Items3D\Missile_Dagger_S.bmp" />
     <Image Include="res\Items3D\Missile_Sword_B.bmp" />
     <Image Include="res\Items3D\Missile_Sword_F.bmp" />
+    <Image Include="res\Items3D\Missile_Sword_S.bmp" />
     <Image Include="res\P.bmp" />
     <Image Include="res\Steine.bmp" />
     <Image Include="res\walldeco\bitmap1.bmp" />

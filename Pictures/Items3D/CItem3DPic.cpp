@@ -13,11 +13,15 @@ CItem3DPic ::~CItem3DPic() {
 	delete m_pCorn;
 	delete m_pGoldKey;
 	delete m_pIronKey;
+	delete m_pTorch;
+	delete m_pGreenCloth;
+	delete m_pWhiteCloth;
 	for (int w = 0; w < 4; w++)
 	{
 		delete m_pClub[w];
 		delete m_pSword[w];
 		delete m_pDagger[w];
+		delete m_pArrow[w];
 		if (w < 2)
 			delete m_pWaterskin[w];
 	}
@@ -28,8 +32,11 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pApple, IDB_ITEM3D_APPLE);
 	LoadPic(m_pBread, IDB_ITEM3D_BREAD);
 	LoadPic(m_pCorn, IDB_ITEM3D_CORN);
+	LoadPic(m_pWhiteCloth, IDB_ITEM3D_FINEROBE);
+	LoadPic(m_pGreenCloth, IDB_ITEM3D_ELVENDOUBLET);
 	LoadPic(m_pGoldKey, IDB_ITEM3D_GOLDKEY);
 	LoadPic(m_pIronKey, IDB_ITEM3D_IRONKEY);
+	LoadPic(m_pTorch, IDB_ITEM3D_TORCH);
 	LoadPic(m_pWaterskin[0], IDB_ITEM3D_WATERSKIN_E);
 	LoadPic(m_pWaterskin[1], IDB_ITEM3D_WATERSKIN_F);
 	LoadPic(m_pClub[0], IDB_ITEM3D_CLUB);
@@ -44,6 +51,10 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pDagger[1], IDB_MISSILE_DAGGER_B);
 	LoadPic(m_pDagger[2], IDB_MISSILE_DAGGER_F);
 	LoadPic(m_pDagger[3], IDB_MISSILE_DAGGER_S);
+	LoadPic(m_pArrow[0], IDB_ITEM3D_ARROW);
+	LoadPic(m_pArrow[1], IDB_MISSILE_ARROW_B);
+	LoadPic(m_pArrow[2], IDB_MISSILE_ARROW_F);
+	LoadPic(m_pArrow[3], IDB_MISSILE_ARROW_S);
 }
 
 CPoint CItem3DPic::GetFloorMiddle(int x, int ebene) {
@@ -106,4 +117,11 @@ CBitmap* CItem3DPic::GetDagger(bool inAir) {
 	}
 }
 
-
+CBitmap* CItem3DPic::GetArrow(bool inAir) {
+	if (inAir) {
+		return m_pArrow[1]; // todo !!	
+	}
+	else {
+		return m_pArrow[0];
+	}
+}

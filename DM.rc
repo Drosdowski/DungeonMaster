@@ -651,6 +651,22 @@ IDB_MISSILE_DAGGER_B    BITMAP                  "res\\Items3D\\Missile_Dagger_B.
 
 IDB_MISSILE_DAGGER_F    BITMAP                  "res\\Items3D\\Missile_Dagger_F.bmp"
 
+IDB_MISSILE_ARROW_F     BITMAP                  "res\\Items3D\\Missile_Arrow_F.bmp"
+
+IDB_MISSILE_ARROW_B     BITMAP                  "res\\Items3D\\Missile_Arrow_B.bmp"
+
+IDB_MISSILE_ARROW_S     BITMAP                  "res\\Items3D\\Missile_Arrow_S.bmp"
+
+IDB_ITEM3D_ARROW        BITMAP                  "res\\Items3D\\Item_3d_Arrow.bmp"
+
+IDB_ITEM3D_TORCH        BITMAP                  "res\\Items3D\\Item_3d_Torch.bmp"
+
+IDB_ITEM3D_LEATHERBOOTS BITMAP                  "res\\Items3D\\Item_3d_LeatherBoots.bmp"
+
+IDB_ITEM3D_ELVENDOUBLET BITMAP                  "res\\Items3D\\Item_3d_ElvenDoublet.bmp"
+
+IDB_ITEM3D_FINEROBE     BITMAP                  "res\\Items3D\\Item_3d_FineRobe.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

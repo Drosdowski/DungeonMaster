@@ -10,6 +10,7 @@
 #include "Feld.h"
 #include "Items/Item.h"
 #include "Items/CMiscellaneous.h"
+#include "Items/Cloth.h"
 #include "Items/Weapon.h"
 #include "Items/CActuator.h"
 #include "RaumView.h"
@@ -371,6 +372,10 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 
 				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
 
+				if (graphicTypeFront == SquareAlcove ||
+					graphicTypeFront == ArchedAlcove) {
+					// icons rein malen!
+				}
 			}
 		}
 
@@ -488,13 +493,16 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 	else if (typ == CItem::ItemType::WeaponItem) {
 		bmp = GetWeaponBitmap((CWeapon*)item, item->IsFlying());
 	}
-	
-	BITMAP bmpInfo;
-	bmp->GetBitmap(&bmpInfo);
-	double faktor = m_pPictures->getFaktor(ebene);
+	else if (typ == CItem::ItemType::ClothItem) {
+		bmp = GetClothBitmap((CCloth*)item, item->IsFlying());
+	}
+	if (bmp) {
+		BITMAP bmpInfo;
+		bmp->GetBitmap(&bmpInfo);
+		double faktor = m_pPictures->getFaktor(ebene);
 
-	CPoint floorMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
-	if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) {
+		CPoint floorMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
+		if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) {
 		SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(itemSubPos, heroDir); // todo subpos angleichen
 		if (ebene > 0 || subPos == LINKSHINTEN || subPos == RECHTSHINTEN)
 		{			
@@ -510,6 +518,8 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 			DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
 		}
 	}
+	}
+
 }
 
 CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {
@@ -530,7 +540,23 @@ CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {
 		else
 			bmp = m_pItem3DPic->GetWaterskin(0);
 	else
-		bmp = m_pItem3DPic->GetBread();
+		bmp = NULL;
+
+	return bmp;
+}
+
+CBitmap* CRaumView::GetClothBitmap(CCloth* cloth, bool inAir) {
+	CBitmap* bmp;
+	if (cloth->GetType() == CClothAttributes::ClothType::LeatherBoots)
+		bmp = m_pItem3DPic->GetLeatherBoots();
+	else if (cloth->GetType() == CClothAttributes::ClothType::ElvenDoublet ||
+		cloth->GetType() == CClothAttributes::ClothType::ElvenHuke)
+		bmp = m_pItem3DPic->GetGreenCloth();
+	else if (cloth->GetType() == CClothAttributes::ClothType::FineRobeBody ||
+		cloth->GetType() == CClothAttributes::ClothType::FineRobeLegs)
+		bmp = m_pItem3DPic->GetWhiteCloth();
+	else
+		bmp = NULL;
 
 	return bmp;
 }
@@ -545,8 +571,12 @@ CBitmap* CRaumView::GetWeaponBitmap(CWeapon* weapon, bool inAir) {
 		bmp = m_pItem3DPic->GetDagger(inAir);
 	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Club)
 		bmp = m_pItem3DPic->GetClub(inAir);
+	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Arrow)
+		bmp = m_pItem3DPic->GetArrow(inAir);
+	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Torch)
+		bmp = m_pItem3DPic->GetTorch();
 	else
-		bmp = m_pItem3DPic->GetBread();
+		bmp = NULL;
 
 	return bmp;
 }

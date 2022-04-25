@@ -1,6 +1,6 @@
 #pragma once
 #include "Item.h"
-#include <SpecialTile/WeaponAttributes.h>
+#include <Attributes/WeaponAttributes.h>
 class CWeapon : public CItem
 {
 public:

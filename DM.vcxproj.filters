@@ -156,7 +156,7 @@
     <ClCompile Include="SpecialTile\CTeleporter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SpecialTile\CTeleporterAttributes.cpp">
+    <ClCompile Include="Attributes\CTeleporterAttributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Views\CGroupView.cpp">
@@ -165,13 +165,13 @@
     <ClCompile Include="Pictures\CWallDecoPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SpecialTile\CCreatureAttributes.cpp">
+    <ClCompile Include="Attributes\CCreatureAttributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Items\WallDecoration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SpecialTile\CDoorAttributes.cpp">
+    <ClCompile Include="Attributes\CDoorAttributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Items\Item.cpp">
@@ -180,10 +180,16 @@
     <ClCompile Include="Items\Weapon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SpecialTile\CMiscellaneousAttributes.cpp">
+    <ClCompile Include="Attributes\CMiscellaneousAttributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SpecialTile\CWeaponAttributes.cpp">
+    <ClCompile Include="Attributes\CWeaponAttributes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Attributes\ClothAttributes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Items\CCloth.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -334,7 +340,7 @@
     <ClInclude Include="SpecialTile\CTeleporter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SpecialTile\CTeleporterAttributes.h">
+    <ClInclude Include="Attributes\CTeleporterAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Views\CGroupView.h">
@@ -346,13 +352,13 @@
     <ClInclude Include="Pictures\CWallDecoPic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SpecialTile\CCreatureAttributes.h">
+    <ClInclude Include="Attributes\CCreatureAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Items\WallDecoration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SpecialTile\CDoorAttributes.h">
+    <ClInclude Include="Attributes\CDoorAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Items\Item.h">
@@ -361,10 +367,16 @@
     <ClInclude Include="Items\Weapon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SpecialTile\MiscellaneousAttributes.h">
+    <ClInclude Include="Attributes\MiscellaneousAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SpecialTile\WeaponAttributes.h">
+    <ClInclude Include="Attributes\WeaponAttributes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Attributes\ClothAttributes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\Cloth.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1118,6 +1130,33 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Items3D\Missile_Dagger_F.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_Arrow_F.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_Arrow_B.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_Arrow_S.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Item_3d_Arrow.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Item_3d_Torch.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Item_3d_LeatherBoots.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Item_3d_ElvenDoublet.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Item_3d_FineRobe.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_Sword_S.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

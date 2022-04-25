@@ -10,6 +10,10 @@
 #include "Items\WallDecoration.h"
 #include "Items/Item.h"
 #include "Items\CActuator.h"
+#include "Items\Weapon.h"
+#include "Items\CMiscellaneous.h"
+#include "Items\Cloth.h"
+#include "Items\CActuator.h"
 #include "CHelpfulValues.h"
 #include <cassert>
 
@@ -93,6 +97,8 @@ CField::~CField()
 				delete (CWeapon*)item;
 			else if (item->getItemType() == CItem::ItemType::MiscItem)
 				delete (CMiscellaneous*)item;
+			else  if (item->getItemType() == CItem::ItemType::ClothItem)
+				delete (CCloth*)item;
 		}
 		for (CActuator* actuator : m_pActuator[i]) {
 			delete actuator;
@@ -159,6 +165,10 @@ void CField::PutItem(CItem* item, SUBPOS_ABSOLUTE index) {
 
 void CField::PutWeapon(CWeapon* weapon, SUBPOS_ABSOLUTE index) {
 	m_pItem[index].push_back((CItem*)weapon);
+}
+
+void CField::PutCloth(CCloth* cloth, SUBPOS_ABSOLUTE index) {
+	m_pItem[index].push_back((CItem*)cloth);
 }
 
 void CField::PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index) {

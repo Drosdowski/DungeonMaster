@@ -8,6 +8,7 @@
 #include "Items\WallDecoration.h"
 #include "Items/CMiscellaneous.h"
 #include "Items/Weapon.h"
+#include "Items/Cloth.h"
 #include "SpecialTile/CTeleporter.h"
 #include "CDungeonMap.h"
 
@@ -37,6 +38,7 @@ CDungeonMap::~CDungeonMap()
 	delete m_doorAtt;
 	delete m_miscellaneousAtt;
 	delete m_weaponAtt;
+	delete m_clothAtt;
 	
 	delete m_actuatorType;
 	delete m_teleportAtt;	
@@ -200,6 +202,9 @@ void CDungeonMap::ParseItems(TiXmlElement* rootNode, VEKTOR coords) {
 				else if (strcmp(item->Value(), "weapon") == 0) {
 					ParseWeapons(item, coords);
 				}
+				else if (strcmp(item->Value(), "cloth") == 0) {
+					ParseCloth(item, coords);
+				}
 				else if (strcmp(item->Value(), "actuator") == 0) {
 					ParseActuator(item, coords);
 				}
@@ -238,6 +243,13 @@ void CDungeonMap::ParseWeapons(TiXmlElement* weaponItem, VEKTOR coords) {
 	m_pFeld[coords.x][coords.y][coords.z]->PutWeapon(new CWeapon(index, m_weaponAtt[index]), (SUBPOS_ABSOLUTE)subPos);
 }
 
+void CDungeonMap::ParseCloth(TiXmlElement* clothItem, VEKTOR coords) {
+	int index, subPos;
+	clothItem->QueryIntAttribute("index", &index);
+	clothItem->QueryIntAttribute("position", &subPos);
+
+	m_pFeld[coords.x][coords.y][coords.z]->PutCloth(new CCloth(index, m_clothAtt[index]), (SUBPOS_ABSOLUTE)subPos);
+}
 
 void CDungeonMap::ParseFloorDecoration(TiXmlElement* decoItem, VEKTOR coords) {
 	int graphic;
@@ -540,6 +552,24 @@ void CDungeonMap::ParseWeaponObjects(TiXmlElement* rootNode) {
 	}
 }
 
+void CDungeonMap::ParseClothObjects(TiXmlElement* rootNode) {
+	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "cloth") == 0) // several existing
+		{
+			int index, type;
+			CClothAttributes att;
+			parentElement->QueryIntAttribute("index", &index);
+			parentElement->QueryIntAttribute("type", &type);
+			att.type = (CClothAttributes::ClothType)type;
+			m_clothAtt[index] = att;
+		}
+		parentElement = parentElement->NextSiblingElement();
+	}
+}
+
 void CDungeonMap::ParseCreatureObjects(TiXmlElement* rootNode) {
 	TiXmlElement* parentElement = rootNode->FirstChildElement();
 	while (parentElement)
@@ -668,6 +698,10 @@ void CDungeonMap::ParseObjects(TiXmlElement* rootNode) {
 		{
 			ParseWeaponObjects(parentElement);
 		}
+		else if (strcmp(parent, "clothes") == 0)
+		{
+			ParseClothObjects(parentElement);
+		}
 		else if (strcmp(parent, "actuators") == 0)
 		{
 			ParseActuatorObjects(parentElement);
@@ -697,7 +731,9 @@ void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
 	m_miscellaneousAtt = new CMiscellaneousAttributes[m_countMiscellaneous];
 	rootNode->QueryIntAttribute("number_of_weapons", &m_countWeapons);
 	m_weaponAtt = new CWeaponAttributes[m_countWeapons];
-	rootNode->QueryIntAttribute("number_of_actuators", &m_countActuators);	
+	rootNode->QueryIntAttribute("number_of_clothes", &m_countClothes);
+	m_clothAtt = new CClothAttributes[m_countClothes];
+	rootNode->QueryIntAttribute("number_of_actuators", &m_countActuators);
 	m_actuatorType = new int[m_countActuators];
 	rootNode->QueryIntAttribute("number_of_teleporters", &m_countTeleporters);
 	m_teleportAtt = new TeleporterAttributes[m_countTeleporters];
