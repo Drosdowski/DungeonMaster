@@ -302,6 +302,7 @@
     <Image Include="res\Door_Wood_2.bmp" />
     <Image Include="res\Door_Wood_3.bmp" />
     <Image Include="res\Items3D\Item_3d_Arrow.bmp" />
+    <Image Include="res\Items3D\Item_3d_Cheese.bmp" />
     <Image Include="res\Items3D\Item_3d_Club.bmp" />
     <Image Include="res\Items3D\Item_3d_Corn.bmp" />
     <Image Include="res\Items3D\Item_3d_Dagger.bmp" />

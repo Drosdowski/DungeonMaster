@@ -375,6 +375,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 				if (graphicTypeFront == SquareAlcove ||
 					graphicTypeFront == ArchedAlcove) {
 					// icons rein malen!
+					xxx
 				}
 			}
 		}
@@ -526,8 +527,12 @@ CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {
 	CBitmap* bmp;
 	if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Apple) // TODO Logik auslagern!
 		bmp = m_pItem3DPic->GetApple();
+	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Bread)
+		bmp = m_pItem3DPic->GetBread();
 	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Corn)
 		bmp = m_pItem3DPic->GetCorn();
+	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Cheese)
+		bmp = m_pItem3DPic->GetCheese();
 	else if (misc->GetType() >= CMiscellaneousAttributes::MiscItemType::IronKey &&
 		misc->GetType() <= CMiscellaneousAttributes::MiscItemType::SkeletonKey)
 		bmp = m_pItem3DPic->GetIronKey();
@@ -682,7 +687,7 @@ void CRaumView::RaumZeichnen(CDC* pDC)
 					DrawOnFloor(pDC, &compCdc, xxx, ebene, pField);
 				}
 
-				if (fieldType != FeldTyp::WALL) {
+				if (fieldType != FeldTyp::WALL) {					
 					for (int pos = 0; pos < 4; pos++)
 					{
 						std::deque<CItem*> pile = pField->GetItem((SUBPOS_ABSOLUTE)pos);

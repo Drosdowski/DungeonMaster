@@ -21,7 +21,8 @@ public:
 		MasterKey = 24,
 		Apple = 29,
 		Corn = 30,
-		Bread = 31
+		Bread = 31,
+		Cheese = 32
 	};
 
 	MiscItemType type;

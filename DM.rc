@@ -667,6 +667,8 @@ IDB_ITEM3D_ELVENDOUBLET BITMAP                  "res\\Items3D\\Item_3d_ElvenDoub
 
 IDB_ITEM3D_FINEROBE     BITMAP                  "res\\Items3D\\Item_3d_FineRobe.bmp"
 
+IDB_ITEM3D_CHEESE       BITMAP                  "res\\Items3D\\Item_3d_Cheese.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

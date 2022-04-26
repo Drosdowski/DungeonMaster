@@ -138,6 +138,7 @@
 #define IDB_ITEM3D_LEATHERBOOTS         412
 #define IDB_ITEM3D_ELVENDOUBLET         413
 #define IDB_ITEM3D_FINEROBE             414
+#define IDB_ITEM3D_CHEESE               415
 #define IDB_MISSILE_CLUB_B              440
 #define IDB_MISSILE_CLUB_F              441
 #define IDB_MISSILE_CLUB_S              442
@@ -150,6 +151,7 @@
 #define IDB_MISSILE_ARROW_B             453
 #define IDB_MISSILE_ARROW_F             454
 #define IDB_MISSILE_ARROW_S             455
+#define IDB_BITMAP1                     461
 #define IDB_BITMAP_E0L                  1001
 #define IDB_BITMAP_E0LF                 1002
 #define IDB_BITMAP_E0R                  1004
@@ -258,7 +260,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        461
+#define _APS_NEXT_RESOURCE_VALUE        462
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101
