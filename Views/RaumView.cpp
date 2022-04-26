@@ -375,7 +375,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 				if (graphicTypeFront == SquareAlcove ||
 					graphicTypeFront == ArchedAlcove) {
 					// icons rein malen!
-					xxx
+					//xxx
 				}
 			}
 		}

@@ -158,8 +158,14 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	rootNode->QueryIntAttribute("type", &type);
 	int hasObjects;
 	rootNode->QueryIntAttribute("has_objects", &hasObjects);
-	int allowDecoration;
-	rootNode->QueryIntAttribute("allow_decoration", &allowDecoration);
+	int allowDecoration, allowDecorations;
+	rootNode->QueryIntAttribute("allow_decoration_east", &allowDecorations);
+	rootNode->QueryIntAttribute("allow_decoration_north", &allowDecoration);
+	allowDecorations += allowDecoration;
+	rootNode->QueryIntAttribute("allow_decoration_south", &allowDecoration);
+	allowDecorations += allowDecoration;
+	rootNode->QueryIntAttribute("allow_decoration_west", &allowDecoration);
+	allowDecorations += allowDecoration;
 
 	// 0 = Wall , 1 == Empty, 2 = Pit, 3 = Stair, 4 == Door, 5 = Teleport, 6 = Trickwall
 	FeldTyp iFieldType = (FeldTyp)type;
@@ -181,7 +187,7 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	else
 		m_pFeld[x][y][etage] = new CField(pos, iFieldType); // etage 1 / index 30 => m_levelWidth[1] kaputt!
 	
-	if (hasObjects == 1 || allowDecoration == 1) {
+	if (hasObjects == 1 || allowDecorations >= 1) {
 		ParseItems(rootNode, VEKTOR{x ,y, etage});
 	}
 }
