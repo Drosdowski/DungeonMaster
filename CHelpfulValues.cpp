@@ -79,6 +79,8 @@ SUBPOS CHelpfulValues::GetPosByIndexWhenFacingNorth(SUBPOS_ABSOLUTE pos) {
 		return RECHTSVORNE;
 	case SOUTHWEST:
 		return LINKSVORNE;		
+	case MIDDLE:
+		return MITTE;
 	}
 	return NONE;
 }
@@ -153,6 +155,7 @@ CPoint CHelpfulValues::CalcRelSubFloorPosition(BITMAP bmpInfo, CPoint wallMiddle
 
 	bool vorne = (subPos == LINKSVORNE || subPos == RECHTSVORNE);
 	int xFaktor = (subPos == LINKSVORNE || subPos == LINKSHINTEN) ? -1 : 1;
+	if (subPos == MITTE) xFaktor = 0;
 
 	/*Coords - Mitte des Items
 		Ebene | x   |  y	  (225 - x)

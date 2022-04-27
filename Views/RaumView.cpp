@@ -367,15 +367,22 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 			if (bmpDecoFront && centerFrontWall.x > 0 && centerFrontWall.y > 0) {
 				cdc->SelectObject(bmpDecoFront);
 				bmpDecoFront->GetBitmap(&bmpDecoInfo);
+				bool isBigContainer = ((graphicTypeFront == SquareAlcove ||
+										graphicTypeFront == ArchedAlcove));
 				int decoPosX = posWall.x + centerFrontWall.x - (int)(bmpDecoInfo.bmWidth * faktor);
-				int decoPosY = posWall.y + centerFrontWall.y - (int)(bmpDecoInfo.bmHeight * faktor);
+				int decoPosY = posWall.y + centerFrontWall.y - (int)(bmpDecoInfo.bmHeight * faktor) / 2;
+				if (!isBigContainer)
+					decoPosY -= (int)(bmpDecoInfo.bmHeight * faktor) / 2;
 
 				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
 
-				if (graphicTypeFront == SquareAlcove ||
-					graphicTypeFront == ArchedAlcove) {
+				if (isBigContainer) {
 					// icons rein malen!
-					//xxx
+					std::deque<CItem*> pile = pField->GetItem((SUBPOS_ABSOLUTE)0);
+					if (pile.size() > 0) {
+						COMPASS_DIRECTION heroDir = m_pMap->GetHeroes()->GetDirection();
+						DrawPile(pDC, cdc, xxx, ebene, MIDDLE, heroDir, pile);
+					}
 				}
 			}
 		}
