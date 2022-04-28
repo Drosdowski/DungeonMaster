@@ -3,6 +3,9 @@
 #include "..\..\Items\Item.h"
 #include "..\CBasePictures.h"
 #include "CItemPic.h"
+#include <Items/Weapon.h>
+#include <Items/Cloth.h>
+#include <Items/CMiscellaneous.h>
 
 
 CItemPic::CItemPic(CDC* pDC) : CBasePictures(pDC)
@@ -16,7 +19,15 @@ CItemPic::~CItemPic() {
 }
 
 CBitmap* CItemPic::GetBitmapSheet(CItem* item) {
-	int sheet = item->GetSheetForGroup();
+	int sheet;
+	if (item->getItemType() == CItem::ItemType::WeaponItem)
+		sheet = ((CWeapon*)item)->GetSheetForGroup();
+	else if (item->getItemType() == CItem::ItemType::ClothItem)
+		sheet = ((CCloth*)item)->GetSheetForGroup();
+	else if (item->getItemType() == CItem::ItemType::MiscItem)
+		sheet = ((CMiscellaneous*)item)->GetSheetForGroup();
+	else
+		sheet = item->GetSheetForGroup();
 	return m_itemSheet[sheet];
 }
 

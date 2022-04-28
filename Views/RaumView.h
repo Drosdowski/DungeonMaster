@@ -56,6 +56,7 @@ public:
 	void TriggerMoveAnimation();
 	void RaumZeichnen(CDC* pDC);
 	bool OnStairs();
+	CSize GetSizeOfFrontDeco(CField* pfield, COMPASS_DIRECTION dir);
 
 	virtual ~CRaumView();
 

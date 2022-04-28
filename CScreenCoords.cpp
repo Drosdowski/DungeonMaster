@@ -153,8 +153,17 @@ int CScreenCoords::CheckHitBackpackSlots(CPoint point) {
 	return -1;
 }
 
-bool CScreenCoords::CheckHitDeco(CPoint point) {
-	return (point.x > 200 && point.x < 250 && point.y > 140 && point.y < 180);
+bool CScreenCoords::CheckHitDeco(CPoint point, CSize size) {
+	if (size == CSize(0,0))
+		return (point.x > 200 && point.x < 250 && 
+				point.y > 140 && point.y < 180);
+	else
+	{
+		int wx = size.cx; // halbe Breite, /2*2 = 1.
+		int wy = size.cy * 2;
+		return (point.x > (225 - wx) && point.x < (225 + wx) &&
+				point.y > 140 && point.y < (140 + wy));
+	}
 }
 
 bool CScreenCoords::CheckHitDoorButton(CPoint point) {

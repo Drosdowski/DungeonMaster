@@ -244,7 +244,7 @@ void CDMView::ParseClickAir(CPoint point) {
 	}
 }
 
-bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators, COMPASS_DIRECTION dir) {
+bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators, COMPASS_DIRECTION dir, CSize size) {
 	std::deque<CActuator*> actuatorsAtPosition;
 	COMPASS_DIRECTION pos;
 	for (CActuator* actuator : actuators) {
@@ -256,7 +256,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators
 
 	}
 	if (actuatorsAtPosition.size() > 0)
-		if (CScreenCoords::CheckHitDeco(point))
+		if (CScreenCoords::CheckHitDeco(point, size))
 		{
 			int type = actuatorsAtPosition.back()->GetType();
 			CActuator* currentActuator = actuatorsAtPosition.back();
@@ -308,6 +308,22 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators
 						}
 						return true; // RotateActuators
 					}
+				}
+			}
+			else {
+				CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+				CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
+				std::deque<CItem*> itemsInWall = FeldVorHeld->GetItem(SUBPOS_ABSOLUTE::MIDDLE);
+				CItem* itemInHand = grpHelden->GetItemInHand();
+				if (itemInHand == NULL) {
+					if (itemsInWall.size() > 0) {
+						grpHelden->TakeItemInHand(itemsInWall.back());
+						itemsInWall.pop_back();
+					}
+				}
+				else {
+					itemsInWall.push_back(itemInHand);
+					grpHelden->EmptyHand();
 				}
 			}
 		}
@@ -403,7 +419,9 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 					COMPASS_DIRECTION dir = CHelpfulValues::OppositeDirection( grpHelden->GetDirection());
 					std::deque<CActuator*> actuators = (FeldVorHeld->GetActuator(dir));
 					if (!actuators.empty()) {
-						if (ParseClickActuator(point, actuators, dir))
+						CSize size = m_pRaumView->GetSizeOfFrontDeco(FeldVorHeld, dir);
+
+						if (ParseClickActuator(point, actuators, dir, size))
 							FeldVorHeld->RotateActuators(dir);
 					}
 					ParseClickDoorButton(point, FeldVorHeld);
