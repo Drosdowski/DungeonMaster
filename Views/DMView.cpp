@@ -235,7 +235,7 @@ void CDMView::ParseClickAir(CPoint point) {
 					int grpDir = grpHelden->GetDirection();
 					SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(airRegionClicked, grpDir);
 					VEKTOR force = CHelpfulValues::MakeVektor(grpDir, 6);
-					FeldVorHeld->ThrowItem(pItemInHand, itemRegionReal, force);
+					m_pRaumView->GetMap()->GetField(grpHelden->GetPos())->ThrowItem(pItemInHand, itemRegionReal, force);
 					grpHelden->EmptyHand();
 				}
 			}
