@@ -344,7 +344,8 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 	if (graphicTypeSide != None)
 		bmpDecoSide = m_pWallDecoPic->GetPicSide(graphicTypeSide, (xx < 0));
 
-	
+	bool isBigContainer;
+
 	cdc->SelectObject(bmp);
 	CPoint posWall = m_pWallPic->GetWallPos(xxx, ebene);
 	double faktor = m_pPictures->getFaktor(ebene);
@@ -367,11 +368,12 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 			if (bmpDecoFront && centerFrontWall.x > 0 && centerFrontWall.y > 0) {
 				cdc->SelectObject(bmpDecoFront);
 				bmpDecoFront->GetBitmap(&bmpDecoInfo);
-				bool isBigContainer = ((graphicTypeFront == SquareAlcove ||
-										graphicTypeFront == ArchedAlcove ||
-										graphicTypeFront == ViAltar));
 				int decoPosX = posWall.x + centerFrontWall.x - (int)(bmpDecoInfo.bmWidth * faktor);
 				int decoPosY = posWall.y + centerFrontWall.y - (int)(bmpDecoInfo.bmHeight * faktor) / 2;
+				isBigContainer = ((graphicTypeFront == SquareAlcove ||
+					graphicTypeFront == ArchedAlcove ||
+					graphicTypeFront == ViAltar));
+
 				if (!isBigContainer)
 					decoPosY -= (int)(bmpDecoInfo.bmHeight * faktor) / 2;
 
@@ -387,7 +389,6 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 				}
 			}
 		}
-
 		
 	}
 	// Deko auf SIDE Wand zeichnen
@@ -401,15 +402,21 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 			else
 				centerSideWall = m_pWallPic->GetCenterFromSideWall(xxx, ebene);
 			if (centerSideWall.x > 0 && centerSideWall.y > 0) {
-				cdc->SelectObject(bmpDecoSide);
 				bmpDecoSide->GetBitmap(&bmpDecoInfo);
+				cdc->SelectObject(bmpDecoSide);
 				int decoPosX = posWall.x + centerSideWall.x; // die Mitte für die linke Seite ist links im Bild, also nix abziehen
-				if (xx > 0)
+				if (xx > 0) {
 					decoPosX -= (int)(bmpDecoInfo.bmWidth * 2 * faktor);
-				else 
+					decoPosX = max(decoPosX, posWall.x);
+				}
+				else
 					decoPosX = max(0, decoPosX - (int)(bmpDecoInfo.bmWidth * faktor));
 				int decoPosY = (int)(posWall.y + centerSideWall.y - bmpDecoInfo.bmHeight * faktor);
-					cdc->SelectObject(bmpDecoSide);
+				isBigContainer = ((graphicTypeSide == SquareAlcove ||
+					graphicTypeSide == ArchedAlcove ||
+					graphicTypeSide == ViAltar));
+				if (isBigContainer)
+					decoPosY += bmpDecoInfo.bmHeight * faktor / 2;
 				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
 			}
 
