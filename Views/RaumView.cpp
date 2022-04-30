@@ -512,23 +512,23 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 
 		CPoint floorMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
 		if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) {
-		SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(itemSubPos, heroDir); // todo subpos angleichen
-		if (ebene > 0 || subPos == LINKSHINTEN || subPos == RECHTSHINTEN)
-		{			
-			if (subPos == LINKSHINTEN || subPos == RECHTSHINTEN)
+			SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(itemSubPos, heroDir); // todo subpos angleichen
+			if (ebene > 0 || subPos == LINKSHINTEN || subPos == RECHTSHINTEN)
 			{
-				faktor = m_pPictures->getFaktor(ebene+1);
+				if (subPos == LINKSHINTEN || subPos == RECHTSHINTEN)
+				{
+					faktor = m_pPictures->getFaktor(ebene + 1);
+				}
+				CPoint pos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, floorMiddlePos, subPos, faktor, xx, ebene);
+				if (item->IsFlying() && pos.y != 0) {
+					pos.y = 250 - pos.y / 2;
+				}
+				cdc->SelectObject(bmp);
+				DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
 			}
-			CPoint pos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, floorMiddlePos, subPos, faktor, xx, ebene);
-			if (item->IsFlying() && pos.y != 0) {
-				pos.y = 250 - pos.y / 2; 
-			}
-			cdc->SelectObject(bmp);
-			DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
 		}
-	}
-	}
 
+	}
 }
 
 CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {

@@ -24,13 +24,13 @@ int CWeapon::GetOffsetForGroup() {
 			return 25;
 		else
 			return 24;
-	} else if (m_attribute.type >= 9 && m_attribute.type <= 23) {
+	} else if (m_attribute.type >= 8 && m_attribute.type <= 23) {
 		return m_attribute.type - 8;
 	}
 }
 
 int CWeapon::GetSheetForGroup() {
-	if (m_attribute.type < 9)
+	if (m_attribute.type < 8)
 		return 0;
 	else if (m_attribute.type < 24)
 		return 1;
