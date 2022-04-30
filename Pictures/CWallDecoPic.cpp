@@ -31,7 +31,7 @@ CBitmap* CWallDecoPic::GetPicSide(WallDecorationType  index, bool left) {
 
 
 void CWallDecoPic::InitPics() {
-	std::set<int> listOfPics {1, 3, 4, 5, 6, 7, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 44, 45, 47, 48, 49, 51, 52, 53, 54, 55};
+	std::set<int> listOfPics {1, 2, 3, 4, 5, 6, 7, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 44, 45, 47, 48, 49, 51, 52, 53, 54, 55};
 	for (int index = 0; index < maxAnz; index++) {
 		
 		if (listOfPics.find(index) != listOfPics.end()) {

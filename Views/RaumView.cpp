@@ -368,7 +368,8 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 				cdc->SelectObject(bmpDecoFront);
 				bmpDecoFront->GetBitmap(&bmpDecoInfo);
 				bool isBigContainer = ((graphicTypeFront == SquareAlcove ||
-										graphicTypeFront == ArchedAlcove));
+										graphicTypeFront == ArchedAlcove ||
+										graphicTypeFront == ViAltar));
 				int decoPosX = posWall.x + centerFrontWall.x - (int)(bmpDecoInfo.bmWidth * faktor);
 				int decoPosY = posWall.y + centerFrontWall.y - (int)(bmpDecoInfo.bmHeight * faktor) / 2;
 				if (!isBigContainer)

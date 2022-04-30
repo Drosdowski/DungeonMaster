@@ -311,6 +311,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators
 				}
 			}
 			else {
+				// Alkoven & co
 				CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 				CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
 				std::deque<CItem*> itemsInWall = FeldVorHeld->GetItem(SUBPOS_ABSOLUTE::NORTHWEST);
@@ -321,7 +322,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators
 					}
 				}
 				else {
-					itemsInWall.push_back(itemInHand);
+					FeldVorHeld->PutItem(itemInHand, SUBPOS_ABSOLUTE::NORTHWEST);
 					grpHelden->EmptyHand();
 				}
 			}

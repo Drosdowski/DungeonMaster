@@ -1162,6 +1162,12 @@
     <Image Include="res\Items3D\Item_3d_Cheese.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\WallDeco\WallDeco_2-Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_2_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

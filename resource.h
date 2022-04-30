@@ -151,7 +151,6 @@
 #define IDB_MISSILE_ARROW_B             453
 #define IDB_MISSILE_ARROW_F             454
 #define IDB_MISSILE_ARROW_S             455
-#define IDB_BITMAP1                     461
 #define IDB_BITMAP_E0L                  1001
 #define IDB_BITMAP_E0LF                 1002
 #define IDB_BITMAP_E0R                  1004
@@ -175,6 +174,7 @@
 #define IDB_BITMAP_E3R                  1035
 #define IDB_BITMAP_E3RF                 1036
 #define IDB_WALLDECO_1F                 2001
+#define IDB_WALLDECO_2F                 2002
 #define IDB_WALLDECO_3F                 2003
 #define IDB_WALLDECO_4F                 2004
 #define IDB_WALLDECO_5F                 2005
@@ -215,6 +215,7 @@
 #define IDB_WALLDECO_54F                2054
 #define IDB_WALLDECO_55F                2055
 #define IDB_WALLDECO_1L                 2101
+#define IDB_WALLDECO_2L                 2102
 #define IDB_WALLDECO_3L                 2103
 #define IDB_WALLDECO_4L                 2104
 #define IDB_WALLDECO_5L                 2105
@@ -260,7 +261,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        462
+#define _APS_NEXT_RESOURCE_VALUE        464
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

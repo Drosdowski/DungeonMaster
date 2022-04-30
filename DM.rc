@@ -669,6 +669,10 @@ IDB_ITEM3D_FINEROBE     BITMAP                  "res\\Items3D\\Item_3d_FineRobe.
 
 IDB_ITEM3D_CHEESE       BITMAP                  "res\\Items3D\\Item_3d_Cheese.bmp"
 
+IDB_WALLDECO_2L         BITMAP                  "res\\WallDeco\\WallDeco_2-Left.bmp"
+
+IDB_WALLDECO_2F         BITMAP                  "res\\WallDeco\\WallDeco_2_Front.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

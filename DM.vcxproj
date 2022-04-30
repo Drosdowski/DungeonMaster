@@ -340,6 +340,8 @@
     <Image Include="res\WallDeco\WallDeco_18_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_1_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_1_Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_2-Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_2_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_32_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_32_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_33_Front.bmp" />
