@@ -313,12 +313,11 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators
 			else {
 				CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 				CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
-				std::deque<CItem*> itemsInWall = FeldVorHeld->GetItem(SUBPOS_ABSOLUTE::MIDDLE);
+				std::deque<CItem*> itemsInWall = FeldVorHeld->GetItem(SUBPOS_ABSOLUTE::NORTHWEST);
 				CItem* itemInHand = grpHelden->GetItemInHand();
 				if (itemInHand == NULL) {
 					if (itemsInWall.size() > 0) {
-						grpHelden->TakeItemInHand(itemsInWall.back());
-						itemsInWall.pop_back();
+						grpHelden->TakeItemInHand(FeldVorHeld->TakeItem(SUBPOS_ABSOLUTE::NORTHWEST));
 					}
 				}
 				else {
