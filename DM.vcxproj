@@ -156,7 +156,7 @@
     <ClCompile Include="Pictures\CStairsPic.cpp" />
     <ClCompile Include="Pictures\Creatures\CMonsterPic.cpp" />
     <ClCompile Include="Pictures\Creatures\CMummyPic.cpp" />
-    <ClCompile Include="CScreenCoords.cpp" />
+    <ClCompile Include="CalculationHelper\CScreenCoords.cpp" />
     <ClCompile Include="Pictures\Creatures\CSkeletonPic.cpp" />
     <ClCompile Include="Pictures\CWallPic.cpp" />
     <ClCompile Include="Pictures\CBasePictures.cpp" />
@@ -165,7 +165,7 @@
     <ClCompile Include="Mobs\Character.cpp" />
     <ClCompile Include="Mobs\Mumie.cpp" />
     <ClCompile Include="Pictures\CPictures.cpp" />
-    <ClCompile Include="CHelpfulValues.cpp" />
+    <ClCompile Include="CalculationHelper\CHelpfulValues.cpp" />
     <ClCompile Include="Items\FloorDecoration.cpp" />
     <ClCompile Include="DM.cpp" />
     <ClCompile Include="DMDoc.cpp" />
@@ -225,7 +225,7 @@
     <ClInclude Include="Pictures\CStairsPic.h" />
     <ClInclude Include="Pictures\Creatures\CMonsterPic.h" />
     <ClInclude Include="Pictures\Creatures\CMummyPic.h" />
-    <ClInclude Include="CScreenCoords.h" />
+    <ClInclude Include="CalculationHelper\CScreenCoords.h" />
     <ClInclude Include="Pictures\CFountainPic.h" />
     <ClInclude Include="Pictures\Creatures\CSkeletonPic.h" />
     <ClInclude Include="Pictures\CWallPic.h" />
@@ -235,7 +235,7 @@
     <ClInclude Include="Mobs\Character.h" />
     <ClInclude Include="Mobs\Mumie.h" />
     <ClInclude Include="Pictures\CPictures.h" />
-    <ClInclude Include="CHelpfulValues.h" />
+    <ClInclude Include="CalculationHelper\CHelpfulValues.h" />
     <ClInclude Include="Items\FloorDecoration.h" />
     <ClInclude Include="DM.h" />
     <ClInclude Include="DMDoc.h" />

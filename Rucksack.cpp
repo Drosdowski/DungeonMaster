@@ -3,7 +3,7 @@
 
 #include <typeinfo>
 #include "stdafx.h"
-#include "CScreenCoords.h"
+#include "CalculationHelper/CScreenCoords.h"
 #include "Rucksack.h"
 #include "Items/CMiscellaneous.h"
 #include "Items/Weapon.h"

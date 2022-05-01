@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "..\CHelpfulValues.h"
+#include "..\CalculationHelper\CHelpfulValues.h"
 #include "..\Pictures\CPictures.h"
 #include "..\Mobs\Held.h"
 #include "..\Mobs\MobGroups\GrpHeld.h"

@@ -3,7 +3,6 @@
 #include "stdafx.h"
 #include "DM.h"
 
-#include <CScreenCoords.h>
 #include <winuser.rh>
 
 #include "..\DMDoc.h"
@@ -11,6 +10,7 @@
 #include "RaumView.h"
 #include "ZauberView.h"
 #include "CGroupView.h"
+#include "..\CalculationHelper/CScreenCoords.h"
 #include "..\CDungeonMap.h"
 #include "..\Rucksack.h"
 #include "..\Pictures\CPictures.h"
@@ -19,7 +19,7 @@
 #include "..\Mobs\MobGroups\GrpMonster.h"
 #include "..\Mobs\Held.h"
 #include "..\ColorCursor/ColorCursor.h"
-#include "..\CHelpfulValues.h"
+#include "..\CalculationHelper/CHelpfulValues.h"
 #include "..\SpecialTile/CDoor.h"
 #include "..\SpecialTile\CPit.h"
 #include "..\Items/Item.h""
@@ -235,7 +235,7 @@ void CDMView::ParseClickAir(CPoint point) {
 					int grpDir = grpHelden->GetDirection();
 					SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(airRegionClicked, grpDir);
 					VEKTOR force = CHelpfulValues::MakeVektor(grpDir, 6);
-					FeldVorHeld->ThrowItem(pItemInHand, itemRegionReal, force);
+					m_pRaumView->GetMap()->GetField(grpHelden->GetPos())->ThrowItem(pItemInHand, itemRegionReal, force);
 					grpHelden->EmptyHand();
 				}
 			}

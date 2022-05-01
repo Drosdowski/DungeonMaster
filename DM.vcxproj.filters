@@ -66,7 +66,7 @@
     <ClCompile Include="Pictures\CPictures.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CHelpfulValues.cpp">
+    <ClCompile Include="CalculationHelper\CHelpfulValues.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Mobs\Skelett.cpp">
@@ -87,7 +87,7 @@
     <ClCompile Include="Pictures\CWallPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CScreenCoords.cpp">
+    <ClCompile Include="CalculationHelper\CScreenCoords.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CDungeonMap.cpp">
@@ -253,7 +253,7 @@
     <ClInclude Include="Pictures\CPictures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CHelpfulValues.h">
+    <ClInclude Include="CalculationHelper\CHelpfulValues.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Mobs\Skelett.h">
@@ -277,7 +277,7 @@
     <ClInclude Include="Pictures\CFountainPic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CScreenCoords.h">
+    <ClInclude Include="CalculationHelper\CScreenCoords.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CDungeonMap.h">

@@ -3,10 +3,11 @@
 
 #include "stdafx.h"
 #include "Rucksack.h"
-#include "..\CHelpfulValues.h"
+#include "..\CalculationHelper\CHelpfulValues.h"
 #include "..\Items\Item.h"
 #include "Monster.h"
 #include "Held.h"
+#include <Attributes/ClothAttributes.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -142,4 +143,26 @@ CItem* CHeld::SwitchItemAt(int index, CItem* item)
 	CItem* carryingBefore = m_itemCarrying[index];
 	m_itemCarrying[index] = item;
 	return carryingBefore;
+}
+
+int CHeld::MaxLoad() {
+	// http://dmweb.free.fr/?q=node/691
+	int maxLoad = (8 * m_sVitals.str.Aktuell + 100) / 10;
+	// todo: if injured => MaxLoad = 3 * MaxLoad / 4 
+	if (m_itemCarrying[6]->getItemType() == CClothAttributes::ClothType::ElvenBoots) {
+		maxLoad = 17 * maxLoad / 16;
+	}
+	if (m_ST.Aktuell >= m_ST.Max / 2) {
+		return maxLoad;
+	}
+	else {
+		// BaseMaxLoad = BaseMaxLoad / 2 + (((BaseMaxLoad / 2) * Stamina) / (MaxStamina / 2))
+		return maxLoad / 2 + (((maxLoad / 2) * m_ST.Aktuell) / (m_ST.Max / 2));
+	}
+}
+
+int CHeld::CurLoad() {
+	int sum = 0;
+	// todo... weight of items!
+	return sum;
 }

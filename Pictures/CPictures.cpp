@@ -7,7 +7,7 @@
 #include "..\Items\FloorDecoration.h"
 #include "..\Items\Item.h"
 #include "..\Rucksack.h"
-#include "..\CScreenCoords.h"
+#include "..\CalculationHelper\CScreenCoords.h"
 
 CPictures::CPictures(CDC* pDC) : CBasePictures(pDC)
 {	

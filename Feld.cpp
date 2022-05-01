@@ -14,7 +14,7 @@
 #include "Items\CMiscellaneous.h"
 #include "Items\Cloth.h"
 #include "Items\CActuator.h"
-#include "CHelpfulValues.h"
+#include "CalculationHelper\CHelpfulValues.h"
 #include <cassert>
 
 /////////////////////////////////////////////////////////////////////////////

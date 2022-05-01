@@ -5,7 +5,7 @@
 #include <typeinfo>
 #include "DMDoc.h"
 #include "Character.h"
-#include "..\CHelpfulValues.h"
+#include "..\CalculationHelper\CHelpfulValues.h"
 #include "MobGroups/GrpChar.h"
 
 #ifdef _DEBUG

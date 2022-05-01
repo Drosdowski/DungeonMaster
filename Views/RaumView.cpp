@@ -5,7 +5,7 @@
 #include "stdafx.h"
 #include <deque>
 #include <typeinfo>
-#include "CHelpfulValues.h"
+#include "CalculationHelper/CHelpfulValues.h"
 #include "DmDoc.h"
 #include "Feld.h"
 #include "Items/Item.h"

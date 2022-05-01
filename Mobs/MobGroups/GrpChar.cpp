@@ -2,9 +2,9 @@
 //
 
 #include "stdafx.h"
-#include "..\Character.h"
 #include "GrpChar.h"
-#include "CHelpfulValues.h"
+#include "..\Character.h"
+#include "..\..\CalculationHelper\CHelpfulValues.h"
 #include <iostream>
 
 #ifdef _DEBUG

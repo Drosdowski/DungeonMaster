@@ -5,7 +5,7 @@
 #include "resource.h"
 #include "DMDoc.h"
 #include "Monster.h"
-#include <CHelpfulValues.h>
+#include "CalculationHelper/CHelpfulValues.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

@@ -2,11 +2,11 @@
 //
 
 #include "stdafx.h"
-#include "CHelpfulValues.h"
 #include "GrpMonster.h"
 #include "..\Skelett.h"
 #include "..\Mumie.h"
 #include "..\MobGroups\GrpHeld.h"
+#include "..\..\CalculationHelper\CHelpfulValues.h"
 #include "..\..\Items\CMiscellaneous.h"
 
 #ifdef _DEBUG

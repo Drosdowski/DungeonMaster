@@ -11,7 +11,7 @@
 #include "Items\FloorDecoration.h"
 #include "Mobs\Held.h"
 #include "Mobs\MobGroups\GrpHeld.h"
-#include "CHelpfulValues.h"
+#include "CalculationHelper\CHelpfulValues.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "Rucksack.h"
 #include "..\Held.h"
-#include "..\..\CHelpfulValues.h"
+#include "..\..\CalculationHelper\CHelpfulValues.h"
 #include "..\..\Items\Item.h"
 #include "GrpHeld.h"
 #include <iostream>
