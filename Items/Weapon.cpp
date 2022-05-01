@@ -42,3 +42,8 @@ int CWeapon::GetSheetForGroup() {
 CItem::ItemGroup CWeapon::GetGroup() {
 	return ItemGroup::Weapon;
 }
+
+double CWeapon::GetWeight() {
+	// todo - read from result of parsed file
+	return 0;
+}

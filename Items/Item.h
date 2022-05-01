@@ -36,9 +36,10 @@ public:
 	bool CheckGroup(int slotId, ItemGroup group);
 	ItemType getItemType() { return m_itemType; }
 	
-	virtual int GetType() { return -1; };
-	virtual int GetSheetForGroup() { return -1; };
-	virtual int GetOffsetForGroup() { return -1; };;
+	virtual int GetType() { return -1; }
+	virtual int GetSheetForGroup() { return -1; }
+	virtual int GetOffsetForGroup() { return -1; }
+	virtual double GetWeight() { return -1; }
 
 	VEKTOR m_flyForce;
 

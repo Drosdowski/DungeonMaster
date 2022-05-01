@@ -10,6 +10,7 @@ public:
 	int GetType() { return m_attribute.type; }
 	int GetCharges() { return m_attribute.charges; }
 	void reduceCharges();
+	double GetWeight();
 
 	int GetSheetForGroup();
 	int GetOffsetForGroup();
