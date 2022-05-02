@@ -1,751 +1,1030 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!-- http://dmweb.free.fr/?q=node/259 -->
-<weapons>
-	<item index="0"
-		weight="0.1"
-		attack1="punch(32,0,0)"
-		attack2="freezeLife(0,0,U)"
-		attack3=""
-		damage="2"
-		distance="0"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="1"
-		weight="0.1"
-		attack1="swing(16,0,0)"
-		attack2="lightning(0,0,U)"
-		attack3=""
-		damage="2"
-		distance="0"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="2"
-		weight="1.1"
-		attack1="swing(16,0,0)"
-		attack2=""
-		attack3=""
-		damage="8"
-		distance="2"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="3"
-		weight="1.2"
-		attack1="swing(16,0,0)"
-		attack2="fireball(0,7,U)"
-		attack3=""
-		damage="10"
-		distance="80"
-		shootDamage="40"		
-	>
-	</item>
-	<item index="4"
-		weight="0.9"
-		attack1="slash(16,0,0)"
-		attack2="brandish(0,2,0)"
-		attack3="confuse(0,3,U)"
-		damage="16"
-		distance="7"
-		shootDamage="0"		
-		manaplus="4"		
-	>
-	</item>
-	<item index="5"
-		weight="3"
-		attack1="jab(8,0,0)"
-		attack2="chop(48,0,0)"
-		attack3="lightning(0,4,U)"
-		damage="49"
-		distance="110"
-		shootDamage="66"		
-	>
-	</item>
-	<item index="6"
-		weight="4.7"
-		attack1="chop(48,0,0)"
-		attack2="melee(60,2,0)"
-		attack3="fireball(0,6,U)"
-		damage="55"
-		distance="20"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="7"
-		weight="2.4"
-		attack1="parry(8,0,0)"
-		attack2="brandish(0,3,0)"
-		attack3="fireshield(0,5,0)"
-		damage="25"
-		distance="10"
-		shootDamage="-1"		
-	>
-	</item>
-	<item index="8"
-		weight="0.5"
-		attack1="throw(0,0,0)"
-		attack2="stab(48,0,0)"
-		attack3="slash(16,2,0)"
-		damage="10"
-		distance="19"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="9"
-		weight="3.3"
-		attack1="swing(16,0,0)"
-		attack2="parry(8,2,0)"
-		attack3="chop(48,3,0)"
-		damage="30"
-		distance="8"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="10"
-		weight="3.2"
-		attack1="swing(16,0,0)"
-		attack2="parry(8,2,0)"
-		attack3="chop(48,3,0)"
-		damage="34"
-		distance="10"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="11"
-		weight="2.6"
-		attack1="jab(8,0,0)"
-		attack2="parry(8,1,0)"
-		attack3="thrust(66,5,0)"
-		damage="38"
-		distance="10"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="12"
-		weight="3.5"
-		attack1="slash(16,0,0)"
-		attack2="parry(8,1,0)"
-		attack3="melee(60,5,0)"
-		damage="42"
-		distance="11"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="13"
-		weight="3.6"
-		attack1="slash(16,0,0)"
-		attack2="parry(8,1,0)"
-		attack3="melee(60,5,0)"
-		damage="46"
-		distance="12"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="14"
-		weight="3.3"
-		attack1="chop(48,0,0)"
-		attack2="melee(60,5,0)"
-		attack3="thrust(66,6,0)"
-		damage="50"
-		distance="14"
-		shootDamage="0"	
-		manaplus="1"		
-	>
-	</item>
-	<item index="15"
-		weight="3.7"
-		attack1="stab(48,0,0)"
-		attack2="chop(48,2,0)"
-		attack3="cleave(48,5,0)"
-		damage="62"
-		distance="14"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="16"
-		weight="3.0"
-		attack1="jab(8,0,0)"
-		attack2="cleave(48,2,0)"
-		attack3="disrupt(55,4,0)"
-		damage="48"
-		distance="13"
-		shootDamage="0"		
-		manaplus="4"
-	>
-	</item>
-	<item index="17"
-		weight="3.9"
-		attack1="swing(16,0,0)"
-		attack2="throw(66,5,0)"
-		attack3="berzerk(96,7,0)"
-		damage="58"
-		distance="15"
-		shootDamage="0"		
-		manaplus="2"
-	>
-	</item>
-	<item index="18"
-		weight="4.3"
-		attack1="swing(16,0,0)"
-		attack2="chop(48,0,0)"
-		attack3="melee(60,5,0)"
-		damage="49"
-		distance="33"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="19"
-		weight="6.5"
-		attack1="chop(48,0,0)"
-		attack2="cleave(48,3,0)"
-		attack3="berzerk(96,8,0)"
-		damage="70"
-		distance="44"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="20"
-		weight="3.1"
-		attack1="swing(16,0,0)"
-		attack2="bash(50,2,0)"
-		attack3="stun(16,4,0)"
-		damage="32"
-		distance="10"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="21"
-		weight="4.1"
-		attack1="swing(16,0,0)"
-		attack2="bash(50,2,0)"
-		attack3="stun(16,4,0)"
-		damage="43"
-		distance="13"
-		shootDamage="0"
-		strengthplus="5"
-	>
-	</item>
-	<item index="22"
-		weight="5.0"
-		attack1="swing(16,0,0)"
-		attack2="stun(16,3,0)"
-		attack3="melee(60,6,0)"
-		damage="60"
-		distance="15"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="23"
-		weight="3.6"
-		attack1="throw(0,0,0)"
-		attack2="bash(50,0,0)"
-		attack3=""
-		damage="19"
-		distance="10"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="24"
-		weight="11"
-		attack1="throw(0,0,0)"
-		attack2="bash(50,0,0)"
-		attack3=""
-		damage="44"
-		distance="22"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="25"
-		weight="1"
-		attack1="shoot(0,0,0)"
-		attack2=""
-		attack3=""
-		damage="1"
-		distance="50"
-		shootDamage="50"		
-	>
-	</item>
-	<item index="26"
-		weight="2.8"
-		attack1="shoot(0,0,0)"
-		attack2=""
-		attack3=""
-		damage="1"
-		distance="180"
-		shootDamage="120"		
-	>
-	</item>
-	<item index="27"
-		weight="0.2"
-		attack1="throw(0,0,0)"
-		attack2="stab(48,0,0)"
-		attack3=""
-		damage="2"
-		distance="10"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="28"
-		weight="0.2"
-		attack1="throw(0,0,0)"
-		attack2="stab(48,0,0)"
-		attack3=""
-		damage="2"
-		distance="28"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="29"
-		weight="1.9"
-		attack1="shoot(0,0,0)"
-		attack2=""
-		attack3=""
-		damage="5"
-		distance="20"
-		shootDamage="50"		
-	>
-	</item>
-	<item index="30"
-		weight="0.2"
-		attack1="throw(0,0,0)"
-		attack2=""
-		attack3=""
-		damage="6"
-		distance="18"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="31"
-		weight="0.3"
-		attack1="throw(0,0,0)"
-		attack2="stab(48,0,0)"
-		attack3=""
-		damage="7"
-		distance="23"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="32"
-		weight="0.1"
-		attack1="throw(0,0,0)"
-		attack2=""
-		attack3=""
-		damage="3"
-		distance="19"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="33"
-		weight="0.8"
-		attack1="swing(16,0,0)"
-		attack2=""
-		attack3=""
-		damage="4"
-		distance="4"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="34"
-		weight="2.6"
-		attack1="swing(16,0,0)"
-		attack2=""
-		attack3=""
-		damage="12"
-		distance="4"
-		shootDamage="0"		
-		manaplus="2"
-	>
-	</item>
-	<item index="35"
-		weight="0.1"
-		attack1="calm(0,0,0)"
-		attack2="spellshield(0,2,U)"
-		attack3="heal(0,3,0)"
-		damage="0"
-		distance="0"
-		shootDamage="0"		
-		manaplus="1"
-	>
-	</item>
-	<item index="36"
-		weight="0.1"
-		attack1="calm(0,0,0)"
-		attack2="spellshield(0,3,U)"
-		attack3="fireshield(0,4,U)"
-		damage="1"
-		distance="20"
-		shootDamage="0"		
-		manaplus="6"
-	>
-	</item>
-	<item index="37"
-		weight="3.5"
-		attack1="parry(8,0,0)"
-		attack2="light(0,0,U)"
-		attack3="dispell(0,3,U)"
-		damage="18"
-		distance="6"
-		shootDamage="0"		
-		manaplus="4"
-	>
-	</item>
-	<item index="38"
-		weight="2.9"
-		attack1="swing(16,0,0)"
-		attack2="dispell(0,3,U)"
-		attack3="fireshield(0,4,U)"
-		damage="0"
-		distance="4"
-		shootDamage="0"	
-		manaplus="10"		
-	>
-	</item>
-	<item index="39"
-		weight="2.1"
-		attack1="heal(0,0,0)"
-		attack2="calm(0,2,0)"
-		attack3="brandish(0,3,0)"
-		damage="0"
-		distance="3"
-		shootDamage="0"	
-		manaplus="8"		
-	>
-	</item>
-	<item index="40"
-		weight="3.3"
-		attack1="swing(16,0,0)"
-		attack2="lightning(0,2,U)"
-		attack3="window(0,4,U)"
-		damage="0"
-		distance="7"
-		shootDamage="0"		
-		manaplus="16"
-	>
-	</item>
-	<item index="41"
-		weight="0.8"
-		attack1="swing(16,0,0)"
-		attack2=""
-		attack3=""
-		damage="3"
-		distance="1"
-		shootDamage="0"		
-		manaplus="7"
-	>
-	</item>
-	<item index="42"
-		weight="1.8"
-		attack1="parry(8,0,0)"
-		attack2="heal(0,3,0)"
-		attack3="light(0,4,U)"
-		damage="9"
-		distance="4"
-		shootDamage="0"	
-		manaplus="5"		
-	>
-	</item>
-	<item index="43"
-		weight="0.8"
-		attack1="blowhorn(0,0,0)"
-		attack2=""
-		attack3=""
-		damage="1"
-		distance="1"
-		shootDamage="0"		
-	>
-	</item>
-	<item index="44"
-		weight="3"
-		attack1="shoot(0,0,0)"
-		attack2=""
-		attack3=""
-		damage="1"
-		distance="220"
-		shootDamage="125"		
-	>
-	</item>
-	<item index="45"
-		weight="3.6"
-		attack1="invoke(0,0,0)"
-		attack2="fuse(0,0,0)"
-		attack3="fluxcage(0,0,0)"
-		damage="100"
-		distance="50"
-		shootDamage="-1"		
-	>
-	</item>
+<!-- http://dmweb.free.fr/?q=node/259 
+	 http://dmweb.free.fr/?q=node/691 -->
+<items>
+	<weapons>
+		<item index="0"
+			weight="0.1"
+			attack1="punch(32,0,0)"
+			attack2="freezeLife(0,0,U)"
+			attack3=""
+			damage="2"
+			distance="0"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="1"
+			weight="0.1"
+			attack1="swing(16,0,0)"
+			attack2="lightning(0,0,U)"
+			attack3=""
+			damage="2"
+			distance="0"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="2"
+			weight="1.1"
+			attack1="swing(16,0,0)"
+			attack2=""
+			attack3=""
+			damage="8"
+			distance="2"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="3"
+			weight="1.2"
+			attack1="swing(16,0,0)"
+			attack2="fireball(0,7,U)"
+			attack3=""
+			damage="10"
+			distance="80"
+			shootDamage="40"		
+		>
+		</item>
+		<item index="4"
+			weight="0.9"
+			attack1="slash(16,0,0)"
+			attack2="brandish(0,2,0)"
+			attack3="confuse(0,3,U)"
+			damage="16"
+			distance="7"
+			shootDamage="0"		
+			manaplus="4"		
+		>
+		</item>
+		<item index="5"
+			weight="3"
+			attack1="jab(8,0,0)"
+			attack2="chop(48,0,0)"
+			attack3="lightning(0,4,U)"
+			damage="49"
+			distance="110"
+			shootDamage="66"		
+		>
+		</item>
+		<item index="6"
+			weight="4.7"
+			attack1="chop(48,0,0)"
+			attack2="melee(60,2,0)"
+			attack3="fireball(0,6,U)"
+			damage="55"
+			distance="20"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="7"
+			weight="2.4"
+			attack1="parry(8,0,0)"
+			attack2="brandish(0,3,0)"
+			attack3="fireshield(0,5,0)"
+			damage="25"
+			distance="10"
+			shootDamage="-1"		
+		>
+		</item>
+		<item index="8"
+			weight="0.5"
+			attack1="throw(0,0,0)"
+			attack2="stab(48,0,0)"
+			attack3="slash(16,2,0)"
+			damage="10"
+			distance="19"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="9"
+			weight="3.3"
+			attack1="swing(16,0,0)"
+			attack2="parry(8,2,0)"
+			attack3="chop(48,3,0)"
+			damage="30"
+			distance="8"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="10"
+			weight="3.2"
+			attack1="swing(16,0,0)"
+			attack2="parry(8,2,0)"
+			attack3="chop(48,3,0)"
+			damage="34"
+			distance="10"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="11"
+			weight="2.6"
+			attack1="jab(8,0,0)"
+			attack2="parry(8,1,0)"
+			attack3="thrust(66,5,0)"
+			damage="38"
+			distance="10"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="12"
+			weight="3.5"
+			attack1="slash(16,0,0)"
+			attack2="parry(8,1,0)"
+			attack3="melee(60,5,0)"
+			damage="42"
+			distance="11"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="13"
+			weight="3.6"
+			attack1="slash(16,0,0)"
+			attack2="parry(8,1,0)"
+			attack3="melee(60,5,0)"
+			damage="46"
+			distance="12"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="14"
+			weight="3.3"
+			attack1="chop(48,0,0)"
+			attack2="melee(60,5,0)"
+			attack3="thrust(66,6,0)"
+			damage="50"
+			distance="14"
+			shootDamage="0"	
+			manaplus="1"		
+		>
+		</item>
+		<item index="15"
+			weight="3.7"
+			attack1="stab(48,0,0)"
+			attack2="chop(48,2,0)"
+			attack3="cleave(48,5,0)"
+			damage="62"
+			distance="14"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="16"
+			weight="3.0"
+			attack1="jab(8,0,0)"
+			attack2="cleave(48,2,0)"
+			attack3="disrupt(55,4,0)"
+			damage="48"
+			distance="13"
+			shootDamage="0"		
+			manaplus="4"
+		>
+		</item>
+		<item index="17"
+			weight="3.9"
+			attack1="swing(16,0,0)"
+			attack2="throw(66,5,0)"
+			attack3="berzerk(96,7,0)"
+			damage="58"
+			distance="15"
+			shootDamage="0"		
+			manaplus="2"
+		>
+		</item>
+		<item index="18"
+			weight="4.3"
+			attack1="swing(16,0,0)"
+			attack2="chop(48,0,0)"
+			attack3="melee(60,5,0)"
+			damage="49"
+			distance="33"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="19"
+			weight="6.5"
+			attack1="chop(48,0,0)"
+			attack2="cleave(48,3,0)"
+			attack3="berzerk(96,8,0)"
+			damage="70"
+			distance="44"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="20"
+			weight="3.1"
+			attack1="swing(16,0,0)"
+			attack2="bash(50,2,0)"
+			attack3="stun(16,4,0)"
+			damage="32"
+			distance="10"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="21"
+			weight="4.1"
+			attack1="swing(16,0,0)"
+			attack2="bash(50,2,0)"
+			attack3="stun(16,4,0)"
+			damage="43"
+			distance="13"
+			shootDamage="0"
+			strengthplus="5"
+		>
+		</item>
+		<item index="22"
+			weight="5.0"
+			attack1="swing(16,0,0)"
+			attack2="stun(16,3,0)"
+			attack3="melee(60,6,0)"
+			damage="60"
+			distance="15"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="23"
+			weight="3.6"
+			attack1="throw(0,0,0)"
+			attack2="bash(50,0,0)"
+			attack3=""
+			damage="19"
+			distance="10"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="24"
+			weight="11"
+			attack1="throw(0,0,0)"
+			attack2="bash(50,0,0)"
+			attack3=""
+			damage="44"
+			distance="22"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="25"
+			weight="1"
+			attack1="shoot(0,0,0)"
+			attack2=""
+			attack3=""
+			damage="1"
+			distance="50"
+			shootDamage="50"		
+		>
+		</item>
+		<item index="26"
+			weight="2.8"
+			attack1="shoot(0,0,0)"
+			attack2=""
+			attack3=""
+			damage="1"
+			distance="180"
+			shootDamage="120"		
+		>
+		</item>
+		<item index="27"
+			weight="0.2"
+			attack1="throw(0,0,0)"
+			attack2="stab(48,0,0)"
+			attack3=""
+			damage="2"
+			distance="10"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="28"
+			weight="0.2"
+			attack1="throw(0,0,0)"
+			attack2="stab(48,0,0)"
+			attack3=""
+			damage="2"
+			distance="28"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="29"
+			weight="1.9"
+			attack1="shoot(0,0,0)"
+			attack2=""
+			attack3=""
+			damage="5"
+			distance="20"
+			shootDamage="50"		
+		>
+		</item>
+		<item index="30"
+			weight="0.2"
+			attack1="throw(0,0,0)"
+			attack2=""
+			attack3=""
+			damage="6"
+			distance="18"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="31"
+			weight="0.3"
+			attack1="throw(0,0,0)"
+			attack2="stab(48,0,0)"
+			attack3=""
+			damage="7"
+			distance="23"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="32"
+			weight="0.1"
+			attack1="throw(0,0,0)"
+			attack2=""
+			attack3=""
+			damage="3"
+			distance="19"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="33"
+			weight="0.8"
+			attack1="swing(16,0,0)"
+			attack2=""
+			attack3=""
+			damage="4"
+			distance="4"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="34"
+			weight="2.6"
+			attack1="swing(16,0,0)"
+			attack2=""
+			attack3=""
+			damage="12"
+			distance="4"
+			shootDamage="0"		
+			manaplus="2"
+		>
+		</item>
+		<item index="35"
+			weight="0.1"
+			attack1="calm(0,0,0)"
+			attack2="spellshield(0,2,U)"
+			attack3="heal(0,3,0)"
+			damage="0"
+			distance="0"
+			shootDamage="0"		
+			manaplus="1"
+		>
+		</item>
+		<item index="36"
+			weight="0.1"
+			attack1="calm(0,0,0)"
+			attack2="spellshield(0,3,U)"
+			attack3="fireshield(0,4,U)"
+			damage="1"
+			distance="20"
+			shootDamage="0"		
+			manaplus="6"
+		>
+		</item>
+		<item index="37"
+			weight="3.5"
+			attack1="parry(8,0,0)"
+			attack2="light(0,0,U)"
+			attack3="dispell(0,3,U)"
+			damage="18"
+			distance="6"
+			shootDamage="0"		
+			manaplus="4"
+		>
+		</item>
+		<item index="38"
+			weight="2.9"
+			attack1="swing(16,0,0)"
+			attack2="dispell(0,3,U)"
+			attack3="fireshield(0,4,U)"
+			damage="0"
+			distance="4"
+			shootDamage="0"	
+			manaplus="10"		
+		>
+		</item>
+		<item index="39"
+			weight="2.1"
+			attack1="heal(0,0,0)"
+			attack2="calm(0,2,0)"
+			attack3="brandish(0,3,0)"
+			damage="0"
+			distance="3"
+			shootDamage="0"	
+			manaplus="8"		
+		>
+		</item>
+		<item index="40"
+			weight="3.3"
+			attack1="swing(16,0,0)"
+			attack2="lightning(0,2,U)"
+			attack3="window(0,4,U)"
+			damage="0"
+			distance="7"
+			shootDamage="0"		
+			manaplus="16"
+		>
+		</item>
+		<item index="41"
+			weight="0.8"
+			attack1="swing(16,0,0)"
+			attack2=""
+			attack3=""
+			damage="3"
+			distance="1"
+			shootDamage="0"		
+			manaplus="7"
+		>
+		</item>
+		<item index="42"
+			weight="1.8"
+			attack1="parry(8,0,0)"
+			attack2="heal(0,3,0)"
+			attack3="light(0,4,U)"
+			damage="9"
+			distance="4"
+			shootDamage="0"	
+			manaplus="5"		
+		>
+		</item>
+		<item index="43"
+			weight="0.8"
+			attack1="blowhorn(0,0,0)"
+			attack2=""
+			attack3=""
+			damage="1"
+			distance="1"
+			shootDamage="0"		
+		>
+		</item>
+		<item index="44"
+			weight="3"
+			attack1="shoot(0,0,0)"
+			attack2=""
+			attack3=""
+			damage="1"
+			distance="220"
+			shootDamage="125"		
+		>
+		</item>
+		<item index="45"
+			weight="3.6"
+			attack1="invoke(0,0,0)"
+			attack2="fuse(0,0,0)"
+			attack3="fluxcage(0,0,0)"
+			damage="100"
+			distance="50"
+			shootDamage="-1"		
+		>
+		</item>
 	
 	
-</weapons>
-<clothes>
-	<item index="0"
-		weight="0.3"
-		armor="5"
-		res="1"
-	>
-	</item>
-	<item index="1"
-		weight="0.4"
-		armor="10"
-		res="1"
-		dexterityplus="5"
-	>
-	</item>
-	<item index="2"
-		weight="0.3"
-		armor="4"
-		res="1"
-	>
-	<item index="3"
-		weight="0.5"
-		armor="5"
-		res="2"
-	>
-	<item index="4"
-		weight="1.6"
-		armor="25"
-		res="4"
-	>
-	<item index="5"
-		weight="0.4"
-		armor="5"
-		res="0"
-	>
-	<item index="6"
-		weight="0.4"
-		armor="5"
-		res="0"
-	>
-	<item index="7"
-		weight="0.3"
-		armor="7"
-		res="1"
-	>
-	<item index="8"
-		weight="0.3"
-		armor="7"
-		res="1"
-	>
-	<item index="9"
-		weight="0.4"
-		armor="6"
-		res="1"
-	>
-	<item index="10"
-		weight="0.2"
-		armor="4"
-		res="0"
-	>
-	<item index="11"
-		weight="0.4"
-		armor="5"
-		res="1"
-	>
-	<item index="12"
-		weight="0.5"
-		armor="7"
-		res="1"
-	>
-	<item index="13"
-		weight="0.3"
-		armor="11"
-		res="2"
-	>
-	<item index="14"
-		weight="0.3"
-		armor="13"
-		res="2"
-	>
-	<item index="15"
-		weight="0.4"
-		armor="13"
-		res="2"
-	>
-	<item index="16"
-		weight="0.6"
-		armor="17"
-		res="3"
-	>
-	<item index="17"
-		weight="0.8"
-		armor="20"
-		res="3"
-	>
-	<item index="18"
-		weight="1.4"
-		armor="20"
-		res="3"
-	>
-	<item index="19"
-		weight="0.6"
-		armor="12"
-		res="2"
-	>
-	<item index="20"
-		weight="0.5"
-		armor="9"
-		res="1"
-	>
-	<item index="21"
-		weight="0.5"
-		armor="8"
-		res="1"
-	>
-	<item index="22"
-		weight="0.5"
-		armor="9"
-		res="1"
-	>
-	<item index="23"
-		weight="0.4"
-		armor="1"
-		res="4"
-	>
-	<item index="24"
-		weight="0.6"
-		armor="5"
-		res="4"
-		wisdomplus="10"
-	>
-	<item index="25"
-		weight="1.1"
-		armor="12"
-		res="5"
-	>
-	<item index="26"
-		weight="1.4"
-		armor="17"
-		res="5"
-	><item index="27"
-		weight="1.5"
-		armor="20"
-		res="5"
-	><item index="28"
-		weight="1.1"
-		armor="22"
-		res="5"
-	><item index="29"
-		weight="1.0"
-		armor="16"
-		res="2"
-	><item index="30"
-		weight="1.4"
-		armor="20"
-		res="3"
-	><item index="31"
-		weight="2.1"
-		armor="35"
-		res="4"
-	><item index="32"
-		weight="6.5"
-		armor="35"
-		res="5"
-	><item index="33"
-		weight="5.3"
-		armor="25"
-		res="5"
-	><item index="34"
-		weight="5.2"
-		armor="70"
-		res="7"
-	><item index="35"
-		weight="4.1"
-		armor="55"
-		res="7"
-	><item index="36"
-		weight="1.6"
-		armor="25"
-		res="6"
-	><item index="37"
-		weight="1.6"
-		armor="30"
-		res="6"
-	><item index="38"
-		weight="1.9"
-		armor="40"
-		res="7"
-	><item index="39"
-		weight="12"
-		armor="65"
-		res="4"
-	><item index="40"
-		weight="8"
-		armor="56"
-		res="4"
-	><item index="41"
-		weight="2.8"
-		armor="37"
-		res="5"
-	><item index="42"
-		weight="3.4"
-		armor="56"
-		res="4"
-	><item index="43"
-		weight="1.7"
-		armor="62"
-		res="5"
-	><item index="44"
-		weight="10.8"
-		armor="125"
-		res="4"
-	><item index="45"
-		weight="7.2"
-		armor="90"
-		res="4"
-	><item index="46"
-		weight="2.4"
-		armor="50"
-		res="4"
-	><item index="47"
-		weight="3"
-		armor="85"
-		res="4"
-	><item index="48"
-		weight="3.5"
-		armor="76"
-		res="4"
-	><item index="49"
-		weight="14.1"
-		armor="160"
-		res="4"
-	><item index="50"
-		weight="9"
-		armor="101"
-		res="4"
-	><item index="51"
-		weight="3.1"
-		armor="60"
-		res="5"
-	><item index="52"
-		weight="4"
-		armor="100"
-		res="4"
-	><item index="53"
-		weight="1.4"
-		armor="54"
-		res="6"
-		dexterityplus="10"
-	><item index="54"
-		weight="5.7"
-		armor="60"
-		res="7"
-		antifire="12"
-	><item index="55"
-		weight="8.1"
-		armor="88"
-		res="4"
-		strengthplus="10"
-	><item index="56"
-		weight="0.3"
-		armor="16"
-		res="2"
-	><item index="57"
-		weight="0.2"
-		armor="3"
-		res="3"
-	>
-</clothes>
-<miscellaneous>
-</miscellaneous>
-
+	</weapons>
+	<clothes>
+		<item index="0"
+			weight="0.3"
+			armor="5"
+			res="1"
+		>
+		</item>
+		<item index="1"
+			weight="0.4"
+			armor="10"
+			res="1"
+			dexterityplus="5"
+		>
+		</item>
+		<item index="2"
+			weight="0.3"
+			armor="4"
+			res="1"
+		>
+		</item>
+		<item index="3"
+			weight="0.5"
+			armor="5"
+			res="2"
+		>
+		</item>
+		<item index="4"
+			weight="1.6"
+			armor="25"
+			res="4"
+		>
+		</item>
+		<item index="5"
+			weight="0.4"
+			armor="5"
+			res="0"
+		>
+		</item>
+		<item index="6"
+			weight="0.4"
+			armor="5"
+			res="0"
+		>
+		</item>
+		<item index="7"
+			weight="0.3"
+			armor="7"
+			res="1"
+		>
+		</item>
+		<item index="8"
+			weight="0.3"
+			armor="7"
+			res="1"
+		>
+		</item>
+		<item index="9"
+			weight="0.4"
+			armor="6"
+			res="1"
+		>
+		</item>
+		<item index="10"
+			weight="0.2"
+			armor="4"
+			res="0"
+		>
+		</item>
+		<item index="11"
+			weight="0.4"
+			armor="5"
+			res="1"
+		>
+		</item>
+		<item index="12"
+			weight="0.5"
+			armor="7"
+			res="1"
+		>
+		</item>
+		<item index="13"
+			weight="0.3"
+			armor="11"
+			res="2"
+		>
+		</item>
+		<item index="14"
+			weight="0.3"
+			armor="13"
+			res="2"
+		>
+		</item>
+		<item index="15"
+			weight="0.4"
+			armor="13"
+			res="2"
+		>
+		</item>
+		<item index="16"
+			weight="0.6"
+			armor="17"
+			res="3"
+		>
+		</item>
+		<item index="17"
+			weight="0.8"
+			armor="20"
+			res="3"
+		>
+		</item>
+		<item index="18"
+			weight="1.4"
+			armor="20"
+			res="3"
+		>
+		</item>
+		<item index="19"
+			weight="0.6"
+			armor="12"
+			res="2"
+		>
+		</item>
+		<item index="20"
+			weight="0.5"
+			armor="9"
+			res="1"
+		>
+		</item>
+		<item index="21"
+			weight="0.5"
+			armor="8"
+			res="1"
+		>
+		</item>
+		<item index="22"
+			weight="0.5"
+			armor="9"
+			res="1"
+		>
+		</item>
+		<item index="23"
+			weight="0.4"
+			armor="1"
+			res="4"
+		>
+		</item>
+		<item index="24"
+			weight="0.6"
+			armor="5"
+			res="4"
+			wisdomplus="10"
+		>
+		</item>
+		<item index="25"
+			weight="1.1"
+			armor="12"
+			res="5"
+		>
+		</item>
+		<item index="26"
+			weight="1.4"
+			armor="17"
+			res="5"
+		>
+		</item>
+		<item index="27"
+			weight="1.5"
+			armor="20"
+			res="5"
+		>
+		</item>
+		<item index="28"
+			weight="1.1"
+			armor="22"
+			res="5"
+		>
+		</item>
+		<item index="29"
+			weight="1.0"
+			armor="16"
+			res="2"
+		>
+		</item>
+		<item index="30"
+			weight="1.4"
+			armor="20"
+			res="3"
+		>
+		</item>
+		<item index="31"
+			weight="2.1"
+			armor="35"
+			res="4"
+		>
+		</item>
+		<item index="32"
+			weight="6.5"
+			armor="35"
+			res="5"
+		>
+		</item>
+		<item index="33"
+			weight="5.3"
+			armor="25"
+			res="5"
+		>
+		</item>
+		<item index="34"
+			weight="5.2"
+			armor="70"
+			res="7"
+		>
+		</item>
+		<item index="35"
+			weight="4.1"
+			armor="55"
+			res="7"
+		>
+		</item>
+		<item index="36"
+			weight="1.6"
+			armor="25"
+			res="6"
+		>
+		</item>
+		<item index="37"
+			weight="1.6"
+			armor="30"
+			res="6"
+		>
+		</item>
+		<item index="38"
+			weight="1.9"
+			armor="40"
+			res="7"
+		>
+		</item>
+		<item index="39"
+			weight="12"
+			armor="65"
+			res="4"
+		>
+		</item>
+		<item index="40"
+			weight="8"
+			armor="56"
+			res="4"
+		>
+		</item>
+		<item index="41"
+			weight="2.8"
+			armor="37"
+			res="5"
+		>
+		</item>
+		<item index="42"
+			weight="3.4"
+			armor="56"
+			res="4"
+		>
+		</item>
+		<item index="43"
+			weight="1.7"
+			armor="62"
+			res="5"
+		>
+		</item>
+		<item index="44"
+			weight="10.8"
+			armor="125"
+			res="4"
+		>
+		</item>
+		<item index="45"
+			weight="7.2"
+			armor="90"
+			res="4"
+		>
+		</item>
+		<item index="46"
+			weight="2.4"
+			armor="50"
+			res="4"
+		>
+		</item>
+		<item index="47"
+			weight="3"
+			armor="85"
+			res="4"
+		>
+		</item>
+		<item index="48"
+			weight="3.5"
+			armor="76"
+			res="4"
+		>
+		</item>
+		<item index="49"
+			weight="14.1"
+			armor="160"
+			res="4"
+		>
+		</item>
+		<item index="50"
+			weight="9"
+			armor="101"
+			res="4"
+		>
+		</item>
+		<item index="51"
+			weight="3.1"
+			armor="60"
+			res="5"
+		>
+		</item>
+		<item index="52"
+			weight="4"
+			armor="100"
+			res="4"
+		>
+		</item>
+		<item index="53"
+			weight="1.4"
+			armor="54"
+			res="6"
+			dexterityplus="10"
+		>
+		</item>
+		<item index="54"
+			weight="5.7"
+			armor="60"
+			res="7"
+			antifire="12"
+		>
+		</item>
+		<item index="55"
+			weight="8.1"
+			armor="88"
+			res="4"
+			strengthplus="10"
+		>
+		</item>
+		<item index="56"
+			weight="0.3"
+			armor="16"
+			res="2"
+		>
+		</item>
+		<item index="57"
+			weight="0.2"
+			armor="3"
+			res="3"
+		>
+		</item>
+	</clothes>
+	<miscellaneous>
+		<item index="0"
+			  weight="0.3"
+		></item>
+		<item index="1"
+			  weight="0.9"
+			  weight2="0.7"
+			  weight3="0.5"
+			  water="800"
+		></item>
+		<item index="2"
+			  weight="0.3"
+			  antimagic="15"
+		></item>
+		<item index="3"
+			  weight="0.2"
+		></item>
+		<item index="4"
+			weight="0.4"
+		></item>
+		<item index="5"
+			weight="1.5"
+		></item>
+		<item index="6"
+			weight="0.1"
+		></item>
+		<item index="7"
+			weight="0.1"
+		></item>
+		<item index="8"
+			weight="0.1"
+		></item>
+		<item index="9"
+			weight="0.1"
+		></item>
+		<item index="10"
+			weight="0.1"
+		></item>
+		<item index="11"
+			weight="0.1"
+		></item>
+		<item index="12"
+			weight="0.1"
+		></item>
+		<item index="13"
+			weight="0.1"
+		></item>
+		<item index="14"
+			weight="0.1"
+		></item>
+		<item index="15"
+			weight="0.1"
+		></item>
+		<item index="16"
+			weight="0.1"
+		></item>
+		<item index="17"
+			weight="0.1"
+		></item>
+		<item index="18"
+			weight="0.1"
+		></item>
+		<item index="19"
+			weight="0.1"
+		></item>
+		<item index="20"
+			weight="0.1"
+		></item>
+		<item index="21"
+			weight="0.1"
+		></item>
+		<item index="22"
+			weight="0.1"
+		></item>
+		<item index="23"
+			weight="0.1"
+		></item>
+		<item index="25"
+			weight="8.1"
+		></item>
+		<item index="26"
+			weight="0.2"
+		></item>
+		<item index="27"
+			weight="0.3"
+		></item>
+		<item index="28"
+			weight="0.2"
+		></item>
+		<item index="29"
+			  weight="0.4"
+			  food="500"
+		></item>
+		<item index="30"
+			  weight="0.4"
+			  food="600"
+		></item>
+		<item index="31"
+			  weight="0.3"
+			  food="650"
+		></item>
+		<item index="32"
+			  weight="0.8"
+			  food="820"
+		></item>
+		<item index="33"
+			  weight="0.5"
+			  food="550"
+		></item>
+		<item index="34"
+			  weight="1.1"
+			  food="350"
+		></item>
+		<item index="35"
+			  weight="0.4"
+			  food="990"
+		></item>
+		<item index="36"
+			  weight="0.6"
+			  food="1400"
+		></item>
+		<item index="37"
+			  weight="0.2"
+			  skillplus="13"
+		></item>
+		<item index="38"
+			  weight="0.3"
+			  skillplus="15"			  
+			  regen="1"
+		></item>
+		<item index="39"
+			  weight="0.2"
+			  skillplus="14"
+			  manaplus="3"
+		></item>
+		<item index="40"
+			  weight="0.2"
+		></item>
+		<item index="41"
+			  weight="0.2"
+			  skillplus="3"
+		></item>
+		<item index="42"
+			  weight="0.6"
+			  freeze="30"
+		></item>
+		<item index="43"
+			  weight="0.9"
+			  freeze="125"
+		></item>
+		<item index="44"
+			  weight="0.3"
+			  freeze="30"
+		></item>
+		<item index="45"
+			  weight="1"
+		></item>
+		<item index="46"
+			  weight="0.1"
+			  luckplus="10"
+		></item>
+		<item index="47"
+			  weight="0"
+		></item>
+		<item index="48"
+			  weight="0.1"
+		></item>
+		<item index="49"
+			  weight="0.1"
+		></item>
+		<item index="49"
+			  weight="0.2"
+		></item>
+		<item index="50"
+			  weight="0"
+		></item>
+		<item index="51"
+			  weight="0.8"
+		></item>
+		<item index="52"
+			  weight="0.1"
+		></item>
+		<item index="53"
+			  weight="0.1"
+		></item>
+		<item index="54"
+			  weight="0.1"
+		></item>
+		<item index="55"
+			  weight="0.1"
+		></item>
+	</miscellaneous>
+</items>

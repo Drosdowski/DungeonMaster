@@ -132,6 +132,7 @@
     <ClCompile Include="Attributes\CWeaponAttributes.cpp" />
     <ClCompile Include="Attributes\CMiscellaneousAttributes.cpp" />
     <ClCompile Include="Attributes\ClothAttributes.cpp" />
+    <ClCompile Include="ItemInfos.cpp" />
     <ClCompile Include="Items\CCloth.cpp" />
     <ClCompile Include="Items\Item.cpp" />
     <ClCompile Include="Attributes\CDoorAttributes.cpp" />
@@ -199,6 +200,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attributes\ClothAttributes.h" />
+    <ClInclude Include="ItemInfos.h" />
     <ClInclude Include="Items\Cloth.h" />
     <ClInclude Include="Items\Item.h" />
     <ClInclude Include="Attributes\MiscellaneousAttributes.h" />
