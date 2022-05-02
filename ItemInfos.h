@@ -1,4 +1,7 @@
 #pragma once
+#include "Consts/WeaponConst.h";
+#include "Consts/ClothConst.h";
+
 class TiXmlElement;
 class CItemInfos
 {
@@ -14,5 +17,7 @@ private:
 	void ParseClothItems(TiXmlElement* rootNode);
 	void ParseMiscellaneousItems(TiXmlElement* rootNode);
 
+	CWeaponConst weaponInfos[46];
+	CClothConst clothInfos[58];
 };
 

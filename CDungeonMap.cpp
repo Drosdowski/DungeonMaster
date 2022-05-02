@@ -777,7 +777,7 @@ void CDungeonMap::LoadMap() {
 
 	if (!loadOkay)
 	{
-		printf("Could not load test file 'demotest.xml'. Error='%s'. Exiting.\n", doc.ErrorDesc());
+		printf("Could not load test file 'Dungeon.xml'. Error='%s'. Exiting.\n", doc.ErrorDesc());
 		exit(1);
 	}
 	TiXmlElement* rootElement = doc.FirstChildElement();

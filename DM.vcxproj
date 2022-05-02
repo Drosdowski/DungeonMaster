@@ -132,6 +132,8 @@
     <ClCompile Include="Attributes\CWeaponAttributes.cpp" />
     <ClCompile Include="Attributes\CMiscellaneousAttributes.cpp" />
     <ClCompile Include="Attributes\ClothAttributes.cpp" />
+    <ClCompile Include="Consts\ItemConst.cpp" />
+    <ClCompile Include="Consts\ClothConst.cpp" />
     <ClCompile Include="ItemInfos.cpp" />
     <ClCompile Include="Items\CCloth.cpp" />
     <ClCompile Include="Items\Item.cpp" />
@@ -194,12 +196,15 @@
     <ClCompile Include="Views\ZauberView.cpp" />
     <ClCompile Include="Items\WallDecoration.cpp" />
     <ClCompile Include="Items\Weapon.cpp" />
+    <ClCompile Include="Consts\WeaponConst.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Attributes\ClothAttributes.h" />
+    <ClInclude Include="Consts\ClothConst.h" />
+    <ClInclude Include="Consts\ItemConst.h" />
     <ClInclude Include="ItemInfos.h" />
     <ClInclude Include="Items\Cloth.h" />
     <ClInclude Include="Items\Item.h" />
@@ -260,6 +265,7 @@
     <ClInclude Include="Items\WallDecoration.h" />
     <ClInclude Include="Items\Weapon.h" />
     <ClInclude Include="Attributes\WeaponAttributes.h" />
+    <ClInclude Include="Consts\WeaponConst.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\ActionsArea.bmp" />
