@@ -181,6 +181,7 @@ void CPictures::RucksackZeichnen(CDC* pDC, CHeld* pHeld)
 	CRucksack* pRucksack = pHeld->GetRucksack();
 	int iModusExtend = pRucksack->HoleModusExtend();
 	ZeichnenHauptbereichHintergrund(pDC, iModusExtend);
+	GewichtZeichnen(pDC, pHeld);
 	if (iModusExtend == MOD_EXT_NORMAL)
 		ZeichneHungerDurst(pDC, pHeld->getFood(), pHeld->getWater());
 	else if (iModusExtend == MOD_EXT_AUGE)
@@ -334,4 +335,15 @@ void CPictures::PfeilZeichnen(CDC* pDC, int index)
 		break;
 	}
 	tmpdc.DeleteDC();
+}
+
+void CPictures::GewichtZeichnen(CDC* pDC, CHeld* pHeld) {
+	pDC->SetTextColor(HELLGRAU);
+	pDC->SetBkColor(GANZDUNKELGRAU);
+	double dCurValue = pHeld->CurLoad();
+	double dMaxValue = pHeld->MaxLoad();
+
+	CString strZeile;
+	strZeile.Format("LOAD         %1.1f/ %2.1f KG", dCurValue, dMaxValue);
+	pDC->TextOut(208, 320, strZeile);
 }

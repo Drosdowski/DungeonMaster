@@ -34,7 +34,6 @@ public:
 	void SchadenZeichnen(CDC* pDC, int index);
 	void PfeilZeichnen(CDC* pDC, int index);
 
-
 private:
 	void InitBitmaps();
 	int m_iWunschRichtung;
@@ -44,6 +43,7 @@ private:
 	void ZeichneHpStMa(CDC* pDC, WERTE hp, WERTE st, WERTE ma);
 	void ZeichneHungerDurst(CDC* pDC, int i, int j);
 	void ZeichneIcons(CDC* pDC, CHeld* pHeld);
+	void GewichtZeichnen(CDC* pDC, CHeld* pHeld);
 
 	void DrawHand(CDC* pDC, CHeld* pHeld, int index);
 	

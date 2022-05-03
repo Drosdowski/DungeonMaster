@@ -23,6 +23,11 @@ CHeld::CHeld(int iIndex, CString strName): CCharacter()
 	m_HP.Max = 100;
 	m_MA.Max = 100;
 	m_ST.Max = 100;
+
+	m_sVitals.str.Max = 60; m_sVitals.str.Aktuell = 60;
+	m_sVitals.dex.Max = 50; m_sVitals.dex.Aktuell = 50;
+	m_sVitals.vit.Max = 40; m_sVitals.vit.Aktuell = 40;
+	m_sVitals.wis.Max = 30; m_sVitals.wis.Aktuell = 30;
 	
 	m_HP.Aktuell = m_HP.Max;
 	m_ST.Aktuell = m_ST.Max;
@@ -149,7 +154,7 @@ double CHeld::MaxLoad() {
 	// http://dmweb.free.fr/?q=node/691
 	int maxLoad = (8 * m_sVitals.str.Aktuell + 100) / 10;
 	// todo: if injured => MaxLoad = 3 * MaxLoad / 4 
-	if (m_itemCarrying[6]->getItemType() == CClothAttributes::ClothType::ElvenBoots) {
+	if (m_itemCarrying[6] && m_itemCarrying[6]->getItemType() == CClothAttributes::ClothType::ElvenBoots) {
 		maxLoad = round1(17 * maxLoad / 16);
 	}
 	if (m_ST.Aktuell >= m_ST.Max / 2) {
@@ -165,7 +170,9 @@ double CHeld::CurLoad() {
 	double sum = 0;
 	for (int i = 0; i < 30; i++)
 	{
-		sum += m_itemCarrying[i]->GetWeight();
+		CItem* item = m_itemCarrying[i];
+		if (item)
+			sum += item->GetWeight();
 	}
 	return sum;
 }
