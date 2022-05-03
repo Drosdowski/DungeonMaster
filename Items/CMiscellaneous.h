@@ -14,17 +14,18 @@ public:
 	CMiscellaneous(int index, CMiscellaneousAttributes att);
 	~CMiscellaneous();
 
-	int GetType() { return m_attributes.type; };
+	int GetType() { return m_attribute.type; };
+	double GetWeight();
 
 	int GetSubtype() {
-		return m_attributes.subtype;
+		return m_attribute.subtype;
 	}
 
 	void SetSubtype(int value) {
-		m_attributes.subtype = value;
+		m_attribute.subtype = value;
 	}
 
 private:
-	CMiscellaneousAttributes m_attributes;
+	CMiscellaneousAttributes m_attribute;
 };
 

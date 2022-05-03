@@ -63,13 +63,15 @@ void CItemInfos::ParseWeaponItems(TiXmlElement* rootNode) {
 			int index;
 			CWeaponConst attribute;
 			parentElement->QueryIntAttribute("index", &index);
-			parentElement->QueryDoubleAttribute("weight", &attribute.weight);
+			parentElement->QueryDoubleAttribute("weight", &attribute.weight[0]);
 			parentElement->QueryIntAttribute("damage", &attribute.damage);
 			parentElement->QueryIntAttribute("distance", &attribute.distance);
 			parentElement->QueryIntAttribute("shootDamage", &attribute.shootDamage);
 
 			std::string attack = parentElement->Attribute("attack1");
 			std::string attackType = attack.substr(0, attack.find('('));
+			// todo attack types
+			// todo mehr Attribute lesen
 
 			weaponInfos[index] = attribute;
 		}
@@ -87,9 +89,10 @@ void CItemInfos::ParseClothItems(TiXmlElement* rootNode) {
 			int index;
 			CClothConst attribute;
 			parentElement->QueryIntAttribute("index", &index);
-			parentElement->QueryDoubleAttribute("weight", &attribute.weight);
+			parentElement->QueryDoubleAttribute("weight", &attribute.weight[0]);
 			parentElement->QueryIntAttribute("armor", &attribute.armor);
 			parentElement->QueryIntAttribute("res", &attribute.res);
+			// todo mehr Attribute lesen
 
 			clothInfos[index] = attribute;
 		}
@@ -97,4 +100,25 @@ void CItemInfos::ParseClothItems(TiXmlElement* rootNode) {
 	}
 }
 
-void CItemInfos::ParseMiscellaneousItems(TiXmlElement* rootNode) {}
+void CItemInfos::ParseMiscellaneousItems(TiXmlElement* rootNode) {
+	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "items") == 0) // several existing
+		{
+			int index;
+			CMiscConst attribute;
+			parentElement->QueryIntAttribute("index", &index);
+			parentElement->QueryDoubleAttribute("weight", &attribute.weight[0]);
+			parentElement->QueryDoubleAttribute("weight2", &attribute.weight[1]);
+			parentElement->QueryDoubleAttribute("weight3", &attribute.weight[2]);
+			parentElement->QueryIntAttribute("food", &attribute.food);
+			parentElement->QueryIntAttribute("water", &attribute.water);
+			// todo mehr Attribute lesen
+
+			miscInfos[index] = attribute;
+		}
+		parentElement = parentElement->NextSiblingElement();
+	}
+}

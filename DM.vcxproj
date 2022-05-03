@@ -139,6 +139,7 @@
     <ClCompile Include="Items\Item.cpp" />
     <ClCompile Include="Attributes\CDoorAttributes.cpp" />
     <ClCompile Include="Attributes\CCreatureAttributes.cpp" />
+    <ClCompile Include="Consts\MiscConst.cpp" />
     <ClCompile Include="Pictures\CWallDecoPic.cpp" />
     <ClCompile Include="Views\CGroupView.cpp" />
     <ClCompile Include="Attributes\CTeleporterAttributes.cpp" />
@@ -211,6 +212,7 @@
     <ClInclude Include="Attributes\MiscellaneousAttributes.h" />
     <ClInclude Include="Attributes\CDoorAttributes.h" />
     <ClInclude Include="Attributes\CCreatureAttributes.h" />
+    <ClInclude Include="Consts\MiscConst.h" />
     <ClInclude Include="Pictures\CLockPic.h" />
     <ClInclude Include="Pictures\CWallDecoPic.h" />
     <ClInclude Include="Views\CGroupView.h" />

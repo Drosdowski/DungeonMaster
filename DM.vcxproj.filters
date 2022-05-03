@@ -204,6 +204,9 @@
     <ClCompile Include="Consts\ItemConst.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Consts\MiscConst.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -401,6 +404,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Consts\ItemConst.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Consts\MiscConst.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

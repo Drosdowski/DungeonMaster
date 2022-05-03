@@ -1,4 +1,5 @@
 #pragma once
+#include <Consts/WeaponConst.h>
 class CWeaponAttributes
 {
 public:
@@ -40,6 +41,7 @@ public:
 
 	WeaponType type;
 	int charges;
+	CWeaponConst fixAttributes;
 
 };
 

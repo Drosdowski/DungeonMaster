@@ -15,6 +15,7 @@
 #include "Items/CActuator.h"
 #include "RaumView.h"
 #include "CDungeonMap.h"
+#include "ItemInfos.h"
 #include "SpecialTile/CStairs.h"
 #include "SpecialTile/CPit.h"
 #include "SpecialTile/CTeleporter.h"
@@ -57,6 +58,7 @@ CRaumView::CRaumView()
 
 	m_values = new CHelpfulValues();
 	m_pMap = NULL;
+	m_pItemInfos = NULL;
 	m_pDoc = NULL;
 	m_pDoorPic = NULL;
 	m_pWallPic = NULL;
@@ -74,6 +76,7 @@ CRaumView::CRaumView()
 CRaumView::~CRaumView()
 {
 	delete m_pMap;
+	delete m_pItemInfos;
 	delete m_values;
 	delete m_pDoorPic;
 	delete m_pStairsPic;
@@ -1059,7 +1062,8 @@ void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
 	m_pWallDecoPic = new CWallDecoPic(pDC);
 	m_pMonsterPic = new CMonsterPic(pDC);
 	m_pItem3DPic = new CItem3DPic(pDC);
-	m_pMap = new CDungeonMap();
+	m_pItemInfos = new CItemInfos();
+	m_pMap = new CDungeonMap(m_pItemInfos);
 }
 
 void CRaumView::OnTrigger()

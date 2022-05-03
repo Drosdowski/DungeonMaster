@@ -1,5 +1,5 @@
 #pragma once
-
+#include "..\Consts\MiscConst.h"
 class CMiscellaneousAttributes
 {
 public:
@@ -27,6 +27,7 @@ public:
 
 	MiscItemType type;
 	int subtype;
+	CMiscConst fixAttributes;
 
 };
 

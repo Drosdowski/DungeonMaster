@@ -4,7 +4,7 @@ class CItemConst
 public:
 
 	int index;
-	double weight;
+	double weight[3];
 
 	int strengthplus;
 	int dexterityplus;

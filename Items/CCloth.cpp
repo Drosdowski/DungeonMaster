@@ -65,5 +65,9 @@ CItem::ItemGroup CCloth::GetGroup() {
 		return ItemGroup::Shoes;
 	}
 	return ItemGroup::Other; // todo ergänzen
+}
 
+
+double CCloth::GetWeight() {
+	return m_attribute.fixAttributes.weight[0];
 }

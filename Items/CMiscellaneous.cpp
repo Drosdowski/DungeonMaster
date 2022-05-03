@@ -4,7 +4,7 @@
 #include <cassert>
 
 CMiscellaneous::CMiscellaneous(int index, CMiscellaneousAttributes att) : CItem(index, MiscItem) {
-	m_attributes = att;
+	m_attribute = att;
 }
 
 CMiscellaneous::~CMiscellaneous() {
@@ -16,12 +16,12 @@ int CMiscellaneous::GetOffsetForGroup() {
 	ItemGroup group = GetGroup();
 	switch (group) {
 	case Key:
-		return 16 - CMiscellaneousAttributes::MiscItemType::IronKey + m_attributes.type;
+		return 16 - CMiscellaneousAttributes::MiscItemType::IronKey + m_attribute.type;
 	case Consumable:
-		if (m_attributes.type >= CMiscellaneousAttributes::MiscItemType::Apple)
-			return 8 - CMiscellaneousAttributes::MiscItemType::Apple + m_attributes.type;
-		else if (m_attributes.type == CMiscellaneousAttributes::MiscItemType::Water)
-			if (m_attributes.subtype == 0)
+		if (m_attribute.type >= CMiscellaneousAttributes::MiscItemType::Apple)
+			return 8 - CMiscellaneousAttributes::MiscItemType::Apple + m_attribute.type;
+		else if (m_attribute.type == CMiscellaneousAttributes::MiscItemType::Water)
+			if (m_attribute.subtype == 0)
 				return 8;
 			else
 				return 9;
@@ -39,7 +39,7 @@ int CMiscellaneous::GetSheetForGroup() {
 	case Key:
 		return 5;
 	case Consumable:
-		if (m_attributes.type >= CMiscellaneousAttributes::MiscItemType::Apple)
+		if (m_attribute.type >= CMiscellaneousAttributes::MiscItemType::Apple)
 			return 5;
 		else
 			return 0;
@@ -61,7 +61,11 @@ int CMiscellaneous::GetSheetForGroup() {
 
 
 CItem::ItemGroup CMiscellaneous::GetGroup() {
-	if (m_attributes.type >= 9 && m_attributes.type <= 24) return ItemGroup::Key;
-	if (m_attributes.type >= 29 && m_attributes.type <= 31 || m_attributes.type == 1) return ItemGroup::Consumable;
+	if (m_attribute.type >= 9 && m_attribute.type <= 24) return ItemGroup::Key;
+	if (m_attribute.type >= 29 && m_attribute.type <= 31 || m_attribute.type == 1) return ItemGroup::Consumable;
 	return ItemGroup::Other;
+}
+
+double CMiscellaneous::GetWeight() {
+	return m_attribute.fixAttributes.weight[0];
 }

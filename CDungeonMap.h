@@ -6,7 +6,8 @@
 #include "Attributes/CDoorAttributes.h"
 #include "Attributes/WeaponAttributes.h"
 #include "Attributes/ClothAttributes.h"
-#include "Attributes/MiscellaneousAttributes.h" // todo nicht class...?
+#include "Attributes/MiscellaneousAttributes.h"
+#include <ItemInfos.h>
 
 #define FELD_MAX_X 32
 #define FELD_MAX_Y 32
@@ -17,7 +18,7 @@ class CGrpHeld;
 class CDungeonMap
 {
 public:
-	CDungeonMap();
+	CDungeonMap(CItemInfos* pItemInfos);
 	~CDungeonMap();
 	void LoadMap();
 	CField* GetField(int, int, int);
@@ -93,7 +94,7 @@ private:
 	WallDecorationType** m_wallDecorationTypes;
 	//CActuator::ActionTypes* m_actionType;
 	//VEKTOR* m_actionTarget;
-
+	CItemInfos* m_pItemInfos;
 
 
 };

@@ -44,6 +44,5 @@ CItem::ItemGroup CWeapon::GetGroup() {
 }
 
 double CWeapon::GetWeight() {
-	// todo - read from result of parsed file
-	return 0;
+	return m_attribute.fixAttributes.weight[0]; // todo sub berücksichtigen!
 }

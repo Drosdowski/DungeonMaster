@@ -8,6 +8,7 @@
 //
 #include "Feld.h"
 #include "CDungeonMap.h"
+#include "ItemInfos.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CRaumView view
@@ -92,6 +93,7 @@ protected:
 	// VEKTOR NextFieldWithoutTurn(CGrpMonster* pGrpMon, VEKTOR heroPos);
 
 	CDungeonMap* m_pMap;
+	CItemInfos* m_pItemInfos;
 private:
 	int wallXFactor[5];
 	CHelpfulValues* m_values;

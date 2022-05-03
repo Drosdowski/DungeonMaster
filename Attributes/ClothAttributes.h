@@ -1,4 +1,5 @@
 #pragma once
+#include "..\Consts\ClothConst.h"
 class CClothAttributes
 {
 public:
@@ -61,5 +62,6 @@ public:
 	};
 
 	ClothType type;
+	CClothConst fixAttributes;
 };
 
