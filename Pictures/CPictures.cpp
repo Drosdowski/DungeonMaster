@@ -297,7 +297,7 @@ void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld, CRucksack* pRucksack)
 		if (sExp[i] > 0)
 		{
 			strTitel = pRucksack->GetTitle(sExp[i]);
-			strKlasse = pRucksack->GetClass(i);
+			strKlasse = pRucksack->GetClass(i-1);
 			strZeile.Format("%s %s", strTitel, strKlasse);
 			pDC->TextOut(230, 160 + i * 16, strZeile);
 		}

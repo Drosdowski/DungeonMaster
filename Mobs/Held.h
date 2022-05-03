@@ -42,8 +42,8 @@ public:
 	double StaminaPart() { return (double)m_ST.Aktuell / (double)m_ST.Max; }
 	double ManaPart() { return (double)m_MA.Aktuell / (double)m_MA.Max; }
 	COLORREF Farbe() { return m_Farbe[m_iIndex]; }
-	int MaxLoad();
-	int CurLoad();
+	double MaxLoad();
+	double CurLoad();
 
 
 	CRucksack* GetRucksack() { return m_pRucksack; }
@@ -84,6 +84,8 @@ private:
 	CItem* m_itemCarrying[30];
 
 	CItem* m_pItemInHand = NULL;
+
+	double round1(double value);
 };
 
 /////////////////////////////////////////////////////////////////////////////

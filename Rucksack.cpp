@@ -23,10 +23,10 @@ CRucksack::CRucksack(CHeld* pHero)
 	m_iModusExtend = MOD_EXT_NORMAL;
 	m_pOwner = pHero;
 
-	KLASSE[1] = "FIGHTER";
-    KLASSE[2] = "NINJA";
-	KLASSE[3] = "PRIEST";
-	KLASSE[4] = "WIZARD";
+	KLASSE[0] = "FIGHTER";
+    KLASSE[1] = "NINJA";
+	KLASSE[2] = "PRIEST";
+	KLASSE[3] = "WIZARD";
 }
 
 CRucksack::~CRucksack()
