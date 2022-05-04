@@ -3,18 +3,17 @@ class CItemConst
 {
 public:
 
-	int index;
 	double weight[3];
 
-	int strengthplus;
-	int dexterityplus;
-	int wisdomplus;
-	int luckplus;
-	int manaplus;
-	int skillplus;
-	int antifire;
-	int antimagic;
-	int regen;
-	int freeze;
+	int strengthplus = 0;
+	int dexterityplus = 0;
+	int wisdomplus = 0;
+	int luckplus = 0;
+	int manaplus = 0;
+	int skillplus = 0;
+	int antifire = 0;
+	int antimagic = 0;
+	int regen = 0;
+	int freeze = 0;
 };
 

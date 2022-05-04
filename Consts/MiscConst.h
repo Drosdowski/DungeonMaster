@@ -3,8 +3,8 @@
 class CMiscConst : public CItemConst
 {
 public:
-	int water;
-	int food;
+	int water = 0;
+	int food = 0;
 
 };
 

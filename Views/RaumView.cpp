@@ -419,7 +419,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 					graphicTypeSide == ArchedAlcove ||
 					graphicTypeSide == ViAltar));
 				if (isBigContainer)
-					decoPosY += bmpDecoInfo.bmHeight * faktor / 2;
+					decoPosY += (int)(bmpDecoInfo.bmHeight * faktor / 2);
 				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
 			}
 

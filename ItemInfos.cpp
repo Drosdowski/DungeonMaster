@@ -58,7 +58,7 @@ void CItemInfos::ParseWeaponItems(TiXmlElement* rootNode) {
 	while (parentElement)
 	{
 		const char* parent = parentElement->Value();
-		if (strcmp(parent, "items") == 0) // several existing
+		if (strcmp(parent, "item") == 0) // several existing
 		{
 			int index;
 			CWeaponConst attribute;
@@ -84,7 +84,7 @@ void CItemInfos::ParseClothItems(TiXmlElement* rootNode) {
 	while (parentElement)
 	{
 		const char* parent = parentElement->Value();
-		if (strcmp(parent, "items") == 0) // several existing
+		if (strcmp(parent, "item") == 0) // several existing
 		{
 			int index;
 			CClothConst attribute;
@@ -105,10 +105,10 @@ void CItemInfos::ParseMiscellaneousItems(TiXmlElement* rootNode) {
 	while (parentElement)
 	{
 		const char* parent = parentElement->Value();
-		if (strcmp(parent, "items") == 0) // several existing
+		if (strcmp(parent, "item") == 0) // several existing
 		{
 			int index;
-			CMiscConst attribute;
+			CMiscConst attribute;			
 			parentElement->QueryIntAttribute("index", &index);
 			parentElement->QueryDoubleAttribute("weight", &attribute.weight[0]);
 			parentElement->QueryDoubleAttribute("weight2", &attribute.weight[1]);

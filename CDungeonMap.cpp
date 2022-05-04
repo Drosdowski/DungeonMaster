@@ -534,7 +534,7 @@ void CDungeonMap::ParseMiscellaneousObjects(TiXmlElement* rootNode) {
 			parentElement->QueryIntAttribute("subtype", &att.subtype);
 			parentElement->QueryIntAttribute("type", &type);
 			att.type = (CMiscellaneousAttributes::MiscItemType)type;
-			att.fixAttributes = m_pItemInfos->GetMiscInfo(index);
+			att.fixAttributes = m_pItemInfos->GetMiscInfo(type);
 			m_miscellaneousAtt[index] = att;
 		}
 		parentElement = parentElement->NextSiblingElement();
@@ -554,7 +554,7 @@ void CDungeonMap::ParseWeaponObjects(TiXmlElement* rootNode) {
 			parentElement->QueryIntAttribute("charges", &att.charges);
 			parentElement->QueryIntAttribute("type", &type);
 			att.type = (CWeaponAttributes::WeaponType)type;
-			att.fixAttributes = m_pItemInfos->GetWeaponInfo(index);
+			att.fixAttributes = m_pItemInfos->GetWeaponInfo(type);
 			m_weaponAtt[index] = att;
 		}
 		parentElement = parentElement->NextSiblingElement();
@@ -573,7 +573,7 @@ void CDungeonMap::ParseClothObjects(TiXmlElement* rootNode) {
 			parentElement->QueryIntAttribute("index", &index);
 			parentElement->QueryIntAttribute("type", &type);
 			att.type = (CClothAttributes::ClothType)type;
-			att.fixAttributes = m_pItemInfos->GetClothInfo(index);
+			att.fixAttributes = m_pItemInfos->GetClothInfo(type);
 			m_clothAtt[index] = att;
 		}
 		parentElement = parentElement->NextSiblingElement();

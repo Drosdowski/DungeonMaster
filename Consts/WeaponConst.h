@@ -5,6 +5,7 @@ class CWeaponConst : public CItemConst
 public:
 
 	enum AttackType {
+		none,
 		punch,
 		swing,
 		slash,
@@ -39,16 +40,16 @@ public:
 		fluxcage
 	};
 	class AttackStyle {
-		AttackType type;
-		int dmg;
-		int difficult;
-		bool useCharge;
+		AttackType type = none;
+		int dmg = 0;
+		int difficult = 0;
+		bool useCharge = 0;
 	};
 	
 	AttackStyle style[3];
-	int damage;
-	int distance;
-	int shootDamage;
+	int damage = 0;
+	int distance = 0;
+	int shootDamage = 0;
 
 };
 

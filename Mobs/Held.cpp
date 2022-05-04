@@ -152,7 +152,7 @@ CItem* CHeld::SwitchItemAt(int index, CItem* item)
 
 double CHeld::MaxLoad() {
 	// http://dmweb.free.fr/?q=node/691
-	int maxLoad = (8 * m_sVitals.str.Aktuell + 100) / 10;
+	double maxLoad = (8 * m_sVitals.str.Aktuell + 100) / 10;
 	// todo: if injured => MaxLoad = 3 * MaxLoad / 4 
 	if (m_itemCarrying[6] && m_itemCarrying[6]->getItemType() == CClothAttributes::ClothType::ElvenBoots) {
 		maxLoad = round1(17 * maxLoad / 16);

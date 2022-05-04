@@ -3,7 +3,7 @@
 class CClothConst : public CItemConst
 {
 public:
-	int armor;
-	int res;
+	int armor = 0;
+	int res = 0;
 };
 
