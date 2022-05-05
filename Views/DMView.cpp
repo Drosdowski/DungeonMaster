@@ -369,6 +369,9 @@ void CDMView::ParseClickFloor(CPoint point) {
 			if (pItemInHand == NULL)
 				topItem = FeldVorHeld->TakeItem(itemRegionReal);
 			else {
+				FeldVorHeld = m_pRaumView->ChangeFieldWithTeleporter(FeldVorHeld, pItemInHand);
+				FeldVorHeld = m_pRaumView->ChangeFieldWithStairs(FeldVorHeld, pItemInHand);
+
 				FeldVorHeld->PutItem(pItemInHand, itemRegionReal);
 				grpHelden->EmptyHand();
 			}

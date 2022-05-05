@@ -61,6 +61,9 @@ public:
 
 	virtual ~CRaumView();
 
+	CField* ChangeFieldWithTeleporter(CField* pField, CItem* pItem);
+	CField* ChangeFieldWithStairs(CField* pField, CItem* pItem);
+
 protected:
 	bool m_bMirror;
 	CPictures* m_pPictures;

@@ -35,6 +35,7 @@
 #include "Mobs\Monster.h"
 #include "Mobs\MobGroups\GrpMonster.h"
 #include "Mobs\MobGroups\GrpHeld.h"
+#include <cassert>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -880,12 +881,14 @@ void CRaumView::MoveItems(VEKTOR heroPos) {
 				// fliegendes Item gefunden
 				SUBPOS_ABSOLUTE newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, topItem->m_flyForce);
 
-				if (newPos == MIDDLE) {
+				if (newPos == OUTSIDE) {
 					// Feld verlassen
 					CField* newField = m_pMap->GetField(heroPos.x + sign(topItem->m_flyForce.x), heroPos.y + sign(topItem->m_flyForce.y), heroPos.z);
 					if (!newField->Blocked()) {
-						// westlich von west ist ost => anders rum subpos suchen
 						topItem = field->TakeItem(posAbs);
+						newField = ChangeFieldWithTeleporter(newField, topItem);
+						newField = ChangeFieldWithStairs(newField, topItem);
+						// westlich von west ist ost => anders rum subpos suchen
 						newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topItem->m_flyForce.x, -topItem->m_flyForce.y, 0 });
 						newField->PutItem(topItem, newPos);
 					}
@@ -903,6 +906,40 @@ void CRaumView::MoveItems(VEKTOR heroPos) {
 		}
 	}
 }
+
+CField* CRaumView::ChangeFieldWithTeleporter(CField* pField, CItem* pItem) {
+	CTeleporter* tp = pField->HoleTeleporter();	
+	
+	if (tp) {
+		// todo Teleport & items
+		COMPASS_DIRECTION dir = tp->getTargetDirection();
+		if (tp->getRotationType() == TeleporterAttributes::RotationType::Absolute) {
+			// todo rotate item in teleport
+			assert(false);
+		}
+		else { // relativ
+			// todo rotate item in teleport
+			if (dir != 0)
+				assert(false);
+		}
+	}
+	return pField;
+}
+CField* CRaumView::ChangeFieldWithStairs(CField* pField, CItem* pItem) {
+	CStairs* stair = pField->HoleStairs();
+	if (stair) {
+		// In Treppe: Flug zu Ende
+		pItem->m_flyForce = { 0,0,0 };
+		// Falls Treppe runter: Item fliegt runter!
+		if (stair->GetType() == CStairs::StairType::DOWN) {
+			VEKTOR oben = pField->HolePos();
+			pField = m_pMap->GetField(oben.x, oben.y, oben.z + 1);
+			// todo subpos bei treppe landung?
+		}
+	}
+	return pField;
+}
+
 
 void CRaumView::MoveAnythingNearby() {
 	VEKTOR held = m_pMap->GetHeroes()->GetPos();

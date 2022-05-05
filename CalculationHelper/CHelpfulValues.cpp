@@ -54,7 +54,7 @@ SUBPOS_ABSOLUTE CHelpfulValues::FindNextSubposWithoutFieldChange(SUBPOS_ABSOLUTE
 		if (yV < 0) return NORTHEAST;
 		break;
 	}
-	return MIDDLE;
+	return OUTSIDE;
 }
 
 
