@@ -886,8 +886,8 @@ void CRaumView::MoveItems(VEKTOR heroPos) {
 					CField* newField = m_pMap->GetField(heroPos.x + sign(topItem->m_flyForce.x), heroPos.y + sign(topItem->m_flyForce.y), heroPos.z);
 					if (!newField->Blocked()) {
 						topItem = field->TakeItem(posAbs);
-						newField = ChangeFieldWithTeleporter(newField, topItem);
-						newField = ChangeFieldWithStairs(newField, topItem);
+						newField = ChangeFieldWithTeleporter(newField, topItem, posAbs);
+						newField = ChangeFieldWithStairs(newField, topItem, posAbs);
 						// westlich von west ist ost => anders rum subpos suchen
 						if (topItem->IsFlying())
 							newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topItem->m_flyForce.x, -topItem->m_flyForce.y, 0 });
@@ -910,15 +910,23 @@ void CRaumView::MoveItems(VEKTOR heroPos) {
 	}
 }
 
-CField* CRaumView::ChangeFieldWithTeleporter(CField* pField, CItem* pItem) {
+CField* CRaumView::ChangeFieldWithTeleporter(CField* pField, CItem* pItem, SUBPOS_ABSOLUTE& subPos) {
 	CTeleporter* tp = pField->HoleTeleporter();	
 	
 	if (tp) {
 		// todo Teleport & items
 		COMPASS_DIRECTION dir = tp->getTargetDirection();
 		if (tp->getRotationType() == TeleporterAttributes::RotationType::Absolute) {
-			// todo rotate item in teleport
-			assert(false);
+			switch (tp->getRotation()) {
+			case 0:
+				break;
+			case 90:
+				subPos = CHelpfulValues::RightFrom(subPos); break;
+			case 180:
+				subPos = CHelpfulValues::RightFrom(CHelpfulValues::RightFrom(subPos)); break;
+			case 270:
+				subPos = CHelpfulValues::LeftFrom(subPos); break;
+			}
 		}
 		else { // relativ
 			// todo rotate item in teleport
@@ -928,7 +936,7 @@ CField* CRaumView::ChangeFieldWithTeleporter(CField* pField, CItem* pItem) {
 	}
 	return pField;
 }
-CField* CRaumView::ChangeFieldWithStairs(CField* pField, CItem* pItem) {
+CField* CRaumView::ChangeFieldWithStairs(CField* pField, CItem* pItem, SUBPOS_ABSOLUTE& subPos) {
 	CStairs* stair = pField->HoleStairs();
 	if (stair) {
 		// In Treppe: Flug zu Ende

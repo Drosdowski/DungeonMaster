@@ -10,6 +10,7 @@ public:
 	COMPASS_DIRECTION getTargetDirection() { return (COMPASS_DIRECTION)m_attributes.rotation; }
 	TeleporterAttributes::RotationType getRotationType() { return m_attributes.rotationType; }
 	TeleporterAttributes::Scope getScope() { if (m_open) return m_attributes.scope; else return TeleporterAttributes::Scope::None; }
+	int getRotation() { return m_attributes.rotation; }
 	bool isVisible() { return m_isVisible; }
 	bool hasSound() { return m_attributes.sound; }
 
