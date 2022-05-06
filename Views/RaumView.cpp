@@ -889,7 +889,10 @@ void CRaumView::MoveItems(VEKTOR heroPos) {
 						newField = ChangeFieldWithTeleporter(newField, topItem);
 						newField = ChangeFieldWithStairs(newField, topItem);
 						// westlich von west ist ost => anders rum subpos suchen
-						newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topItem->m_flyForce.x, -topItem->m_flyForce.y, 0 });
+						if (topItem->IsFlying())
+							newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topItem->m_flyForce.x, -topItem->m_flyForce.y, 0 });
+						else
+							newPos = posAbs;
 						newField->PutItem(topItem, newPos);
 					}
 					else {
