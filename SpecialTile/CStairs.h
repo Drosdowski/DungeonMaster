@@ -12,6 +12,7 @@ public:
 
 	StairType GetType() { return m_Type; }
 	bool Visible(int heroDir);
+	bool isEastWest() { return m_eastWest; }
 
 private:
 	StairType m_Type;

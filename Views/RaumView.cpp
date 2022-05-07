@@ -919,6 +919,22 @@ CField* CRaumView::ChangeFieldWithTeleporter(CField* pField, CItem* pItem, SUBPO
 		if (tp->getRotationType() == TeleporterAttributes::RotationType::Absolute) {
 			switch (tp->getRotation()) {
 			case 0:
+				if (subPos == SOUTHWEST) subPos = NORTHWEST; break;
+				if (subPos == SOUTHEAST) subPos = NORTHEAST; break;
+			case 90:
+				if (subPos == NORTHWEST) subPos = NORTHEAST; break;
+				if (subPos == SOUTHWEST) subPos = SOUTHEAST; break;
+			case 180:
+				if (subPos == SOUTHWEST) subPos = NORTHWEST; break;
+				if (subPos == SOUTHEAST) subPos = NORTHEAST; break;
+			case 270:
+				if (subPos == NORTHEAST) subPos = NORTHWEST; break;
+				if (subPos == SOUTHEAST) subPos = SOUTHWEST; break;
+			}
+		}
+		else { // relativ
+			switch (tp->getRotation()) {
+			case 0:
 				break;
 			case 90:
 				subPos = CHelpfulValues::RightFrom(subPos); break;
@@ -927,11 +943,6 @@ CField* CRaumView::ChangeFieldWithTeleporter(CField* pField, CItem* pItem, SUBPO
 			case 270:
 				subPos = CHelpfulValues::LeftFrom(subPos); break;
 			}
-		}
-		else { // relativ
-			// todo rotate item in teleport
-			if (dir != 0)
-				assert(false);
 		}
 	}
 	return pField;
@@ -944,8 +955,38 @@ CField* CRaumView::ChangeFieldWithStairs(CField* pField, CItem* pItem, SUBPOS_AB
 		// Falls Treppe runter: Item fliegt runter!
 		if (stair->GetType() == CStairs::StairType::DOWN) {
 			VEKTOR oben = pField->HolePos();
-			pField = m_pMap->GetField(oben.x, oben.y, oben.z + 1);
-			// todo subpos bei treppe landung?
+			VEKTOR unten = { oben.x, oben.y, oben.z + 1 };
+			// todo doppelten code eliminieren
+			unten.x += (m_pMap->GetOffset(oben.z).x - m_pMap->GetOffset(unten.z).x);
+			unten.y += (m_pMap->GetOffset(oben.z).y - m_pMap->GetOffset(unten.z).y);
+			pField = m_pMap->GetField(unten);
+			// freie Seite suchen, da muss das Teil landen
+			for (int i = -1; i <= 1; i += 2) {
+				if (!m_pMap->GetField(unten.x + i, unten.y, unten.z)->HoleTyp() == FeldTyp::WALL) {
+					if (i == 1) {
+						if (subPos == NORTHWEST) { subPos = NORTHEAST; return pField; }
+						if (subPos == SOUTHWEST) { subPos = SOUTHEAST; return pField; }
+					}
+					else {
+						if (subPos == NORTHEAST) { subPos = NORTHWEST; return pField; }
+						if (subPos == SOUTHEAST) { subPos = SOUTHWEST; return pField; }
+					}
+				}
+				if (!m_pMap->GetField(unten.x, unten.y + i, unten.z)->HoleTyp() == FeldTyp::WALL) {
+					if (i == 1) {
+						if (subPos == NORTHWEST) subPos = SOUTHWEST; return pField;
+						if (subPos == NORTHEAST) subPos = SOUTHEAST; return pField;
+					}
+					else {
+						if (subPos == SOUTHWEST) subPos = NORTHWEST; return pField;
+						if (subPos == SOUTHEAST) subPos = NORTHEAST; return pField;
+					}
+
+				}
+
+			}
+
+
 		}
 	}
 	return pField;
