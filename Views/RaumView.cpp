@@ -960,9 +960,11 @@ CField* CRaumView::ChangeFieldWithStairs(CField* pField, CItem* pItem, SUBPOS_AB
 			unten.x += (m_pMap->GetOffset(oben.z).x - m_pMap->GetOffset(unten.z).x);
 			unten.y += (m_pMap->GetOffset(oben.z).y - m_pMap->GetOffset(unten.z).y);
 			pField = m_pMap->GetField(unten);
+			CStairs* stairEnd = pField->HoleStairs();
+			// stair 1: links oder rechts? => sub pos ermitteln
 			// freie Seite suchen, da muss das Teil landen
 			for (int i = -1; i <= 1; i += 2) {
-				if (!m_pMap->GetField(unten.x + i, unten.y, unten.z)->HoleTyp() == FeldTyp::WALL) {
+				if (!m_pMap->GetField(unten.x + i,  unten.y, unten.z)->HoleTyp() == FeldTyp::WALL) {
 					if (i == 1) {
 						if (subPos == NORTHWEST) { subPos = NORTHEAST; return pField; }
 						if (subPos == SOUTHWEST) { subPos = SOUTHEAST; return pField; }

@@ -2,9 +2,9 @@
 #include "CStairs.h"
 
 
-CStairs::CStairs(StairType type, bool eastWest) {
+CStairs::CStairs(StairType type, COMPASS_DIRECTION stairExit) {
 	m_Type = type;
-	m_eastWest = eastWest;
+	m_stairExit = stairExit;
 }
 
 CStairs::~CStairs() {
