@@ -11,7 +11,7 @@ public:
 	~CStairs();
 
 	StairType GetType() { return m_Type; }
-	bool Visible(int heroDir);
+	bool Visible(COMPASS_DIRECTION heroDir);
 	COMPASS_DIRECTION StairExit() { return m_stairExit;  };
 
 private:

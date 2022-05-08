@@ -70,14 +70,14 @@ CField* CDungeonMap::ParseStairs(TiXmlElement* rootNode, VEKTOR pos) {
 	rootNode->QueryIntAttribute("direction", &direction);
 	rootNode->QueryIntAttribute("orientation", &orientation);
 	COMPASS_DIRECTION stairExit;
-	if (orientation != 0) {
-		if (m_pFeld[pos.x - 1][pos.y][pos.z]->HoleTyp() == WALL)
+	if (orientation == 0) {
+		if (pos.x <1 || m_pFeld[pos.x - 1][pos.y][pos.z]->HoleTyp() == WALL)
 			stairExit = EAST;
 		else
 			stairExit = WEST;
 	}
 	else {
-		if (m_pFeld[pos.x][pos.y-1][pos.z]->HoleTyp() == WALL)
+		if (pos.y < 1 || m_pFeld[pos.x][pos.y-1][pos.z]->HoleTyp() == WALL)
 			stairExit = SOUTH;
 		else
 			stairExit = NORTH;

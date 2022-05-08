@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "CStairs.h"
-
+#include "..\CalculationHelper\CHelpfulValues.h"
 
 CStairs::CStairs(StairType type, COMPASS_DIRECTION stairExit) {
 	m_Type = type;
@@ -10,6 +10,6 @@ CStairs::CStairs(StairType type, COMPASS_DIRECTION stairExit) {
 CStairs::~CStairs() {
 }
 
-bool CStairs::Visible(int heroRicht) {
-	return (m_eastWest != (heroRicht % 2 != 0));
+bool CStairs::Visible(COMPASS_DIRECTION heroRicht) {
+	return (heroRicht == m_stairExit || heroRicht == CHelpfulValues::OppositeDirection(m_stairExit));
 }

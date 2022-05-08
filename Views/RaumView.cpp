@@ -741,6 +741,7 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 {	
 	CField* pField = m_pMap->GetField(toPos);
 	FeldTyp iTyp = pField->HoleTyp();
+	CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
 	if (iTyp == FeldTyp::WALL)
 		return fromPos;
 	else if (iTyp == FeldTyp::DOOR)
@@ -756,7 +757,6 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 	else if (iTyp == FeldTyp::PIT) {
 		CPit* pit = pField->HolePit();
 		if (pit->GetState() == CPit::PitState::Opened) {
-			CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
 			toPos.z++;
 			toPos.x += (m_pMap->GetOffset(fromPos.z).x - m_pMap->GetOffset(toPos.z).x);
 			toPos.y += (m_pMap->GetOffset(fromPos.z).y - m_pMap->GetOffset(toPos.z).y);
@@ -770,7 +770,6 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 		if (tele->getScope() == TeleporterAttributes::Scope::Items_Party ||
 			tele->getScope() == TeleporterAttributes::Scope::All) {
 			toPos = tele->getTargetField();
-			CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
 			if (tele->getRotationType() == TeleporterAttributes::RotationType::Absolute) 
 			{
 				pGrpHelden->SetzeRichtung(tele->getTargetDirection());
@@ -793,8 +792,8 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 		}
 	}
 	else if (iTyp == FeldTyp::STAIRS) {
-		CStairs* stairs = pField->HoleStairs();
-		if (stairs->GetType() == CStairs::StairType::DOWN)
+		CStairs* stairsBegin = pField->HoleStairs();
+		if (stairsBegin->GetType() == CStairs::StairType::DOWN)
 		{
 			toPos.z++;			
 		}
@@ -805,19 +804,9 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 		toPos.y += (m_pMap->GetOffset(fromPos.z).y - m_pMap->GetOffset(toPos.z).y);
 		// neue Richtung: Blick auf das einzige EMPTY Feld neben Hero
 
-		for (int i = -1; i <= 1; i += 2) {
-			if (!m_pMap->GetField(toPos.x + i, toPos.y, toPos.z)->HoleTyp() == FeldTyp::WALL) {
-				CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
-				pGrpHelden->DrehenAbsolut((COMPASS_DIRECTION)((i == -1) ? 3 : 1));
-			}
-			if (!m_pMap->GetField(toPos.x, toPos.y + i, toPos.z)->HoleTyp() == FeldTyp::WALL) {
-				CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
-				pGrpHelden->DrehenAbsolut((COMPASS_DIRECTION)((i == -1) ? 0 : 2));
-			}
-
-		}
-
-		return toPos;
+		CStairs* stairsEnd = m_pMap->GetField(toPos)->HoleStairs();
+		
+		pGrpHelden->DrehenAbsolut(stairsEnd->StairExit());
 	}
 	return toPos;
 }
@@ -956,39 +945,29 @@ CField* CRaumView::ChangeFieldWithStairs(CField* pField, CItem* pItem, SUBPOS_AB
 		if (stair->GetType() == CStairs::StairType::DOWN) {
 			VEKTOR oben = pField->HolePos();
 			VEKTOR unten = { oben.x, oben.y, oben.z + 1 };
-			// todo doppelten code eliminieren
+			
 			unten.x += (m_pMap->GetOffset(oben.z).x - m_pMap->GetOffset(unten.z).x);
 			unten.y += (m_pMap->GetOffset(oben.z).y - m_pMap->GetOffset(unten.z).y);
 			pField = m_pMap->GetField(unten);
-			CStairs* stairEnd = pField->HoleStairs();
-			// stair 1: links oder rechts? => sub pos ermitteln
-			// freie Seite suchen, da muss das Teil landen
-			for (int i = -1; i <= 1; i += 2) {
-				if (!m_pMap->GetField(unten.x + i,  unten.y, unten.z)->HoleTyp() == FeldTyp::WALL) {
-					if (i == 1) {
-						if (subPos == NORTHWEST) { subPos = NORTHEAST; return pField; }
-						if (subPos == SOUTHWEST) { subPos = SOUTHEAST; return pField; }
-					}
-					else {
-						if (subPos == NORTHEAST) { subPos = NORTHWEST; return pField; }
-						if (subPos == SOUTHEAST) { subPos = SOUTHWEST; return pField; }
-					}
-				}
-				if (!m_pMap->GetField(unten.x, unten.y + i, unten.z)->HoleTyp() == FeldTyp::WALL) {
-					if (i == 1) {
-						if (subPos == NORTHWEST) subPos = SOUTHWEST; return pField;
-						if (subPos == NORTHEAST) subPos = SOUTHEAST; return pField;
-					}
-					else {
-						if (subPos == SOUTHWEST) subPos = NORTHWEST; return pField;
-						if (subPos == SOUTHEAST) subPos = NORTHEAST; return pField;
-					}
+			CStairs* stairEnd = pField->HoleStairs();			
+			COMPASS_DIRECTION targetPos = stairEnd->StairExit(); // N E S W
 
-				}
-
+			if (targetPos == NORTH) {
+				if (subPos == SOUTHWEST) { subPos = NORTHWEST; return pField; }
+				if (subPos == SOUTHEAST) { subPos = NORTHEAST; return pField; }			
 			}
-
-
+			else if (targetPos == EAST) {
+				if (subPos == SOUTHWEST) { subPos = SOUTHEAST; return pField; }
+				if (subPos == NORTHWEST) { subPos = NORTHEAST; return pField; }
+			}
+			else if (targetPos == SOUTH) {
+				if (subPos == NORTHEAST) { subPos = SOUTHEAST; return pField; }
+				if (subPos == NORTHWEST) { subPos = SOUTHWEST; return pField; }
+			}
+			else if (targetPos == WEST) {
+				if (subPos == NORTHEAST) { subPos = NORTHWEST; return pField; }
+				if (subPos == SOUTHEAST) { subPos = SOUTHWEST; return pField; }
+			}
 		}
 	}
 	return pField;
