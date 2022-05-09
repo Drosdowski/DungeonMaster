@@ -673,6 +673,46 @@ IDB_WALLDECO_2L         BITMAP                  "res\\WallDeco\\WallDeco_2-Left.
 
 IDB_WALLDECO_2F         BITMAP                  "res\\WallDeco\\WallDeco_2_Front.bmp"
 
+IDB_ITEM3D_COMPASS      BITMAP                  "res\\Items3D\\Item_3d_Compass.bmp"
+
+IDB_MISSILE_THROWINGSTAR_S BITMAP                  "res\\Items3D\\Missile_ThrowingStar_S.bmp"
+
+IDB_MISSILE_THROWINGSTAR_F BITMAP                  "res\\Items3D\\Missile_ThrowingStar_F.bmp"
+
+IDB_MISSILE_POISONDART_S BITMAP                  "res\\Items3D\\Missile_PoisonDart_S.bmp"
+
+IDB_MISSILE_POISONDART_B BITMAP                  "res\\Items3D\\Missile_PoisonDart_B.bmp"
+
+IDB_MISSILE_POISONDART_F BITMAP                  "res\\Items3D\\Missile_PoisonDart_F.bmp"
+
+IDB_MISSILE_SLAYER_S    BITMAP                  "res\\Items3D\\Missile_Slayer_S.bmp"
+
+IDB_MISSILE_SLAYER_B    BITMAP                  "res\\Items3D\\Missile_Slayer_B.bmp"
+
+IDB_MISSILE_SLAYER_F    BITMAP                  "res\\Items3D\\Missile_Slayer_F.bmp"
+
+IDB_MISSILE_AXE_S       BITMAP                  "res\\Items3D\\Missile_Axe_S.bmp"
+
+IDB_MISSILE_AXE_B       BITMAP                  "res\\Items3D\\Missile_Axe_B.bmp"
+
+IDB_MISSILE_AXE_F       BITMAP                  "res\\Items3D\\Missile_Axe_F.bmp"
+
+IDB_MISSILE_STONECLUB_S BITMAP                  "res\\Items3D\\Missile_StoneClub_S.bmp"
+
+IDB_MISSILE_STONECLUB_B BITMAP                  "res\\Items3D\\Missile_StoneClub_B.bmp"
+
+IDB_MISSILE_STONECLUB_F BITMAP                  "res\\Items3D\\Missile_StoneClub_F.bmp"
+
+IDB_ITEM3D_THROWINGSTAR BITMAP                  "res\\Items3D\\Item_3d_ThrowingStar.bmp"
+
+IDB_ITEM3D_POISONDART   BITMAP                  "res\\Items3D\\Item_3d_PoisonDart.bmp"
+
+IDB_ITEM3D_SLAYER       BITMAP                  "res\\Items3D\\Item_3d_Slayer.bmp"
+
+IDB_ITEM3D_AXE          BITMAP                  "res\\Items3D\\Item_3d_Axe.bmp"
+
+IDB_ITEM3D_STONECLUB    BITMAP                  "res\\Items3D\\Item_3d_StoneClub.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

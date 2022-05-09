@@ -1198,6 +1198,66 @@
     <Image Include="res\WallDeco\WallDeco_2_Front.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Items3D\Item_3d_Compass.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_ThrowingStar_S.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_ThrowingStar_F.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_PoisonDart_S.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_PoisonDart_B.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_PoisonDart_F.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_Slayer_S.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_Slayer_B.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_Slayer_F.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_Axe_S.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_Axe_B.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_Axe_F.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_StoneClub_S.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_StoneClub_B.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Missile_StoneClub_F.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Item_3d_ThrowingStar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Item_3d_PoisonDart.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Item_3d_Slayer.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Item_3d_Axe.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Item_3d_StoneClub.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

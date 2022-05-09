@@ -12,6 +12,7 @@ CItem3DPic ::~CItem3DPic() {
 	delete m_pBread;
 	delete m_pCorn;
 	delete m_pCheese;
+	delete m_pCompass;
 	delete m_pGoldKey;
 	delete m_pIronKey;
 	delete m_pTorch;
@@ -21,11 +22,18 @@ CItem3DPic ::~CItem3DPic() {
 	for (int w = 0; w < 4; w++)
 	{
 		delete m_pClub[w];
+		delete m_pStoneClub[w];
+		delete m_pAxe[w];
 		delete m_pSword[w];
 		delete m_pDagger[w];
 		delete m_pArrow[w];
-		if (w < 2)
-			delete m_pWaterskin[w];
+		delete m_pSlayer[w];
+		delete m_pPoisonDart[w];
+		if (w < 3) {
+			delete m_pThrowingStar[w];
+			if (w < 2)
+				delete m_pWaterskin[w];
+		}
 	}
 }
 	
@@ -35,6 +43,7 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pBread, IDB_ITEM3D_BREAD);
 	LoadPic(m_pCorn, IDB_ITEM3D_CORN);
 	LoadPic(m_pCheese, IDB_ITEM3D_CHEESE);
+	LoadPic(m_pCompass, IDB_ITEM3D_COMPASS);
 	LoadPic(m_pWhiteCloth, IDB_ITEM3D_FINEROBE);
 	LoadPic(m_pGreenCloth, IDB_ITEM3D_ELVENDOUBLET);
 	LoadPic(m_pLeatherBoots, IDB_ITEM3D_LEATHERBOOTS);
@@ -47,6 +56,14 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pClub[1], IDB_MISSILE_CLUB_B);
 	LoadPic(m_pClub[2], IDB_MISSILE_CLUB_F);
 	LoadPic(m_pClub[3], IDB_MISSILE_CLUB_S);
+	LoadPic(m_pStoneClub[0], IDB_ITEM3D_STONECLUB);
+	LoadPic(m_pStoneClub[1], IDB_MISSILE_STONECLUB_B);
+	LoadPic(m_pStoneClub[2], IDB_MISSILE_STONECLUB_F);
+	LoadPic(m_pStoneClub[3], IDB_MISSILE_STONECLUB_S);
+	LoadPic(m_pAxe[0], IDB_ITEM3D_AXE);
+	LoadPic(m_pAxe[1], IDB_MISSILE_AXE_B);
+	LoadPic(m_pAxe[2], IDB_MISSILE_AXE_F);
+	LoadPic(m_pAxe[3], IDB_MISSILE_AXE_S);
 	LoadPic(m_pSword[0], IDB_ITEM3D_SWORD);
 	LoadPic(m_pSword[1], IDB_MISSILE_SWORD_B);
 	LoadPic(m_pSword[2], IDB_MISSILE_SWORD_F);
@@ -59,6 +76,17 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pArrow[1], IDB_MISSILE_ARROW_B);
 	LoadPic(m_pArrow[2], IDB_MISSILE_ARROW_F);
 	LoadPic(m_pArrow[3], IDB_MISSILE_ARROW_S);
+	LoadPic(m_pSlayer[0], IDB_ITEM3D_SLAYER);
+	LoadPic(m_pSlayer[1], IDB_MISSILE_SLAYER_B);
+	LoadPic(m_pSlayer[2], IDB_MISSILE_SLAYER_F);
+	LoadPic(m_pSlayer[3], IDB_MISSILE_SLAYER_S);
+	LoadPic(m_pThrowingStar[0], IDB_ITEM3D_THROWINGSTAR);
+	LoadPic(m_pThrowingStar[1], IDB_MISSILE_THROWINGSTAR_F);
+	LoadPic(m_pThrowingStar[2], IDB_MISSILE_THROWINGSTAR_S);
+	LoadPic(m_pPoisonDart[0], IDB_ITEM3D_POISONDART);
+	LoadPic(m_pPoisonDart[1], IDB_MISSILE_POISONDART_B);
+	LoadPic(m_pPoisonDart[2], IDB_MISSILE_POISONDART_F);
+	LoadPic(m_pPoisonDart[3], IDB_MISSILE_POISONDART_S);
 }
 
 CPoint CItem3DPic::GetFloorMiddle(int x, int ebene) {

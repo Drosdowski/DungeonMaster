@@ -139,6 +139,12 @@
 #define IDB_ITEM3D_ELVENDOUBLET         413
 #define IDB_ITEM3D_FINEROBE             414
 #define IDB_ITEM3D_CHEESE               415
+#define IDB_ITEM3D_COMPASS              416
+#define IDB_ITEM3D_THROWINGSTAR         417
+#define IDB_ITEM3D_POISONDART           418
+#define IDB_ITEM3D_SLAYER               419
+#define IDB_ITEM3D_AXE                  420
+#define IDB_ITEM3D_STONECLUB            421
 #define IDB_MISSILE_CLUB_B              440
 #define IDB_MISSILE_CLUB_F              441
 #define IDB_MISSILE_CLUB_S              442
@@ -151,6 +157,20 @@
 #define IDB_MISSILE_ARROW_B             453
 #define IDB_MISSILE_ARROW_F             454
 #define IDB_MISSILE_ARROW_S             455
+#define IDB_MISSILE_THROWINGSTAR_S      465
+#define IDB_MISSILE_THROWINGSTAR_F      466
+#define IDB_MISSILE_POISONDART_B        467
+#define IDB_MISSILE_POISONDART_S        468
+#define IDB_MISSILE_POISONDART_F        469
+#define IDB_MISSILE_SLAYER_B            470
+#define IDB_MISSILE_SLAYER_S            471
+#define IDB_MISSILE_SLAYER_F            472
+#define IDB_MISSILE_AXE_B               473
+#define IDB_MISSILE_AXE_S               474
+#define IDB_MISSILE_AXE_F               475
+#define IDB_MISSILE_STONECLUB_B         476
+#define IDB_MISSILE_STONECLUB_S         477
+#define IDB_MISSILE_STONECLUB_F         478
 #define IDB_BITMAP_E0L                  1001
 #define IDB_BITMAP_E0LF                 1002
 #define IDB_BITMAP_E0R                  1004
@@ -261,7 +281,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        464
+#define _APS_NEXT_RESOURCE_VALUE        486
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101
