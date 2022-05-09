@@ -4,6 +4,7 @@ class CMiscellaneousAttributes
 {
 public:
 	enum MiscItemType {
+		Compass = 0,
 		Water = 1,
 		IronKey = 9,
 		KeyOfB = 10,

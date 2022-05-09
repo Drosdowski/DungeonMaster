@@ -131,6 +131,26 @@ CBitmap* CItem3DPic::GetClub(bool inAir) {
 	}
 }
 
+CBitmap* CItem3DPic::GetStoneClub(bool inAir) {
+	if (inAir) {
+		rotationCnt = (rotationCnt % 3) + 1;
+		return m_pStoneClub[rotationCnt];
+	}
+	else {
+		return m_pStoneClub[0];
+	}
+}
+
+CBitmap* CItem3DPic::GetAxe(bool inAir) {
+	if (inAir) {
+		rotationCnt = (rotationCnt % 3) + 1;
+		return m_pAxe[rotationCnt];
+	}
+	else {
+		return m_pAxe[0];
+	}
+}
+
 CBitmap* CItem3DPic::GetSword(bool inAir) {
 	if (inAir) {
 		return m_pSword[1]; // todo !!	
@@ -155,5 +175,32 @@ CBitmap* CItem3DPic::GetArrow(bool inAir) {
 	}
 	else {
 		return m_pArrow[0];
+	}
+}
+
+CBitmap* CItem3DPic::GetSlayer(bool inAir) {
+	if (inAir) {
+		return m_pSlayer[1]; // todo !!	
+	}
+	else {
+		return m_pSlayer[0];
+	}
+}
+
+CBitmap* CItem3DPic::GetThrowingStar(bool inAir) {
+	if (inAir) {
+		return m_pThrowingStar[1]; // todo !!	
+	}
+	else {
+		return m_pThrowingStar[0];
+	}
+}
+
+CBitmap* CItem3DPic::GetPoisonDart(bool inAir) {
+	if (inAir) {
+		return m_pPoisonDart[1]; // todo !!	
+	}
+	else {
+		return m_pPoisonDart[0];
 	}
 }

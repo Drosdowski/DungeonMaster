@@ -552,6 +552,8 @@ CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {
 		bmp = m_pItem3DPic->GetCorn();
 	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Cheese)
 		bmp = m_pItem3DPic->GetCheese();
+	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Compass)
+		bmp = m_pItem3DPic->GetCompass();
 	else if (misc->GetType() >= CMiscellaneousAttributes::MiscItemType::IronKey &&
 		misc->GetType() <= CMiscellaneousAttributes::MiscItemType::SkeletonKey)
 		bmp = m_pItem3DPic->GetIronKey();
@@ -591,12 +593,23 @@ CBitmap* CRaumView::GetWeaponBitmap(CWeapon* weapon, bool inAir) {
  		weapon->GetType() <= CWeaponAttributes::WeaponType::DiamondEdge ||
 		weapon->GetType() == CWeaponAttributes::WeaponType::TheInquisitor)
 		bmp = m_pItem3DPic->GetSword(inAir);
+	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Axe ||
+			 weapon->GetType() == CWeaponAttributes::WeaponType::Hardcleave)
+		bmp = m_pItem3DPic->GetAxe(inAir);
 	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Dagger)
 		bmp = m_pItem3DPic->GetDagger(inAir);
 	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Club)
 		bmp = m_pItem3DPic->GetClub(inAir);
+	else if (weapon->GetType() == CWeaponAttributes::WeaponType::StoneClub)
+		bmp = m_pItem3DPic->GetStoneClub(inAir);
 	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Arrow)
 		bmp = m_pItem3DPic->GetArrow(inAir);
+	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Slayer)
+		bmp = m_pItem3DPic->GetSlayer(inAir);
+	else if (weapon->GetType() == CWeaponAttributes::WeaponType::ThrowingStar)
+		bmp = m_pItem3DPic->GetThrowingStar(inAir);
+	else if (weapon->GetType() == CWeaponAttributes::WeaponType::PoisonDart)
+		bmp = m_pItem3DPic->GetPoisonDart(inAir);
 	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Torch)
 		bmp = m_pItem3DPic->GetTorch();
 	else

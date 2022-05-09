@@ -26,6 +26,7 @@ public:
 	CBitmap* GetClub(bool inAir);
 	CBitmap* GetStoneClub(bool inAir);
 	CBitmap* GetSword(bool inAir);
+	CBitmap* GetAxe(bool inAir);
 	CBitmap* GetDagger(bool inAir);
 	CBitmap* GetArrow(bool inAir);
 	CBitmap* GetSlayer(bool inAir);

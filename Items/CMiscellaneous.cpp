@@ -28,6 +28,9 @@ int CMiscellaneous::GetOffsetForGroup() {
 		else
 			assert(false);
 	case Other:
+		if (m_attribute.type == CMiscellaneousAttributes::MiscItemType::Compass) {
+			return m_attribute.subtype; // N W S E
+		}
 		assert(false); // todo !!
 	}
 	return -1;
@@ -54,6 +57,8 @@ int CMiscellaneous::GetSheetForGroup() {
 	case Throwable:
 		return 1;
 	case Other:
+		if (m_attribute.type == CMiscellaneousAttributes::MiscItemType::Compass)
+			return 0;
 		assert(false); // todo !!
 	}
 	return -1;
