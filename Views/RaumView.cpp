@@ -950,23 +950,15 @@ CField* CRaumView::ChangeFieldWithStairs(CField* pField, CItem* pItem, SUBPOS_AB
 			unten.y += (m_pMap->GetOffset(oben.z).y - m_pMap->GetOffset(unten.z).y);
 			pField = m_pMap->GetField(unten);
 			CStairs* stairEnd = pField->HoleStairs();			
-			COMPASS_DIRECTION targetPos = stairEnd->StairExit(); // N E S W
-
-			if (targetPos == NORTH) {
-				if (subPos == SOUTHWEST) { subPos = NORTHWEST; return pField; }
-				if (subPos == SOUTHEAST) { subPos = NORTHEAST; return pField; }			
+			COMPASS_DIRECTION sourceDir = CHelpfulValues::OppositeDirection(stair->StairExit());
+			COMPASS_DIRECTION targetDir = stairEnd->StairExit(); // N E S W
+			if (sourceDir > targetDir) {
+				for (int t=0; t< (sourceDir - targetDir); t++)
+					subPos = CHelpfulValues::LeftFrom(subPos);
 			}
-			else if (targetPos == EAST) {
-				if (subPos == SOUTHWEST) { subPos = SOUTHEAST; return pField; }
-				if (subPos == NORTHWEST) { subPos = NORTHEAST; return pField; }
-			}
-			else if (targetPos == SOUTH) {
-				if (subPos == NORTHEAST) { subPos = SOUTHEAST; return pField; }
-				if (subPos == NORTHWEST) { subPos = SOUTHWEST; return pField; }
-			}
-			else if (targetPos == WEST) {
-				if (subPos == NORTHEAST) { subPos = NORTHWEST; return pField; }
-				if (subPos == SOUTHEAST) { subPos = SOUTHWEST; return pField; }
+			else if (sourceDir > targetDir) {
+				for (int t = 0; t < (targetDir - sourceDir); t++)
+					subPos = CHelpfulValues::RightFrom(subPos);
 			}
 		}
 	}
