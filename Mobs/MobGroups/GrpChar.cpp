@@ -5,6 +5,7 @@
 #include "GrpChar.h"
 #include "..\Character.h"
 #include "..\..\CalculationHelper\CHelpfulValues.h"
+#include "..\Held.h"
 #include <iostream>
 
 #ifdef _DEBUG
@@ -200,6 +201,7 @@ void CGrpChar::DrehenRelativ(int iRelRichtung)
 		DrehenAbsolut((COMPASS_DIRECTION)((m_grpDirection + 1) %4)); // todo auslagern
 		break;
 	}
+	ChangeCompass();
 
 }
 
@@ -266,3 +268,11 @@ bool CGrpChar::emptyWestRow() {
 	return true;
 }
 
+void CGrpChar::ChangeCompass() {
+	for (int i = 1; i < 5; i++) {
+		if (m_pMember[i] && m_pMember[i]->IsHero()) {
+			CHeld* hero = (CHeld*)m_pMember[i];
+			hero->ChangeCompass();
+		}
+	}
+}

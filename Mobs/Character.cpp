@@ -17,12 +17,13 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CCharacter
 
-CCharacter::CCharacter()
+CCharacter::CCharacter(bool isHero)
 {
 	m_chrDirection = 0;
 	m_iReady = 0;
 	m_iReceivedDmg = 0;
 	m_attacking = false;
+	m_isHero = isHero;
 }
 
 CCharacter::~CCharacter()

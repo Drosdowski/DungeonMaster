@@ -6,8 +6,11 @@
 #include "..\CalculationHelper\CHelpfulValues.h"
 #include "..\Items\Item.h"
 #include "Monster.h"
-#include "Held.h"
 #include <Attributes/ClothAttributes.h>
+// following includes for compass
+#include "Held.h"
+#include "..\Attributes\MiscellaneousAttributes.h"
+#include "..\Items\CMiscellaneous.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,7 +21,7 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CHeld
 
-CHeld::CHeld(int iIndex, CString strName): CCharacter()
+CHeld::CHeld(int iIndex, CString strName): CCharacter(true)
 {
 	m_HP.Max = 100;
 	m_MA.Max = 100;
@@ -179,4 +182,20 @@ double CHeld::CurLoad() {
 
 double CHeld::round1(double value) {
 	return floor(value * 10.0 + .5) / 10.0;
+}
+
+void CHeld::ChangeCompass() {
+	for (int i = 0; i < 30; i++)
+	{
+		CItem* item = m_itemCarrying[i];
+		if (item && item->getItemType() == CItem::ItemType::MiscItem)
+		{
+			if (item->GetType() == CMiscellaneousAttributes::MiscItemType::Compass) {
+				CMiscellaneous* misc = (CMiscellaneous*)item;
+				
+				misc->SetSubtype(GetDirection());
+			}
+
+		}
+	}
 }

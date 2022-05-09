@@ -36,6 +36,7 @@ public:
 	void Essen(int amount);
 	void WerteTemporaerAendern(int hp, int st, int ma);
 	//virtual void WertePermanentAendern(int hp, int st, int ma);
+	void ChangeCompass();
 
 	int CalcDmg(int ID, CGrpChar* pOpponents);
 	double LifePart() { return (double)m_HP.Aktuell / (double)m_HP.Max; }

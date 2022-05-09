@@ -10,7 +10,7 @@ class CGrpChar;
 class CCharacter
 {
 protected:
-	CCharacter();           // Dynamische Erstellung verwendet geschützten Konstruktor
+	CCharacter(bool isHero);           // Dynamische Erstellung verwendet geschützten Konstruktor
 
 // Attribute
 public:
@@ -20,7 +20,7 @@ public:
 	int GetDirection() { return m_chrDirection; }
 	bool IstBereit() { return m_iReady == 0; };
 	bool isAttacking() { return m_attacking; }
-
+	bool IsHero() {	return m_isHero; }
 // Operationen
 public:
 	void SetzeSubPosition(SUBPOS_ABSOLUTE pos) { m_subPosition = pos; };
@@ -64,7 +64,7 @@ protected:
 
 	SUBPOS_ABSOLUTE m_subPosition;
 	int m_iReady;
-
+	bool m_isHero;
 };
 
 /////////////////////////////////////////////////////////////////////////////

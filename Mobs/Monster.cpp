@@ -16,7 +16,7 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CMonster
 
-CMonster::CMonster(): CCharacter()
+CMonster::CMonster(): CCharacter(false)
 {
 }
 
