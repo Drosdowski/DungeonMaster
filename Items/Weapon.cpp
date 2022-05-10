@@ -32,7 +32,7 @@ int CWeapon::GetOffsetForGroup() {
 int CWeapon::GetSheetForGroup() {
 	if (m_attribute.type < 8)
 		return 0;
-	else if (m_attribute.type < 24)
+	else if (m_attribute.type < 33)
 		return 1;
 	else
 		assert(false); // todo !!

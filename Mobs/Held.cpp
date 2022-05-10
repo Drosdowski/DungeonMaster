@@ -150,6 +150,7 @@ CItem* CHeld::SwitchItemAt(int index, CItem* item)
 {
 	CItem* carryingBefore = m_itemCarrying[index];
 	m_itemCarrying[index] = item;
+	ChangeCompass();
 	return carryingBefore;
 }
 
