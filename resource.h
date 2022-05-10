@@ -5,7 +5,6 @@
 #define IDD_ABOUTBOX                    100
 #define IDR_MAINFRAME                   128
 #define IDR_DMTYPE                      129
-#define IDB_BITMAP_KRAM                 131
 #define IDB_BITMAP_E                    133
 #define IDB_BITMAP_ICONS                138
 #define IDB_BITMAP_ICONS3D              139
@@ -171,6 +170,10 @@
 #define IDB_MISSILE_STONECLUB_B         476
 #define IDB_MISSILE_STONECLUB_S         477
 #define IDB_MISSILE_STONECLUB_F         478
+#define IDB_DMG_REC_SMALL               486
+#define IDB_DMG_REC_BIG                 487
+#define IDB_INTERFACE_DEAD              488
+#define IDB_INTERFACE_ALIVE             489
 #define IDB_BITMAP_E0L                  1001
 #define IDB_BITMAP_E0LF                 1002
 #define IDB_BITMAP_E0R                  1004
@@ -281,7 +284,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        486
+#define _APS_NEXT_RESOURCE_VALUE        490
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

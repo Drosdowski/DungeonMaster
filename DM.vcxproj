@@ -279,6 +279,8 @@
     <Image Include="res\Ceiling\CeilingPit_L0.bmp" />
     <Image Include="res\Ceiling\CeilingPit_L1.bmp" />
     <Image Include="res\Ceiling\CeilingPit_L2.bmp" />
+    <Image Include="res\DamageReceivedBig.bmp" />
+    <Image Include="res\DamageReceivedSmall.bmp" />
     <Image Include="res\DM.ico" />
     <Image Include="res\DMDoc.ico" />
     <Image Include="res\Door\DoorSwitch.bmp" />
@@ -311,6 +313,8 @@
     <Image Include="res\Door_Wood_1.bmp" />
     <Image Include="res\Door_Wood_2.bmp" />
     <Image Include="res\Door_Wood_3.bmp" />
+    <Image Include="res\InterfaceHeroAlive.bmp" />
+    <Image Include="res\InterfaceHeroDead.bmp" />
     <Image Include="res\Items3D\Item_3d_Arrow.bmp" />
     <Image Include="res\Items3D\Item_3d_Axe.bmp" />
     <Image Include="res\Items3D\Item_3d_Cheese.bmp" />

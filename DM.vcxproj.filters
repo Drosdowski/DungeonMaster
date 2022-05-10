@@ -1258,6 +1258,18 @@
     <Image Include="res\Items3D\Item_3d_StoneClub.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\DamageReceivedSmall.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\DamageReceivedBig.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\InterfaceHeroDead.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\InterfaceHeroAlive.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

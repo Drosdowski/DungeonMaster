@@ -713,6 +713,14 @@ IDB_ITEM3D_AXE          BITMAP                  "res\\Items3D\\Item_3d_Axe.bmp"
 
 IDB_ITEM3D_STONECLUB    BITMAP                  "res\\Items3D\\Item_3d_StoneClub.bmp"
 
+IDB_DMG_REC_SMALL       BITMAP                  "res\\DamageReceivedSmall.bmp"
+
+IDB_DMG_REC_BIG         BITMAP                  "res\\DamageReceivedBig.bmp"
+
+IDB_INTERFACE_DEAD      BITMAP                  "res\\InterfaceHeroDead.bmp"
+
+IDB_INTERFACE_ALIVE     BITMAP                  "res\\InterfaceHeroAlive.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

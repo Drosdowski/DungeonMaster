@@ -16,7 +16,6 @@ public:
 	CBitmap* GetRucksack() { return m_pBmpRuck; }
 	CBitmap* GetHintergrund() { return m_pBmpHintergrund; }
 	CBitmap* GetActionsArea() { return m_pActionsArea; }
-	CBitmap* GetKram() { return m_pBmpKram; }
 	CBitmap* GetRunes(int i) { return m_pRunes[i]; }
 	CBitmap* GetWizardTabs(int i) { return m_pWizardTabs[i]; }
 	CBitmap* GetOneHand() { return m_pOneHand; }
@@ -31,7 +30,7 @@ public:
 	void WaffeZeichnen(CDC* pDC);
 	void WerteZeichnen(CDC* pDC, CHeld* pHeld);
 	void BildZeichnen(CDC* pDC, bool aktiv, int index);
-	void SchadenZeichnen(CDC* pDC, int index);
+	void SchadenZeichnen(CDC* pDC, int index, bool bigDmg);
 	void PfeilZeichnen(CDC* pDC, int index);
 
 private:
@@ -51,12 +50,13 @@ private:
 	CBitmap* m_pBmpHintergrund;
 	CBitmap* m_pBmpInversePfeile;
 	CBitmap* m_pBmpPfeile;
-	CBitmap* m_pBmpKram;
 	CBitmap* m_pRunes[4];
 	CBitmap* m_pWizardTabs[5];
 	CBitmap* m_pActionsArea;
 	CBitmap* m_pActionsDamage;
 	CBitmap* m_pOneHand;
+	CBitmap* m_pInterface[2];
+	CBitmap* m_pDamageReceived[2];
 
 	CItemPic* m_pItemPic;
 	

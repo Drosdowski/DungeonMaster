@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "stdafx.h"
 #include "DM.h"
 #include "CPictures.h"
 #include "CWallPic.h"
@@ -22,11 +23,14 @@ CPictures::~CPictures()
 	delete m_pBmpInversePfeile;
 	delete m_pBmpPfeile;
 	delete m_pBmpRuck;
-	delete m_pBmpKram;
 	for (int i = 1; i < 5; i++) {
 		delete m_pWizardTabs[i];
 		if (i < 4) {
 			delete m_pRunes[i];
+			if (i < 3) {
+				delete m_pDamageReceived[i-1];
+				delete m_pInterface[i-1];
+			}
 		}
 	}
 	delete m_pActionsArea;
@@ -52,9 +56,12 @@ void CPictures::InitBitmaps()
 	LoadPic(m_pBmpHintergrund, IDB_BITMAP_E);
 	LoadPic(m_pBmpInversePfeile, IDB_BITMAP_PINV);
 	LoadPic(m_pBmpPfeile, IDB_BITMAP_P);
+	LoadPic(m_pDamageReceived[0], IDB_DMG_REC_SMALL);
+	LoadPic(m_pDamageReceived[1], IDB_DMG_REC_BIG);
+	LoadPic(m_pInterface[0], IDB_INTERFACE_ALIVE);
+	LoadPic(m_pInterface[1], IDB_INTERFACE_DEAD);
 
 	LoadPic(m_pBmpRuck, IDB_BITMAP_RUCK);
-	LoadPic(m_pBmpKram, IDB_BITMAP_KRAM);
 	LoadPic(m_pRunes[1], IDB_RUNES1);
 	LoadPic(m_pRunes[2], IDB_RUNES2);
 	LoadPic(m_pRunes[3], IDB_RUNES3);
@@ -99,14 +106,21 @@ void CPictures::WerteZeichnen(CDC* pDC, CHeld* pHeld)
 {
 	int index = pHeld->getIndex();
 
-	RECT r = { (index - 1) * 138, 0, (index - 1) * 138 + 138, 64 };
+	CDC tmpdc;
+	tmpdc.CreateCompatibleDC(pDC);	
+	tmpdc.SelectObject(m_pInterface[0]);
+	pDC->StretchBlt((index - 1) * 138, 0, 138, 56, &tmpdc, 0, 0, 80, 29, SRCCOPY);
+
+
+	/*RECT r = {(index - 1) * 138, 0, (index - 1) * 138 + 138, 64};
 	CBrush* b = new CBrush(GANZDUNKELGRAU);
 	pDC->FillRect(&r, b);
-	delete b;
+	delete b;*/
 
 	// Hp, St, Ma - Balken
 	int x = (pHeld->getIndex() - 1) * 138 + 94;
-	pDC->FillSolidRect(CRect(x, 4, x + 35, 52), GANZDUNKELGRAU);
+	//pDC->FillSolidRect(CRect(x, 4, x + 35, 52), GANZDUNKELGRAU);
+
 	pDC->FillSolidRect(CRect(x, 52 - int(48 * pHeld->LifePart()), x + 7, 52), pHeld->Farbe());
 	int s = int(48 * pHeld->StaminaPart());
 	pDC->FillSolidRect(CRect(x + 14, 52 - int(48 * pHeld->StaminaPart()), x + 21, 52), pHeld->Farbe());
@@ -164,9 +178,8 @@ void CPictures::KnochenZeichnen(CDC* pDC, int index)
 {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
-
-	tmpdc.SelectObject(m_pBmpKram);
-	pDC->BitBlt((index - 1) * 138, 0, 138, 56, &tmpdc, 276, 320, SRCCOPY);
+	tmpdc.SelectObject(m_pInterface[1]);
+	pDC->StretchBlt((index - 1) * 138, 0, 138, 56, &tmpdc, 0, 0, 80, 29, SRCCOPY);
 
 	tmpdc.DeleteDC();
 }
@@ -234,13 +247,18 @@ void CPictures::NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName)
 	pDC->ExtTextOut(x + 4, -3, ETO_CLIPPED | ETO_OPAQUE, CRect(x, 0, x + 86, 12), strName, NULL);
 }
 
-void CPictures::SchadenZeichnen(CDC* pDC, int index)
+void CPictures::SchadenZeichnen(CDC* pDC, int index, bool bigDmg)
 {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
-
-	tmpdc.SelectObject(m_pBmpKram);
-	pDC->BitBlt((index - 1) * 138, 0, 84, 14, &tmpdc, 192, 92, SRCCOPY);
+	if (bigDmg) {
+		tmpdc.SelectObject(m_pDamageReceived[1]);
+		pDC->StretchBlt((index - 1) * 138, 0, 64, 58, &tmpdc, 0, 0, 32, 29, SRCCOPY);
+	}
+	else {
+		tmpdc.SelectObject(m_pDamageReceived[0]);
+		pDC->StretchBlt((index - 1) * 138, 0, 96, 14, &tmpdc, 0, 0, 48, 7, SRCCOPY);
+	}
 
 	tmpdc.DeleteDC();
 }

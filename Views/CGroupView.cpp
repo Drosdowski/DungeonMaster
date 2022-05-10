@@ -53,7 +53,7 @@ void CGroupView::GroupZeichnen(CDC* pDC, CPictures* pPictures, int iModus, CGrpH
 				SUBPOS relPos = CHelpfulValues::GetRelativeSubPosActive(pHeroToDraw->HoleSubPosition(), pGrpHeld->GetDirection());
 				pPictures->SymbolZeichnen(pDC, i, relPos);
 				if (pHeroToDraw->ReceivedDmg() > 0) {
-					pPictures->SchadenZeichnen(pDC, i);
+					pPictures->SchadenZeichnen(pDC, i, pHeroToDraw->isActive() && (iModus == CDMView::MOD_RUCKSACK));
 					pHeroToDraw->ResetDmg();
 				}
 			}
