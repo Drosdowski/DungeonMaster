@@ -316,14 +316,16 @@ void CDungeonMap::ParseCreature(TiXmlElement* creatureItem, VEKTOR coords) {
 
 				}
 				else if (strcmp(subParent, "weapon") == 0) {
-					//parentElement->QueryIntAttribute("index", &index);
-					//parentElement->QueryIntAttribute("position", &position);
-					//int mtype = m_miscellaneousType[index];
-					//int msubtype = m_miscellaneousSubtype[index];
-					// CMiscellaneous* misc = new CMiscellaneous(index, (CMiscellaneous::ItemType)mtype, msubtype);
-					// pGrpMonster->CarryItem(misc, (SUBPOS_ABSOLUTE)position);
-					// Todo weapon items ?
-
+					monsterItem->QueryIntAttribute("index", &index);
+					monsterItem->QueryIntAttribute("position", &position);
+					CWeapon* weapon = new CWeapon(index, m_weaponAtt[index]);
+					pGrpMonster->CarryItem(weapon, (SUBPOS_ABSOLUTE)position);
+				}
+				else if (strcmp(subParent, "cloth") == 0) {
+					monsterItem->QueryIntAttribute("index", &index);
+					monsterItem->QueryIntAttribute("position", &position);
+					CCloth* cloth = new CCloth(index, m_clothAtt[index]);
+					pGrpMonster->CarryItem(cloth, (SUBPOS_ABSOLUTE)position);
 				}
 				monsterItem = parentElement->NextSiblingElement();
 

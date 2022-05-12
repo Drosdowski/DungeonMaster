@@ -300,7 +300,7 @@ void CGrpMonster::Laufen(VEKTOR WunschPos) {
 	m_posPosition = WunschPos;
 }
 
-void CGrpMonster::CarryItem(CMiscellaneous* item, SUBPOS_ABSOLUTE pos) {
+void CGrpMonster::CarryItem(CItem* item, SUBPOS_ABSOLUTE pos) {
 	carriedItem = item;
 	carriedItemPos = pos;
 }
