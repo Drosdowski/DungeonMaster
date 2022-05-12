@@ -61,10 +61,10 @@ SUBPOS_ABSOLUTE CHelpfulValues::FindNextSubposWithoutFieldChange(SUBPOS_ABSOLUTE
 
 SUBPOS_ABSOLUTE CHelpfulValues::GetAbsPosBySubposWhenFacingNorth(SUBPOS pos) {
 	switch (pos) {
-	case LINKSHINTEN: return NORTHWEST;
-	case RECHTSHINTEN: return NORTHEAST;
-	case RECHTSVORNE: return SOUTHEAST;
-	case LINKSVORNE: return SOUTHWEST;
+	case LINKSHINTEN: return SOUTHWEST;
+	case RECHTSHINTEN: return SOUTHEAST;
+	case RECHTSVORNE: return NORTHEAST;
+	case LINKSVORNE: return NORTHWEST;
 	}
 	return MIDDLE;
 }
@@ -72,13 +72,13 @@ SUBPOS_ABSOLUTE CHelpfulValues::GetAbsPosBySubposWhenFacingNorth(SUBPOS pos) {
 SUBPOS CHelpfulValues::GetPosByIndexWhenFacingNorth(SUBPOS_ABSOLUTE pos) {
 	switch (pos) {
 	case NORTHWEST:
-		return LINKSHINTEN; 
+		return LINKSVORNE;
 	case NORTHEAST:
-		return RECHTSHINTEN;
-	case SOUTHEAST:
 		return RECHTSVORNE;
+	case SOUTHEAST:
+		return RECHTSHINTEN;
 	case SOUTHWEST:
-		return LINKSVORNE;		
+		return LINKSHINTEN;
 	case MIDDLE:
 		return MITTE;
 	}
@@ -113,7 +113,7 @@ SUBPOS_ABSOLUTE CHelpfulValues::LeftFrom(SUBPOS_ABSOLUTE pos) {
 	return MIDDLE;
 }
 
-SUBPOS CHelpfulValues::GetRelativeSubPosPassive(SUBPOS_ABSOLUTE pos_abs, int heroDir) {
+SUBPOS CHelpfulValues::GetRelativeSubPosPassive(SUBPOS_ABSOLUTE pos_abs, COMPASS_DIRECTION heroDir) {
 	for (int turns = 0; turns < heroDir; turns++)
 	{
 		pos_abs = LeftFrom(pos_abs);
@@ -121,7 +121,7 @@ SUBPOS CHelpfulValues::GetRelativeSubPosPassive(SUBPOS_ABSOLUTE pos_abs, int her
 	return GetPosByIndexWhenFacingNorth(pos_abs);
 }
 
-SUBPOS_ABSOLUTE CHelpfulValues::GetRelativeSubPosActive(SUBPOS opponentPos, int heroDir) {
+SUBPOS_ABSOLUTE CHelpfulValues::GetRelativeSubPosActive(SUBPOS opponentPos, COMPASS_DIRECTION heroDir) {
 	SUBPOS_ABSOLUTE pos_abs = GetAbsPosBySubposWhenFacingNorth(opponentPos);
 	for (int turns = 0; turns < heroDir; turns++)
 	{
@@ -130,7 +130,7 @@ SUBPOS_ABSOLUTE CHelpfulValues::GetRelativeSubPosActive(SUBPOS opponentPos, int 
 	return pos_abs;
 }
 
-SUBPOS_ABSOLUTE CHelpfulValues::GetRelativeSubPosPassive(SUBPOS pos, int heroDir) {
+SUBPOS_ABSOLUTE CHelpfulValues::GetRelativeSubPosPassive(SUBPOS pos, COMPASS_DIRECTION heroDir) {
 	SUBPOS_ABSOLUTE pos_abs = GetAbsPosBySubposWhenFacingNorth(pos);
 	for (int turns = 0; turns < heroDir; turns++)
 	{
@@ -138,8 +138,7 @@ SUBPOS_ABSOLUTE CHelpfulValues::GetRelativeSubPosPassive(SUBPOS pos, int heroDir
 	}
 	return pos_abs;
 }
-
-SUBPOS CHelpfulValues::GetRelativeSubPosActive(SUBPOS_ABSOLUTE pos_abs, int heroDir) {
+SUBPOS CHelpfulValues::GetRelativeSubPosActive(SUBPOS_ABSOLUTE pos_abs, COMPASS_DIRECTION heroDir) {
 	for (int turns = 0; turns < heroDir; turns++)
 	{
 		pos_abs = RightFrom(pos_abs);

@@ -16,11 +16,11 @@ public:
 	VEKTOR static MakeVektor(int direction, int force);
 	CPoint static CalcSubPosition(BITMAP bmpInfo, SUBPOS subPos, double faktor, int xx); // for monsters - todo weg damit!
 	CPoint static CalcRelSubFloorPosition(BITMAP bmpInfo, CPoint wallPos, SUBPOS subPos, double faktor, int xx, int ebene); // for items 
-	SUBPOS static GetRelativeSubPosActive(SUBPOS_ABSOLUTE pos, int heroDir);
-	SUBPOS static GetRelativeSubPosPassive(SUBPOS_ABSOLUTE pos, int heroDir);
+	SUBPOS static GetRelativeSubPosActive(SUBPOS_ABSOLUTE pos, COMPASS_DIRECTION heroDir);
+	SUBPOS static GetRelativeSubPosPassive(SUBPOS_ABSOLUTE pos, COMPASS_DIRECTION heroDir);
 
-	SUBPOS_ABSOLUTE static GetRelativeSubPosActive(SUBPOS opponentPos, int heroDir);
-	SUBPOS_ABSOLUTE static GetRelativeSubPosPassive(SUBPOS pos, int heroDir);
+	SUBPOS_ABSOLUTE static GetRelativeSubPosActive(SUBPOS opponentPos, COMPASS_DIRECTION heroDir);
+	SUBPOS_ABSOLUTE static GetRelativeSubPosPassive(SUBPOS pos, COMPASS_DIRECTION heroDir);
 	SUBPOS_ABSOLUTE static RightFrom(SUBPOS_ABSOLUTE pos);
 	SUBPOS_ABSOLUTE static LeftFrom(SUBPOS_ABSOLUTE pos);
 

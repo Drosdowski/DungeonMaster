@@ -27,7 +27,7 @@ CGrpMonster::CGrpMonster(VEKTOR pos, COMPASS_DIRECTION richt)
 	for (int i=1; i<=4; i++)
 		m_pMember[i] = NULL;
 	m_posPosition = pos;
-	m_grpDirection = richt;
+	DrehenAbsolut(richt);
 	carriedItem = NULL;
 }
 
@@ -118,12 +118,14 @@ void CGrpMonster::EndAttack() {
 	}
 }
 
-CMonster* CGrpMonster::AttackHero(VEKTOR myPos, VEKTOR hisPos) {
+CMonster* CGrpMonster::AttackHero(VEKTOR monsterPos, VEKTOR heroPos) {
 	for (int i = 1; i < 5; i++)
 	{
 		CMonster* pMonster = (CMonster*)m_pMember[i];
 		if (pMonster && pMonster->IstBereit()) {	
-			if (pMonster->InFrontOfOpponent(myPos, hisPos, emptyNorthRow(), emptyEastRow(), emptySouthRow(), emptyWestRow())) {
+			//CHeld* held = (CHeld*)NearestTarget(hisPos);
+
+			if (pMonster->InFrontOfOpponent(monsterPos, heroPos, emptyNorthRow(), emptyEastRow(), emptySouthRow(), emptyWestRow())) {
 				if (pMonster->GetDirection() == m_grpDirection)
 				{
 					int dmg = pMonster->CalcDmg(1); // todo monster attacke random
@@ -136,7 +138,7 @@ CMonster* CGrpMonster::AttackHero(VEKTOR myPos, VEKTOR hisPos) {
 				}
 			}
 			else {
-				TryToAdavanceToFirstRow(i, myPos, hisPos);
+				TryToAdavanceToFirstRow(i, monsterPos, heroPos);
 			}			
 		}
 	}

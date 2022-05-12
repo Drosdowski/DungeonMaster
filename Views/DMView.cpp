@@ -232,7 +232,7 @@ void CDMView::ParseClickAir(CPoint point) {
 				}
 				else 
 				{
-					int grpDir = grpHelden->GetDirection();
+					COMPASS_DIRECTION grpDir = grpHelden->GetDirection();
 					SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(airRegionClicked, grpDir);
 					VEKTOR force = CHelpfulValues::MakeVektor(grpDir, 6);
 					m_pRaumView->GetMap()->GetField(grpHelden->GetPos())->ThrowItem(pItemInHand, itemRegionReal, force);

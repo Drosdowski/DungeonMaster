@@ -500,7 +500,7 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 
 }
 
-void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, int heroDir, std::deque<CItem*> pile) {
+void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, COMPASS_DIRECTION heroDir, std::deque<CItem*> pile) {
 	int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
 	CBitmap* bmp;
 	// TODO - besser als "nur oberstes Malen... "
