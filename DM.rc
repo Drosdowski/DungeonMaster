@@ -727,6 +727,10 @@ IDB_MONSTER_SCREAMER_ATTACK BITMAP                  "res\\Monster\\Screamer_Atta
 
 IDB_MONSTER_SCREAMER_FRONT BITMAP                  "res\\Monster\\Screamer_Front.bmp"
 
+IDB_MONSTER_ROCKPILE_ATTACK BITMAP                  "res\\Monster\\RockPile_Attack.bmp"
+
+IDB_MONSTER_ROCKPILE_FRONT BITMAP                  "res\\Monster\\RockPile_Front.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

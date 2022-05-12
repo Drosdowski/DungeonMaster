@@ -4,17 +4,20 @@
 #include "CMummyPic.h"
 #include "CSkeletonPic.h"
 #include "ScreamerPic.h"
+#include "RockPilePic.h"
 
 CMonsterPic::CMonsterPic(CDC* pDC) : CBasePictures(pDC) {
 	m_pMummyPic = new CMummyPic(pDC);
 	m_pSkeletonPic = new CSkeletonPic(pDC);
 	m_pScreamerPic = new CScreamerPic(pDC);
+	m_pRockPilePic = new CRockPilePic(pDC);
 }
 
 CMonsterPic::~CMonsterPic() {
 	delete m_pSkeletonPic;
 	delete m_pMummyPic;
 	delete m_pScreamerPic;
+	delete m_pRockPilePic;
 }
 
 CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
@@ -27,6 +30,8 @@ CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
 		return m_pSkeletonPic->GetSkeletonPic(iRicht, pMonster->isAttacking());
 	case CMonster::MonsterTyp::SCREAMER:
 		return m_pScreamerPic->GetScreamerPic(pMonster->isAttacking());
+	case CMonster::MonsterTyp::ROCKPILE:
+		return m_pRockPilePic->GetRockPilePic(pMonster->isAttacking());
 	default:
 		break;
 	}

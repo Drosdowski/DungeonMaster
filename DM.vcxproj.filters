@@ -210,6 +210,9 @@
     <ClCompile Include="Pictures\Creatures\ScreamerPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pictures\Creatures\RockPilePic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -413,6 +416,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\Creatures\ScreamerPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\Creatures\RockPilePic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1286,6 +1292,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Items3D\Item_3d_ScreamerSlice.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\RockPile_Attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\RockPile_Front.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
