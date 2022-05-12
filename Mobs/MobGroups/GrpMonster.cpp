@@ -63,10 +63,10 @@ void CGrpMonster::InitMonster(int nr, CCreatureAttributes attributes)
 		int hp = attributes.hitPoints[nr - 1];
 		switch (attributes.type)
 		{
-		case CMonster::MonsterTyp::SKELETT:
+		case CMonster::MonsterTyp::SKELETON:
 			m_pMember[nr] = new CSkelett(hp);
 			break;
-		case CMonster::MonsterTyp::MUMIE:
+		case CMonster::MonsterTyp::MUMMY:
 			m_pMember[nr] = new CMumie(hp);
 			break;
 		default:

@@ -18,11 +18,11 @@ CMummyPic:: ~CMummyPic() {
 
 void CMummyPic::InitPics() {
 
-	LoadPic(m_pMummyAttack, IDB_MUMMY_ATTACK);
-	LoadPic(m_pMummyFront, IDB_MUMMY_FRONT);
-	LoadPic(m_pMummyRight, IDB_MUMMY_RIGHT);
-	LoadPicAndFlip(m_pMummyLeft, IDB_MUMMY_RIGHT);
-	LoadPic(m_pMummyBack, IDB_MUMMY_BACK);
+	LoadPic(m_pMummyAttack, IDB_MONSTER_MUMMY_ATTACK);
+	LoadPic(m_pMummyFront, IDB_MONSTER_MUMMY_FRONT);
+	LoadPic(m_pMummyRight, IDB_MONSTER_MUMMY_RIGHT);
+	LoadPicAndFlip(m_pMummyLeft, IDB_MONSTER_MUMMY_RIGHT);
+	LoadPic(m_pMummyBack, IDB_MONSTER_MUMMY_BACK);
 }
 
 CBitmap* CMummyPic::GetMummyPic(int richt, bool attacking) {

@@ -141,6 +141,7 @@
     <ClCompile Include="Attributes\CCreatureAttributes.cpp" />
     <ClCompile Include="Consts\MiscConst.cpp" />
     <ClCompile Include="Pictures\CWallDecoPic.cpp" />
+    <ClCompile Include="Pictures\Creatures\ScreamerPic.cpp" />
     <ClCompile Include="Views\CGroupView.cpp" />
     <ClCompile Include="Attributes\CTeleporterAttributes.cpp" />
     <ClCompile Include="SpecialTile\CTeleporter.cpp" />
@@ -215,6 +216,7 @@
     <ClInclude Include="Consts\MiscConst.h" />
     <ClInclude Include="Pictures\CLockPic.h" />
     <ClInclude Include="Pictures\CWallDecoPic.h" />
+    <ClInclude Include="Pictures\Creatures\ScreamerPic.h" />
     <ClInclude Include="Views\CGroupView.h" />
     <ClInclude Include="Attributes\CTeleporterAttributes.h" />
     <ClInclude Include="SpecialTile\CTeleporter.h" />
@@ -326,6 +328,7 @@
     <Image Include="res\Items3D\Item_3d_FineRobe.bmp" />
     <Image Include="res\Items3D\Item_3d_LeatherBoots.bmp" />
     <Image Include="res\Items3D\Item_3d_PoisonDart.bmp" />
+    <Image Include="res\Items3D\Item_3d_ScreamerSlice.bmp" />
     <Image Include="res\Items3D\Item_3d_Slayer.bmp" />
     <Image Include="res\Items3D\Item_3d_StoneClub.bmp" />
     <Image Include="res\Items3D\Item_3d_Sword.bmp" />
@@ -359,6 +362,9 @@
     <Image Include="res\Items3D\Missile_Sword_S.bmp" />
     <Image Include="res\Items3D\Missile_ThrowingStar_F.bmp" />
     <Image Include="res\Items3D\Missile_ThrowingStar_S.bmp" />
+    <Image Include="res\Items3D\ScreamerSlice.bmp" />
+    <Image Include="res\Monster\Screamer_Attack.bmp" />
+    <Image Include="res\Monster\Screamer_Front.bmp" />
     <Image Include="res\P.bmp" />
     <Image Include="res\Steine.bmp" />
     <Image Include="res\walldeco\bitmap1.bmp" />

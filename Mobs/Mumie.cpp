@@ -4,7 +4,7 @@
 
 CMumie::CMumie(int hp): CMonster() {
 	m_HP.Max = m_HP.Aktuell = hp;
-	m_iTyp = MUMIE;
+	m_iTyp = MUMMY;
 	InitValues();
 }
 

@@ -18,11 +18,11 @@ CSkeletonPic:: ~CSkeletonPic() {
 
 void CSkeletonPic::InitPics() {
 
-	LoadPic(m_pSkeletonAttack, IDB_SKELETON_ATTACK);
-	LoadPic(m_pSkeletonFront, IDB_SKELETON_FRONT);
-	LoadPic(m_pSkeletonRight, IDB_SKELETON_RIGHT);
-	LoadPicAndFlip(m_pSkeletonLeft, IDB_SKELETON_RIGHT);
-	LoadPic(m_pSkeletonBack, IDB_SKELETON_BACK);
+	LoadPic(m_pSkeletonAttack, IDB_MONSTER_SKELETON_ATTACK);
+	LoadPic(m_pSkeletonFront, IDB_MONSTER_SKELETON_FRONT);
+	LoadPic(m_pSkeletonRight, IDB_MONSTER_SKELETON_RIGHT);
+	LoadPicAndFlip(m_pSkeletonLeft, IDB_MONSTER_SKELETON_RIGHT);
+	LoadPic(m_pSkeletonBack, IDB_MONSTER_SKELETON_BACK);
 }
 
 CBitmap* CSkeletonPic::GetSkeletonPic(int index, bool attacking) {

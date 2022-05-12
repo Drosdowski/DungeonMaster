@@ -209,13 +209,13 @@ IDB_BITMAP_RUCK         BITMAP                  "res\\Ruck.bmp"
 
 IDB_BITMAP_PINV         BITMAP                  "res\\Pinv.bmp"
 
-IDB_MUMMY_FRONT         BITMAP                  "res\\Monster\\Mummy_Front.bmp"
+IDB_MONSTER_MUMMY_FRONT BITMAP                  "res\\Monster\\Mummy_Front.bmp"
 
-IDB_MUMMY_ATTACK        BITMAP                  "res\\Monster\\Mummy_Attack.bmp"
+IDB_MONSTER_MUMMY_ATTACK BITMAP                  "res\\Monster\\Mummy_Attack.bmp"
 
-IDB_MUMMY_BACK          BITMAP                  "res\\Monster\\Mummy_Back.bmp"
+IDB_MONSTER_MUMMY_BACK  BITMAP                  "res\\Monster\\Mummy_Back.bmp"
 
-IDB_MUMMY_RIGHT         BITMAP                  "res\\Monster\\Mummy_Right.bmp"
+IDB_MONSTER_MUMMY_RIGHT BITMAP                  "res\\Monster\\Mummy_Right.bmp"
 
 IDB_RUNES1              BITMAP                  "res\\Runes1.bmp"
 
@@ -279,13 +279,13 @@ IDB_BITMAP_E3R          BITMAP                  "res\\Walls\\Wall3_Right.bmp"
 
 IDB_BITMAP_E3RF         BITMAP                  "res\\Walls\\Wall3_RightF.bmp"
 
-IDB_SKELETON_ATTACK     BITMAP                  "res\\Monster\\Skeleton_Attack.bmp"
+IDB_MONSTER_SKELETON_ATTACK BITMAP                  "res\\Monster\\Skeleton_Attack.bmp"
 
-IDB_SKELETON_BACK       BITMAP                  "res\\Monster\\Skeleton_Back.bmp"
+IDB_MONSTER_SKELETON_BACK BITMAP                  "res\\Monster\\Skeleton_Back.bmp"
 
-IDB_SKELETON_FRONT      BITMAP                  "res\\Monster\\Skeleton_Front.bmp"
+IDB_MONSTER_SKELETON_FRONT BITMAP                  "res\\Monster\\Skeleton_Front.bmp"
 
-IDB_SKELETON_RIGHT      BITMAP                  "res\\Monster\\Skeleton_Right.bmp"
+IDB_MONSTER_SKELETON_RIGHT BITMAP                  "res\\Monster\\Skeleton_Right.bmp"
 
 IDB_DOOR_FRAME_0        BITMAP                  "res\\Door\\Door_Frame_0_Front.bmp"
 
@@ -720,6 +720,12 @@ IDB_DMG_REC_BIG         BITMAP                  "res\\DamageReceivedBig.bmp"
 IDB_INTERFACE_DEAD      BITMAP                  "res\\InterfaceHeroDead.bmp"
 
 IDB_INTERFACE_ALIVE     BITMAP                  "res\\InterfaceHeroAlive.bmp"
+
+IDB_ITEM3D_SCREAMERSLICE BITMAP                  "res\\Items3D\\Item_3d_ScreamerSlice.bmp"
+
+IDB_MONSTER_SCREAMER_ATTACK BITMAP                  "res\\Monster\\Screamer_Attack.bmp"
+
+IDB_MONSTER_SCREAMER_FRONT BITMAP                  "res\\Monster\\Screamer_Front.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

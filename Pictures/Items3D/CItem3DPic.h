@@ -13,6 +13,7 @@ public:
 	CBitmap* GetBread() { return m_pBread; }
 	CBitmap* GetCorn() { return m_pCorn; }
 	CBitmap* GetCheese() { return m_pCheese; }
+	CBitmap* GetScreamerSlice() { return m_pScreamerSlice; }
 	CBitmap* GetGoldKey() { return m_pGoldKey; }
 	CBitmap* GetIronKey() { return m_pIronKey; }
 	CBitmap* GetTorch() { return m_pTorch; }
@@ -41,6 +42,7 @@ private:
 	CBitmap* m_pBread;
 	CBitmap* m_pCorn;
 	CBitmap* m_pCheese;
+	CBitmap* m_pScreamerSlice;
 	CBitmap* m_pCompass;
 	CBitmap* m_pLeatherBoots;
 	CBitmap* m_pGreenCloth;

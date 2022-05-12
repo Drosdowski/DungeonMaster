@@ -3,7 +3,7 @@
 #include "Skelett.h"
 
 CSkelett::CSkelett(int hp) : CMonster() {
-	m_iTyp = SKELETT;
+	m_iTyp = SKELETON;
 	m_HP.Max = m_HP.Aktuell = hp;
 	InitValues();
 }
