@@ -9,6 +9,8 @@
 #include "..\Items\Item.h"
 #include "..\Rucksack.h"
 #include "..\CalculationHelper\CScreenCoords.h"
+#include <sstream>
+#include <string>
 
 CPictures::CPictures(CDC* pDC) : CBasePictures(pDC)
 {	
@@ -122,7 +124,6 @@ void CPictures::WerteZeichnen(CDC* pDC, CHeld* pHeld)
 	//pDC->FillSolidRect(CRect(x, 4, x + 35, 52), GANZDUNKELGRAU);
 
 	pDC->FillSolidRect(CRect(x, 52 - int(48 * pHeld->LifePart()), x + 7, 52), pHeld->Farbe());
-	int s = int(48 * pHeld->StaminaPart());
 	pDC->FillSolidRect(CRect(x + 14, 52 - int(48 * pHeld->StaminaPart()), x + 21, 52), pHeld->Farbe());
 	pDC->FillSolidRect(CRect(x + 28, 52 - int(48 * pHeld->ManaPart()), x + 35, 52), pHeld->Farbe());
 }
@@ -244,20 +245,27 @@ void CPictures::NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName)
 		pDC->SetTextColor(HELLBRAUN);
 	pDC->SetBkColor(DUNKELGRAU);
 	int x = (index - 1) * 138;
-	pDC->ExtTextOut(x + 4, -3, ETO_CLIPPED | ETO_OPAQUE, CRect(x, 0, x + 86, 12), strName, NULL);
+	pDC->ExtTextOut(x + 4, -2, ETO_CLIPPED | ETO_OPAQUE, CRect(x, 0, x + 78, 14), strName, NULL);
 }
 
-void CPictures::SchadenZeichnen(CDC* pDC, int index, bool bigDmg)
+void CPictures::SchadenZeichnen(CDC* pDC, int index, bool bigDmg, int dmg)
 {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 	if (bigDmg) {
 		tmpdc.SelectObject(m_pDamageReceived[1]);
-		pDC->StretchBlt((index - 1) * 138, 0, 64, 58, &tmpdc, 0, 0, 32, 29, SRCCOPY);
+		pDC->TransparentBlt((index - 1) * 138, 0, 64, 58, &tmpdc, 0, 0, 32, 29, TRANS_ORA);
 	}
 	else {
 		tmpdc.SelectObject(m_pDamageReceived[0]);
-		pDC->StretchBlt((index - 1) * 138, 0, 96, 14, &tmpdc, 0, 0, 48, 7, SRCCOPY);
+		pDC->TransparentBlt((index - 1) * 138, 0, 96, 14, &tmpdc, 0, 0, 48, 7, TRANS_ORA); 
+		int x = (index - 1) * 138 + 50;
+		std::string s;
+		std::stringstream streamValue;
+		streamValue << dmg;
+		streamValue >> s;
+
+		pDC->ExtTextOut(x, -2, ETO_CLIPPED | ETO_OPAQUE, CRect(x, 0, x + 20, 14), "666", NULL);
 	}
 
 	tmpdc.DeleteDC();

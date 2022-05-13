@@ -30,7 +30,7 @@ public:
 	void WaffeZeichnen(CDC* pDC);
 	void WerteZeichnen(CDC* pDC, CHeld* pHeld);
 	void BildZeichnen(CDC* pDC, bool aktiv, int index);
-	void SchadenZeichnen(CDC* pDC, int index, bool bigDmg);
+	void SchadenZeichnen(CDC* pDC, int index, bool bigDmg, int dmg);
 	void PfeilZeichnen(CDC* pDC, int index);
 
 private:
