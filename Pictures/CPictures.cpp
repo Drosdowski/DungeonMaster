@@ -16,11 +16,12 @@ CPictures::CPictures(CDC* pDC) : CBasePictures(pDC)
 {	
 	InitBitmaps();
 	m_pItemPic = new CItemPic(pDC);
+	m_textBuffer = new char[10];
 }
 
 CPictures::~CPictures() 
 {
-
+	delete m_textBuffer;
 	delete m_pBmpHintergrund;
 	delete m_pBmpInversePfeile;
 	delete m_pBmpPfeile;
@@ -259,13 +260,13 @@ void CPictures::SchadenZeichnen(CDC* pDC, int index, bool bigDmg, int dmg)
 	else {
 		tmpdc.SelectObject(m_pDamageReceived[0]);
 		pDC->TransparentBlt((index - 1) * 138, 0, 96, 14, &tmpdc, 0, 0, 48, 7, TRANS_ORA); 
-		int x = (index - 1) * 138 + 50;
-		std::string s;
-		std::stringstream streamValue;
-		streamValue << dmg;
-		streamValue >> s;
-
-		pDC->ExtTextOut(x, -2, ETO_CLIPPED | ETO_OPAQUE, CRect(x, 0, x + 20, 14), "666", NULL);
+		dmg = 666;
+		int l = (int)log10(dmg);
+		int x = (index - 1) * 138 + 40 - 4*l;
+		sprintf(m_textBuffer, "%d", dmg);
+		pDC->SetTextColor(WEISS);
+		pDC->SetBkColor(PURROT);
+		pDC->ExtTextOut(x, -1, ETO_CLIPPED | ETO_OPAQUE, CRect(x, 0, x + 24, 14), m_textBuffer, NULL);
 	}
 
 	tmpdc.DeleteDC();

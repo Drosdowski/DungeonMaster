@@ -59,6 +59,6 @@ private:
 	CBitmap* m_pDamageReceived[2];
 
 	CItemPic* m_pItemPic;
-	
+	char* m_textBuffer;
 };
 
