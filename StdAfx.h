@@ -22,6 +22,7 @@
 #define monsterAktiv true
 #define cheatAktiv false
 
+// todo in enum packen
 #define VORWAERTS 1
 #define RUECKWAERTS 2
 #define LINKS_STRAFE 3
@@ -36,6 +37,8 @@
 #define DUNKELGRAU RGB(96,96,96)
 #define GANZDUNKELGRAU RGB(64,64,64)
 #define GELB RGB(224,224,96)
+#define PURROT RGB(240, 0, 0)
+#define PURGELB RGB(240, 240, 0)
 #define HELLBRAUN RGB(192,128,64)
 #define MITTELBRAUN RGB(160,96,0)
 #define DUNKELBRAUN RGB(128,64,0)
@@ -61,12 +64,14 @@
 /// </summary>
 enum SUBPOS
 {
-	LINKSVORNE	 = 0x1100,	// LVRH -> Kollisionsbits
-	LINKSHINTEN  = 0x1001,
-	RECHTSVORNE  = 0x0110,
-	RECHTSHINTEN = 0x0011,
-	MITTE	     = 0x1111,
-	NONE		 = 0x0000
+	// FRONT = 1. REIHE = OBEN
+	// BACK = 2. REIHE = UNTEN
+	LINKSBACK = 0x1001,	// LVRH -> Kollisionsbits
+	LINKSFRONT = 0x1100,
+	RECHTSBACK = 0x0011,
+	RECHTSFRONT = 0x0110,
+	MITTE = 0x1111,
+	NONE = 0x0000
 
 };
 
@@ -77,8 +82,8 @@ enum SUBPOS_ABSOLUTE
 {
 	NORTHWEST = 0,
 	NORTHEAST = 1,
-	SOUTHWEST = 2,
-	SOUTHEAST = 3,
+	SOUTHEAST = 2,
+	SOUTHWEST = 3,
 	MIDDLE = 4,
 	OUTSIDE = 5
 };
@@ -93,7 +98,7 @@ enum COMPASS_DIRECTION
 
 struct VEKTOR
 {
-	int x,y,z;
+	int x, y, z;
 };
 
 struct WERTE
@@ -101,7 +106,7 @@ struct WERTE
 	int Aktuell, Max;
 };
 
-struct VITALS 
+struct VITALS
 {
 	WERTE str;
 	WERTE dex;
@@ -111,7 +116,7 @@ struct VITALS
 	WERTE am;
 };
 
-enum WallDecorationType 
+enum WallDecorationType
 {
 	None = 0,
 	SquareAlcove = 1,
@@ -135,7 +140,7 @@ enum WallDecorationType
 	StoneLock = 22,
 	CrossLock = 23,
 	TopazLock = 24,
-	SkeletonLock = 25, 
+	SkeletonLock = 25,
 	GoldLock = 26,
 	TourquoiseLock = 27,
 	EmeraldLock = 28,

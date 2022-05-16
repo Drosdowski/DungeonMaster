@@ -9,7 +9,7 @@
 
 class CHelpfulValues;
 class CCharacter;
-class CGrpChar 
+class CGrpChar
 {
 #define LINKS 1
 #define RECHTS 2
@@ -19,34 +19,34 @@ class CGrpChar
 public:
 	CGrpChar();
 
-// Attribute
+	// Attribute
 protected:
 	CDC* m_pDC;
 	CCharacter* m_pMember[5];
 
-// Operationen
+	// Operationen
 public:
 	void SetNewCharOnNextFreePos(int nr);
 	COMPASS_DIRECTION GetDirection() { return m_grpDirection; };
 	void SetzeRichtung(COMPASS_DIRECTION richt) { m_grpDirection = richt; }
-	VEKTOR GetVector() {return m_posPosition;};
+	VEKTOR GetVector() { return m_posPosition; };
 
 
-// Implementierung
+	// Implementierung
 public:
 	virtual bool Altern() { return true; };
-	virtual bool SetzeModus(CDC* pDC, int iModus) {return false;};
+	virtual bool SetzeModus(CDC* pDC, int iModus) { return false; };
 	virtual int InReihe(int byte);
 	bool emptyNorthRow();
 	bool emptySouthRow();
 	bool emptyEastRow();
 	bool emptyWestRow();
 
-	VEKTOR GetPos() { return m_posPosition;  }
+	VEKTOR GetPos() { return m_posPosition; }
 	CCharacter* GetChar(int ID) { return m_pMember[ID]; }
-	
+
 	VEKTOR HoleZielFeld(int iRichtung); // VORWAERTS, etc
-	void Kollision();
+	void Kollision(int wunschRichtung);
 	void FallingDamage();
 	void DamageFrom(CCharacter* pMon, VEKTOR hisPos, bool DamageFrom);
 	void DoDamage(int dmg, VEKTOR hisPos, bool DamageFrom);
@@ -55,11 +55,11 @@ public:
 	void DrehenAbsolut(COMPASS_DIRECTION iRichtung);
 	virtual ~CGrpChar();
 protected:
-	COMPASS_DIRECTION m_grpDirection; 
+	COMPASS_DIRECTION m_grpDirection;
 	VEKTOR m_posPosition;
 	CHelpfulValues* m_values;
 	CCharacter* NearestTarget(VEKTOR hisPos);
-	bool CharCollision(int index);
+	bool CharCollision(int index, int wunschrichtung);
 	void ChangeCompass();
 };
 

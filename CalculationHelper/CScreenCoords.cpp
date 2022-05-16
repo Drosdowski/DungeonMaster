@@ -47,7 +47,7 @@ int CScreenCoords::CheckHitArrows(CPoint point) {
 			return LINKS_DREHEN;
 		else if (InRect(point, 582, 248, 638, 290))
 			return RECHTS_DREHEN;
-		}
+	}
 	return 0;
 }
 
@@ -70,7 +70,7 @@ int CScreenCoords::CheckHitActiveWizard(CPoint point, int activeWizardID) {
 					if (relX < 55) return 1 + (int)relX / 27;
 					if (relX > 148) return 4; else return 3;
 				case 4:
-					return 1 + (int) min(relX / 27, 4);
+					return 1 + (int)min(relX / 27, 4);
 				default:
 					break;
 				}
@@ -90,7 +90,7 @@ int CScreenCoords::CheckHitAction(CPoint point, int phase)
 	if ((point.y > 146) && (point.y < 250))
 	{
 		// Klick in ActionArea - Status prüfen
-		
+
 		if (phase == 1)// 1 = Heldwahl 2 = Attackewahl 3 = Schaden
 		{
 			return (1 + (int)(point.x - 460) / 44);
@@ -100,7 +100,7 @@ int CScreenCoords::CheckHitAction(CPoint point, int phase)
 			{
 				return -1;
 			}
-			else {				
+			else {
 				return (1 + (int)(point.y - 168) / 24);
 			}
 
@@ -140,29 +140,29 @@ int CScreenCoords::CheckHitPortraitHands(CPoint point) {
 	if (CheckHitSlot(point, CPoint(48, 18))) {
 		return 2 + 2 * handId;
 	}
-	
+
 	return 0;
 }
 
 
 int CScreenCoords::CheckHitBackpackSlots(CPoint point) {
-	for (int i = 0; i< 30; i++)
+	for (int i = 0; i < 30; i++)
 		if (CheckHitSlot(point, GetbackPackSlotKoords(i))) {
-			return i; 
-		}	
+			return i;
+		}
 	return -1;
 }
 
 bool CScreenCoords::CheckHitDeco(CPoint point, CSize size) {
-	if (size == CSize(0,0))
-		return (point.x > 200 && point.x < 250 && 
-				point.y > 140 && point.y < 180);
+	if (size == CSize(0, 0))
+		return (point.x > 200 && point.x < 250 &&
+			point.y > 140 && point.y < 180);
 	else
 	{
 		int wx = size.cx; // halbe Breite, /2*2 = 1.
 		int wy = size.cy * 2;
 		return (point.x > (225 - wx) && point.x < (225 + wx) &&
-				point.y > 140 && point.y < (140 + wy));
+			point.y > 140 && point.y < (140 + wy));
 	}
 }
 
@@ -177,20 +177,20 @@ bool CScreenCoords::CheckHitMainScr(CPoint point) {
 }
 
 SUBPOS CScreenCoords::CheckHitFloor(CPoint point) {
-	// Hinten sind von EBENE 0 links & Rechts sichtbar
-	if ((point.x < 230) && (point.y > 305)) return LINKSHINTEN;
-	if ((point.x > 230) && (point.y > 305)) return RECHTSHINTEN;
-	// Vorne  sind von EBENE 1 links & Rechts sichtbar
-	if ((point.y > 270) && (point.x < 230) && (point.y < 305)) return LINKSVORNE;
-	if ((point.y > 270) && (point.x > 230) && (point.y < 305)) return RECHTSVORNE;
+	// Hinten sind von EBENE 0 links & Rechts greifbar
+	if ((point.x < 230) && (point.y > 305)) return LINKSFRONT;
+	if ((point.x > 230) && (point.y > 305)) return RECHTSFRONT;
+	// Vorne  sind von EBENE 1 links & Rechts greifbar
+	if ((point.y > 270) && (point.x < 230) && (point.y < 305)) return LINKSBACK;
+	if ((point.y > 270) && (point.x > 230) && (point.y < 305)) return RECHTSBACK;
 	return NONE;
 }
 
 SUBPOS CScreenCoords::CheckHitAir(CPoint point) {
 	if (point.y > 63 && point.y < 250) {
-		if (point.x < 230) return LINKSHINTEN; // Wurf von links
-		if (point.x >= 230) return RECHTSHINTEN; // Wurf von rechts
-	}	
+		if (point.x < 230) return LINKSFRONT; // Wurf von links
+		if (point.x >= 230) return RECHTSFRONT; // Wurf von rechts
+	}
 	return NONE;
 }
 

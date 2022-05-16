@@ -18,7 +18,7 @@ static char THIS_FILE[] = __FILE__;
 // CGrpChar
 
 
-CGrpChar::CGrpChar() 
+CGrpChar::CGrpChar()
 {
 	m_grpDirection = COMPASS_DIRECTION::NORTH;
 	m_values = new CHelpfulValues();
@@ -27,7 +27,7 @@ CGrpChar::CGrpChar()
 
 CGrpChar::~CGrpChar()
 {
-	for (int i=1; i<5; i++)
+	for (int i = 1; i < 5; i++)
 		if (m_pMember[i] != NULL)
 		{
 			delete m_pMember[i];
@@ -42,29 +42,31 @@ CGrpChar::~CGrpChar()
 
 
 int CGrpChar::InReihe(int byte)
-{	
-	int iAnz = 0; 
-	for (int i=1; i<5;i++)
+{
+	int iAnz = 0;
+	for (int i = 1; i < 5;i++)
 	{
-		if ((m_pMember[i]!=NULL) && (m_pMember[i]->HoleSubPosition() & byte) > 0)
-			if (m_pMember[i]->Hp().Aktuell >0)
+		if ((m_pMember[i] != NULL) && (CHelpfulValues::GetRelativeSubPosPassive(m_pMember[i]->HoleSubPosition(), m_grpDirection) & byte) > 0)
+			if (m_pMember[i]->Hp().Aktuell > 0)
 				iAnz++;
 	}
 	return iAnz;
 }
 
-void CGrpChar::Kollision() {
+void CGrpChar::Kollision(int wunschRichtung) {
 	for (int i = 1; i <= 4; i++)
 		if ((m_pMember[i]) && (m_pMember[i]->Hp().Aktuell > 0))
 		{
-			if (CharCollision(i)) 
+			if (CharCollision(i, wunschRichtung))
 				m_pMember[i]->AddDmg(2);
 		}
 }
 
-bool CGrpChar::CharCollision(int index) {
-	SUBPOS_ABSOLUTE pos = m_pMember[index]->HoleSubPosition();
-	switch (m_grpDirection)
+bool CGrpChar::CharCollision(int index, int wunschRichtung) {
+	SUBPOS_ABSOLUTE abspos = m_pMember[index]->HoleSubPosition();
+	// schau nach Westen, dann muss Hero 1 in SW stehen!
+	SUBPOS pos = CHelpfulValues::GetRelativeSubPosPassive(abspos, m_grpDirection);
+	switch (wunschRichtung)
 	{
 	case VORWAERTS:
 		return (((pos & 0x0100) > 0) || (InReihe(0x0100) == 0));
@@ -112,9 +114,9 @@ void CGrpChar::DoDamage(int dmg, VEKTOR hisPos, bool areaDmg) {
 CCharacter* CGrpChar::NearestTarget(VEKTOR hisPos) {
 	// Prüfen: Monster ist in vorderster (nicht zwingend 1.) Reihe, Held ebenso!
 	// Ferner: Monster steht nicht zwingend in Blickrichtung vor dem Held!
-	CCharacter* nearestTarget  = NULL;
+	CCharacter* nearestTarget = NULL;
 	for (int i = 1; i < 5; i++) {
-		CCharacter* pChar = m_pMember[i];		
+		CCharacter* pChar = m_pMember[i];
 		if (pChar && pChar->Hp().Aktuell > 0) {
 			if (pChar->InFrontOfOpponent(GetPos(), hisPos, emptyNorthRow(), emptyEastRow(), emptySouthRow(), emptyWestRow()))
 				return pChar;
@@ -137,7 +139,7 @@ VEKTOR CGrpChar::HoleZielFeld(int iRichtung)
 	int sx = m_values->m_stx[m_grpDirection];
 	int sy = m_values->m_sty[m_grpDirection];
 
-	VEKTOR WunschPos = {0,0,m_posPosition.z };
+	VEKTOR WunschPos = { 0,0,m_posPosition.z };
 
 	switch (iRichtung)
 	{
@@ -164,9 +166,9 @@ VEKTOR CGrpChar::HoleZielFeld(int iRichtung)
 }
 
 void CGrpChar::DrehenAbsolut(COMPASS_DIRECTION iRichtung) {
-	int oldDir = m_grpDirection;
+	COMPASS_DIRECTION oldDir = m_grpDirection;
 	m_grpDirection = iRichtung;
-	
+
 	for (int i = 1; i < 5; i++)
 	{
 		if (m_pMember[i] != NULL) {
@@ -196,10 +198,10 @@ void CGrpChar::DrehenRelativ(int iRelRichtung)
 	switch (iRelRichtung)
 	{
 	case LINKS:
-		DrehenAbsolut((COMPASS_DIRECTION)((m_grpDirection + 3) %4));
+		DrehenAbsolut((COMPASS_DIRECTION)((m_grpDirection + 3) % 4));
 		break;
 	case RECHTS:
-		DrehenAbsolut((COMPASS_DIRECTION)((m_grpDirection + 1) %4)); // todo auslagern
+		DrehenAbsolut((COMPASS_DIRECTION)((m_grpDirection + 1) % 4)); // todo auslagern
 		break;
 	}
 	ChangeCompass();
@@ -215,19 +217,19 @@ void CGrpChar::SetNewCharOnNextFreePos(int nr) {
 		if ((i != nr) && (m_pMember[i] != NULL))
 		{
 			pos = CHelpfulValues::GetRelativeSubPosActive(m_pMember[i]->HoleSubPosition(), m_grpDirection);
-			if (pos == LINKSVORNE) lv = true;
-			else if (pos == RECHTSVORNE) rv = true;
-			else if (pos == LINKSHINTEN) lh = true;
-			else if (pos == RECHTSHINTEN) rh = true;
+			if (pos == LINKSBACK) lv = true;
+			else if (pos == RECHTSBACK) rv = true;
+			else if (pos == LINKSFRONT) lh = true;
+			else if (pos == RECHTSFRONT) rh = true;
 		}
-	if (!lv)
-		pos = LINKSVORNE;
-	else if (!rv)
-		pos = RECHTSVORNE;
-	else if (!lh)
-		pos = LINKSHINTEN;
+	if (!lh)
+		pos = LINKSFRONT;
 	else if (!rh)
-		pos = RECHTSHINTEN;
+		pos = RECHTSFRONT;
+	else if (!lv)
+		pos = LINKSBACK;
+	else if (!rv)
+		pos = RECHTSBACK;
 
 	m_pMember[nr]->SetzeSubPosition(CHelpfulValues::GetRelativeSubPosPassive(pos, m_grpDirection));
 }

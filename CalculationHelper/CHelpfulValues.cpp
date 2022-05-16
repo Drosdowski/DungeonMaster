@@ -17,7 +17,7 @@ int CHelpfulValues::sty(int i) {
 	return int(sin(i * PI / 2)); // 1, 0, -1, 0;
 }
 COMPASS_DIRECTION CHelpfulValues::OppositeDirection(COMPASS_DIRECTION direction) {
-	return (COMPASS_DIRECTION) ((direction + 2) % 4);
+	return (COMPASS_DIRECTION)((direction + 2) % 4);
 }
 
 VEKTOR CHelpfulValues::MakeVektor(int direction, int force) {
@@ -28,7 +28,7 @@ VEKTOR CHelpfulValues::MakeVektor(int direction, int force) {
 	case 2: return VEKTOR{ 0, force, 0 };
 	case 3: return VEKTOR{ -force, 0, 0 };
 	}
-	return VEKTOR {0, 0, 0};
+	return VEKTOR{ 0, 0, 0 };
 }
 
 
@@ -61,10 +61,10 @@ SUBPOS_ABSOLUTE CHelpfulValues::FindNextSubposWithoutFieldChange(SUBPOS_ABSOLUTE
 
 SUBPOS_ABSOLUTE CHelpfulValues::GetAbsPosBySubposWhenFacingNorth(SUBPOS pos) {
 	switch (pos) {
-	case LINKSHINTEN: return SOUTHWEST;
-	case RECHTSHINTEN: return SOUTHEAST;
-	case RECHTSVORNE: return NORTHEAST;
-	case LINKSVORNE: return NORTHWEST;
+	case LINKSFRONT: return NORTHWEST;
+	case RECHTSFRONT: return NORTHEAST;
+	case RECHTSBACK: return SOUTHEAST;
+	case LINKSBACK: return SOUTHWEST;
 	}
 	return MIDDLE;
 }
@@ -72,13 +72,13 @@ SUBPOS_ABSOLUTE CHelpfulValues::GetAbsPosBySubposWhenFacingNorth(SUBPOS pos) {
 SUBPOS CHelpfulValues::GetPosByIndexWhenFacingNorth(SUBPOS_ABSOLUTE pos) {
 	switch (pos) {
 	case NORTHWEST:
-		return LINKSVORNE;
+		return LINKSFRONT;
 	case NORTHEAST:
-		return RECHTSVORNE;
+		return RECHTSFRONT;
 	case SOUTHEAST:
-		return RECHTSHINTEN;
+		return RECHTSBACK;
 	case SOUTHWEST:
-		return LINKSHINTEN;
+		return LINKSBACK;
 	case MIDDLE:
 		return MITTE;
 	}
@@ -116,7 +116,7 @@ SUBPOS_ABSOLUTE CHelpfulValues::LeftFrom(SUBPOS_ABSOLUTE pos) {
 SUBPOS CHelpfulValues::GetRelativeSubPosPassive(SUBPOS_ABSOLUTE pos_abs, COMPASS_DIRECTION heroDir) {
 	for (int turns = 0; turns < heroDir; turns++)
 	{
-		pos_abs = LeftFrom(pos_abs);
+		pos_abs = RightFrom(pos_abs);
 	}
 	return GetPosByIndexWhenFacingNorth(pos_abs);
 }
@@ -152,8 +152,8 @@ CPoint CHelpfulValues::CalcRelSubFloorPosition(BITMAP bmpInfo, CPoint wallMiddle
 	int posX = wallMiddlePos.x;
 	int posY = 0; // = wallMiddlePos.y;
 
-	bool vorne = (subPos == LINKSVORNE || subPos == RECHTSVORNE);
-	int xFaktor = (subPos == LINKSVORNE || subPos == LINKSHINTEN) ? -1 : 1;
+	bool vorne = (subPos == LINKSBACK || subPos == RECHTSBACK);
+	int xFaktor = (subPos == LINKSBACK || subPos == LINKSFRONT) ? -1 : 1;
 	if (subPos == MITTE) xFaktor = 0;
 
 	/*Coords - Mitte des Items
@@ -219,18 +219,18 @@ CPoint CHelpfulValues::CalcSubPosition(BITMAP bmpInfo, SUBPOS subPos, double fak
 	//int posY = (int)(260 - bmpInfo.bmHeight * 2 - (1 - faktor) * 40); // TODO !!!!!!!!!!!
 	//int posY = (int)(260 - bmpInfo.bmHeight*2 ); 
 
-	if (subPos == LINKSVORNE) {
+	if (subPos == LINKSBACK) {
 		posX -= (int)(60 * faktor);
 		posY += (int)(50 * faktor);
 	}
-	else if (subPos == RECHTSVORNE) {
+	else if (subPos == RECHTSBACK) {
 		posX += (int)(60 * faktor);
 		posY += (int)(50 * faktor);
 	}
-	else if (subPos == LINKSHINTEN) {
+	else if (subPos == LINKSFRONT) {
 		posX -= (int)(40 * faktor);
 	}
-	else if (RECHTSHINTEN) {
+	else if (RECHTSFRONT) {
 		posX += (int)(40 * faktor);
 	}
 	return CPoint(posX, posY);

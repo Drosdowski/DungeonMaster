@@ -116,8 +116,8 @@ void CRaumView::DrawSquarePressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene, CA
 		if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) {
 			cdc->SelectObject(bmp);
 			bmp->GetBitmap(&bmpInfo);
-			pDC->TransparentBlt(floorMiddlePos.x - bmpInfo.bmWidth, floorMiddlePos.y - bmpInfo.bmHeight, 
-								bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);
+			pDC->TransparentBlt(floorMiddlePos.x - bmpInfo.bmWidth, floorMiddlePos.y - bmpInfo.bmHeight,
+				bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);
 		}
 	}
 }
@@ -166,7 +166,7 @@ void CRaumView::DrawStairsSide(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* 
 	}
 }
 
-void CRaumView::DrawFloorPit(CDC *pDC, CDC* cdc, int xxx, int ebene, CPit* pit) {
+void CRaumView::DrawFloorPit(CDC* pDC, CDC* cdc, int xxx, int ebene, CPit* pit) {
 	BITMAP bmpPitInfo;
 	if (pit) {
 		CBitmap* pitBmp = NULL;
@@ -223,7 +223,8 @@ void CRaumView::DrawStairsFront(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs*
 	if (pStairs->GetType() == CStairs::UP) {
 		bmp = m_pStairsPic->GetStairUpFrontPic(xxx, ebene);
 		pos = m_pStairsPic->GetStairsUpFrontPos(xxx, ebene, m_pWallPic->GetWallPos(xxx, ebene));
-	} else {
+	}
+	else {
 		bmp = m_pStairsPic->GetStairDownFrontPic(xxx, ebene);
 		pos = m_pStairsPic->GetStairsDownFrontPos(xxx, ebene, m_pWallPic->GetWallPos(xxx, ebene));
 	}
@@ -288,7 +289,7 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 			cdc->SelectObject(bmp);
 			CPoint pos = m_pDoorPic->GetDoorFrontPos(xxx, ebene, wallPos);
 			bmp->GetBitmap(&bmpInfo);
-			DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, 1, pDC, cdc, TRANS_ORA); 
+			DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, 1, pDC, cdc, TRANS_ORA);
 
 		}
 	}
@@ -330,7 +331,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 	}
 	else if (xx < 0) {
 		richtSide = (COMPASS_DIRECTION)((richt + 1) % 4);
-	} 
+	}
 	if (xx != 0)
 		actuatorsSide = pField->GetActuator(richtSide);
 
@@ -339,7 +340,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 		int graphicId = actuatorsSide.back()->GetGraphic();
 		graphicTypeSide = m_pMap->GetWallDecorationType(pField->HolePos().z, graphicId);
 	}
-	else if(xx != 0) {
+	else if (xx != 0) {
 		CWallDecoration* pWallDeco = pField->GetWallDeco(richtSide);
 		if (pWallDeco) {
 			graphicTypeSide = pWallDeco->GetDecoType();
@@ -359,7 +360,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 	pDC->TransparentBlt(posWall.x, posWall.y, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_VIO);
 
 	// Deko auf FRONT Wand zeichnen
-	if (bmpDecoFront) 
+	if (bmpDecoFront)
 	{
 		if (((xxx == 4) && (ebene == 1)) ||
 			((xxx > 1) && (ebene == 2)) ||
@@ -393,7 +394,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 				}
 			}
 		}
-		
+
 	}
 	// Deko auf SIDE Wand zeichnen
 	if (bmpDecoSide)
@@ -434,10 +435,10 @@ void CRaumView::DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS
 	{
 		int xx = wallXFactor[xxx];
 
-		DrawMonster(pDC, cdc, xx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(LINKSHINTEN, richt));
-		DrawMonster(pDC, cdc, xx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(RECHTSHINTEN, richt));
-		DrawMonster(pDC, cdc, xx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(LINKSVORNE, richt));
-		DrawMonster(pDC, cdc, xx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(RECHTSVORNE, richt));
+		DrawMonster(pDC, cdc, xx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(LINKSFRONT, richt));
+		DrawMonster(pDC, cdc, xx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(RECHTSFRONT, richt));
+		DrawMonster(pDC, cdc, xx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(LINKSBACK, richt));
+		DrawMonster(pDC, cdc, xx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(RECHTSBACK, richt));
 	}
 }
 
@@ -467,21 +468,21 @@ void test(CDC* pDC, int x, int y) {
 
 void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pField) {
 	BITMAP bmpDecoInfo;
-	
+
 	std::deque<CActuator*> actuators = pField->GetActuator((COMPASS_DIRECTION)0);  // Boden hat immer POsition 0.
-	for (CActuator* actuator: actuators) {
+	for (CActuator* actuator : actuators) {
 		if (actuator->GetType() == 3) {
 			DrawSquarePressurePad(pDC, cdc, xxx, ebene, actuator);
 		}
 	}
-	
-	CFloorDecoration* floorDeco = pField->GetFloorDeco(); 
+
+	CFloorDecoration* floorDeco = pField->GetFloorDeco();
 	CBitmap* decoBmp = NULL;
 	if (floorDeco)
-	{ 
+	{
 		if (floorDeco->GetDecoType() == FloorMoss) {
 			decoBmp = m_pOrnatePic->GetMossPic(ebene, xxx);
-		} 
+		}
 		else if (floorDeco->GetDecoType() == FloorPuddle) {
 			decoBmp = m_pOrnatePic->GetPuddlePic(ebene, xxx);
 		}
@@ -524,9 +525,9 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 		CPoint floorMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
 		if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) {
 			SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(itemSubPos, heroDir); // todo subpos angleichen
-			if (ebene > 0 || subPos == LINKSHINTEN || subPos == RECHTSHINTEN)
+			if (ebene > 0 || subPos == LINKSFRONT || subPos == RECHTSFRONT)
 			{
-				if (subPos == LINKSHINTEN || subPos == RECHTSHINTEN)
+				if (subPos == LINKSFRONT || subPos == RECHTSFRONT)
 				{
 					faktor = m_pPictures->getFaktor(ebene + 1);
 				}
@@ -590,11 +591,11 @@ CBitmap* CRaumView::GetClothBitmap(CCloth* cloth, bool inAir) {
 CBitmap* CRaumView::GetWeaponBitmap(CWeapon* weapon, bool inAir) {
 	CBitmap* bmp;
 	if (weapon->GetType() >= CWeaponAttributes::WeaponType::Falchion &&
- 		weapon->GetType() <= CWeaponAttributes::WeaponType::DiamondEdge ||
+		weapon->GetType() <= CWeaponAttributes::WeaponType::DiamondEdge ||
 		weapon->GetType() == CWeaponAttributes::WeaponType::TheInquisitor)
 		bmp = m_pItem3DPic->GetSword(inAir);
 	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Axe ||
-			 weapon->GetType() == CWeaponAttributes::WeaponType::Hardcleave)
+		weapon->GetType() == CWeaponAttributes::WeaponType::Hardcleave)
 		bmp = m_pItem3DPic->GetAxe(inAir);
 	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Dagger)
 		bmp = m_pItem3DPic->GetDagger(inAir);
@@ -666,11 +667,11 @@ void CRaumView::RaumZeichnen(CDC* pDC)
 				int addy = y - ebene * stx + xx * sty;
 				CField* pField = m_pMap->GetField(addx, addy, z);
 				int fieldType = pField->HoleTyp();
-				
+
 				if (z > 0) {
-					CField* pFieldAbove = m_pMap->GetField(addx,addy,z-1);
+					CField* pFieldAbove = m_pMap->GetField(addx, addy, z - 1);
 					int fieldTypeAbove = pFieldAbove->HoleTyp();
-							
+
 					if (fieldTypeAbove == FeldTyp::PIT) {
 						CPit* pit = pFieldAbove->HolePit();
 						if (pit->GetType() != CPit::PitType::Invisible &&
@@ -684,7 +685,7 @@ void CRaumView::RaumZeichnen(CDC* pDC)
 				{
 					DrawWall(pDC, &compCdc, xxx, ebene, heroDir, pField);
 				}
-				else if (fieldType == FeldTyp::DOOR )
+				else if (fieldType == FeldTyp::DOOR)
 				{
 					CDoor* pDoor = pField->HoleDoor();
 					DrawDoor(pDC, &compCdc, xxx, ebene, heroDir, pDoor);
@@ -702,7 +703,7 @@ void CRaumView::RaumZeichnen(CDC* pDC)
 				}
 				else if (fieldType == FeldTyp::PIT) {
 					CPit* pit = pField->HolePit();
-					if (pit->GetType() != CPit::PitType::Invisible && 
+					if (pit->GetType() != CPit::PitType::Invisible &&
 						pit->GetState() == CPit::PitState::Opened) {
 						DrawFloorPit(pDC, &compCdc, xxx, ebene, pit);
 					}
@@ -719,7 +720,7 @@ void CRaumView::RaumZeichnen(CDC* pDC)
 					DrawOnFloor(pDC, &compCdc, xxx, ebene, pField);
 				}
 
-				if (fieldType != FeldTyp::WALL) {					
+				if (fieldType != FeldTyp::WALL) {
 					for (int pos = 0; pos < 4; pos++)
 					{
 						std::deque<CItem*> pile = pField->GetItem((SUBPOS_ABSOLUTE)pos);
@@ -746,12 +747,12 @@ void CRaumView::RaumZeichnen(CDC* pDC)
 }
 
 CGrpMonster* CRaumView::GetMonsterGroup(VEKTOR pos) {
-	CField* pField = m_pMap->GetField(pos); 
+	CField* pField = m_pMap->GetField(pos);
 	return pField->GetMonsterGroup();
 }
 
 VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
-{	
+{
 	CField* pField = m_pMap->GetField(toPos);
 	FeldTyp iTyp = pField->HoleTyp();
 	CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
@@ -783,7 +784,7 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 		if (tele->getScope() == TeleporterAttributes::Scope::Items_Party ||
 			tele->getScope() == TeleporterAttributes::Scope::All) {
 			toPos = tele->getTargetField();
-			if (tele->getRotationType() == TeleporterAttributes::RotationType::Absolute) 
+			if (tele->getRotationType() == TeleporterAttributes::RotationType::Absolute)
 			{
 				pGrpHelden->SetzeRichtung(tele->getTargetDirection());
 				// todo sound
@@ -808,7 +809,7 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 		CStairs* stairsBegin = pField->HoleStairs();
 		if (stairsBegin->GetType() == CStairs::StairType::DOWN)
 		{
-			toPos.z++;			
+			toPos.z++;
 		}
 		else {
 			toPos.z--;
@@ -818,7 +819,7 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 		// neue Richtung: Blick auf das einzige EMPTY Feld neben Hero
 
 		CStairs* stairsEnd = m_pMap->GetField(toPos)->HoleStairs();
-		
+
 		pGrpHelden->DrehenAbsolut(stairsEnd->StairExit());
 	}
 	return toPos;
@@ -863,7 +864,7 @@ void CRaumView::PrepareMoveItems(VEKTOR heroPos) {
 	// Flag setzen, Item muss sich ggf. noch bewegen
 	for (int s = 0; s < 4; s++) {
 		SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
-		std::deque<CItem*> pile = field->GetItem(posAbs);		
+		std::deque<CItem*> pile = field->GetItem(posAbs);
 		if (!pile.empty()) {
 			CItem* topItem = pile.back();
 			topItem->ResethasMoved();
@@ -873,7 +874,7 @@ void CRaumView::PrepareMoveItems(VEKTOR heroPos) {
 
 void CRaumView::MoveItems(VEKTOR heroPos) {
 	CField* field = m_pMap->GetField(heroPos);
-	
+
 	for (int s = 0; s < 4; s++) {
 		SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
 		std::deque<CItem*> pile = field->GetItem(posAbs);
@@ -913,8 +914,8 @@ void CRaumView::MoveItems(VEKTOR heroPos) {
 }
 
 CField* CRaumView::ChangeFieldWithTeleporter(CField* pField, CItem* pItem, SUBPOS_ABSOLUTE& subPos) {
-	CTeleporter* tp = pField->HoleTeleporter();	
-	
+	CTeleporter* tp = pField->HoleTeleporter();
+
 	if (tp) {
 		// todo Teleport & items
 		COMPASS_DIRECTION dir = tp->getTargetDirection();
@@ -958,15 +959,15 @@ CField* CRaumView::ChangeFieldWithStairs(CField* pField, CItem* pItem, SUBPOS_AB
 		if (stair->GetType() == CStairs::StairType::DOWN) {
 			VEKTOR oben = pField->HolePos();
 			VEKTOR unten = { oben.x, oben.y, oben.z + 1 };
-			
+
 			unten.x += (m_pMap->GetOffset(oben.z).x - m_pMap->GetOffset(unten.z).x);
 			unten.y += (m_pMap->GetOffset(oben.z).y - m_pMap->GetOffset(unten.z).y);
 			pField = m_pMap->GetField(unten);
-			CStairs* stairEnd = pField->HoleStairs();			
+			CStairs* stairEnd = pField->HoleStairs();
 			COMPASS_DIRECTION sourceDir = CHelpfulValues::OppositeDirection(stair->StairExit());
 			COMPASS_DIRECTION targetDir = stairEnd->StairExit(); // N E S W
 			if (sourceDir > targetDir) {
-				for (int t=0; t< (sourceDir - targetDir); t++)
+				for (int t = 0; t < (sourceDir - targetDir); t++)
 					subPos = CHelpfulValues::LeftFrom(subPos);
 			}
 			else if (sourceDir > targetDir) {
@@ -1000,10 +1001,10 @@ void CRaumView::TriggerPassiveActuators(VEKTOR fieldPos, VEKTOR heroPos) {
 	}
 }
 
-void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field , CActuator* actuator) {
+void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator* actuator) {
 	bool criticalWeightBreached = field->CriticalWeightBreached(heroPos, actuator->GetCriticalWeigth()); // todo parameter optimieren?
-	bool criticalWeightGone	= field->CriticalWeightGone(heroPos, actuator->GetCriticalWeigth()); // todo parameter optimieren?
-	
+	bool criticalWeightGone = field->CriticalWeightGone(heroPos, actuator->GetCriticalWeigth()); // todo parameter optimieren?
+
 	if (criticalWeightBreached || criticalWeightGone) {
 		switch (actuator->GetType()) {
 		case 3:
@@ -1181,14 +1182,14 @@ void CRaumView::OnTrigger()
 		feld->SetType(FeldTyp::WALL);
 }
 
-CSize CRaumView::GetSizeOfFrontDeco(CField* pField, COMPASS_DIRECTION dir) 
+CSize CRaumView::GetSizeOfFrontDeco(CField* pField, COMPASS_DIRECTION dir)
 {
-	CActuator* pActuator= pField->GetActuator(dir).back();
+	CActuator* pActuator = pField->GetActuator(dir).back();
 	WallDecorationType graphicTypeFront = None;
 	CBitmap* pic = NULL;
 	if (pActuator) {
 		graphicTypeFront = m_pMap->GetWallDecorationType(pField->HolePos().z, pActuator->GetGraphic());
-	
+
 		if (graphicTypeFront != None) {
 			CBitmap* pic = m_pWallDecoPic->GetPicFront(graphicTypeFront);
 			BITMAP bmpInfo;
@@ -1197,5 +1198,5 @@ CSize CRaumView::GetSizeOfFrontDeco(CField* pField, COMPASS_DIRECTION dir)
 			return CSize(bmpInfo.bmWidth, bmpInfo.bmHeight);
 		}
 	}
-	return CSize(0,0);
+	return CSize(0, 0);
 }

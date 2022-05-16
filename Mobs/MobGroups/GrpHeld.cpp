@@ -20,7 +20,7 @@ static char THIS_FILE[] = __FILE__;
 
 CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 {
-	for (int i=1; i<=4; i++)
+	for (int i = 1; i <= 4; i++)
 		m_pMember[i] = NULL;
 	//m_posPosition = pos;
 	//m_posPosition = VEKTOR{ 2,7,0 }; // bei Monster Gruppe / orig. start position
@@ -33,8 +33,8 @@ CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 	//m_posPosition = VEKTOR{ 4,11,1 }; // bei Schalter für Tür
 	//m_posPosition = VEKTOR{ 24,6,1 }; // bei Pit
 	//m_posPosition = VEKTOR{ 12,29,1 }; // bei Trickwall
-	m_posPosition = VEKTOR{ 6,3,1 }; // bei Schwert in Alcove
-	//m_posPosition = VEKTOR{ 3,28,2 }; // bei Compass
+	//m_posPosition = VEKTOR{ 6,3,1 }; // bei Schwert in Alcove
+	m_posPosition = VEKTOR{ 3,28,2 }; // bei Compass
 	DrehenAbsolut(richt);
 }
 
@@ -47,10 +47,10 @@ CGrpHeld::~CGrpHeld()
 
 CHeld* CGrpHeld::InitHeld(const int nr)
 {
-	if (m_pMember[nr] == NULL) 
+	if (m_pMember[nr] == NULL)
 	{
 		CString strName;
-		strName.Format("Held %i",nr);
+		strName.Format("Held %i", nr);
 
 		if (m_pMember[m_iAktiverHeld])
 			((CHeld*)m_pMember[m_iAktiverHeld])->setInactive();
@@ -58,13 +58,13 @@ CHeld* CGrpHeld::InitHeld(const int nr)
 		m_pMember[nr] = new CHeld(nr, strName);
 		m_iAktiverHeld = nr;
 
-		CHeld* pHeld = (CHeld*) m_pMember[nr];
+		CHeld* pHeld = (CHeld*)m_pMember[nr];
 		pHeld->SetDirection(m_grpDirection);
-		
+
 		SetNewCharOnNextFreePos(nr);
-		
+
 		m_iAnzHelden++;
-		if (m_iAnzHelden == 1) 
+		if (m_iAnzHelden == 1)
 			m_iAktiverZauberer = 1;
 
 		return pHeld;
@@ -139,7 +139,7 @@ CHeld* CGrpHeld::ClosestHeroTo(CMonster* monster) {
 bool CGrpHeld::SetzeModus(CDC* pDC, int iModus)
 {
 	int iIndex = m_iAktiverHeld;
-	if (iIndex>0)
+	if (iIndex > 0)
 	{
 		if (iModus == RUCKSACK)
 			if (m_pMember[iIndex] != NULL)
@@ -155,9 +155,9 @@ bool CGrpHeld::SetzeModus(CDC* pDC, int iModus)
 bool CGrpHeld::Altern()
 {
 	bool anyoneAlive = false;
-	for (int i=1; i<5; i++)
+	for (int i = 1; i < 5; i++)
 	{
-		CHeld* pHeld = (CHeld*) m_pMember[i];
+		CHeld* pHeld = (CHeld*)m_pMember[i];
 		if (pHeld)
 		{
 			bool heroAlive = pHeld->Altern();

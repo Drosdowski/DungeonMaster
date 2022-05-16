@@ -64,8 +64,8 @@ CDMView::CDMView()
 	((CDMApp*)AfxGetApp())->SetView(this);
 
 	/*CFont* pFont;
-	
-	pFont->CreateFont(8,0,0,0,FW_NORMAL,0,0,0,ANSI_CHARSET,OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,DEFAULT_PITCH | FF_MODERN, NULL); 
+
+	pFont->CreateFont(8,0,0,0,FW_NORMAL,0,0,0,ANSI_CHARSET,OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,DEFAULT_PITCH | FF_MODERN, NULL);
 	SetFont(pFont);*/
 }
 
@@ -75,7 +75,7 @@ CDMView::~CDMView()
 	delete m_pZauberView;
 	delete m_pGroupView;
 	delete m_pPictures;
-//	KillTimer(this, idTimer ); 
+	//	KillTimer(this, idTimer ); 
 	((CDMApp*)AfxGetApp())->SetView(NULL);
 }
 
@@ -164,8 +164,8 @@ void CDMView::ParseClickAction(CPoint point) {
 		else {
 			VEKTOR monPos = grpHelden->HoleZielFeld(VORWAERTS);
 			CGrpMonster* grpMonster = m_pRaumView->GetMonsterGroup(monPos);
-			
-			grpHelden->DoActionForChosenHero(actionNumber, grpMonster );
+
+			grpHelden->DoActionForChosenHero(actionNumber, grpMonster);
 		}
 		UpdateGrafik();
 	}
@@ -200,14 +200,14 @@ bool CDMView::ParseClickPortraitHands(CPoint point, bool backpackMode) {
 		// 0 1 0 1 0 1 0 1  HandOfHeroId
 		int heroId = (int)((handId + 1) / 2);
 		int handOfHeroId = (handId - 1) % 2;					// TODO auslagern, und dann auch in Backpack nutzen!
-		
+
 		CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 		CHeld* clickedHero = grpHelden->GetHero(heroId);
 		if ((clickedHero == NULL) || (clickedHero->isActive() && backpackMode))
 			return false; // Hände durch Portrait überdeckt.
 
 		grpHelden->PutGetItem(handOfHeroId, heroId);
-		
+
 		return true;
 	}
 	else
@@ -230,7 +230,7 @@ void CDMView::ParseClickAir(CPoint point) {
 				if (FeldVorHeld->Blocked()) {
 					// skip, nix.
 				}
-				else 
+				else
 				{
 					COMPASS_DIRECTION grpDir = grpHelden->GetDirection();
 					SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(airRegionClicked, grpDir);
@@ -244,7 +244,7 @@ void CDMView::ParseClickAir(CPoint point) {
 	}
 }
 
-bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators, COMPASS_DIRECTION dir, CSize size) {
+bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators, COMPASS_DIRECTION dir, CSize size) {
 	std::deque<CActuator*> actuatorsAtPosition;
 	COMPASS_DIRECTION pos;
 	for (CActuator* actuator : actuators) {
@@ -262,7 +262,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators
 			CActuator* currentActuator = actuatorsAtPosition.back();
 			CActuator::ActionTarget actionTarget = currentActuator->GetActionTarget();
 			if (!currentActuator->IsActive()) return false;
-			
+
 			if (type == 1) {
 				// Schalter 
 				//VEKTOR target;
@@ -361,7 +361,7 @@ void CDMView::ParseClickFloor(CPoint point) {
 	SUBPOS itemRegionClicked = CScreenCoords::CheckHitFloor(point);
 	SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(itemRegionClicked, grpHelden->GetDirection());
 	CItem* topItem = NULL;
-	if (itemRegionClicked == LINKSVORNE || itemRegionClicked == RECHTSVORNE)
+	if (itemRegionClicked == LINKSBACK || itemRegionClicked == RECHTSBACK)
 	{
 		CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
 		if (FeldVorHeld && !FeldVorHeld->Blocked())
@@ -378,7 +378,7 @@ void CDMView::ParseClickFloor(CPoint point) {
 
 		}
 	}
-	else if (itemRegionClicked == LINKSHINTEN || itemRegionClicked == RECHTSHINTEN) {
+	else if (itemRegionClicked == LINKSFRONT || itemRegionClicked == RECHTSFRONT) {
 		CField* FeldUnterHeld = m_pRaumView->GetMap()->GetField(grpHelden->GetPos());
 		if (FeldUnterHeld)
 		{
@@ -398,7 +398,7 @@ void CDMView::ParseClickFloor(CPoint point) {
 }
 
 
-void CDMView::OnLButtonDown(UINT nFlags, CPoint point) 
+void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	//RAUM :0,64,460,270+64
 
@@ -414,12 +414,12 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 			ParseClickAction(point);
 			if (!ParseClickPortraitHands(point, false))
 				ParseClickPortrait(point);
-		
+
 			// Unterscheiden: Anklicken oder werfen?
 			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
 			if (FeldVorHeld) {
 				if (FeldVorHeld->Blocked()) {
-					COMPASS_DIRECTION dir = CHelpfulValues::OppositeDirection( grpHelden->GetDirection());
+					COMPASS_DIRECTION dir = CHelpfulValues::OppositeDirection(grpHelden->GetDirection());
 					std::deque<CActuator*> actuators = (FeldVorHeld->GetActuator(dir));
 					if (!actuators.empty()) {
 						CSize size = m_pRaumView->GetSizeOfFrontDeco(FeldVorHeld, dir);
@@ -441,7 +441,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 		/*if (CScreenCoords::CheckHitDeco(point)) { // todo aufräumen
 			m_pRaumView->OnTrigger();
 		}*/
-		
+
 	}
 	else if (m_iModus == MOD_RUCKSACK)
 	{
@@ -456,9 +456,9 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 	CView::OnLButtonDown(nFlags, point);
 }
 
-void CDMView::OnRButtonDown(UINT nFlags, CPoint point) 
+void CDMView::OnRButtonDown(UINT nFlags, CPoint point)
 {
-	CDMDoc* pDoc = (CDMDoc*) GetDocument();
+	CDMDoc* pDoc = (CDMDoc*)GetDocument();
 	CDC* pDC = GetDC();
 	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 	if (grpHelden->GetActiveHero() == NULL) return;
@@ -472,7 +472,7 @@ void CDMView::OnRButtonDown(UINT nFlags, CPoint point)
 		break;
 		//	}
 	case MOD_RUCKSACK:
-		if (grpHelden->SetzeModus(	pDC, LAUFEN))
+		if (grpHelden->SetzeModus(pDC, LAUFEN))
 		{
 			m_iModus = MOD_LAUFEN;
 			UpdateGrafik();
@@ -483,68 +483,68 @@ void CDMView::OnRButtonDown(UINT nFlags, CPoint point)
 }
 
 
-void CDMView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CDMView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	CDMDoc* pDoc = GetDocument();
-	if (m_iDir ==0)
+	if (m_iDir == 0)
 	{
 		switch (nChar)
 		{
-			case 27:
-				if (m_bPause) {
-					m_bPause = false;
-					m_iModus = lastModus;
-				}
-				else {
-					m_bPause = true;
-					lastModus = m_iModus;
-					m_iModus = MOD_PAUSE;
-				}
-				break;
-			case 32:
-				if (cheatAktiv)
-					m_pRaumView->OnTrigger();
-				break;
-			case 38:
-			case 101:
-				m_iDir = VORWAERTS;
-				break;
-			case 40:
-			case 98:
-				m_iDir = RUECKWAERTS;
-				break;
-			case 37:
-			case 97:
-				m_iDir = LINKS_STRAFE;
-				break;
-			case 39:
-			case 99:
-				m_iDir = RECHTS_STRAFE;
-				break;
-			case 100:
-				m_iDir = LINKS_DREHEN;
-				break;
-			case 102:
-				m_iDir = RECHTS_DREHEN;
-				break;
-			case 49:
-			case 50:
-			case 51:
-			case 52:
-				pDoc->InitGruppe(nChar-48);
-				break;
-			default:
-				{
-					CString str;
-					str.Format("%i ",nChar);
-					TRACE(str);
-					break;
-				}
+		case 27:
+			if (m_bPause) {
+				m_bPause = false;
+				m_iModus = lastModus;
+			}
+			else {
+				m_bPause = true;
+				lastModus = m_iModus;
+				m_iModus = MOD_PAUSE;
+			}
+			break;
+		case 32:
+			if (cheatAktiv)
+				m_pRaumView->OnTrigger();
+			break;
+		case 38:
+		case 101:
+			m_iDir = VORWAERTS;
+			break;
+		case 40:
+		case 98:
+			m_iDir = RUECKWAERTS;
+			break;
+		case 37:
+		case 97:
+			m_iDir = LINKS_STRAFE;
+			break;
+		case 39:
+		case 99:
+			m_iDir = RECHTS_STRAFE;
+			break;
+		case 100:
+			m_iDir = LINKS_DREHEN;
+			break;
+		case 102:
+			m_iDir = RECHTS_DREHEN;
+			break;
+		case 49:
+		case 50:
+		case 51:
+		case 52:
+			pDoc->InitGruppe(nChar - 48);
+			break;
+		default:
+		{
+			CString str;
+			str.Format("%i ", nChar);
+			TRACE(str);
+			break;
+		}
 		}
 
 		if (m_iModus == MOD_LAUFEN)
 		{
-			if (m_iDir>0)
+			if (m_iDir > 0)
 			{
 				UpdateGrafik();
 				pDoc->SetzeRichtung(m_iDir); // noch nicht laufen, nur anmelden
@@ -558,7 +558,7 @@ void CDMView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	CView::OnKeyDown(nChar, nRepCnt, nFlags);
 }
 
-void CDMView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags) 
+void CDMView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	CView::OnKeyUp(nChar, nRepCnt, nFlags);
 }
@@ -574,7 +574,7 @@ void CDMView::HeldenGrafikZeichnen(CGrpHeld* pGrpHelden, CDC* pDC, CPictures* pP
 }
 
 void CDMView::ZauberReiterZeichnen(CDC* pDC, int iActiveWizard)
-{	
+{
 	m_pZauberView->Zeichnen(m_pPictures, pDC, iActiveWizard);
 }
 
@@ -598,7 +598,7 @@ void CDMView::WaffenZeichnen(CDC* pDC, CGrpHeld* pGrpHeroes) {
 			pDC->BitBlt(466 + 44 * (id - 1), 176, 44, 66, &tmpdc, 0, 0, SRCCOPY);
 		}
 	}
-	
+
 	tmpdc.DeleteDC();
 }
 
@@ -614,7 +614,7 @@ void CDMView::DrawBMP(CDC* pDC, CBitmap* pBMP, int posX, int posY) {
 
 void CDMView::FrameZeichnen(CDC* pDC) {
 	ChangeMouseCursor();
-	
+
 	CGrpHeld* pGrpHeroes = m_pRaumView->GetHeroes();
 
 	if (pGrpHeroes != NULL)
@@ -681,7 +681,7 @@ void CDMView::UpdateGrafik()
 	DeleteObject(tmpbmp);
 }
 
-void CDMView::OnTimer(UINT nIDEvent) 
+void CDMView::OnTimer(UINT nIDEvent)
 {
 	CDMDoc* pDoc = GetDocument();
 
@@ -708,7 +708,7 @@ void CDMView::OnTimer(UINT nIDEvent)
 	CView::OnTimer(nIDEvent);
 }
 
-void CDMView::OnLButtonUp(UINT nFlags, CPoint point) 
+void CDMView::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	if (m_iModus == MOD_RUCKSACK)
 	{

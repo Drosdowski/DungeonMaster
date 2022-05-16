@@ -141,7 +141,7 @@ void CDMDoc::Laufen()
 				posFinal = m_pRaumView->Betrete(posFrom, posTarget);
 				if (posFinal.x == posFrom.x && posFinal.y == posFrom.y && posFinal.z == posFrom.z)
 				{
-					pGrpHeroes->Kollision();
+					pGrpHeroes->Kollision(m_iWunschRichtung);
 					PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-RunningIntoAWall.mp3");
 				}
 				else
