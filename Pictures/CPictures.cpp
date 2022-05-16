@@ -78,12 +78,6 @@ void CPictures::InitBitmaps()
 
 }
 
-CBitmap* CPictures::GetActionDamage(int dmg) {
-
-	// TODO Zahl dazu!
-	return m_pActionsDamage;
-}
-
 CBitmap* CPictures::GetIconBitmap(CDC* pDC, CItem* pItem) {
 	CDC iconDC;
 	CDC sheetDC;
@@ -114,15 +108,8 @@ void CPictures::WerteZeichnen(CDC* pDC, CHeld* pHeld)
 	tmpdc.SelectObject(m_pInterface[0]);
 	pDC->StretchBlt((index - 1) * 138, 0, 138, 56, &tmpdc, 0, 0, 80, 29, SRCCOPY);
 
-
-	/*RECT r = {(index - 1) * 138, 0, (index - 1) * 138 + 138, 64};
-	CBrush* b = new CBrush(GANZDUNKELGRAU);
-	pDC->FillRect(&r, b);
-	delete b;*/
-
 	// Hp, St, Ma - Balken
 	int x = (pHeld->getIndex() - 1) * 138 + 94;
-	//pDC->FillSolidRect(CRect(x, 4, x + 35, 52), GANZDUNKELGRAU);
 
 	pDC->FillSolidRect(CRect(x, 52 - int(48 * pHeld->LifePart()), x + 7, 52), pHeld->Farbe());
 	pDC->FillSolidRect(CRect(x + 14, 52 - int(48 * pHeld->StaminaPart()), x + 21, 52), pHeld->Farbe());
@@ -253,6 +240,10 @@ void CPictures::SchadenZeichnen(CDC* pDC, int index, bool bigDmg, int dmg)
 {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
+	int l = (int)log10(dmg);
+	sprintf(m_textBuffer, "%d", dmg);
+	pDC->SetTextColor(WEISS);
+	pDC->SetBkColor(PURROT);
 	if (bigDmg) {
 		tmpdc.SelectObject(m_pDamageReceived[1]);
 		pDC->TransparentBlt((index - 1) * 138, 0, 64, 58, &tmpdc, 0, 0, 32, 29, TRANS_ORA);
@@ -260,12 +251,7 @@ void CPictures::SchadenZeichnen(CDC* pDC, int index, bool bigDmg, int dmg)
 	else {
 		tmpdc.SelectObject(m_pDamageReceived[0]);
 		pDC->TransparentBlt((index - 1) * 138, 0, 96, 14, &tmpdc, 0, 0, 48, 7, TRANS_ORA); 
-		dmg = 666;
-		int l = (int)log10(dmg);
 		int x = (index - 1) * 138 + 40 - 4*l;
-		sprintf(m_textBuffer, "%d", dmg);
-		pDC->SetTextColor(WEISS);
-		pDC->SetBkColor(PURROT);
 		pDC->ExtTextOut(x, -1, ETO_CLIPPED | ETO_OPAQUE, CRect(x, 0, x + 24, 14), m_textBuffer, NULL);
 	}
 
@@ -331,6 +317,26 @@ void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld, CRucksack* pRucksack)
 		}
 	}
 }
+
+void CPictures::DrawActionAreaChoice(CDC* pDC) {
+	CDC tmpdc;
+	tmpdc.CreateCompatibleDC(pDC);
+	tmpdc.SelectObject(m_pActionsArea);
+	BITMAP bmpInfo;
+	m_pActionsArea->GetBitmap(&bmpInfo);
+	pDC->TransparentBlt(448, 150, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, &tmpdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, SRCCOPY);
+	DeleteDC(tmpdc);
+}
+void CPictures::DrawActionAreaDamage(CDC* pDC, int dmg) {
+	CDC tmpdc;
+	tmpdc.CreateCompatibleDC(pDC);
+	tmpdc.SelectObject(m_pActionsDamage);
+	BITMAP bmpInfo;
+	m_pActionsDamage->GetBitmap(&bmpInfo);
+	pDC->TransparentBlt(448, 150, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, &tmpdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, SRCCOPY);
+	DeleteDC(tmpdc);
+}
+
 
 void CPictures::PfeilZeichnen(CDC* pDC, int index)
 {

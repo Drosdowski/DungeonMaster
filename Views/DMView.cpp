@@ -579,11 +579,11 @@ void CDMView::ZauberReiterZeichnen(CDC* pDC, int iActiveWizard)
 }
 
 void CDMView::ActionAreaZeichnen(CDC* pDC) {
-	DrawBMP(pDC, m_pPictures->GetActionsArea(), 448, 150);
+	m_pPictures->DrawActionAreaChoice(pDC);
 }
 
 void CDMView::ActionDamageZeichnen(CDC* pDC, int dmg) {
-	DrawBMP(pDC, m_pPictures->GetActionDamage(dmg), 448, 150);
+	m_pPictures->DrawActionAreaDamage(pDC, dmg);
 }
 
 void CDMView::WaffenZeichnen(CDC* pDC, CGrpHeld* pGrpHeroes) {
@@ -602,15 +602,15 @@ void CDMView::WaffenZeichnen(CDC* pDC, CGrpHeld* pGrpHeroes) {
 	tmpdc.DeleteDC();
 }
 
-void CDMView::DrawBMP(CDC* pDC, CBitmap* pBMP, int posX, int posY) {
-	CDC tmpdc;
-	tmpdc.CreateCompatibleDC(pDC);
-	tmpdc.SelectObject(pBMP);
-	BITMAP bmpInfo;
-	pBMP->GetBitmap(&bmpInfo);
-	pDC->TransparentBlt(posX, posY, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, &tmpdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, SRCCOPY);
-	DeleteDC(tmpdc);
-}
+//void CDMView::DrawBMP(CDC* pDC, CBitmap* pBMP, int posX, int posY) {
+//	CDC tmpdc;
+//	tmpdc.CreateCompatibleDC(pDC);
+//	tmpdc.SelectObject(pBMP);
+//	BITMAP bmpInfo;
+//	pBMP->GetBitmap(&bmpInfo);
+//	pDC->TransparentBlt(posX, posY, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, &tmpdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, SRCCOPY);
+//	DeleteDC(tmpdc);
+//}
 
 void CDMView::FrameZeichnen(CDC* pDC) {
 	ChangeMouseCursor();

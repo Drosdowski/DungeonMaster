@@ -15,13 +15,13 @@ public:
 
 	CBitmap* GetRucksack() { return m_pBmpRuck; }
 	CBitmap* GetHintergrund() { return m_pBmpHintergrund; }
-	CBitmap* GetActionsArea() { return m_pActionsArea; }
 	CBitmap* GetRunes(int i) { return m_pRunes[i]; }
 	CBitmap* GetWizardTabs(int i) { return m_pWizardTabs[i]; }
 	CBitmap* GetOneHand() { return m_pOneHand; }
-	CBitmap* GetActionDamage(int dmg);
 	CBitmap* GetIconBitmap(CDC* pDC, CItem* pMisc);
-
+	
+	void DrawActionAreaChoice(CDC* pDC);
+	void DrawActionAreaDamage(CDC* pDC, int dmg);
 	void KnochenZeichnen(CDC* pDC, int index);
 	void NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName);
 	void RucksackZeichnen(CDC* pDC, CHeld* pHeld);
