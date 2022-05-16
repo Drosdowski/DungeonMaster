@@ -96,6 +96,13 @@ enum COMPASS_DIRECTION
 	WEST = 3
 };
 
+enum DMMode {
+	MOD_LAUFEN = 1,
+	MOD_RUCKSACK = 2,
+	MOD_PAUSE = 3
+};
+
+
 struct VEKTOR
 {
 	int x, y, z;

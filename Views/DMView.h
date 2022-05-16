@@ -11,7 +11,6 @@
 
 #include <deque>
 
-
 class CActuator;
 class CDMDoc;
 class CHeld;
@@ -19,8 +18,8 @@ class CField;
 class CGrpHeld;
 class CGrpMonster;
 class CRaumView;
-class CZauberView;
 class CGroupView;
+class CZauberView;
 class CPictures;
 
 class CDMView : public CView
@@ -31,11 +30,6 @@ protected: // create from serialization only
 
 // Attributes
 public:
-	enum DMMode {
-		MOD_LAUFEN = 1,
-		MOD_RUCKSACK = 2,
-		MOD_PAUSE = 3
-	};
 
 	CDMDoc* GetDocument();
 
@@ -72,7 +66,7 @@ protected:
 	void UpdateGrafik();
 	void HeldenGrafikZeichnen(CGrpHeld* pGrpHeld, CDC* pDC, CPictures* pPictures);
 	void ZauberReiterZeichnen(CDC* pDC, int iActiveWizard);
-	void ActionAreaZeichnen(CDC* pDC);
+	void ActionAreaZeichnen(CDC* pDC, int weaponIndex);
 	void ActionDamageZeichnen(CDC* pDC, int dmg);
 	void WaffenZeichnen(CDC* pDC, CGrpHeld* pGrpHeroes);
 	void DrawBMP(CDC* pDC, CBitmap* pBMP, int posX, int posY);

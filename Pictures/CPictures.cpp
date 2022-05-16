@@ -7,8 +7,10 @@
 #include "..\Mobs\Held.h"
 #include "..\Items\FloorDecoration.h"
 #include "..\Items\Item.h"
+#include "..\ItemInfos.h"
 #include "..\Rucksack.h"
 #include "..\CalculationHelper\CScreenCoords.h"
+#include "..\Consts\WeaponConst.h"
 #include <sstream>
 #include <string>
 
@@ -247,6 +249,8 @@ void CPictures::SchadenZeichnen(CDC* pDC, int index, bool bigDmg, int dmg)
 	if (bigDmg) {
 		tmpdc.SelectObject(m_pDamageReceived[1]);
 		pDC->TransparentBlt((index - 1) * 138, 0, 64, 58, &tmpdc, 0, 0, 32, 29, TRANS_ORA);
+		int x = (index - 1) * 138 + 30 - 4 * l;
+		pDC->ExtTextOut(x, 20, ETO_CLIPPED | ETO_OPAQUE, CRect(x, 20, x + 24, 34), m_textBuffer, NULL);
 	}
 	else {
 		tmpdc.SelectObject(m_pDamageReceived[0]);
@@ -318,15 +322,21 @@ void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld, CRucksack* pRucksack)
 	}
 }
 
-void CPictures::DrawActionAreaChoice(CDC* pDC) {
+void CPictures::DrawActionAreaChoice(CDC* pDC, CItemInfos* m_pItemInfos, int weaponIndex) {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 	tmpdc.SelectObject(m_pActionsArea);
 	BITMAP bmpInfo;
 	m_pActionsArea->GetBitmap(&bmpInfo);
 	pDC->TransparentBlt(448, 150, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, &tmpdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, SRCCOPY);
+	
+	CWeaponConst::AttackType t0 = m_pItemInfos->GetWeaponInfo(weaponIndex).style[0].type;
+	CWeaponConst::AttackType t1 = m_pItemInfos->GetWeaponInfo(weaponIndex).style[1].type;
+	CWeaponConst::AttackType t2 = m_pItemInfos->GetWeaponInfo(weaponIndex).style[2].type;
+	
 	DeleteDC(tmpdc);
 }
+
 void CPictures::DrawActionAreaDamage(CDC* pDC, int dmg) {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);

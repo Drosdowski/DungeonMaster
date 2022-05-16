@@ -35,6 +35,7 @@ public:
 	void ReduceSpeed();
 	bool CheckGroup(int slotId, ItemGroup group);
 	ItemType getItemType() { return m_itemType; }
+	int getIndex() { return m_index; }
 	
 	virtual int GetType() { return -1; }
 	virtual int GetSheetForGroup() { return -1; }

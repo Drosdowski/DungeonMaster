@@ -4,6 +4,7 @@
 #pragma once
 class CHeld;
 class CRucksack;
+class CItemInfos;
 class CPictures : CBasePictures
 {
 public:
@@ -20,7 +21,7 @@ public:
 	CBitmap* GetOneHand() { return m_pOneHand; }
 	CBitmap* GetIconBitmap(CDC* pDC, CItem* pMisc);
 	
-	void DrawActionAreaChoice(CDC* pDC);
+	void DrawActionAreaChoice(CDC* pDC, CItemInfos* m_pItemInfos, int weaponIndex);
 	void DrawActionAreaDamage(CDC* pDC, int dmg);
 	void KnochenZeichnen(CDC* pDC, int index);
 	void NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName);

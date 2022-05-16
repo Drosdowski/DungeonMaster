@@ -636,6 +636,16 @@ void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, 
 	}
 }
 
+void CRaumView::DrawActionAreaChoice(CDC* pDC, int weaponIndex) {
+	
+	m_pPictures->DrawActionAreaChoice(pDC, m_pItemInfos, weaponIndex);
+}
+
+void CRaumView::DrawActionAreaDamage(CDC* pDC, int dmg) {
+	m_pPictures->DrawActionAreaDamage(pDC, dmg);
+}
+
+
 void CRaumView::RaumZeichnen(CDC* pDC)
 {
 	CDC compCdc;

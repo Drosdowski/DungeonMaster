@@ -578,12 +578,12 @@ void CDMView::ZauberReiterZeichnen(CDC* pDC, int iActiveWizard)
 	m_pZauberView->Zeichnen(m_pPictures, pDC, iActiveWizard);
 }
 
-void CDMView::ActionAreaZeichnen(CDC* pDC) {
-	m_pPictures->DrawActionAreaChoice(pDC);
+void CDMView::ActionAreaZeichnen(CDC* pDC, int weaponIndex) {
+	m_pRaumView->DrawActionAreaChoice(pDC, weaponIndex);
 }
 
 void CDMView::ActionDamageZeichnen(CDC* pDC, int dmg) {
-	m_pPictures->DrawActionAreaDamage(pDC, dmg);
+	m_pRaumView->DrawActionAreaDamage(pDC, dmg);
 }
 
 void CDMView::WaffenZeichnen(CDC* pDC, CGrpHeld* pGrpHeroes) {
@@ -620,16 +620,20 @@ void CDMView::FrameZeichnen(CDC* pDC) {
 	if (pGrpHeroes != NULL)
 	{
 		HeldenGrafikZeichnen(pGrpHeroes, pDC, m_pPictures);
+		CHeld* pHeld = pGrpHeroes->GetAttackingHero();
 
 		int phase = pGrpHeroes->GetActionPhase();
 		if (phase == 1) {
 			WaffenZeichnen(pDC, pGrpHeroes);
 		}
-		else if (phase == 2) {
-			ActionAreaZeichnen(pDC);
+		else if (phase == 2 && pHeld) {
+			// todo hand attacke
+			CItem* pItem= pHeld->GetItemCarrying(1);
+			if (pItem && pItem->getItemType() == CItem::ItemType::WeaponItem) {
+				ActionAreaZeichnen(pDC, pItem->getIndex());
+			}
 		}
 		else if (phase == 3) {
-			CHeld* pHeld = pGrpHeroes->GetAttackingHero();
 			if (pHeld)
 			{
 				ActionDamageZeichnen(pDC, pHeld->GetDealingDamage());

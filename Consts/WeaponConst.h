@@ -40,6 +40,7 @@ public:
 		fluxcage
 	};
 	class AttackStyle {
+	public:
 		AttackType type = none;
 		int dmg = 0;
 		int difficult = 0;

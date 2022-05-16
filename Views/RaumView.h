@@ -56,6 +56,9 @@ public:
 	CGrpHeld* GetHeroes() { return m_pMap->GetHeroes(); }
 	void TriggerMoveAnimation();
 	void RaumZeichnen(CDC* pDC);
+	void DrawActionAreaChoice(CDC* pDC, int weaponIndex);
+	void DrawActionAreaDamage(CDC* pDC, int dmg);
+
 	bool OnStairs();
 	CSize GetSizeOfFrontDeco(CField* pfield, COMPASS_DIRECTION dir);
 

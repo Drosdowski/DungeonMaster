@@ -14,7 +14,7 @@ CGroupView::~CGroupView()
 {
 }
 
-void CGroupView::GroupZeichnen(CDC* pDC, CPictures* pPictures, int iModus, CGrpHeld* pGrpHeld)
+void CGroupView::GroupZeichnen(CDC* pDC, CPictures* pPictures, DMMode iModus, CGrpHeld* pGrpHeld)
 {
 	for (int i = 1; i <= 4; i++)
 	{
@@ -28,14 +28,14 @@ void CGroupView::GroupZeichnen(CDC* pDC, CPictures* pPictures, int iModus, CGrpH
 			{
 				switch (iModus)
 				{
-				case (CDMView::MOD_LAUFEN):
+				case (MOD_LAUFEN):
 				{
 					pPictures->WerteZeichnen(pDC, pHeroToDraw);
 					pPictures->NameZeichnen(pDC, pHeroToDraw->isActive(), i, pHeroToDraw->getName());
 					pPictures->HaendeZeichnen(pDC, pHeroToDraw);
 					break;
 				}
-				case (CDMView::MOD_RUCKSACK):
+				case (MOD_RUCKSACK):
 				{
 					pPictures->WerteZeichnen(pDC, pHeroToDraw);
 					if (pHeroToDraw == pGrpHeld->GetActiveHero())
@@ -53,7 +53,7 @@ void CGroupView::GroupZeichnen(CDC* pDC, CPictures* pPictures, int iModus, CGrpH
 				SUBPOS relPos = CHelpfulValues::GetRelativeSubPosActive(pHeroToDraw->HoleSubPosition(), pGrpHeld->GetDirection());
 				pPictures->SymbolZeichnen(pDC, i, relPos);
 				if (pHeroToDraw->ReceivedDmg() > 0) {
-					pPictures->SchadenZeichnen(pDC, i, pHeroToDraw->isActive() && (iModus == CDMView::MOD_RUCKSACK), pHeroToDraw->ReceivedDmg());
+					pPictures->SchadenZeichnen(pDC, i, pHeroToDraw->isActive() && (iModus == MOD_RUCKSACK), pHeroToDraw->ReceivedDmg());
 					pHeroToDraw->ResetDmg();
 				}
 			}
