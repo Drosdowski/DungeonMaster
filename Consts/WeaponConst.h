@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+
 #include "ItemConst.h"
 class CWeaponConst : public CItemConst
 {
@@ -41,7 +43,7 @@ public:
 	};
 	class AttackStyle {
 	public:
-		AttackType type = none;
+		std::string type = "";
 		int dmg = 0;
 		int difficult = 0;
 		bool useCharge = 0;

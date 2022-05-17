@@ -4,6 +4,8 @@
 #include "Consts/WeaponConst.h"
 #include <TinyXML/tinyxml.h>
 #include <string>
+#include <iostream>
+
 
 CItemInfos::CItemInfos() {
 	LoadItemInfos();
@@ -68,16 +70,39 @@ void CItemInfos::ParseWeaponItems(TiXmlElement* rootNode) {
 			parentElement->QueryIntAttribute("distance", &attribute.distance);
 			parentElement->QueryIntAttribute("shootDamage", &attribute.shootDamage);
 
+			attribute.style[0] = ParseStyle(parentElement, "attack1");
+			attribute.style[1] = ParseStyle(parentElement, "attack2");
+			attribute.style[2] = ParseStyle(parentElement, "attack3");
+
+/*
 			std::string attack = parentElement->Attribute("attack1");
 			std::string attackType = attack.substr(0, attack.find('('));
-			// todo attack types
-			// todo mehr Attribute lesen
+			std::string attackValues = attack.substr(attack.find('(') + 1);
+			
+			attribute.style[0].dmg = std::stoi(attackValues.substr(0, 2)); // string to int!
+			attribute.style[0].difficult = std::stoi(attackValues.substr(3, 2)); 
+			attribute.style[0].useCharge = (attackValues.substr(6, 2) == "UC");*/
 
 			weaponInfos[index] = attribute;
 		}
 		parentElement = parentElement->NextSiblingElement();
 	}
 }
+
+CWeaponConst::AttackStyle CItemInfos::ParseStyle(TiXmlElement* parentElement, const char* atk) {
+	std::string attack = parentElement->Attribute(atk);
+	std::string attackType = attack.substr(0, attack.find('('));
+	std::string attackValues = attack.substr(attack.find('(') + 1);
+
+	CWeaponConst::AttackStyle style;
+	if (attackValues != "") {
+		style.dmg = std::stoi(attackValues.substr(0, 2)); // string to int!
+		style.difficult = std::stoi(attackValues.substr(3, 2));
+		style.useCharge = (attackValues.substr(6, 2) == "UC");
+	}
+	return style;
+}
+
 
 void CItemInfos::ParseClothItems(TiXmlElement* rootNode) {
 	TiXmlElement* parentElement = rootNode->FirstChildElement();
@@ -122,3 +147,4 @@ void CItemInfos::ParseMiscellaneousItems(TiXmlElement* rootNode) {
 		parentElement = parentElement->NextSiblingElement();
 	}
 }
+

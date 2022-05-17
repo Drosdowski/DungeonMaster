@@ -21,6 +21,7 @@ private:
 	void ParseWeaponItems(TiXmlElement* rootNode);
 	void ParseClothItems(TiXmlElement* rootNode);
 	void ParseMiscellaneousItems(TiXmlElement* rootNode);
+	CWeaponConst::AttackStyle ParseStyle(TiXmlElement* parentElement, const char* atk);
 
 	CWeaponConst weaponInfos[46];
 	CClothConst clothInfos[58];

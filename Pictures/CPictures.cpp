@@ -330,9 +330,10 @@ void CPictures::DrawActionAreaChoice(CDC* pDC, CItemInfos* m_pItemInfos, int wea
 	m_pActionsArea->GetBitmap(&bmpInfo);
 	pDC->TransparentBlt(448, 150, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, &tmpdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, SRCCOPY);
 	
-	CWeaponConst::AttackType t0 = m_pItemInfos->GetWeaponInfo(weaponIndex).style[0].type;
-	CWeaponConst::AttackType t1 = m_pItemInfos->GetWeaponInfo(weaponIndex).style[1].type;
-	CWeaponConst::AttackType t2 = m_pItemInfos->GetWeaponInfo(weaponIndex).style[2].type;
+	std::string t[3];
+	t[0] = m_pItemInfos->GetWeaponInfo(weaponIndex).style[0].type;
+	t[1] = m_pItemInfos->GetWeaponInfo(weaponIndex).style[1].type;
+	t[2] = m_pItemInfos->GetWeaponInfo(weaponIndex).style[2].type;
 	
 	DeleteDC(tmpdc);
 }
