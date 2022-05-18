@@ -8,6 +8,8 @@
 #include "..\MobGroups\GrpHeld.h"
 #include "..\..\CalculationHelper\CHelpfulValues.h"
 #include "..\..\Items\CMiscellaneous.h"
+#include "..\..\Items\Weapon.h"
+#include "..\..\Items\Cloth.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -50,7 +52,14 @@ CGrpMonster::CGrpMonster(VEKTOR pos, CCreatureAttributes attributes) {
 CGrpMonster::~CGrpMonster()
 {
 	if (carriedItem)
-		delete carriedItem;
+	{
+		if (carriedItem->getItemType() == CItem::ItemType::WeaponItem)
+			delete (CWeapon*)carriedItem;
+		else if (carriedItem->getItemType() == CItem::ItemType::MiscItem)
+			delete (CMiscellaneous*)carriedItem;
+		else  if (carriedItem->getItemType() == CItem::ItemType::ClothItem)
+			delete (CCloth*)carriedItem;
+	}
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -71,9 +80,11 @@ void CGrpMonster::InitMonster(int nr, CCreatureAttributes attributes)
 			break;
 		case CMonster::MonsterTyp::ROCKPILE:
 			// TODO - m_pMember[nr] = new CRockPile(hp);
+			return;
 			break;
 		case CMonster::MonsterTyp::SCREAMER:
 			// TODO - m_pMember[nr] = new CScreamer(hp);
+			return;
 			break;
 		default:
 			return; // todo other monster types!
