@@ -241,7 +241,10 @@ void CGrpHeld::PutGetItem(int handOfHeroId, int heroId) {
 	}
 	else {
 		TakeItemInHand(newItemInHand);
-		GetHero(heroId)->RemoveItemCarrying(handOfHeroId);
+		if (!itemInHand)
+			GetHero(heroId)->RemoveItemCarrying(handOfHeroId);
+		//else
+			//GetHero(heroId)->SwitchItemAt(newItemInHand);
 	}
 }
 
