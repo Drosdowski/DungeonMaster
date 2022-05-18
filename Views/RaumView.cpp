@@ -76,7 +76,6 @@ CRaumView::CRaumView()
 
 CRaumView::~CRaumView()
 {
-	delete m_pMap;
 	delete m_pItemInfos;
 	delete m_values;
 	delete m_pDoorPic;
@@ -89,6 +88,7 @@ CRaumView::~CRaumView()
 	delete m_pWallDecoPic;
 	delete m_pMonsterPic;
 	delete m_pItem3DPic;
+	delete m_pMap;
 }
 
 /////////////////////////////////////////////////////////////////////////////

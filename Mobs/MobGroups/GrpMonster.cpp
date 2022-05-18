@@ -69,6 +69,12 @@ void CGrpMonster::InitMonster(int nr, CCreatureAttributes attributes)
 		case CMonster::MonsterTyp::MUMMY:
 			m_pMember[nr] = new CMumie(hp);
 			break;
+		case CMonster::MonsterTyp::ROCKPILE:
+			// TODO - m_pMember[nr] = new CRockPile(hp);
+			break;
+		case CMonster::MonsterTyp::SCREAMER:
+			// TODO - m_pMember[nr] = new CScreamer(hp);
+			break;
 		default:
 			return; // todo other monster types!
 		} 

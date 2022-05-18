@@ -36,14 +36,14 @@ CDungeonMap::~CDungeonMap()
 	}
 	delete m_wallDecorationTypes;
 		
-	delete m_doorAtt;
-	delete m_miscellaneousAtt;
-	delete m_clothAtt;
-	delete m_weaponAtt;
+	delete[] m_doorAtt;
+	delete[] m_miscellaneousAtt;
+	delete[] m_clothAtt;
+	delete[] m_weaponAtt;
 	
-	delete m_actuatorType;
-	delete m_teleportAtt;	
-	delete m_creatureAtt;
+	delete[] m_actuatorType;
+	delete[] m_teleportAtt;
+	delete[] m_creatureAtt;
 }
 
 CField* CDungeonMap::GetField(int x, int y, int z) {
@@ -261,6 +261,8 @@ void CDungeonMap::ParseWeapons(TiXmlElement* weaponItem, VEKTOR coords) {
 	weaponItem->QueryIntAttribute("position", &subPos);
 
 	m_pFeld[coords.x][coords.y][coords.z]->PutWeapon(new CWeapon(index, m_weaponAtt[index]), (SUBPOS_ABSOLUTE)subPos);
+	//CWeaponAttributes x;
+	//m_pFeld[coords.x][coords.y][coords.z]->PutWeapon(new CWeapon(index, x), (SUBPOS_ABSOLUTE)subPos);
 }
 
 void CDungeonMap::ParseCloth(TiXmlElement* clothItem, VEKTOR coords) {
@@ -756,6 +758,7 @@ void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
 	m_miscellaneousAtt = new CMiscellaneousAttributes[m_countMiscellaneous];
 	rootNode->QueryIntAttribute("number_of_weapons", &m_countWeapons);
 	m_weaponAtt = new CWeaponAttributes[m_countWeapons];
+
 	rootNode->QueryIntAttribute("number_of_clothes", &m_countClothes);
 	m_clothAtt = new CClothAttributes[m_countClothes];
 	rootNode->QueryIntAttribute("number_of_actuators", &m_countActuators);

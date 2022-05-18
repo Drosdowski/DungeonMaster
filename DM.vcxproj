@@ -317,6 +317,12 @@
     <Image Include="res\Door_Wood_1.bmp" />
     <Image Include="res\Door_Wood_2.bmp" />
     <Image Include="res\Door_Wood_3.bmp" />
+    <Image Include="res\Floor\SquarePressurePad_1F.bmp" />
+    <Image Include="res\Floor\SquarePressurePad_1L.bmp" />
+    <Image Include="res\Floor\SquarePressurePad_2F.bmp" />
+    <Image Include="res\Floor\SquarePressurePad_2L.bmp" />
+    <Image Include="res\Floor\SquarePressurePad_3F.bmp" />
+    <Image Include="res\Floor\SquarePressurePad_3L.bmp" />
     <Image Include="res\InterfaceHeroAlive.bmp" />
     <Image Include="res\InterfaceHeroDead.bmp" />
     <Image Include="res\Items3D\Item_3d_Arrow.bmp" />
@@ -515,12 +521,6 @@
     <Image Include="res\Monster\Skeleton_Back.bmp" />
     <Image Include="res\Monster\Skeleton_Front.bmp" />
     <Image Include="res\Monster\Skeleton_Right.bmp" />
-    <Image Include="res\SquarePressurePad_1F.bmp" />
-    <Image Include="res\SquarePressurePad_1L.bmp" />
-    <Image Include="res\SquarePressurePad_2F.bmp" />
-    <Image Include="res\SquarePressurePad_2L.bmp" />
-    <Image Include="res\SquarePressurePad_3F.bmp" />
-    <Image Include="res\SquarePressurePad_3L.bmp" />
     <Image Include="res\Stair\Stairs_Down0_Front.bmp" />
     <Image Include="res\Stair\Stairs_Down1_Front.bmp" />
     <Image Include="res\Stair\Stairs_Down1_Left.bmp" />

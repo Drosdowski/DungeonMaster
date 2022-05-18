@@ -14,12 +14,12 @@ CItem3DPic ::~CItem3DPic() {
 	delete m_pCheese;
 	delete m_pScreamerSlice;
 	delete m_pCompass;
+	delete m_pWhiteCloth;
+	delete m_pGreenCloth;
+	delete m_pLeatherBoots;
 	delete m_pGoldKey;
 	delete m_pIronKey;
 	delete m_pTorch;
-	delete m_pLeatherBoots;
-	delete m_pGreenCloth;
-	delete m_pWhiteCloth;
 	for (int w = 0; w < 4; w++)
 	{
 		delete m_pClub[w];

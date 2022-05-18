@@ -86,7 +86,7 @@ public:
 // Overrides
 
 // Implementation
-	virtual ~CField();
+	~CField();
 
 	// Generated message map functions
 protected:

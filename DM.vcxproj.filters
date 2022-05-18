@@ -709,24 +709,6 @@
     <Image Include="res\Items3D\Item_3d_Bread.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\SquarePressurePad_1F.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\SquarePressurePad_1L.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\SquarePressurePad_2F.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\SquarePressurePad_2L.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\SquarePressurePad_3F.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\SquarePressurePad_3L.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\Floor\FloorMos_F2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
@@ -1298,6 +1280,24 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Monster\RockPile_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\SquarePressurePad_1F.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\SquarePressurePad_1L.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\SquarePressurePad_2F.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\SquarePressurePad_2L.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\SquarePressurePad_3F.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\SquarePressurePad_3L.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
