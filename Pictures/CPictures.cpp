@@ -133,8 +133,8 @@ void CPictures::SymbolZeichnen(CDC* pDC, int heldIndex, SUBPOS relPos)
 	int sx = 560 + (((heldIndex == 1) || (heldIndex == 4)) ? 0 : 40);
 	int sy = (heldIndex > 2) ? 28 : 0;
 
-	int dx = 560 + ((relPos & 0x1000) ? 0 : 40);
-	int dy = (relPos & 0x0100) ? 0 : 28;
+	int dx = 560 + ((relPos & 0b1000) ? 0 : 40);
+	int dy = (relPos & 0b0100) ? 0 : 28;
 	pDC->BitBlt(dx, dy, 40, 28, &tmpdc, sx, sy, SRCCOPY);
 	tmpdc.DeleteDC();
 }

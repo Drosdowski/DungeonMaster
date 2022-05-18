@@ -50,7 +50,7 @@ void CGroupView::GroupZeichnen(CDC* pDC, CPictures* pPictures, DMMode iModus, CG
 				}
 				}
 				pPictures->WaffeZeichnen(pDC);
-				SUBPOS relPos = CHelpfulValues::GetRelativeSubPosActive(pHeroToDraw->HoleSubPosition(), pGrpHeld->GetDirection());
+				SUBPOS relPos = CHelpfulValues::GetRelativeSubPosPassive(pHeroToDraw->HoleSubPosition(), pGrpHeld->GetDirection());
 				pPictures->SymbolZeichnen(pDC, i, relPos);
 				if (pHeroToDraw->ReceivedDmg() > 0) {
 					pPictures->SchadenZeichnen(pDC, i, pHeroToDraw->isActive() && (iModus == MOD_RUCKSACK), pHeroToDraw->ReceivedDmg());

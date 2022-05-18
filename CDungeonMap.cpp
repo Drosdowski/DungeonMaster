@@ -38,8 +38,8 @@ CDungeonMap::~CDungeonMap()
 		
 	delete m_doorAtt;
 	delete m_miscellaneousAtt;
-	delete m_weaponAtt;
 	delete m_clothAtt;
+	delete m_weaponAtt;
 	
 	delete m_actuatorType;
 	delete m_teleportAtt;	

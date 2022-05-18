@@ -64,21 +64,20 @@ void CGrpChar::Kollision(int wunschRichtung) {
 
 bool CGrpChar::CharCollision(int index, int wunschRichtung) {
 	SUBPOS_ABSOLUTE abspos = m_pMember[index]->HoleSubPosition();
-	// schau nach Westen, dann muss Hero 1 in SW stehen!
 	SUBPOS pos = CHelpfulValues::GetRelativeSubPosPassive(abspos, m_grpDirection);
 	switch (wunschRichtung)
 	{
 	case VORWAERTS:
-		return (((pos & 0x0100) > 0) || (InReihe(0x0100) == 0));
+		return (((pos & 0b0100) > 0) || (InReihe(0b0100) == 0));
 		break;
 	case RUECKWAERTS:
-		return (((pos & 0x0001) > 0) || (InReihe(0x0001) == 0));
+		return (((pos & 0b0001) > 0) || (InReihe(0b0001) == 0));
 		break;
 	case LINKS_STRAFE:
-		return (((pos & 0x1000) > 0) || (InReihe(0x1000) == 0));
+		return (((pos & 0b1000) > 0) || (InReihe(0b1000) == 0));
 		break;
 	case RECHTS_STRAFE:
-		return (((pos & 0x0010) > 0) || (InReihe(0x0010) == 0));
+		return (((pos & 0b0010) > 0) || (InReihe(0b0010) == 0));
 		break;
 	default:	// links & rechts drehen
 		return false;
@@ -118,6 +117,7 @@ CCharacter* CGrpChar::NearestTarget(VEKTOR hisPos) {
 	for (int i = 1; i < 5; i++) {
 		CCharacter* pChar = m_pMember[i];
 		if (pChar && pChar->Hp().Aktuell > 0) {
+			// todo: drehung nach WEST -> Char 1 steht SW, sollte aber NW sein!
 			if (pChar->InFrontOfOpponent(GetPos(), hisPos, emptyNorthRow(), emptyEastRow(), emptySouthRow(), emptyWestRow()))
 				return pChar;
 		}
@@ -177,10 +177,10 @@ void CGrpChar::DrehenAbsolut(COMPASS_DIRECTION iRichtung) {
 
 			if (((iRichtung + 4 - oldDir) % 4) == 3) // nö - geht nur bei relativ
 			{
-				pos = CHelpfulValues::RightFrom(pos);
+				pos = CHelpfulValues::LeftFrom(pos);
 			}
 			else if (((iRichtung + 4 - oldDir) % 4) == 1) {
-				pos = CHelpfulValues::LeftFrom(pos);
+				pos = CHelpfulValues::RightFrom(pos);
 			}
 			else if (((iRichtung + 4 - oldDir) % 4) == 2) {
 				pos = CHelpfulValues::LeftFrom(CHelpfulValues::LeftFrom(pos));

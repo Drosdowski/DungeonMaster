@@ -116,6 +116,14 @@ SUBPOS_ABSOLUTE CHelpfulValues::LeftFrom(SUBPOS_ABSOLUTE pos) {
 SUBPOS CHelpfulValues::GetRelativeSubPosPassive(SUBPOS_ABSOLUTE pos_abs, COMPASS_DIRECTION heroDir) {
 	for (int turns = 0; turns < heroDir; turns++)
 	{
+		pos_abs = LeftFrom(pos_abs); // todo items am boden vs angriff des monsters
+	}
+	return GetPosByIndexWhenFacingNorth(pos_abs);
+}
+
+SUBPOS CHelpfulValues::GetRelativeSubPosActive(SUBPOS_ABSOLUTE pos_abs, COMPASS_DIRECTION heroDir) {
+	for (int turns = 0; turns < heroDir; turns++)
+	{
 		pos_abs = RightFrom(pos_abs);
 	}
 	return GetPosByIndexWhenFacingNorth(pos_abs);
@@ -138,14 +146,6 @@ SUBPOS_ABSOLUTE CHelpfulValues::GetRelativeSubPosPassive(SUBPOS pos, COMPASS_DIR
 	}
 	return pos_abs;
 }
-SUBPOS CHelpfulValues::GetRelativeSubPosActive(SUBPOS_ABSOLUTE pos_abs, COMPASS_DIRECTION heroDir) {
-	for (int turns = 0; turns < heroDir; turns++)
-	{
-		pos_abs = RightFrom(pos_abs);
-	}
-	return GetPosByIndexWhenFacingNorth(pos_abs);
-}
-
 
 CPoint CHelpfulValues::CalcRelSubFloorPosition(BITMAP bmpInfo, CPoint wallMiddlePos, SUBPOS subPos, double faktor, int xx, int ebene)
 {

@@ -630,7 +630,7 @@ void CDMView::FrameZeichnen(CDC* pDC) {
 			// todo hand attacke
 			CItem* pItem= pHeld->GetItemCarrying(1);
 			if (pItem && pItem->getItemType() == CItem::ItemType::WeaponItem) {
-				ActionAreaZeichnen(pDC, pItem->getIndex());
+				ActionAreaZeichnen(pDC, pItem->GetType());
 			}
 		}
 		else if (phase == 3) {
