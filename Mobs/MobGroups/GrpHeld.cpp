@@ -224,27 +224,26 @@ CItem* CGrpHeld::GetItemInHand() {
 
 void CGrpHeld::PutGetItem(int handOfHeroId, int heroId) {
 
-	CItem* itemInHand = GetActiveHero()->GetItemInHand();
-	CItem* itemCarryingAtPos = GetHero(heroId)->GetItemCarrying(handOfHeroId);
-	CItem* newItemInHand = NULL;
+	CItem* itemInHandToPut = GetActiveHero()->GetItemInHand();
+	CItem* newItemInHandToGet = NULL;
 
-	if (itemInHand) {
+	if (itemInHandToPut) {
 		// Item tauschen oder ablegen
-		newItemInHand = GetHero(heroId)->SwitchItemAt(handOfHeroId, itemInHand);
+		newItemInHandToGet = GetHero(heroId)->SwitchItemAt(handOfHeroId, itemInHandToPut);
 	}
 	else {
 		// item holen (Hand leer)
-		newItemInHand = itemCarryingAtPos;
+		newItemInHandToGet = GetHero(heroId)->GetItemCarrying(handOfHeroId);
 	}
-	if (newItemInHand == NULL) {
-		EmptyHand();
+	EmptyHand();
+	if (newItemInHandToGet == NULL) {
+		// ablegen - passt.
 	}
 	else {
-		TakeItemInHand(newItemInHand);
-		if (!itemInHand)
+		// tauschen		
+		TakeItemInHand(newItemInHandToGet);
+		if (!itemInHandToPut)
 			GetHero(heroId)->RemoveItemCarrying(handOfHeroId);
-		//else
-			//GetHero(heroId)->SwitchItemAt(newItemInHand);
 	}
 }
 
