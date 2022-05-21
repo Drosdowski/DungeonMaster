@@ -323,18 +323,25 @@ void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld, CRucksack* pRucksack)
 }
 
 void CPictures::DrawActionAreaChoice(CDC* pDC, CItemInfos* m_pItemInfos, int weaponIndex) {
+	CString text;
+	HFONT hFont;
+	HDC hDC = pDC->GetSafeHdc();
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 	tmpdc.SelectObject(m_pActionsArea);
 	BITMAP bmpInfo;
+	// todo alles in tmpDC ?
 	m_pActionsArea->GetBitmap(&bmpInfo);
 	pDC->TransparentBlt(448, 150, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, &tmpdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, SRCCOPY);
-	
-	std::string t[3];
-	t[0] = m_pItemInfos->GetWeaponInfo(weaponIndex).style[0].type;
-	t[1] = m_pItemInfos->GetWeaponInfo(weaponIndex).style[1].type;
-	t[2] = m_pItemInfos->GetWeaponInfo(weaponIndex).style[2].type;
-	
+	SetTextColor(hDC, WEISS);
+	SetBkColor(hDC, SCHWARZ);
+	hFont = CreateFont(20, 0, 0, 0, FW_BOLD, 0, 0, 0, 0, 0, 0, 2, 0, "SYSTEM_FIXED_FONT");
+	SelectObject(hDC, hFont);
+	for (int j = 0; j < 3; j++) {
+		text = m_pItemInfos->GetWeaponInfo(weaponIndex).style[j].type;
+		pDC->TextOut(474, 170 + j * 23, text);
+	}
+	DeleteObject(hFont);
 	DeleteDC(tmpdc);
 }
 

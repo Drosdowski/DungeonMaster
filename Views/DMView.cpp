@@ -629,10 +629,15 @@ void CDMView::FrameZeichnen(CDC* pDC) {
 		else if (phase == 2) {
 			CHeld* pHeld = pGrpHeroes->GetHeroForAction();
 			if (pHeld) {
+				int index;
 				CItem* pItem = pHeld->GetItemCarrying(1);
 				if (pItem && pItem->getItemType() == CItem::ItemType::WeaponItem) {
-					ActionAreaZeichnen(pDC, pItem->GetType());
+					index = pItem->GetType();
 				}
+				else {
+					index = 46; // Hand
+				}
+				ActionAreaZeichnen(pDC, index);
 			}
 		}
 		else if (phase == 3) {

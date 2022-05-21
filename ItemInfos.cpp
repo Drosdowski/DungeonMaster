@@ -90,6 +90,7 @@ CWeaponConst::AttackStyle CItemInfos::ParseStyle(TiXmlElement* parentElement, co
 		style.dmg = std::stoi(attackValues.substr(0, 2)); // string to int!
 		style.difficult = std::stoi(attackValues.substr(3, 2));
 		style.useCharge = (attackValues.substr(6, 2) == "UC");
+		style.type = attackType.c_str();
 	}
 	return style;
 }

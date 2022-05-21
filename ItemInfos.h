@@ -23,7 +23,7 @@ private:
 	void ParseMiscellaneousItems(TiXmlElement* rootNode);
 	CWeaponConst::AttackStyle ParseStyle(TiXmlElement* parentElement, const char* atk);
 
-	CWeaponConst weaponInfos[46];
+	CWeaponConst weaponInfos[47];
 	CClothConst clothInfos[58];
 	CMiscConst miscInfos[56];
 };

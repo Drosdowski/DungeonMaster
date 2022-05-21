@@ -43,7 +43,7 @@ public:
 	};
 	class AttackStyle {
 	public:
-		std::string type = "";
+		CString type = "";
 		int dmg = 0;
 		int difficult = 0;
 		bool useCharge = 0;
