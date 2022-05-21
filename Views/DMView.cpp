@@ -620,20 +620,23 @@ void CDMView::FrameZeichnen(CDC* pDC) {
 	if (pGrpHeroes != NULL)
 	{
 		HeldenGrafikZeichnen(pGrpHeroes, pDC, m_pPictures);
-		CHeld* pHeld = pGrpHeroes->GetAttackingHero();
+		
 
 		int phase = pGrpHeroes->GetActionPhase();
 		if (phase == 1) {
 			WaffenZeichnen(pDC, pGrpHeroes);
 		}
-		else if (phase == 2 && pHeld) {
-			// todo hand attacke
-			CItem* pItem= pHeld->GetItemCarrying(1);
-			if (pItem && pItem->getItemType() == CItem::ItemType::WeaponItem) {
-				ActionAreaZeichnen(pDC, pItem->GetType());
+		else if (phase == 2) {
+			CHeld* pHeld = pGrpHeroes->GetHeroForAction();
+			if (pHeld) {
+				CItem* pItem = pHeld->GetItemCarrying(1);
+				if (pItem && pItem->getItemType() == CItem::ItemType::WeaponItem) {
+					ActionAreaZeichnen(pDC, pItem->GetType());
+				}
 			}
 		}
 		else if (phase == 3) {
+			CHeld* pHeld = pGrpHeroes->GetAttackingHero(); 
 			if (pHeld)
 			{
 				ActionDamageZeichnen(pDC, pHeld->GetDealingDamage());

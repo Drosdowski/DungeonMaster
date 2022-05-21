@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!-- http://dmweb.free.fr/?q=node/259 
-	 http://dmweb.free.fr/?q=node/691 -->
+<!-- http://dmweb.free.fr/?q=node/259 attack(dmg, dist, shootdmg)
+	 http://dmweb.free.fr/?q=node/691
+	 http://dmweb.free.fr/?q=node/690 => exp, def, stamina, chance to hit-->
 <items>
 	<weapons>
+		<item index="-1"
+			weight="0"
+			attack1="punch(32,00,00)"
+			attack2="kick(48,00,00)"
+			attack3="warcry(00,01,00)"
+			damage="2"
+			distance="0"
+			shootDamage="0"
+		>
+		</item>
 		<item index="0"
 			weight="0.1"
 			attack1="punch(32,00,00)"

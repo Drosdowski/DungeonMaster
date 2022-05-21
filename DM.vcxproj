@@ -581,6 +581,7 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Maps\0000.DUNGEON [Dungeon].xml" />
+    <Xml Include="Maps\attack.xml" />
     <Xml Include="Maps\items.xml" />
     <Xml Include="Maps\_dungeon.dat.xml" />
   </ItemGroup>

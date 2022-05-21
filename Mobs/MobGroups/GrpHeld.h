@@ -45,7 +45,7 @@ public:
 	void DrinkFountain();
 	bool Altern();
 
-	//CHeld* GetHeroForAction() { return GetHero(m_iHeroForAction); }
+	CHeld* GetHeroForAction() { return GetHero(m_iHeroForAction); }
 	CHeld* ClosestHeroTo(CMonster* monster);
 // überschriebene Methoden
 	
