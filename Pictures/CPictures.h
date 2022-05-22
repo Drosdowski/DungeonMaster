@@ -46,7 +46,8 @@ private:
 	void GewichtZeichnen(CDC* pDC, CHeld* pHeld);
 
 	void DrawHand(CDC* pDC, CHeld* pHeld, int index);
-	
+	void DrawText(CDC* pDC, int x, int y, CString text, int h, COLORREF fc, COLORREF bc);
+
 	CBitmap* m_pBmpRuck;
 	CBitmap* m_pBmpHintergrund;
 	CBitmap* m_pBmpInversePfeile;

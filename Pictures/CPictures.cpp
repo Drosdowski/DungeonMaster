@@ -323,8 +323,6 @@ void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld, CRucksack* pRucksack)
 }
 
 void CPictures::DrawActionAreaChoice(CDC* pDC, CItemInfos* m_pItemInfos, int weaponIndex) {
-	HFONT hFont;
-	HDC hDC = pDC->GetSafeHdc();
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 	tmpdc.SelectObject(m_pActionsArea);
@@ -340,15 +338,21 @@ void CPictures::DrawActionAreaChoice(CDC* pDC, CItemInfos* m_pItemInfos, int wea
 	m_pActionsArea->GetBitmap(&bmpInfo);
 	double partFactor = (numberActions + 1) / 4.0;
 	pDC->TransparentBlt(448, 150, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2 * partFactor, &tmpdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight * partFactor, SRCCOPY);
-	SetTextColor(hDC, WEISS);
-	SetBkColor(hDC, SCHWARZ);
-	hFont = CreateFont(20, 0, 0, 0, FW_BOLD, 0, 0, 0, 0, 0, 0, 2, 0, "SYSTEM_FIXED_FONT");
-	SelectObject(hDC, hFont);
 	for (int j = 0; j < 3; j++) {
-		pDC->TextOut(474, 170 + j * 23, actionText[j]);
+		DrawText(pDC, 474, 170 + j * 23, actionText[j], 20, WEISS, SCHWARZ);
 	}
-	DeleteObject(hFont);
 	DeleteDC(tmpdc);
+}
+
+void CPictures::DrawText(CDC* pDC, int x, int y, CString text, int h, COLORREF fc, COLORREF bc) {
+	HFONT hFont;
+	HDC hDC = pDC->GetSafeHdc();
+	SetTextColor(hDC, fc);
+	SetBkColor(hDC, bc);
+	hFont = CreateFont(h, 0, 0, 0, FW_BOLD, 0, 0, 0, 0, 0, 0, 2, 0, "SYSTEM_FIXED_FONT");
+	SelectObject(hDC, hFont);
+	pDC->TextOut(x, y, text);
+	DeleteObject(hFont);
 }
 
 void CPictures::DrawActionAreaDamage(CDC* pDC, int dmg) {
