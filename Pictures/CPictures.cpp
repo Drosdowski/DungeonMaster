@@ -323,23 +323,29 @@ void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld, CRucksack* pRucksack)
 }
 
 void CPictures::DrawActionAreaChoice(CDC* pDC, CItemInfos* m_pItemInfos, int weaponIndex) {
-	CString text;
 	HFONT hFont;
 	HDC hDC = pDC->GetSafeHdc();
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 	tmpdc.SelectObject(m_pActionsArea);
 	BITMAP bmpInfo;
-	// todo alles in tmpDC ?
+	double numberActions = 3;
+	CString actionText[3];
+	for (int j = 0; j < 3; j++) {
+		actionText[j] = m_pItemInfos->GetWeaponInfo(weaponIndex).style[j].type;
+		if (actionText[j].GetLength() == 0)
+			numberActions--;
+	}
+	
 	m_pActionsArea->GetBitmap(&bmpInfo);
-	pDC->TransparentBlt(448, 150, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, &tmpdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, SRCCOPY);
+	double partFactor = (numberActions + 1) / 4.0;
+	pDC->TransparentBlt(448, 150, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2 * partFactor, &tmpdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight * partFactor, SRCCOPY);
 	SetTextColor(hDC, WEISS);
 	SetBkColor(hDC, SCHWARZ);
 	hFont = CreateFont(20, 0, 0, 0, FW_BOLD, 0, 0, 0, 0, 0, 0, 2, 0, "SYSTEM_FIXED_FONT");
 	SelectObject(hDC, hFont);
 	for (int j = 0; j < 3; j++) {
-		text = m_pItemInfos->GetWeaponInfo(weaponIndex).style[j].type;
-		pDC->TextOut(474, 170 + j * 23, text);
+		pDC->TextOut(474, 170 + j * 23, actionText[j]);
 	}
 	DeleteObject(hFont);
 	DeleteDC(tmpdc);
