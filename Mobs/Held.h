@@ -8,6 +8,7 @@
 // Held.h : header file
 //
 #include "Character.h"
+#include "..\Consts\AttackConst.h"
 /////////////////////////////////////////////////////////////////////////////
 // CHeld view
 
@@ -38,7 +39,7 @@ public:
 	//virtual void WertePermanentAendern(int hp, int st, int ma);
 	void ChangeCompass();
 
-	int CalcDmg(int baseDamage, CGrpChar* pOpponents);
+	int CalcDmg(CAttackConst ac, CGrpChar* pOpponents);
 	double LifePart() { return (double)m_HP.Aktuell / (double)m_HP.Max; }
 	double StaminaPart() { return (double)m_ST.Aktuell / (double)m_ST.Max; }
 	double ManaPart() { return (double)m_MA.Aktuell / (double)m_MA.Max; }

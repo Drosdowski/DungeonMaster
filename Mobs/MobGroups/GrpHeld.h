@@ -10,7 +10,7 @@
 
 class CMonster;
 class CItem;
-class CItemInfos;
+class CAttackInfos;
 class CGrpHeld: public CGrpChar
 {
 public:
@@ -40,7 +40,7 @@ public:
 	void Aktiviere(int n);
 	void PassAction();
 	void ChooseHeroForAction(int ID);
-	void DoActionForChosenHero(int ID, CGrpChar* pVictims, CItemInfos* infos);
+	void DoActionForChosenHero(int ID, CGrpChar* pVictims, CAttackInfos* attackInfos);
 	bool SetActiveCaster(int ID);
 	
 	void DrinkFountain();

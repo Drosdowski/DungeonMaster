@@ -7,7 +7,7 @@
 #include "..\Mobs\Held.h"
 #include "..\Items\FloorDecoration.h"
 #include "..\Items\Item.h"
-#include "..\ItemInfos.h"
+#include "..\XMLParser\ItemInfos.h"
 #include "..\Rucksack.h"
 #include "..\CalculationHelper\CScreenCoords.h"
 #include "..\Consts\WeaponConst.h"

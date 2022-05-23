@@ -41,26 +41,17 @@ void CAttackInfos::ParseAttackInfos(TiXmlElement* rootNode) {
 	}
 }
 
-void CAttackInfos::ParseAttack(TiXmlElement* node) {
-	TiXmlElement* parentElement = node->FirstChildElement();
-	while (parentElement)
-	{
-		const char* parent = parentElement->Value();
-		if (strcmp(parent, "attack") == 0) 
-		{
-			int index;
-			CAttackConst attribute;
-			parentElement->QueryIntAttribute("index", &index);
-			CString attack = parentElement->Attribute("name");
-			parentElement->QueryIntAttribute("improved", &attribute.improved);
-			parentElement->QueryIntAttribute("experience", &attribute.experience);
-			parentElement->QueryIntAttribute("def", &attribute.def);
-			parentElement->QueryIntAttribute("stamina", &attribute.stamina);
-			parentElement->QueryIntAttribute("hit", &attribute.to_hit);
-			parentElement->QueryIntAttribute("damage", &attribute.damage);
-			parentElement->QueryIntAttribute("fatigue", &attribute.fatigue);
-			attackInfos[index] = attribute;
-		}
-		parentElement = parentElement->NextSiblingElement();
-	}
+void CAttackInfos::ParseAttack(TiXmlElement* parentElement) {
+	int index;
+	CAttackConst attribute;
+	parentElement->QueryIntAttribute("Number", &index);
+	CString attack = parentElement->Attribute("name");
+	parentElement->QueryIntAttribute("improved", &attribute.improved);
+	parentElement->QueryIntAttribute("experience", &attribute.experience);
+	parentElement->QueryIntAttribute("def", &attribute.def);
+	parentElement->QueryIntAttribute("stamina", &attribute.stamina);
+	parentElement->QueryIntAttribute("hit", &attribute.to_hit);
+	parentElement->QueryIntAttribute("damage", &attribute.damage);
+	parentElement->QueryIntAttribute("fatigue", &attribute.fatigue);
+	attackInfos[index] = attribute;
 }

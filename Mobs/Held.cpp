@@ -121,10 +121,10 @@ void CHeld::WerteTemporaerAendern(int hp, int st, int ma)
 	m_MA.Aktuell = min(max(ma + m_MA.Aktuell, 0), m_MA.Max);
 }
 
-int CHeld::CalcDmg(int baseDamage, CGrpChar* pOpponents) {	
+int CHeld::CalcDmg(CAttackConst ac, CGrpChar* pOpponents) {
 	// https://www.dungeon-master.com/forum/viewtopic.php?t=31345
-
-	return baseDamage;
+	WerteTemporaerAendern(0, -ac.stamina, 0);
+	return ac.damage;
 }
 
 void CHeld::Essen(int amount) {

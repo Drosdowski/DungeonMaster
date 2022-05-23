@@ -7,7 +7,7 @@
 #include "..\..\CalculationHelper\CHelpfulValues.h"
 #include "..\..\Items\Item.h"
 #include "..\..\Items\Weapon.h"
-#include "..\..\ItemInfos.h"
+#include "..\..\XMLParser\AttackInfos.h"
 #include "GrpHeld.h"
 #include <iostream>
 
@@ -102,7 +102,7 @@ void CGrpHeld::PassAction() {
 
 }
 
-void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpChar* pVictims, CItemInfos* infos) {
+void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpChar* pVictims, CAttackInfos* attackInfos) {
 	if (m_iPhase == 2) {
 		if (pVictims) {
 			CHeld* pHero = (CHeld*)m_pMember[m_iHeroForAction];
@@ -117,8 +117,8 @@ void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpChar* pVictims, CItemInfo
 						itemIndex = HANDINDEX;
 					}
 					if (itemIndex >= 0) {
-						int baseDamage = infos->GetWeaponInfo(itemIndex).damage; // todo differenzieren - hier sind VIEL mehr infos drin!
-						int dmg = pHero->CalcDmg(baseDamage, pVictims);
+						CAttackConst ac = attackInfos->GetAttack(itemIndex); // todo differenzieren - hier sind VIEL mehr infos drin!
+						int dmg = pHero->CalcDmg(ac, pVictims);
 						pVictims->DoDamage(dmg, GetVector(), false); // true = Schaden an alle
 						pHero->AttackModeWithDmg(dmg);
 						m_iPhase = 3;

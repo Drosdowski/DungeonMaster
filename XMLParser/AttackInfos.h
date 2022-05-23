@@ -9,6 +9,8 @@ public:
 	CAttackInfos();
 	~CAttackInfos();
 
+	CAttackConst GetAttack(int index) { return attackInfos[index]; };
+
 private:
 	void LoadAttackInfos();
 	void ParseAttackInfos(TiXmlElement* element);
