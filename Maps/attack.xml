@@ -1,66 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--Number	Name	Improved	Skill	Experience	Gain	Defense Modifier	Stamina	Hit probability	Damage	Fatigue-->
-<attackinfos>
-	<attack
-		number="0"
-		name="N"
-		improved="0"
-		experience="0"
-		def="0"
-		stamina="0"
-		hit="0"
-		damage="0"
-		fatigue="0"
-	>
-	</attack>
-0	N	00: Fighter	0	0	0	0	0	0
-1	Block	07: Parry (Hidden Fighter skill)	8	36	4	22	15	6
-2	Chop	06: Club (Hidden Fighter skill)	10	0	8 (a)
-10 (b)(c)	48	48	8 (e)
-3	X	00: Fighter	0	0	0	0	0	0
-4	Blow Horn (d)	14: Influence (Hidden Priest skill)	0	-4	1	0	0	6
-5	Flip	12: Identify (Hidden Priest skill)	0	-10	0	0	0	3
-6	Punch	09: Fight (Hidden Ninja skill)	8	-10	1	38	32	1
-7	Kick	09: Fight (Hidden Ninja skill)	13	-5	3	28	48	5 (e)
-8	War Cry (d)	14: Influence (Hidden Priest skill) (a)(b)
-07: Parry (Hidden Fighter skill) (c)	7	4	1	0	0	3
-9	Stab	09: Fight (Hidden Ninja skill)	15	-20	3	30	48	5
-10	Climb Down	08: Steal (Hidden Ninja skill)	15	-15	40	0	0	35
-11	Freeze Life (g)	14: Influence (Hidden Priest skill)	22	-10	3	0	0	20
-12	Hit	09: Fight (Hidden Ninja skill)	10	16	3	20	20	4
-13	Swing	04: Swing (Hidden Fighter skill)	6	5	2	32	16	6 (e)
-14	Stab (unused)	05: Thrust (Hidden Fighter skill)	12	-15	4	42	60	10
-15	Thrust	05: Thrust (Hidden Fighter skill)	19	-17	13 (a)
-17 (b)(c)	57	66	16
-16	Jab	05: Thrust (Hidden Fighter skill)	11	-5	3	70	8	2
-17	Parry	07: Parry (Hidden Fighter skill)	17	29	1	18	8	18
-18	Hack	04: Swing (Hidden Fighter skill)	9	10	6	27	25	8 (e)
-19	Berzerk	04: Swing (Hidden Fighter skill)	40	-10	26 (a)
-40 (b)(c)	46	96	30 (e)
-20	Fireball	16: Fire (Hidden Wizard skill)	35	-7	5	0	0	42
-21	Dispell	17: Air (Hidden Wizard skill)	25	-7	2	0	0	31
-22	Confuse (d)	14: Influence (Hidden Priest skill)	0	-7	2	0	0	10
-23	Lightning	17: Air (Hidden Wizard skill)	30	-7	4	0	0	38
-24	Disrupt	17: Air (Hidden Wizard skill)	10	-7	5	46	55	9
-25	Melee	06: Club (Hidden Fighter skill)	24	-5	17 (a)
-25 (b)(c)	64	60	20
-26	X	08: Steal (Hidden Ninja skill)	0	-15	1	0	0	10
-27	Invoke	03: Wizard	25	-9	2	0	0	16
-28	Slash	04: Swing (Hidden Fighter skill)	9	4	2	26	16	4
-29	Cleave	04: Swing (Hidden Fighter skill)	12	0	10	40	48	12
-30	Bash	06: Club (Hidden Fighter skill)	11	0	9	32	50	20 (e)
-31	Stun	06: Club (Hidden Fighter skill)	10	5	2	50	16	7
-32	Shoot	11: Shoot (Hidden Ninja skill)	9 (a)
-20 (b)(c)	-15	3	0	0	14
-33	Spellshield	15: Defend (Hidden Priest skill)	20	-7	1	0	0	30
-34	Fireshield	15: Defend (Hidden Priest skill)	20	-7	2	0	0	35
-35	Fluxcage	03: Wizard	12	8	6	0	0	2
-36	Heal	13: Heal (Hidden Priest skill)	0	-20	1	0	0	19
-37	Calm (d)	14: Influence (Hidden Priest skill)	0	-5	1	0	0	9
-38	Light	17: Air (Hidden Wizard skill)	20	0	3	0	0	10
-39	Window	18: Earth (Hidden Wizard skill)	30	-15	2	0	0	15
-40	Spit	16: Fire (Hidden Wizard skill)	25	-7	3	0	0	22
-41	Brandish (d)	14: Influence (Hidden Priest skill)	0	-4	2	0	0	10
-42	Throw	10: Throw (Hidden Ninja skill)	5	0	0	0	0	0
-43	Fuse (f)	03: Wizard	1	8	2	0	0	2
+<attackinfos>	
+	<attack Number='0' name='N' improved='00' experience='0' def='0' stamina='0' hit='0' damage='0' fatigue='0'></attack>
+	<attack Number='1' name='Block' improved='07' experience='8' def='36' stamina='4' hit='22' damage='15' fatigue='6'></attack>
+	<attack Number='2' name='Chop' improved='06' experience='10' def='0' stamina='8' hit='48' damage='48' fatigue='8'></attack>
+	<attack Number='3' name='X' improved='00' experience='0' def='0' stamina='0' hit='0' damage='0' fatigue='0'></attack>
+	<attack Number='4' name='Blow Horn (d)' improved='14' experience='0' def='-4' stamina='1' hit='0' damage='0' fatigue='6'></attack>
+	<attack Number='5' name='Flip' improved='12' experience='0' def='-10' stamina='0' hit='0' damage='0' fatigue='3'></attack>
+	<attack Number='6' name='Punch' improved='09' experience='8' def='-10' stamina='1' hit='38' damage='32' fatigue='1'></attack>
+	<attack Number='7' name='Kick' improved='09' experience='13' def='-5' stamina='3' hit='28' damage='48' fatigue='5'></attack>
+	<attack Number='8' name='War Cry (d)' improved='14' experience='7' def='4' stamina='1' hit='0' damage='0' fatigue='3'></attack>
+	<attack Number='9' name='Stab' improved='09' experience='15' def='-20' stamina='3' hit='30' damage='48' fatigue='5'></attack>
+	<attack Number='10' name='Climb Down' improved='08' experience='15' def='-15' stamina='40' hit='0' damage='0' fatigue='35'></attack>
+	<attack Number='11' name='Freeze Life (g)' improved='14' experience='22' def='-10' stamina='3' hit='0' damage='0' fatigue='20'></attack>
+	<attack Number='12' name='Hit' improved='09' experience='10' def='16' stamina='3' hit='20' damage='20' fatigue='4'></attack>
+	<attack Number='13' name='Swing' improved='04' experience='6' def='5' stamina='2' hit='32' damage='16' fatigue='6'></attack>
+	<attack Number='14' name='Stab (unused)' improved='05' experience='12' def='-15' stamina='4' hit='42' damage='60' fatigue='10'></attack>
+	<attack Number='15' name='Thrust' improved='05' experience='19' def='-17' stamina='13' hit='57' damage='66' fatigue='16'></attack>
+	<attack Number='16' name='Jab' improved='05' experience='11' def='-5' stamina='3' hit='70' damage='8' fatigue='2'></attack>
+	<attack Number='17' name='Parry' improved='07' experience='17' def='29' stamina='1' hit='18' damage='8' fatigue='18'></attack>
+	<attack Number='18' name='Hack' improved='04' experience='9' def='10' stamina='6' hit='27' damage='25' fatigue='8'></attack>
+	<attack Number='19' name='Berzerk' improved='04' experience='40' def='-10' stamina='26' hit='46' damage='96' fatigue='30'></attack>
+	<attack Number='20' name='Fireball' improved='16' experience='35' def='-7' stamina='5' hit='0' damage='0' fatigue='42'></attack>
+	<attack Number='21' name='Dispell' improved='17' experience='25' def='-7' stamina='2' hit='0' damage='0' fatigue='31'></attack>
+	<attack Number='22' name='Confuse (d)' improved='14' experience='0' def='-7' stamina='2' hit='0' damage='0' fatigue='10'></attack>
+	<attack Number='23' name='Lightning' improved='17' experience='30' def='-7' stamina='4' hit='0' damage='0' fatigue='38'></attack>
+	<attack Number='24' name='Disrupt' improved='17' experience='10' def='-7' stamina='5' hit='46' damage='55' fatigue='9'></attack>
+	<attack Number='25' name='Melee' improved='06' experience='24' def='-5' stamina='17' hit='64' damage='60' fatigue='20'></attack>
+	<attack Number='26' name='X' improved='08' experience='0' def='-15' stamina='1' hit='0' damage='0' fatigue='10'></attack>
+	<attack Number='27' name='Invoke' improved='03' experience='25' def='-9' stamina='2' hit='0' damage='0' fatigue='16'></attack>
+	<attack Number='28' name='Slash' improved='04' experience='9' def='4' stamina='2' hit='26' damage='16' fatigue='4'></attack>
+	<attack Number='29' name='Cleave' improved='04' experience='12' def='0' stamina='10' hit='40' damage='48' fatigue='12'></attack>
+	<attack Number='30' name='Bash' improved='06' experience='11' def='0' stamina='9' hit='32' damage='50' fatigue='20'></attack>
+	<attack Number='31' name='Stun' improved='06' experience='10' def='5' stamina='2' hit='50' damage='16' fatigue='7'></attack>
+	<attack Number='32' name='Shoot' improved='11' experience='9' def='-15' stamina='3' hit='0' damage='0' fatigue='14'></attack>
+	<attack Number='33' name='Spellshield' improved='15' experience='20' def='-7' stamina='1' hit='0' damage='0' fatigue='30'></attack>
+	<attack Number='34' name='Fireshield' improved='15' experience='20' def='-7' stamina='2' hit='0' damage='0' fatigue='35'></attack>
+	<attack Number='35' name='Fluxcage' improved='03' experience='12' def='8' stamina='6' hit='0' damage='0' fatigue='2'></attack>
+	<attack Number='36' name='Heal' improved='13' experience='0' def='-20' stamina='1' hit='0' damage='0' fatigue='19'></attack>
+	<attack Number='37' name='Calm (d)' improved='14' experience='0' def='-5' stamina='1' hit='0' damage='0' fatigue='9'></attack>
+	<attack Number='38' name='Light' improved='17' experience='20' def='0' stamina='3' hit='0' damage='0' fatigue='10'></attack>
+	<attack Number='39' name='Window' improved='18' experience='30' def='-15' stamina='2' hit='0' damage='0' fatigue='15'></attack>
+	<attack Number='40' name='Spit' improved='16' experience='25' def='-7' stamina='3' hit='0' damage='0' fatigue='22'></attack>
+	<attack Number='41' name='Brandish (d)' improved='14' experience='0' def='-4' stamina='2' hit='0' damage='0' fatigue='10'></attack>
+	<attack Number='42' name='Throw' improved='10' experience='5' def='0' stamina='0' hit='0' damage='0' fatigue='0'></attack>
+	<attack Number='43' name='Fuse (f)' improved='03' experience='1' def='8' stamina='2' hit='0' damage='0' fatigue='2'></attack>
 </attackinfos>

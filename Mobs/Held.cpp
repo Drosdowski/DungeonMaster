@@ -121,10 +121,8 @@ void CHeld::WerteTemporaerAendern(int hp, int st, int ma)
 	m_MA.Aktuell = min(max(ma + m_MA.Aktuell, 0), m_MA.Max);
 }
 
-int CHeld::CalcDmg(int ID, CGrpChar* pOpponents) {
-	// CHeld* hero = pHeroes->ClosestHeroTo(pMonster); // Todo berechnen, welcher Held am nahesten steht!
-	// TODO temporär; Waffe 1 = 1 Schaden, ...
-	return ID;
+int CHeld::CalcDmg(int baseDamage, CGrpChar* pOpponents) {	
+	return baseDamage;
 }
 
 void CHeld::Essen(int amount) {

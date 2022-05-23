@@ -6,6 +6,8 @@
 #include "..\Held.h"
 #include "..\..\CalculationHelper\CHelpfulValues.h"
 #include "..\..\Items\Item.h"
+#include "..\..\Items\Weapon.h"
+#include "..\..\ItemInfos.h"
 #include "GrpHeld.h"
 #include <iostream>
 
@@ -100,16 +102,28 @@ void CGrpHeld::PassAction() {
 
 }
 
-void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpChar* pVictims) {
+void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpChar* pVictims, CItemInfos* infos) {
 	if (m_iPhase == 2) {
 		if (pVictims) {
 			CHeld* pHero = (CHeld*)m_pMember[m_iHeroForAction];
 			if (pHero) {
 				if (pHero->Hp().Aktuell > 0) {
-					int dmg = pHero->CalcDmg(ActionId, pVictims);
-					pVictims->DoDamage(dmg, GetVector(), false); // true = Schaden an alle
-					pHero->AttackModeWithDmg(dmg);
-					m_iPhase = 3;
+					CItem* item = pHero->GetItemCarrying(1);
+					int itemIndex = -1;
+					if (item && item->getItemType() == CItem::ItemType::WeaponItem) {
+						itemIndex = item->getIndex();
+					}
+					else if (item == NULL) {
+						itemIndex = HANDINDEX;
+					}
+					if (itemIndex >= 0) {
+						int baseDamage = infos->GetWeaponInfo(itemIndex).damage; // todo differenzieren - hier sind VIEL mehr infos drin!
+						int dmg = pHero->CalcDmg(baseDamage, pVictims);
+						pVictims->DoDamage(dmg, GetVector(), false); // true = Schaden an alle
+						pHero->AttackModeWithDmg(dmg);
+						m_iPhase = 3;
+						m_iPhaseDelay = 2;
+					}
 				}
 			}
 		}
@@ -170,8 +184,11 @@ bool CGrpHeld::Altern()
 		}
 	}
 	if (m_iPhase == 3)
-	{
-		m_iPhase = 1;
+	{ 
+		if (m_iPhaseDelay <= 0)
+			m_iPhase = 1;
+		else
+			m_iPhaseDelay--;
 	}
 	return anyoneAlive;
 }

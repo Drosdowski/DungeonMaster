@@ -41,6 +41,7 @@ int CCharacter::CalcDmg(int ID, CGrpChar* pOpponents) {
 void CCharacter::AttackModeWithDmg(int damage) {
 	m_attacking = true; 
 	m_dealingDmg = damage;
+	m_dealingDmgToDraw = damage;
 }
 
 void CCharacter::EndAttack() {

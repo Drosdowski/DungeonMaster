@@ -50,6 +50,7 @@
 #define ROT RGB(224,0,0)
 #define WEISS RGB(224,224,224)
 #define ROSA RGB(224,0,224)
+#define HELLBLAU RGB(0,224,224)
 
 #define TRANS_ORA RGB(208, 144, 112)
 #define TRANS_BLU RGB(0, 208, 208)
@@ -199,6 +200,8 @@ enum FeldTyp {
 	TRICKWALL = 6
 
 };
+
+#define HANDINDEX 46
 
 
 bool InRect(CPoint p, int x1, int y1, int x2, int y2);

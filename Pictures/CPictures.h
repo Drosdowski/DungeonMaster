@@ -23,6 +23,7 @@ public:
 	
 	void DrawActionAreaChoice(CDC* pDC, CItemInfos* m_pItemInfos, int weaponIndex);
 	void DrawActionAreaDamage(CDC* pDC, int dmg);
+	void DrawActiveWeapon(CDC* pDC, CHeld* held, int id);
 	void KnochenZeichnen(CDC* pDC, int index);
 	void NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName);
 	void RucksackZeichnen(CDC* pDC, CHeld* pHeld);

@@ -143,14 +143,14 @@ void CPictures::DrawHand(CDC* pDC, CHeld* pHeld, int handId) {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 	
-	CItem* itemInThistHand = pHeld->GetItemCarrying(handId);
+	CItem* itemInThisHand = pHeld->GetItemCarrying(handId);
 	
 	tmpdc.SelectObject(m_pBmpRuck);
 	pDC->BitBlt((pHeld->getIndex() - 1) * 138 + 5 + 40 * handId, 16, 37, 37, &tmpdc, 5 + 40 * handId, 16, SRCCOPY);
 
-	if (itemInThistHand != NULL) {
-		CBitmap* bmp = m_pItemPic->GetBitmapSheet(itemInThistHand);
-		CPoint pos = m_pItemPic->GetSheetKoords(itemInThistHand);
+	if (itemInThisHand != NULL) {
+		CBitmap* bmp = m_pItemPic->GetBitmapSheet(itemInThisHand);
+		CPoint pos = m_pItemPic->GetSheetKoords(itemInThisHand);
 		tmpdc.SelectObject(bmp);
 		pDC->StretchBlt((pHeld->getIndex() - 1) * 138 + 7 + 40 * handId, 18, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, SRCCOPY);
 	}
@@ -356,15 +356,39 @@ void CPictures::DrawText(CDC* pDC, int x, int y, CString text, int h, COLORREF f
 }
 
 void CPictures::DrawActionAreaDamage(CDC* pDC, int dmg) {
+	CString text = "";
+	text.Format("%d", dmg);
+
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 	tmpdc.SelectObject(m_pActionsDamage);
 	BITMAP bmpInfo;
 	m_pActionsDamage->GetBitmap(&bmpInfo);
 	pDC->TransparentBlt(448, 150, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, &tmpdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, SRCCOPY);
+	DrawText(pDC, 532, 180, text, 34, HELLBLAU, SCHWARZ);
+
 	DeleteDC(tmpdc);
 }
 
+void CPictures::DrawActiveWeapon(CDC* pDC, CHeld* held, int id) {
+	CDC tmpdc;
+	tmpdc.CreateCompatibleDC(pDC);
+
+	CItem* itemInThisHand = held->GetItemCarrying(1);
+	if (itemInThisHand == NULL) {
+		tmpdc.SelectObject(GetOneHand());
+		pDC->BitBlt(466 + 44 * (id - 1), 176, 44, 66, &tmpdc, 0, 0, SRCCOPY);
+	}
+	else
+	{
+		int x = 466 + 44 * (id - 1);		
+		pDC->FillSolidRect(CRect(x, 176, x + 40, 242), HELLBLAU);
+		CBitmap* bmp = m_pItemPic->GetBitmapSheet(itemInThisHand);
+		CPoint pos = m_pItemPic->GetSheetKoords(itemInThisHand);
+		tmpdc.SelectObject(bmp);
+		pDC->TransparentBlt(466 + 50 * (id - 1), 193, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, TRANS_GRA);
+	}
+}
 
 void CPictures::PfeilZeichnen(CDC* pDC, int index)
 {

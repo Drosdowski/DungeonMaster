@@ -164,8 +164,8 @@ void CDMView::ParseClickAction(CPoint point) {
 		else {
 			VEKTOR monPos = grpHelden->HoleZielFeld(VORWAERTS);
 			CGrpMonster* grpMonster = m_pRaumView->GetMonsterGroup(monPos);
-
-			grpHelden->DoActionForChosenHero(actionNumber, grpMonster);
+			CItemInfos* infos = m_pRaumView->GetItemInfos();			
+			grpHelden->DoActionForChosenHero(actionNumber, grpMonster, infos);
 		}
 		UpdateGrafik();
 	}
@@ -594,8 +594,7 @@ void CDMView::WaffenZeichnen(CDC* pDC, CGrpHeld* pGrpHeroes) {
 		CHeld* held = pGrpHeroes->GetHero(id);
 		if (held)
 		{
-			tmpdc.SelectObject(m_pPictures->GetOneHand());
-			pDC->BitBlt(466 + 44 * (id - 1), 176, 44, 66, &tmpdc, 0, 0, SRCCOPY);
+			m_pPictures->DrawActiveWeapon(pDC, held, id);			
 		}
 	}
 
@@ -635,7 +634,7 @@ void CDMView::FrameZeichnen(CDC* pDC) {
 					index = pItem->GetType();
 				}
 				else {
-					index = 46; // Hand
+					index = HANDINDEX;
 				}
 				ActionAreaZeichnen(pDC, index);
 			}

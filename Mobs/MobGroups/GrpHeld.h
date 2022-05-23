@@ -10,6 +10,7 @@
 
 class CMonster;
 class CItem;
+class CItemInfos;
 class CGrpHeld: public CGrpChar
 {
 public:
@@ -39,7 +40,7 @@ public:
 	void Aktiviere(int n);
 	void PassAction();
 	void ChooseHeroForAction(int ID);
-	void DoActionForChosenHero(int ID, CGrpChar* pVictims);
+	void DoActionForChosenHero(int ID, CGrpChar* pVictims, CItemInfos* infos);
 	bool SetActiveCaster(int ID);
 	
 	void DrinkFountain();
@@ -56,6 +57,7 @@ public:
 	// Generierte Nachrichtenzuordnungsfunktionen
 protected:
 	int m_iPhase = 1;
+	int m_iPhaseDelay = 0;
 	int m_iHeroForAction = 1;
 	int m_iAktiverZauberer = 0;
 	int m_iAktiverHeld = 1;

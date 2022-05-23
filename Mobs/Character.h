@@ -42,7 +42,7 @@ public:
 	void AttackModeWithDmg(int damage);
 	void EndAttack();
 
-	int GetDealingDamage() { return m_dealingDmg; }
+	int GetDealingDamage() { return m_dealingDmgToDraw; }
 
 	bool westOf(VEKTOR myPos, VEKTOR hisPos);
 	bool eastOf(VEKTOR myPos, VEKTOR hisPos);
@@ -57,6 +57,7 @@ protected:
 	int m_ApproxDmg; // AKTIV - Durchschnittlicher Schaden plus minus random
 	int m_SpeedDelay; // 0 = Schnellstes (Zyklen bis zur Aktion)
 	int m_dealingDmg; // AKTIV - tatsächlicher aktueller Schaden, zur Anzeige.
+	int m_dealingDmgToDraw;
 	bool m_attacking = false;
 	CDC* m_pDC;
 

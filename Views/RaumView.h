@@ -54,6 +54,7 @@ public:
 	CGrpMonster* GetMonsterGroup(VEKTOR pos);
 	CDungeonMap* GetMap() { return m_pMap; }
 	CGrpHeld* GetHeroes() { return m_pMap->GetHeroes(); }
+	CItemInfos* GetItemInfos() { return m_pItemInfos; }
 	void TriggerMoveAnimation();
 	void RaumZeichnen(CDC* pDC);
 	void DrawActionAreaChoice(CDC* pDC, int weaponIndex);
