@@ -9,6 +9,7 @@
 #include "Feld.h"
 #include "..\XMLParser\CDungeonMap.h"
 #include "..\XMLParser\ItemInfos.h"
+#include "..\XMLParser\AttackInfos.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CRaumView view
@@ -55,6 +56,7 @@ public:
 	CDungeonMap* GetMap() { return m_pMap; }
 	CGrpHeld* GetHeroes() { return m_pMap->GetHeroes(); }
 	CItemInfos* GetItemInfos() { return m_pItemInfos; }
+	CAttackInfos* GetAttackInfos() { return m_pAttackInfos; }
 	void TriggerMoveAnimation();
 	void RaumZeichnen(CDC* pDC);
 	void DrawActionAreaChoice(CDC* pDC, int weaponIndex);
@@ -101,6 +103,8 @@ protected:
 
 	CDungeonMap* m_pMap;
 	CItemInfos* m_pItemInfos;
+	CAttackInfos* m_pAttackInfos;
+
 private:
 	int wallXFactor[5];
 	CHelpfulValues* m_values;
