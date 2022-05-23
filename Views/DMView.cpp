@@ -11,7 +11,7 @@
 #include "ZauberView.h"
 #include "CGroupView.h"
 #include "..\CalculationHelper/CScreenCoords.h"
-#include "..\CDungeonMap.h"
+#include "..\XMLParser\CDungeonMap.h"
 #include "..\Rucksack.h"
 #include "..\Pictures\CPictures.h"
 #include "..\Pictures/Items3D/CItem3DPic.h"

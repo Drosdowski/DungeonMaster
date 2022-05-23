@@ -6,7 +6,7 @@
 #include <math.h>
 
 #include "Views\Raumview.h"
-#include "CDungeonMap.h"
+#include "XMLParser\CDungeonMap.h"
 #include "DMDoc.h"
 #include "Items\FloorDecoration.h"
 #include "Mobs\Held.h"

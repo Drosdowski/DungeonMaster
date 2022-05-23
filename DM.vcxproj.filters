@@ -90,7 +90,7 @@
     <ClCompile Include="CalculationHelper\CScreenCoords.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CDungeonMap.cpp">
+    <ClCompile Include="XMLParser\CDungeonMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TinyXML\tinystr.cpp">
@@ -192,7 +192,7 @@
     <ClCompile Include="Items\CCloth.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ItemInfos.cpp">
+    <ClCompile Include="XMLParser\ItemInfos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Consts\WeaponConst.cpp">
@@ -211,6 +211,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Pictures\Creatures\RockPilePic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLParser\AttackInfos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Consts\AttackConst.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -301,7 +307,7 @@
     <ClInclude Include="CalculationHelper\CScreenCoords.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CDungeonMap.h">
+    <ClInclude Include="XMLParser\CDungeonMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TinyXML\tinystr.h">
@@ -400,7 +406,7 @@
     <ClInclude Include="Items\Cloth.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ItemInfos.h">
+    <ClInclude Include="XMLParser\ItemInfos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Consts\WeaponConst.h">
@@ -419,6 +425,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\Creatures\RockPilePic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLParser\AttackInfos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Consts\AttackConst.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

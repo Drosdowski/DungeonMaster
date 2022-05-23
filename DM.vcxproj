@@ -129,12 +129,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Consts\AttackConst.cpp" />
+    <ClCompile Include="XMLParser\AttackInfos.cpp" />
     <ClCompile Include="Attributes\CWeaponAttributes.cpp" />
     <ClCompile Include="Attributes\CMiscellaneousAttributes.cpp" />
     <ClCompile Include="Attributes\ClothAttributes.cpp" />
     <ClCompile Include="Consts\ItemConst.cpp" />
     <ClCompile Include="Consts\ClothConst.cpp" />
-    <ClCompile Include="ItemInfos.cpp" />
+    <ClCompile Include="XMLParser\ItemInfos.cpp" />
     <ClCompile Include="Items\CCloth.cpp" />
     <ClCompile Include="Items\Item.cpp" />
     <ClCompile Include="Attributes\CDoorAttributes.cpp" />
@@ -154,7 +156,7 @@
     <ClCompile Include="ColorCursor\ColorCursor.cpp" />
     <ClCompile Include="Pictures\CPressurePadPic.cpp" />
     <ClCompile Include="Pictures\Items3D\CItem3DPic.cpp" />
-    <ClCompile Include="CDungeonMap.cpp" />
+    <ClCompile Include="XMLParser\CDungeonMap.cpp" />
     <ClCompile Include="Pictures\Items2D\CItemPic.cpp" />
     <ClCompile Include="Items\CMiscellaneous.cpp" />
     <ClCompile Include="SpecialTile\CTile.cpp" />
@@ -205,10 +207,12 @@
     <ResourceCompile Include="DM.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Consts\AttackConst.h" />
+    <ClInclude Include="XMLParser\AttackInfos.h" />
     <ClInclude Include="Attributes\ClothAttributes.h" />
     <ClInclude Include="Consts\ClothConst.h" />
     <ClInclude Include="Consts\ItemConst.h" />
-    <ClInclude Include="ItemInfos.h" />
+    <ClInclude Include="XMLParser\ItemInfos.h" />
     <ClInclude Include="Items\Cloth.h" />
     <ClInclude Include="Items\Item.h" />
     <ClInclude Include="Attributes\MiscellaneousAttributes.h" />
@@ -230,7 +234,7 @@
     <ClInclude Include="ColorCursor\ColorCursor.h" />
     <ClInclude Include="Pictures\CPressurePadPic.h" />
     <ClInclude Include="Pictures\Items3D\CItem3DPic.h" />
-    <ClInclude Include="CDungeonMap.h" />
+    <ClInclude Include="XMLParser\CDungeonMap.h" />
     <ClInclude Include="Pictures\Items2D\CItemPic.h" />
     <ClInclude Include="Items\CMiscellaneous.h" />
     <ClInclude Include="SpecialTile\CTile.h" />

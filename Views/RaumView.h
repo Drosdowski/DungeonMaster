@@ -7,8 +7,8 @@
 // RaumView.h : header file
 //
 #include "Feld.h"
-#include "CDungeonMap.h"
-#include "ItemInfos.h"
+#include "..\XMLParser\CDungeonMap.h"
+#include "..\XMLParser\ItemInfos.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CRaumView view

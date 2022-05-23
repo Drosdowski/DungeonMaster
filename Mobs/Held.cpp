@@ -122,6 +122,8 @@ void CHeld::WerteTemporaerAendern(int hp, int st, int ma)
 }
 
 int CHeld::CalcDmg(int baseDamage, CGrpChar* pOpponents) {	
+	// https://www.dungeon-master.com/forum/viewtopic.php?t=31345
+
 	return baseDamage;
 }
 
