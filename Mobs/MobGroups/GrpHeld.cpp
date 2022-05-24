@@ -118,8 +118,9 @@ void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpChar* pVictims, CAttackIn
 					}
 					if (itemIndex >= 0) {
 						CAttackConst ac = attackInfos->GetAttack(itemIndex); // todo differenzieren - hier sind VIEL mehr infos drin!
-						int dmg = pHero->CalcDmg(ac, pVictims);
-						pVictims->DoDamage(dmg, GetVector(), false); // true = Schaden an alle
+						VEKTOR myPos = GetVector();
+						int dmg = pHero->CalcDmg(ac, pVictims, myPos.z);
+						pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
 						pHero->AttackModeWithDmg(dmg);
 						m_iPhase = 3;
 						m_iPhaseDelay = 2;

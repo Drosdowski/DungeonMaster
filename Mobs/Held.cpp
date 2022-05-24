@@ -27,6 +27,8 @@ CHeld::CHeld(int iIndex, CString strName): CCharacter(true)
 	m_MA.Max = 100;
 	m_ST.Max = 100;
 
+	m_iCurrentLuck = 0;
+
 	m_sVitals.str.Max = 60; m_sVitals.str.Aktuell = 60;
 	m_sVitals.dex.Max = 50; m_sVitals.dex.Aktuell = 50;
 	m_sVitals.vit.Max = 40; m_sVitals.vit.Aktuell = 40;
@@ -121,9 +123,51 @@ void CHeld::WerteTemporaerAendern(int hp, int st, int ma)
 	m_MA.Aktuell = min(max(ma + m_MA.Aktuell, 0), m_MA.Max);
 }
 
-int CHeld::CalcDmg(CAttackConst ac, CGrpChar* pOpponents) {
+int CHeld::CalcDmg(CAttackConst ac, CGrpChar* pOpponents, int levelDif) {
 	// https://www.dungeon-master.com/forum/viewtopic.php?t=31345
-	WerteTemporaerAendern(0, -ac.stamina, 0);
+	// todo xp gain
+	double d6_hitProbaility = ac.to_hit / 75.0;
+	int d7_baseDamage = ac.damage;
+	// todo check action valid NOW ?
+	int quickness = m_sVitals.dex.Aktuell + (rand() % 8);
+	int loadingEffect = (int)((quickness / 2) * CurLoad() / MaxLoad());
+	quickness -= loadingEffect;
+	int chanceToHit = min(max((quickness / 2), rand() % 8 + 1), 100 - rand() % 8);
+
+	int enemyDef = 10; // todo enemy def
+	int d1_neededToHit = (enemyDef + rand() % 32 + levelDif) - 16;
+	bool successfulHit = (chanceToHit > d1_neededToHit);
+	if (!successfulHit) {
+		if (rand() % 3 == 0) 
+			successfulHit = true;
+		else
+		{
+			int luckNeeded = 75 - d6_hitProbaility;
+			if ((rand() % 100) > luckNeeded)
+				successfulHit = true;
+			else {
+				if ((rand() % m_iCurrentLuck) > luckNeeded) {
+					m_iCurrentLuck -= 2;
+					successfulHit = true;
+				}
+				else {
+					m_iCurrentLuck += 2;
+					return false;
+				}
+			}
+		}
+	}
+	if (!successfulHit)
+	{
+		WerteTemporaerAendern(0, -(2 + (rand() % 1)), 0); // daneben
+		return 0;
+	}
+	else {
+		WerteTemporaerAendern(0, -ac.stamina + (rand() % 1), 0); // treffer!
+
+		// todo damage berechnen!
+	}
+
 	return ac.damage;
 }
 

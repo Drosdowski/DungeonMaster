@@ -39,7 +39,7 @@ public:
 	//virtual void WertePermanentAendern(int hp, int st, int ma);
 	void ChangeCompass();
 
-	int CalcDmg(CAttackConst ac, CGrpChar* pOpponents);
+	int CalcDmg(CAttackConst ac, CGrpChar* pOpponents, int levelDif);
 	double LifePart() { return (double)m_HP.Aktuell / (double)m_HP.Max; }
 	double StaminaPart() { return (double)m_ST.Aktuell / (double)m_ST.Max; }
 	double ManaPart() { return (double)m_MA.Aktuell / (double)m_MA.Max; }
@@ -79,6 +79,7 @@ private:
 	int m_iWater;
 	int m_iIndex;
 	bool m_bAktiv;
+	int m_iCurrentLuck;
 	WERTE m_MA;	// Mana
 	WERTE m_ST;	// Stamina
 
