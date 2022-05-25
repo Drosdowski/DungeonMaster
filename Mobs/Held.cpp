@@ -7,6 +7,7 @@
 #include "..\Items\Item.h"
 #include "Monster.h"
 #include <Attributes/ClothAttributes.h>
+#include "..\Items\Weapon.h"
 // following includes for compass
 #include "Held.h"
 #include "..\Attributes\MiscellaneousAttributes.h"
@@ -126,6 +127,42 @@ void CHeld::WerteTemporaerAendern(int hp, int st, int ma)
 int CHeld::CalcDmg(CAttackConst ac, CGrpChar* pOpponents, int levelDif) {
 	// https://www.dungeon-master.com/forum/viewtopic.php?t=31345
 	// todo xp gain
+	
+	if (!hitSucessful(ac, pOpponents, levelDif))
+	{
+		WerteTemporaerAendern(0, -(2 + (rand() % 1)), 0); // daneben
+		return 0;
+	}
+	else {
+		WerteTemporaerAendern(0, -ac.stamina + (rand() % 1), 0); // treffer!
+
+		// todo damage berechnen!
+		CWeapon* weapon = (CWeapon*)m_itemCarrying[1];
+		int d3_strength = m_sVitals.str.Aktuell;
+		int d7_damage_coefficient = d3_strength + (rand() % 15);
+		int d6_weapon_weight = weapon->GetWeight();
+		int d5_load_coefficient = MaxLoad();
+
+		int temp_coefficient[2];
+
+		if (d6_weapon_weight <= d5_load_coefficient)
+			d7_damage_coefficient = d7_damage_coefficient + d6_weapon_weight - 12;
+		else
+			temp_coefficient[0] = ((d5_load_coefficient - 12) / 2 + d5_load_coefficient);
+
+		temp_coefficient[1] = temp_coefficient[0];
+		if (d6_weapon_weight <= temp_coefficient[1])
+			d7_damage_coefficient = (d7_damage_coefficient + (d6_weapon_weight - d5_load_coefficient) / 2);
+		else
+			d7_damage_coefficient = (d7_damage_coefficient - 2 * (d6_weapon_weight - temp_coefficient[0]));
+
+		d7_damage_coefficient = (d7_damage_coefficient + ac.damage);
+	}
+
+	return ac.damage;
+}
+
+bool CHeld::hitSucessful(CAttackConst ac, CGrpChar* pOpponents, int levelDif) {
 	double d6_hitProbaility = ac.to_hit / 75.0;
 	int d7_baseDamage = ac.damage;
 	// todo check action valid NOW ?
@@ -138,17 +175,17 @@ int CHeld::CalcDmg(CAttackConst ac, CGrpChar* pOpponents, int levelDif) {
 	int d1_neededToHit = (enemyDef + rand() % 32 + levelDif) - 16;
 	bool successfulHit = (chanceToHit > d1_neededToHit);
 	if (!successfulHit) {
-		if (rand() % 3 == 0) 
-			successfulHit = true;
+		if (rand() % 3 == 0)
+			return true;
 		else
 		{
 			int luckNeeded = 75 - d6_hitProbaility;
 			if ((rand() % 100) > luckNeeded)
-				successfulHit = true;
+				return true;
 			else {
 				if ((rand() % m_iCurrentLuck) > luckNeeded) {
 					m_iCurrentLuck -= 2;
-					successfulHit = true;
+					return true;
 				}
 				else {
 					m_iCurrentLuck += 2;
@@ -157,18 +194,7 @@ int CHeld::CalcDmg(CAttackConst ac, CGrpChar* pOpponents, int levelDif) {
 			}
 		}
 	}
-	if (!successfulHit)
-	{
-		WerteTemporaerAendern(0, -(2 + (rand() % 1)), 0); // daneben
-		return 0;
-	}
-	else {
-		WerteTemporaerAendern(0, -ac.stamina + (rand() % 1), 0); // treffer!
-
-		// todo damage berechnen!
-	}
-
-	return ac.damage;
+	return true;
 }
 
 void CHeld::Essen(int amount) {

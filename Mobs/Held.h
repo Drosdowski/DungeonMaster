@@ -89,6 +89,7 @@ private:
 	CItem* m_pItemInHand = NULL;
 
 	double round1(double value);
+	bool hitSucessful(CAttackConst ac, CGrpChar* pOpponents, int levelDif);
 };
 
 /////////////////////////////////////////////////////////////////////////////
