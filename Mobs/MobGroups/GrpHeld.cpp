@@ -109,6 +109,19 @@ void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpChar* pVictims, CAttackIn
 			if (pHero) {
 				if (pHero->Hp().Aktuell > 0) {
 					CItem* item = pHero->GetItemCarrying(1);
+					VEKTOR myPos = GetVector();
+					CWeapon* weapon = NULL;
+					if (item && item->getItemType() == CItem::ItemType::WeaponItem) 
+						weapon = (CWeapon*)item;
+					// todo: myPos.z ist falsch, es gibt ein property "difficulty"
+					int dmg = pHero->CalcDmg(weapon, attackInfos, pVictims, myPos.z);
+					if (dmg > 0) {
+						pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
+						pHero->AttackModeWithDmg(dmg);
+						m_iPhase = 3;
+						m_iPhaseDelay = 2;
+					}
+					/*
 					int itemIndex = -1;
 					if (item && item->getItemType() == CItem::ItemType::WeaponItem) {
 						itemIndex = item->getIndex();
@@ -117,14 +130,13 @@ void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpChar* pVictims, CAttackIn
 						itemIndex = HANDINDEX;
 					}
 					if (itemIndex >= 0) {
-						CAttackConst ac = attackInfos->GetAttack(itemIndex); // todo differenzieren - hier sind VIEL mehr infos drin!
-						VEKTOR myPos = GetVector();
+						CAttackConst ac = attackInfos->GetAttack(itemIndex);
 						int dmg = pHero->CalcDmg(ac, pVictims, myPos.z);
 						pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
 						pHero->AttackModeWithDmg(dmg);
 						m_iPhase = 3;
 						m_iPhaseDelay = 2;
-					}
+					}*/
 				}
 			}
 		}

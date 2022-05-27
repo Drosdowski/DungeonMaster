@@ -14,6 +14,8 @@
 
 class CRucksack;
 class CItem;
+class CAttackInfos;
+class CWeapon;
 class CHeld : public CCharacter
 {
 public:
@@ -39,7 +41,7 @@ public:
 	//virtual void WertePermanentAendern(int hp, int st, int ma);
 	void ChangeCompass();
 
-	int CalcDmg(CAttackConst ac, CGrpChar* pOpponents, int levelDif);
+	int CalcDmg(CWeapon* weapon, CAttackInfos* attackInfos, CGrpChar* pOpponents, int levelDif);
 	double LifePart() { return (double)m_HP.Aktuell / (double)m_HP.Max; }
 	double StaminaPart() { return (double)m_ST.Aktuell / (double)m_ST.Max; }
 	double ManaPart() { return (double)m_MA.Aktuell / (double)m_MA.Max; }

@@ -8,6 +8,7 @@
 #include "Monster.h"
 #include <Attributes/ClothAttributes.h>
 #include "..\Items\Weapon.h"
+#include "..\XMLParser\AttackInfos.h"
 // following includes for compass
 #include "Held.h"
 #include "..\Attributes\MiscellaneousAttributes.h"
@@ -124,7 +125,8 @@ void CHeld::WerteTemporaerAendern(int hp, int st, int ma)
 	m_MA.Aktuell = min(max(ma + m_MA.Aktuell, 0), m_MA.Max);
 }
 
-int CHeld::CalcDmg(CAttackConst ac, CGrpChar* pOpponents, int levelDif) {
+int CHeld::CalcDmg(CWeapon* weapon, CAttackInfos* attackInfos, CGrpChar* pOpponents, int levelDif) {
+	CAttackConst ac = attackInfos->GetAttack(weapon->getIndex());
 	// https://www.dungeon-master.com/forum/viewtopic.php?t=31345
 	// todo xp gain
 	
@@ -156,7 +158,16 @@ int CHeld::CalcDmg(CAttackConst ac, CGrpChar* pOpponents, int levelDif) {
 		else
 			d7_damage_coefficient = (d7_damage_coefficient - 2 * (d6_weapon_weight - temp_coefficient[0]));
 
-		d7_damage_coefficient = (d7_damage_coefficient + ac.damage);
+		d7_damage_coefficient += weapon->GetAttributes().damage;
+		// d7_damage_coefficient += TODO 2* SKILL (SWING / SHOOT / THROW ...)
+		if (m_ST.Aktuell / m_ST.Max < 0.5) {
+			// tired...
+			d7_damage_coefficient /= 2; // +???
+		}
+		// TODO if hand hurt d7_damage_coefficient /= 2; 
+
+
+
 	}
 
 	return ac.damage;

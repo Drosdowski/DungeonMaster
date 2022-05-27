@@ -9,6 +9,7 @@ public:
 
 	int GetType() { return m_attribute.type; }
 	int GetCharges() { return m_attribute.charges; }
+	CWeaponConst  GetAttributes() { return m_attribute.fixAttributes;  }
 	void reduceCharges();
 	double GetWeight();
 
