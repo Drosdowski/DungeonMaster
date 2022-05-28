@@ -138,7 +138,7 @@ int CHeld::CalcDmg(CWeapon* weapon, CAttackInfos* attackInfos, CGrpChar* pOppone
 	else {
 		WerteTemporaerAendern(0, -ac.stamina + (rand() % 1), 0); // treffer!
 
-		// todo damage berechnen!
+		// damage berechnen!
 		CWeapon* weapon = (CWeapon*)m_itemCarrying[1];
 		int d3_strength = m_sVitals.str.Aktuell;
 		int d7_damage_coefficient = d3_strength + (rand() % 15);
@@ -150,14 +150,14 @@ int CHeld::CalcDmg(CWeapon* weapon, CAttackInfos* attackInfos, CGrpChar* pOppone
 		if (d6_weapon_weight <= d5_load_coefficient)
 			d7_damage_coefficient = d7_damage_coefficient + d6_weapon_weight - 12;
 		else
+		{
 			temp_coefficient[0] = ((d5_load_coefficient - 12) / 2 + d5_load_coefficient);
-
-		temp_coefficient[1] = temp_coefficient[0];
-		if (d6_weapon_weight <= temp_coefficient[1])
-			d7_damage_coefficient = (d7_damage_coefficient + (d6_weapon_weight - d5_load_coefficient) / 2);
-		else
-			d7_damage_coefficient = (d7_damage_coefficient - 2 * (d6_weapon_weight - temp_coefficient[0]));
-
+			temp_coefficient[1] = temp_coefficient[0];
+			if (d6_weapon_weight <= temp_coefficient[1])
+				d7_damage_coefficient = (d7_damage_coefficient + (d6_weapon_weight - d5_load_coefficient) / 2);
+			else
+				d7_damage_coefficient = (d7_damage_coefficient - 2 * (d6_weapon_weight - temp_coefficient[0]));
+		}
 		d7_damage_coefficient += weapon->GetAttributes().damage;
 		// d7_damage_coefficient += TODO 2* SKILL (SWING / SHOOT / THROW ...)
 		if (m_ST.Aktuell / m_ST.Max < 0.5) {

@@ -40,7 +40,7 @@ public:
 	void Aktiviere(int n);
 	void PassAction();
 	void ChooseHeroForAction(int ID);
-	void DoActionForChosenHero(int ID, CGrpChar* pVictims, CAttackInfos* attackInfos);
+	void DoActionForChosenHero(int ID, CGrpChar* pVictims, CAttackInfos* attackInfos, int diff);
 	bool SetActiveCaster(int ID);
 	
 	void DrinkFountain();

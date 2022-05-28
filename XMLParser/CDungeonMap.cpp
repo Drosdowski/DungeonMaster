@@ -502,6 +502,8 @@ void CDungeonMap::ParseMaps(TiXmlElement* rootNode) {
 		parentElement->QueryIntAttribute("index", &etage);
 		parentElement->QueryIntAttribute("width", &m_LevelWidth[etage]);
 		parentElement->QueryIntAttribute("height", &m_LevelHeight[etage]);
+		parentElement->QueryIntAttribute("difficulty", &m_LevelDiff[etage]);
+
 		parentElement->QueryIntAttribute("offsetx", &m_offsetX[etage]);
 		parentElement->QueryIntAttribute("offsety", &m_offsetY[etage]);
 
