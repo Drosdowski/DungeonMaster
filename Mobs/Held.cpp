@@ -9,6 +9,7 @@
 #include <Attributes/ClothAttributes.h>
 #include "..\Items\Weapon.h"
 #include "..\XMLParser\AttackInfos.h"
+#include "..\XMLParser\MonsterInfos.h"
 // following includes for compass
 #include "Held.h"
 #include "..\Attributes\MiscellaneousAttributes.h"
@@ -125,10 +126,11 @@ void CHeld::WerteTemporaerAendern(int hp, int st, int ma)
 	m_MA.Aktuell = min(max(ma + m_MA.Aktuell, 0), m_MA.Max);
 }
 
-int CHeld::CalcDmg(CWeapon* weapon, CAttackInfos* attackInfos, CGrpChar* pOpponents, int levelDif) {
+int CHeld::CalcDmg(CWeapon* weapon, CAttackInfos* attackInfos, CMonsterInfos* monsterInfos, CGrpChar* pOpponents, int levelDif) {
 	CAttackConst ac = attackInfos->GetAttack(weapon->getIndex());
+	CMonsterConst mc = monsterInfos->GetMonster(weapon->getIndex());
 	// https://www.dungeon-master.com/forum/viewtopic.php?t=31345
-	// todo xp gain
+	// todo xp gain  --- Mastery = log2(Experience=469)
 	
 	if (!hitSucessful(ac, pOpponents, levelDif))
 	{
@@ -166,12 +168,45 @@ int CHeld::CalcDmg(CWeapon* weapon, CAttackInfos* attackInfos, CGrpChar* pOppone
 		}
 		// TODO if hand hurt d7_damage_coefficient /= 2; 
 
-		int d4_AC_coefficient
+		int d4_AC_coefficient = levelDif + mc.armor + (rand() % 32);
+		if (weapon->GetType() == CWeaponAttributes::WeaponType::DiamondEdge) {
+			d4_AC_coefficient -= (d4_AC_coefficient / 4);
+		}
 
+		d7_damage_coefficient += (rand() % 32) - d4_AC_coefficient;
+		int d6_damage = d7_damage_coefficient;
+		if (d7_damage_coefficient <= 1) {
+			d7_damage_coefficient = rand() % 3;
+		}
+		if (d7_damage_coefficient == 0) {
+			m_ST.Aktuell -= (rand() % 1 + 2);
+			return 0;
+		}
+		else {
+			d6_damage += rand() % 16;
+		}
+		if (d6_damage > 0 || (rand() % 1 > 0)) {
+			d7_damage_coefficient += rand() % 3;
+			if (rand() % 3 == 0) {
+				d7_damage_coefficient += rand() % 16 + d6_damage;
+			}
+		}
+		d7_damage_coefficient /= 2;
+		int d0 = 0;
+		if (d7_damage_coefficient > 0)
+			d0 = rand() % d7_damage_coefficient;
+		d7_damage_coefficient += rand() % 4 + d0;
+		d7_damage_coefficient += rand() % d7_damage_coefficient;
+		d7_damage_coefficient /= 4;
+		d7_damage_coefficient += rand() % 4 + 1;
 
+		//int d0_skillRef = rand() % 64;
+		//nt d1_mastery todo skill mastery + 10
+		m_ST.Aktuell -= (rand() % 3 + 4);
+
+		return d7_damage_coefficient;
 	}
 
-	return ac.damage;
 }
 
 bool CHeld::hitSucessful(CAttackConst ac, CGrpChar* pOpponents, int levelDif) {

@@ -11,6 +11,7 @@
 class CMonster;
 class CItem;
 class CAttackInfos;
+class CMonsterInfos;
 class CGrpHeld: public CGrpChar
 {
 public:
@@ -40,7 +41,7 @@ public:
 	void Aktiviere(int n);
 	void PassAction();
 	void ChooseHeroForAction(int ID);
-	void DoActionForChosenHero(int ID, CGrpChar* pVictims, CAttackInfos* attackInfos, int diff);
+	void DoActionForChosenHero(int ID, CGrpChar* pVictims, CAttackInfos* attackInfos, CMonsterInfos* monsterInfos, int diff);
 	bool SetActiveCaster(int ID);
 	
 	void DrinkFountain();

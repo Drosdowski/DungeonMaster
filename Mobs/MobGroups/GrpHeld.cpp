@@ -102,7 +102,7 @@ void CGrpHeld::PassAction() {
 
 }
 
-void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpChar* pVictims, CAttackInfos* attackInfos, int diff) {
+void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpChar* pVictims, CAttackInfos* attackInfos, CMonsterInfos* monsterInfos, int diff) {
 	if (m_iPhase == 2) {
 		if (pVictims) {
 			CHeld* pHero = (CHeld*)m_pMember[m_iHeroForAction];
@@ -113,7 +113,7 @@ void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpChar* pVictims, CAttackIn
 					CWeapon* weapon = NULL;
 					if (item && item->getItemType() == CItem::ItemType::WeaponItem) 
 						weapon = (CWeapon*)item;
-					int dmg = pHero->CalcDmg(weapon, attackInfos, pVictims, diff);
+					int dmg = pHero->CalcDmg(weapon, attackInfos, monsterInfos, pVictims, diff);
 					if (dmg > 0) {
 						pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
 						pHero->AttackModeWithDmg(dmg);

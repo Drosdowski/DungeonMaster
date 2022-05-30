@@ -219,6 +219,12 @@
     <ClCompile Include="Consts\AttackConst.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="XMLParser\MonsterInfos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Consts\MonsterConst.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -431,6 +437,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Consts\AttackConst.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLParser\MonsterInfos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Consts\MonsterConst.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

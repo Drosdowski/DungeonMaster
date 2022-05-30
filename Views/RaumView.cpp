@@ -62,6 +62,7 @@ CRaumView::CRaumView()
 	m_pMap = NULL;
 	m_pItemInfos = NULL;
 	m_pAttackInfos = NULL;
+	m_pMonsterInfos = NULL;
 	m_pDoc = NULL;
 	m_pDoorPic = NULL;
 	m_pWallPic = NULL;
@@ -80,6 +81,7 @@ CRaumView::~CRaumView()
 {
 	delete m_pItemInfos;
 	delete m_pAttackInfos;
+	delete m_pMonsterInfos;
 	delete m_values;
 	delete m_pDoorPic;
 	delete m_pStairsPic;
@@ -1153,6 +1155,7 @@ void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
 	m_pItem3DPic = new CItem3DPic(pDC);
 	m_pItemInfos = new CItemInfos();
 	m_pAttackInfos = new CAttackInfos();
+	m_pMonsterInfos = new CMonsterInfos();
 	m_pMap = new CDungeonMap(m_pItemInfos);
 }
 

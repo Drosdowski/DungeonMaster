@@ -129,7 +129,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Consts\MonsterConst.cpp" />
     <ClCompile Include="Consts\AttackConst.cpp" />
+    <ClCompile Include="XMLParser\MonsterInfos.cpp" />
     <ClCompile Include="XMLParser\AttackInfos.cpp" />
     <ClCompile Include="Attributes\CWeaponAttributes.cpp" />
     <ClCompile Include="Attributes\CMiscellaneousAttributes.cpp" />
@@ -208,6 +210,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Consts\AttackConst.h" />
+    <ClInclude Include="Consts\MonsterConst.h" />
+    <ClInclude Include="XMLParser\MonsterInfos.h" />
     <ClInclude Include="XMLParser\AttackInfos.h" />
     <ClInclude Include="Attributes\ClothAttributes.h" />
     <ClInclude Include="Consts\ClothConst.h" />
