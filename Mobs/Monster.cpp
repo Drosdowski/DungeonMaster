@@ -78,3 +78,4 @@ int CMonster::CalcDmg(int ID) {
 	// TODO 3. Random	
 	return m_ApproxDmg;
 }
+

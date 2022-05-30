@@ -166,6 +166,7 @@ int CHeld::CalcDmg(CWeapon* weapon, CAttackInfos* attackInfos, CGrpChar* pOppone
 		}
 		// TODO if hand hurt d7_damage_coefficient /= 2; 
 
+		int d4_AC_coefficient
 
 
 	}
