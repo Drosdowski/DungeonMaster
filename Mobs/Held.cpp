@@ -74,6 +74,7 @@ CHeld::~CHeld()
 			delete m_itemCarrying[i];
 	}
 	delete m_pRucksack;
+	delete m_pItemInHand;
 }
 
 

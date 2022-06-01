@@ -741,6 +741,7 @@ void CDMView::InitDungeon(CDMDoc* pDoc)
 }
 
 void CDMView::ChangeMouseCursor() {
+	// todo: hier zu oft drin !!
 	CGrpHeld* heroes = m_pRaumView->GetHeroes();
 	if (heroes) {
 		CItem* item = heroes->GetItemInHand();
