@@ -93,6 +93,7 @@ private:
 
 	double round1(double value);
 	bool hitSucessful(CAttackConst ac, CGrpChar* pOpponents, int levelDif);
+	void DelItem(CItem* pItem);
 };
 
 /////////////////////////////////////////////////////////////////////////////

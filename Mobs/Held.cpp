@@ -5,15 +5,17 @@
 #include "Rucksack.h"
 #include "..\CalculationHelper\CHelpfulValues.h"
 #include "..\Items\Item.h"
+#include "..\Items\CMiscellaneous.h"
+#include "..\Items\Cloth.h"
+#include "..\Items\Weapon.h"
 #include "Monster.h"
 #include <Attributes/ClothAttributes.h>
-#include "..\Items\Weapon.h"
 #include "..\XMLParser\AttackInfos.h"
 #include "..\XMLParser\MonsterInfos.h"
 // following includes for compass
 #include "Held.h"
 #include "..\Attributes\MiscellaneousAttributes.h"
-#include "..\Items\CMiscellaneous.h"
+#include <cassert>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -63,20 +65,32 @@ CHeld::CHeld(int iIndex, CString strName): CCharacter(true)
 		m_itemCarrying[i] = NULL;
 	}
 
-	m_pRucksack = new CRucksack(this);
+	m_pRucksack = new CRucksack();
 }
 
 
 CHeld::~CHeld()
 {
 	for (int i = 0; i < 30; i++) {
-		if (m_itemCarrying[i])
-			delete m_itemCarrying[i];
+		if (m_itemCarrying[i]) {
+
+			DelItem(m_itemCarrying[i]);
+		}
 	}
 	delete m_pRucksack;
-	delete m_pItemInHand;
+	DelItem(m_pItemInHand);
 }
 
+void CHeld::DelItem(CItem* pItem) {
+	if (pItem) {
+		if (pItem->getItemType() == CItem::ItemType::WeaponItem)
+			delete (CWeapon*)pItem;
+		else if (pItem->getItemType() == CItem::ItemType::MiscItem)
+			delete (CMiscellaneous*)pItem;
+		else  if (pItem->getItemType() == CItem::ItemType::ClothItem)
+			delete (CCloth*)pItem;
+	}
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // CHeld message handlers
@@ -257,6 +271,8 @@ void CHeld::TakeItemInHand(CItem* item)
 {
 	if (m_pItemInHand == NULL)
 		m_pItemInHand = item;
+	else
+		assert(false); // ???
 }
 
 void CHeld::EmptyHand() {

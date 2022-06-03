@@ -450,7 +450,8 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 
 		ParseClickPortraitHands(point, true);
 		if (CScreenCoords::CheckHitMainScr(point)) {
-			grpHelden->GetActiveHero()->GetRucksack()->OnLButtonDown(pDC, nFlags, point);
+			CHeld* pHeld = grpHelden->GetActiveHero();
+			pHeld->GetRucksack()->handleLButtonDown(pDC, point, pHeld);
 			ChangeMouseCursor();
 		}
 	}
@@ -724,9 +725,7 @@ void CDMView::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	if (m_iModus == MOD_RUCKSACK)
 	{
-		CDC* pDC = GetDC();
-
-		m_pRaumView->GetHeroes()->GetActiveHero()->GetRucksack()->OnLButtonUp(pDC, nFlags, point);
+		m_pRaumView->GetHeroes()->GetActiveHero()->GetRucksack()->handleLButtonUp();
 	}
 
 	CView::OnLButtonUp(nFlags, point);

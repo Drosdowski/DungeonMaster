@@ -18,10 +18,9 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CRucksack
 
-CRucksack::CRucksack(CHeld* pHero)
+CRucksack::CRucksack()
 {
 	m_iModusExtend = MOD_EXT_NORMAL;
-	m_pOwner = pHero;
 
 	KLASSE[0] = "FIGHTER";
     KLASSE[1] = "NINJA";
@@ -38,26 +37,26 @@ CRucksack::~CRucksack()
 // CRucksack message handlers
 
 
-void CRucksack::OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point)
+void CRucksack::handleLButtonDown(CDC* pDC, CPoint point, CHeld* pOwner)
 {
 	if (CScreenCoords::CheckHitEye(point))
 		m_iModusExtend = MOD_EXT_AUGE;
 	else if (CScreenCoords::CheckHitMouth(point))
 	{
-		CItem* item = m_pOwner->GetItemInHand();
+		CItem* item = pOwner->GetItemInHand();
 		CWeapon* weapon = NULL;
 		if (item->getItemType() == CItem::ItemType::MiscItem) {
 			CMiscellaneous* misc = (CMiscellaneous*)item;
 			if (misc && misc->GetGroup() == CMiscellaneous::ItemGroup::Consumable) {
 				if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Water) {
 					if (misc->GetSubtype() > 0) {
-						m_pOwner->Trinken(50);
+						pOwner->Trinken(50);
 						misc->SetSubtype(misc->GetSubtype() - 1);
 					}
 				}
 				else {
-					m_pOwner->Essen(50);
-					m_pOwner->EmptyHand();
+					pOwner->Essen(50);
+					pOwner->EmptyHand();
 					delete item; // destroy permanently!
 				}
 			}
@@ -66,23 +65,23 @@ void CRucksack::OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point)
 	else {
 		int slot = CScreenCoords::CheckHitBackpackSlots(point);
 		if (slot >= 0) {
-			CItem* itemInHand = m_pOwner->GetItemInHand();
+			CItem* itemInHand = pOwner->GetItemInHand();
 			CItem* newItemInHand = NULL;
-			CItem* itemCarryingAtPos = m_pOwner->GetItemCarrying(slot);
+			CItem* itemCarryingAtPos = pOwner->GetItemCarrying(slot);
 			if ((itemInHand == NULL) || (itemInHand && itemInHand->CheckGroup(slot, itemInHand->GetGroup()))) {
 				// todo: group check!
 				if (itemInHand) {
-					newItemInHand = m_pOwner->SwitchItemAt(slot, itemInHand);
+					newItemInHand = pOwner->SwitchItemAt(slot, itemInHand);
 				}
 				else {
 					newItemInHand = itemCarryingAtPos;
 				}
 				if (newItemInHand == NULL) {
-					m_pOwner->EmptyHand();
+					pOwner->EmptyHand();
 				}
 				else {
-					m_pOwner->TakeItemInHand(newItemInHand);
-					m_pOwner->RemoveItemCarrying(slot);
+					pOwner->TakeItemInHand(newItemInHand);
+					pOwner->RemoveItemCarrying(slot);
 				}
 			}
 		}
@@ -90,7 +89,7 @@ void CRucksack::OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point)
 
 }
 
-void CRucksack::OnLButtonUp(CDC* pDC, UINT nFlags, CPoint point)
+void CRucksack::handleLButtonUp()
 {
 	m_iModusExtend = MOD_EXT_NORMAL;
 }
@@ -120,7 +119,6 @@ CString CRucksack::m_title(long exp)
 		str.Format("%i. MASTER",e-4);
 		return str; break;
 	} 
-	// bitmap
 }
 
 void CRucksack::SetzeModusExtend(int iModusExtend)

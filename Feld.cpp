@@ -99,6 +99,8 @@ CField::~CField()
 				delete (CMiscellaneous*)item;
 			else  if (item->getItemType() == CItem::ItemType::ClothItem)
 				delete (CCloth*)item;
+			else
+				delete item;
 		}
 		for (CActuator* actuator : m_pActuator[i]) {
 			delete actuator;

@@ -13,13 +13,13 @@ class CHeld;
 class CRucksack 
 {
 public:
-	CRucksack(CHeld* pHero);
+	CRucksack();
 	virtual ~CRucksack();
 
 // Operations
 public:
-	virtual void OnLButtonDown(CDC* pDC, UINT nFlags, CPoint point);
-	virtual void OnLButtonUp(CDC* pDC, UINT nFlags, CPoint point);
+	void handleLButtonDown(CDC* pDC, CPoint point, CHeld* pHeld);
+	void handleLButtonUp();
 
 // Implementation
 public:
@@ -32,7 +32,6 @@ protected:
 	CString m_title(long exp);
 	int m_iModusExtend;
 	CString KLASSE[5];
-	CHeld* m_pOwner;
 };
 
 /////////////////////////////////////////////////////////////////////////////
