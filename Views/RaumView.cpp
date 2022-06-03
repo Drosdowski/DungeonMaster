@@ -1201,19 +1201,26 @@ void CRaumView::OnTrigger()
 
 CSize CRaumView::GetSizeOfFrontDeco(CField* pField, COMPASS_DIRECTION dir)
 {
-	CActuator* pActuator = pField->GetActuator(dir).back();
 	WallDecorationType graphicTypeFront = None;
 	CBitmap* pic = NULL;
-	if (pActuator) {
-		graphicTypeFront = m_pMap->GetWallDecorationType(pField->HolePos().z, pActuator->GetGraphic());
 
-		if (graphicTypeFront != None) {
-			CBitmap* pic = m_pWallDecoPic->GetPicFront(graphicTypeFront);
-			BITMAP bmpInfo;
-			pic->GetBitmap(&bmpInfo);
-
-			return CSize(bmpInfo.bmWidth, bmpInfo.bmHeight);
+	if (pField->GetActuator(dir).size() > 0) {
+		CActuator* pActuator = pField->GetActuator(dir).back();
+		if (pActuator) {
+			graphicTypeFront = m_pMap->GetWallDecorationType(pField->HolePos().z, pActuator->GetGraphic());
+			pic = m_pWallDecoPic->GetPicFront(graphicTypeFront);
 		}
+	}
+	else {
+		CWallDecoration* deco = pField->GetWallDeco(dir);
+		WallDecorationType wdt = deco->GetDecoType();
+		pic = m_pWallDecoPic->GetPicFront(wdt);
+	}
+	if (pic) {
+		BITMAP bmpInfo;
+		pic->GetBitmap(&bmpInfo);
+
+		return CSize(bmpInfo.bmWidth, bmpInfo.bmHeight);
 	}
 	return CSize(0, 0);
 }

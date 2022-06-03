@@ -27,7 +27,7 @@ public:
 	};
 
 	MiscItemType type;
-	int subtype;
+	int subtype; // 0 leer 3 voll
 	CMiscConst fixAttributes;
 
 };

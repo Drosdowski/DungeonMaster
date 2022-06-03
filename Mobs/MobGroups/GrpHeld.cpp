@@ -218,18 +218,6 @@ CHeld* CGrpHeld::GetAttackingHero() {
 	return NULL;
 }
 
-void CGrpHeld::DrinkFountain() {
-	for (int i = 1; i < 5; i++)
-	{
-		CHeld* pHeld = (CHeld*)m_pMember[i];
-		if (pHeld)
-		{
-			if (pHeld->Hp().Aktuell > 0)
-				pHeld->Trinken(100);
-		}
-	}
-}
-
 bool CGrpHeld::SetActiveCaster(int ID)
 {
 	if (ID <= m_iAnzHelden && m_iAktiverZauberer != ID)

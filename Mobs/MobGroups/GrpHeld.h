@@ -44,7 +44,6 @@ public:
 	void DoActionForChosenHero(int ID, CGrpChar* pVictims, CAttackInfos* attackInfos, CMonsterInfos* monsterInfos, int diff);
 	bool SetActiveCaster(int ID);
 	
-	void DrinkFountain();
 	bool Altern();
 
 	CHeld* GetHeroForAction() { return GetHero(m_iHeroForAction); }

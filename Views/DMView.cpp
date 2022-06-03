@@ -22,7 +22,9 @@
 #include "..\CalculationHelper/CHelpfulValues.h"
 #include "..\SpecialTile/CDoor.h"
 #include "..\SpecialTile\CPit.h"
-#include "..\Items/Item.h""
+#include "..\Items/Item.h"
+#include "..\Items/CMiscellaneous.h"
+#include "..\Items/WallDecoration.h"
 #include <cassert>
 
 #ifdef _DEBUG
@@ -179,6 +181,34 @@ void CDMView::ParseClickDoorButton(CPoint point, CField* FeldVorHeld) {
 	if (door && door->hasButton()) {
 		if (CScreenCoords::CheckHitDoorButton(point)) {
 			door->Toggle();
+		}
+	}
+}
+
+void CDMView::ParseClickFountain(CPoint point, CField* FeldVorHeld, COMPASS_DIRECTION dir) {
+
+	CWallDecoration* deco = FeldVorHeld->GetWallDeco(dir);
+	if (deco && deco->GetDecoType() == Fountain) {
+		CSize size = m_pRaumView->GetSizeOfFrontDeco(FeldVorHeld, dir);
+		if (CScreenCoords::CheckHitDeco(point, size)) {
+			CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+			if (grpHelden == NULL) return;
+			CHeld* activeHero = grpHelden->GetActiveHero();
+			CItem* itemInHand = grpHelden->GetItemInHand();
+			if (itemInHand == NULL) {
+				// Hand leer = trinken
+				activeHero->Trinken(50); // todo amount drink?
+			}
+			else {
+				// item in hand füllen
+				if (itemInHand->getItemType() == CItem::ItemType::MiscItem) {
+					CMiscellaneous* container = (CMiscellaneous*)itemInHand;
+					if (container->getIndex() == 11 && container->GetSubtype() < 3) {
+						// Waterskin todo empty flask
+						container->SetSubtype(3); // change to full
+					}
+				}
+			}
 		}
 	}
 }
@@ -428,6 +458,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 						if (ParseClickActuator(point, actuators, dir, size))
 							FeldVorHeld->RotateActuators(dir);
 					}
+					ParseClickFountain(point, FeldVorHeld, dir);
 					ParseClickDoorButton(point, FeldVorHeld);
 
 				}
