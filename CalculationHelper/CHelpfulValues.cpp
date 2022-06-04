@@ -116,7 +116,7 @@ SUBPOS_ABSOLUTE CHelpfulValues::LeftFrom(SUBPOS_ABSOLUTE pos) {
 SUBPOS CHelpfulValues::GetRelativeSubPosPassive(SUBPOS_ABSOLUTE pos_abs, COMPASS_DIRECTION heroDir) {
 	for (int turns = 0; turns < heroDir; turns++)
 	{
-		pos_abs = LeftFrom(pos_abs); // todo items am boden vs angriff des monsters
+		pos_abs = LeftFrom(pos_abs); // bei Änderungen: Prüfe items am boden vs angriff des monsters
 	}
 	return GetPosByIndexWhenFacingNorth(pos_abs);
 }

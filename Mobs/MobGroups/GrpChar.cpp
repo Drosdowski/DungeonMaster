@@ -117,7 +117,6 @@ CCharacter* CGrpChar::NearestTarget(VEKTOR hisPos) {
 	for (int i = 1; i < 5; i++) {
 		CCharacter* pChar = m_pMember[i];
 		if (pChar && pChar->Hp().Aktuell > 0) {
-			// todo: drehung nach WEST -> Char 1 steht SW, sollte aber NW sein!
 			if (pChar->InFrontOfOpponent(GetPos(), hisPos, emptyNorthRow(), emptyEastRow(), emptySouthRow(), emptyWestRow()))
 				return pChar;
 		}
