@@ -89,6 +89,7 @@ protected:
 	void ParseClickArrows(CPoint point);
 	void ParseClickWizard(CPoint point);
 	void ParseClickAction(CPoint point);
+	void ParseClickBackpack(CPoint point, CHeld* pHeld);
 	void ParseClickPortrait(CPoint point);
 	bool ParseClickPortraitHands(CPoint point, bool backpackMode);
 	void ParseClickFloor(CPoint point);

@@ -3,7 +3,6 @@
 
 #pragma once
 class CHeld;
-class CRucksack;
 class CItemInfos;
 class CPictures : CBasePictures
 {
@@ -40,7 +39,7 @@ private:
 	int m_iWunschRichtung;
 
 	void ZeichnenHauptbereichHintergrund(CDC* pDC, int iModusExtended);
-	void ZeichneSkills(CDC* pDC, CHeld* pHeld, CRucksack* pRucksack);
+	void ZeichneSkills(CDC* pDC, CHeld* pHeld);
 	void ZeichneHpStMa(CDC* pDC, WERTE hp, WERTE st, WERTE ma);
 	void ZeichneHungerDurst(CDC* pDC, int i, int j);
 	void ZeichneIcons(CDC* pDC, CHeld* pHeld);

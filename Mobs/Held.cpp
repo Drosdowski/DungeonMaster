@@ -28,7 +28,7 @@ static char THIS_FILE[] = __FILE__;
 
 CHeld::CHeld(int iIndex, CString strName): CCharacter(true)
 {
-	m_HP.Max = 100;
+	m_HP.Max = 100; // todo level up: increase http://dmweb.free.fr/?q=node/691
 	m_MA.Max = 100;
 	m_ST.Max = 100;
 

@@ -24,6 +24,9 @@ public:
 	SUBPOS_ABSOLUTE static RightFrom(SUBPOS_ABSOLUTE pos);
 	SUBPOS_ABSOLUTE static LeftFrom(SUBPOS_ABSOLUTE pos);
 
+	CString static SkillGrade(int exp);
+	CString static SkillClass(int nr);
+
 private:
 	SUBPOS static GetPosByIndexWhenFacingNorth(SUBPOS_ABSOLUTE SUBPOSINDEX); // only internal usage when DIR = 0!
 	SUBPOS_ABSOLUTE static GetAbsPosBySubposWhenFacingNorth(SUBPOS pos); // only internal usage when DIR = 0!

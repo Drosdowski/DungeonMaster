@@ -10,6 +10,7 @@
 #include "..\XMLParser\ItemInfos.h"
 #include "..\Rucksack.h"
 #include "..\CalculationHelper\CScreenCoords.h"
+#include "..\CalculationHelper\CHelpfulValues.h"
 #include "..\Consts\WeaponConst.h"
 #include <sstream>
 #include <string>
@@ -189,7 +190,7 @@ void CPictures::RucksackZeichnen(CDC* pDC, CHeld* pHeld)
 	if (iModusExtend == MOD_EXT_NORMAL)
 		ZeichneHungerDurst(pDC, pHeld->getFood(), pHeld->getWater());
 	else if (iModusExtend == MOD_EXT_AUGE)
-		ZeichneSkills(pDC, pHeld, pRucksack);
+		ZeichneSkills(pDC, pHeld);
 	ZeichneHpStMa(pDC, pHeld->Hp(), pHeld->St(), pHeld->Ma());
 	ZeichneIcons(pDC, pHeld);
 }
@@ -300,7 +301,7 @@ void CPictures::ZeichneHpStMa(CDC* pDC, WERTE hp, WERTE st, WERTE ma)
 }
 
 
-void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld, CRucksack* pRucksack)
+void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld)
 {
 	pDC->SetTextColor(HELLGRAU);
 	pDC->SetBkColor(GANZDUNKELGRAU);
@@ -314,8 +315,8 @@ void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld, CRucksack* pRucksack)
 	{
 		if (sExp[i] > 0)
 		{
-			strTitel = pRucksack->GetTitle(sExp[i]);
-			strKlasse = pRucksack->GetClass(i-1);
+			strTitel = CHelpfulValues::SkillGrade(sExp[i]);
+			strKlasse = CHelpfulValues::SkillClass(i-1);
 			strZeile.Format("%s %s", strTitel, strKlasse);
 			pDC->TextOut(230, 160 + i * 16, strZeile);
 		}

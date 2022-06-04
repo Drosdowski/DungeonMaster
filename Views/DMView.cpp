@@ -477,17 +477,65 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 	}
 	else if (m_iModus == MOD_RUCKSACK)
 	{
-		CDC* pDC = GetDC();
-
 		ParseClickPortraitHands(point, true);
 		if (CScreenCoords::CheckHitMainScr(point)) {
-			CHeld* pHeld = grpHelden->GetActiveHero();
-			pHeld->GetRucksack()->handleLButtonDown(pDC, point, pHeld);
+			ParseClickBackpack(point, grpHelden->GetActiveHero());
 			ChangeMouseCursor();
 		}
 	}
 	CView::OnLButtonDown(nFlags, point);
 }
+
+void CDMView::ParseClickBackpack(CPoint point, CHeld* pHeld) {
+	if (CScreenCoords::CheckHitEye(point))
+		pHeld->GetRucksack()->SetzeModusExtend(MOD_EXT_AUGE);
+	else if (CScreenCoords::CheckHitMouth(point))
+	{
+		CItem* item = pHeld->GetItemInHand();
+		CWeapon* weapon = NULL;
+		if (item->getItemType() == CItem::ItemType::MiscItem) {
+			CMiscellaneous* misc = (CMiscellaneous*)item;
+			if (misc && misc->GetGroup() == CMiscellaneous::ItemGroup::Consumable) {
+				if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Water) {
+					if (misc->GetSubtype() > 0) {
+						pHeld->Trinken(50);
+						misc->SetSubtype(misc->GetSubtype() - 1);
+					}
+				}
+				else {
+					pHeld->Essen(50);
+					pHeld->EmptyHand();
+					delete item; // destroy permanently!
+				}
+			}
+		}
+	}
+	else {
+		int slot = CScreenCoords::CheckHitBackpackSlots(point);
+		if (slot >= 0) {
+			CItem* itemInHand = pHeld->GetItemInHand();
+			CItem* newItemInHand = NULL;
+			CItem* itemCarryingAtPos = pHeld->GetItemCarrying(slot);
+			if ((itemInHand == NULL) || (itemInHand && itemInHand->CheckGroup(slot, itemInHand->GetGroup()))) {
+				// todo: group check!
+				if (itemInHand) {
+					newItemInHand = pHeld->SwitchItemAt(slot, itemInHand);
+				}
+				else {
+					newItemInHand = itemCarryingAtPos;
+				}
+				if (newItemInHand == NULL) {
+					pHeld->EmptyHand();
+				}
+				else {
+					pHeld->TakeItemInHand(newItemInHand);
+					pHeld->RemoveItemCarrying(slot);
+				}
+			}
+		}
+	}
+}
+
 
 void CDMView::OnRButtonDown(UINT nFlags, CPoint point)
 {
@@ -756,7 +804,7 @@ void CDMView::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	if (m_iModus == MOD_RUCKSACK)
 	{
-		m_pRaumView->GetHeroes()->GetActiveHero()->GetRucksack()->handleLButtonUp();
+		m_pRaumView->GetHeroes()->GetActiveHero()->GetRucksack()->SetzeModusExtend(MOD_EXT_NORMAL);
 	}
 
 	CView::OnLButtonUp(nFlags, point);

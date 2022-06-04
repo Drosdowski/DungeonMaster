@@ -9,7 +9,6 @@
 /////////////////////////////////////////////////////////////////////////////
 // CRucksack view
 
-class CHeld;
 class CRucksack 
 {
 public:
@@ -17,21 +16,14 @@ public:
 	virtual ~CRucksack();
 
 // Operations
-public:
-	void handleLButtonDown(CDC* pDC, CPoint point, CHeld* pHeld);
-	void handleLButtonUp();
 
 // Implementation
 public:
 	void SetzeModusExtend(int iModusExtend);
 	int HoleModusExtend() { return m_iModusExtend; };
-	CString GetTitle(long exp) { return m_title(exp); };
-	CString GetClass(int index) { return KLASSE[index]; }
 	
 protected:
-	CString m_title(long exp);
 	int m_iModusExtend;
-	CString KLASSE[5];
 };
 
 /////////////////////////////////////////////////////////////////////////////

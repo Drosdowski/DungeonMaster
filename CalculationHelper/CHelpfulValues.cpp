@@ -235,3 +235,31 @@ CPoint CHelpfulValues::CalcSubPosition(BITMAP bmpInfo, SUBPOS subPos, double fak
 	}
 	return CPoint(posX, posY);
 }
+
+CString CHelpfulValues::SkillGrade(int exp) {
+	int e = int(exp / 500);
+	if (e == 0) return "";
+	else if (e == 1) return "NEOPHYTE";
+	else if (e == 2) return "NOVICE";
+	else if (e <= 4) return "APPRENTICE";
+	else if (e <= 8) return "JOURNEYMAN";
+	else if (e <= 16) return "ARTISAN";
+	else if (e <= 32) return "ADEPT";
+	else if (e <= 64) return "EXPERT";
+	else if (e <= 128) return "MASTER 1";
+	else if (e <= 256) return "MASTER 2";
+	else if (e <= 512) return "MASTER 3";
+	else if (e <= 1024) return "MASTER 4";
+	else if (e <= 2048) return "MASTER 5";
+	else if (e <= 4096) return "MASTER 6";
+	else return "ARCHMASTER";
+}
+
+CString CHelpfulValues::SkillClass(int nr) {
+	switch (nr) {
+	case 0: return "FIGHTER";
+	case 1: return "NINJA";
+	case 2: return "PRIEST";
+	case 3: return "WIZARD";
+	}
+}
