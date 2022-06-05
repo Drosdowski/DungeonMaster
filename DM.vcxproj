@@ -384,6 +384,7 @@
     <Image Include="res\Monster\Screamer_Attack.bmp" />
     <Image Include="res\Monster\Screamer_Front.bmp" />
     <Image Include="res\P.bmp" />
+    <Image Include="res\Runes4.bmp" />
     <Image Include="res\Steine.bmp" />
     <Image Include="res\walldeco\bitmap1.bmp" />
     <Image Include="res\WallDeco\WallDeco_14_Front.bmp" />

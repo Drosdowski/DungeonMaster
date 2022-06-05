@@ -52,7 +52,7 @@ private:
 	CBitmap* m_pBmpHintergrund;
 	CBitmap* m_pBmpInversePfeile;
 	CBitmap* m_pBmpPfeile;
-	CBitmap* m_pRunes[4];
+	CBitmap* m_pRunes[5];
 	CBitmap* m_pWizardTabs[5];
 	CBitmap* m_pActionsArea;
 	CBitmap* m_pActionsDamage;

@@ -135,8 +135,15 @@ void CDMView::ParseClickArrows(CPoint point) {
 	}
 }
 
-void CDMView::ParseClickWizard(CPoint point) {
+void CDMView::ParseClickMagic(CPoint point) {
 	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+	ParseClickWizardChoice(point, grpHelden);
+	ParseClickRunes(point, grpHelden);
+	ParseClickSpell(point, grpHelden);
+}
+
+
+void CDMView::ParseClickWizardChoice(CPoint point, CGrpHeld* grpHelden) {
 	int newWizard = CScreenCoords::CheckHitActiveWizard(point, grpHelden->GetActiveWizard());
 	if (newWizard > 0)
 	{
@@ -148,6 +155,19 @@ void CDMView::ParseClickWizard(CPoint point) {
 		}
 	}
 }
+
+void CDMView::ParseClickRunes(CPoint point, CGrpHeld* grpHelden) {
+	int runeId = CScreenCoords::CheckHitRunes(point);
+	if (runeId > 0) {
+		m_pZauberView->nextRuneTable();
+	}
+}
+void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
+	if (CScreenCoords::CheckHitSpell(point)) {
+		m_pZauberView->resetRuneTable();
+	}
+}
+
 
 void CDMView::ParseClickAction(CPoint point) {
 	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
@@ -441,7 +461,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 		if (grpHelden && grpHelden->GetNumberOfHeroes() > 0)
 		{
 			ParseClickFloor(point);
-			ParseClickWizard(point);
+			ParseClickMagic(point);
 			ParseClickAction(point);
 			if (!ParseClickPortraitHands(point, false))
 				ParseClickPortrait(point);

@@ -31,12 +31,10 @@ CPictures::~CPictures()
 	delete m_pBmpRuck;
 	for (int i = 1; i < 5; i++) {
 		delete m_pWizardTabs[i];
-		if (i < 4) {
-			delete m_pRunes[i];
-			if (i < 3) {
-				delete m_pDamageReceived[i-1];
-				delete m_pInterface[i-1];
-			}
+		delete m_pRunes[i];
+		if (i < 3) {
+			delete m_pDamageReceived[i-1];
+			delete m_pInterface[i-1];
 		}
 	}
 	delete m_pActionsArea;
@@ -71,6 +69,7 @@ void CPictures::InitBitmaps()
 	LoadPic(m_pRunes[1], IDB_RUNES1);
 	LoadPic(m_pRunes[2], IDB_RUNES2);
 	LoadPic(m_pRunes[3], IDB_RUNES3);
+	LoadPic(m_pRunes[4], IDB_RUNES4);
 	LoadPic(m_pWizardTabs[3], IDB_REITER3);
 	LoadPic(m_pWizardTabs[4], IDB_REITER4);
 	LoadPicAndFlip(m_pWizardTabs[1], IDB_REITER4);

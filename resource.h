@@ -47,13 +47,14 @@
 #define IDB_ACTIONS_AREA                216
 #define IDB_ONE_HAND                    217
 #define IDB_ACTIONS_DAMAGE              219
-#define IDB_REITER1                     222
-#define IDB_REITER2                     223
-#define IDB_REITER3                     224
-#define IDB_REITER4                     225
-#define IDB_RUNES1                      226
+#define IDB_REITER1                     221
+#define IDB_REITER2                     222
+#define IDB_REITER3                     223
+#define IDB_REITER4                     224
+#define IDB_RUNES1                      225
+#define IDB_RUNES2                      226
 #define IDB_RUNES3                      227
-#define IDB_RUNES2                      228
+#define IDB_RUNES4                      228
 #define IDB_STAIRS_DOWN_0L              229
 #define IDB_STAIRS_DOWN_1F              230
 #define IDB_STAIRS_UP_1L                231
@@ -289,7 +290,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        495
+#define _APS_NEXT_RESOURCE_VALUE        497
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

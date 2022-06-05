@@ -3,7 +3,6 @@
 
 #include "stdafx.h"
 #include "resource.h"
-#include "DMDoc.h"
 #include "Monster.h"
 #include "CalculationHelper/CHelpfulValues.h"
 

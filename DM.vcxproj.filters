@@ -1324,6 +1324,9 @@
     <Image Include="res\Floor\SquarePressurePad_3L.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Runes4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

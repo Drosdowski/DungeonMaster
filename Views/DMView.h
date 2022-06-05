@@ -85,7 +85,10 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 	void ParseClickArrows(CPoint point);
-	void ParseClickWizard(CPoint point);
+	void ParseClickMagic(CPoint point);
+	void ParseClickWizardChoice(CPoint point, CGrpHeld* grpHelden);
+	void ParseClickRunes(CPoint point, CGrpHeld* grpHelden);
+	void ParseClickSpell(CPoint point, CGrpHeld* grpHelden);
 	void ParseClickAction(CPoint point);
 	void ParseClickBackpack(CPoint point, CHeld* pHeld);
 	void ParseClickPortrait(CPoint point);

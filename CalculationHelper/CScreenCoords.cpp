@@ -51,35 +51,50 @@ int CScreenCoords::CheckHitArrows(CPoint point) {
 	return 0;
 }
 
+int CScreenCoords::CheckHitRunes(CPoint point) {
+	if (point.x > 465)
+	{
+		if ((point.y > 94) && (point.y < 129)) {
+			// 640 - 466 = 174.   174 / 6 = 28
+			int runeId = (int)((point.x - 466) / 28) + 1;
+			return runeId;
+		}
+	}
+	return 0;
+}
+
+bool CScreenCoords::CheckHitSpell(CPoint point) {
+	if (point.x > 465)
+	{
+		return (point.x > 128 && point.x <= 152);
+	}
+	return false;
+}
+
+
 int CScreenCoords::CheckHitActiveWizard(CPoint point, int activeWizardID) {
 	if (point.x > 465)
 	{
-		if ((point.y > 80) && (point.y < 129)) {
-			if (point.y < 95)	// Reiter
+		if ((point.y > 80) && (point.y < 95)) {
+			int relX = point.x - 466;
+			switch (activeWizardID)
 			{
-				int relX = point.x - 466;
-				switch (activeWizardID)
-				{
-				case 1:
-					if (relX < 96) return 1;
-					return 1 + (int)(relX - 96 + 27) / 27;
-				case 2:
-					if (relX < 28) return 1;
-					return 1 + (int)(relX - 96 + 27) / 27;
-				case 3:
-					if (relX < 55) return 1 + (int)relX / 27;
-					if (relX > 148) return 4; else return 3;
-				case 4:
-					return 1 + (int)min(relX / 27, 4);
-				default:
-					break;
-				}
+			case 1:
+				if (relX < 96) return 1;
+				return 1 + (int)(relX - 96 + 27) / 27;
+			case 2:
+				if (relX < 28) return 1;
+				return 1 + (int)(relX - 96 + 27) / 27;
+			case 3:
+				if (relX < 55) return 1 + (int)relX / 27;
+				if (relX > 148) return 4; else return 3;
+			case 4:
+				return 1 + (int)min(relX / 27, 4);
+			default:
+				break;
+			}
 
-				return activeWizardID;
-			}
-			else {
-				// Runes - casting!
-			}
+			return activeWizardID;
 		}
 	}
 	return 0;

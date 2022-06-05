@@ -2,9 +2,7 @@
 //
 
 #include "stdafx.h"
-#include "DMView.h"
 #include "ZauberView.h"
-#include "Mobs\MobGroups\GrpHeld.h"	// todo raus!
 #include "Pictures\CPictures.h"
 
 #ifdef _DEBUG
@@ -18,6 +16,7 @@ static char THIS_FILE[] = __FILE__;
 
 CZauberView::CZauberView()
 {
+	m_iRuneTable = 1;
 }
 
 CZauberView::~CZauberView()
@@ -33,7 +32,7 @@ void CZauberView::Zeichnen(CPictures* pPictures, CDC * pDC, int iActiveWizard)
 	tmpdc.SelectObject(pPictures->GetWizardTabs(iActiveWizard));
 	pDC->BitBlt(466, 80, 174, 17, &tmpdc, 0, 0, SRCCOPY);
 
-	tmpdc.SelectObject(pPictures->GetRunes(1));
+	tmpdc.SelectObject(pPictures->GetRunes(m_iRuneTable));
 	pDC->BitBlt(466,97,174,59,&tmpdc,0,0,SRCCOPY);
 	
 	tmpdc.DeleteDC();

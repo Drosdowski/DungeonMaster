@@ -731,6 +731,8 @@ IDB_MONSTER_ROCKPILE_ATTACK BITMAP                  "res\\Monster\\RockPile_Atta
 
 IDB_MONSTER_ROCKPILE_FRONT BITMAP                  "res\\Monster\\RockPile_Front.bmp"
 
+IDB_RUNES4              BITMAP                  "res\\Runes4.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

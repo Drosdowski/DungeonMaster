@@ -3,7 +3,6 @@
 
 #include "stdafx.h"
 #include <typeinfo>
-#include "DMDoc.h"
 #include "Character.h"
 #include "..\CalculationHelper\CHelpfulValues.h"
 #include "MobGroups/GrpChar.h"
