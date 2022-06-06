@@ -159,7 +159,7 @@ void CDMView::ParseClickWizardChoice(CPoint point, CGrpHeld* grpHelden) {
 void CDMView::ParseClickRunes(CPoint point, CGrpHeld* grpHelden) {
 	int runeId = CScreenCoords::CheckHitRunes(point);
 	if (runeId > 0) {
-		m_pZauberView->nextRuneTable();
+		m_pZauberView->storeRune(runeId);
 	}
 }
 void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
