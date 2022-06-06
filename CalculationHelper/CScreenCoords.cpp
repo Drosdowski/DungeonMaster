@@ -66,7 +66,7 @@ int CScreenCoords::CheckHitRunes(CPoint point) {
 bool CScreenCoords::CheckHitSpell(CPoint point) {
 	if (point.x > 465)
 	{
-		return (point.x > 128 && point.x <= 152);
+		return (point.y > 128 && point.y <= 152);
 	}
 	return false;
 }

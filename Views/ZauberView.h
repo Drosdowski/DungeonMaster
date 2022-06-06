@@ -21,13 +21,16 @@ public:
 // Operationen
 	int getRuneTableId() { return m_iRuneTable; }
 	void nextRuneTable() { m_iRuneTable = min(4, m_iRuneTable + 1); }
-	void resetRuneTable() { m_iRuneTable = 1; }
+	void resetRuneTable();
+	void storeRune(int index) { spell[m_iRuneTable] = index; };
 
 // Implementierung
 public:
 	void Zeichnen(CPictures* pPictures, CDC* pDC, int iActiveWizard);
-	
+	void DrawRunes(CPictures* pPictures, CDC* pDC);
 
+private:
+	int* spell = NULL;
 };
 
 /////////////////////////////////////////////////////////////////////////////
