@@ -158,23 +158,11 @@ int CHeld::CalcDmg(CWeapon* weapon, CAttackInfos* attackInfos, CMonsterInfos* mo
 		// damage berechnen!
 		CWeapon* weapon = (CWeapon*)m_itemCarrying[1];
 		int d3_strength = m_sVitals.str.Aktuell;
-		int d7_damage_coefficient = d3_strength + (rand() % 15);
-		int d6_weapon_weight = weapon->GetWeight();
 		int d5_load_coefficient = MaxLoad();
+		int d6_weapon_weight = weapon->GetWeight();
+		int d7_damage_coefficient = d3_strength + (rand() % 15);
 
-		int temp_coefficient[2];
-
-		if (d6_weapon_weight <= d5_load_coefficient)
-			d7_damage_coefficient = d7_damage_coefficient + d6_weapon_weight - 12;
-		else
-		{
-			temp_coefficient[0] = ((d5_load_coefficient - 12) / 2 + d5_load_coefficient);
-			temp_coefficient[1] = temp_coefficient[0];
-			if (d6_weapon_weight <= temp_coefficient[1])
-				d7_damage_coefficient = (d7_damage_coefficient + (d6_weapon_weight - d5_load_coefficient) / 2);
-			else
-				d7_damage_coefficient = (d7_damage_coefficient - 2 * (d6_weapon_weight - temp_coefficient[0]));
-		}
+		ReduceWhenOverload(d6_weapon_weight, d5_load_coefficient, d7_damage_coefficient);
 		d7_damage_coefficient += weapon->GetAttributes().damage;
 		// d7_damage_coefficient += TODO 2* SKILL (SWING / SHOOT / THROW ...)
 		if (m_ST.Aktuell / m_ST.Max < 0.5) {
@@ -183,7 +171,7 @@ int CHeld::CalcDmg(CWeapon* weapon, CAttackInfos* attackInfos, CMonsterInfos* mo
 		}
 		// TODO if hand hurt d7_damage_coefficient /= 2; 
 
-		int d4_AC_coefficient = levelDif + mc.armor + (rand() % 32);
+		int d4_AC_coefficient = ACC_Coeff(levelDif, mc.armor);
 		if (weapon->GetType() == CWeaponAttributes::WeaponType::DiamondEdge) {
 			d4_AC_coefficient -= (d4_AC_coefficient / 4);
 		}
@@ -222,6 +210,26 @@ int CHeld::CalcDmg(CWeapon* weapon, CAttackInfos* attackInfos, CMonsterInfos* mo
 		return d7_damage_coefficient;
 	}
 
+}
+
+int CHeld::ACC_Coeff(int levelDif, int armor) {
+	return levelDif + armor + (rand() % 32);
+}
+
+void CHeld::ReduceWhenOverload(int d6_weapon_weight, int d5_load_coefficient, int &dmg) {
+	int temp_coefficient[2];
+
+	if (d6_weapon_weight <= d5_load_coefficient)
+		dmg += d6_weapon_weight - 12;
+	else
+	{
+		temp_coefficient[0] = ((d5_load_coefficient - 12) / 2 + d5_load_coefficient);
+		temp_coefficient[1] = temp_coefficient[0];
+		if (d6_weapon_weight <= temp_coefficient[1])
+			dmg += (d6_weapon_weight - d5_load_coefficient) / 2;
+		else
+			dmg = (dmg - 2 * (d6_weapon_weight - temp_coefficient[0]));
+	}
 }
 
 bool CHeld::hitSucessful(CAttackConst ac, CGrpChar* pOpponents, int levelDif) {

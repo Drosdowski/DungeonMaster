@@ -1076,7 +1076,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	VEKTOR targetPos = pGrpMon->HoleZielFeld(VORWAERTS);
 	CField* targetField = m_pMap->GetField(targetPos);
 
-	int heroRicht = m_pMap->GetHeroes()->GetDirection();
+	COMPASS_DIRECTION heroRicht = m_pMap->GetHeroes()->GetDirection();
 
 	int xDist = monPos.x - heroPos.x;
 	int yDist = monPos.y - heroPos.y;
@@ -1103,13 +1103,19 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 		// Nein: Bewege näher / drehe hin
 		// todo: schlauer bewegungsalgorithmus!
 
+		int targetDist = (abs(targetPos.x - heroPos.x) + abs(targetPos.y - heroPos.y));
 		if ((targetPos.x != monPos.x || targetPos.y != monPos.y) &&
 			(targetField->HoleTyp() == FeldTyp::EMPTY && targetField->GetMonsterGroup() == NULL) ||
-			(targetField->HoleTyp() == FeldTyp::DOOR && targetField->GetMonsterGroup() == NULL)) // TODO nur Open!
+			(targetField->HoleTyp() == FeldTyp::DOOR && targetField->GetMonsterGroup() == NULL)) { // TODO nur Open!
 			// Feld vorhanden - Monster drauf?
-			// TODO: prüfen, ob Monster da sind, ggf. Merge
+			// TODO: Merge
+			if (targetField->HoleTyp() == FeldTyp::DOOR) {
+				CDoor* pDoor = targetField->HoleDoor();
+				if (pDoor->getState() != CDoor::DoorState::OPEN)
+					return monPos; // Tür im Weg
+			}
 
-			if (absDist > (abs(targetPos.x - heroPos.x) + abs(targetPos.y - heroPos.y)))
+			if (absDist > targetDist)
 			{
 				// Kommt näher => Move!
 
@@ -1118,6 +1124,13 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 
 				return targetPos;
 			}
+		}
+		else {
+			if (absDist < targetDist)
+				pGrpMon->DrehenAbsolut(CHelpfulValues::OppositeDirection(heroRicht));
+				// neues Ziel weiter weg -> drehen!
+
+		}
 		// TODO stairs
 		if (abs(xDist) >= abs(yDist)) {
 			if (xDist > 0) {

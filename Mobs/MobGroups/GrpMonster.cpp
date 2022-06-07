@@ -44,7 +44,7 @@ CGrpMonster::CGrpMonster(VEKTOR pos, CCreatureAttributes attributes) {
 		}
 	}
 	m_posPosition = pos;
-	m_grpDirection = attributes.direction;
+	DrehenAbsolut(attributes.direction);
 	carriedItem = NULL;
 }
 

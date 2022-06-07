@@ -94,6 +94,9 @@ private:
 	double round1(double value);
 	bool hitSucessful(CAttackConst ac, CGrpChar* pOpponents, int levelDif);
 	void DelItem(CItem* pItem);
+	int ACC_Coeff(int levelDif, int armor);
+	void ReduceWhenOverload(int d6_weapon_weight, int d5_load_coefficient, int &dmg);
+
 };
 
 /////////////////////////////////////////////////////////////////////////////
