@@ -143,7 +143,7 @@ void CHeld::WerteTemporaerAendern(int hp, int st, int ma)
 
 int CHeld::CalcDmg(CWeapon* weapon, CAttackInfos* attackInfos, CMonsterInfos* monsterInfos, CGrpChar* pOpponents, int levelDif) {
 	CAttackConst ac = attackInfos->GetAttack(weapon->getIndex());
-	CMonsterConst mc = monsterInfos->GetMonster(weapon->getIndex());
+	CMonsterConst mc = monsterInfos->GetMonsterInfo(weapon->getIndex());
 	// https://www.dungeon-master.com/forum/viewtopic.php?t=31345
 	// todo xp gain  --- Mastery = log2(Experience=469)
 	
@@ -235,7 +235,6 @@ void CHeld::ReduceWhenOverload(int d6_weapon_weight, int d5_load_coefficient, in
 bool CHeld::hitSucessful(CAttackConst ac, CGrpChar* pOpponents, int levelDif) {
 	double d6_hitProbaility = ac.to_hit / 75.0;
 	int d7_baseDamage = ac.damage;
-	// todo check action valid NOW ?
 	int quickness = m_sVitals.dex.Aktuell + (rand() % 8);
 	int loadingEffect = (int)((quickness / 2) * CurLoad() / MaxLoad());
 	quickness -= loadingEffect;

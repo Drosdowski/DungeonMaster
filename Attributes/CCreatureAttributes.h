@@ -1,13 +1,14 @@
-#include "..\Mobs\Monster.h"
+#include "..\Consts\MonsterConst.h"
 #pragma once
 class CCreatureAttributes
 {
 public:
+
 	COMPASS_DIRECTION direction;
-	CMonster::MonsterTyp type;
+	MonsterTyp type;
 	int count;
 	int position[4];
 	int hitPoints[4];
-
+	CMonsterConst monsterInfo;
 };
 

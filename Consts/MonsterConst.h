@@ -12,6 +12,7 @@ public:
 	int move_dur;
 	int attack_dur;
 	int armor;
+	int attack_power;
 	int poison;
 	int defense;
 	int fire_res;

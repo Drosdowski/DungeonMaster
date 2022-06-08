@@ -18,7 +18,6 @@ public:
 	
 	int ReceivedDmg() { return m_iReceivedDmg;}
 	int GetDirection() { return m_chrDirection; }
-	bool IstBereit() { return m_iReady == 0; };
 	bool isAttacking() { return m_attacking; }
 	bool IsHero() {	return m_isHero; }
 // Operationen
@@ -27,7 +26,7 @@ public:
 	void SetDirection(int direction) { m_chrDirection = direction; }
 	void AddDmg(int value);
 	void ResetDmg() { m_iReceivedDmg = 0; }
-
+	virtual void ActionDone() {};
 	
 
 // Implementierung
@@ -38,7 +37,6 @@ public:
 	bool InFrontOfOpponent(VEKTOR myPos, VEKTOR hisPos, bool emptyNorthRow, bool emptyEastRow, bool emptySouthRow, bool emptyWestRow);
 	virtual ~CCharacter();
 
-	void ActionDone() { m_iReady = m_SpeedDelay; } // wartezeit triggern, abhängig von Speed
 	void AttackModeWithDmg(int damage);
 	void EndAttack();
 
@@ -54,8 +52,8 @@ public:
 protected:
 	int m_iReceivedDmg; // PASSIV- Erhaltener Schaden, zur Anzeige.
 	int m_chrDirection;	// initial und bei Grp.-Bewegung gleich der Gruppenvariable; ändert sich nur bei angriffen
-	int m_ApproxDmg; // AKTIV - Durchschnittlicher Schaden plus minus random
-	int m_SpeedDelay; // 0 = Schnellstes (Zyklen bis zur Aktion)
+// TODO	int m_ApproxDmg; // AKTIV - Durchschnittlicher Schaden plus minus random
+// TODO	int m_SpeedDelay; // 0 = Schnellstes (Zyklen bis zur Aktion)
 	int m_dealingDmg; // AKTIV - tatsächlicher aktueller Schaden, zur Anzeige.
 	int m_dealingDmgToDraw;
 	bool m_attacking = false;
@@ -64,7 +62,6 @@ protected:
 	WERTE m_HP;	// Hitpoints	
 
 	SUBPOS_ABSOLUTE m_subPosition;
-	int m_iReady;
 	bool m_isHero;
 };
 

@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "..\..\Attributes\CCreatureAttributes.h"
 #include "..\..\Mobs\Monster.h"
 #include "CMonsterPic.h"
 #include "CMummyPic.h"
@@ -24,13 +25,13 @@ CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
 	int iRicht = (6 - pMonster->GetDirection() + richtHero) % 4;
 	switch (pMonster->getType())
 	{
-	case CMonster::MonsterTyp::MUMMY:
+	case MonsterTyp::MUMMY:
 		return m_pMummyPic->GetMummyPic(iRicht, pMonster->isAttacking());
-	case CMonster::MonsterTyp::SKELETON:
+	case MonsterTyp::SKELETON:
 		return m_pSkeletonPic->GetSkeletonPic(iRicht, pMonster->isAttacking());
-	case CMonster::MonsterTyp::SCREAMER:
+	case MonsterTyp::SCREAMER:
 		return m_pScreamerPic->GetScreamerPic(pMonster->isAttacking());
-	case CMonster::MonsterTyp::ROCKPILE:
+	case MonsterTyp::ROCKPILE:
 		return m_pRockPilePic->GetRockPilePic(pMonster->isAttacking());
 	default:
 		break;

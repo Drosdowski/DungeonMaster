@@ -8,7 +8,7 @@ public:
 	CMonsterInfos();
 	~CMonsterInfos();
 
-	CMonsterConst GetMonster(int index) { return monsterInfos[index]; };
+	CMonsterConst GetMonsterInfo(int index) { return monsterInfos[index]; };
 
 
 private:

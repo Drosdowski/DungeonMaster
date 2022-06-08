@@ -198,8 +198,15 @@ enum FeldTyp {
 	DOOR = 4,
 	TELEPORT = 5,
 	TRICKWALL = 6
-
 };
+
+enum MonsterTyp {
+	SCREAMER = 6,
+	ROCKPILE = 7,
+	MUMMY = 10,
+	SKELETON = 12
+};
+
 
 #define HANDINDEX 46
 

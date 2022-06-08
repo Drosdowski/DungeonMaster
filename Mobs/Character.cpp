@@ -19,7 +19,6 @@ static char THIS_FILE[] = __FILE__;
 CCharacter::CCharacter(bool isHero)
 {
 	m_chrDirection = 0;
-	m_iReady = 0;
 	m_iReceivedDmg = 0;
 	m_attacking = false;
 	m_isHero = isHero;
@@ -55,10 +54,7 @@ void CCharacter::AddDmg(int value) {
 
 
 bool CCharacter::Altern() {
-	if (m_iReady > 0) { 
-		m_iReady--; 
-	}
-	if (m_HP.Aktuell > 0)
+	if (m_HP.Aktuell > 0) 
 	{
 		return true;
 	}

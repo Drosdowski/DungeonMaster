@@ -23,7 +23,7 @@ public:
 	ActionTarget GetActionTarget() { return m_actionTarget; }
 	int GetCriticalWeigth() { return 100; } // todo wo steht das?
 	int GetGraphic() { return m_graphic; }
-	COMPASS_DIRECTION GetPosition() { return m_position; } // todo COMPASS...
+	COMPASS_DIRECTION GetPosition() { return m_position; } 
 	bool IsActive() { return m_active;  }
 	void Deactivate() { m_active = false; }
 	bool IsOnceOnly() { return m_once_only > 0; }

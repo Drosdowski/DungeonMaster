@@ -69,12 +69,6 @@
     <ClCompile Include="CalculationHelper\CHelpfulValues.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Mobs\Skelett.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mobs\Mumie.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SpecialTile\CDoor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -287,12 +281,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CalculationHelper\CHelpfulValues.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mobs\Skelett.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mobs\Mumie.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SpecialTile\CDoor.h">

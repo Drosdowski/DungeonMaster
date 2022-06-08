@@ -8,6 +8,7 @@
 #include "../Attributes/ClothAttributes.h"
 #include "../Attributes/MiscellaneousAttributes.h"
 #include <XMLParser/ItemInfos.h>
+#include <XMLParser/MonsterInfos.h>
 
 #define FELD_MAX_X 32
 #define FELD_MAX_Y 32
@@ -18,7 +19,7 @@ class CGrpHeld;
 class CDungeonMap
 {
 public:
-	CDungeonMap(CItemInfos* pItemInfos);
+	CDungeonMap(CItemInfos* pItemInfos, CMonsterInfos* pMonsterInfos);
 	~CDungeonMap();
 	void LoadMap();
 	CField* GetField(int, int, int);
@@ -97,7 +98,7 @@ private:
 	//CActuator::ActionTypes* m_actionType;
 	//VEKTOR* m_actionTarget;
 	CItemInfos* m_pItemInfos;
-
+	CMonsterInfos* m_pMonsterInfos;
 
 };
 

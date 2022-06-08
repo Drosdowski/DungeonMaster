@@ -15,8 +15,12 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CMonster
 
-CMonster::CMonster(): CCharacter(false)
+CMonster::CMonster(CCreatureAttributes attributes, int subId): CCharacter(false)
 {
+	m_iReady = 0;
+	m_attributes = attributes;
+	m_HP.Max = m_HP.Aktuell = attributes.hitPoints[subId];
+	transCol = TRANS_BLU;
 }
 
 
@@ -32,6 +36,10 @@ CMonster::~CMonster()
 bool CMonster::Altern()
 {
 	bool alive = CCharacter::Altern();
+	if (m_iReady > 0) {
+		m_iReady--;
+	}
+
 	// erstmal konstant, später abhängig 
 	// von max-Werten 
 	if (alive)
@@ -72,9 +80,7 @@ bool CMonster::TurnTo(COMPASS_DIRECTION iDirection) {
 }
 
 int CMonster::CalcDmg(int ID) {
-	// TODO 1. Waffe
-	// TODO 2. Gegnerrüstung
-	// TODO 3. Random	
-	return m_ApproxDmg;
+	// TODO Heldenwerte!
+	return rand() % m_attributes.monsterInfo.attack_power;
 }
 

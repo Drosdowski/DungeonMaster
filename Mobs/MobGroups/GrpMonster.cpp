@@ -3,8 +3,7 @@
 
 #include "stdafx.h"
 #include "GrpMonster.h"
-#include "..\Skelett.h"
-#include "..\Mumie.h"
+#include "..\Monster.h"
 #include "..\MobGroups\GrpHeld.h"
 #include "..\..\CalculationHelper\CHelpfulValues.h"
 #include "..\..\Items\CMiscellaneous.h"
@@ -69,27 +68,9 @@ void CGrpMonster::InitMonster(int nr, CCreatureAttributes attributes)
 {
 	if (m_pMember[nr] == NULL)
 	{
-		int hp = attributes.hitPoints[nr - 1];
-		switch (attributes.type)
-		{
-		case CMonster::MonsterTyp::SKELETON:
-			m_pMember[nr] = new CSkelett(hp);
-			break;
-		case CMonster::MonsterTyp::MUMMY:
-			m_pMember[nr] = new CMumie(hp);
-			break;
-		case CMonster::MonsterTyp::ROCKPILE:
-			// TODO - m_pMember[nr] = new CRockPile(hp);
-			return;
-			break;
-		case CMonster::MonsterTyp::SCREAMER:
-			// TODO - m_pMember[nr] = new CScreamer(hp);
-			return;
-			break;
-		default:
-			return; // todo other monster types!
-		} 
-		
+		m_pMember[nr] = new CMonster(attributes, nr - 1);
+		((CMonster*)m_pMember[nr])->setType(attributes.type);
+				
 		m_grpDirection = COMPASS_DIRECTION::NORTH;
 		SetNewCharOnNextFreePos(nr);
 

@@ -12,12 +12,13 @@
 #include "SpecialTile/CTeleporter.h"
 #include "CDungeonMap.h"
 
-CDungeonMap::CDungeonMap(CItemInfos* pItemInfos)
+CDungeonMap::CDungeonMap(CItemInfos* pItemInfos, CMonsterInfos* pMonsterInfos)
 { 
 	VEKTOR v{ 0,0,0 };
 
 	m_pEdgeWall = new CField(v, FeldTyp::WALL);
-	m_pItemInfos = pItemInfos;
+	m_pItemInfos = pItemInfos; // todo memory leak ohne delete?
+	m_pMonsterInfos = pMonsterInfos;
 	LoadMap();
 	m_pGrpHelden = new CGrpHeld(m_start, m_startRicht);
 }
@@ -622,7 +623,7 @@ void CDungeonMap::ParseCreatureObjects(TiXmlElement* rootNode) {
 			int index, type;
 			parentElement->QueryIntAttribute("index", &index);
 			parentElement->QueryIntAttribute("type", &type);
-			attribute.type = (CMonster::MonsterTyp)type;
+			attribute.type = (MonsterTyp)type;
 			parentElement->QueryIntAttribute("number_of_creatures", &attribute.count);
 			parentElement->QueryIntAttribute("position_1", &attribute.position[0]);
 			parentElement->QueryIntAttribute("hit_point_1", &attribute.hitPoints[0]);
@@ -638,6 +639,8 @@ void CDungeonMap::ParseCreatureObjects(TiXmlElement* rootNode) {
 			if (strcmp(facing, "East")) attribute.direction = EAST;
 			if (strcmp(facing, "South")) attribute.direction = SOUTH;
 			if (strcmp(facing, "West")) attribute.direction = WEST;
+
+			attribute.monsterInfo = m_pMonsterInfos->GetMonsterInfo(type);
 
 			m_creatureAtt[index] = attribute;
 		}

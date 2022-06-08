@@ -113,7 +113,7 @@ void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpChar* pVictims, CAttackIn
 					CWeapon* weapon = NULL;
 					if (item && item->getItemType() == CItem::ItemType::WeaponItem) 
 						weapon = (CWeapon*)item;
-					int dmg = pHero->CalcDmg(weapon, attackInfos, monsterInfos, pVictims, diff);
+					int dmg = pHero->CalcDmg(weapon, attackInfos, monsterInfos, pVictims, diff); // todo doof so, besser in CMonster die MOnsterInfo rein
 					if (dmg > 0) {
 						pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
 						pHero->AttackModeWithDmg(dmg);

@@ -1170,7 +1170,7 @@ void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
 	m_pItemInfos = new CItemInfos();
 	m_pAttackInfos = new CAttackInfos();
 	m_pMonsterInfos = new CMonsterInfos();
-	m_pMap = new CDungeonMap(m_pItemInfos);
+	m_pMap = new CDungeonMap(m_pItemInfos, m_pMonsterInfos);
 }
 
 void CRaumView::OnTrigger()

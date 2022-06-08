@@ -4,20 +4,15 @@
 // Monster.h : Header-Datei
 //
 #include "Character.h"
+#include "..\Attributes\CCreatureAttributes.h" 
 /////////////////////////////////////////////////////////////////////////////
 // Ansicht CMonster 
 
 class CMonster : public CCharacter
 {
 public:
-	enum MonsterTyp {
-		SCREAMER = 6,
-		ROCKPILE = 7,
-		MUMMY = 10,
-		SKELETON = 12
-	};
 
-	explicit CMonster();
+	CMonster(CCreatureAttributes attributes, int subId);
 
 // Attribute
 public:
@@ -29,9 +24,12 @@ public:
 public:
 	virtual bool Altern();
 	virtual int GetIDB(int index);
+	bool IstBereit() { return m_iReady == 0; };
+	void ActionDone() { m_iReady = m_attributes.monsterInfo.move_dur; } // todo unterscheiden move/fight wartezeit triggern, abhängig von Speed
 	void ReceiveDamage(int dmg) { m_HP.Aktuell -= dmg; }
 	int getDealingDmg() { return m_dealingDmg; }
-	int getType() { return m_iTyp; }
+	MonsterTyp getType() { return m_iTyp; }
+	void setType(MonsterTyp typ) { m_iTyp = typ; }
 	bool TurnTo(COMPASS_DIRECTION iDirection);
 	int CalcDmg(int ID);
 
@@ -42,9 +40,10 @@ protected:
 
 	// Generierte Nachrichtenzuordnungsfunktionen
 protected:
-	int m_iTyp;
+	MonsterTyp m_iTyp;
 	CDC pCdc;
-
+	int m_iReady;
+	CCreatureAttributes m_attributes;
 };
 
 /////////////////////////////////////////////////////////////////////////////

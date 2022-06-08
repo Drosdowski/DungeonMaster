@@ -173,7 +173,6 @@
     <ClCompile Include="SpecialTile\CDoor.cpp" />
     <ClCompile Include="Pictures\CDoorPic.cpp" />
     <ClCompile Include="Mobs\Character.cpp" />
-    <ClCompile Include="Mobs\Mumie.cpp" />
     <ClCompile Include="Pictures\CPictures.cpp" />
     <ClCompile Include="CalculationHelper\CHelpfulValues.cpp" />
     <ClCompile Include="Items\FloorDecoration.cpp" />
@@ -189,7 +188,6 @@
     <ClCompile Include="Mobs\Monster.cpp" />
     <ClCompile Include="Views\RaumView.cpp" />
     <ClCompile Include="Rucksack.cpp" />
-    <ClCompile Include="Mobs\Skelett.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h</PrecompiledHeaderFile>
@@ -254,7 +252,6 @@
     <ClInclude Include="SpecialTile\CDoor.h" />
     <ClInclude Include="Pictures\CDoorPic.h" />
     <ClInclude Include="Mobs\Character.h" />
-    <ClInclude Include="Mobs\Mumie.h" />
     <ClInclude Include="Pictures\CPictures.h" />
     <ClInclude Include="CalculationHelper\CHelpfulValues.h" />
     <ClInclude Include="Items\FloorDecoration.h" />
@@ -271,7 +268,6 @@
     <ClInclude Include="Views\RaumView.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Rucksack.h" />
-    <ClInclude Include="Mobs\Skelett.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="TinyXML\tinystr.h" />
     <ClInclude Include="TinyXML\tinyxml.h" />
