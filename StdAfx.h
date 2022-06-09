@@ -214,7 +214,7 @@ enum MonsterTyp {
 bool InRect(CPoint p, int x1, int y1, int x2, int y2);
 
 #define MainAreaWidth 448
-#define MainAreaHeight 205
+#define MainAreaHeight 272
 
 #define sign(a) ( ( (a) < 0 )  ?  -1   : ( (a) > 0 ) ? 1 : 0 )
 

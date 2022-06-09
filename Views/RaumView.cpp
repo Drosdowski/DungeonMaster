@@ -136,7 +136,7 @@ void CRaumView::DrawTeleporter(CDC* pDC, CDC* cdc, int xxx, int ebene, CTeleport
 		cdc->SelectObject(bmp);
 		if (ebene == 0 && xxx == 4) {
 			bmp->GetBitmap(&bmpInfo);
-			pDC->TransparentBlt(0, 0,
+			pDC->TransparentBlt(pos.x, pos.y,
 				MainAreaWidth, MainAreaHeight, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);
 		}
 		else {
@@ -452,6 +452,7 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xx, int ebene, COMPASS_DIREC
 	if (pMonster && pMonster->Hp().Aktuell > 0) // todo staubwolke hier berücksichtigen
 	{
 		CBitmap* bmp = m_pMonsterPic->GetBitmap(pMonster, richt);
+		if (bmp == NULL) return; // todo passiert, wenn Monster nicht da sind
 		BITMAP bmpInfo;
 
 		//get original size of bitmap

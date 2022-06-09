@@ -35,8 +35,10 @@ CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 	//m_posPosition = VEKTOR{ 4,11,1 }; // bei Schalter für Tür
 	//m_posPosition = VEKTOR{ 24,6,1 }; // bei Pit
 	//m_posPosition = VEKTOR{ 12,29,1 }; // bei Trickwall
-	m_posPosition = VEKTOR{ 6,0,1 }; // bei Schwert in Alcove
+	//m_posPosition = VEKTOR{ 6,0,1 }; // bei Keule vor 1. Monster
 	//m_posPosition = VEKTOR{ 3,28,2 }; // bei Compass
+	//m_posPosition = VEKTOR{ 15,18,3 }; // 3. Etage Teleport
+	m_posPosition = VEKTOR{ 1,12,3 }; // bei Screamer
 	DrehenAbsolut(richt);
 }
 
