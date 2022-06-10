@@ -186,7 +186,7 @@ void CGrpChar::DrehenAbsolut(COMPASS_DIRECTION iRichtung) {
 			}
 
 			m_pMember[i]->SetzeSubPosition(pos);
-			m_pMember[i]->ActionDone();
+			m_pMember[i]->MoveDone();
 		}
 	}
 	ChangeCompass();

@@ -71,7 +71,7 @@ int CMonster::GetIDB(int index) {
 bool CMonster::TurnTo(COMPASS_DIRECTION iDirection) {
 	if (m_chrDirection == CHelpfulValues::OppositeDirection(iDirection))
 	{
-		m_chrDirection = (m_chrDirection + 1) % 4;
+		m_chrDirection = (COMPASS_DIRECTION)((m_chrDirection + 1) % 4);
 		return false; // nicht angekommen
 	} else {
 		m_chrDirection = iDirection;

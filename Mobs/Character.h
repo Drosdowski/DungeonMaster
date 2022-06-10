@@ -17,16 +17,16 @@ public:
 	virtual WERTE Hp() { return m_HP; };
 	
 	int ReceivedDmg() { return m_iReceivedDmg;}
-	int GetDirection() { return m_chrDirection; }
+	COMPASS_DIRECTION GetDirection() { return m_chrDirection; }
 	bool isAttacking() { return m_attacking; }
 	bool IsHero() {	return m_isHero; }
 // Operationen
 public:
 	void SetzeSubPosition(SUBPOS_ABSOLUTE pos) { m_subPosition = pos; };
-	void SetDirection(int direction) { m_chrDirection = direction; }
+	void SetDirection(COMPASS_DIRECTION direction) { m_chrDirection = direction; }
 	void AddDmg(int value);
 	void ResetDmg() { m_iReceivedDmg = 0; }
-	virtual void ActionDone() {};
+	virtual void MoveDone() {};
 	
 
 // Implementierung
@@ -51,7 +51,7 @@ public:
 
 protected:
 	int m_iReceivedDmg; // PASSIV- Erhaltener Schaden, zur Anzeige.
-	int m_chrDirection;	// initial und bei Grp.-Bewegung gleich der Gruppenvariable; ändert sich nur bei angriffen
+	COMPASS_DIRECTION m_chrDirection;	// initial und bei Grp.-Bewegung gleich der Gruppenvariable; ändert sich nur bei angriffen
 // TODO	int m_ApproxDmg; // AKTIV - Durchschnittlicher Schaden plus minus random
 // TODO	int m_SpeedDelay; // 0 = Schnellstes (Zyklen bis zur Aktion)
 	int m_dealingDmg; // AKTIV - tatsächlicher aktueller Schaden, zur Anzeige.

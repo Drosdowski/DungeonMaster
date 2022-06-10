@@ -18,7 +18,7 @@ static char THIS_FILE[] = __FILE__;
 
 CCharacter::CCharacter(bool isHero)
 {
-	m_chrDirection = 0;
+	m_chrDirection = COMPASS_DIRECTION::NORTH;
 	m_iReceivedDmg = 0;
 	m_attacking = false;
 	m_isHero = isHero;

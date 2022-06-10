@@ -25,7 +25,8 @@ public:
 	virtual bool Altern();
 	virtual int GetIDB(int index);
 	bool IstBereit() { return m_iReady == 0; };
-	void ActionDone() { m_iReady = m_attributes.monsterInfo.move_dur; } // todo unterscheiden move/fight wartezeit triggern, abhängig von Speed
+	void AttackDone() { m_iReady = m_attributes.monsterInfo.attack_dur; } 
+	void MoveDone() { m_iReady = m_attributes.monsterInfo.move_dur; } 
 	void ReceiveDamage(int dmg) { m_HP.Aktuell -= dmg; }
 	int getDealingDmg() { return m_dealingDmg; }
 	MonsterTyp getType() { return m_iTyp; }

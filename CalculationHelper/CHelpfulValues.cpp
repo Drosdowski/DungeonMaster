@@ -20,13 +20,13 @@ COMPASS_DIRECTION CHelpfulValues::OppositeDirection(COMPASS_DIRECTION direction)
 	return (COMPASS_DIRECTION)((direction + 2) % 4);
 }
 
-VEKTOR CHelpfulValues::MakeVektor(int direction, int force) {
+VEKTOR CHelpfulValues::MakeVektor(COMPASS_DIRECTION direction, int force) {
 
 	switch (direction) {
-	case 0: return VEKTOR{ 0, -force, 0 };
-	case 1: return VEKTOR{ force, 0, 0 };
-	case 2: return VEKTOR{ 0, force, 0 };
-	case 3: return VEKTOR{ -force, 0, 0 };
+	case COMPASS_DIRECTION::NORTH: return VEKTOR{ 0, -force, 0 };
+	case COMPASS_DIRECTION::EAST: return VEKTOR{ force, 0, 0 };
+	case COMPASS_DIRECTION::SOUTH: return VEKTOR{ 0, force, 0 };
+	case COMPASS_DIRECTION::WEST: return VEKTOR{ -force, 0, 0 };
 	}
 	return VEKTOR{ 0, 0, 0 };
 }

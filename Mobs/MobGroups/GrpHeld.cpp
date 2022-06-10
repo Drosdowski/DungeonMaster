@@ -285,7 +285,7 @@ void CGrpHeld::Laufen(VEKTOR WunschPos) {
 		if (pHero && (pHero->Hp().Aktuell > 0))
 		{
 			pHero->WerteTemporaerAendern(0, -1, 0);
-			pHero->ActionDone();
+			pHero->MoveDone();
 		}
 	}
 	m_posPosition = WunschPos;

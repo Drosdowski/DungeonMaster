@@ -864,7 +864,7 @@ void CRaumView::MoveMonsters(VEKTOR heroPos) {
 				CField* targetField = m_pMap->GetField(target);
 				field->SetMonsterGroup(NULL);
 				targetField->SetMonsterGroup(pGrpMon);
-				pGrpMon->ActionDone();
+				pGrpMon->MoveDone(); 
 			}
 		}
 	}
@@ -1130,6 +1130,11 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 				m_pDoc->PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-Move(Skeleton).mp3");
 
 				return targetPos;
+			}
+			else {
+				if (absDist < targetDist)
+					pGrpMon->DrehenAbsolut(CHelpfulValues::OppositeDirection(heroRicht));
+				// neues Ziel weiter weg -> drehen!
 			}
 		}
 		else {

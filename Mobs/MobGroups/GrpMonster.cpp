@@ -128,7 +128,7 @@ CMonster* CGrpMonster::AttackHero(VEKTOR monsterPos, VEKTOR heroPos) {
 				{
 					int dmg = pMonster->CalcDmg(1); // todo monster attacke random
 					pMonster->AttackModeWithDmg(dmg);
-					pMonster->ActionDone();
+					pMonster->AttackDone();
 					return pMonster; // pro Tick nur ein Angriff / Gruppe
 				}
 				else {
@@ -227,13 +227,12 @@ bool CGrpMonster::EveryoneReady() {
 	return true;
 }
 
-void CGrpMonster::ActionDone() {
-	// todo : attacke ist nur für 1 Monster action!
+void CGrpMonster::MoveDone() {
 	for (int i = 1; i < 5; i++)
 	{
 		CMonster* pMonster = (CMonster*)m_pMember[i];
 		if (pMonster) {
-			pMonster->ActionDone();
+			pMonster->MoveDone();
 		}
 	}
 }
@@ -293,7 +292,7 @@ void CGrpMonster::Laufen(VEKTOR WunschPos) {
 	for (int i = 1; i <= 4; i++)
 		if ((m_pMember[i]) && (m_pMember[i]->Hp().Aktuell > 0))
 		{
-			m_pMember[i]->ActionDone();
+			m_pMember[i]->MoveDone();
 		}
 	m_posPosition = WunschPos;
 }
