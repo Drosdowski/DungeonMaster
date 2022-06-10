@@ -213,25 +213,22 @@ CPoint CHelpfulValues::CalcRelSubFloorPosition(BITMAP bmpInfo, CPoint wallMiddle
 	return CPoint(posX, posY);
 }
 
-CPoint CHelpfulValues::CalcSubPosition(BITMAP bmpInfo, SUBPOS subPos, double faktor, int xx) {
-	int posX = 225 - (int)(bmpInfo.bmWidth * faktor - (xx * 156));
-	int posY = 90 + (int)(bmpInfo.bmHeight * (1 - faktor) / 2);
-	//int posY = (int)(260 - bmpInfo.bmHeight * 2 - (1 - faktor) * 40); // TODO !!!!!!!!!!!
-	//int posY = (int)(260 - bmpInfo.bmHeight*2 ); 
-
+CPoint CHelpfulValues::CalcSubPosition(CPoint p, SUBPOS subPos, double &faktor) {
+	int posX = p.x;
+	int posY = p.y;
 	if (subPos == LINKSBACK) {
 		posX -= (int)(60 * faktor);
-		posY += (int)(50 * faktor);
 	}
 	else if (subPos == RECHTSBACK) {
 		posX += (int)(60 * faktor);
-		posY += (int)(50 * faktor);
 	}
 	else if (subPos == LINKSFRONT) {
 		posX -= (int)(40 * faktor);
+		posY -= (int)(30 * faktor);
 	}
 	else if (RECHTSFRONT) {
 		posX += (int)(40 * faktor);
+		posY -= (int)(30 * faktor);
 	}
 	return CPoint(posX, posY);
 }

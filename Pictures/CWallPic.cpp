@@ -2,6 +2,7 @@
 #include "..\resource.h"
 #include "..\Items\FloorDecoration.h"
 #include "CWallPic.h"
+#include <cassert>
 
 CWallPic::CWallPic(CDC* pDC) : CBasePictures(pDC)
 {
@@ -84,8 +85,10 @@ CBitmap* CWallPic::GetWallPic(int x, int ebene, bool bMirror)
 {
 	switch (x) {
 	case 0:
+		assert(ebene > 1);
 		return m_pWallFarLeft[ebene];
 	case 1:
+		assert(ebene > 1);
 		return m_pWallFarRight[ebene];
 	case 2:
 		if (bMirror)

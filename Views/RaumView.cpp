@@ -439,28 +439,34 @@ void CRaumView::DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS
 	CGrpMonster* pGrpMon = (CGrpMonster*)pField->GetMonsterGroup();
 	if (pGrpMon)
 	{
-		int xx = wallXFactor[xxx];
-
-		DrawMonster(pDC, cdc, xx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(LINKSFRONT, richt));
-		DrawMonster(pDC, cdc, xx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(RECHTSFRONT, richt));
-		DrawMonster(pDC, cdc, xx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(LINKSBACK, richt));
-		DrawMonster(pDC, cdc, xx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(RECHTSBACK, richt));
+		DrawMonster(pDC, cdc, xxx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(LINKSFRONT, richt));
+		DrawMonster(pDC, cdc, xxx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(RECHTSFRONT, richt));
+		DrawMonster(pDC, cdc, xxx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(LINKSBACK, richt));
+		DrawMonster(pDC, cdc, xxx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(RECHTSBACK, richt));
 	}
 }
 
-void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xx, int ebene, COMPASS_DIRECTION richt, CMonster* pMonster) {
+void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTION richt, CMonster* pMonster) {
 	if (pMonster && pMonster->Hp().Aktuell > 0) // todo staubwolke hier berücksichtigen
 	{
 		CBitmap* bmp = m_pMonsterPic->GetBitmap(pMonster, richt);
 		if (bmp == NULL) return; // todo passiert, wenn Monster nicht da sind
-		BITMAP bmpInfo;
+		BITMAP bmpInfo, bmpInfo2;
 
 		//get original size of bitmap
 		bmp->GetBitmap(&bmpInfo);
 		double faktor = m_pPictures->getFaktor(ebene);
+		// monster pos an wallpos orientieren
+		CPoint p = m_pWallPic->GetWallPos(xxx, ebene);
+		CBitmap* bmpWall = m_pWallPic->GetWallPic(xxx, ebene, false);
+		bmpWall->GetBitmap(&bmpInfo2);
+		p.x += bmpInfo2.bmWidth ;
+		p.y += bmpInfo2.bmHeight * 2; // = untere Kante des Monsters!
+		p.x = p.x - (int)(bmpInfo.bmWidth * faktor);
+		p.y = p.y - (int)(bmpInfo.bmHeight * faktor * 2);
 
 		SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(pMonster->HoleSubPosition(), richt);
-		CPoint pos = CHelpfulValues::CalcSubPosition(bmpInfo, subPos, faktor, xx);
+		CPoint pos = CHelpfulValues::CalcSubPosition(p, subPos, faktor);
 
 		cdc->SelectObject(bmp);
 		DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, pMonster->transCol);
@@ -677,9 +683,9 @@ void CRaumView::RaumZeichnen(CDC* pDC)
 	{
 		for (int xxx = 0; xxx <= 4; xxx++)
 		{
+			int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
 			if (ebene > 1 || xxx > 1)
 			{ // nur für Ebene 2&3 sind Außenwerte -2 / 2 zu zeichnen - far left  & far right
-				int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
 				int addx = x + ebene * sty + xx * stx;
 				int addy = y - ebene * stx + xx * sty;
 				CField* pField = m_pMap->GetField(addx, addy, z);
