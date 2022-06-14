@@ -253,6 +253,17 @@ CMonster* CGrpMonster::GetMonsterByRelSubPos(SUBPOS pos, COMPASS_DIRECTION richt
 	return NULL; 
 }
 
+MonsterTyp CGrpMonster::GetType() {
+	for (int i = 1; i < 5; i++)
+	{
+		CMonster* pMonster = (CMonster*)m_pMember[i];
+		if (pMonster) {
+			return pMonster->getType();
+		}
+	}
+}
+
+
 //   0
 //   |
 // 1- -3

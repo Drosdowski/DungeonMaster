@@ -20,20 +20,20 @@ public:
 	COMPASS_DIRECTION GetDirection() { return m_chrDirection; }
 	bool isAttacking() { return m_attacking; }
 	bool IsHero() {	return m_isHero; }
+
 // Operationen
 public:
 	void SetzeSubPosition(SUBPOS_ABSOLUTE pos) { m_subPosition = pos; };
 	void SetDirection(COMPASS_DIRECTION direction) { m_chrDirection = direction; }
 	void AddDmg(int value);
 	void ResetDmg() { m_iReceivedDmg = 0; }
-	virtual void MoveDone() {};
 	
 
 // Implementierung
 public:
 	virtual bool Altern();
 	virtual SUBPOS_ABSOLUTE HoleSubPosition() { return m_subPosition;};
-	virtual int CalcDmg(int ID, CGrpChar* pOpponents);
+	virtual void MoveDone() {};
 	bool InFrontOfOpponent(VEKTOR myPos, VEKTOR hisPos, bool emptyNorthRow, bool emptyEastRow, bool emptySouthRow, bool emptyWestRow);
 	virtual ~CCharacter();
 

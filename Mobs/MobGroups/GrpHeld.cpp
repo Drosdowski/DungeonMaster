@@ -8,7 +8,9 @@
 #include "..\..\Items\Item.h"
 #include "..\..\Items\Weapon.h"
 #include "..\..\XMLParser\AttackInfos.h"
+#include "..\..\XMLParser\MonsterInfos.h"
 #include "GrpHeld.h"
+#include "GrpMonster.h"
 #include <iostream>
 
 #ifdef _DEBUG
@@ -104,7 +106,7 @@ void CGrpHeld::PassAction() {
 
 }
 
-void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpChar* pVictims, CAttackInfos* attackInfos, CMonsterInfos* monsterInfos, int diff) {
+void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpMonster* pVictims, CAttackInfos* attackInfos, CMonsterInfos* monsterInfos, int diff) {
 	if (m_iPhase == 2) {
 		if (pVictims) {
 			CHeld* pHero = (CHeld*)m_pMember[m_iHeroForAction];
@@ -113,9 +115,19 @@ void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpChar* pVictims, CAttackIn
 					CItem* item = pHero->GetItemCarrying(1);
 					VEKTOR myPos = GetVector();
 					CWeapon* weapon = NULL;
-					if (item && item->getItemType() == CItem::ItemType::WeaponItem) 
+					int attackIndex;
+					if (item && item->getItemType() == CItem::ItemType::WeaponItem) {
 						weapon = (CWeapon*)item;
-					int dmg = pHero->CalcDmg(weapon, attackInfos, monsterInfos, pVictims, diff); // todo doof so, besser in CMonster die MOnsterInfo rein
+						CWeaponConst::AttackStyle style = weapon->GetAttributes().style[ActionId];
+						attackIndex = style.....
+					}
+					else
+						attackIndex = 46; // Punch / Kick / Warcry
+					CAttackConst ac = attackInfos->GetAttack(attackIndex);
+					CMonsterConst mc = monsterInfos->GetMonsterInfo(pVictims->GetType());
+
+
+					int dmg = pHero->CalcDmg(weapon, ac, mc, pVictims, diff); // todo doof so, besser in CMonster die MOnsterInfo rein
 					if (dmg > 0) {
 						pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
 						pHero->AttackModeWithDmg(dmg);
@@ -149,7 +161,7 @@ void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpChar* pVictims, CAttackIn
 }
 
 CHeld* CGrpHeld::ClosestHeroTo(CMonster* monster) {
-	// TODO richtig rechnen!!
+	// TODO richtig rechnen!! - obsolet??
 	for (int i = 1; i <= 4; i++)
 	{
 		CHeld* pHeld = (CHeld*)m_pMember[i];

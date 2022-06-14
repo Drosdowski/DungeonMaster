@@ -32,9 +32,6 @@ CCharacter::~CCharacter()
 /////////////////////////////////////////////////////////////////////////////
 // Behandlungsroutinen für Nachrichten CCharacter 
 
-int CCharacter::CalcDmg(int ID, CGrpChar* pOpponents) {
-	return 1;
-}
 
 void CCharacter::AttackModeWithDmg(int damage) {
 	m_attacking = true; 

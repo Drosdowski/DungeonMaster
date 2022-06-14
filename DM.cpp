@@ -95,7 +95,7 @@ BOOL CDMApp::InitInstance()
 	m_pView->InitDungeon(m_pDoc);
 
 	UINT	idTimer;
-	idTimer = m_pView->SetTimer(7, 400, NULL); // Das ist keine Performance Senke, sondern sorgt für das richtige Tempo
+	idTimer = m_pView->SetTimer(7, 166, NULL); // Das ist keine Performance Senke, sondern sorgt für das richtige Tempo
 
 	if (idTimer == 0)
 		AfxThrowResourceException();

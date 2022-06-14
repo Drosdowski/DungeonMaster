@@ -14,9 +14,8 @@
 
 class CRucksack;
 class CItem;
-class CAttackInfos;
-class CMonsterInfos;
 class CWeapon;
+class CGrpMonster;
 class CHeld : public CCharacter
 {
 public:
@@ -42,7 +41,7 @@ public:
 	//virtual void WertePermanentAendern(int hp, int st, int ma);
 	void ChangeCompass();
 
-	int CalcDmg(CWeapon* weapon, CAttackInfos* attackInfos, CMonsterInfos* monsterInfos, CGrpChar* pOpponents, int levelDif);
+	int CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, CGrpMonster* pOpponents, int levelDif);
 	double LifePart() { return (double)m_HP.Aktuell / (double)m_HP.Max; }
 	double StaminaPart() { return (double)m_ST.Aktuell / (double)m_ST.Max; }
 	double ManaPart() { return (double)m_MA.Aktuell / (double)m_MA.Max; }
@@ -92,7 +91,7 @@ private:
 	CItem* m_pItemInHand = NULL;
 
 	double round1(double value);
-	bool hitSucessful(CAttackConst ac, CGrpChar* pOpponents, int levelDif);
+	bool hitSucessful(CAttackConst ac, int levelDif);
 	void DelItem(CItem* pItem);
 	int ACC_Coeff(int levelDif, int armor);
 	void ReduceWhenOverload(int d6_weapon_weight, int d5_load_coefficient, int &dmg);

@@ -9,6 +9,7 @@
 #include "..\Items\Cloth.h"
 #include "..\Items\Weapon.h"
 #include "Monster.h"
+#include "MobGroups/GrpMonster.h"
 #include <Attributes/ClothAttributes.h>
 #include "..\XMLParser\AttackInfos.h"
 #include "..\XMLParser\MonsterInfos.h"
@@ -141,13 +142,11 @@ void CHeld::WerteTemporaerAendern(int hp, int st, int ma)
 	m_MA.Aktuell = min(max(ma + m_MA.Aktuell, 0), m_MA.Max);
 }
 
-int CHeld::CalcDmg(CWeapon* weapon, CAttackInfos* attackInfos, CMonsterInfos* monsterInfos, CGrpChar* pOpponents, int levelDif) {
-	CAttackConst ac = attackInfos->GetAttack(weapon->getIndex());
-	CMonsterConst mc = monsterInfos->GetMonsterInfo(weapon->getIndex());
+int CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, CGrpMonster* pOpponents, int levelDif) {
 	// https://www.dungeon-master.com/forum/viewtopic.php?t=31345
 	// todo xp gain  --- Mastery = log2(Experience=469)
 	
-	if (!hitSucessful(ac, pOpponents, levelDif))
+	if (!hitSucessful(ac, levelDif))
 	{
 		WerteTemporaerAendern(0, -(2 + (rand() % 1)), 0); // daneben
 		return 0;
@@ -232,7 +231,7 @@ void CHeld::ReduceWhenOverload(int d6_weapon_weight, int d5_load_coefficient, in
 	}
 }
 
-bool CHeld::hitSucessful(CAttackConst ac, CGrpChar* pOpponents, int levelDif) {
+bool CHeld::hitSucessful(CAttackConst ac, int levelDif) {
 	double d6_hitProbaility = ac.to_hit / 75.0;
 	int d7_baseDamage = ac.damage;
 	int quickness = m_sVitals.dex.Aktuell + (rand() % 8);

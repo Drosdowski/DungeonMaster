@@ -41,7 +41,7 @@ public:
 	void Aktiviere(int n);
 	void PassAction();
 	void ChooseHeroForAction(int ID);
-	void DoActionForChosenHero(int ID, CGrpChar* pVictims, CAttackInfos* attackInfos, CMonsterInfos* monsterInfos, int diff);
+	void DoActionForChosenHero(int ID, CGrpMonster* pVictims, CAttackInfos* attackInfos, CMonsterInfos* monsterInfos, int diff);
 	bool SetActiveCaster(int ID);
 	
 	bool Altern();
