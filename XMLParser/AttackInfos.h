@@ -9,7 +9,7 @@ public:
 	CAttackInfos();
 	~CAttackInfos();
 
-	CAttackConst GetAttack(int index) { return attackInfos[index]; };
+	CAttackConst GetAttack(CString type);
 
 private:
 	void LoadAttackInfos();

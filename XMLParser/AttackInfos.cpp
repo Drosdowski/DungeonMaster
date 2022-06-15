@@ -46,6 +46,7 @@ void CAttackInfos::ParseAttack(TiXmlElement* parentElement) {
 	CAttackConst attribute;
 	parentElement->QueryIntAttribute("Number", &index);
 	CString attack = parentElement->Attribute("name");
+	attribute.name = attack;
 	parentElement->QueryIntAttribute("improved", &attribute.improved);
 	parentElement->QueryIntAttribute("experience", &attribute.experience);
 	parentElement->QueryIntAttribute("def", &attribute.def);
@@ -54,4 +55,14 @@ void CAttackInfos::ParseAttack(TiXmlElement* parentElement) {
 	parentElement->QueryIntAttribute("damage", &attribute.damage);
 	parentElement->QueryIntAttribute("fatigue", &attribute.fatigue);
 	attackInfos[index] = attribute;
+}
+
+CAttackConst CAttackInfos::GetAttack(CString type) {
+	for (int index = 0; index < 44; index++)
+	{
+		CAttackConst ac = attackInfos[index];
+		if (ac.name.MakeUpper() == type.MakeUpper())
+			return ac;
+	}
+	assert(false); // type not found!
 }

@@ -37,10 +37,10 @@ CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 	//m_posPosition = VEKTOR{ 4,11,1 }; // bei Schalter für Tür
 	//m_posPosition = VEKTOR{ 24,6,1 }; // bei Pit
 	//m_posPosition = VEKTOR{ 12,29,1 }; // bei Trickwall
-	//m_posPosition = VEKTOR{ 6,0,1 }; // bei Keule vor 1. Monster
+	m_posPosition = VEKTOR{ 6,0,1 }; // bei Keule vor 1. Monster
 	//m_posPosition = VEKTOR{ 3,28,2 }; // bei Compass
 	//m_posPosition = VEKTOR{ 15,18,3 }; // 3. Etage Teleport
-	m_posPosition = VEKTOR{ 1,12,3 }; // bei Screamer
+	//m_posPosition = VEKTOR{ 1,12,3 }; // bei Screamer
 	DrehenAbsolut(richt);
 }
 
@@ -115,17 +115,15 @@ void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpMonster* pVictims, CAttac
 					CItem* item = pHero->GetItemCarrying(1);
 					VEKTOR myPos = GetVector();
 					CWeapon* weapon = NULL;
-					int attackIndex;
+					CString attackType;
 					if (item && item->getItemType() == CItem::ItemType::WeaponItem) {
 						weapon = (CWeapon*)item;
-						CWeaponConst::AttackStyle style = weapon->GetAttributes().style[ActionId];
-						attackIndex = style.....
+						attackType = weapon->GetAttributes().style[ActionId-1].type;
 					}
 					else
-						attackIndex = 46; // Punch / Kick / Warcry
-					CAttackConst ac = attackInfos->GetAttack(attackIndex);
+						attackType = "N"; // Punch / Kick / Warcry
+					CAttackConst ac = attackInfos->GetAttack(attackType);
 					CMonsterConst mc = monsterInfos->GetMonsterInfo(pVictims->GetType());
-
 
 					int dmg = pHero->CalcDmg(weapon, ac, mc, pVictims, diff); // todo doof so, besser in CMonster die MOnsterInfo rein
 					if (dmg > 0) {

@@ -9,6 +9,7 @@
 //
 #include "Character.h"
 #include "..\Consts\AttackConst.h"
+#include "..\Consts\MonsterConst.h"
 /////////////////////////////////////////////////////////////////////////////
 // CHeld view
 
