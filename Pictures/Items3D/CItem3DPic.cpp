@@ -13,6 +13,7 @@ CItem3DPic ::~CItem3DPic() {
 	delete m_pCorn;
 	delete m_pCheese;
 	delete m_pScreamerSlice;
+	delete m_pWormRound;
 	delete m_pCompass;
 	delete m_pWhiteCloth;
 	delete m_pGreenCloth;
@@ -45,6 +46,7 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pCorn, IDB_ITEM3D_CORN);
 	LoadPic(m_pCheese, IDB_ITEM3D_CHEESE);
 	LoadPic(m_pScreamerSlice, IDB_ITEM3D_SCREAMERSLICE);
+	LoadPic(m_pWormRound, IDB_ITEM3D_WORMROUND);
 	LoadPic(m_pCompass, IDB_ITEM3D_COMPASS);
 	LoadPic(m_pWhiteCloth, IDB_ITEM3D_FINEROBE);
 	LoadPic(m_pGreenCloth, IDB_ITEM3D_ELVENDOUBLET);

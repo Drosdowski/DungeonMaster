@@ -4,6 +4,7 @@ class CMonster;
 class CMummyPic;
 class CSkeletonPic;
 class CScreamerPic;
+class CMagentaWormPic;
 class CRockPilePic;
 class CMonsterPic : public CBasePictures
 {
@@ -18,5 +19,6 @@ private:
 	CMummyPic* m_pMummyPic;
 	CScreamerPic* m_pScreamerPic;
 	CRockPilePic* m_pRockPilePic;
+	CMagentaWormPic* m_pMagentaWorm;
 };
 

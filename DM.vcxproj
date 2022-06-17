@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClCompile Include="Consts\MonsterConst.cpp" />
     <ClCompile Include="Consts\AttackConst.cpp" />
+    <ClCompile Include="Pictures\Creatures\MagentaWormPic.cpp" />
     <ClCompile Include="XMLParser\MonsterInfos.cpp" />
     <ClCompile Include="XMLParser\AttackInfos.cpp" />
     <ClCompile Include="Attributes\CWeaponAttributes.cpp" />
@@ -209,6 +210,7 @@
   <ItemGroup>
     <ClInclude Include="Consts\AttackConst.h" />
     <ClInclude Include="Consts\MonsterConst.h" />
+    <ClInclude Include="Pictures\Creatures\MagentaWormPic.h" />
     <ClInclude Include="XMLParser\MonsterInfos.h" />
     <ClInclude Include="XMLParser\AttackInfos.h" />
     <ClInclude Include="Attributes\ClothAttributes.h" />
@@ -348,6 +350,7 @@
     <Image Include="res\Items3D\Item_3d_Torch.bmp" />
     <Image Include="res\Items3D\Item_3d_Waterskin_Empty.bmp" />
     <Image Include="res\Items3D\Item_3d_Waterskin_Full.bmp" />
+    <Image Include="res\Items3D\Item_3d_WorkRound.bmp" />
     <Image Include="res\Items3D\Missile_Arrow_B.bmp" />
     <Image Include="res\Items3D\Missile_Arrow_F.bmp" />
     <Image Include="res\Items3D\Missile_Arrow_S.bmp" />
@@ -375,6 +378,14 @@
     <Image Include="res\Items3D\Missile_ThrowingStar_F.bmp" />
     <Image Include="res\Items3D\Missile_ThrowingStar_S.bmp" />
     <Image Include="res\Items3D\ScreamerSlice.bmp" />
+    <Image Include="res\Monster\0493.IMG1 [Creature 15 (Front) - Magenta Worm].png" />
+    <Image Include="res\Monster\0494.IMG1 [Creature 15 (Side) - Magenta Worm].png" />
+    <Image Include="res\Monster\0495.IMG1 [Creature 15 (Back) - Magenta Worm].png" />
+    <Image Include="res\Monster\0496.IMG1 [Creature 15 (Attack) - Magenta Worm].png" />
+    <Image Include="res\Monster\MagentaWorm_Attack.bmp" />
+    <Image Include="res\Monster\MagentaWorm_Back.bmp" />
+    <Image Include="res\Monster\MagentaWorm_Front.bmp" />
+    <Image Include="res\Monster\MagentaWorm_Right.bmp" />
     <Image Include="res\Monster\RockPile_Attack.bmp" />
     <Image Include="res\Monster\RockPile_Front.bmp" />
     <Image Include="res\Monster\Screamer_Attack.bmp" />

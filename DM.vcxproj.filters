@@ -219,6 +219,9 @@
     <ClCompile Include="Consts\MonsterConst.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pictures\Creatures\MagentaWormPic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -431,6 +434,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Consts\MonsterConst.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\Creatures\MagentaWormPic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1313,6 +1319,25 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Runes4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\0493.IMG1 [Creature 15 (Front) - Magenta Worm].png" />
+    <Image Include="res\Monster\0494.IMG1 [Creature 15 (Side) - Magenta Worm].png" />
+    <Image Include="res\Monster\0495.IMG1 [Creature 15 (Back) - Magenta Worm].png" />
+    <Image Include="res\Monster\0496.IMG1 [Creature 15 (Attack) - Magenta Worm].png" />
+    <Image Include="res\Monster\MagentaWorm_Attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\MagentaWorm_Back.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\MagentaWorm_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\MagentaWorm_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Item_3d_WorkRound.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

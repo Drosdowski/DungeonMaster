@@ -6,12 +6,14 @@
 #include "CSkeletonPic.h"
 #include "ScreamerPic.h"
 #include "RockPilePic.h"
+#include "MagentaWormPic.h"
 
 CMonsterPic::CMonsterPic(CDC* pDC) : CBasePictures(pDC) {
 	m_pMummyPic = new CMummyPic(pDC);
 	m_pSkeletonPic = new CSkeletonPic(pDC);
 	m_pScreamerPic = new CScreamerPic(pDC);
 	m_pRockPilePic = new CRockPilePic(pDC);
+	m_pMagentaWorm = new CMagentaWormPic(pDC);
 }
 
 CMonsterPic::~CMonsterPic() {
@@ -33,6 +35,8 @@ CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
 		return m_pScreamerPic->GetScreamerPic(pMonster->isAttacking());
 	case MonsterTyp::ROCKPILE:
 		return m_pRockPilePic->GetRockPilePic(pMonster->isAttacking());
+	case MonsterTyp::MAGENTA_WORM:
+		return m_pMagentaWorm->GetMagentaWormPic(pMonster->isAttacking());
 	default:
 		break;
 	}

@@ -22,18 +22,6 @@
 #define IDB_BITMAP_E2FR                 178
 #define IDB_BITMAP_E3FL                 185
 #define IDB_BITMAP_E3FR                 186
-#define IDB_MONSTER_SCREAMER_ATTACK     187
-#define IDB_MONSTER_SCREAMER_FRONT      188
-#define IDB_MONSTER_ROCKPILE_ATTACK     189
-#define IDB_MONSTER_ROCKPILE_FRONT      190
-#define IDB_MONSTER_MUMMY_BACK          193
-#define IDB_MONSTER_MUMMY_FRONT         194
-#define IDB_MONSTER_MUMMY_ATTACK        195
-#define IDB_MONSTER_MUMMY_RIGHT         196
-#define IDB_MONSTER_SKELETON_ATTACK     198
-#define IDB_MONSTER_SKELETON_BACK       199
-#define IDB_MONSTER_SKELETON_FRONT      200
-#define IDB_MONSTER_SKELETON_RIGHT      201
 #define IDB_DOOR_FRAME_0                202
 #define IDB_DOOR_FRAME_1L               203
 #define IDB_DOOR_FRAME_2L               204
@@ -150,6 +138,7 @@
 #define IDB_ITEM3D_AXE                  420
 #define IDB_ITEM3D_STONECLUB            421
 #define IDB_ITEM3D_SCREAMERSLICE        422
+#define IDB_ITEM3D_WORMROUND            423
 #define IDB_MISSILE_CLUB_B              440
 #define IDB_MISSILE_CLUB_F              441
 #define IDB_MISSILE_CLUB_S              442
@@ -180,6 +169,22 @@
 #define IDB_DMG_REC_BIG                 487
 #define IDB_INTERFACE_DEAD              488
 #define IDB_INTERFACE_ALIVE             489
+#define IDB_MONSTER_SCREAMER_ATTACK     600
+#define IDB_MONSTER_SCREAMER_FRONT      601
+#define IDB_MONSTER_ROCKPILE_ATTACK     602
+#define IDB_MONSTER_ROCKPILE_FRONT      603
+#define IDB_MONSTER_MUMMY_BACK          604
+#define IDB_MONSTER_MUMMY_FRONT         605
+#define IDB_MONSTER_MUMMY_ATTACK        606
+#define IDB_MONSTER_MUMMY_RIGHT         607
+#define IDB_MONSTER_SKELETON_ATTACK     608
+#define IDB_MONSTER_SKELETON_BACK       609
+#define IDB_MONSTER_SKELETON_FRONT      610
+#define IDB_MONSTER_SKELETON_RIGHT      611
+#define IDB_MONSTER_WORM_ATTACK         612
+#define IDB_MONSTER_WORM_BACK           613
+#define IDB_MONSTER_WORM_FRONT          614
+#define IDB_MONSTER_WORM_RIGHT          615
 #define IDB_BITMAP_E0L                  1001
 #define IDB_BITMAP_E0LF                 1002
 #define IDB_BITMAP_E0R                  1004
@@ -290,7 +295,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        497
+#define _APS_NEXT_RESOURCE_VALUE        502
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

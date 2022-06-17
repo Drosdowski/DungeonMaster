@@ -23,7 +23,9 @@ public:
 		Apple = 29,
 		Corn = 30,
 		Bread = 31,
-		Cheese = 32
+		Cheese = 32,
+		ScreamerSlice = 33,
+		WormRound = 34
 	};
 
 	MiscItemType type;

@@ -579,6 +579,10 @@ CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {
 			bmp = m_pItem3DPic->GetWaterskin(1);
 		else
 			bmp = m_pItem3DPic->GetWaterskin(0);
+	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::ScreamerSlice)
+		bmp = m_pItem3DPic->GetScreamerSlice();
+	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::WormRound)
+		bmp = m_pItem3DPic->GetWormRound();
 	else
 		bmp = NULL;
 
