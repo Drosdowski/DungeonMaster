@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "DM.h"
+#include "CalculationHelper/ZoomBlt.h"
 
 #include "MainFrm.h"
 
@@ -39,8 +40,9 @@ CMainFrame::~CMainFrame()
 
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
-	cs.cx = 652;
-	cs.cy = 450;
+	RECT r = CZoomBlt::ScreenRect();
+	cs.cx = r.right - r.left; //  652;
+	cs.cy = r.bottom - r.top; // 450;
 	cs.style &= ~WS_MAXIMIZEBOX; 
 	cs.style &= ~WS_MINIMIZEBOX; 
 

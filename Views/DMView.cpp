@@ -11,6 +11,8 @@
 #include "ZauberView.h"
 #include "CGroupView.h"
 #include "..\CalculationHelper/CScreenCoords.h"
+#include "..\CalculationHelper/CHelpfulValues.h"
+#include "..\CalculationHelper/ZoomBlt.h"
 #include "..\XMLParser\CDungeonMap.h"
 #include "..\Rucksack.h"
 #include "..\Pictures\CPictures.h"
@@ -19,7 +21,6 @@
 #include "..\Mobs\MobGroups\GrpMonster.h"
 #include "..\Mobs\Held.h"
 #include "..\ColorCursor/ColorCursor.h"
-#include "..\CalculationHelper/CHelpfulValues.h"
 #include "..\SpecialTile/CDoor.h"
 #include "..\SpecialTile\CPit.h"
 #include "..\Items/Item.h"
@@ -702,15 +703,6 @@ void CDMView::WaffenZeichnen(CDC* pDC, CGrpHeld* pGrpHeroes) {
 	tmpdc.DeleteDC();
 }
 
-//void CDMView::DrawBMP(CDC* pDC, CBitmap* pBMP, int posX, int posY) {
-//	CDC tmpdc;
-//	tmpdc.CreateCompatibleDC(pDC);
-//	tmpdc.SelectObject(pBMP);
-//	BITMAP bmpInfo;
-//	pBMP->GetBitmap(&bmpInfo);
-//	pDC->TransparentBlt(posX, posY, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, &tmpdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, SRCCOPY);
-//	DeleteDC(tmpdc);
-//}
 
 void CDMView::FrameZeichnen(CDC* pDC) {
 	ChangeMouseCursor();
@@ -759,12 +751,13 @@ void CDMView::FrameZeichnen(CDC* pDC) {
 
 void CDMView::UpdateGrafik()
 {
+	RECT r = CZoomBlt::ScreenRect();
 	CDC* pDC = GetDC();
 
 	CDC* pDC_ = new CDC();
 	pDC_->CreateCompatibleDC(pDC);
 	CBitmap tmpbmp;
-	tmpbmp.CreateCompatibleBitmap(pDC, 640, 400);
+	tmpbmp.CreateCompatibleBitmap(pDC, r.right-r.left, r.bottom-r.top);
 	pDC_->SelectObject(tmpbmp);
 
 	FrameZeichnen(pDC_);
@@ -788,7 +781,7 @@ void CDMView::UpdateGrafik()
 		// Game frozen
 		;
 
-	pDC->BitBlt(0, 0, 640, 400, pDC_, 0, 0, SRCCOPY);
+	pDC->BitBlt(r.left, r.top, r.right, r.bottom, pDC_, 0, 0, SRCCOPY);
 	delete pDC_;
 	DeleteObject(tmpbmp);
 }

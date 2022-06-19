@@ -5,7 +5,8 @@
 #include "stdafx.h"
 #include <deque>
 #include <typeinfo>
-#include "CalculationHelper/CHelpfulValues.h"
+#include "..\CalculationHelper/CHelpfulValues.h"
+#include "..\CalculationHelper/ZoomBlt.h"
 #include "DmDoc.h"
 #include "Feld.h"
 #include "Items/Item.h"
@@ -363,6 +364,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 	bmp->GetBitmap(&bmpInfo);
 
 	pDC->TransparentBlt(posWall.x, posWall.y, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_VIO);
+	//CZoomBlt::DrawFullTrans(pDC, cdc, posWall.x, posWall.y, bmpInfo.bmWidth, bmpInfo.bmHeight, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_VIO);
 
 	// Deko auf FRONT Wand zeichnen
 	if (bmpDecoFront)
