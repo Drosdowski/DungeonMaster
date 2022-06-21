@@ -672,9 +672,11 @@ void CRaumView::RaumZeichnen(CDC* pDC)
 
 	compCdc.SelectObject(m_pPictures->GetHintergrund());
 
+	//CZoomBlt::DrawFullStd(pDC, &compCdc, 0, 64, MainAreaWidth, 336, 0, 0);
 	pDC->BitBlt(0, 64, MainAreaWidth, 336, &compCdc, 0, 0, SRCCOPY);
 	if (m_bMirror) {
 		pDC->StretchBlt(0, 64, MainAreaWidth, 269, &compCdc, MainAreaWidth, 0, -MainAreaWidth, 269, SRCCOPY);
+		//CZoomBlt::DrawFullStretch(pDC, &compCdc, 0, 64, MainAreaWidth, 269, MainAreaWidth, 0, -MainAreaWidth, 269 );
 	}
 
 	int x = m_pMap->GetHeroes()->GetVector().x;

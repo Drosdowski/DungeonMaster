@@ -753,11 +753,12 @@ void CDMView::UpdateGrafik()
 {
 	RECT r = CZoomBlt::ScreenRect();
 	CDC* pDC = GetDC();
-
+	CBitmap tmpbmp;
+	//tmpbmp.CreateCompatibleBitmap(pDC, r.right - r.left, r.bottom - r.top);
+	tmpbmp.CreateCompatibleBitmap(pDC, 640, 400);
+	
 	CDC* pDC_ = new CDC();
 	pDC_->CreateCompatibleDC(pDC);
-	CBitmap tmpbmp;
-	tmpbmp.CreateCompatibleBitmap(pDC, r.right-r.left, r.bottom-r.top);
 	pDC_->SelectObject(tmpbmp);
 
 	FrameZeichnen(pDC_);
@@ -781,7 +782,7 @@ void CDMView::UpdateGrafik()
 		// Game frozen
 		;
 
-	pDC->BitBlt(r.left, r.top, r.right, r.bottom, pDC_, 0, 0, SRCCOPY);
+	CZoomBlt::DrawFullStretch(pDC, pDC_, 0, 0, 640, 400, 0, 0, 640, 400);
 	delete pDC_;
 	DeleteObject(tmpbmp);
 }
