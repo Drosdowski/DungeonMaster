@@ -142,22 +142,13 @@ int CScreenCoords::CheckHitPortraitHands(CPoint point) {
 	// 3. Hand 144/16 - ...
 	for (int i = 0; i < 4; i++)
 	{
-		if (CheckHitSlot(point, CPoint(8 + 40*i, 18))) {
+		if (CheckHitSlot(point, CPoint(8 + 138*i, 18))) {
 			return 1 + 2 * i;
 		}
-		if (CheckHitSlot(point, CPoint(48 + 40 * i, 18))) {
+		if (CheckHitSlot(point, CPoint(48 + 138 * i, 18))) {
 			return 2 + 2 * i;
 		}
 	}
-	/*
-	int handId = int(point.x / 138);
-	point.x = point.x % 138;
-	if (CheckHitSlot(point, CPoint(8, 18))) {
-		return 1 + 2 * handId;
-	}
-	if (CheckHitSlot(point, CPoint(48, 18))) {
-		return 2 + 2 * handId;
-	}*/
 
 	return 0;
 }
