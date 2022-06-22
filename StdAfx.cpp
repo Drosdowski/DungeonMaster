@@ -10,8 +10,8 @@ bool InRect(CPoint p, int x1, int y1, int x2, int y2)
 	double fx = CZoomBlt::fx() / 2;
 	double fy = CZoomBlt::fy() / 2;
 	x1 *= fx;
-	y1 = y1 * fy;
+	y1 *= fy;
 	x2 *= fx;
-	y2 = y2 * fy;
+	y2 *= fy;
 	return ((x1<=p.x) && (x2>=p.x) && (y1<=p.y) && (y2>=p.y));
 }

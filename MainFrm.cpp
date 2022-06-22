@@ -41,10 +41,10 @@ CMainFrame::~CMainFrame()
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	RECT r = CZoomBlt::ScreenRect();
-	cs.cx = 652;
-	cs.cy = 450;
-	//cs.cx = r.right - r.left; //  652;
-	//cs.cy = r.bottom - r.top; // 450;
+	//cs.cx = 652;
+	//cs.cy = 450;
+	cs.cx = r.right - r.left; //  652;
+	cs.cy = r.bottom - r.top; // 450;
 	cs.style &= ~WS_MAXIMIZEBOX; 
 	cs.style &= ~WS_MINIMIZEBOX; 
 

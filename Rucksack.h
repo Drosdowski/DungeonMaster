@@ -19,7 +19,7 @@ public:
 
 // Implementation
 public:
-	void SetzeModusExtend(int iModusExtend);
+	void SetzeModusExtend(int iModusExtend); // Auf Auge geklickt - Anzeige wechselt!
 	int HoleModusExtend() { return m_iModusExtend; };
 	
 protected:

@@ -45,14 +45,12 @@ RECT CZoomBlt::ScreenRect()
 	return desktop;
 }
 
-int CZoomBlt::fx() {
+double CZoomBlt::fx() {
 	RECT r = ScreenRect();
-	return (640) / origX;
-	//return (r.right - r.left) / origX;
+	return (r.right - r.left) / origX;
 }
-int CZoomBlt::fy() {
+double CZoomBlt::fy() {
 	RECT r = ScreenRect();
-	return (400) / origY;
-	//return (r.bottom - r.top) / origY;
+	return (r.bottom - r.top) / origY;
 }
 
