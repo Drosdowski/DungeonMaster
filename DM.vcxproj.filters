@@ -225,6 +225,9 @@
     <ClCompile Include="CalculationHelper\ZoomBlt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pictures\Creatures\TrolinPic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -443,6 +446,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CalculationHelper\ZoomBlt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\Creatures\TrolinPic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1344,6 +1350,18 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Items3D\Item_3d_WorkRound.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\Trolin_Attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\Trolin_Back.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\Trolin_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\Trolin_Right.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

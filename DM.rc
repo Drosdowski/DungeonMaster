@@ -743,6 +743,14 @@ IDB_MONSTER_WORM_RIGHT  BITMAP                  "res\\Monster\\MagentaWorm_Right
 
 IDB_ITEM3D_WORMROUND    BITMAP                  "res\\Items3D\\Item_3d_WorkRound.bmp"
 
+IDB_MONSTER_TROLIN_ATTACK BITMAP                  "res\\Monster\\Trolin_Attack.bmp"
+
+IDB_MONSTER_TROLIN_BACK BITMAP                  "res\\Monster\\Trolin_Back.bmp"
+
+IDB_MONSTER_TROLIN_FRONT BITMAP                  "res\\Monster\\Trolin_Front.bmp"
+
+IDB_MONSTER_TROLIN_RIGHT BITMAP                  "res\\Monster\\Trolin_Right.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

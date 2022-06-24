@@ -7,6 +7,7 @@
 #include "ScreamerPic.h"
 #include "RockPilePic.h"
 #include "MagentaWormPic.h"
+#include "TrolinPic.h"
 
 CMonsterPic::CMonsterPic(CDC* pDC) : CBasePictures(pDC) {
 	m_pMummyPic = new CMummyPic(pDC);
@@ -14,6 +15,7 @@ CMonsterPic::CMonsterPic(CDC* pDC) : CBasePictures(pDC) {
 	m_pScreamerPic = new CScreamerPic(pDC);
 	m_pRockPilePic = new CRockPilePic(pDC);
 	m_pMagentaWorm = new CMagentaWormPic(pDC);
+	m_pTrolin = new CTrolinPic(pDC);
 }
 
 CMonsterPic::~CMonsterPic() {
@@ -38,6 +40,8 @@ CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
 		return m_pRockPilePic->GetRockPilePic(pMonster->isAttacking());
 	case MonsterTyp::MAGENTA_WORM:
 		return m_pMagentaWorm->GetMagentaWormPic(pMonster->isAttacking());
+	case MonsterTyp::TROLIN:
+		return m_pTrolin->GetTrolinPic(iRicht, pMonster->isAttacking());
 	default:
 		break;
 	}

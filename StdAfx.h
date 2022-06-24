@@ -205,7 +205,8 @@ enum MonsterTyp {
 	ROCKPILE = 7,
 	MUMMY = 10,
 	SKELETON = 12,
-	MAGENTA_WORM = 15
+	MAGENTA_WORM = 15,
+	TROLIN = 16
 };
 
 

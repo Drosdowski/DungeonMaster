@@ -185,6 +185,10 @@
 #define IDB_MONSTER_WORM_BACK           613
 #define IDB_MONSTER_WORM_FRONT          614
 #define IDB_MONSTER_WORM_RIGHT          615
+#define IDB_MONSTER_TROLIN_ATTACK       616
+#define IDB_MONSTER_TROLIN_BACK         617
+#define IDB_MONSTER_TROLIN_FRONT        618
+#define IDB_MONSTER_TROLIN_RIGHT        619
 #define IDB_BITMAP_E0L                  1001
 #define IDB_BITMAP_E0LF                 1002
 #define IDB_BITMAP_E0R                  1004
@@ -295,7 +299,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        502
+#define _APS_NEXT_RESOURCE_VALUE        506
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101
