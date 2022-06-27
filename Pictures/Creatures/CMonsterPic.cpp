@@ -24,6 +24,7 @@ CMonsterPic::~CMonsterPic() {
 	delete m_pScreamerPic;
 	delete m_pRockPilePic;
 	delete m_pMagentaWorm;
+	delete m_pTrolin;
 }
 
 CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {

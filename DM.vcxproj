@@ -131,6 +131,8 @@
   <ItemGroup>
     <ClCompile Include="Consts\MonsterConst.cpp" />
     <ClCompile Include="Consts\AttackConst.cpp" />
+    <ClCompile Include="Items\MovingObject.cpp" />
+    <ClCompile Include="Items\MagicMissile.cpp" />
     <ClCompile Include="Pictures\Creatures\MagentaWormPic.cpp" />
     <ClCompile Include="Pictures\Creatures\TrolinPic.cpp" />
     <ClCompile Include="XMLParser\MonsterInfos.cpp" />
@@ -212,6 +214,8 @@
   <ItemGroup>
     <ClInclude Include="Consts\AttackConst.h" />
     <ClInclude Include="Consts\MonsterConst.h" />
+    <ClInclude Include="Items\MovingObject.h" />
+    <ClInclude Include="Items\MagicMissile.h" />
     <ClInclude Include="Pictures\Creatures\MagentaWormPic.h" />
     <ClInclude Include="Pictures\Creatures\TrolinPic.h" />
     <ClInclude Include="XMLParser\MonsterInfos.h" />

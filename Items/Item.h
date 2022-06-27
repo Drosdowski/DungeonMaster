@@ -1,5 +1,6 @@
 #pragma once
-class CItem
+#include "MovingObject.h"
+class CItem : public CMovingObject
 {
 public:
 	enum ItemType {
@@ -28,11 +29,7 @@ public:
 	virtual ItemGroup GetGroup() { return Other; };
 
 	CItem(int index, ItemType m_itemType);
-
-	bool IsFlying();
-	bool HasMovedThisTick();
-	void ResethasMoved();
-	void ReduceSpeed();
+	
 	bool CheckGroup(int slotId, ItemGroup group);
 	ItemType getItemType() { return m_itemType; }
 	int getIndex() { return m_index; }
@@ -42,11 +39,9 @@ public:
 	virtual int GetOffsetForGroup() { return -1; }
 	virtual double GetWeight() { return -1; }
 
-	VEKTOR m_flyForce;
 
 private:
 	int m_index;
-	bool m_done;
 	ItemType m_itemType;
 };
 

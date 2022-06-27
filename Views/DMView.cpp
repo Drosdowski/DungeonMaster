@@ -26,6 +26,7 @@
 #include "..\Items/Item.h"
 #include "..\Items/CMiscellaneous.h"
 #include "..\Items/WallDecoration.h"
+#include "..\Items\MagicMissile.h"
 #include <cassert>
 
 #ifdef _DEBUG
@@ -165,6 +166,19 @@ void CDMView::ParseClickRunes(CPoint point, CGrpHeld* grpHelden) {
 }
 void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
 	if (CScreenCoords::CheckHitSpell(point)) {
+		// todo: casting!
+		int size = 1;
+		CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+		COMPASS_DIRECTION grpDir = grpHelden->GetDirection();
+		SUBPOS_ABSOLUTE absPos = grpHelden->GetHero(grpHelden->GetActiveWizard())->HoleSubPosition();
+		SUBPOS relPos = CHelpfulValues::GetRelativeSubPosPassive(absPos, grpDir);
+		CMagicMissile* fireball = new CMagicMissile(CMagicMissile::MagicMissileType::Fireball);
+		SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(LINKSFRONT, grpDir);
+		VEKTOR force = CHelpfulValues::MakeVektor(grpDir, size);
+		fireball->m_flyForce = force;
+		
+		delete fireball; // fizzle :)
+
 		m_pZauberView->resetRuneTable();
 	}
 }

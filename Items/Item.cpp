@@ -1,34 +1,12 @@
 #include "stdafx.h"
 #include "Item.h"
 
-CItem::CItem(int index, ItemType type) {
+CItem::CItem(int index, ItemType type) : CMovingObject() {
 	m_index = index;
-	m_done = false;
-	m_flyForce = VEKTOR{ 0,0,0 };
 	m_itemType = type;
 }
 
 
-bool CItem::IsFlying()
-{
-	return (m_flyForce.x != 0 || m_flyForce.y != 0);
-}
-
-void CItem::ReduceSpeed() {
-	if (m_flyForce.x > 0) m_flyForce.x--;
-	if (m_flyForce.y > 0) m_flyForce.y--;
-	if (m_flyForce.x < 0) m_flyForce.x++;
-	if (m_flyForce.y < 0) m_flyForce.y++;
-	m_done = true;
-}
-
-bool CItem::HasMovedThisTick() {
-	return m_done;
-}
-
-void CItem::ResethasMoved() {
-	m_done = false;
-}
 
 bool CItem::CheckGroup(int slotId, ItemGroup group) {
 	if (slotId == 2) return (group == Helmet);
