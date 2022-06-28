@@ -19,5 +19,4 @@ void CMagicMissilePic::InitBitmap() {
 	LoadPic(m_pFireball, IDB_MISSILE_FIREBALL);
 	LoadPic(m_pPoison, IDB_MISSILE_POISON);
 	LoadPic(m_pPoisonBlob, IDB_MISSILE_POISONBLOB);
-
 }

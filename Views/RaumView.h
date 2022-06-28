@@ -11,6 +11,7 @@
 #include "..\XMLParser\ItemInfos.h"
 #include "..\XMLParser\AttackInfos.h"
 #include "..\XMLParser\MonsterInfos.h"
+#include <Items/MagicMissile.h>
 
 /////////////////////////////////////////////////////////////////////////////
 // CRaumView view
@@ -90,6 +91,7 @@ protected:
 
 	VEKTOR MonsterMoveOrAttack(CGrpMonster* pGrpMon);
 	void DrawPile(CDC* pDC, CDC* cdc, int xx, int ebene, SUBPOS_ABSOLUTE SubPos, COMPASS_DIRECTION heroDir, std::deque<CItem*> pile);
+	void DrawMagicMissile(CDC* pDC, CDC* cdc, int xx, int ebene, SUBPOS_ABSOLUTE SubPos, COMPASS_DIRECTION heroDir, std::deque<CMagicMissile*> magicMissile);
 	void DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTION richt, CField* pField);
 	void DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTION richt, CDoor* pDoor);
 	void DrawStairsFront(CDC* pDC, CDC* cdc, int xxx, int ebene, CStairs* pStairs);
@@ -120,6 +122,7 @@ private:
 	CBitmap* GetMiscBitmap(CMiscellaneous* misc);
 	CBitmap* GetWeaponBitmap(CWeapon* weapon, bool inAir);
 	CBitmap* GetClothBitmap(CCloth* cloth, bool inAir);
+	CBitmap* GetMagicMissileBitmap(CMagicMissile::MagicMissileType type);
 
 	void TriggerPassiveActuators(VEKTOR fieldPos, VEKTOR heroPos );
 	void TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator* actuator);

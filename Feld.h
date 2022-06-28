@@ -73,6 +73,7 @@ public:
 	CItem* TakeItem(SUBPOS_ABSOLUTE subPos);
 	std::deque<CItem*> GetItem(SUBPOS_ABSOLUTE index) { return m_pItem[index]; }
 	std::deque<CActuator*> GetActuator(COMPASS_DIRECTION index) { return m_pActuator[index]; }
+	std::deque<CMagicMissile*> GetMagicMissile(SUBPOS_ABSOLUTE index) { return m_pMagicMissiles[index]; }
 
 	CPit* HolePit() { return m_pPit;  }
 	CTeleporter* HoleTeleporter() { return m_pTeleporter; }

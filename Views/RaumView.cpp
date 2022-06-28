@@ -14,6 +14,7 @@
 #include "Items/Cloth.h"
 #include "Items/Weapon.h"
 #include "Items/CActuator.h"
+#include "Items\MagicMissile.h"
 #include "RaumView.h"
 #include "XMLParser\CDungeonMap.h"
 #include "XMLParser\ItemInfos.h"
@@ -504,7 +505,6 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 		else if (floorDeco->GetDecoType() == FloorPuddle) {
 			decoBmp = m_pOrnatePic->GetPuddlePic(ebene, xxx);
 		}
-		//CPoint center = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
 		CPoint center = m_pPressurePadPic->GetPos(xxx, ebene);
 		if (decoBmp && center.x > 0 && center.y > 0) {
 			double faktor = m_pPictures->getFaktor(ebene);
@@ -523,8 +523,7 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 	int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
 	CBitmap* bmp;
 	// TODO - besser als "nur oberstes Malen... "
-	CItem* item = pile.back();
-	CWeapon* weapon = NULL;
+	CItem* item = pile.back();	
 	CItem::ItemType typ = item->getItemType();
 	if (typ == CItem::ItemType::MiscItem) {
 		bmp = GetMiscBitmap((CMiscellaneous*)item);
@@ -559,6 +558,51 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 		}
 
 	}
+}
+
+void CRaumView::DrawMagicMissile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, COMPASS_DIRECTION heroDir, std::deque<CMagicMissile*> magicMissiles) {
+	int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
+	CBitmap* bmp;	
+	CMagicMissile* magicMissile = magicMissiles.back();
+	
+	bmp = GetMagicMissileBitmap(magicMissile->GetType());
+	if (bmp) {
+		// refaktorieren mit Throw... viel DOppelcode!
+		BITMAP bmpInfo;
+		bmp->GetBitmap(&bmpInfo);
+		double faktor = m_pPictures->getFaktor(ebene);
+
+		CPoint floorMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
+		if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) {
+			SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(itemSubPos, heroDir); // todo subpos angleichen
+			if (ebene > 0 || subPos == LINKSFRONT || subPos == RECHTSFRONT)
+			{
+				if (subPos == LINKSFRONT || subPos == RECHTSFRONT)
+				{
+					faktor = m_pPictures->getFaktor(ebene + 1);
+				}
+				CPoint pos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, floorMiddlePos, subPos, faktor, xx, ebene);
+				if (pos.y != 0) {
+					pos.y = 250 - pos.y / 2;
+				}
+				cdc->SelectObject(bmp);
+				DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
+			}
+		}
+
+	}
+}
+
+CBitmap* CRaumView::GetMagicMissileBitmap(CMagicMissile::MagicMissileType type) {
+	if (type == CMagicMissile::MagicMissileType::AntiMagic)
+		return m_pMagicMissilePic->GetAntiMaterial();
+	else if (type == CMagicMissile::MagicMissileType::Fireball)
+		return m_pMagicMissilePic->GetFireball();
+	else if (type == CMagicMissile::MagicMissileType::Poison)
+		return m_pMagicMissilePic->GetPoison();
+	else if (type == CMagicMissile::MagicMissileType::PoisonBlob)
+		return m_pMagicMissilePic->GetPoisonBlob();
+	return NULL;
 }
 
 CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {
@@ -760,6 +804,10 @@ void CRaumView::RaumZeichnen(CDC* pDC)
 						std::deque<CItem*> pile = pField->GetItem((SUBPOS_ABSOLUTE)pos);
 						if (pile.size() > 0) {
 							DrawPile(pDC, &compCdc, xxx, ebene, (SUBPOS_ABSOLUTE)pos, heroDir, pile);
+						}
+						std::deque<CMagicMissile*> magicMissiles = pField->GetMagicMissile((SUBPOS_ABSOLUTE)pos);
+						if (magicMissiles.size() > 0) {
+							DrawMagicMissile(pDC, &compCdc, xxx, ebene, (SUBPOS_ABSOLUTE)pos, heroDir, magicMissiles);
 						}
 					}
 					if (ebene > 0 && xxx > 1)
