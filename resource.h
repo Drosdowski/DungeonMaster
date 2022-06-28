@@ -165,10 +165,26 @@
 #define IDB_MISSILE_STONECLUB_B         476
 #define IDB_MISSILE_STONECLUB_S         477
 #define IDB_MISSILE_STONECLUB_F         478
-#define IDB_DMG_REC_SMALL               486
-#define IDB_DMG_REC_BIG                 487
-#define IDB_INTERFACE_DEAD              488
-#define IDB_INTERFACE_ALIVE             489
+#define IDB_MISSILE_ANTIMAT             479
+#define IDB_MISSILE_FIREBALL            480
+#define IDB_MISSILE_POISON              481
+#define IDB_MISSILE_POISONBLOB          482
+#define IDB_DMG_REC_SMALL               490
+#define IDB_DMG_REC_BIG                 491
+#define IDB_INTERFACE_DEAD              492
+#define IDB_INTERFACE_ALIVE             493
+#define IDB_EXPLODE_ANTIMAT             500
+#define IDB_EXPLODE_FIREBALL            501
+#define IDB_EXPLODE_POISON              502
+#define IDB_ANTIMAT_LIGHT               503
+#define IDB_ANTIMAT_MEDIUM              504
+#define IDB_ANTIMAT_STRONG              505
+#define IDB_FIREBALL_LIGHT              506
+#define IDB_FIREBALL_MEDIUM             507
+#define IDB_FIREBALL_STRONG             508
+#define IDB_POISON_LIGHT                509
+#define IDB_POISON_MEDIUM               510
+#define IDB_POISON_STRONG               511
 #define IDB_MONSTER_SCREAMER_ATTACK     600
 #define IDB_MONSTER_SCREAMER_FRONT      601
 #define IDB_MONSTER_ROCKPILE_ATTACK     602
@@ -299,7 +315,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        506
+#define _APS_NEXT_RESOURCE_VALUE        522
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

@@ -29,6 +29,7 @@ class CWallDecoPic;
 class CTeleportPic;
 class CItem3DPic;
 class CMonsterPic;
+class CMagicMissilePic;
 class CHelpfulValues;
 class CDecorationType;
 class CItem;
@@ -85,6 +86,7 @@ protected:
 	CWallDecoPic* m_pWallDecoPic;
 	CMonsterPic* m_pMonsterPic;
 	CItem3DPic* m_pItem3DPic;
+	CMagicMissilePic* m_pMagicMissilePic;
 
 	VEKTOR MonsterMoveOrAttack(CGrpMonster* pGrpMon);
 	void DrawPile(CDC* pDC, CDC* cdc, int xx, int ebene, SUBPOS_ABSOLUTE SubPos, COMPASS_DIRECTION heroDir, std::deque<CItem*> pile);

@@ -102,6 +102,10 @@ CField::~CField()
 			else
 				delete item;
 		}
+		for (CMagicMissile* missile : m_pMagicMissiles[i]) {
+			if (missile)
+				delete missile;
+		}
 		for (CActuator* actuator : m_pActuator[i]) {
 			delete actuator;
 		}
@@ -159,6 +163,10 @@ void CField::SetTypeTeleporter(CTeleporter* teleItem) {
 void CField::ThrowItem(CItem* item, SUBPOS_ABSOLUTE index, VEKTOR force) {
 	item->m_flyForce = force;
 	m_pItem[index].push_back(item);
+}
+
+void CField::CastMissile(CMagicMissile* missile, SUBPOS_ABSOLUTE index) {
+	m_pMagicMissiles[index].push_back(missile);
 }
 
 void CField::PutItem(CItem* item, SUBPOS_ABSOLUTE index) {

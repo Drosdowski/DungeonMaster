@@ -234,6 +234,9 @@
     <ClCompile Include="Items\MagicMissile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pictures\MagicMissilePic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -461,6 +464,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Items\MagicMissile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\MagicMissilePic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1374,6 +1380,54 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Monster\Trolin_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Spells\Explosion_Antimaterial.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Spells\Explosion_Fireball.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Spells\Explosion_Poison.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Spells\Light_Antimaterial.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Spells\Light_Fireball.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Spells\Light_Poison.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Spells\Medium_Antimaterial.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Spells\Medium_Fireball.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Spells\Medium_Poison.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Spells\Missile_Antimaterial.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Spells\Missile_Fireball.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Spells\Missile_Poison.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Spells\MissilePoisonBlob.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Spells\Strong_Antimaterial.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Spells\Strong_Fireball.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Spells\Strong_Poison.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

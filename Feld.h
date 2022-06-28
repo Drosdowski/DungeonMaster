@@ -28,6 +28,7 @@ class CDoor;
 class CPit;
 class CStairs;
 class CTeleporter;
+class CMagicMissile;
 class CField
 {
 protected:
@@ -67,6 +68,7 @@ public:
 	void PutWeapon(CWeapon* item, SUBPOS_ABSOLUTE index);
 	void PutCloth(CCloth* item, SUBPOS_ABSOLUTE index);
 	void ThrowItem(CItem* item, SUBPOS_ABSOLUTE index, VEKTOR force);
+	void CastMissile(CMagicMissile* missile, SUBPOS_ABSOLUTE index);
 	//void PutItem(CItem* item, SUBPOS subPos);
 	CItem* TakeItem(SUBPOS_ABSOLUTE subPos);
 	std::deque<CItem*> GetItem(SUBPOS_ABSOLUTE index) { return m_pItem[index]; }
@@ -99,7 +101,7 @@ protected:
 	CFloorDecoration* m_floorOrnateType;
 	CWallDecoration* m_wallOrnateType[4];
 	std::deque<CItem*> m_pItem[4];
-
+	std::deque<CMagicMissile*> m_pMagicMissiles[4];
 	std::deque <CActuator*> m_pActuator[4];
 
 	CDoor* m_pDoor = NULL;

@@ -751,6 +751,38 @@ IDB_MONSTER_TROLIN_FRONT BITMAP                  "res\\Monster\\Trolin_Front.bmp
 
 IDB_MONSTER_TROLIN_RIGHT BITMAP                  "res\\Monster\\Trolin_Right.bmp"
 
+IDB_EXPLODE_ANTIMAT     BITMAP                  "res\\Spells\\Explosion_Antimaterial.bmp"
+
+IDB_EXPLODE_FIREBALL    BITMAP                  "res\\Spells\\Explosion_Fireball.bmp"
+
+IDB_EXPLODE_POISON      BITMAP                  "res\\Spells\\Explosion_Poison.bmp"
+
+IDB_ANTIMAT_LIGHT       BITMAP                  "res\\Spells\\Light_Antimaterial.bmp"
+
+IDB_FIREBALL_LIGHT      BITMAP                  "res\\Spells\\Light_Fireball.bmp"
+
+IDB_POISON_LIGHT        BITMAP                  "res\\Spells\\Light_Poison.bmp"
+
+IDB_ANTIMAT_MEDIUM      BITMAP                  "res\\Spells\\Medium_Antimaterial.bmp"
+
+IDB_FIREBALL_MEDIUM     BITMAP                  "res\\Spells\\Medium_Fireball.bmp"
+
+IDB_POISON_MEDIUM       BITMAP                  "res\\Spells\\Medium_Poison.bmp"
+
+IDB_MISSILE_ANTIMAT     BITMAP                  "res\\Spells\\Missile_Antimaterial.bmp"
+
+IDB_MISSILE_FIREBALL    BITMAP                  "res\\Spells\\Missile_Fireball.bmp"
+
+IDB_MISSILE_POISON      BITMAP                  "res\\Spells\\Missile_Poison.bmp"
+
+IDB_MISSILE_POISONBLOB  BITMAP                  "res\\Spells\\MissilePoisonBlob.bmp"
+
+IDB_ANTIMAT_STRONG      BITMAP                  "res\\Spells\\Strong_Antimaterial.bmp"
+
+IDB_FIREBALL_STRONG     BITMAP                  "res\\Spells\\Strong_Fireball.bmp"
+
+IDB_POISON_STRONG       BITMAP                  "res\\Spells\\Strong_Poison.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

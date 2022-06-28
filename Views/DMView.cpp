@@ -177,7 +177,7 @@ void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
 		VEKTOR force = CHelpfulValues::MakeVektor(grpDir, size);
 		fireball->m_flyForce = force;
 		
-		delete fireball; // fizzle :)
+		m_pRaumView->GetMap()->GetField(grpHelden->GetPos())->CastMissile(fireball, itemRegionReal);
 
 		m_pZauberView->resetRuneTable();
 	}

@@ -34,6 +34,7 @@
 #include "Pictures\CWallDecoPic.h"
 #include "Pictures\Creatures\CMonsterPic.h"
 #include "Pictures\Items3D\CItem3DPic.h"
+#include "Pictures\MagicMissilePic.h"
 #include "Mobs\Monster.h"
 #include "Mobs\MobGroups\GrpMonster.h"
 #include "Mobs\MobGroups\GrpHeld.h"
@@ -76,6 +77,7 @@ CRaumView::CRaumView()
 	m_pWallDecoPic = NULL;
 	m_pMonsterPic = NULL;
 	m_pItem3DPic = NULL;
+	m_pMagicMissilePic = NULL;
 }
 
 CRaumView::~CRaumView()
@@ -94,6 +96,7 @@ CRaumView::~CRaumView()
 	delete m_pWallDecoPic;
 	delete m_pMonsterPic;
 	delete m_pItem3DPic;
+	delete m_pMagicMissilePic;
 	delete m_pMap;
 }
 
@@ -1187,9 +1190,12 @@ void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
 	m_pWallDecoPic = new CWallDecoPic(pDC);
 	m_pMonsterPic = new CMonsterPic(pDC);
 	m_pItem3DPic = new CItem3DPic(pDC);
+	m_pMagicMissilePic = new CMagicMissilePic(pDC);
+	
 	m_pItemInfos = new CItemInfos();
 	m_pAttackInfos = new CAttackInfos();
 	m_pMonsterInfos = new CMonsterInfos();
+
 	m_pMap = new CDungeonMap(m_pItemInfos, m_pMonsterInfos);
 }
 
