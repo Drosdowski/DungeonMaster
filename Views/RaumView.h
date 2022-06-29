@@ -71,8 +71,8 @@ public:
 
 	virtual ~CRaumView();
 
-	CField* ChangeFieldWithTeleporter(CField* pField, CItem* pItem, SUBPOS_ABSOLUTE &subPos);
-	CField* ChangeFieldWithStairs(CField* pField, CItem* pItem, SUBPOS_ABSOLUTE& subPos);
+	CField* ChangeFieldWithTeleporter(CField* pField, SUBPOS_ABSOLUTE &subPos);
+	CField* ChangeFieldWithStairs(CField* pField, CMovingObject* pItem, SUBPOS_ABSOLUTE& subPos);
 
 protected:
 	bool m_bMirror;
@@ -117,8 +117,9 @@ private:
 	CHelpfulValues* m_values;
 	void MoveMonsters(VEKTOR heroPos);
 	void MoveDoors(VEKTOR heroPos);
-	void PrepareMoveItems(VEKTOR heroPos);
+	void PrepareMoveObjects(VEKTOR heroPos);
 	void MoveItems(VEKTOR heroPos);
+	void MoveMagicMissiles(VEKTOR heroPos);
 	CBitmap* GetMiscBitmap(CMiscellaneous* misc);
 	CBitmap* GetWeaponBitmap(CWeapon* weapon, bool inAir);
 	CBitmap* GetClothBitmap(CCloth* cloth, bool inAir);

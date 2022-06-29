@@ -941,7 +941,7 @@ void CRaumView::MoveDoors(VEKTOR heroPos) {
 	}
 }
 
-void CRaumView::PrepareMoveItems(VEKTOR heroPos) {
+void CRaumView::PrepareMoveObjects(VEKTOR heroPos) {
 	CField* field = m_pMap->GetField(heroPos);
 	// Flag setzen, Item muss sich ggf. noch bewegen
 	for (int s = 0; s < 4; s++) {
@@ -951,8 +951,53 @@ void CRaumView::PrepareMoveItems(VEKTOR heroPos) {
 			CItem* topItem = pile.back();
 			topItem->ResethasMoved();
 		}
+		std::deque<CMagicMissile*> magicMissiles = field->GetMagicMissile(posAbs);
+		if (!magicMissiles.empty()) {
+			CMagicMissile* topItem = magicMissiles.back();
+			topItem->ResethasMoved();
+		}
 	}
 }
+
+void CRaumView::MoveMagicMissiles(VEKTOR heroPos) {
+	CField* field = m_pMap->GetField(heroPos);
+	// todo refaktorieren mit moveItems
+	for (int s = 0; s < 4; s++) {
+		SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
+		std::deque<CMagicMissile*> magicMissiles = field->GetMagicMissile(posAbs);
+		if (!magicMissiles.empty()) {
+			CMagicMissile* topMissile = magicMissiles.back(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Items je Feld
+			if (!topMissile->HasMovedThisTick()) {
+				SUBPOS_ABSOLUTE newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, topMissile->m_flyForce);
+				if (newPos == OUTSIDE) {
+					// Feld verlassen
+					CField* newField = m_pMap->GetField(heroPos.x + sign(topMissile->m_flyForce.x), heroPos.y + sign(topMissile->m_flyForce.y), heroPos.z);
+					if (!newField->Blocked()) {
+						topMissile = field->TakeMissile(posAbs);
+						newField = ChangeFieldWithTeleporter(newField, posAbs);
+						newField = ChangeFieldWithStairs(newField, topMissile, posAbs);
+						// westlich von west ist ost => anders rum subpos suchen
+						newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topMissile->m_flyForce.x, -topMissile->m_flyForce.y, 0 });
+						
+						newField->CastMissile(topMissile, newPos);
+					}
+					else {
+						// todo: bumm !!
+						magicMissiles.pop_back();
+						delete topMissile;
+					}
+				}
+				else {
+					topMissile = field->TakeMissile(posAbs);
+					topMissile->ReduceSpeed();
+					field->CastMissile(topMissile, newPos);
+				}
+			}
+		}
+	}
+
+}
+
 
 void CRaumView::MoveItems(VEKTOR heroPos) {
 	CField* field = m_pMap->GetField(heroPos);
@@ -971,7 +1016,7 @@ void CRaumView::MoveItems(VEKTOR heroPos) {
 					CField* newField = m_pMap->GetField(heroPos.x + sign(topItem->m_flyForce.x), heroPos.y + sign(topItem->m_flyForce.y), heroPos.z);
 					if (!newField->Blocked()) {
 						topItem = field->TakeItem(posAbs);
-						newField = ChangeFieldWithTeleporter(newField, topItem, posAbs);
+						newField = ChangeFieldWithTeleporter(newField, posAbs);
 						newField = ChangeFieldWithStairs(newField, topItem, posAbs);
 						// westlich von west ist ost => anders rum subpos suchen
 						if (topItem->IsFlying())
@@ -995,7 +1040,7 @@ void CRaumView::MoveItems(VEKTOR heroPos) {
 	}
 }
 
-CField* CRaumView::ChangeFieldWithTeleporter(CField* pField, CItem* pItem, SUBPOS_ABSOLUTE& subPos) {
+CField* CRaumView::ChangeFieldWithTeleporter(CField* pField, SUBPOS_ABSOLUTE& subPos) {
 	CTeleporter* tp = pField->HoleTeleporter();
 
 	if (tp) {
@@ -1032,7 +1077,7 @@ CField* CRaumView::ChangeFieldWithTeleporter(CField* pField, CItem* pItem, SUBPO
 	}
 	return pField;
 }
-CField* CRaumView::ChangeFieldWithStairs(CField* pField, CItem* pItem, SUBPOS_ABSOLUTE& subPos) {
+CField* CRaumView::ChangeFieldWithStairs(CField* pField, CMovingObject* pItem, SUBPOS_ABSOLUTE& subPos) {
 	CStairs* stair = pField->HoleStairs();
 	if (stair) {
 		// In Treppe: Flug zu Ende
@@ -1069,8 +1114,9 @@ void CRaumView::MoveAnythingNearby() {
 			VEKTOR heroPos = { i, j, held.z };
 			MoveMonsters(heroPos);
 			MoveDoors(heroPos);
-			PrepareMoveItems(heroPos);
+			PrepareMoveObjects(heroPos);
 			MoveItems(heroPos);
+			MoveMagicMissiles(heroPos);
 		}
 	}
 }

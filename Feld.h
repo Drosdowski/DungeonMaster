@@ -71,6 +71,7 @@ public:
 	void CastMissile(CMagicMissile* missile, SUBPOS_ABSOLUTE index);
 	//void PutItem(CItem* item, SUBPOS subPos);
 	CItem* TakeItem(SUBPOS_ABSOLUTE subPos);
+	CMagicMissile* TakeMissile(SUBPOS_ABSOLUTE subPos);
 	std::deque<CItem*> GetItem(SUBPOS_ABSOLUTE index) { return m_pItem[index]; }
 	std::deque<CActuator*> GetActuator(COMPASS_DIRECTION index) { return m_pActuator[index]; }
 	std::deque<CMagicMissile*> GetMagicMissile(SUBPOS_ABSOLUTE index) { return m_pMagicMissiles[index]; }

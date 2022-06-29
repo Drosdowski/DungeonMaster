@@ -210,6 +210,18 @@ CItem* CField::TakeItem(SUBPOS_ABSOLUTE subPos) {
 		return NULL;
 }
 
+CMagicMissile* CField::TakeMissile(SUBPOS_ABSOLUTE subPos) {
+	if (m_pMagicMissiles[subPos].size() > 0)
+	{
+		CMagicMissile* topMissile = m_pMagicMissiles[subPos].back();
+		m_pMagicMissiles[subPos].pop_back();
+
+		return topMissile;
+	}
+	else
+		return NULL;
+}
+
 int CField::GetWeight(VEKTOR heroPos) {
 	int weight = 0;
 	if (GetMonsterGroup() != NULL) weight = 100; // max
