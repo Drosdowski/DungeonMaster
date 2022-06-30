@@ -17,19 +17,20 @@ public:
 	
 // Attribute
 public:
-	int m_iRuneTable;
 // Operationen
 	int getRuneTableId() { return m_iRuneTable; }
 	void resetRuneTable();
 	void storeRune(int index);
+	int* getSpell() { return m_spell; }
 
 // Implementierung
 public:
 	void Zeichnen(CPictures* pPictures, CDC* pDC, int iActiveWizard);
 
 private:
-	int* spell = NULL;
-	void nextRuneTable(); 
+	int* m_spell = NULL;
+	int m_iRuneTable;
+	void nextRuneTable();
 };
 
 /////////////////////////////////////////////////////////////////////////////

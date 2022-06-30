@@ -123,7 +123,7 @@ private:
 	CBitmap* GetMiscBitmap(CMiscellaneous* misc);
 	CBitmap* GetWeaponBitmap(CWeapon* weapon, bool inAir);
 	CBitmap* GetClothBitmap(CCloth* cloth, bool inAir);
-	CBitmap* GetMagicMissileBitmap(CMagicMissile::MagicMissileType type);
+	CBitmap* GetMagicMissileBitmap(CMagicMissile::MagicMissileType type, bool exploding);
 
 	void TriggerPassiveActuators(VEKTOR fieldPos, VEKTOR heroPos );
 	void TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator* actuator);

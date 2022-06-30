@@ -21,13 +21,13 @@ CZauberView::CZauberView()
 
 CZauberView::~CZauberView()
 {
-	if (spell != NULL) delete spell;
+	if (m_spell != NULL) delete m_spell;
 }
 
 void CZauberView::resetRuneTable() {
 	m_iRuneTable = 1;
-	if (spell != NULL) delete spell;
-	spell = new int[5];
+	if (m_spell != NULL) delete m_spell;
+	m_spell = new int[5];
 }
 
 void CZauberView::Zeichnen(CPictures* pPictures, CDC * pDC, int iActiveWizard)
@@ -42,8 +42,8 @@ void CZauberView::Zeichnen(CPictures* pPictures, CDC * pDC, int iActiveWizard)
 	pDC->BitBlt(466,97,174,59,&tmpdc,0,0,SRCCOPY);
 
 	for (int i = 1; i < 5; i++) {
-		if (spell[i] != 0) {
-			int runeId = spell[i];
+		if (m_spell[i] != 0) {
+			int runeId = m_spell[i];
 			tmpdc.SelectObject(pPictures->GetRunes(i));
 			// 174 / 6 = 29
 			pDC->BitBlt(469 + (i - 1) * 28, 124, 24, 21, &tmpdc, 4 + (runeId - 1) * 28, 3, SRCCOPY);
@@ -54,10 +54,10 @@ void CZauberView::Zeichnen(CPictures* pPictures, CDC * pDC, int iActiveWizard)
 }
 
 void CZauberView::storeRune(int index) {
-	spell[m_iRuneTable] = index; 
+	m_spell[m_iRuneTable] = index;
 	if (m_iRuneTable == 1) {
 		for (int i = 2; i < 5; i++)
-			spell[i] = 0;
+			m_spell[i] = 0;
 	}
 	nextRuneTable();
 };

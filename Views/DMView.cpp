@@ -166,21 +166,28 @@ void CDMView::ParseClickRunes(CPoint point, CGrpHeld* grpHelden) {
 }
 void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
 	if (CScreenCoords::CheckHitSpell(point)) {
-		// todo: casting!
-		int size = 3;
-		CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
-		COMPASS_DIRECTION grpDir = grpHelden->GetDirection();
-		SUBPOS_ABSOLUTE absPos = grpHelden->GetHero(grpHelden->GetActiveWizard())->HoleSubPosition();
-		SUBPOS relPos = CHelpfulValues::GetRelativeSubPosPassive(absPos, grpDir);
-		CMagicMissile* fireball = new CMagicMissile(CMagicMissile::MagicMissileType::Fireball);
-		SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(LINKSFRONT, grpDir);
-		VEKTOR force = CHelpfulValues::MakeVektor(grpDir, size);
-		fireball->m_flyForce = force;
-		
-		m_pRaumView->GetMap()->GetField(grpHelden->GetPos())->CastMissile(fireball, itemRegionReal);
+		int* spell = m_pZauberView->getSpell();
+		if (true) {
 
+		}
+		CastFireball(spell[0]);
 		m_pZauberView->resetRuneTable();
 	}
+}
+
+void CDMView::CastFireball(int size) {
+	int size = 3;
+	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+	COMPASS_DIRECTION grpDir = grpHelden->GetDirection();
+	SUBPOS_ABSOLUTE absPos = grpHelden->GetHero(grpHelden->GetActiveWizard())->HoleSubPosition();
+	SUBPOS relPos = CHelpfulValues::GetRelativeSubPosPassive(absPos, grpDir);
+	CMagicMissile* fireball = new CMagicMissile(CMagicMissile::MagicMissileType::Fireball);
+	SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(LINKSFRONT, grpDir);
+	VEKTOR force = CHelpfulValues::MakeVektor(grpDir, size);
+	fireball->m_flyForce = force;
+
+	m_pRaumView->GetMap()->GetField(grpHelden->GetPos())->CastMissile(fireball, itemRegionReal);
+
 }
 
 

@@ -565,9 +565,10 @@ void CRaumView::DrawMagicMissile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_
 	CBitmap* bmp;	
 	CMagicMissile* magicMissile = magicMissiles.back();
 	
-	bmp = GetMagicMissileBitmap(magicMissile->GetType());
+	bmp = GetMagicMissileBitmap(magicMissile->GetType(), magicMissile->IsExploding());
 	if (bmp) {
-		// refaktorieren mit Throw... viel DOppelcode!
+		// todo refaktorieren mit Throw... viel DOppelcode!
+		// todo exploding in mitte?
 		BITMAP bmpInfo;
 		bmp->GetBitmap(&bmpInfo);
 		double faktor = m_pPictures->getFaktor(ebene);
@@ -593,15 +594,15 @@ void CRaumView::DrawMagicMissile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_
 	}
 }
 
-CBitmap* CRaumView::GetMagicMissileBitmap(CMagicMissile::MagicMissileType type) {
+CBitmap* CRaumView::GetMagicMissileBitmap(CMagicMissile::MagicMissileType type, bool exploding) {
 	if (type == CMagicMissile::MagicMissileType::AntiMagic)
-		return m_pMagicMissilePic->GetAntiMaterial();
+		return m_pMagicMissilePic->GetAntiMaterial(exploding);
 	else if (type == CMagicMissile::MagicMissileType::Fireball)
-		return m_pMagicMissilePic->GetFireball();
+		return m_pMagicMissilePic->GetFireball(exploding);
 	else if (type == CMagicMissile::MagicMissileType::Poison)
-		return m_pMagicMissilePic->GetPoison();
+		return m_pMagicMissilePic->GetPoison(exploding);
 	else if (type == CMagicMissile::MagicMissileType::PoisonBlob)
-		return m_pMagicMissilePic->GetPoisonBlob();
+		return m_pMagicMissilePic->GetPoisonBlob(exploding);
 	return NULL;
 }
 

@@ -102,6 +102,8 @@ protected:
 	void InvokeRemoteActuator(CActuator* activeActuator);
 	void ChangeMouseCursor();
 
+	void CastFireball(int size);
+
 };
 
 #ifndef _DEBUG  // debug version in DMView.cpp
