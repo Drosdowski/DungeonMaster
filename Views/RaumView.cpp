@@ -1111,12 +1111,12 @@ void CRaumView::MoveAnythingNearby() {
 	VEKTOR held = m_pMap->GetHeroes()->GetPos();
 	for (int i = max(held.x - 4, 0); i < min(held.x + 4, m_pMap->GetMaxWidth(held.z)); i++) {
 		for (int j = max(held.y - 4, 0); j < min(held.y + 4, m_pMap->GetMaxHeight(held.z)); j++) {
-			VEKTOR heroPos = { i, j, held.z };
-			MoveMonsters(heroPos);
-			MoveDoors(heroPos);
-			PrepareMoveObjects(heroPos);
-			MoveItems(heroPos);
-			MoveMagicMissiles(heroPos);
+			VEKTOR pos = { i, j, held.z };
+			MoveMonsters(pos);
+			MoveDoors(pos);
+			PrepareMoveObjects(pos);
+			MoveItems(pos);
+			MoveMagicMissiles(pos);
 		}
 	}
 }

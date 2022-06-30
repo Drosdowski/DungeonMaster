@@ -167,7 +167,7 @@ void CDMView::ParseClickRunes(CPoint point, CGrpHeld* grpHelden) {
 void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
 	if (CScreenCoords::CheckHitSpell(point)) {
 		// todo: casting!
-		int size = 1;
+		int size = 3;
 		CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 		COMPASS_DIRECTION grpDir = grpHelden->GetDirection();
 		SUBPOS_ABSOLUTE absPos = grpHelden->GetHero(grpHelden->GetActiveWizard())->HoleSubPosition();

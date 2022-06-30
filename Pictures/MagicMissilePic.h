@@ -6,10 +6,10 @@ public:
 	CMagicMissilePic(CDC* pDC);
 	~CMagicMissilePic();
 
-	CBitmap* GetFireball() { return m_pFireball; }
-	CBitmap* GetPoison() { return m_pPoison; }
-	CBitmap* GetPoisonBlob() { return m_pPoisonBlob; }
-	CBitmap* GetAntiMaterial() { return m_pAntiMaterial; }
+	CBitmap* GetFireball(bool isExploding) { return isExploding ? m_pExplodeFireball : m_pFireball; }
+	CBitmap* GetPoison(bool isExploding) { return isExploding ? m_pExplodePoison : m_pPoison; }
+	CBitmap* GetPoisonBlob(bool isExploding) { return isExploding ? m_pExplodePoison : m_pPoisonBlob; }
+	CBitmap* GetAntiMaterial(bool isExploding) { return isExploding ? m_pExplodeAntimat : m_pAntiMaterial; }
 
 private:
 	void InitBitmap();
@@ -19,5 +19,8 @@ private:
 	CBitmap* m_pPoisonBlob;
 	CBitmap* m_pAntiMaterial;
 
+	CBitmap* m_pExplodeFireball;
+	CBitmap* m_pExplodePoison;
+	CBitmap* m_pExplodeAntimat;
 };
 
