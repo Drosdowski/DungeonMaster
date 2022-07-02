@@ -49,6 +49,7 @@ public:
 	COLORREF Farbe() { return m_Farbe[m_iIndex]; }
 	double MaxLoad();
 	double CurLoad();
+	int Armour();
 
 
 	CRucksack* GetRucksack() { return m_pRucksack; }

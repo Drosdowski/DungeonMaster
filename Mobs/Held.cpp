@@ -321,6 +321,18 @@ double CHeld::CurLoad() {
 	return sum;
 }
 
+int CHeld::Armour() {
+	int ac = 0;
+	for (int i = 0; i < 30; i++)
+	{
+		CItem* item = m_itemCarrying[i];
+		if (item)
+			ac += item->GetArmourClass();
+	}
+	return ac;
+}
+
+
 double CHeld::round1(double value) {
 	return floor(value * 10.0 + .5) / 10.0;
 }

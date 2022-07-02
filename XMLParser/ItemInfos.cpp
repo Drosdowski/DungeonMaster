@@ -109,8 +109,12 @@ void CItemInfos::ParseClothItems(TiXmlElement* rootNode) {
 			parentElement->QueryDoubleAttribute("weight", &attribute.weight[0]);
 			parentElement->QueryIntAttribute("armor", &attribute.armor);
 			parentElement->QueryIntAttribute("res", &attribute.res);
-			// todo mehr Attribute lesen
-
+			parentElement->QueryIntAttribute("dexterityplus", &attribute.dexterityplus);
+			parentElement->QueryIntAttribute("strengthplus", &attribute.strengthplus);
+			parentElement->QueryIntAttribute("wisdomplus", &attribute.wisdomplus);
+			parentElement->QueryIntAttribute("antifire", &attribute.antifire);
+			parentElement->QueryIntAttribute("speed", &attribute.speed);
+			
 			clothInfos[index] = attribute;
 		}
 		parentElement = parentElement->NextSiblingElement();

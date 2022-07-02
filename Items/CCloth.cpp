@@ -71,3 +71,7 @@ CItem::ItemGroup CCloth::GetGroup() {
 double CCloth::GetWeight() {
 	return m_attribute.fixAttributes.weight[0];
 }
+
+int CCloth::GetArmorClass() {
+	return m_attribute.fixAttributes.armor;
+}

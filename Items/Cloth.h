@@ -15,7 +15,7 @@ public:
 	int GetOffsetForGroup();
 	ItemGroup GetGroup();
 	double GetWeight();
-
+	int GetArmorClass();
 
 private:
 	CClothAttributes m_attribute;
