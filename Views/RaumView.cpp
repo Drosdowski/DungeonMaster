@@ -983,9 +983,7 @@ void CRaumView::MoveMagicMissiles(VEKTOR heroPos) {
 						newField->CastMissile(topMissile, newPos);
 					}
 					else {
-						// todo: bumm !!
-						magicMissiles.pop_back();
-						delete topMissile;
+						topMissile->Explode();
 					}
 				}
 				else {

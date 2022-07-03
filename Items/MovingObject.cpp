@@ -6,6 +6,11 @@ CMovingObject::CMovingObject() {
 	m_flyForce = VEKTOR{ 0,0,0 };
 }
 
+CMovingObject::~CMovingObject() {
+	m_done = true;
+}
+
+
 bool CMovingObject::IsFlying()
 {
 	return (m_flyForce.x != 0 || m_flyForce.y != 0);

@@ -3,6 +3,7 @@ class CMovingObject
 {
 public:
 	CMovingObject();
+	~CMovingObject();
 
 	bool HasMovedThisTick();
 	void ResethasMoved();

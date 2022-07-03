@@ -167,16 +167,15 @@ void CDMView::ParseClickRunes(CPoint point, CGrpHeld* grpHelden) {
 void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
 	if (CScreenCoords::CheckHitSpell(point)) {
 		int* spell = m_pZauberView->getSpell();
-		if (true) {
-
+		if (spell[2] == 4 && spell[3] == 4) {
+			CastFireball(spell[1]);
 		}
-		CastFireball(spell[0]);
 		m_pZauberView->resetRuneTable();
 	}
 }
 
 void CDMView::CastFireball(int size) {
-	int size = 3;
+	
 	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 	COMPASS_DIRECTION grpDir = grpHelden->GetDirection();
 	SUBPOS_ABSOLUTE absPos = grpHelden->GetHero(grpHelden->GetActiveWizard())->HoleSubPosition();

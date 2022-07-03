@@ -72,7 +72,7 @@ CHeld* CGrpHeld::InitHeld(const int nr)
 
 		m_iAnzHelden++;
 		if (m_iAnzHelden == 1)
-			m_iAktiverZauberer = 1;
+			m_iAktiverZauberer = nr;
 
 		return pHeld;
 	}
