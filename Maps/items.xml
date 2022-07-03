@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- http://dmweb.free.fr/?q=node/259 attack(dmg, dist, shootdmg)
-	 http://dmweb.free.fr/?q=node/691
-	 http://dmweb.free.fr/?q=node/690 => exp, def, stamina, chance to hit-->
+	 http://dmweb.free.fr/?q=node/691 => exp, def, stamina, chance to hit
+	 http://dmweb.free.fr/?q=node/690 -->
 <items>
 	<weapons>
 		<item index="0"
@@ -836,6 +836,7 @@
 			weight="0.3"
 			armor="16"
 			res="2"
+			speed="1"
 		>
 		</item>
 		<item index="57"

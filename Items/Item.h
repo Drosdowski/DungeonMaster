@@ -38,7 +38,7 @@ public:
 	virtual int GetSheetForGroup() { return -1; }
 	virtual int GetOffsetForGroup() { return -1; }
 	virtual double GetWeight() { return -1; }
-
+	virtual int GetArmourClass() { return 0; }
 
 private:
 	int m_index;

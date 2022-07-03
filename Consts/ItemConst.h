@@ -15,5 +15,6 @@ public:
 	int antimagic = 0;
 	int regen = 0;
 	int freeze = 0;
+	int speed = 0;
 };
 

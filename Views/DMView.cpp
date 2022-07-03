@@ -175,7 +175,7 @@ void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
 }
 
 void CDMView::CastFireball(int size) {
-	
+	int size = 3;
 	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 	COMPASS_DIRECTION grpDir = grpHelden->GetDirection();
 	SUBPOS_ABSOLUTE absPos = grpHelden->GetHero(grpHelden->GetActiveWizard())->HoleSubPosition();
