@@ -696,18 +696,21 @@ CBitmap* CRaumView::GetWeaponBitmap(CWeapon* weapon, bool inAir) {
 
 
 void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, CDC* cdc, COLORREF col) {
-	int rechterRand = (int)(w * 2 * faktor + x);
-	int reducedWidth = w;
-	if (rechterRand > MainAreaWidth)
+	int realWidth = w * 2 * faktor;
+	int realHeight = h * 2 * faktor;
+	int rechterRand = realWidth + x;
+	int reducedWidth = realWidth;
+	if (rechterRand > MainAreaWidth * 2)
 	{
-		reducedWidth -= (int)((rechterRand - MainAreaWidth) / (2 * faktor));
+		int zuvielrechts = rechterRand - MainAreaWidth * 2;
+		reducedWidth -= (int)((zuvielrechts));
 	}
 
 	if (reducedWidth > 0)
 	{
 		pDC->TransparentBlt(x, y,
-			(int)(reducedWidth * 2 * faktor), (int)(h * 2 * faktor),
-			cdc, 0, 0, reducedWidth, h, col);
+			reducedWidth, realHeight,
+			cdc, 0, 0, w, h, col);
 	}
 }
 
@@ -981,7 +984,10 @@ void CRaumView::MoveMagicMissiles(VEKTOR heroPos) {
 				if (newPos == OUTSIDE) {
 					// Feld verlassen
 					CField* newField = m_pMap->GetField(heroPos.x + sign(topMissile->m_flyForce.x), heroPos.y + sign(topMissile->m_flyForce.y), heroPos.z);
-					if (!newField->Blocked()) {
+					if (newField == field) {
+						// todo !! xxx
+					}
+					else if (!newField->Blocked()) {
 						topMissile = field->TakeMissile(posAbs);
 						newField = ChangeFieldWithTeleporter(newField, posAbs);
 						newField = ChangeFieldWithStairs(newField, topMissile, posAbs);
@@ -992,7 +998,7 @@ void CRaumView::MoveMagicMissiles(VEKTOR heroPos) {
 					}
 					else {
 						topMissile->Explode();
-					}
+					}	
 				}
 				else {
 					topMissile = field->TakeMissile(posAbs);
