@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "CScreenCoords.h"
+#include <CalculationHelper/ZoomBlt.h>
 
 CScreenCoords::CScreenCoords() {
 }
@@ -71,7 +72,8 @@ int CScreenCoords::CheckHitActiveWizard(CPoint point, int activeWizardID) {
 	if (InRect(point, 465, 80, 640, 95))
 	{
 		// TODO umschreiben aqf CRect
-		int relX = point.x - 466;
+		int fx = CZoomBlt::fx() / 2;
+		int relX = (point.x / fx) - 466;
 		switch (activeWizardID)
 		{
 		case 1:
@@ -126,9 +128,9 @@ int CScreenCoords::CheckHitAction(CPoint point, int phase)
 
 int CScreenCoords::CheckHitHeroes(CPoint point) {
 	if (InRect(point, 0, 0, 138, 15)) return 1;
-	if (InRect(point, 138, 0, 138*2, 15)) return 1;
-	if (InRect(point, 138*2, 0, 138*3, 15)) return 1;
-	if (InRect(point, 138*3, 0, 138*4, 15)) return 1;
+	if (InRect(point, 138, 0, 138*2, 15)) return 2;
+	if (InRect(point, 138*2, 0, 138*3, 15)) return 3;
+	if (InRect(point, 138*3, 0, 138*4, 15)) return 4;
 	return 0;
 }
 

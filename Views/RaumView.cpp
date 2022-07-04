@@ -583,8 +583,16 @@ void CRaumView::DrawMagicMissile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_
 					faktor = m_pPictures->getFaktor(ebene + 1);
 				}
 				CPoint pos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, floorMiddlePos, subPos, faktor, xx, ebene);
-				if (pos.y != 0) {
-					pos.y = 250 - pos.y / 2;
+				if (!magicMissile->IsExploding()) {
+					if (pos.y != 0) {
+						pos.y = 250 - pos.y / 2;
+					}
+				}
+				else {
+					CPoint posWall = m_pWallPic->GetWallPos(xxx, ebene);
+					CPoint posMitte = m_pWallPic->GetCenterFromFrontWall(xxx, ebene);	
+					pos.x = posWall.x + posMitte.x - bmpInfo.bmWidth * faktor;
+					pos.y = posWall.y + posMitte.y - bmpInfo.bmHeight * faktor;
 				}
 				cdc->SelectObject(bmp);
 				DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);

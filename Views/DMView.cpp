@@ -167,25 +167,26 @@ void CDMView::ParseClickRunes(CPoint point, CGrpHeld* grpHelden) {
 void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
 	if (CScreenCoords::CheckHitSpell(point)) {
 		int* spell = m_pZauberView->getSpell();
-		if (spell[2] == 4 && spell[3] == 4) {
-			CastFireball(spell[1]);
-		}
+		if (spell[2] == 4 && spell[3] == 4 && spell[4] == 0) {
+			CastMagicMissile(CMagicMissile::MagicMissileType::Fireball, spell[1]);
+		} else if (spell[2] == 3 && spell[3] == 1 && spell[4] == 0)
+			CastMagicMissile(CMagicMissile::MagicMissileType::Poison, spell[1]);
 		m_pZauberView->resetRuneTable();
 	}
 }
 
-void CDMView::CastFireball(int size) {
-	int size = 3;
+
+void CDMView::CastMagicMissile(CMagicMissile::MagicMissileType missileType, int size) {
 	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 	COMPASS_DIRECTION grpDir = grpHelden->GetDirection();
 	SUBPOS_ABSOLUTE absPos = grpHelden->GetHero(grpHelden->GetActiveWizard())->HoleSubPosition();
 	SUBPOS relPos = CHelpfulValues::GetRelativeSubPosPassive(absPos, grpDir);
-	CMagicMissile* fireball = new CMagicMissile(CMagicMissile::MagicMissileType::Fireball);
-	SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(LINKSFRONT, grpDir);
+	CMagicMissile* magicMissile = new CMagicMissile(missileType);
+	SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(relPos, grpDir);
 	VEKTOR force = CHelpfulValues::MakeVektor(grpDir, size);
-	fireball->m_flyForce = force;
+	magicMissile->m_flyForce = force;
 
-	m_pRaumView->GetMap()->GetField(grpHelden->GetPos())->CastMissile(fireball, itemRegionReal);
+	m_pRaumView->GetMap()->GetField(grpHelden->GetPos())->CastMissile(magicMissile, itemRegionReal);
 
 }
 
@@ -490,6 +491,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 			// Unterscheiden: Anklicken oder werfen?
 			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
 			if (FeldVorHeld) {
+				ParseClickDoorButton(point, FeldVorHeld);
 				if (FeldVorHeld->Blocked()) {
 					COMPASS_DIRECTION dir = CHelpfulValues::OppositeDirection(grpHelden->GetDirection());
 					std::deque<CActuator*> actuators = (FeldVorHeld->GetActuator(dir));
@@ -500,7 +502,6 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 							FeldVorHeld->RotateActuators(dir);
 					}
 					ParseClickFountain(point, FeldVorHeld, dir);
-					ParseClickDoorButton(point, FeldVorHeld);
 
 				}
 				else {

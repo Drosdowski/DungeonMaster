@@ -10,6 +10,8 @@
 #endif // _MSC_VER >= 1000
 
 #include <deque>
+#include "..\Items\MagicMissile.h";
+
 
 class CActuator;
 class CDMDoc;
@@ -20,7 +22,6 @@ class CRaumView;
 class CGroupView;
 class CZauberView;
 class CPictures;
-
 class CDMView : public CView
 {
 protected: // create from serialization only
@@ -102,7 +103,8 @@ protected:
 	void InvokeRemoteActuator(CActuator* activeActuator);
 	void ChangeMouseCursor();
 
-	void CastFireball(int size);
+	// Spells
+	void CastMagicMissile(CMagicMissile::MagicMissileType missileType, int size);
 
 };
 
