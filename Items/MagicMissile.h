@@ -20,7 +20,7 @@ public:
 	MagicMissileType GetType() { return m_type; }
 	SpellSize GetSize() { (SpellSize)(int)(m_size / 2); }
 	bool IsExploding() { return m_isExloding; }
-	int GetStrength() { m_size; } // Strength für Schaden / Bildgröße -> nicht für Weite!
+	int GetStrength() { return m_size; } // Strength für Schaden / Bildgröße -> nicht für Weite!
 	void SetStrengh(int size) { m_size = size; }
 	void DecreaseStrength() { m_size--; }
 	void Explode() { m_flyForce = VEKTOR{ 0,0,0 }; m_isExloding = true; }

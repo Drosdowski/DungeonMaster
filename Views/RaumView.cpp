@@ -984,7 +984,20 @@ void CRaumView::MoveMagicMissiles(VEKTOR heroPos) {
 				if (newPos == OUTSIDE) {
 					// Feld verlassen
 					CField* newField = m_pMap->GetField(heroPos.x + sign(topMissile->m_flyForce.x), heroPos.y + sign(topMissile->m_flyForce.y), heroPos.z);
-					if (newField == field) {
+					if (topMissile->IsExploding() &&  newField == field) {
+						if (topMissile->GetType() == CMagicMissile::MagicMissileType::Poison) {
+							// Giftwolke verschwindet langsam
+							if (topMissile->GetStrength() > 1)
+								topMissile->DecreaseStrength();
+							else {
+								magicMissiles.pop_back(); // Bumm - Weg!
+								delete topMissile;
+							}
+						}
+						else {
+							magicMissiles.pop_back(); // Bumm - Weg!
+							delete topMissile;
+						}
 						// todo !! xxx
 					}
 					else if (!newField->Blocked()) {

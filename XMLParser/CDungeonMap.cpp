@@ -17,7 +17,7 @@ CDungeonMap::CDungeonMap(CItemInfos* pItemInfos, CMonsterInfos* pMonsterInfos)
 	VEKTOR v{ 0,0,0 };
 
 	m_pEdgeWall = new CField(v, FeldTyp::WALL);
-	m_pItemInfos = pItemInfos; // todo memory leak ohne delete?
+	m_pItemInfos = pItemInfos; 
 	m_pMonsterInfos = pMonsterInfos;
 	LoadMap();
 	m_pGrpHelden = new CGrpHeld(m_start, m_startRicht);
