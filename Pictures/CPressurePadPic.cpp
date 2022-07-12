@@ -45,7 +45,7 @@ CPoint CPressurePadPic::GetCeilingPos(int x, int ebene) {
 
 	switch (ebene) {
 	case 0:
-		middle.y = 64; break;
+		middle.y = 68; break;
 	case 1:
 		middle.y = 82; break;
 	case 2:

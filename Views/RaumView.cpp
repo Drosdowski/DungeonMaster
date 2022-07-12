@@ -700,9 +700,9 @@ void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, 
 	int realHeight = h * 2 * faktor;
 	int rechterRand = realWidth + x;
 	int reducedWidth = realWidth;
-	if (rechterRand > MainAreaWidth * 2)
+	if (rechterRand > MainAreaWidth)
 	{
-		int zuvielrechts = rechterRand - MainAreaWidth * 2;
+		int zuvielrechts = rechterRand - MainAreaWidth;
 		reducedWidth -= (int)((zuvielrechts));
 	}
 
