@@ -76,14 +76,18 @@ void CStairsPic::InitStairs() {
 
 CBitmap* CStairsPic::GetStairUpFrontPic(int xx, int ebene) {
 
-	if (xx == 2) return m_pStairsUpLeft[ebene];
-	if (xx == 3) return m_pStairsUpRight[ebene];
+	if (ebene > 0) {
+		if (xx == 2) return m_pStairsUpLeft[ebene];
+		if (xx == 3) return m_pStairsUpRight[ebene];
+	}
 	if (xx == 4) return m_pStairsUpFront[ebene];
 	return NULL;
 }
 CBitmap* CStairsPic::GetStairDownFrontPic(int xx, int ebene) {
-	if (xx == 2) return m_pStairsDownLeft[ebene];
-	if (xx == 3) return m_pStairsDownRight[ebene];
+	if (ebene > 0) {
+		if (xx == 2) return m_pStairsDownLeft[ebene];
+		if (xx == 3) return m_pStairsDownRight[ebene];
+	}
 	if (xx == 4) return m_pStairsDownFront[ebene];
 	return NULL;
 }

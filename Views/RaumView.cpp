@@ -431,7 +431,8 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 				int decoPosY = (int)(posWall.y + centerSideWall.y - bmpDecoInfo.bmHeight * faktor);
 				isBigContainer = ((graphicTypeSide == SquareAlcove ||
 					graphicTypeSide == ArchedAlcove ||
-					graphicTypeSide == ViAltar));
+					graphicTypeSide == ViAltar ||
+					graphicTypeSide == Fountain));
 				if (isBigContainer)
 					decoPosY += (int)(bmpDecoInfo.bmHeight * faktor / 2);
 				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
