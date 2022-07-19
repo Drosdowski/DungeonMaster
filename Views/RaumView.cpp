@@ -573,9 +573,9 @@ void CRaumView::DrawMagicMissile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_
 		BITMAP bmpInfo;
 		bmp->GetBitmap(&bmpInfo);
 		double faktor = m_pPictures->getFaktor(ebene);
-
+		
 		CPoint floorMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
-		if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) {
+		if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) { // todo refaktor: inView()
 			SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(itemSubPos, heroDir); // todo subpos angleichen
 			if (ebene > 0 || subPos == LINKSFRONT || subPos == RECHTSFRONT)
 			{
@@ -584,6 +584,12 @@ void CRaumView::DrawMagicMissile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_
 					faktor = m_pPictures->getFaktor(ebene + 1);
 				}
 				CPoint pos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, floorMiddlePos, subPos, faktor, xx, ebene);
+				
+				for (int aebene = 0; aebene <= 4; aebene++) {
+					CPoint xPos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, m_pItem3DPic->GetFloorMiddle(xxx, aebene), subPos, faktor, xx, aebene);
+					pDC->Ellipse(xPos.x - 3, xPos.y - 3, xPos.x + 3, xPos.y + 3);
+				}
+				
 				if (!magicMissile->IsExploding()) {
 					if (pos.y != 0) {
 						pos.y = 250 - pos.y / 2;
@@ -982,26 +988,25 @@ void CRaumView::MoveMagicMissiles(VEKTOR heroPos) {
 			CMagicMissile* topMissile = magicMissiles.back(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Items je Feld
 			if (!topMissile->HasMovedThisTick()) {
 				SUBPOS_ABSOLUTE newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, topMissile->m_flyForce);
-				if (newPos == OUTSIDE) {
-					// Feld verlassen
-					CField* newField = m_pMap->GetField(heroPos.x + sign(topMissile->m_flyForce.x), heroPos.y + sign(topMissile->m_flyForce.y), heroPos.z);
-					if (topMissile->IsExploding() &&  newField == field) {
-						if (topMissile->GetType() == CMagicMissile::MagicMissileType::Poison) {
-							// Giftwolke verschwindet langsam
-							if (topMissile->GetStrength() > 1)
-								topMissile->DecreaseStrength();
-							else {
-								magicMissiles.pop_back(); // Bumm - Weg!
-								delete topMissile;
-							}
-						}
+				if (topMissile->IsExploding() && newPos == posAbs) {
+					if (topMissile->GetType() == CMagicMissile::MagicMissileType::Poison) {
+						// Giftwolke verschwindet langsam
+						if (topMissile->GetStrength() > 1)
+							topMissile->DecreaseStrength();
 						else {
 							magicMissiles.pop_back(); // Bumm - Weg!
 							delete topMissile;
 						}
-						// todo !! xxx
 					}
-					else if (!newField->Blocked()) {
+					else {
+						magicMissiles.pop_back(); // Bumm - Weg!
+						delete topMissile;
+					}
+				} else if (newPos == OUTSIDE) {
+					// Feld verlassen
+					CField* newField = m_pMap->GetField(heroPos.x + sign(topMissile->m_flyForce.x), heroPos.y + sign(topMissile->m_flyForce.y), heroPos.z);
+					
+					if (!newField->Blocked()) {
 						topMissile = field->TakeMissile(posAbs);
 						newField = ChangeFieldWithTeleporter(newField, posAbs);
 						newField = ChangeFieldWithStairs(newField, topMissile, posAbs);

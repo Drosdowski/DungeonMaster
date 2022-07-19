@@ -35,6 +35,9 @@ VEKTOR CHelpfulValues::MakeVektor(COMPASS_DIRECTION direction, int force) {
 SUBPOS_ABSOLUTE CHelpfulValues::FindNextSubposWithoutFieldChange(SUBPOS_ABSOLUTE posAbs, VEKTOR force) {
 	int xV = force.x;
 	int yV = force.y;
+
+	if (xV == 0 && yV == 0) return posAbs;
+
 	// Annahme: nur einer ist gesetzt!
 	switch (posAbs) {
 	case NORTHWEST:
