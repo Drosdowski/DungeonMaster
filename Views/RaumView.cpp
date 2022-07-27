@@ -1007,13 +1007,21 @@ void CRaumView::MoveMagicMissiles(VEKTOR heroPos) {
 					CField* newField = m_pMap->GetField(heroPos.x + sign(topMissile->m_flyForce.x), heroPos.y + sign(topMissile->m_flyForce.y), heroPos.z);
 					
 					if (!newField->Blocked()) {
-						topMissile = field->TakeMissile(posAbs);
-						newField = ChangeFieldWithTeleporter(newField, posAbs);
-						newField = ChangeFieldWithStairs(newField, topMissile, posAbs);
-						// westlich von west ist ost => anders rum subpos suchen
-						newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topMissile->m_flyForce.x, -topMissile->m_flyForce.y, 0 });
-						
-						newField->CastMissile(topMissile, newPos);
+						CGrpMonster* grpHittedMonster = newField->GetMonsterGroup();
+						if (grpHittedMonster) {
+							grpHittedMonster->DoDamage(topMissile->GetStrength(), heroPos, true);
+							topMissile->Explode();
+						}
+						else {
+							// todo kann auch spieler treffen!
+							topMissile = field->TakeMissile(posAbs);
+							newField = ChangeFieldWithTeleporter(newField, posAbs);
+							newField = ChangeFieldWithStairs(newField, topMissile, posAbs);
+							// westlich von west ist ost => anders rum subpos suchen
+							newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topMissile->m_flyForce.x, -topMissile->m_flyForce.y, 0 });
+
+							newField->CastMissile(topMissile, newPos);
+						}
 					}
 					else {
 						topMissile->Explode();
