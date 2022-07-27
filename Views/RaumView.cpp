@@ -994,12 +994,12 @@ void CRaumView::MoveMagicMissiles(VEKTOR heroPos) {
 						if (topMissile->GetStrength() > 1)
 							topMissile->DecreaseStrength();
 						else {
-							magicMissiles.pop_back(); // Bumm - Weg!
+							field->TakeMissile(posAbs); // out of energy, gone
 							delete topMissile;
 						}
 					}
 					else {
-						magicMissiles.pop_back(); // Bumm - Weg!
+						field->TakeMissile(posAbs);
 						delete topMissile;
 					}
 				} else if (newPos == OUTSIDE) {
@@ -1021,8 +1021,13 @@ void CRaumView::MoveMagicMissiles(VEKTOR heroPos) {
 				}
 				else {
 					topMissile = field->TakeMissile(posAbs);
-					topMissile->ReduceSpeed();
-					field->CastMissile(topMissile, newPos);
+					if (topMissile->IsFlying()) {
+						topMissile->ReduceSpeed();
+						field->CastMissile(topMissile, newPos);
+					}
+					else {
+						delete topMissile;
+					}
 				}
 			}
 		}
