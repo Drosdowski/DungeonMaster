@@ -783,6 +783,8 @@ IDB_FIREBALL_STRONG     BITMAP                  "res\\Spells\\Strong_Fireball.bm
 
 IDB_POISON_STRONG       BITMAP                  "res\\Spells\\Strong_Poison.bmp"
 
+IDB_EXPLODE_DUST        BITMAP                  "C:\\Users\\micha\\source\\repos\\DungeonMaster\\res\\Spells\\Explosion_Dust.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

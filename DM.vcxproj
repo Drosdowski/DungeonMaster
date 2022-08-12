@@ -407,6 +407,7 @@
     <Image Include="res\P.bmp" />
     <Image Include="res\Runes4.bmp" />
     <Image Include="res\Spells\Explosion_Antimaterial.bmp" />
+    <Image Include="res\Spells\Explosion_Dust.bmp" />
     <Image Include="res\Spells\Explosion_Fireball.bmp" />
     <Image Include="res\Spells\Explosion_Poison.bmp" />
     <Image Include="res\Spells\Light_Antimaterial.bmp" />

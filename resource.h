@@ -185,6 +185,8 @@
 #define IDB_POISON_LIGHT                509
 #define IDB_POISON_MEDIUM               510
 #define IDB_POISON_STRONG               511
+#define IDB_EXPLODEDUST                 522
+#define IDB_EXPLODE_DUST                522
 #define IDB_MONSTER_SCREAMER_ATTACK     600
 #define IDB_MONSTER_SCREAMER_FRONT      601
 #define IDB_MONSTER_ROCKPILE_ATTACK     602
@@ -315,7 +317,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        522
+#define _APS_NEXT_RESOURCE_VALUE        524
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

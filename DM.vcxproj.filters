@@ -1430,6 +1430,9 @@
     <Image Include="res\Spells\Strong_Poison.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Spells\Explosion_Dust.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
