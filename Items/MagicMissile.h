@@ -7,7 +7,8 @@ public:
 		Fireball = 0,
 		Poison = 1,
 		PoisonBlob = 2,
-		AntiMagic = 3
+		AntiMagic = 3,
+		Dust = 4
 	};
 	enum SpellSize {
 		Light = 0,

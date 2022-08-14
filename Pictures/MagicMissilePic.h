@@ -10,6 +10,7 @@ public:
 	CBitmap* GetPoison(bool isExploding) { return isExploding ? m_pExplodePoison : m_pPoison; }
 	CBitmap* GetPoisonBlob(bool isExploding) { return isExploding ? m_pExplodePoison : m_pPoisonBlob; }
 	CBitmap* GetAntiMaterial(bool isExploding) { return isExploding ? m_pExplodeAntimat : m_pAntiMaterial; }
+	CBitmap* GetDust() { return m_pExplodeDust; }
 
 private:
 	void InitBitmap();
@@ -22,5 +23,6 @@ private:
 	CBitmap* m_pExplodeFireball;
 	CBitmap* m_pExplodePoison;
 	CBitmap* m_pExplodeAntimat;
+	CBitmap* m_pExplodeDust;
 };
 

@@ -16,7 +16,7 @@ CMagicMissilePic ::~CMagicMissilePic() {
 	delete m_pExplodeFireball;
 	delete m_pExplodePoison;
 	delete m_pExplodeAntimat;
-
+	delete m_pExplodeDust;
 }
 
 void CMagicMissilePic::InitBitmap() {
@@ -28,5 +28,5 @@ void CMagicMissilePic::InitBitmap() {
 	LoadPic(m_pExplodeAntimat, IDB_EXPLODE_ANTIMAT);
 	LoadPic(m_pExplodeFireball, IDB_EXPLODE_FIREBALL);
 	LoadPic(m_pExplodePoison, IDB_EXPLODE_POISON);
-
+	LoadPic(m_pExplodeDust, IDB_EXPLODE_DUST);
 }

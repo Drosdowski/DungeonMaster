@@ -989,8 +989,8 @@ void CRaumView::MoveMagicMissiles(VEKTOR heroPos) {
 			if (!topMissile->HasMovedThisTick()) {
 				SUBPOS_ABSOLUTE newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, topMissile->m_flyForce);
 				if (topMissile->IsExploding() && newPos == posAbs) {
-					if (topMissile->GetType() == CMagicMissile::MagicMissileType::Poison) {
-						// Giftwolke verschwindet langsam
+					if (topMissile->GetType() == CMagicMissile::MagicMissileType::Poison || topMissile->GetType() == CMagicMissile::MagicMissileType::Dust) {
+						// Gift- und Staubwolke verschwinden langsam
 						if (topMissile->GetStrength() > 1)
 							topMissile->DecreaseStrength();
 						else {
