@@ -20,6 +20,7 @@ public:
 	COMPASS_DIRECTION GetDirection() { return m_chrDirection; }
 	bool isAttacking() { return m_attacking; }
 	bool IsHero() {	return m_isHero; }
+	bool isAlive() { return m_HP.Aktuell > 0; }
 
 // Operationen
 public:

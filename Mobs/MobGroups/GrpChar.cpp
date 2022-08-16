@@ -47,7 +47,7 @@ int CGrpChar::InReihe(int byte)
 	for (int i = 1; i < 5;i++)
 	{
 		if ((m_pMember[i] != NULL) && (CHelpfulValues::GetRelativeSubPosPassive(m_pMember[i]->HoleSubPosition(), m_grpDirection) & byte) > 0)
-			if (m_pMember[i]->Hp().Aktuell > 0)
+			if (m_pMember[i]->isAlive())
 				iAnz++;
 	}
 	return iAnz;
@@ -55,7 +55,7 @@ int CGrpChar::InReihe(int byte)
 
 void CGrpChar::Kollision(int wunschRichtung) {
 	for (int i = 1; i <= 4; i++)
-		if ((m_pMember[i]) && (m_pMember[i]->Hp().Aktuell > 0))
+		if ((m_pMember[i]) && (m_pMember[i]->isAlive() > 0))
 		{
 			if (CharCollision(i, wunschRichtung))
 				m_pMember[i]->AddDmg(2);
@@ -87,7 +87,7 @@ bool CGrpChar::CharCollision(int index, int wunschRichtung) {
 
 void CGrpChar::FallingDamage() {
 	for (int i = 1; i <= 4; i++)
-		if ((m_pMember[i]) && (m_pMember[i]->Hp().Aktuell > 0))
+		if ((m_pMember[i]) && (m_pMember[i]->isAlive()))
 			m_pMember[i]->AddDmg(25);
 }
 
@@ -96,14 +96,14 @@ void CGrpChar::DoDamage(int dmg, VEKTOR hisPos, bool areaDmg) {
 	if (areaDmg) {
 		for (int dmgTgt = 1; dmgTgt <= 4; dmgTgt++) {
 			victim = m_pMember[dmgTgt];
-			if (victim && (victim->Hp().Aktuell > 0)) {
+			if (victim && (victim->isAlive())) {
 				victim->AddDmg(dmg); // Schaden aufsummieren, Abrechnung folgt im Altern.
 			}
 		}
 	}
 	else {
 		victim = NearestTarget(hisPos);
-		if (victim && (victim->Hp().Aktuell > 0)) {
+		if (victim && (victim->isAlive())) {
 			victim->AddDmg(dmg);
 		}
 	}
@@ -116,7 +116,7 @@ CCharacter* CGrpChar::NearestTarget(VEKTOR hisPos) {
 	CCharacter* nearestTarget = NULL;
 	for (int i = 1; i < 5; i++) {
 		CCharacter* pChar = m_pMember[i];
-		if (pChar && pChar->Hp().Aktuell > 0) {
+		if (pChar && pChar->isAlive()) {
 			if (pChar->InFrontOfOpponent(GetPos(), hisPos, emptyNorthRow(), emptyEastRow(), emptySouthRow(), emptyWestRow()))
 				return pChar;
 		}
@@ -235,7 +235,7 @@ void CGrpChar::SetNewCharOnNextFreePos(int nr) {
 
 bool CGrpChar::emptyNorthRow() {
 	for (int i = 1; i < 5; i++) {
-		if (m_pMember[i] && m_pMember[i]->Hp().Aktuell > 0) {
+		if (m_pMember[i] && m_pMember[i]->isAlive()) {
 			SUBPOS_ABSOLUTE pos = m_pMember[i]->HoleSubPosition();
 			if (pos == NORTHEAST || pos == NORTHWEST) return false;
 		}
@@ -244,7 +244,7 @@ bool CGrpChar::emptyNorthRow() {
 }
 bool CGrpChar::emptySouthRow() {
 	for (int i = 1; i < 5; i++) {
-		if (m_pMember[i] && m_pMember[i]->Hp().Aktuell > 0) {
+		if (m_pMember[i] && m_pMember[i]->isAlive()) {
 			SUBPOS_ABSOLUTE pos = m_pMember[i]->HoleSubPosition();
 			if (pos == SOUTHEAST || pos == SOUTHWEST) return false;
 		}
@@ -253,7 +253,7 @@ bool CGrpChar::emptySouthRow() {
 }
 bool CGrpChar::emptyEastRow() {
 	for (int i = 1; i < 5; i++) {
-		if (m_pMember[i] && m_pMember[i]->Hp().Aktuell > 0) {
+		if (m_pMember[i] && m_pMember[i]->isAlive()) {
 			SUBPOS_ABSOLUTE pos = m_pMember[i]->HoleSubPosition();
 			if (pos == SOUTHEAST || pos == NORTHEAST) return false;
 		}
@@ -262,7 +262,7 @@ bool CGrpChar::emptyEastRow() {
 }
 bool CGrpChar::emptyWestRow() {
 	for (int i = 1; i < 5; i++) {
-		if (m_pMember[i] && m_pMember[i]->Hp().Aktuell > 0) {
+		if (m_pMember[i] && m_pMember[i]->isAlive()) {
 			SUBPOS_ABSOLUTE pos = m_pMember[i]->HoleSubPosition();
 			if (pos == NORTHWEST || pos == SOUTHWEST) return false;
 		}

@@ -454,7 +454,7 @@ void CRaumView::DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS
 }
 
 void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTION richt, CMonster* pMonster) {
-	if (pMonster && pMonster->Hp().Aktuell > 0) // todo staubwolke hier berücksichtigen
+	if (pMonster && pMonster->isAlive()) // todo staubwolke hier berücksichtigen
 	{
 		CBitmap* bmp = m_pMonsterPic->GetBitmap(pMonster, richt);
 		if (bmp == NULL) return; // todo passiert, wenn Monster nicht da sind

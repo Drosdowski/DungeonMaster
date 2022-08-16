@@ -20,7 +20,7 @@ void CGroupView::GroupZeichnen(CDC* pDC, CPictures* pPictures, DMMode iModus, CG
 
 		if (pHeroToDraw != NULL)
 		{
-			if (pHeroToDraw->Hp().Aktuell <= 0)
+			if (!pHeroToDraw->isAlive())
 				pPictures->KnochenZeichnen(pDC, i);
 			else
 			{

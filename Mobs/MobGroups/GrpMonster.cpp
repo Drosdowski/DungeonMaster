@@ -301,7 +301,7 @@ void CGrpMonster::TurnToHero(VEKTOR heroPos) {
 
 void CGrpMonster::Laufen(VEKTOR WunschPos) {
 	for (int i = 1; i <= 4; i++)
-		if ((m_pMember[i]) && (m_pMember[i]->Hp().Aktuell > 0))
+		if ((m_pMember[i]) && (m_pMember[i]->isAlive()))
 		{
 			m_pMember[i]->MoveDone();
 		}

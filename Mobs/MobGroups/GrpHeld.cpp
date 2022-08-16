@@ -113,7 +113,7 @@ void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpMonster* pVictims, CAttac
 		if (pVictims) {
 			CHeld* pHero = (CHeld*)m_pMember[m_iHeroForAction];
 			if (pHero) {
-				if (pHero->Hp().Aktuell > 0) {
+				if (pHero->isAlive()) {
 					CItem* item = pHero->GetItemCarrying(1);
 					VEKTOR myPos = GetVector();
 					CWeapon* weapon = NULL;
@@ -168,7 +168,7 @@ CHeld* CGrpHeld::ClosestHeroTo(CMonster* monster) {
 
 		if (m_pMember[i] != NULL)
 		{
-			if (m_pMember[i]->Hp().Aktuell <= 0)
+			if (m_pMember[i]->isAlive())
 				return (CHeld*)m_pMember[i];
 		}
 	}
@@ -294,7 +294,7 @@ void CGrpHeld::Laufen(VEKTOR WunschPos) {
 	for (int i = 1; i <= 4; i++)
 	{
 		CHeld* pHero = (CHeld*)m_pMember[i];
-		if (pHero && (pHero->Hp().Aktuell > 0))
+		if (pHero && (pHero->isAlive()))
 		{
 			pHero->WerteTemporaerAendern(0, -1, 0);
 			pHero->MoveDone();
