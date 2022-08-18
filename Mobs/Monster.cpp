@@ -35,14 +35,13 @@ CMonster::~CMonster()
 
 bool CMonster::Altern()
 {
-	bool alive = CCharacter::Altern();
 	if (m_iReady > 0) {
 		m_iReady--;
 	}
 
 	// erstmal konstant, später abhängig 
 	// von max-Werten 
-	if (alive)
+	if (isAlive())
 	{
 		if (m_iReceivedDmg > 0) {
 			// damage
@@ -57,10 +56,12 @@ bool CMonster::Altern()
 		if (m_attacking) {
 			EndAttack();
 		}
+		return true;
 	}
-	return alive;
+	else {
+		return false;
+	}
 }
-
 
 
 
@@ -84,3 +85,15 @@ int CMonster::CalcDmg(int ID) {
 	return rand() % m_attributes.monsterInfo.attack_power;
 }
 
+void CMonster::ReceiveDamage(int dmg) {
+	if (m_HP.Aktuell > 0) {
+		m_HP.Aktuell -= dmg;
+		if (!isAlive()) {
+			Die();
+		}
+	}
+}
+
+void CMonster::Die() {
+	m_iDustCloudSize = m_attributes.monsterInfo.size;
+}

@@ -21,6 +21,7 @@ public:
 	bool isAttacking() { return m_attacking; }
 	bool IsHero() {	return m_isHero; }
 	bool isAlive() { return m_HP.Aktuell > 0; }
+	bool isVanishing() { return m_iDustCloudSize > 0; }
 
 // Operationen
 public:
@@ -32,7 +33,7 @@ public:
 
 // Implementierung
 public:
-	virtual bool Altern();
+	virtual bool Altern() { return isAlive(); }
 	virtual SUBPOS_ABSOLUTE HoleSubPosition() { return m_subPosition;};
 	virtual void MoveDone() {};
 	bool InFrontOfOpponent(VEKTOR myPos, VEKTOR hisPos, bool emptyNorthRow, bool emptyEastRow, bool emptySouthRow, bool emptyWestRow);
@@ -57,6 +58,7 @@ protected:
 // TODO	int m_SpeedDelay; // 0 = Schnellstes (Zyklen bis zur Aktion)
 	int m_dealingDmg; // AKTIV - tatsächlicher aktueller Schaden, zur Anzeige.
 	int m_dealingDmgToDraw;
+	int m_iDustCloudSize;
 	bool m_attacking = false;
 	CDC* m_pDC;
 

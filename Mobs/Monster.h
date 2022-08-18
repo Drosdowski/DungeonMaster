@@ -27,12 +27,13 @@ public:
 	bool IstBereit() { return m_iReady == 0; };
 	void AttackDone() { m_iReady = m_attributes.monsterInfo.attack_dur; } 
 	void MoveDone() { m_iReady = m_attributes.monsterInfo.move_dur; } 
-	void ReceiveDamage(int dmg) { m_HP.Aktuell -= dmg; }
+	void ReceiveDamage(int dmg);
 	int getDealingDmg() { return m_dealingDmg; }
 	MonsterTyp getType() { return m_iTyp; }
 	void setType(MonsterTyp typ) { m_iTyp = typ; }
 	bool TurnTo(COMPASS_DIRECTION iDirection);
 	int CalcDmg(int ID);
+	void Die();
 
 	int transCol;
 

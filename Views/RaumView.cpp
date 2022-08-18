@@ -454,32 +454,45 @@ void CRaumView::DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS
 }
 
 void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTION richt, CMonster* pMonster) {
-	if (pMonster && pMonster->isAlive()) // todo staubwolke hier berücksichtigen
-	{
-		CBitmap* bmp = m_pMonsterPic->GetBitmap(pMonster, richt);
-		if (bmp == NULL) return; // todo passiert, wenn Monster nicht da sind
-		BITMAP bmpInfo, bmpInfo2;
+	if (!pMonster) return;
 
+	CBitmap* bmp;
+	BITMAP bmpInfo, bmpInfo2;
+	double faktor = m_pPictures->getFaktor(ebene);
+	CPoint p = m_pWallPic->GetWallPos(xxx, ebene);
+	// monster pos an wallpos orientieren
+	CBitmap* bmpWall = m_pWallPic->GetWallPic(xxx, ebene, false);
+	bmpWall->GetBitmap(&bmpInfo2);
+	p.x += bmpInfo2.bmWidth;
+	p.y += bmpInfo2.bmHeight * 2; // = untere Kante des Monsters!
+	SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(pMonster->HoleSubPosition(), richt);
+
+	if (pMonster->isAlive()) // todo staubwolke hier berücksichtigen
+	{
+		bmp = m_pMonsterPic->GetBitmap(pMonster, richt);
+		if (bmp == NULL) return; // todo passiert, wenn Monster nicht da sind
+
+	}
+	else if (pMonster->isVanishing()) {
+		bmp = m_pMagicMissilePic->GetDust();
+	}
+	else {
+		bmp = NULL;
+	}
+
+	if (bmp) {
 		//get original size of bitmap
 		bmp->GetBitmap(&bmpInfo);
-		double faktor = m_pPictures->getFaktor(ebene);
-		// monster pos an wallpos orientieren
-		CPoint p = m_pWallPic->GetWallPos(xxx, ebene);
-		CBitmap* bmpWall = m_pWallPic->GetWallPic(xxx, ebene, false);
-		bmpWall->GetBitmap(&bmpInfo2);
-		p.x += bmpInfo2.bmWidth ;
-		p.y += bmpInfo2.bmHeight * 2; // = untere Kante des Monsters!
+
 		p.x = p.x - (int)(bmpInfo.bmWidth * faktor);
 		p.y = p.y - (int)(bmpInfo.bmHeight * faktor * 2);
 
-		SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(pMonster->HoleSubPosition(), richt);
 		CPoint pos = CHelpfulValues::CalcSubPosition(p, subPos, faktor);
 
 		cdc->SelectObject(bmp);
 		DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, pMonster->transCol);
 	}
 }
-
 
 void test(CDC* pDC, int x, int y) {
 	y = y - 55;

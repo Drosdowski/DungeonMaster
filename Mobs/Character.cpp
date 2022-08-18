@@ -22,6 +22,7 @@ CCharacter::CCharacter(bool isHero)
 	m_iReceivedDmg = 0;
 	m_attacking = false;
 	m_isHero = isHero;
+	m_iDustCloudSize = 0;
 }
 
 CCharacter::~CCharacter()
@@ -49,17 +50,6 @@ void CCharacter::AddDmg(int value) {
 	m_iReceivedDmg += value;
 }
 
-
-bool CCharacter::Altern() {
-	if (m_HP.Aktuell > 0) 
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
 
 bool CCharacter::InFrontOfOpponent(VEKTOR myPos, VEKTOR hisPos, bool emptyNorthRow, bool emptyEastRow, bool emptySouthRow, bool emptyWestRow) {
 	if (myPos.z != hisPos.z) return false;
