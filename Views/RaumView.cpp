@@ -467,7 +467,7 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRE
 	p.y += bmpInfo2.bmHeight * 2; // = untere Kante des Monsters!
 	SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(pMonster->HoleSubPosition(), richt);
 
-	if (pMonster->isAlive()) // todo staubwolke hier berücksichtigen
+	if (pMonster->isAlive())
 	{
 		bmp = m_pMonsterPic->GetBitmap(pMonster, richt);
 		if (bmp == NULL) return; // todo passiert, wenn Monster nicht da sind
@@ -1000,6 +1000,7 @@ void CRaumView::MoveMagicMissiles(VEKTOR heroPos) {
 		if (!magicMissiles.empty()) {
 			CMagicMissile* topMissile = magicMissiles.back(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Items je Feld
 			if (!topMissile->HasMovedThisTick()) {
+
 				SUBPOS_ABSOLUTE newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, topMissile->m_flyForce);
 				if (topMissile->IsExploding() && newPos == posAbs) {
 					if (topMissile->GetType() == CMagicMissile::MagicMissileType::Poison || topMissile->GetType() == CMagicMissile::MagicMissileType::Dust) {
@@ -1020,21 +1021,14 @@ void CRaumView::MoveMagicMissiles(VEKTOR heroPos) {
 					CField* newField = m_pMap->GetField(heroPos.x + sign(topMissile->m_flyForce.x), heroPos.y + sign(topMissile->m_flyForce.y), heroPos.z);
 					
 					if (!newField->Blocked()) {
-						CGrpMonster* grpHittedMonster = newField->GetMonsterGroup();
-						if (grpHittedMonster) {
-							grpHittedMonster->DoDamage(topMissile->GetStrength(), heroPos, true);
-							topMissile->Explode();
-						}
-						else {
-							// todo kann auch spieler treffen!
-							topMissile = field->TakeMissile(posAbs);
-							newField = ChangeFieldWithTeleporter(newField, posAbs);
-							newField = ChangeFieldWithStairs(newField, topMissile, posAbs);
-							// westlich von west ist ost => anders rum subpos suchen
-							newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topMissile->m_flyForce.x, -topMissile->m_flyForce.y, 0 });
+						topMissile = field->TakeMissile(posAbs);
+						newField = ChangeFieldWithTeleporter(newField, posAbs);
+						newField = ChangeFieldWithStairs(newField, topMissile, posAbs);
+						// westlich von west ist ost => anders rum subpos suchen
+						newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topMissile->m_flyForce.x, -topMissile->m_flyForce.y, 0 });
 
-							newField->CastMissile(topMissile, newPos);
-						}
+						newField->CastMissile(topMissile, newPos);
+
 					}
 					else {
 						topMissile->Explode();
@@ -1054,6 +1048,30 @@ void CRaumView::MoveMagicMissiles(VEKTOR heroPos) {
 		}
 	}
 
+}
+
+void CRaumView::CheckMissileCollisions(VEKTOR heroPos) {
+
+	CField* field = m_pMap->GetField(heroPos);
+	for (int s = 0; s < 4; s++) {
+		SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
+		std::deque<CMagicMissile*> magicMissiles = field->GetMagicMissile(posAbs);
+		if (!magicMissiles.empty()) {
+			CMagicMissile* topMissile = magicMissiles.back(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Items je Feld
+
+			CGrpMonster* pGroupMonster = field->GetMonsterGroup();
+			if (pGroupMonster) {
+				CMonster* pHittedMonster = pGroupMonster->GetMonsterByAbsSubPos(posAbs);
+				if (pHittedMonster) {
+					pGroupMonster->DoDamage(topMissile->GetStrength(), heroPos, true);
+					topMissile->Explode();
+				}
+				else {
+					// todo kann auch spieler treffen!
+				}
+			}
+		}
+	}
 }
 
 
@@ -1175,6 +1193,7 @@ void CRaumView::MoveAnythingNearby() {
 			PrepareMoveObjects(pos);
 			MoveItems(pos);
 			MoveMagicMissiles(pos);
+			CheckMissileCollisions(pos);
 		}
 	}
 }

@@ -253,6 +253,19 @@ CMonster* CGrpMonster::GetMonsterByRelSubPos(SUBPOS pos, COMPASS_DIRECTION richt
 	return NULL; 
 }
 
+CMonster* CGrpMonster::GetMonsterByAbsSubPos(SUBPOS_ABSOLUTE pos) {
+	for (int i = 1; i < 5; i++)
+	{
+		CMonster* pMonster = (CMonster*)m_pMember[i];
+		if (pMonster) {
+			if (pMonster->HoleSubPosition() == pos) 
+				return pMonster;
+		}
+	}
+	return NULL;
+}
+
+
 MonsterTyp CGrpMonster::GetType() {
 	for (int i = 1; i < 5; i++)
 	{

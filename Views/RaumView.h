@@ -120,6 +120,8 @@ private:
 	void PrepareMoveObjects(VEKTOR heroPos);
 	void MoveItems(VEKTOR heroPos);
 	void MoveMagicMissiles(VEKTOR heroPos);
+	void CheckMissileCollisions(VEKTOR pos);
+
 	CBitmap* GetMiscBitmap(CMiscellaneous* misc);
 	CBitmap* GetWeaponBitmap(CWeapon* weapon, bool inAir);
 	CBitmap* GetClothBitmap(CCloth* cloth, bool inAir);

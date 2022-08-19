@@ -34,6 +34,7 @@ public:
 	bool AnyoneReady();
 	bool EveryoneReady();
 	CMonster* GetMonsterByRelSubPos(SUBPOS posIndex, COMPASS_DIRECTION richt);
+	CMonster* GetMonsterByAbsSubPos(SUBPOS_ABSOLUTE pos);
 	MonsterTyp GetType();
 
 // Implementierung
