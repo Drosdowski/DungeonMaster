@@ -2,7 +2,6 @@
 class CMonsterConst
 {
 public:
-	int type;
 	int size;
 	bool levitate;
 	bool non_material;

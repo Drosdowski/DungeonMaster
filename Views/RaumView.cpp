@@ -475,6 +475,7 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRE
 	}
 	else if (pMonster->isVanishing()) {
 		bmp = m_pMagicMissilePic->GetDust();
+		// todo: faktor verkleinern in ABhängigkeit von Staubwolkengröße
 	}
 	else {
 		bmp = NULL;
@@ -991,63 +992,64 @@ void CRaumView::PrepareMoveObjects(VEKTOR heroPos) {
 	}
 }
 
-void CRaumView::MoveMagicMissiles(VEKTOR heroPos) {
+VEKTOR CRaumView::MoveMagicMissiles(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs) {
 	CField* field = m_pMap->GetField(heroPos);
 	// todo refaktorieren mit moveItems
-	for (int s = 0; s < 4; s++) {
-		SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
-		std::deque<CMagicMissile*> magicMissiles = field->GetMagicMissile(posAbs);
-		if (!magicMissiles.empty()) {
-			CMagicMissile* topMissile = magicMissiles.back(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Items je Feld
-			if (!topMissile->HasMovedThisTick()) {
+	std::deque<CMagicMissile*> magicMissiles = field->GetMagicMissile(posAbs);
+	if (!magicMissiles.empty()) {
+		CMagicMissile* topMissile = magicMissiles.back(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Items je Feld
+		if (!topMissile->HasMovedThisTick()) {
 
-				SUBPOS_ABSOLUTE newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, topMissile->m_flyForce);
-				if (topMissile->IsExploding() && newPos == posAbs) {
-					if (topMissile->GetType() == CMagicMissile::MagicMissileType::Poison || topMissile->GetType() == CMagicMissile::MagicMissileType::Dust) {
-						// Gift- und Staubwolke verschwinden langsam
-						if (topMissile->GetStrength() > 1)
-							topMissile->DecreaseStrength();
-						else {
-							field->TakeMissile(posAbs); // out of energy, gone
-							delete topMissile;
-						}
-					}
-					else {
-						field->TakeMissile(posAbs);
+			SUBPOS_ABSOLUTE newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, topMissile->m_flyForce);
+			if (topMissile->IsExploding() && newPos == posAbs) {
+				if (topMissile->GetType() == CMagicMissile::MagicMissileType::Poison || topMissile->GetType() == CMagicMissile::MagicMissileType::Dust) {
+					// Gift- und Staubwolke verschwinden langsam
+					if (topMissile->GetStrength() > 1) {
+						topMissile->DecreaseStrength();
+						return heroPos;
+					} else {
+						field->TakeMissile(posAbs); // out of energy, gone
 						delete topMissile;
 					}
-				} else if (newPos == OUTSIDE) {
-					// Feld verlassen
-					CField* newField = m_pMap->GetField(heroPos.x + sign(topMissile->m_flyForce.x), heroPos.y + sign(topMissile->m_flyForce.y), heroPos.z);
-					
-					if (!newField->Blocked()) {
-						topMissile = field->TakeMissile(posAbs);
-						newField = ChangeFieldWithTeleporter(newField, posAbs);
-						newField = ChangeFieldWithStairs(newField, topMissile, posAbs);
-						// westlich von west ist ost => anders rum subpos suchen
-						newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topMissile->m_flyForce.x, -topMissile->m_flyForce.y, 0 });
-
-						newField->CastMissile(topMissile, newPos);
-
-					}
-					else {
-						topMissile->Explode();
-					}	
 				}
 				else {
+					field->TakeMissile(posAbs);
+					delete topMissile;
+				}
+			} else if (newPos == OUTSIDE) {
+				// Feld verlassen
+				CField* newField = m_pMap->GetField(heroPos.x + sign(topMissile->m_flyForce.x), heroPos.y + sign(topMissile->m_flyForce.y), heroPos.z);
+					
+				if (!newField->Blocked()) {
 					topMissile = field->TakeMissile(posAbs);
-					if (topMissile->IsFlying()) {
-						topMissile->ReduceSpeed();
-						field->CastMissile(topMissile, newPos);
-					}
-					else {
-						delete topMissile;
-					}
+					newField = ChangeFieldWithTeleporter(newField, posAbs);
+					newField = ChangeFieldWithStairs(newField, topMissile, posAbs);
+					// westlich von west ist ost => anders rum subpos suchen
+					newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topMissile->m_flyForce.x, -topMissile->m_flyForce.y, 0 });
+
+					newField->CastMissile(topMissile, newPos);
+					topMissile->SetDone();
+					return newField->HolePos();
+				}
+				else {
+					topMissile->Explode();
+					topMissile->SetDone();
+				}
+			}
+			else {
+				topMissile = field->TakeMissile(posAbs);
+				if (topMissile->IsFlying()) {
+					topMissile->ReduceSpeed();
+					field->CastMissile(topMissile, newPos);
+					return heroPos;
+				}
+				else {
+					delete topMissile;
 				}
 			}
 		}
 	}
-
+	return VEKTOR{ 0, 0, 0 };
 }
 
 void CRaumView::CheckMissileCollisions(VEKTOR heroPos) {
@@ -1063,7 +1065,7 @@ void CRaumView::CheckMissileCollisions(VEKTOR heroPos) {
 			if (pGroupMonster) {
 				CMonster* pHittedMonster = pGroupMonster->GetMonsterByAbsSubPos(posAbs);
 				if (pHittedMonster) {
-					pGroupMonster->DoDamage(topMissile->GetStrength(), heroPos, true);
+					pGroupMonster->DoDamage(topMissile->GetStrength() * 8 * (rand() % 6 + 1), heroPos, true);
 					topMissile->Explode();
 				}
 				else {
@@ -1192,8 +1194,14 @@ void CRaumView::MoveAnythingNearby() {
 			MoveDoors(pos);
 			PrepareMoveObjects(pos);
 			MoveItems(pos);
-			MoveMagicMissiles(pos);
-			CheckMissileCollisions(pos);
+			for (int s = 0; s < 4; s++) {
+				SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
+
+				VEKTOR newPos = MoveMagicMissiles(pos, posAbs);
+				CheckMissileCollisions(pos);
+				if (pos.x > 0 && pos.y > 0 && (pos.x != newPos.x || pos.y != newPos.y))
+					CheckMissileCollisions(newPos);
+			}
 		}
 	}
 }

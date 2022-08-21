@@ -16,7 +16,7 @@ public:
 		Strong = 2
 	};
 
-	CMagicMissile(MagicMissileType type) { m_type = type; m_isExloding = false; };
+	CMagicMissile(MagicMissileType type, int size) { m_type = type; m_isExloding = false; m_size = size; };
 
 	MagicMissileType GetType() { return m_type; }
 	SpellSize GetSize() { (SpellSize)(int)(m_size / 2); }

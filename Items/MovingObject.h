@@ -8,6 +8,7 @@ public:
 	bool HasMovedThisTick();
 	void ResethasMoved();
 	void ReduceSpeed(); // range energy & damage enery
+	void SetDone() { m_done = true ; }
 
 	bool IsFlying(); 
 
