@@ -186,6 +186,11 @@
 #define IDB_POISON_LIGHT                510
 #define IDB_POISON_MEDIUM               511
 #define IDB_POISON_STRONG               512
+#define IDB_MONSTER_WORM_FRONT          528
+#define IDB_MONSTER_WORM_ATTACK         532
+#define IDB_MONSTER_WORM_BACK           533
+#define IDB_BITMAP3                     534
+#define IDB_MONSTER_WORM_RIGHT          534
 #define IDB_MONSTER_SCREAMER_ATTACK     600
 #define IDB_MONSTER_SCREAMER_FRONT      601
 #define IDB_MONSTER_ROCKPILE_ATTACK     602
@@ -198,10 +203,6 @@
 #define IDB_MONSTER_SKELETON_BACK       609
 #define IDB_MONSTER_SKELETON_FRONT      610
 #define IDB_MONSTER_SKELETON_RIGHT      611
-#define IDB_MONSTER_WORM_ATTACK         612
-#define IDB_MONSTER_WORM_BACK           613
-#define IDB_MONSTER_WORM_FRONT          614
-#define IDB_MONSTER_WORM_RIGHT          615
 #define IDB_MONSTER_TROLIN_ATTACK       616
 #define IDB_MONSTER_TROLIN_BACK         617
 #define IDB_MONSTER_TROLIN_FRONT        618
@@ -316,7 +317,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        524
+#define _APS_NEXT_RESOURCE_VALUE        535
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

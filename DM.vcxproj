@@ -290,6 +290,11 @@
     <ClInclude Include="CalculationHelper\ZoomBlt.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\DungeonMaster_\res\Monster\MagentaWorm_Attack.bmp" />
+    <Image Include="..\DungeonMaster_\res\Monster\MagentaWorm_Back.bmp" />
+    <Image Include="..\DungeonMaster_\res\Monster\MagentaWorm_Front.bmp" />
+    <Image Include="..\DungeonMaster_\res\Monster\MagentaWorm_Right.bmp" />
+    <Image Include="..\DungeonMaster_\res\Monster\test.bmp" />
     <Image Include="res\ActionsArea.bmp" />
     <Image Include="res\ActionsDamage.bmp" />
     <Image Include="res\bitmap1.bmp" />

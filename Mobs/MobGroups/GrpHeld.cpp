@@ -42,7 +42,8 @@ CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 	//m_posPosition = VEKTOR{ 15,18,2 }; // 2. etage mitte
 	//m_posPosition = VEKTOR{ 1,31,2 }; // 2. etage Treppe
 	//m_posPosition = VEKTOR{ 15,18,3 }; // 3. Etage Teleport
-	m_posPosition = VEKTOR{ 1,12,3 }; // bei Screamer
+	//m_posPosition = VEKTOR{ 1,12,3 }; // bei Screamer
+	m_posPosition = VEKTOR{ 9,2,3 }; // bei Worms
 	DrehenAbsolut(richt);
 }
 
@@ -122,8 +123,12 @@ void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpMonster* pVictims, CAttac
 						weapon = (CWeapon*)item;
 						attackType = weapon->GetAttributes().style[ActionId-1].type;
 					}
-					else
+					else {
+						/*CWeaponAttributes att;
+						att.fixAttributes.damage = 1;
+						weapon = new CWeapon(HANDINDEX, att);*/
 						attackType = "N"; // Punch / Kick / Warcry
+					}
 					CAttackConst ac = attackInfos->GetAttack(attackType);
 					CMonsterConst mc = monsterInfos->GetMonsterInfo(pVictims->GetType());
 

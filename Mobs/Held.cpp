@@ -158,11 +158,11 @@ int CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, CGrpMonst
 		CWeapon* weapon = (CWeapon*)m_itemCarrying[1];
 		int d3_strength = m_sVitals.str.Aktuell;
 		int d5_load_coefficient = MaxLoad();
-		int d6_weapon_weight = weapon->GetWeight();
+		int d6_weapon_weight = weapon ? weapon->GetWeight() : 0;
 		int d7_damage_coefficient = d3_strength + (rand() % 15);
 
 		ReduceWhenOverload(d6_weapon_weight, d5_load_coefficient, d7_damage_coefficient);
-		d7_damage_coefficient += weapon->GetAttributes().damage;
+		d7_damage_coefficient += weapon ? weapon->GetAttributes().damage : 1;
 		// d7_damage_coefficient += TODO 2* SKILL (SWING / SHOOT / THROW ...)
 		if (m_ST.Aktuell / m_ST.Max < 0.5) {
 			// tired...
@@ -171,7 +171,7 @@ int CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, CGrpMonst
 		// TODO if hand hurt d7_damage_coefficient /= 2; 
 
 		int d4_AC_coefficient = ACC_Coeff(levelDif, mc.armor);
-		if (weapon->GetType() == CWeaponAttributes::WeaponType::DiamondEdge) {
+		if (weapon && weapon->GetType() == CWeaponAttributes::WeaponType::DiamondEdge) {
 			d4_AC_coefficient -= (d4_AC_coefficient / 4);
 		}
 

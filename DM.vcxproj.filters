@@ -1433,6 +1433,21 @@
     <Image Include="res\Spells\Explosion_Dust.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\DungeonMaster_\res\Monster\MagentaWorm_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\DungeonMaster_\res\Monster\test.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\DungeonMaster_\res\Monster\MagentaWorm_Attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\DungeonMaster_\res\Monster\MagentaWorm_Back.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\DungeonMaster_\res\Monster\MagentaWorm_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
