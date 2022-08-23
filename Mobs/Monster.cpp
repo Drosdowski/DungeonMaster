@@ -45,9 +45,8 @@ bool CMonster::Altern()
 	{
 		if (m_iReceivedDmg > 0) {
 			// damage
-			ReceiveDamage(m_iReceivedDmg);
 			m_iReceivedDmg = 0;
-			if (Hp().Aktuell <= 0) return false; // tot!
+			return ReceiveDamage(m_iReceivedDmg);
 		}
 		else {
 			// restore
@@ -85,15 +84,15 @@ int CMonster::CalcDmg(int ID) {
 	return rand() % m_attributes.monsterInfo.attack_power;
 }
 
-void CMonster::ReceiveDamage(int dmg) {
+
+bool CMonster::ReceiveDamage(int dmg) {
 	if (m_HP.Aktuell > 0) {
 		m_HP.Aktuell -= dmg;
 		if (!isAlive()) {
-			Die();
+			return false;
 		}
+		return true;
 	}
+	return false;
 }
 
-void CMonster::Die() {
-	m_iDustCloudSize = m_attributes.monsterInfo.size;
-}

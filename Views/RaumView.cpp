@@ -459,6 +459,7 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRE
 	CBitmap* bmp;
 	BITMAP bmpInfo, bmpInfo2;
 	double faktor = m_pPictures->getFaktor(ebene);
+	bool inside = (ebene == 0) && (xxx == 4);
 	CPoint p = m_pWallPic->GetWallPos(xxx, ebene);
 	// monster pos an wallpos orientieren
 	CBitmap* bmpWall = m_pWallPic->GetWallPic(xxx, ebene, false);
@@ -472,10 +473,6 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRE
 		bmp = m_pMonsterPic->GetBitmap(pMonster, richt);
 		if (bmp == NULL) return; // todo passiert, wenn Monster nicht da sind
 
-	}
-	else if (pMonster->isVanishing()) {
-		bmp = m_pMagicMissilePic->GetDust();
-		// todo: faktor verkleinern in ABhängigkeit von Staubwolkengröße
 	}
 	else {
 		bmp = NULL;
@@ -579,59 +576,69 @@ void CRaumView::DrawMagicMissile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_
 	int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
 	CBitmap* bmp;	
 	CMagicMissile* magicMissile = magicMissiles.back();
+	bool isInside = (ebene == 0) && (xxx == 4);
 	
-	bmp = GetMagicMissileBitmap(magicMissile->GetType(), magicMissile->IsExploding());
+	bmp = GetMagicMissileBitmap(magicMissile->GetType(), magicMissile->IsExploding(), isInside, magicMissile->GetSize());
 	if (bmp) {
 		// todo refaktorieren mit Throw... viel DOppelcode!
 		// todo exploding in mitte?
 		BITMAP bmpInfo;
 		bmp->GetBitmap(&bmpInfo);
-		double faktor = m_pPictures->getFaktor(ebene);
+		cdc->SelectObject(bmp);
+
+		if (!isInside) {
+			double faktor = m_pPictures->getFaktor(ebene);
 		
-		CPoint floorMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
-		if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) { // todo refaktor: inView()
-			SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(itemSubPos, heroDir); // todo subpos angleichen
-			if (ebene > 0 || subPos == LINKSFRONT || subPos == RECHTSFRONT)
-			{
-				if (subPos == LINKSFRONT || subPos == RECHTSFRONT)
+			CPoint floorMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
+			if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) { // todo refaktor: inView()
+				SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(itemSubPos, heroDir); // todo subpos angleichen
+				if (ebene > 0 || subPos == LINKSFRONT || subPos == RECHTSFRONT)
 				{
-					faktor = m_pPictures->getFaktor(ebene + 1);
-				}
-				CPoint pos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, floorMiddlePos, subPos, faktor, xx, ebene);
-				
-				for (int aebene = 0; aebene <= 4; aebene++) {
-					CPoint xPos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, m_pItem3DPic->GetFloorMiddle(xxx, aebene), subPos, faktor, xx, aebene);
-					pDC->Ellipse(xPos.x - 3, xPos.y - 3, xPos.x + 3, xPos.y + 3);
-				}
-				
-				if (!magicMissile->IsExploding()) {
-					if (pos.y != 0) {
-						pos.y = 250 - pos.y / 2;
+					if (subPos == LINKSFRONT || subPos == RECHTSFRONT)
+					{
+						faktor = m_pPictures->getFaktor(ebene + 1);
 					}
+					CPoint pos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, floorMiddlePos, subPos, faktor, xx, ebene);
+				
+					for (int aebene = 0; aebene <= 4; aebene++) {
+						CPoint xPos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, m_pItem3DPic->GetFloorMiddle(xxx, aebene), subPos, faktor, xx, aebene);
+						pDC->Ellipse(xPos.x - 3, xPos.y - 3, xPos.x + 3, xPos.y + 3);
+					}
+				
+					if (!magicMissile->IsExploding()) {
+						if (pos.y != 0) {
+							pos.y = 250 - pos.y / 2;
+						}
+					}
+					else {
+						CPoint posWall = m_pWallPic->GetWallPos(xxx, ebene);
+						CPoint posMitte = m_pWallPic->GetCenterFromFrontWall(xxx, ebene);	
+						pos.x = posWall.x + posMitte.x - bmpInfo.bmWidth * faktor;
+						pos.y = posWall.y + posMitte.y - bmpInfo.bmHeight * faktor;
+					}
+					DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
 				}
-				else {
-					CPoint posWall = m_pWallPic->GetWallPos(xxx, ebene);
-					CPoint posMitte = m_pWallPic->GetCenterFromFrontWall(xxx, ebene);	
-					pos.x = posWall.x + posMitte.x - bmpInfo.bmWidth * faktor;
-					pos.y = posWall.y + posMitte.y - bmpInfo.bmHeight * faktor;
-				}
-				cdc->SelectObject(bmp);
-				DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
 			}
 		}
+		else {
+			// inside
+			CPoint pos = m_pWallPic->GetWallPos(4, 0);
+			pDC->TransparentBlt(pos.x, pos.y,
+				MainAreaWidth, MainAreaHeight, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);
 
+		}
 	}
 }
 
-CBitmap* CRaumView::GetMagicMissileBitmap(CMagicMissile::MagicMissileType type, bool exploding) {
+CBitmap* CRaumView::GetMagicMissileBitmap(CMagicMissile::MagicMissileType type, bool exploding, bool inside, int size) {
 	if (type == CMagicMissile::MagicMissileType::AntiMagic)
-		return m_pMagicMissilePic->GetAntiMaterial(exploding);
+		return m_pMagicMissilePic->GetAntiMaterial(exploding, inside);
 	else if (type == CMagicMissile::MagicMissileType::Fireball)
-		return m_pMagicMissilePic->GetFireball(exploding);
+		return m_pMagicMissilePic->GetFireball(exploding, inside, size);
 	else if (type == CMagicMissile::MagicMissileType::Poison)
-		return m_pMagicMissilePic->GetPoison(exploding);
+		return m_pMagicMissilePic->GetPoison(exploding, inside, size);
 	else if (type == CMagicMissile::MagicMissileType::PoisonBlob)
-		return m_pMagicMissilePic->GetPoisonBlob(exploding);
+		return m_pMagicMissilePic->GetPoisonBlob(exploding, inside);
 	return NULL;
 }
 
@@ -1006,6 +1013,7 @@ VEKTOR CRaumView::MoveMagicMissiles(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs) {
 					// Gift- und Staubwolke verschwinden langsam
 					if (topMissile->GetStrength() > 1) {
 						topMissile->DecreaseStrength();
+						topMissile->SetDone();
 						return heroPos;
 					} else {
 						field->TakeMissile(posAbs); // out of energy, gone

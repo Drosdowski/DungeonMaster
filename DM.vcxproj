@@ -428,6 +428,7 @@
     <Image Include="res\Spells\Strong_Antimaterial.bmp" />
     <Image Include="res\Spells\Strong_Fireball.bmp" />
     <Image Include="res\Spells\Strong_Poison.bmp" />
+    <Image Include="res\Spells\Teleporter.bmp" />
     <Image Include="res\Steine.bmp" />
     <Image Include="res\walldeco\bitmap1.bmp" />
     <Image Include="res\WallDeco\WallDeco_14_Front.bmp" />

@@ -451,7 +451,7 @@ IDB_FLOOR_PIT_F3        BITMAP                  "res\\Floor\\FloorPit_F3.bmp"
 
 IDB_FLOOR_PIT_L3        BITMAP                  "res\\Floor\\FloorPit_L3.bmp"
 
-IDB_TELEPORTER          BITMAP                  "res\\Teleporter.bmp"
+IDB_TELEPORTER          BITMAP                  "res\\Spells\\Teleporter.bmp"
 
 IDB_ITEM3D_GOLDKEY      BITMAP                  "res\\Items3D\\Item_3d_GoldKey.bmp"
 
@@ -751,15 +751,15 @@ IDB_EXPLODE_POISON      BITMAP                  "res\\Spells\\Explosion_Poison.b
 
 IDB_ANTIMAT_LIGHT       BITMAP                  "res\\Spells\\Light_Antimaterial.bmp"
 
-IDB_FIREBALL_LIGHT      BITMAP                  "res\\Spells\\Light_Fireball.bmp"
+IDB_INSIDE_FIREBALL_LIGHT BITMAP                  "res\\Spells\\Light_Fireball.bmp"
 
-IDB_POISON_LIGHT        BITMAP                  "res\\Spells\\Light_Poison.bmp"
+IDB_INSIDE_POISON_LIGHT BITMAP                  "res\\Spells\\Light_Poison.bmp"
 
 IDB_ANTIMAT_MEDIUM      BITMAP                  "res\\Spells\\Medium_Antimaterial.bmp"
 
-IDB_FIREBALL_MEDIUM     BITMAP                  "res\\Spells\\Medium_Fireball.bmp"
+IDB_INSIDE_FIREBALL_MEDIUM BITMAP                  "res\\Spells\\Medium_Fireball.bmp"
 
-IDB_POISON_MEDIUM       BITMAP                  "res\\Spells\\Medium_Poison.bmp"
+IDB_INSIDE_POISON_MEDIUM BITMAP                  "res\\Spells\\Medium_Poison.bmp"
 
 IDB_MISSILE_ANTIMAT     BITMAP                  "res\\Spells\\Missile_Antimaterial.bmp"
 
@@ -771,9 +771,9 @@ IDB_MISSILE_POISONBLOB  BITMAP                  "res\\Spells\\MissilePoisonBlob.
 
 IDB_ANTIMAT_STRONG      BITMAP                  "res\\Spells\\Strong_Antimaterial.bmp"
 
-IDB_FIREBALL_STRONG     BITMAP                  "res\\Spells\\Strong_Fireball.bmp"
+IDB_INSIDE_FIREBALL_STRONG BITMAP                  "res\\Spells\\Strong_Fireball.bmp"
 
-IDB_POISON_STRONG       BITMAP                  "res\\Spells\\Strong_Poison.bmp"
+IDB_INSIDE_POISON_STRONG BITMAP                  "res\\Spells\\Strong_Poison.bmp"
 
 IDB_EXPLODE_DUST        BITMAP                  "res\\Spells\\Explosion_Dust.bmp"
 

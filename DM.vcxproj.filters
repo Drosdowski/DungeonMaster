@@ -1448,6 +1448,9 @@
     <Image Include="..\DungeonMaster_\res\Monster\MagentaWorm_Right.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Spells\Teleporter.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

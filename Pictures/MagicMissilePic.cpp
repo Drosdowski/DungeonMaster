@@ -17,6 +17,11 @@ CMagicMissilePic ::~CMagicMissilePic() {
 	delete m_pExplodePoison;
 	delete m_pExplodeAntimat;
 	delete m_pExplodeDust;
+
+	for (int i = 0; i < 3; i++) {
+		delete m_pInsideFire[i];
+		delete m_pInsidePoison[i];
+	}
 }
 
 void CMagicMissilePic::InitBitmap() {
@@ -29,4 +34,14 @@ void CMagicMissilePic::InitBitmap() {
 	LoadPic(m_pExplodeFireball, IDB_EXPLODE_FIREBALL);
 	LoadPic(m_pExplodePoison, IDB_EXPLODE_POISON);
 	LoadPic(m_pExplodeDust, IDB_EXPLODE_DUST);
+
+	//LoadPic(m_pInsideDust[0], IDB_INS);
+	LoadPic(m_pInsideFire[0], IDB_INSIDE_FIREBALL_LIGHT);
+	LoadPic(m_pInsideFire[1], IDB_INSIDE_FIREBALL_MEDIUM);
+	LoadPic(m_pInsideFire[2], IDB_INSIDE_FIREBALL_STRONG);
+
+	LoadPic(m_pInsidePoison[0], IDB_INSIDE_POISON_LIGHT);
+	LoadPic(m_pInsidePoison[1], IDB_INSIDE_POISON_MEDIUM);
+	LoadPic(m_pInsidePoison[2], IDB_INSIDE_POISON_STRONG);
+
 }

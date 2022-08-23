@@ -20,7 +20,7 @@
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
 #define monsterAktiv true
-#define cheatAktiv false
+#define cheatAktiv true
 
 // todo in enum packen
 #define VORWAERTS 1

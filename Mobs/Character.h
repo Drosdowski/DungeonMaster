@@ -21,7 +21,7 @@ public:
 	bool isAttacking() { return m_attacking; }
 	bool IsHero() {	return m_isHero; }
 	bool isAlive() { return m_HP.Aktuell > 0; }
-	bool isVanishing() { return m_iDustCloudSize > 0; }
+	// bool isVanishing() { return m_iDustCloudSize > 0; }  todo nein, falscher weg. Dust Missile mit Speed = 0 casten!
 
 // Operationen
 public:
@@ -58,7 +58,7 @@ protected:
 // TODO	int m_SpeedDelay; // 0 = Schnellstes (Zyklen bis zur Aktion)
 	int m_dealingDmg; // AKTIV - tatsächlicher aktueller Schaden, zur Anzeige.
 	int m_dealingDmgToDraw;
-	int m_iDustCloudSize;
+	// int m_iDustCloudSize;
 	bool m_attacking = false;
 	CDC* m_pDC;
 

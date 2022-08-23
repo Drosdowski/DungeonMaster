@@ -22,7 +22,7 @@ CCharacter::CCharacter(bool isHero)
 	m_iReceivedDmg = 0;
 	m_attacking = false;
 	m_isHero = isHero;
-	m_iDustCloudSize = 0;
+	// m_iDustCloudSize = 0;
 }
 
 CCharacter::~CCharacter()
