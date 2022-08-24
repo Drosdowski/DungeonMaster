@@ -189,15 +189,15 @@ void CRaumView::DrawFloorPit(CDC* pDC, CDC* cdc, int xxx, int ebene, CPit* pit) 
 			pitBmp = m_pPitPic->GetInvPitPic(ebene, xxx);
 		}
 
-		CPoint center = m_pPressurePadPic->GetPos(xxx, ebene);
+		CPoint center = m_pPitPic->GetPos(xxx, ebene);
 		if (pitBmp && center.x > 0 && center.y > 0) {
 			double faktor = m_pPictures->getFaktor(ebene);
 			cdc->SelectObject(pitBmp);
 			pitBmp->GetBitmap(&bmpPitInfo);
-			int decoPosX = center.x - (int)(bmpPitInfo.bmWidth * faktor);
-			int decoPosY = center.y - (int)(bmpPitInfo.bmHeight * faktor);
+			int decoPosX = center.x - (int)(bmpPitInfo.bmWidth);
+			int decoPosY = center.y - (int)(bmpPitInfo.bmHeight);
 
-			DrawInArea(decoPosX, decoPosY, bmpPitInfo.bmWidth, bmpPitInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
+			DrawInArea(decoPosX, decoPosY, bmpPitInfo.bmWidth, bmpPitInfo.bmHeight, 1, pDC, cdc, TRANS_ORA);
 
 		}
 	}
@@ -209,7 +209,7 @@ void CRaumView::DrawCeilingPit(CDC* pDC, CDC* cdc, int xxx, int ebene, CPit* pit
 		CBitmap* pitBmp = m_pPitPic->GetPitCeilingPic(ebene, xxx);
 		CPit::PitType type = pit->GetType();
 
-		CPoint center = m_pPressurePadPic->GetCeilingPos(xxx, ebene);
+		CPoint center = m_pPitPic->GetCeilingPos(xxx, ebene);
 		if (pitBmp && center.x > 0 && center.y > 0) {
 			double faktor = m_pPictures->getFaktor(ebene);
 			cdc->SelectObject(pitBmp);
@@ -217,7 +217,7 @@ void CRaumView::DrawCeilingPit(CDC* pDC, CDC* cdc, int xxx, int ebene, CPit* pit
 			int decoPosX = center.x - (int)(bmpPitInfo.bmWidth * faktor);
 			int decoPosY = center.y - (int)(bmpPitInfo.bmHeight * faktor);
 
-			DrawInArea(decoPosX, decoPosY, bmpPitInfo.bmWidth, bmpPitInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
+			DrawInArea(decoPosX, decoPosY, bmpPitInfo.bmWidth, bmpPitInfo.bmHeight, 1, pDC, cdc, TRANS_ORA);
 
 		}
 	}

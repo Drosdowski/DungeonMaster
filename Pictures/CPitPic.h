@@ -10,6 +10,9 @@ public:
 	CBitmap* GetInvPitPic(int ebene, int xx);
 	CBitmap* GetPitCeilingPic(int ebene, int xx);
 
+	CPoint GetCeilingPos(int x, int ebene);
+	CPoint GetPos(int x, int ebene);
+
 private:
 	void InitPitPics();
 

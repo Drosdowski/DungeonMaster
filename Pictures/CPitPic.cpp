@@ -33,6 +33,7 @@ CBitmap* CPitPic::GetPitPic(int ebene, int xxx) {
 	if (xxx == 4) return m_pPitFront[ebene];
 	return NULL;
 }
+
 CBitmap* CPitPic::GetInvPitPic(int ebene, int xxx) {
 	if (ebene < 3) {
 		if (xxx == 2) return m_pPitInvLeft[ebene];
@@ -98,4 +99,55 @@ void CPitPic::InitPitPics() {
 	LoadPic(m_pPitLeft[3], IDB_FLOOR_PIT_L3);
 	LoadPicAndFlip(m_pPitRight[3], IDB_FLOOR_PIT_L3);
 
+}
+
+CPoint CPitPic::GetCeilingPos(int x, int ebene) {
+	CPoint middle;
+	middle.x = GetPos(x, ebene).x;
+
+	switch (ebene) {
+	case 0:
+		middle.y = 68; break;
+	case 1:
+		middle.y = 82; break;
+	case 2:
+		middle.y = 102;	break;
+	case 3:
+		middle.y = 115; break;
+	}
+	return middle;
+}
+
+CPoint CPitPic::GetPos(int x, int ebene) {
+	CPoint middle;
+	switch (x) {
+	case 2:
+		if (ebene == 1) middle.x = 54;
+		if (ebene == 2) middle.x = 70;
+		if (ebene == 3) middle.x = 90;
+		break;
+	case 3:
+		if (ebene == 1) middle.x = 418; // tuned for pressure plate
+		if (ebene == 2) middle.x = 380;
+		if (ebene == 3) middle.x = 360;
+		break;
+	case 4:
+		middle.x = 225;
+		break;
+	}
+	if (middle.x != 0) {
+		switch (ebene) {
+		case 0:
+			// nur oben links / rechts
+			middle.y = 325; break;
+		case 1:
+			middle.y = 280; break;
+		case 2:
+			middle.y = 235;	break;
+		case 3:
+			middle.y = 200; break;
+		}
+	}
+
+	return middle;
 }
