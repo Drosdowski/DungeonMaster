@@ -16,10 +16,10 @@ public:
 		Strong = 2
 	};
 
-	CMagicMissile(MagicMissileType type, int size) { m_type = type; m_isExloding = false; m_strength = size * 10; };
+	CMagicMissile(MagicMissileType type, int level) { m_type = type; m_isExloding = false; m_strength = CastingFactor(level); }; // 8 - 28
 
 	MagicMissileType GetType() { return m_type; }
-	SpellSize GetSize() { return (SpellSize)(int)(m_strength / 10); }
+	SpellSize GetSize() { return (SpellSize)(int)((m_strength - 8) / 7); }
 	bool IsExploding() { return m_isExloding; }
 	int GetStrength() { return m_strength; } // Strength für Schaden / Bildgröße -> nicht für Weite!
 	void SetStrengh(int strength) { m_strength = strength; }
@@ -31,6 +31,8 @@ private:
 	MagicMissileType m_type;
 	int m_strength;
 	bool m_isExloding;
+	
+	int CastingFactor(int level) { return 4 + (level * 4); }
 
 	// Damage = 8 * (Max(1, Min(CloudStrength / 32, 4) + Random(1)) + Random(3)) / (CreaturePoisonResistance + 1)
 };

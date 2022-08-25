@@ -26,6 +26,7 @@ public:
 
 	CString static SkillGrade(int exp);
 	CString static SkillClass(int nr);
+	int static ManaCost(int layer, int runeId, int power);
 
 private:
 	SUBPOS static GetPosByIndexWhenFacingNorth(SUBPOS_ABSOLUTE SUBPOSINDEX); // only internal usage when DIR = 0!

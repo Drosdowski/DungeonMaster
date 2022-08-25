@@ -161,7 +161,12 @@ void CDMView::ParseClickWizardChoice(CPoint point, CGrpHeld* grpHelden) {
 void CDMView::ParseClickRunes(CPoint point, CGrpHeld* grpHelden) {
 	int runeId = CScreenCoords::CheckHitRunes(point);
 	if (runeId > 0) {
-		m_pZauberView->storeRune(runeId);
+		CHeld* caster = grpHelden->GetHero(grpHelden->GetActiveWizard());
+		
+		int manaNeeded = CHelpfulValues::ManaCost(m_pZauberView->getRuneTableId(), runeId, m_pZauberView->GetPower());
+		if (caster->UseMana(manaNeeded)) {
+			m_pZauberView->storeRune(runeId);
+		}
 	}
 }
 void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {

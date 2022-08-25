@@ -70,7 +70,7 @@ public:
 	virtual ~CHeld();
 	virtual WERTE St() { return m_ST; };
 	virtual WERTE Ma() { return m_MA; };
-
+	bool UseMana(int mana);
 
 private:
 	CRucksack* m_pRucksack;

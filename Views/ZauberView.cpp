@@ -68,3 +68,13 @@ void CZauberView::nextRuneTable() {
 	else
 		m_iRuneTable = 1;
 }
+
+int CZauberView::GetPower() {
+	if (m_iRuneTable > 1) {
+		return m_spell[1];
+	}
+	else {
+		return 0;
+	}
+
+}

@@ -145,6 +145,7 @@ void CHeld::WerteTemporaerAendern(int hp, int st, int ma)
 int CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, CGrpMonster* pOpponents, int levelDif) {
 	// https://www.dungeon-master.com/forum/viewtopic.php?t=31345
 	// todo xp gain  --- Mastery = log2(Experience=469)
+	// https://gamefaqs.gamespot.com/snes/588299-dungeon-master/faqs/33244 => Exo Gain! (5e. Actions)
 	
 	if (!hitSucessful(ac, levelDif))
 	{
@@ -351,4 +352,14 @@ void CHeld::ChangeCompass() {
 
 		}
 	}
+}
+
+bool CHeld::UseMana(int mana)
+{
+	if (m_MA.Aktuell >= mana)
+	{ 
+		m_MA.Aktuell -= mana;
+		return true;
+	}
+	return false;
 }
