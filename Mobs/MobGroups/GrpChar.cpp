@@ -213,9 +213,9 @@ void CGrpChar::SetNewCharOnNextFreePos(int nr) {
 	lv = rv = lh = rh = false;
 	SUBPOS pos = NONE;	// Freien Platz suchen
 	for (int i = 1; i < 5; i++)
-		if ((i != nr) && (m_pMember[i] != NULL))
+		if (m_pMember[i] != NULL)
 		{
-			pos = CHelpfulValues::GetRelativeSubPosActive(m_pMember[i]->HoleSubPosition(), m_grpDirection);
+			pos = CHelpfulValues::GetRelativeSubPosPassive(m_pMember[i]->HoleSubPosition(), m_grpDirection);
 			if (pos == LINKSBACK) lv = true;
 			else if (pos == RECHTSBACK) rv = true;
 			else if (pos == LINKSFRONT) lh = true;
@@ -230,7 +230,7 @@ void CGrpChar::SetNewCharOnNextFreePos(int nr) {
 	else if (!rv)
 		pos = RECHTSBACK;
 
-	m_pMember[nr]->SetzeSubPosition(CHelpfulValues::GetRelativeSubPosPassive(pos, m_grpDirection));
+	m_pMember[nr]->SetzeSubPosition(CHelpfulValues::GetRelativeSubPosActive(pos, m_grpDirection));
 }
 
 bool CGrpChar::emptyNorthRow() {

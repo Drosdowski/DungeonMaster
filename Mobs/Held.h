@@ -38,7 +38,7 @@ public:
 public:
 	void Trinken(int amount);
 	void Essen(int amount);
-	void WerteTemporaerAendern(int hp, int st, int ma);
+	void WerteTemporaerAendern(double hp, double st, double ma);
 	//virtual void WertePermanentAendern(int hp, int st, int ma);
 	void ChangeCompass();
 

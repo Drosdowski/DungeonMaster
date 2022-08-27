@@ -115,9 +115,11 @@ bool CHeld::Altern()
 	// von VIT, ma von WIS sowie von FOOD & WATER
 	if (alive)
 	{
-		WerteTemporaerAendern(1, 1, 1);
-		//m_iFood--;
-		//m_iWater--;
+		WerteTemporaerAendern(0.1, 0.1, 0.1);
+		if (footWaterAktiv) {
+			m_iFood--;
+			m_iWater--;
+		}
 		if (m_iFood < 50)
 			WerteTemporaerAendern(0, -1, 0);
 		if (m_iWater < 50)
@@ -135,7 +137,7 @@ bool CHeld::Altern()
 	return alive;
 }
 
-void CHeld::WerteTemporaerAendern(int hp, int st, int ma)
+void CHeld::WerteTemporaerAendern(double hp, double st, double ma)
 {
 	m_HP.Aktuell = min(max(hp + m_HP.Aktuell, 0), m_HP.Max);
 	m_ST.Aktuell = min(max(st + m_ST.Aktuell, 0), m_ST.Max);

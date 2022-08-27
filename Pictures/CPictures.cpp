@@ -291,11 +291,11 @@ void CPictures::ZeichneHpStMa(CDC* pDC, WERTE hp, WERTE st, WERTE ma)
 	pDC->SetBkColor(GANZDUNKELGRAU);
 
 	CString str;
-	str.Format("%i / %i", hp.Aktuell, hp.Max);
+	str.Format("%i / %i", (int)hp.Aktuell, (int)hp.Max);
 	pDC->TextOut(120, 284, str);
-	str.Format("%i / %i", st.Aktuell, st.Max);
+	str.Format("%i / %i", (int)st.Aktuell, (int)st.Max);
 	pDC->TextOut(120, 300, str);
-	str.Format("%i / %i", ma.Aktuell, ma.Max);
+	str.Format("%i / %i", (int)ma.Aktuell, (int)ma.Max);
 	pDC->TextOut(120, 316, str);
 }
 

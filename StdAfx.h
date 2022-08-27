@@ -21,6 +21,7 @@
 
 #define monsterAktiv true
 #define cheatAktiv true
+#define footWaterAktiv false
 
 // todo in enum packen
 #define VORWAERTS 1
@@ -111,7 +112,7 @@ struct VEKTOR
 
 struct WERTE
 {
-	int Aktuell, Max;
+	double Aktuell, Max;
 };
 
 struct VITALS
