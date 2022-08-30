@@ -47,6 +47,7 @@ void CCharacter::EndAttack() {
 
 void CCharacter::AddDmg(int value) {
 	// m_HP.Aktuell = max(0, m_HP.Aktuell - value);
+	// todo: m_iReceivedDmg  verarbeiten !
 	m_iReceivedDmg += value;
 }
 

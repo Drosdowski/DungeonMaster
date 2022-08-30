@@ -1068,7 +1068,7 @@ void CRaumView::CheckMissileCollisions(VEKTOR heroPos) {
 		std::deque<CMagicMissile*> magicMissiles = field->GetMagicMissile(posAbs);
 		if (!magicMissiles.empty()) {
 			CMagicMissile* topMissile = magicMissiles.back(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Items je Feld
-			if (topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob || topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball) {
+			if ((!topMissile->IsExploding()) && (topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob || topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball)) {
 
 				CGrpMonster* pGroupMonster = field->GetMonsterGroup();
 				if (pGroupMonster) {
@@ -1076,6 +1076,7 @@ void CRaumView::CheckMissileCollisions(VEKTOR heroPos) {
 					if (pHittedMonster) {
 						pGroupMonster->DoDamage(topMissile->GetStrength() * (rand() % 6 + 1), heroPos, true);
 						topMissile->Explode();
+						topMissile->SetDone();
 					}
 					else {
 						// todo kann auch spieler treffen!
@@ -1204,13 +1205,10 @@ void CRaumView::MoveAnythingNearby() {
 			MoveDoors(pos);
 			PrepareMoveObjects(pos);
 			MoveItems(pos);
+			CheckMissileCollisions(pos);
 			for (int s = 0; s < 4; s++) {
 				SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
-
 				VEKTOR newPos = MoveMagicMissiles(pos, posAbs);
-				CheckMissileCollisions(pos);
-				if (pos.x > 0 && pos.y > 0 && (pos.x != newPos.x || pos.y != newPos.y))
-					CheckMissileCollisions(newPos);
 			}
 		}
 	}
