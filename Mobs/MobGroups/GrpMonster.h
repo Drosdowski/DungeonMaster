@@ -13,6 +13,7 @@
 class CMonster;
 class CGrpHeld;
 class CItem;
+class CField;
 class CGrpMonster : public CGrpChar
 {
 public:
@@ -27,7 +28,7 @@ public:
 
 // Operationen
 public:
-	bool Altern();
+	bool Altern(CField* field);
 	CMonster* GetMonster(int ID);
 	// TODO bool ExistsAndDies();
 	void MoveDone();

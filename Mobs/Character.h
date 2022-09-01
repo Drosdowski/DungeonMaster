@@ -6,6 +6,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // Ansicht CCharacter 
 
+class CField;
 class CGrpChar;
 class CCharacter
 {
@@ -33,7 +34,7 @@ public:
 
 // Implementierung
 public:
-	virtual bool Altern() { return isAlive(); }
+	virtual bool Altern(CField* field) { return isAlive(); }
 	virtual SUBPOS_ABSOLUTE HoleSubPosition() { return m_subPosition;};
 	virtual void MoveDone() {};
 	bool InFrontOfOpponent(VEKTOR myPos, VEKTOR hisPos, bool emptyNorthRow, bool emptyEastRow, bool emptySouthRow, bool emptyWestRow);

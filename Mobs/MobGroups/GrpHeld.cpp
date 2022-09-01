@@ -197,7 +197,7 @@ bool CGrpHeld::SetzeModus(CDC* pDC, int iModus)
 }
 
 
-bool CGrpHeld::Altern()
+bool CGrpHeld::Altern(CField* field)
 {
 	bool anyoneAlive = false;
 	for (int i = 1; i < 5; i++)
@@ -205,7 +205,7 @@ bool CGrpHeld::Altern()
 		CHeld* pHeld = (CHeld*)m_pMember[i];
 		if (pHeld)
 		{
-			bool heroAlive = pHeld->Altern();
+			bool heroAlive = pHeld->Altern(field);
 			if (!heroAlive) {
 				// nicht löschen - wiederbeleben möglich!
 			}

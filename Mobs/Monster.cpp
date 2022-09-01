@@ -33,9 +33,9 @@ CMonster::~CMonster()
 /////////////////////////////////////////////////////////////////////////////
 // Behandlungsroutinen für Nachrichten CMonster 
 
-bool CMonster::Altern()
+bool CMonster::Altern(CField* field)
 {
-	bool alive = CCharacter::Altern();
+	bool alive = CCharacter::Altern(field);
 
 	if (m_iReady > 0) {
 		m_iReady--;

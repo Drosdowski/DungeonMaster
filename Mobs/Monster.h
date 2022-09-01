@@ -8,6 +8,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // Ansicht CMonster 
 
+class CField;
 class CMonster : public CCharacter
 {
 public:
@@ -16,15 +17,17 @@ public:
 
 // Attribute
 public:
+	int GetSize() { return m_attributes.monsterInfo.size; }
+	bool IstBereit() { return m_iReady == 0; };
+	int transCol;
 
 // Operationen
 
 
 // Implementierung
 public:
-	virtual bool Altern();
+	virtual bool Altern(CField* field);
 	virtual int GetIDB(int index);
-	bool IstBereit() { return m_iReady == 0; };
 	void AttackDone() { m_iReady = m_attributes.monsterInfo.attack_dur; } 
 	void MoveDone() { m_iReady = m_attributes.monsterInfo.move_dur; } 
 	int getDealingDmg() { return m_dealingDmg; }
@@ -32,9 +35,7 @@ public:
 	void setType(MonsterTyp typ) { m_iTyp = typ; }
 	bool TurnTo(COMPASS_DIRECTION iDirection);
 	int CalcDmg(int ID);
-	void Die();
 
-	int transCol;
 
 protected:
 	virtual ~CMonster();

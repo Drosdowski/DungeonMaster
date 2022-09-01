@@ -191,7 +191,7 @@ void CDMView::CastMagicMissile(CMagicMissile::MagicMissileType missileType, int 
 	VEKTOR force = CHelpfulValues::MakeVektor(grpDir, size);
 	magicMissile->m_flyForce = force;
 
-	m_pRaumView->GetMap()->GetField(grpHelden->GetPos())->CastMissile(magicMissile, itemRegionReal);
+	m_pRaumView->GetMap()->GetField(grpHelden->GetVector())->CastMissile(magicMissile, itemRegionReal);
 	// todo: EXP =rand(7)+((spell difficulty+spell power)*16)+(8*((spell power - 1)*spell difficulty))+((spell difficulty+spell power)*(spell difficulty + spell power))
 }
 
@@ -313,7 +313,7 @@ void CDMView::ParseClickAir(CPoint point) {
 					COMPASS_DIRECTION grpDir = grpHelden->GetDirection();
 					SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(airRegionClicked, grpDir);
 					VEKTOR force = CHelpfulValues::MakeVektor(grpDir, 6);
-					m_pRaumView->GetMap()->GetField(grpHelden->GetPos())->ThrowItem(pItemInHand, itemRegionReal, force);
+					m_pRaumView->GetMap()->GetField(grpHelden->GetVector())->ThrowItem(pItemInHand, itemRegionReal, force);
 					grpHelden->EmptyHand();
 				}
 			}
@@ -457,7 +457,7 @@ void CDMView::ParseClickFloor(CPoint point) {
 		}
 	}
 	else if (itemRegionClicked == LINKSFRONT || itemRegionClicked == RECHTSFRONT) {
-		CField* FeldUnterHeld = m_pRaumView->GetMap()->GetField(grpHelden->GetPos());
+		CField* FeldUnterHeld = m_pRaumView->GetMap()->GetField(grpHelden->GetVector());
 		if (FeldUnterHeld)
 		{
 			if (pItemInHand == NULL)
@@ -818,7 +818,8 @@ void CDMView::OnTimer(UINT nIDEvent)
 	CDMDoc* pDoc = GetDocument();
 
 	if (!m_bPause) {
-		if (!m_pRaumView->GetHeroes()->Altern()) {
+		CGrpHeld* pGrpHeld = m_pRaumView->GetHeroes();
+		if (!pGrpHeld->Altern(m_pRaumView->GetMap()->GetField( pGrpHeld->GetVector()))) {
 			// 
 		}
 		if (m_pRaumView->GetHeroes()->GetNumberOfHeroes() > 0) {

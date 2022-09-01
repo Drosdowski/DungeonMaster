@@ -117,7 +117,7 @@ CCharacter* CGrpChar::NearestTarget(VEKTOR hisPos) {
 	for (int i = 1; i < 5; i++) {
 		CCharacter* pChar = m_pMember[i];
 		if (pChar && pChar->isAlive()) {
-			if (pChar->InFrontOfOpponent(GetPos(), hisPos, emptyNorthRow(), emptyEastRow(), emptySouthRow(), emptyWestRow()))
+			if (pChar->InFrontOfOpponent(GetVector(), hisPos, emptyNorthRow(), emptyEastRow(), emptySouthRow(), emptyWestRow()))
 				return pChar;
 		}
 	}

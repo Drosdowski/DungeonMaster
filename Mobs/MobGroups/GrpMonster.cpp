@@ -3,12 +3,14 @@
 
 #include "stdafx.h"
 #include "GrpMonster.h"
+#include "..\..\Feld.h"
 #include "..\Monster.h"
 #include "..\MobGroups\GrpHeld.h"
 #include "..\..\CalculationHelper\CHelpfulValues.h"
 #include "..\..\Items\CMiscellaneous.h"
 #include "..\..\Items\Weapon.h"
 #include "..\..\Items\Cloth.h"
+#include "..\..\Items\MagicMissile.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -84,17 +86,21 @@ bool CGrpMonster::SetzeModus(int iModus)
 	return true;
 }
 
-bool CGrpMonster::Altern()
+bool CGrpMonster::Altern(CField* field)
 {
 	bool anyoneAlive = false;
 	for (int i=1; i<5; i++)
 	{
 		CMonster* pMonster= (CMonster*) m_pMember[i];
 		if (pMonster) {
-			bool monsterAlive = pMonster->Altern();
+			bool monsterAlive = pMonster->Altern(field);
 			if (!monsterAlive)
 			{
-				delete m_pMember[i]; // TODO auslöschen! todo: staubwolke malen!
+				CMagicMissile* dust = new CMagicMissile(CMagicMissile::MagicMissileType::Dust, pMonster->GetSize());
+				dust->Explode();
+
+				field->CastMissile(dust, pMonster->HoleSubPosition());
+				delete m_pMember[i];
 				m_pMember[i] = NULL;
 			}
 			else {

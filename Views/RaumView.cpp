@@ -639,7 +639,10 @@ CBitmap* CRaumView::GetMagicMissileBitmap(CMagicMissile::MagicMissileType type, 
 		return m_pMagicMissilePic->GetPoison(exploding, inside, size);
 	else if (type == CMagicMissile::MagicMissileType::PoisonBlob)
 		return m_pMagicMissilePic->GetPoisonBlob(exploding, inside);
-	return NULL;
+	else if (type == CMagicMissile::MagicMissileType::Dust)
+		return m_pMagicMissilePic->GetDust(exploding, inside);
+	else
+		return NULL;
 }
 
 CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {
@@ -952,7 +955,7 @@ void CRaumView::MoveMonsters(VEKTOR heroPos) {
 	CGrpMonster* pGrpMon = field->GetMonsterGroup();
 	if (pGrpMon)
 	{
-		if (!pGrpMon->Altern()) {
+		if (!pGrpMon->Altern(field)) {
 			// Gruppe ausgestorben!
 			field->RemoveMonsterGroup();
 		}
@@ -1197,7 +1200,7 @@ CField* CRaumView::ChangeFieldWithStairs(CField* pField, CMovingObject* pItem, S
 
 
 void CRaumView::MoveAnythingNearby() {
-	VEKTOR held = m_pMap->GetHeroes()->GetPos();
+	VEKTOR held = m_pMap->GetHeroes()->GetVector();
 	for (int i = max(held.x - 4, 0); i < min(held.x + 4, m_pMap->GetMaxWidth(held.z)); i++) {
 		for (int j = max(held.y - 4, 0); j < min(held.y + 4, m_pMap->GetMaxHeight(held.z)); j++) {
 			VEKTOR pos = { i, j, held.z };
@@ -1263,7 +1266,7 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 }
 
 void CRaumView::TriggerActuatorsNearby() {
-	VEKTOR held = m_pMap->GetHeroes()->GetPos();
+	VEKTOR held = m_pMap->GetHeroes()->GetVector();
 	for (int i = max(held.x - 4, 0); i < min(held.x + 4, m_pMap->GetMaxWidth(held.z)); i++) {
 		for (int j = max(held.y - 4, 0); j < min(held.y + 4, m_pMap->GetMaxHeight(held.z)); j++) {
 			TriggerPassiveActuators(VEKTOR{ i, j, held.z }, held);
@@ -1273,9 +1276,9 @@ void CRaumView::TriggerActuatorsNearby() {
 
 VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	// Prüfen: Held angreifbar? Erstmal nur Nahkampf!
-	VEKTOR heroPos = m_pMap->GetHeroes()->GetPos();
-	VEKTOR monPos = pGrpMon->GetPos();
-	if (pGrpMon->GetPos().z != heroPos.z) return monPos; // Falsche Etage, nix tun!
+	VEKTOR heroPos = m_pMap->GetHeroes()->GetVector();
+	VEKTOR monPos = pGrpMon->GetVector();
+	if (pGrpMon->GetVector().z != heroPos.z) return monPos; // Falsche Etage, nix tun!
 
 	// Versuch, in Blickrichtung zu gehen, ggf. Angriff!
 	VEKTOR targetPos = pGrpMon->HoleZielFeld(VORWAERTS);

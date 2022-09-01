@@ -22,7 +22,6 @@ CCharacter::CCharacter(bool isHero)
 	m_iReceivedDmg = 0;
 	m_attacking = false;
 	m_isHero = isHero;
-	// m_iDustCloudSize = 0;
 }
 
 CCharacter::~CCharacter()
@@ -46,8 +45,6 @@ void CCharacter::EndAttack() {
 }
 
 void CCharacter::AddDmg(int value) {
-	// m_HP.Aktuell = max(0, m_HP.Aktuell - value);
-	// todo: m_iReceivedDmg  verarbeiten !
 	m_iReceivedDmg += value;
 }
 

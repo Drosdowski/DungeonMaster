@@ -44,7 +44,7 @@ public:
 	void DoActionForChosenHero(int ID, CGrpMonster* pVictims, CAttackInfos* attackInfos, CMonsterInfos* monsterInfos, int diff);
 	bool SetActiveCaster(int ID);
 	
-	bool Altern();
+	bool Altern(CField* field);
 
 	CHeld* GetHeroForAction() { return GetHero(m_iHeroForAction); }
 	CHeld* ClosestHeroTo(CMonster* monster);

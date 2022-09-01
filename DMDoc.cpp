@@ -100,7 +100,7 @@ void CDMDoc::Laufen()
 {
 	VEKTOR posTarget, posFrom, posFinal;
 	CGrpHeld* pGrpHeroes = m_pRaumView->GetHeroes();
-	posFrom = pGrpHeroes->GetPos();
+	posFrom = pGrpHeroes->GetVector();
 	bool bLaufbereit = m_pRaumView->GetHeroes()->Laufbereit();
 
 	switch(m_iWunschRichtung)

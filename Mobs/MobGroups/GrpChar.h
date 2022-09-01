@@ -42,7 +42,6 @@ public:
 	bool emptyEastRow();
 	bool emptyWestRow();
 
-	VEKTOR GetPos() { return m_posPosition; }
 	CCharacter* GetChar(int ID) { return m_pMember[ID]; }
 
 	VEKTOR HoleZielFeld(int iRichtung); // VORWAERTS, etc
