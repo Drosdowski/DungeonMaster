@@ -27,7 +27,6 @@ public:
 	bool IstBereit() { return m_iReady == 0; };
 	void AttackDone() { m_iReady = m_attributes.monsterInfo.attack_dur; } 
 	void MoveDone() { m_iReady = m_attributes.monsterInfo.move_dur; } 
-	bool ReceiveDamage(int dmg); // todo unused
 	int getDealingDmg() { return m_dealingDmg; }
 	MonsterTyp getType() { return m_iTyp; }
 	void setType(MonsterTyp typ) { m_iTyp = typ; }

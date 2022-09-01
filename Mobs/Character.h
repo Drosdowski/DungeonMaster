@@ -49,6 +49,8 @@ public:
 	bool northOf(VEKTOR myPos, VEKTOR hisPos);
 	bool southOf(VEKTOR myPos, VEKTOR hisPos);
 
+	bool ReceiveDamage(int dmg);
+
 	// Generierte Nachrichtenzuordnungsfunktionen
 
 protected:

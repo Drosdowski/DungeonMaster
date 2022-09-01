@@ -35,18 +35,20 @@ CMonster::~CMonster()
 
 bool CMonster::Altern()
 {
+	bool alive = CCharacter::Altern();
+
 	if (m_iReady > 0) {
 		m_iReady--;
 	}
 
 	// erstmal konstant, später abhängig 
 	// von max-Werten 
-	if (isAlive())
+	if (alive)
 	{
 		if (m_iReceivedDmg > 0) {
 			// damage
+			alive = ReceiveDamage(m_iReceivedDmg);
 			m_iReceivedDmg = 0;
-			return ReceiveDamage(m_iReceivedDmg);
 		}
 		else {
 			// restore
@@ -55,11 +57,8 @@ bool CMonster::Altern()
 		if (m_attacking) {
 			EndAttack();
 		}
-		return true;
 	}
-	else {
-		return false;
-	}
+	return alive;
 }
 
 
@@ -85,14 +84,5 @@ int CMonster::CalcDmg(int ID) {
 }
 
 
-bool CMonster::ReceiveDamage(int dmg) {
-	if (m_HP.Aktuell > 0) {
-		m_HP.Aktuell -= dmg;
-		if (!isAlive()) {
-			return false;
-		}
-		return true;
-	}
-	return false;
-}
+
 

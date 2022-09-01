@@ -98,3 +98,14 @@ bool CCharacter::northOf(VEKTOR myPos, VEKTOR hisPos) {
 bool CCharacter::southOf(VEKTOR myPos, VEKTOR hisPos) {
 	return (myPos.x == hisPos.x) && ((hisPos.y - myPos.y) == 1);
 }
+
+bool CCharacter::ReceiveDamage(int dmg) {
+	if (m_HP.Aktuell > 0) {
+		m_HP.Aktuell -= dmg;
+		if (!isAlive()) {
+			return false;
+		}
+		return true;
+	}
+	return false;
+}

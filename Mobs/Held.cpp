@@ -115,6 +115,12 @@ bool CHeld::Altern()
 	// von VIT, ma von WIS sowie von FOOD & WATER
 	if (alive)
 	{
+		if (m_iReceivedDmg > 0) {
+			// damage
+			alive = ReceiveDamage(m_iReceivedDmg);
+			m_iReceivedDmg = 0;
+		}
+
 		WerteTemporaerAendern(0.1, 0.1, 0.1);
 		if (footWaterAktiv) {
 			m_iFood--;
