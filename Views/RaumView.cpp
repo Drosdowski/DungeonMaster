@@ -1019,12 +1019,12 @@ VEKTOR CRaumView::MoveMagicMissiles(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs) {
 						topMissile->SetDone();
 						return heroPos;
 					} else {
-						field->TakeMissile(posAbs); // out of energy, gone
+						field->TakeMissile(posAbs, topMissile); // out of energy, gone
 						delete topMissile;
 					}
 				}
 				else {
-					field->TakeMissile(posAbs);
+					field->TakeMissile(posAbs, topMissile);
 					delete topMissile;
 				}
 			} else if (newPos == OUTSIDE) {
@@ -1032,7 +1032,8 @@ VEKTOR CRaumView::MoveMagicMissiles(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs) {
 				CField* newField = m_pMap->GetField(heroPos.x + sign(topMissile->m_flyForce.x), heroPos.y + sign(topMissile->m_flyForce.y), heroPos.z);
 					
 				if (!newField->Blocked()) {
-					topMissile = field->TakeMissile(posAbs);
+					// todo prüfen topMissile = field->TakeMissile(posAbs);
+					field->TakeMissile(posAbs, topMissile);
 					newField = ChangeFieldWithTeleporter(newField, posAbs);
 					newField = ChangeFieldWithStairs(newField, topMissile, posAbs);
 					// westlich von west ist ost => anders rum subpos suchen
@@ -1048,7 +1049,8 @@ VEKTOR CRaumView::MoveMagicMissiles(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs) {
 				}
 			}
 			else {
-				topMissile = field->TakeMissile(posAbs);
+				// todo prüfen topMissile = field->TakeMissile(posAbs);
+				field->TakeMissile(posAbs, topMissile);
 				if (topMissile->IsFlying()) {
 					topMissile->ReduceSpeed();
 					field->CastMissile(topMissile, newPos);

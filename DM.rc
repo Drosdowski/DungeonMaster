@@ -777,13 +777,13 @@ IDB_INSIDE_POISON_STRONG BITMAP                  "res\\Spells\\Strong_Poison.bmp
 
 IDB_EXPLODE_DUST        BITMAP                  "res\\Spells\\Explosion_Dust.bmp"
 
-IDB_MONSTER_WORM_FRONT  BITMAP                  "C:\\Users\\mdros\\source\\repos\\DungeonMaster_\\res\\Monster\\MagentaWorm_Front.bmp"
+IDB_MONSTER_WORM_FRONT  BITMAP                  "res\\Monster\\MagentaWorm_Front.bmp"
 
-IDB_MONSTER_WORM_ATTACK BITMAP                  "C:\\Users\\mdros\\source\\repos\\DungeonMaster_\\res\\Monster\\MagentaWorm_Attack.bmp"
+IDB_MONSTER_WORM_ATTACK BITMAP                  "res\\Monster\\MagentaWorm_Attack.bmp"
 
-IDB_MONSTER_WORM_BACK   BITMAP                  "C:\\Users\\mdros\\source\\repos\\DungeonMaster_\\res\\Monster\\MagentaWorm_Back.bmp"
+IDB_MONSTER_WORM_BACK   BITMAP                  "res\\Monster\\MagentaWorm_Back.bmp"
 
-IDB_MONSTER_WORM_RIGHT  BITMAP                  "C:\\Users\\mdros\\source\\repos\\DungeonMaster_\\res\\Monster\\MagentaWorm_Right.bmp"
+IDB_MONSTER_WORM_RIGHT  BITMAP                  "res\\Monster\\MagentaWorm_Right.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

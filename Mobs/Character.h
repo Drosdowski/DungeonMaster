@@ -15,18 +15,17 @@ protected:
 
 // Attribute
 public:
-	virtual WERTE Hp() { return m_HP; };
+	virtual WERTE Hp() { return m_HP; }
 	
 	int ReceivedDmg() { return m_iReceivedDmg;}
 	COMPASS_DIRECTION GetDirection() { return m_chrDirection; }
 	bool isAttacking() { return m_attacking; }
 	bool IsHero() {	return m_isHero; }
 	bool isAlive() { return m_HP.Aktuell > 0; }
-	// bool isVanishing() { return m_iDustCloudSize > 0; }  todo nein, falscher weg. Dust Missile mit Speed = 0 casten!
 
 // Operationen
 public:
-	void SetzeSubPosition(SUBPOS_ABSOLUTE pos) { m_subPosition = pos; };
+	void SetzeSubPosition(SUBPOS_ABSOLUTE pos) { m_subPosition = pos; }
 	void SetDirection(COMPASS_DIRECTION direction) { m_chrDirection = direction; }
 	void AddDmg(int value);
 	void ResetDmg() { m_iReceivedDmg = 0; }
@@ -35,7 +34,7 @@ public:
 // Implementierung
 public:
 	virtual bool Altern(CField* field) { return isAlive(); }
-	virtual SUBPOS_ABSOLUTE HoleSubPosition() { return m_subPosition;};
+	virtual SUBPOS_ABSOLUTE HoleSubPosition() { return m_subPosition;}
 	virtual void MoveDone() {};
 	bool InFrontOfOpponent(VEKTOR myPos, VEKTOR hisPos, bool emptyNorthRow, bool emptyEastRow, bool emptySouthRow, bool emptyWestRow);
 	virtual ~CCharacter();
@@ -61,7 +60,6 @@ protected:
 // TODO	int m_SpeedDelay; // 0 = Schnellstes (Zyklen bis zur Aktion)
 	int m_dealingDmg; // AKTIV - tatsächlicher aktueller Schaden, zur Anzeige.
 	int m_dealingDmgToDraw;
-	// int m_iDustCloudSize;
 	bool m_attacking = false;
 	CDC* m_pDC;
 

@@ -210,13 +210,19 @@ CItem* CField::TakeItem(SUBPOS_ABSOLUTE subPos) {
 		return NULL;
 }
 
-CMagicMissile* CField::TakeMissile(SUBPOS_ABSOLUTE subPos) {
+CMagicMissile* CField::TakeMissile(SUBPOS_ABSOLUTE subPos, CMagicMissile* pMissile) {
 	if (m_pMagicMissiles[subPos].size() > 0)
 	{
-		CMagicMissile* topMissile = m_pMagicMissiles[subPos].back();
-		m_pMagicMissiles[subPos].pop_back();
+		for (std::deque<CMagicMissile*>::iterator it = m_pMagicMissiles[subPos].begin(); it != m_pMagicMissiles[subPos].end(); ) {
+			if (*it == pMissile) {
+				m_pMagicMissiles[subPos].erase(it);
+				return pMissile;
+			}
+			++it;
 
-		return topMissile;
+		}
+
+		return NULL;
 	}
 	else
 		return NULL;
