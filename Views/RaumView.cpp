@@ -492,10 +492,10 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRE
 	}
 }
 
-void test(CDC* pDC, int x, int y) {
+/*void test(CDC* pDC, int x, int y) {
 	y = y - 55;
 	pDC->Ellipse(x - 5, y - 5, x + 5, y + 5);
-}
+}*/
 
 void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pField) {
 	BITMAP bmpDecoInfo;
@@ -600,10 +600,10 @@ void CRaumView::DrawMagicMissile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_
 					}
 					CPoint pos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, floorMiddlePos, subPos, faktor, xx, ebene);
 				
-					for (int aebene = 0; aebene <= 4; aebene++) {
+					/*for (int aebene = 0; aebene <= 4; aebene++) {
 						CPoint xPos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, m_pItem3DPic->GetFloorMiddle(xxx, aebene), subPos, faktor, xx, aebene);
 						pDC->Ellipse(xPos.x - 3, xPos.y - 3, xPos.x + 3, xPos.y + 3);
-					}
+					}*/
 				
 					if (!magicMissile->IsExploding()) {
 						if (pos.y != 0) {
@@ -620,7 +620,7 @@ void CRaumView::DrawMagicMissile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_
 				}
 			}
 		}
-		else {
+		else if (magicMissile->IsExploding()) { // Fliegende nicht zeichnen wenn auf dem Spieler (beim zaubern)
 			// inside
 			CPoint pos = m_pWallPic->GetWallPos(4, 0);
 			pDC->TransparentBlt(pos.x, pos.y,
@@ -1002,68 +1002,75 @@ void CRaumView::PrepareMoveObjects(VEKTOR heroPos) {
 	}
 }
 
-VEKTOR CRaumView::MoveMagicMissiles(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs) {
+void CRaumView::MoveMagicMissiles(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs) {
 	CField* field = m_pMap->GetField(heroPos);
-	// todo refaktorieren mit moveItems
 	std::deque<CMagicMissile*> magicMissiles = field->GetMagicMissile(posAbs);
 	if (!magicMissiles.empty()) {
-		CMagicMissile* topMissile = magicMissiles.back(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Items je Feld
-		if (!topMissile->HasMovedThisTick()) {
+		for (CMagicMissile* magicMissile : magicMissiles) 
+			MoveMagicMissile(heroPos, posAbs, magicMissile);
+	}
+}
 
-			SUBPOS_ABSOLUTE newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, topMissile->m_flyForce);
-			if (topMissile->IsExploding() && newPos == posAbs) {
-				if (topMissile->GetType() == CMagicMissile::MagicMissileType::Poison || topMissile->GetType() == CMagicMissile::MagicMissileType::Dust) {
-					// Gift- und Staubwolke verschwinden langsam
-					if (topMissile->GetStrength() > 1) {
-						topMissile->DecreaseStrength();
-						topMissile->SetDone();
-						return heroPos;
-					} else {
-						field->TakeMissile(posAbs, topMissile); // out of energy, gone
-						delete topMissile;
-					}
+void CRaumView::MoveMagicMissile(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs, CMagicMissile* topMissile) {
+	// todo refaktorieren mit moveItems
+	CField* field = m_pMap->GetField(heroPos);
+	if (!topMissile->HasMovedThisTick()) {
+
+		SUBPOS_ABSOLUTE newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, topMissile->m_flyForce);
+		if (topMissile->IsExploding() && newPos == posAbs) {
+			if (topMissile->GetType() == CMagicMissile::MagicMissileType::Poison || topMissile->GetType() == CMagicMissile::MagicMissileType::Dust) {
+				// Gift- und Staubwolke verschwinden langsam
+				if (topMissile->GetStrength() > 1) {
+					topMissile->DecreaseStrength();
+					return; // heroPos;
 				}
 				else {
-					field->TakeMissile(posAbs, topMissile);
+					field->TakeMissile(posAbs, topMissile); // out of energy, gone
 					delete topMissile;
-				}
-			} else if (newPos == OUTSIDE) {
-				// Feld verlassen
-				CField* newField = m_pMap->GetField(heroPos.x + sign(topMissile->m_flyForce.x), heroPos.y + sign(topMissile->m_flyForce.y), heroPos.z);
-					
-				if (!newField->Blocked()) {
-					// todo prüfen topMissile = field->TakeMissile(posAbs);
-					field->TakeMissile(posAbs, topMissile);
-					newField = ChangeFieldWithTeleporter(newField, posAbs);
-					newField = ChangeFieldWithStairs(newField, topMissile, posAbs);
-					// westlich von west ist ost => anders rum subpos suchen
-					newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topMissile->m_flyForce.x, -topMissile->m_flyForce.y, 0 });
-
-					newField->CastMissile(topMissile, newPos);
-					topMissile->SetDone();
-					return newField->HolePos();
-				}
-				else {
-					topMissile->Explode();
-					topMissile->SetDone();
 				}
 			}
 			else {
+				field->TakeMissile(posAbs, topMissile);
+				delete topMissile;
+			}
+		}
+		else if (newPos == OUTSIDE) {
+			// Feld verlassen
+			CField* newField = m_pMap->GetField(heroPos.x + sign(topMissile->m_flyForce.x), heroPos.y + sign(topMissile->m_flyForce.y), heroPos.z);
+
+			if (!newField->Blocked()) {
 				// todo prüfen topMissile = field->TakeMissile(posAbs);
 				field->TakeMissile(posAbs, topMissile);
-				if (topMissile->IsFlying()) {
-					topMissile->ReduceSpeed();
-					field->CastMissile(topMissile, newPos);
-					return heroPos;
-				}
-				else {
-					delete topMissile;
-				}
+				newField = ChangeFieldWithTeleporter(newField, posAbs);
+				newField = ChangeFieldWithStairs(newField, topMissile, posAbs);
+				// westlich von west ist ost => anders rum subpos suchen
+				newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topMissile->m_flyForce.x, -topMissile->m_flyForce.y, 0 });
+
+				newField->CastMissile(topMissile, newPos);
+				topMissile->SetDone();
+				return; //newField->HolePos();
+			}
+			else {
+				topMissile->Explode();
+				topMissile->SetDone();
+			}
+		}
+		else {
+			// todo prüfen topMissile = field->TakeMissile(posAbs);
+			field->TakeMissile(posAbs, topMissile);
+			if (topMissile->IsFlying()) {
+				topMissile->ReduceSpeed();
+				field->CastMissile(topMissile, newPos);
+				return; //heroPos;
+			}
+			else {
+				delete topMissile;
 			}
 		}
 	}
-	return VEKTOR{ 0, 0, 0 };
+	return; // VEKTOR{ 0, 0, 0 };
 }
+
 
 void CRaumView::CheckMissileCollisions(VEKTOR heroPos) {
 
@@ -1213,7 +1220,7 @@ void CRaumView::MoveAnythingNearby() {
 			CheckMissileCollisions(pos);
 			for (int s = 0; s < 4; s++) {
 				SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
-				VEKTOR newPos = MoveMagicMissiles(pos, posAbs);
+				MoveMagicMissiles(pos, posAbs);
 			}
 		}
 	}

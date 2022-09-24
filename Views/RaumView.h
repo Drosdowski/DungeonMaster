@@ -119,7 +119,8 @@ private:
 	void MoveDoors(VEKTOR heroPos);
 	void PrepareMoveObjects(VEKTOR heroPos);
 	void MoveItems(VEKTOR heroPos);
-	VEKTOR MoveMagicMissiles(VEKTOR heroPos, SUBPOS_ABSOLUTE pos);
+	void MoveMagicMissiles(VEKTOR heroPos, SUBPOS_ABSOLUTE pos);
+	void MoveMagicMissile(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs, CMagicMissile* topMissile);
 	void CheckMissileCollisions(VEKTOR pos);
 
 	CBitmap* GetMiscBitmap(CMiscellaneous* misc);
