@@ -720,9 +720,10 @@ void CDMView::WaffenZeichnen(CDC* pDC, CGrpHeld* pGrpHeroes) {
 
 	for (int id = 1; id < 5; id++) {
 		CHeld* held = pGrpHeroes->GetHero(id);
-		if (held)
+		if (held && held->isAlive())
 		{
-			m_pPictures->DrawActiveWeapon(pDC, held, id);			
+			m_pPictures->DrawActiveWeapon(pDC, held, id);
+			// todo: cooldown -> schattieren / sperren
 		}
 	}
 

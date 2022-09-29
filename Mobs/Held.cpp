@@ -136,8 +136,7 @@ bool CHeld::Altern(CField* field)
 			WerteTemporaerAendern(0, -2, 0);
 		if (m_ST.Aktuell <= 0)
 		{
-			m_HP.Aktuell = 0;	// zu Tode erschöpft
-			return false;
+			m_HP.Aktuell = 0;	
 		}
 	}
 	return alive;
@@ -260,7 +259,7 @@ bool CHeld::hitSucessful(CAttackConst ac, int levelDif) {
 			if ((rand() % 100) > luckNeeded)
 				return true;
 			else {
-				if ((rand() % m_iCurrentLuck) > luckNeeded) {
+				if ((m_iCurrentLuck > 0) && (rand() % m_iCurrentLuck) > luckNeeded) {
 					m_iCurrentLuck -= 2;
 					return true;
 				}
