@@ -12,6 +12,7 @@
 #include "GrpHeld.h"
 #include "GrpMonster.h"
 #include <iostream>
+#include <cassert>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -31,7 +32,7 @@ CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 	//m_posPosition = VEKTOR{ 2,11,0 }; // viele items
 	//m_posPosition = VEKTOR{ 7,9,1 }; // bei Items
 	//m_posPosition = VEKTOR{ 14,8,1 }; // bei Stiefel
-	//m_posPosition = VEKTOR{ 6,9,0 }; // bei 1. Pressure Pad
+	m_posPosition = VEKTOR{ 6,9,0 }; // bei 1. Pressure Pad
 	//m_posPosition = VEKTOR{ 16,0,1 }; // bei 9 Pressure Pad
 	//m_posPosition = VEKTOR{ 18,17,1 }; // bei UND Schalter
 	//m_posPosition = VEKTOR{ 4,11,1 }; // bei Schalter für Tür
@@ -43,12 +44,14 @@ CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 	//m_posPosition = VEKTOR{ 1,31,2 }; // 2. etage Treppe
 	//m_posPosition = VEKTOR{ 15,18,3 }; // 3. Etage Teleport
 	//m_posPosition = VEKTOR{ 1,12,3 }; // bei Screamer
-	m_posPosition = VEKTOR{ 9,2,3 }; // bei Worms
+	//m_posPosition = VEKTOR{ 9,2,3 }; // bei Worms
 	DrehenAbsolut(richt);
 }
 
 CGrpHeld::~CGrpHeld()
 {
+	if (m_pItemInHand)
+		delete m_pItemInHand;
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -241,26 +244,16 @@ bool CGrpHeld::SetActiveCaster(int ID)
 {
 	if (ID <= m_iAnzHelden && m_iAktiverZauberer != ID)
 	{
-		CItem* itemInHand = GetHero(ID)->GetItemInHand();
-		GetHero(m_iAktiverZauberer)->TakeItemInHand(itemInHand);
-		GetHero(ID)->EmptyHand();
 		m_iAktiverZauberer = ID;
 		return true;
 	}
 	return false;
 }
 
-CItem* CGrpHeld::GetItemInHand() {
-	CHeld* held = GetActiveHero();
-	if (held)
-		return held->GetItemInHand();
-	else
-		return NULL;
-}
 
 void CGrpHeld::PutGetItem(int handOfHeroId, int heroId) {
 
-	CItem* itemInHandToPut = GetActiveHero()->GetItemInHand();
+	CItem* itemInHandToPut = GetItemInHand();
 	CItem* newItemInHandToGet = NULL;
 
 	if (itemInHandToPut) {
@@ -308,4 +301,17 @@ void CGrpHeld::Laufen(VEKTOR WunschPos) {
 	m_posPosition = WunschPos;
 	std::cout << "New Position: " << m_posPosition.x << " - " << m_posPosition.y << std::endl;
 
+}
+
+void CGrpHeld::TakeItemInHand(CItem* item)
+{
+	if (m_pItemInHand == NULL)
+		m_pItemInHand = item;
+	else
+		assert(false); // ???
+}
+
+void CGrpHeld::EmptyHand() {
+	// kein delete, Objekt ist jetzt woanders...
+	m_pItemInHand = NULL;
 }

@@ -292,11 +292,11 @@ void CPictures::ZeichneHpStMa(CDC* pDC, WERTE hp, WERTE st, WERTE ma)
 
 	CString str;
 	str.Format("%i / %i", (int)hp.Aktuell, (int)hp.Max);
-	pDC->TextOut(120, 284, str);
+	pDC->TextOut(120, 282, str);
 	str.Format("%i / %i", (int)st.Aktuell, (int)st.Max);
-	pDC->TextOut(120, 300, str);
+	pDC->TextOut(120, 298, str);
 	str.Format("%i / %i", (int)ma.Aktuell, (int)ma.Max);
-	pDC->TextOut(120, 316, str);
+	pDC->TextOut(120, 314, str);
 }
 
 
@@ -430,5 +430,5 @@ void CPictures::GewichtZeichnen(CDC* pDC, CHeld* pHeld) {
 
 	CString strZeile;
 	strZeile.Format("LOAD         %1.1f/ %2.1f KG", dCurValue, dMaxValue);
-	pDC->TextOut(208, 320, strZeile);
+	pDC->TextOut(208, 314, strZeile);
 }

@@ -524,21 +524,27 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 	}
 	else if (m_iModus == MOD_RUCKSACK)
 	{
-		ParseClickPortraitHands(point, true);
 		if (CScreenCoords::CheckHitMainScr(point)) {
-			ParseClickBackpack(point, grpHelden->GetActiveHero());
+			ParseClickBackpack(point);
 			ChangeMouseCursor();
+		}
+		else {
+			if (!ParseClickPortraitHands(point, true))
+				ParseClickPortrait(point);
+			ParseClickMagic(point);
 		}
 	}
 	CView::OnLButtonDown(nFlags, point);
 }
 
-void CDMView::ParseClickBackpack(CPoint point, CHeld* pHeld) {
+void CDMView::ParseClickBackpack(CPoint point) {
+	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+	CHeld* pHeld = grpHelden->GetActiveHero();
 	if (CScreenCoords::CheckHitEye(point))
 		pHeld->GetRucksack()->SetzeModusExtend(MOD_EXT_AUGE);
 	else if (CScreenCoords::CheckHitMouth(point))
 	{
-		CItem* item = pHeld->GetItemInHand();
+		CItem* item = grpHelden->GetItemInHand();
 		CWeapon* weapon = NULL;
 		if (item->getItemType() == CItem::ItemType::MiscItem) {
 			CMiscellaneous* misc = (CMiscellaneous*)item;
@@ -551,7 +557,7 @@ void CDMView::ParseClickBackpack(CPoint point, CHeld* pHeld) {
 				}
 				else {
 					pHeld->Essen(50);
-					pHeld->EmptyHand();
+					grpHelden->EmptyHand();
 					delete item; // destroy permanently!
 				}
 			}
@@ -560,7 +566,7 @@ void CDMView::ParseClickBackpack(CPoint point, CHeld* pHeld) {
 	else {
 		int slot = CScreenCoords::CheckHitBackpackSlots(point);
 		if (slot >= 0) {
-			CItem* itemInHand = pHeld->GetItemInHand();
+			CItem* itemInHand = grpHelden->GetItemInHand();
 			CItem* newItemInHand = NULL;
 			CItem* itemCarryingAtPos = pHeld->GetItemCarrying(slot);
 			if ((itemInHand == NULL) || (itemInHand && itemInHand->CheckGroup(slot, itemInHand->GetGroup()))) {
@@ -572,10 +578,10 @@ void CDMView::ParseClickBackpack(CPoint point, CHeld* pHeld) {
 					newItemInHand = itemCarryingAtPos;
 				}
 				if (newItemInHand == NULL) {
-					pHeld->EmptyHand();
+					grpHelden->EmptyHand();
 				}
 				else {
-					pHeld->TakeItemInHand(newItemInHand);
+					grpHelden->TakeItemInHand(newItemInHand);
 					pHeld->RemoveItemCarrying(slot);
 				}
 			}

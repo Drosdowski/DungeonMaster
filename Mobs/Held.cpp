@@ -16,7 +16,6 @@
 // following includes for compass
 #include "Held.h"
 #include "..\Attributes\MiscellaneousAttributes.h"
-#include <cassert>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -79,7 +78,6 @@ CHeld::~CHeld()
 		}
 	}
 	delete m_pRucksack;
-	DelItem(m_pItemInHand);
 }
 
 void CHeld::DelItem(CItem* pItem) {
@@ -279,19 +277,6 @@ void CHeld::Essen(int amount) {
 
 void CHeld::Trinken(int amount) {
 	m_iWater = min(maxWater, m_iWater + amount);
-}
-
-void CHeld::TakeItemInHand(CItem* item)
-{
-	if (m_pItemInHand == NULL)
-		m_pItemInHand = item;
-	else
-		assert(false); // ???
-}
-
-void CHeld::EmptyHand() {
-	// kein delete, Objekt ist jetzt woanders...
-	m_pItemInHand = NULL;
 }
 
 CItem* CHeld::SwitchItemAt(int index, CItem* item)

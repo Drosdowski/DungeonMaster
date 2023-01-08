@@ -30,9 +30,10 @@ public:
 	int GetNumberOfHeroes() { return m_iAnzHelden;  }
 	int GetActionPhase() { return m_iPhase; }
 	
-	CItem* GetItemInHand();
-	void TakeItemInHand(CItem* item) { return GetActiveHero()->TakeItemInHand(item); }
-	void EmptyHand() { return GetActiveHero()->EmptyHand(); }
+	CItem* GetItemInHand() { return m_pItemInHand; }
+	void TakeItemInHand(CItem* item);
+	void EmptyHand();
+
 	virtual bool Laufbereit();
 	void Laufen(VEKTOR WunschPos);
 
@@ -62,6 +63,8 @@ protected:
 	int m_iAktiverZauberer = 0;
 	int m_iAktiverHeld = 1;
 	int m_iAnzHelden = 0;
+	CItem* m_pItemInHand = NULL;
+
 
 };
 

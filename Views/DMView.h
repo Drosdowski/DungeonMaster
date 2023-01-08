@@ -15,7 +15,6 @@
 
 class CActuator;
 class CDMDoc;
-class CHeld;
 class CField;
 class CGrpHeld;
 class CRaumView;
@@ -91,7 +90,7 @@ protected:
 	void ParseClickRunes(CPoint point, CGrpHeld* grpHelden);
 	void ParseClickSpell(CPoint point, CGrpHeld* grpHelden);
 	void ParseClickAction(CPoint point);
-	void ParseClickBackpack(CPoint point, CHeld* pHeld);
+	void ParseClickBackpack(CPoint point);
 	void ParseClickPortrait(CPoint point);
 	bool ParseClickPortraitHands(CPoint point, bool backpackMode);
 	void ParseClickFloor(CPoint point);

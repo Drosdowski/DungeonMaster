@@ -54,11 +54,8 @@ public:
 
 	CRucksack* GetRucksack() { return m_pRucksack; }
 
-	CItem* GetItemInHand() { return m_pItemInHand; }
 	void setActive() { m_bAktiv = true; }
 	void setInactive() { m_bAktiv = false; }
-	void TakeItemInHand(CItem* item);
-	void EmptyHand();
 
 	CItem* GetItemCarrying(int index) { return m_itemCarrying[index]; }
 	void RemoveItemCarrying(int index) { m_itemCarrying[index] = NULL; }
@@ -89,8 +86,6 @@ private:
 
 	CString m_strName;
 	CItem* m_itemCarrying[30];
-
-	CItem* m_pItemInHand = NULL;
 
 	double round1(double value);
 	bool hitSucessful(CAttackConst ac, int levelDif);
