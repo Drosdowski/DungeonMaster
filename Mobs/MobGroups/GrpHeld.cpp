@@ -9,6 +9,7 @@
 #include "..\..\Items\Weapon.h"
 #include "..\..\XMLParser\AttackInfos.h"
 #include "..\..\XMLParser\MonsterInfos.h"
+#include "..\..\Views\RaumView.h"
 #include "GrpHeld.h"
 #include "GrpMonster.h"
 #include <iostream>
@@ -112,59 +113,75 @@ void CGrpHeld::PassAction() {
 
 }
 
-void CGrpHeld::DoActionForChosenHero(int ActionId, CGrpMonster* pVictims, CAttackInfos* attackInfos, CMonsterInfos* monsterInfos, int diff) {
+void CGrpHeld::DoActionForChosenHero(int ActionId, CRaumView* pRaumView) {
 	if (m_iPhase == 2) {
-		if (pVictims) {
-			CHeld* pHero = (CHeld*)m_pMember[m_iHeroForAction];
-			if (pHero) {
-				if (pHero->isAlive()) {
-					CItem* item = pHero->GetItemCarrying(1);
-					VEKTOR myPos = GetVector();
-					CWeapon* weapon = NULL;
-					CString attackType;
-					if (item && item->getItemType() == CItem::ItemType::WeaponItem) {
-						weapon = (CWeapon*)item;
-						attackType = weapon->GetAttributes().style[ActionId-1].type;
+		VEKTOR monPos = HoleZielFeld(VORWAERTS);
+		CHeld* pHero = (CHeld*)m_pMember[m_iHeroForAction];
+		CGrpMonster* pVictims = pRaumView->GetMonsterGroup(monPos);
+		CAttackInfos* attackInfos = pRaumView->GetAttackInfos(); 
+		CMonsterInfos* monsterInfos = pRaumView->GetMonsterInfos();
+		CField* field = pRaumView->GetMap()->GetField(monPos);
+		int diff = pRaumView->GetMap()->GetLevelDifficulty(monPos.z);
+		if (pHero) {
+			if (pHero->isAlive()) {
+				CItem* item = pHero->GetItemCarrying(1);
+				VEKTOR myPos = GetVector();
+				CWeapon* weapon = NULL;
+				CString attackType;
+				if (item && item->getItemType() == CItem::ItemType::WeaponItem) {
+					weapon = (CWeapon*)item;
+					attackType = weapon->GetAttributes().style[ActionId-1].type;
+				}
+				else {
+					/*CWeaponAttributes att;
+					att.fixAttributes.damage = 1;
+					weapon = new CWeapon(HANDINDEX, att);*/
+					attackType = "N"; // Punch / Kick / Warcry
+				}
+
+				if (attackType == "throw")
+				{
+					ThrowItemInHeroHand(pHero, field, RECHTSFRONT); // todo Seite berechnen !!
+				}
+				else {
+
+					if (pVictims) {
+						// Nahkampf!
+						CAttackConst ac = attackInfos->GetAttack(attackType);
+						CMonsterConst mc = monsterInfos->GetMonsterInfo(pVictims->GetType());
+
+						int dmg = pHero->CalcDmg(weapon, ac, mc, pVictims, diff); // todo doof so, besser in CMonster die MOnsterInfo rein
+						if (dmg > 0) {
+							pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
+							pHero->AttackModeWithDmg(dmg);
+							m_iPhase = 3;
+							m_iPhaseDelay = 2;
+						}
+						/*
+						int itemIndex = -1;
+						if (item && item->getItemType() == CItem::ItemType::WeaponItem) {
+							itemIndex = item->getIndex();
+						}
+						else if (item == NULL) {
+							itemIndex = HANDINDEX;
+						}
+						if (itemIndex >= 0) {
+							CAttackConst ac = attackInfos->GetAttack(itemIndex);
+							int dmg = pHero->CalcDmg(ac, pVictims, myPos.z);
+							pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
+							pHero->AttackModeWithDmg(dmg);
+							m_iPhase = 3;
+							m_iPhaseDelay = 2;
+						}*/
 					}
 					else {
-						/*CWeaponAttributes att;
-						att.fixAttributes.damage = 1;
-						weapon = new CWeapon(HANDINDEX, att);*/
-						attackType = "N"; // Punch / Kick / Warcry
+						// kein Gegner!
+						m_iPhase = 1;
 					}
-					CAttackConst ac = attackInfos->GetAttack(attackType);
-					CMonsterConst mc = monsterInfos->GetMonsterInfo(pVictims->GetType());
-
-					int dmg = pHero->CalcDmg(weapon, ac, mc, pVictims, diff); // todo doof so, besser in CMonster die MOnsterInfo rein
-					if (dmg > 0) {
-						pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
-						pHero->AttackModeWithDmg(dmg);
-						m_iPhase = 3;
-						m_iPhaseDelay = 2;
-					}
-					/*
-					int itemIndex = -1;
-					if (item && item->getItemType() == CItem::ItemType::WeaponItem) {
-						itemIndex = item->getIndex();
-					}
-					else if (item == NULL) {
-						itemIndex = HANDINDEX;
-					}
-					if (itemIndex >= 0) {
-						CAttackConst ac = attackInfos->GetAttack(itemIndex);
-						int dmg = pHero->CalcDmg(ac, pVictims, myPos.z);
-						pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
-						pHero->AttackModeWithDmg(dmg);
-						m_iPhase = 3;
-						m_iPhaseDelay = 2;
-					}*/
 				}
 			}
 		}
-		else {
-			// kein Gegner!
-			m_iPhase = 1;
-		}
+			
 	}
 }
 
@@ -275,6 +292,21 @@ void CGrpHeld::PutGetItem(int handOfHeroId, int heroId) {
 			GetHero(heroId)->RemoveItemCarrying(handOfHeroId);
 	}
 }
+
+void CGrpHeld::ThrowItemInHeroHand(CHeld* pHero, CField* field, SUBPOS seite) {
+	if (!field->Blocked()) {
+		CItem* item = pHero->GetItemCarrying(1);
+		if (item) {
+			COMPASS_DIRECTION grpDir = GetDirection();
+			SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(seite, grpDir);
+			VEKTOR force = CHelpfulValues::MakeVektor(grpDir, 6);
+
+			field->ThrowItem(item, itemRegionReal, force);
+			EmptyHand();
+		}
+	}
+}
+
 
 bool CGrpHeld::Laufbereit()
 {

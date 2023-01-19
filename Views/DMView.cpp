@@ -211,11 +211,7 @@ void CDMView::ParseClickAction(CPoint point) {
 			grpHelden->PassAction();
 		}
 		else {
-			VEKTOR monPos = grpHelden->HoleZielFeld(VORWAERTS);
-			CGrpMonster* grpMonster = m_pRaumView->GetMonsterGroup(monPos);
-			CAttackInfos* attackInfos = m_pRaumView->GetAttackInfos();
-			CMonsterInfos* monsterInfos = m_pRaumView->GetMonsterInfos();
-			grpHelden->DoActionForChosenHero(actionNumber, grpMonster, attackInfos, monsterInfos, m_pRaumView->GetMap()->GetLevelDifficulty(monPos.z));
+			grpHelden->DoActionForChosenHero(actionNumber, m_pRaumView);
 		}
 		UpdateGrafik();
 	}

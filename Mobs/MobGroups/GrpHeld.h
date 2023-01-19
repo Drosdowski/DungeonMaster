@@ -12,6 +12,7 @@ class CMonster;
 class CItem;
 class CAttackInfos;
 class CMonsterInfos;
+class CRaumView;
 class CGrpHeld: public CGrpChar
 {
 public:
@@ -38,11 +39,12 @@ public:
 	void Laufen(VEKTOR WunschPos);
 
 	void PutGetItem(int handOfHeroId, int heroId);
+	void ThrowItemInHeroHand(CHeld* hero, CField* field, SUBPOS seite);
 
 	void Aktiviere(int n);
 	void PassAction();
 	void ChooseHeroForAction(int ID);
-	void DoActionForChosenHero(int ID, CGrpMonster* pVictims, CAttackInfos* attackInfos, CMonsterInfos* monsterInfos, int diff);
+	void DoActionForChosenHero(int ID, CRaumView* pRaumView);
 	bool SetActiveCaster(int ID);
 	
 	bool Altern(CField* field);
