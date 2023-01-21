@@ -571,7 +571,7 @@ void CDungeonMap::ParseWeaponObjects(TiXmlElement* rootNode) {
 			int index, type;
 			CWeaponAttributes att;
 			parentElement->QueryIntAttribute("index", &index);
-			parentElement->QueryIntAttribute("charges", &att.charges);
+			parentElement->QueryIntAttribute("number_of_charges", &att.charges);
 			parentElement->QueryIntAttribute("type", &type);
 			att.type = (CWeaponAttributes::WeaponType)type;
 			att.fixAttributes = m_pItemInfos->GetWeaponInfo(type);

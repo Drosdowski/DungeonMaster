@@ -881,6 +881,7 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 	CField* pField = m_pMap->GetField(toPos);
 	FeldTyp iTyp = pField->HoleTyp();
 	CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
+	CGrpMonster* pGrpMonster = pField->GetMonsterGroup();
 	if (iTyp == FeldTyp::WALL)
 		return fromPos;
 	else if (iTyp == FeldTyp::DOOR)
@@ -888,9 +889,9 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 		CDoor* pDoor = pField->HoleDoor();
 		if (pDoor->getState() != CDoor::DoorState::OPEN)
 			return fromPos;
+		if (pGrpMonster) return fromPos;
 	}
 	else if (iTyp == FeldTyp::EMPTY) {
-		CGrpMonster* pGrpMonster = pField->GetMonsterGroup();
 		if (pGrpMonster) return fromPos;
 	}
 	else if (iTyp == FeldTyp::PIT) {

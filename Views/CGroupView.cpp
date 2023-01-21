@@ -52,7 +52,7 @@ void CGroupView::GroupZeichnen(CDC* pDC, CPictures* pPictures, DMMode iModus, CG
 				pPictures->SymbolZeichnen(pDC, i, relPos);
 				if (pHeroToDraw->ReceivedDmg() > 0) {
 					pPictures->SchadenZeichnen(pDC, i, pHeroToDraw->isActive() && (iModus == MOD_RUCKSACK), pHeroToDraw->ReceivedDmg());
-					pHeroToDraw->ResetDmg();
+					//pHeroToDraw->ResetDmg();
 				}
 			}
 		}

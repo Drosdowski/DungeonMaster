@@ -33,7 +33,7 @@ CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 	//m_posPosition = VEKTOR{ 2,11,0 }; // viele items
 	//m_posPosition = VEKTOR{ 7,9,1 }; // bei Items
 	//m_posPosition = VEKTOR{ 14,8,1 }; // bei Stiefel
-	m_posPosition = VEKTOR{ 6,9,0 }; // bei 1. Pressure Pad
+	//m_posPosition = VEKTOR{ 6,9,0 }; // bei 1. Pressure Pad
 	//m_posPosition = VEKTOR{ 16,0,1 }; // bei 9 Pressure Pad
 	//m_posPosition = VEKTOR{ 18,17,1 }; // bei UND Schalter
 	//m_posPosition = VEKTOR{ 4,11,1 }; // bei Schalter für Tür
@@ -46,6 +46,7 @@ CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 	//m_posPosition = VEKTOR{ 15,18,3 }; // 3. Etage Teleport
 	//m_posPosition = VEKTOR{ 1,12,3 }; // bei Screamer
 	//m_posPosition = VEKTOR{ 9,2,3 }; // bei Worms
+	m_posPosition = VEKTOR{ 13,3,6 }; // bei Items
 	DrehenAbsolut(richt);
 }
 
@@ -141,7 +142,9 @@ void CGrpHeld::DoActionForChosenHero(int ActionId, CRaumView* pRaumView) {
 
 				if (attackType == "throw")
 				{
-					ThrowItemInHeroHand(pHero, field, RECHTSFRONT); // todo Seite berechnen !!
+					SUBPOS_ABSOLUTE abspos = pHero->HoleSubPosition();
+					SUBPOS pos = CHelpfulValues::GetRelativeSubPosPassive(abspos, m_grpDirection);
+					ThrowItemInHeroHand(pHero, field, pos); 
 				}
 				else {
 
@@ -300,7 +303,7 @@ void CGrpHeld::ThrowItemInHeroHand(CHeld* pHero, CField* field, SUBPOS seite) {
 			COMPASS_DIRECTION grpDir = GetDirection();
 			SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(seite, grpDir);
 			VEKTOR force = CHelpfulValues::MakeVektor(grpDir, 6);
-
+			pHero->RemoveItemCarrying(1);
 			field->ThrowItem(item, itemRegionReal, force);
 			EmptyHand();
 		}
