@@ -16,7 +16,6 @@ http://dmweb.free.fr/?q=node/1395
 BUGS
 
 Schalter an PIT - 2. Zustand
-Icon Torch
 Krone auf Bauch??
 Dagger/arrow in Extratasche
 throw trifft monster
