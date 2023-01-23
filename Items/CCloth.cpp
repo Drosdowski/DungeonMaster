@@ -41,13 +41,13 @@ int CCloth::GetOffsetForGroup() {
 }
 
 int CCloth::GetSheetForGroup() {
-	if (m_attribute.type >= CClothAttributes::ClothType::Sandals || 
+	if (m_attribute.type >= CClothAttributes::ClothType::Sandals && 
 		m_attribute.type <= CClothAttributes::ClothType::LeatherBoots)
 		return 3;
-	else if ((m_attribute.type >= 4 && m_attribute.type <= 14) ||
-			(m_attribute.type >= 16 && m_attribute.type <= 17) ||
-			(m_attribute.type >= 19 && m_attribute.type <= 22))
-		return 1;
+	else if ((m_attribute.type >= CClothAttributes::ClothType::RobeBody && m_attribute.type <= CClothAttributes::ClothType::ElvenHuke) ||
+			(m_attribute.type >= CClothAttributes::ClothType::LeatherJerkin && m_attribute.type <= CClothAttributes::ClothType::LeatherPants) ||
+			(m_attribute.type >= CClothAttributes::ClothType::BluePants && m_attribute.type <= CClothAttributes::ClothType::GhiTrousers))
+		return 2;
 	else
 		return -1;
 }
