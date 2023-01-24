@@ -560,27 +560,31 @@ void CDMView::ParseClickBackpack(CPoint point) {
 		}
 	}
 	else {
+		// todo refaktorieren mit PutGetItem()
 		int slot = CScreenCoords::CheckHitBackpackSlots(point);
 		if (slot >= 0) {
-			CItem* itemInHand = grpHelden->GetItemInHand();
-			CItem* newItemInHand = NULL;
-			CItem* itemCarryingAtPos = pHeld->GetItemCarrying(slot);
-			if ((itemInHand == NULL) || (itemInHand && itemInHand->CheckGroup(slot, itemInHand->GetGroup()))) {
-				// todo: group check!
-				if (itemInHand) {
-					newItemInHand = pHeld->SwitchItemAt(slot, itemInHand);
-				}
-				else {
-					newItemInHand = itemCarryingAtPos;
-				}
-				if (newItemInHand == NULL) {
-					grpHelden->EmptyHand();
-				}
-				else {
-					grpHelden->TakeItemInHand(newItemInHand);
-					pHeld->RemoveItemCarrying(slot);
-				}
+			CItem* itemInHandToPut = grpHelden->GetItemInHand();
+			CItem* newItemInHandToGet = NULL;
+
+			if (itemInHandToPut && itemInHandToPut->CheckGroup(slot, itemInHandToPut->GetGroup()))
+			{
+				newItemInHandToGet = pHeld->SwitchItemAt(slot, itemInHandToPut);
 			}
+			else {
+				newItemInHandToGet = pHeld->GetItemCarrying(slot);
+			}
+			grpHelden->EmptyHand();
+			if (newItemInHandToGet == NULL) {
+				// ablegen - passt.
+			}
+			else {
+				// tauschen		
+				grpHelden->TakeItemInHand(newItemInHandToGet);
+				if (!itemInHandToPut)
+					pHeld->RemoveItemCarrying(slot);
+
+			}
+			
 		}
 	}
 }
