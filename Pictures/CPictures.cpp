@@ -386,7 +386,7 @@ void CPictures::DrawActiveWeapon(CDC* pDC, CHeld* held, int id) {
 		CBitmap* bmp = m_pItemPic->GetBitmapSheet(itemInThisHand);
 		CPoint pos = m_pItemPic->GetSheetKoords(itemInThisHand);
 		tmpdc.SelectObject(bmp);
-		pDC->TransparentBlt(466 + 50 * (id - 1), 193, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, TRANS_GRA);
+		pDC->TransparentBlt(470 + 44 * (id - 1), 193, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, TRANS_GRA);
 	}
 }
 

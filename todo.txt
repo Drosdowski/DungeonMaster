@@ -16,10 +16,8 @@ http://dmweb.free.fr/?q=node/1395
 BUGS
 
 Schalter an PIT - 2. Zustand
-Krone auf Bauch??
-Dagger/arrow in Extratasche
 throw trifft monster
 Sleep
-Item Fach - Hand - Boden
+Item in Hand tauschen im Rucksack
 
 SAVE GAME
