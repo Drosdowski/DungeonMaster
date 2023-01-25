@@ -102,6 +102,7 @@ protected:
 	void InvokeRemoteActuator(CActuator* activeActuator);
 	void ChangeMouseCursor();
 
+	void Awake();
 	// Spells
 	void CastMagicMissile(CMagicMissile::MagicMissileType missileType, int size);
 

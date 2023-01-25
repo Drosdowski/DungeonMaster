@@ -474,60 +474,63 @@ void CDMView::ParseClickFloor(CPoint point) {
 
 void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	//RAUM :0,64,460,270+64
+	if (m_bSleep) {
+		Awake();
+	} else {
 
-	CDMDoc* pDoc = (CDMDoc*)GetDocument();
-	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
-	if (m_iModus == MOD_LAUFEN)
-	{
-		ParseClickArrows(point);
-		if (grpHelden && grpHelden->GetNumberOfHeroes() > 0)
+		CDMDoc* pDoc = (CDMDoc*)GetDocument();
+		CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+		if (m_iModus == MOD_LAUFEN)
 		{
-			ParseClickFloor(point);
-			ParseClickMagic(point);
-			ParseClickAction(point);
-			if (!ParseClickPortraitHands(point, false))
-				ParseClickPortrait(point);
+			ParseClickArrows(point);
+			if (grpHelden && grpHelden->GetNumberOfHeroes() > 0)
+			{
+				ParseClickFloor(point);
+				ParseClickMagic(point);
+				ParseClickAction(point);
+				if (!ParseClickPortraitHands(point, false))
+					ParseClickPortrait(point);
 
-			// Unterscheiden: Anklicken oder werfen?
-			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
-			if (FeldVorHeld) {
-				ParseClickDoorButton(point, FeldVorHeld);
-				if (FeldVorHeld->Blocked()) {
-					COMPASS_DIRECTION dir = CHelpfulValues::OppositeDirection(grpHelden->GetDirection());
-					std::deque<CActuator*> actuators = (FeldVorHeld->GetActuator(dir));
-					if (!actuators.empty()) {
-						CSize size = m_pRaumView->GetSizeOfFrontDeco(FeldVorHeld, dir);
+				// Unterscheiden: Anklicken oder werfen?
+				CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
+				if (FeldVorHeld) {
+					ParseClickDoorButton(point, FeldVorHeld);
+					if (FeldVorHeld->Blocked()) {
+						COMPASS_DIRECTION dir = CHelpfulValues::OppositeDirection(grpHelden->GetDirection());
+						std::deque<CActuator*> actuators = (FeldVorHeld->GetActuator(dir));
+						if (!actuators.empty()) {
+							CSize size = m_pRaumView->GetSizeOfFrontDeco(FeldVorHeld, dir);
 
-						if (ParseClickActuator(point, actuators, dir, size))
-							FeldVorHeld->RotateActuators(dir);
+							if (ParseClickActuator(point, actuators, dir, size))
+								FeldVorHeld->RotateActuators(dir);
+						}
+						ParseClickFountain(point, FeldVorHeld, dir);
+
 					}
-					ParseClickFountain(point, FeldVorHeld, dir);
+					else {
+						ParseClickAir(point);
+					}
+				}
 
-				}
-				else {
-					ParseClickAir(point);
-				}
+
 			}
 
+			/*if (CScreenCoords::CheckHitDeco(point)) { // todo aufräumen
+				m_pRaumView->OnTrigger();
+			}*/
 
 		}
-
-		/*if (CScreenCoords::CheckHitDeco(point)) { // todo aufräumen
-			m_pRaumView->OnTrigger();
-		}*/
-
-	}
-	else if (m_iModus == MOD_RUCKSACK)
-	{
-		if (CScreenCoords::CheckHitMainScr(point)) {
-			ParseClickBackpack(point);
-			ChangeMouseCursor();
-		}
-		else {
-			if (!ParseClickPortraitHands(point, true))
-				ParseClickPortrait(point);
-			ParseClickMagic(point);
+		else if (m_iModus == MOD_RUCKSACK)
+		{
+			if (CScreenCoords::CheckHitMainScr(point)) {
+				ParseClickBackpack(point);
+				ChangeMouseCursor();
+			}
+			else {
+				if (!ParseClickPortraitHands(point, true))
+					ParseClickPortrait(point);
+				ParseClickMagic(point);
+			}
 		}
 	}
 	CView::OnLButtonDown(nFlags, point);
@@ -558,6 +561,10 @@ void CDMView::ParseClickBackpack(CPoint point) {
 				}
 			}
 		}
+	}
+	else if (CScreenCoords::CheckHitSleep(point)) {
+		m_bSleep = true;
+		SetTimer(7, 20, NULL);
 	}
 	else {
 		// todo refaktorieren mit PutGetItem()
@@ -592,26 +599,31 @@ void CDMView::ParseClickBackpack(CPoint point) {
 
 void CDMView::OnRButtonDown(UINT nFlags, CPoint point)
 {
-	CDMDoc* pDoc = (CDMDoc*)GetDocument();
-	CDC* pDC = GetDC();
-	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
-	if (grpHelden->GetActiveHero() == NULL) return;
+	if (m_bSleep) {
+		Awake();
+	}
+	else {
+		CDMDoc* pDoc = (CDMDoc*)GetDocument();
+		CDC* pDC = GetDC();
+		CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+		if (grpHelden->GetActiveHero() == NULL) return;
 
-	switch (m_iModus)
-	{
-	case MOD_LAUFEN:
-		if (grpHelden->SetzeModus(pDC, RUCKSACK)) {
-			m_iModus = MOD_RUCKSACK;
-		}
-		break;
-		//	}
-	case MOD_RUCKSACK:
-		if (grpHelden->SetzeModus(pDC, LAUFEN))
+		switch (m_iModus)
 		{
-			m_iModus = MOD_LAUFEN;
-			UpdateGrafik();
+		case MOD_LAUFEN:
+			if (grpHelden->SetzeModus(pDC, RUCKSACK)) {
+				m_iModus = MOD_RUCKSACK;
+			}
+			break;
+			//	}
+		case MOD_RUCKSACK:
+			if (grpHelden->SetzeModus(pDC, LAUFEN))
+			{
+				m_iModus = MOD_LAUFEN;
+				UpdateGrafik();
+			}
+			break;
 		}
-		break;
 	}
 	CView::OnRButtonDown(nFlags, point);
 }
@@ -619,74 +631,79 @@ void CDMView::OnRButtonDown(UINT nFlags, CPoint point)
 
 void CDMView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	CDMDoc* pDoc = GetDocument();
-	if (m_iDir == 0)
-	{
-		switch (nChar)
+	if (m_bSleep) {
+		Awake();
+	}
+	else {
+		CDMDoc* pDoc = GetDocument();
+		if (m_iDir == 0)
 		{
-		case 27:
-			if (m_bPause) {
-				m_bPause = false;
-				m_iModus = lastModus;
+			switch (nChar)
+			{
+			case 27:
+				if (m_bPause) {
+					m_bPause = false;
+					m_iModus = lastModus;
+				}
+				else {
+					m_bPause = true;
+					lastModus = m_iModus;
+					m_iModus = MOD_PAUSE;
+				}
+				break;
+			case 32:
+				if (cheatAktiv)
+					m_pRaumView->OnTrigger();
+				break;
+			case 38:
+			case 101:
+				m_iDir = VORWAERTS;
+				break;
+			case 40:
+			case 98:
+				m_iDir = RUECKWAERTS;
+				break;
+			case 37:
+			case 97:
+				m_iDir = LINKS_STRAFE;
+				break;
+			case 39:
+			case 99:
+				m_iDir = RECHTS_STRAFE;
+				break;
+			case 100:
+				m_iDir = LINKS_DREHEN;
+				break;
+			case 102:
+				m_iDir = RECHTS_DREHEN;
+				break;
+			case 49:
+			case 50:
+			case 51:
+			case 52:
+				pDoc->InitGruppe(nChar - 48);
+				break;
+			default:
+			{
+				CString str;
+				str.Format("%i ", nChar);
+				TRACE(str);
+				break;
 			}
-			else {
-				m_bPause = true;
-				lastModus = m_iModus;
-				m_iModus = MOD_PAUSE;
 			}
-			break;
-		case 32:
-			if (cheatAktiv)
-				m_pRaumView->OnTrigger();
-			break;
-		case 38:
-		case 101:
-			m_iDir = VORWAERTS;
-			break;
-		case 40:
-		case 98:
-			m_iDir = RUECKWAERTS;
-			break;
-		case 37:
-		case 97:
-			m_iDir = LINKS_STRAFE;
-			break;
-		case 39:
-		case 99:
-			m_iDir = RECHTS_STRAFE;
-			break;
-		case 100:
-			m_iDir = LINKS_DREHEN;
-			break;
-		case 102:
-			m_iDir = RECHTS_DREHEN;
-			break;
-		case 49:
-		case 50:
-		case 51:
-		case 52:
-			pDoc->InitGruppe(nChar - 48);
-			break;
-		default:
-		{
-			CString str;
-			str.Format("%i ", nChar);
-			TRACE(str);
-			break;
-		}
-		}
 
-		if (m_iModus == MOD_LAUFEN)
-		{
-			if (m_iDir > 0)
+			if (m_iModus == MOD_LAUFEN)
+			{
+				if (m_iDir > 0)
+				{
+					UpdateGrafik();
+					pDoc->SetzeRichtung(m_iDir); // noch nicht laufen, nur anmelden
+				}
+			}
+			else if (m_iModus == MOD_RUCKSACK)
 			{
 				UpdateGrafik();
-				pDoc->SetzeRichtung(m_iDir); // noch nicht laufen, nur anmelden
 			}
-		}
-		else if (m_iModus == MOD_RUCKSACK)
-		{
-			UpdateGrafik();
 		}
 	}
 	CView::OnKeyDown(nChar, nRepCnt, nFlags);
@@ -884,4 +901,10 @@ void CDMView::ChangeMouseCursor() {
 		}
 	}
 	::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
+}
+
+void CDMView::Awake() {
+	m_bSleep = false;
+	m_iModus = MOD_LAUFEN;
+	SetTimer(7, 166, NULL);
 }

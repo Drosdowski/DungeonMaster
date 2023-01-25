@@ -16,6 +16,7 @@ public:
 	static bool CheckHitMainScr(CPoint);
 	static bool CheckHitEye(CPoint);
 	static bool CheckHitMouth(CPoint);
+	static bool CheckHitSleep(CPoint);
 	static bool CheckHitDoorButton(CPoint);
 	static SUBPOS CheckHitFloor(CPoint point);
 	static SUBPOS CheckHitAir(CPoint point); // throwing

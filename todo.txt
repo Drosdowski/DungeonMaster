@@ -17,7 +17,5 @@ BUGS
 
 Schalter an PIT - 2. Zustand
 throw trifft monster
-Sleep
-Item in Hand tauschen im Rucksack
 
 SAVE GAME
