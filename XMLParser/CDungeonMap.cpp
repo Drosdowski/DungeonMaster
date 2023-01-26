@@ -823,3 +823,8 @@ WallDecorationType CDungeonMap::GetWallDecorationType(int ebene, int graphic)
 	else
 		return None;
 }
+
+
+void CDungeonMap::Save() {
+
+}

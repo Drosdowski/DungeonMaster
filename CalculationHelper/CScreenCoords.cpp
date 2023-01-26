@@ -217,3 +217,7 @@ bool CScreenCoords::CheckHitMouth(CPoint point) {
 bool CScreenCoords::CheckHitSleep(CPoint point) {
 	return InRect(point, 376, 70, 408, 86);
 }
+
+bool CScreenCoords::CheckHitSave(CPoint point) {
+	return InRect(point, 348, 70, 366, 86);
+}

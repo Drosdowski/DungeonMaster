@@ -32,7 +32,7 @@ public:
 	COMPASS_DIRECTION GetStartDirection() { return m_startRicht; }
 	CGrpHeld* GetHeroes() { return m_pGrpHelden; }
 	WallDecorationType GetWallDecorationType(int ebene, int graphic);
-
+	void Save();
 
 private:
 
