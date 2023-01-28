@@ -21,6 +21,7 @@ CDungeonMap::CDungeonMap(CItemInfos* pItemInfos, CMonsterInfos* pMonsterInfos)
 	m_pMonsterInfos = pMonsterInfos;
 	LoadMap();
 	m_pGrpHelden = new CGrpHeld(m_start, m_startRicht);
+	LoadGame(m_pGrpHelden);
 }
 
 CDungeonMap::~CDungeonMap()
@@ -813,7 +814,6 @@ void CDungeonMap::LoadMap() {
 
 		ParseDungeon(rootElement);
 	}
-
 }
 
 WallDecorationType CDungeonMap::GetWallDecorationType(int ebene, int graphic)
@@ -825,6 +825,54 @@ WallDecorationType CDungeonMap::GetWallDecorationType(int ebene, int graphic)
 }
 
 
-void CDungeonMap::Save() {
+void CDungeonMap::SaveGame(CGrpHeld* pGrpHeroes) {
+	
 
+	TiXmlDocument doc; // ("Maps\\SaveGame.XML")
+	TiXmlDeclaration* declaration = new TiXmlDeclaration("1.0", "UTF-8", "");//Create DTD
+	doc.LinkEndChild(declaration);
+	TiXmlElement* root = new TiXmlElement("dungeon");
+	VEKTOR heroPos = pGrpHeroes->GetVector();
+	root->SetAttribute("start_x", heroPos.x);
+	root->SetAttribute("start_y", heroPos.y);
+	root->SetAttribute("start_z", heroPos.z);
+	COMPASS_DIRECTION richt = pGrpHeroes->GetDirection();
+	const char* dir = ( richt == COMPASS_DIRECTION::NORTH ? "North" :
+						richt == COMPASS_DIRECTION::EAST ? "East" :
+						richt == COMPASS_DIRECTION::SOUTH ? "South" : "West");
+	root->SetAttribute("start_facing", dir);
+	doc.LinkEndChild(root);
+
+	doc.SaveFile("Maps\\SaveGame.xml");
+
+}
+
+void CDungeonMap::LoadGame(CGrpHeld* pGrpHeroes) {
+	TiXmlDocument doc("Maps\\SaveGame.xml");
+	bool loadOkay = doc.LoadFile();
+
+	if (!loadOkay)
+	{
+		printf("Could not load save game 'SaveGame.xml'. Error='%s'. Exiting.\n", doc.ErrorDesc());
+		exit(1);
+	}
+	TiXmlElement* rootElement = doc.FirstChildElement();
+	const char* docname = rootElement->Value();
+	if (strcmp(docname, "dungeon") == 0) {
+		VEKTOR newPos;
+		int x, y, z;
+		rootElement->QueryIntAttribute("start_x", &x);
+		rootElement->QueryIntAttribute("start_y", &y);
+		rootElement->QueryIntAttribute("start_z", &z);
+		newPos = VEKTOR{ x, y, z };
+		pGrpHeroes->SetVector(newPos);
+
+		const char* startDir = rootElement->Attribute("start_facing");
+		COMPASS_DIRECTION richt;
+		if (strcmp(startDir, "North") == 0) richt = COMPASS_DIRECTION::NORTH;
+		if (strcmp(startDir, "East") == 0) richt = COMPASS_DIRECTION::EAST;
+		if (strcmp(startDir, "South") == 0) richt = COMPASS_DIRECTION::SOUTH;
+		if (strcmp(startDir, "West") == 0) richt = COMPASS_DIRECTION::WEST;
+		pGrpHeroes->DrehenAbsolut(richt);
+	}
 }

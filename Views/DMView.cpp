@@ -567,7 +567,7 @@ void CDMView::ParseClickBackpack(CPoint point) {
 		SetTimer(7, 20, NULL);
 	}
 	else if (CScreenCoords::CheckHitSave(point)) {
-		m_pRaumView->GetMap()->Save();
+		m_pRaumView->GetMap()->SaveGame(grpHelden);
 	}
 	else {
 		// todo refaktorieren mit PutGetItem()

@@ -30,6 +30,7 @@ public:
 	COMPASS_DIRECTION GetDirection() { return m_grpDirection; };
 	void SetzeRichtung(COMPASS_DIRECTION richt) { m_grpDirection = richt; }
 	VEKTOR GetVector() { return m_posPosition; };
+	void SetVector(VEKTOR newPos) {m_posPosition = newPos; }
 
 
 	// Implementierung
