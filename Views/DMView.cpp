@@ -301,7 +301,7 @@ void CDMView::ParseClickAir(CPoint point) {
 		if (airRegionClicked != NONE) {
 			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
 			if (FeldVorHeld) {
-				if (FeldVorHeld->Blocked()) {
+				if (FeldVorHeld->BlockedToWalk()) {
 					// skip, nix.
 				}
 				else
@@ -442,7 +442,7 @@ void CDMView::ParseClickFloor(CPoint point) {
 	if (itemRegionClicked == LINKSBACK || itemRegionClicked == RECHTSBACK)
 	{
 		CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
-		if (FeldVorHeld && !FeldVorHeld->Blocked())
+		if (FeldVorHeld && !FeldVorHeld->BlockedToPut())
 		{
 			if (pItemInHand == NULL)
 				topItem = FeldVorHeld->TakeItem(itemRegionReal);
@@ -499,7 +499,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 				CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
 				if (FeldVorHeld) {
 					ParseClickDoorButton(point, FeldVorHeld);
-					if (FeldVorHeld->Blocked()) {
+					if (FeldVorHeld->BlockedToWalk()) {
 						COMPASS_DIRECTION dir = CHelpfulValues::OppositeDirection(grpHelden->GetDirection());
 						std::deque<CActuator*> actuators = (FeldVorHeld->GetActuator(dir));
 						if (!actuators.empty()) {

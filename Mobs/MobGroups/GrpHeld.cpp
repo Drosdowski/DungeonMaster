@@ -299,7 +299,7 @@ void CGrpHeld::PutGetItem(int handOfHeroId, int heroId) {
 }
 
 void CGrpHeld::ThrowItemInHeroHand(CHeld* pHero, CField* field, SUBPOS seite) {
-	if (!field->Blocked()) {
+	if (!field->BlockedToWalk()) {
 		CItem* item = pHero->GetItemCarrying(1);
 		if (item) {
 			COMPASS_DIRECTION grpDir = GetDirection();

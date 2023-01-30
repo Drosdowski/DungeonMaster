@@ -48,7 +48,8 @@ public:
 	void RemoveMonsterGroup();
 	void SetMonsterGroup(CGrpMonster* pGrpMonster);
 	FeldTyp HoleTyp()	{ return m_iTyp;};
-	bool Blocked();
+	bool BlockedToWalk();
+	bool BlockedToPut();
 	
 	CFloorDecoration* GetFloorDeco() {	return  m_floorOrnateType; }
 	CWallDecoration* GetWallDeco(int position) { return  m_wallOrnateType[position]; }
