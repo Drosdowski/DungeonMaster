@@ -121,12 +121,17 @@ void CField::RemoveMonsterGroup() {
 	m_pGrpMonster = NULL;
 }
 
-bool CField::Blocked() {
+bool CField::BlockedToWalk() {
 	if (m_iTyp == WALL) return true;
 	if (m_iTyp == DOOR) {
 		CDoor* door = HoleDoor();
 		if (door && door->getState() == CDoor::DoorState::CLOSED) return true;
 	}
+	return false;
+}
+
+bool CField::BlockedToPut() {
+	if (m_iTyp == WALL) return true;
 	return false;
 }
 

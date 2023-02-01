@@ -1039,7 +1039,7 @@ void CRaumView::MoveMagicMissile(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs, CMagicM
 			// Feld verlassen
 			CField* newField = m_pMap->GetField(heroPos.x + sign(topMissile->m_flyForce.x), heroPos.y + sign(topMissile->m_flyForce.y), heroPos.z);
 
-			if (!newField->Blocked()) {
+			if (!newField->BlockedToWalk()) {
 				// todo prüfen topMissile = field->TakeMissile(posAbs);
 				field->TakeMissile(posAbs, topMissile);
 				newField = ChangeFieldWithTeleporter(newField, posAbs);
@@ -1116,7 +1116,7 @@ void CRaumView::MoveItems(VEKTOR heroPos) {
 				if (newPos == OUTSIDE) {
 					// Feld verlassen
 					CField* newField = m_pMap->GetField(heroPos.x + sign(topItem->m_flyForce.x), heroPos.y + sign(topItem->m_flyForce.y), heroPos.z);
-					if (!newField->Blocked()) {
+					if (!newField->BlockedToWalk()) {
 						topItem = field->TakeItem(posAbs);
 						newField = ChangeFieldWithTeleporter(newField, posAbs);
 						newField = ChangeFieldWithStairs(newField, topItem, posAbs);

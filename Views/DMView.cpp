@@ -301,7 +301,7 @@ void CDMView::ParseClickAir(CPoint point) {
 		if (airRegionClicked != NONE) {
 			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
 			if (FeldVorHeld) {
-				if (FeldVorHeld->Blocked()) {
+				if (FeldVorHeld->BlockedToWalk()) {
 					// skip, nix.
 				}
 				else
@@ -334,6 +334,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 		{
 			int type = actuatorsAtPosition.back()->GetType();
 			CActuator* currentActuator = actuatorsAtPosition.back();
+			CActuator* nextActuator = actuatorsAtPosition.front();
 			CActuator::ActionTarget actionTarget = currentActuator->GetActionTarget();
 			if (!currentActuator->IsActive()) return false;
 
@@ -343,6 +344,9 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 				// TODO Unklar - Logik korrekt? Target aus 2. Actuator nehmen, wenn 1. LOCAL ist, und 2. vorhanden und 2. remote.
 				if (currentActuator->GetActionTarget() == CActuator::Local && currentActuator->Action()) {
 					currentActuator = actuatorsAtPosition.front();
+					if (nextActuator && nextActuator->GetActionTarget() == CActuator::Remote) {
+						InvokeRemoteActuator(nextActuator);
+					}
 				}
 				else if (currentActuator->GetActionTarget() == CActuator::Remote) {
 					InvokeRemoteActuator(currentActuator);
@@ -438,7 +442,7 @@ void CDMView::ParseClickFloor(CPoint point) {
 	if (itemRegionClicked == LINKSBACK || itemRegionClicked == RECHTSBACK)
 	{
 		CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
-		if (FeldVorHeld && !FeldVorHeld->Blocked())
+		if (FeldVorHeld && !FeldVorHeld->BlockedToPut())
 		{
 			if (pItemInHand == NULL)
 				topItem = FeldVorHeld->TakeItem(itemRegionReal);
@@ -495,7 +499,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 				CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
 				if (FeldVorHeld) {
 					ParseClickDoorButton(point, FeldVorHeld);
-					if (FeldVorHeld->Blocked()) {
+					if (FeldVorHeld->BlockedToWalk()) {
 						COMPASS_DIRECTION dir = CHelpfulValues::OppositeDirection(grpHelden->GetDirection());
 						std::deque<CActuator*> actuators = (FeldVorHeld->GetActuator(dir));
 						if (!actuators.empty()) {
