@@ -1080,7 +1080,7 @@ void CRaumView::CheckMissileCollisions(VEKTOR heroPos) {
 		SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
 		std::deque<CMagicMissile*> magicMissiles = field->GetMagicMissile(posAbs);
 		if (!magicMissiles.empty()) {
-			CMagicMissile* topMissile = magicMissiles.back(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Items je Feld
+			CMagicMissile* topMissile = magicMissiles.back(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Missiles je Feld
 			if ((!topMissile->IsExploding()) && (topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob || topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball)) {
 
 				CGrpMonster* pGroupMonster = field->GetMonsterGroup();
@@ -1088,8 +1088,32 @@ void CRaumView::CheckMissileCollisions(VEKTOR heroPos) {
 					CMonster* pHittedMonster = pGroupMonster->GetMonsterByAbsSubPos(posAbs);
 					if (pHittedMonster) {
 						pGroupMonster->DoDamage(topMissile->GetStrength() * (rand() % 6 + 1), heroPos, true);
-						topMissile->Explode();
-						topMissile->SetDone();
+						topMissile->ReduceSpeed();						
+					}
+					else {
+						// todo kann auch spieler treffen!
+					}
+				}
+			}
+		}
+	}
+}
+
+void CRaumView::CheckFlyingItemCollisions(VEKTOR heroPos) {
+	CField* field = m_pMap->GetField(heroPos);
+	for (int s = 0; s < 4; s++) {
+		SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
+		std::deque<CItem*> items = field->GetItem(posAbs);
+		if (!items.empty()) {
+			CItem* topItem = items.back(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Items je Feld
+			if (topItem->IsFlying()) {
+
+				CGrpMonster* pGroupMonster = field->GetMonsterGroup();
+				if (pGroupMonster) {
+					CMonster* pHittedMonster = pGroupMonster->GetMonsterByAbsSubPos(posAbs);
+					if (pHittedMonster) {
+						pGroupMonster->DoDamage((rand() % 6 + 1), heroPos, true);
+						topItem->Stop();
 					}
 					else {
 						// todo kann auch spieler treffen!
@@ -1121,7 +1145,7 @@ void CRaumView::MoveItems(VEKTOR heroPos) {
 						newField = ChangeFieldWithTeleporter(newField, posAbs);
 						newField = ChangeFieldWithStairs(newField, topItem, posAbs);
 						// westlich von west ist ost => anders rum subpos suchen
-						if (topItem->IsFlying())
+						if (topItem->IsFlying()) // todo unnötioge frage?
 							newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topItem->m_flyForce.x, -topItem->m_flyForce.y, 0 });
 						else
 							newPos = posAbs;
@@ -1217,6 +1241,7 @@ void CRaumView::MoveAnythingNearby() {
 			MoveMonsters(pos);
 			MoveDoors(pos);
 			PrepareMoveObjects(pos);
+			CheckFlyingItemCollisions(pos);
 			MoveItems(pos);
 			CheckMissileCollisions(pos);
 			for (int s = 0; s < 4; s++) {

@@ -9,6 +9,7 @@ public:
 	void ResethasMoved();
 	void ReduceSpeed(); // range energy & damage enery
 	void SetDone() { m_done = true ; }
+	void Stop() { m_flyForce.x = 0; m_flyForce.y = 0; m_done = true; }
 
 	bool IsFlying(); 
 

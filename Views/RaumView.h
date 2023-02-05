@@ -122,6 +122,7 @@ private:
 	void MoveMagicMissiles(VEKTOR heroPos, SUBPOS_ABSOLUTE pos);
 	void MoveMagicMissile(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs, CMagicMissile* topMissile);
 	void CheckMissileCollisions(VEKTOR pos);
+	void CheckFlyingItemCollisions(VEKTOR pos);
 
 	CBitmap* GetMiscBitmap(CMiscellaneous* misc);
 	CBitmap* GetWeaponBitmap(CWeapon* weapon, bool inAir);

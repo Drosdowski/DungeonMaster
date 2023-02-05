@@ -1,2 +1,231 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<dungeon start_x="7" start_y="5" start_z="1" start_facing="West" />
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<dungeon start_x="6" start_y="0" start_z="1" start_facing="South">
+    <maps>
+        <map index="0">
+            <tiles>
+                <tile index="37" state="4" />
+                <tile index="167" state="4" />
+                <tile index="253" state="4" />
+            </tiles>
+        </map>
+        <map index="1">
+            <tiles>
+                <tile index="1" state="4" />
+                <tile index="11" state="4" />
+                <tile index="27" state="4" />
+                <tile index="38" state="0" />
+                <tile index="50" state="4" />
+                <tile index="51" state="4" />
+                <tile index="97" state="4" />
+                <tile index="150" state="4" />
+                <tile index="155" state="4" />
+                <tile index="164" state="4" />
+                <tile index="166" state="4" />
+                <tile index="287" state="4" />
+                <tile index="293" state="4" />
+                <tile index="377" state="4" />
+                <tile index="395" state="4" />
+                <tile index="419" state="4" />
+                <tile index="422" state="4" />
+                <tile index="485" state="4" />
+                <tile index="594" state="4" />
+                <tile index="658" state="4" />
+                <tile index="694" state="4" />
+                <tile index="711" state="4" />
+                <tile index="849" state="4" />
+                <tile index="880" state="4" />
+                <tile index="893" state="4" />
+            </tiles>
+        </map>
+        <map index="2">
+            <tiles>
+                <tile index="365" state="4" />
+                <tile index="367" state="4" />
+                <tile index="406" state="4" />
+                <tile index="425" state="4" />
+                <tile index="458" state="4" />
+                <tile index="466" state="4" />
+                <tile index="470" state="4" />
+                <tile index="517" state="4" />
+                <tile index="522" state="4" />
+                <tile index="530" state="4" />
+                <tile index="581" state="4" />
+                <tile index="646" state="4" />
+                <tile index="756" state="4" />
+                <tile index="800" state="4" />
+                <tile index="802" state="4" />
+                <tile index="804" state="4" />
+                <tile index="806" state="4" />
+                <tile index="808" state="4" />
+                <tile index="810" state="4" />
+                <tile index="812" state="4" />
+                <tile index="827" state="4" />
+                <tile index="831" state="4" />
+                <tile index="982" state="4" />
+                <tile index="984" state="4" />
+                <tile index="986" state="4" />
+            </tiles>
+        </map>
+        <map index="3">
+            <tiles>
+                <tile index="119" state="4" />
+                <tile index="128" state="4" />
+                <tile index="173" state="4" />
+                <tile index="230" state="4" />
+                <tile index="304" state="4" />
+                <tile index="417" state="4" />
+                <tile index="466" state="4" />
+                <tile index="487" state="4" />
+                <tile index="546" state="4" />
+                <tile index="587" state="4" />
+                <tile index="696" state="4" />
+                <tile index="731" state="4" />
+                <tile index="773" state="4" />
+                <tile index="821" state="4" />
+                <tile index="974" state="4" />
+                <tile index="982" state="4" />
+            </tiles>
+        </map>
+        <map index="4">
+            <tiles>
+                <tile index="345" state="4" />
+                <tile index="438" state="4" />
+                <tile index="461" state="4" />
+                <tile index="555" state="4" />
+                <tile index="665" state="4" />
+                <tile index="754" state="4" />
+                <tile index="844" state="4" />
+                <tile index="847" state="4" />
+                <tile index="849" state="4" />
+                <tile index="853" state="4" />
+            </tiles>
+        </map>
+        <map index="5">
+            <tiles>
+                <tile index="176" state="4" />
+                <tile index="234" state="4" />
+                <tile index="248" state="4" />
+                <tile index="267" state="4" />
+                <tile index="272" state="4" />
+                <tile index="289" state="4" />
+                <tile index="317" state="4" />
+                <tile index="334" state="4" />
+                <tile index="378" state="4" />
+                <tile index="395" state="4" />
+                <tile index="419" state="4" />
+                <tile index="421" state="4" />
+                <tile index="470" state="4" />
+                <tile index="543" state="4" />
+                <tile index="633" state="4" />
+                <tile index="698" state="4" />
+                <tile index="759" state="4" />
+                <tile index="783" state="4" />
+                <tile index="881" state="4" />
+                <tile index="948" state="4" />
+            </tiles>
+        </map>
+        <map index="6">
+            <tiles>
+                <tile index="53" state="4" />
+                <tile index="124" state="4" />
+                <tile index="127" state="4" />
+                <tile index="131" state="4" />
+                <tile index="135" state="4" />
+                <tile index="139" state="4" />
+                <tile index="212" state="4" />
+                <tile index="394" state="4" />
+                <tile index="434" state="4" />
+                <tile index="446" state="4" />
+                <tile index="463" state="4" />
+                <tile index="465" state="4" />
+                <tile index="484" state="4" />
+                <tile index="596" state="4" />
+                <tile index="686" state="4" />
+                <tile index="851" state="4" />
+            </tiles>
+        </map>
+        <map index="7">
+            <tiles>
+                <tile index="176" state="4" />
+                <tile index="386" state="4" />
+                <tile index="804" state="4" />
+            </tiles>
+        </map>
+        <map index="8">
+            <tiles>
+                <tile index="245" state="4" />
+                <tile index="257" state="4" />
+                <tile index="379" state="4" />
+                <tile index="487" state="4" />
+                <tile index="602" state="4" />
+                <tile index="685" state="4" />
+                <tile index="721" state="4" />
+                <tile index="979" state="4" />
+            </tiles>
+        </map>
+        <map index="9">
+            <tiles>
+                <tile index="212" state="4" />
+                <tile index="269" state="4" />
+                <tile index="312" state="4" />
+                <tile index="359" state="4" />
+                <tile index="392" state="4" />
+                <tile index="421" state="4" />
+                <tile index="436" state="4" />
+                <tile index="706" state="4" />
+                <tile index="709" state="4" />
+                <tile index="720" state="4" />
+                <tile index="846" state="4" />
+            </tiles>
+        </map>
+        <map index="10">
+            <tiles>
+                <tile index="133" state="4" />
+                <tile index="190" state="4" />
+                <tile index="259" state="4" />
+                <tile index="368" state="4" />
+                <tile index="376" state="4" />
+                <tile index="382" state="4" />
+                <tile index="409" state="4" />
+                <tile index="647" state="4" />
+                <tile index="702" state="4" />
+                <tile index="761" state="4" />
+                <tile index="820" state="4" />
+                <tile index="830" state="4" />
+                <tile index="856" state="4" />
+                <tile index="916" state="4" />
+            </tiles>
+        </map>
+        <map index="11">
+            <tiles>
+                <tile index="124" state="4" />
+                <tile index="304" state="4" />
+                <tile index="338" state="4" />
+                <tile index="349" state="4" />
+                <tile index="352" state="4" />
+                <tile index="375" state="4" />
+                <tile index="377" state="4" />
+                <tile index="408" state="4" />
+                <tile index="633" state="4" />
+                <tile index="675" state="4" />
+                <tile index="723" state="4" />
+                <tile index="761" state="4" />
+                <tile index="806" state="4" />
+                <tile index="883" state="4" />
+                <tile index="912" state="4" />
+            </tiles>
+        </map>
+        <map index="12">
+            <tiles>
+                <tile index="17" state="4" />
+                <tile index="63" state="4" />
+            </tiles>
+        </map>
+        <map index="13">
+            <tiles>
+                <tile index="152" state="4" />
+                <tile index="232" state="4" />
+            </tiles>
+        </map>
+    </maps>
+</dungeon>

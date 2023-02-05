@@ -8,7 +8,7 @@ public:
 		OPEN = 0,
 		CLOSING = 1,
 		OPENING = 2,
-		CLOSED =3
+		CLOSED = 4  // maps needs 0 / 4.
 	};
 	
 	CDoor(CDoorAttributes attribute, bool doorFrameEastAndWest);

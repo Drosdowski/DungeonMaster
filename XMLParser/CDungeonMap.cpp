@@ -829,19 +829,45 @@ void CDungeonMap::SaveGame(CGrpHeld* pGrpHeroes) {
 	
 
 	TiXmlDocument doc; // ("Maps\\SaveGame.XML")
-	TiXmlDeclaration* declaration = new TiXmlDeclaration("1.0", "UTF-8", "");//Create DTD
+	TiXmlDeclaration* declaration = new TiXmlDeclaration("1.0", "ISO-8859-1", "");//Create DTD
 	doc.LinkEndChild(declaration);
-	TiXmlElement* root = new TiXmlElement("dungeon");
+	TiXmlElement* dungeon = new TiXmlElement("dungeon");
 	VEKTOR heroPos = pGrpHeroes->GetVector();
-	root->SetAttribute("start_x", heroPos.x);
-	root->SetAttribute("start_y", heroPos.y);
-	root->SetAttribute("start_z", heroPos.z);
+	dungeon->SetAttribute("start_x", heroPos.x);
+	dungeon->SetAttribute("start_y", heroPos.y);
+	dungeon->SetAttribute("start_z", heroPos.z);
 	COMPASS_DIRECTION richt = pGrpHeroes->GetDirection();
 	const char* dir = ( richt == COMPASS_DIRECTION::NORTH ? "North" :
 						richt == COMPASS_DIRECTION::EAST ? "East" :
 						richt == COMPASS_DIRECTION::SOUTH ? "South" : "West");
-	root->SetAttribute("start_facing", dir);
-	doc.LinkEndChild(root);
+	dungeon->SetAttribute("start_facing", dir);
+	TiXmlElement* maps = new TiXmlElement("maps");	
+	for (int level = 0; level < m_countFloors; level++) {
+		TiXmlElement* map = new TiXmlElement("map");
+		map->SetAttribute("index", level);
+		maps->LinkEndChild(map);
+		TiXmlElement* tiles = new TiXmlElement("tiles");
+		int tileIndex = 0;
+		for (int y = 0; y < m_LevelHeight[level]; y++) {
+			for (int x = 0; x < m_LevelWidth[level]; x++) {
+				TiXmlElement* tile = new TiXmlElement("tile");
+				tile->SetAttribute("index", tileIndex);
+				CDoor* pDoor = m_pFeld[x][y][level]->HoleDoor();
+				if (pDoor) {
+					tile->SetAttribute("state", pDoor->getState());
+					tiles->LinkEndChild(tile);
+				}
+				for (int subPos = 0; subPos < 4; subPos++) {
+					std::deque<CItem*> pItems = m_pFeld[x][y][level]->GetItem((SUBPOS_ABSOLUTE)subPos);
+					// todo items speichern
+				}
+				tileIndex++;
+			}
+		}
+		map->LinkEndChild(tiles);
+	}
+	dungeon->LinkEndChild(maps);
+	doc.LinkEndChild(dungeon);
 
 	doc.SaveFile("Maps\\SaveGame.xml");
 
@@ -854,7 +880,7 @@ void CDungeonMap::LoadGame(CGrpHeld* pGrpHeroes) {
 	if (!loadOkay)
 	{
 		printf("Could not load save game 'SaveGame.xml'. Error='%s'. Exiting.\n", doc.ErrorDesc());
-		exit(1);
+		return;
 	}
 	TiXmlElement* rootElement = doc.FirstChildElement();
 	const char* docname = rootElement->Value();
