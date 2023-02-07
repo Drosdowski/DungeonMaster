@@ -58,3 +58,15 @@ void CDoor::Close() {
 bool CDoor::Visible(int heroRicht) {
 	return (getDoorFrameEastAndWest() != (heroRicht % 2 != 0));
 }
+
+void CDoor::SetState(int value) {
+	// für LoadMap
+	m_state = (DoorState)value;
+	if (m_state == OPEN) {
+		m_bottomHeight = fullHeight;
+	}
+	else {
+		m_bottomHeight = 0;
+	}
+
+}

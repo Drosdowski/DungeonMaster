@@ -14,6 +14,7 @@ public:
 	CDoor(CDoorAttributes attribute, bool doorFrameEastAndWest);
 
 	DoorState getState() { return m_state; }
+	void SetState(int value);
 	CDoorAttributes::DoorType getType() { return m_attributes.type; }
 	bool hasButton() { return m_attributes.button; }
 	bool Visible(int heroDir);

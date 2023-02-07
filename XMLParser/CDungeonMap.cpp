@@ -883,22 +883,71 @@ void CDungeonMap::LoadGame(CGrpHeld* pGrpHeroes) {
 		return;
 	}
 	TiXmlElement* rootElement = doc.FirstChildElement();
-	const char* docname = rootElement->Value();
-	if (strcmp(docname, "dungeon") == 0) {
-		VEKTOR newPos;
-		int x, y, z;
-		rootElement->QueryIntAttribute("start_x", &x);
-		rootElement->QueryIntAttribute("start_y", &y);
-		rootElement->QueryIntAttribute("start_z", &z);
-		newPos = VEKTOR{ x, y, z };
-		pGrpHeroes->SetVector(newPos);
+	if (strcmp(rootElement->Value(), "dungeon") == 0) {
+		RestorePosition(rootElement, pGrpHeroes);
+		TiXmlElement* maps = rootElement->FirstChildElement();
+		if (strcmp(maps->Value(), "maps") == 0) {
+			LoadMaps(maps);
+		}
+		// todo: LoadPlayer
+	}
+}
 
-		const char* startDir = rootElement->Attribute("start_facing");
-		COMPASS_DIRECTION richt;
-		if (strcmp(startDir, "North") == 0) richt = COMPASS_DIRECTION::NORTH;
-		if (strcmp(startDir, "East") == 0) richt = COMPASS_DIRECTION::EAST;
-		if (strcmp(startDir, "South") == 0) richt = COMPASS_DIRECTION::SOUTH;
-		if (strcmp(startDir, "West") == 0) richt = COMPASS_DIRECTION::WEST;
-		pGrpHeroes->DrehenAbsolut(richt);
+void CDungeonMap::RestorePosition(TiXmlElement* rootElement, CGrpHeld* pGrpHeroes) {
+	VEKTOR newPos;
+	int x, y, z;
+	rootElement->QueryIntAttribute("start_x", &x);
+	rootElement->QueryIntAttribute("start_y", &y);
+	rootElement->QueryIntAttribute("start_z", &z);
+	newPos = VEKTOR{ x, y, z };
+	pGrpHeroes->SetVector(newPos);
+
+	const char* startDir = rootElement->Attribute("start_facing");
+	COMPASS_DIRECTION richt;
+	if (strcmp(startDir, "North") == 0) richt = COMPASS_DIRECTION::NORTH;
+	if (strcmp(startDir, "East") == 0) richt = COMPASS_DIRECTION::EAST;
+	if (strcmp(startDir, "South") == 0) richt = COMPASS_DIRECTION::SOUTH;
+	if (strcmp(startDir, "West") == 0) richt = COMPASS_DIRECTION::WEST;
+	pGrpHeroes->DrehenAbsolut(richt);
+}
+
+void CDungeonMap::LoadMaps(TiXmlElement* maps) {
+	TiXmlElement* map = maps->FirstChildElement();
+	while (map)
+	{
+		const char* mapId = map->Value();
+		if (strcmp(mapId, "map") == 0)
+		{
+			LoadMap(map);
+		}
+		map = map->NextSiblingElement();
+	}
+}
+
+void CDungeonMap::LoadMap(TiXmlElement* map) {
+	int index;
+	map->QueryIntAttribute("index", &index);
+	
+	TiXmlElement* tiles = map->FirstChildElement();
+	if (strcmp(tiles->Value(), "tiles") == 0) {
+		TiXmlElement* tile = tiles->FirstChildElement();
+		while (tile) {
+			LoadTile(tile, index);
+			tile = tile->NextSiblingElement();
+		}
+	}
+}
+
+void CDungeonMap::LoadTile(TiXmlElement* tile, int mapIndex) {
+	int index, state;
+	tile->QueryIntAttribute("index", &index);
+	tile->QueryIntAttribute("state", &state);
+	int width = m_LevelWidth[mapIndex];
+	int height = m_LevelHeight[mapIndex];
+	int x = index % width;
+	int y = (int)(index / width);
+	CDoor* pDoor = m_pFeld[x][y][mapIndex]->HoleDoor();
+	if (pDoor) {
+		pDoor->SetState(state);
 	}
 }

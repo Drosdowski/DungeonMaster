@@ -61,6 +61,10 @@ private:
 	void ParseFloorDecoration(TiXmlElement* miscItem, VEKTOR coords);
 	void ParseWallDecoration(TiXmlElement* miscItem, VEKTOR coords);
 	void ParseCreature(TiXmlElement* miscItem, VEKTOR coords);
+	void RestorePosition(TiXmlElement* rootElement, CGrpHeld* pGrpHeroes);	
+	void LoadMaps(TiXmlElement* dungeon);
+	void LoadMap(TiXmlElement* maps);
+	void LoadTile(TiXmlElement* tile, int index);
 
 	CField* ParseDoor(TiXmlElement* rootNode, VEKTOR pos);
 	CField* ParseStairs(TiXmlElement* rootNode, VEKTOR pos);
