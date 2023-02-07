@@ -826,8 +826,6 @@ WallDecorationType CDungeonMap::GetWallDecorationType(int ebene, int graphic)
 
 
 void CDungeonMap::SaveGame(CGrpHeld* pGrpHeroes) {
-	
-
 	TiXmlDocument doc; // ("Maps\\SaveGame.XML")
 	TiXmlDeclaration* declaration = new TiXmlDeclaration("1.0", "ISO-8859-1", "");//Create DTD
 	doc.LinkEndChild(declaration);
@@ -841,37 +839,70 @@ void CDungeonMap::SaveGame(CGrpHeld* pGrpHeroes) {
 						richt == COMPASS_DIRECTION::EAST ? "East" :
 						richt == COMPASS_DIRECTION::SOUTH ? "South" : "West");
 	dungeon->SetAttribute("start_facing", dir);
+
+	TiXmlElement* heroes= new TiXmlElement("heroes");
+	for (int id = 1; id < 5; id++) {
+		SaveHero(heroes, id);
+	}
+	dungeon->LinkEndChild(heroes);
+
 	TiXmlElement* maps = new TiXmlElement("maps");	
 	for (int level = 0; level < m_countFloors; level++) {
-		TiXmlElement* map = new TiXmlElement("map");
-		map->SetAttribute("index", level);
-		maps->LinkEndChild(map);
-		TiXmlElement* tiles = new TiXmlElement("tiles");
-		int tileIndex = 0;
-		for (int y = 0; y < m_LevelHeight[level]; y++) {
-			for (int x = 0; x < m_LevelWidth[level]; x++) {
-				TiXmlElement* tile = new TiXmlElement("tile");
-				tile->SetAttribute("index", tileIndex);
-				CDoor* pDoor = m_pFeld[x][y][level]->HoleDoor();
-				if (pDoor) {
-					tile->SetAttribute("state", pDoor->getState());
-					tiles->LinkEndChild(tile);
-				}
-				for (int subPos = 0; subPos < 4; subPos++) {
-					std::deque<CItem*> pItems = m_pFeld[x][y][level]->GetItem((SUBPOS_ABSOLUTE)subPos);
-					// todo items speichern
-				}
-				tileIndex++;
-			}
-		}
-		map->LinkEndChild(tiles);
+		SaveMap(maps, level);
 	}
 	dungeon->LinkEndChild(maps);
+
 	doc.LinkEndChild(dungeon);
 
 	doc.SaveFile("Maps\\SaveGame.xml");
 
 }
+
+void CDungeonMap::SaveHero(TiXmlElement* heroes, int id) {
+	CHeld* held = m_pGrpHelden->GetHero(id);
+	if (held) {
+		TiXmlElement* hero = new TiXmlElement("hero");
+		hero->SetAttribute("index", id);
+		for (int itemId = 0; itemId < 30; itemId++) {
+			CItem* item = held->GetItemCarrying(itemId);
+			if (item) {
+				TiXmlElement* heroItem = new TiXmlElement("item");
+				heroItem->SetAttribute("item", itemId);
+				heroItem->SetAttribute("index", item->getIndex());
+				heroItem->SetAttribute("type", item->getItemType());
+				hero->LinkEndChild(heroItem);
+			}
+		}
+		heroes->LinkEndChild(hero);
+	}
+}
+
+void CDungeonMap::SaveMap(TiXmlElement* maps, int level) {
+	TiXmlElement* map = new TiXmlElement("map");
+	maps->LinkEndChild(map);
+	map->SetAttribute("index", level);
+	TiXmlElement* tiles = new TiXmlElement("tiles");
+	int tileIndex = 0;
+	for (int y = 0; y < m_LevelHeight[level]; y++) {
+		for (int x = 0; x < m_LevelWidth[level]; x++) {
+			TiXmlElement* tile = new TiXmlElement("tile");
+			tile->SetAttribute("index", tileIndex);
+			CDoor* pDoor = m_pFeld[x][y][level]->HoleDoor();
+			if (pDoor) {
+				tile->SetAttribute("state", pDoor->getState());
+				tiles->LinkEndChild(tile);
+			}
+			for (int subPos = 0; subPos < 4; subPos++) {
+				std::deque<CItem*> pItems = m_pFeld[x][y][level]->GetItem((SUBPOS_ABSOLUTE)subPos);
+				// todo items im dungeon speichern, verschwundene nicht vergessen!
+			}
+			tiles->LinkEndChild(tile);
+			tileIndex++;
+		}
+	}
+	map->LinkEndChild(tiles);
+}
+
 
 void CDungeonMap::LoadGame(CGrpHeld* pGrpHeroes) {
 	TiXmlDocument doc("Maps\\SaveGame.xml");
@@ -885,11 +916,16 @@ void CDungeonMap::LoadGame(CGrpHeld* pGrpHeroes) {
 	TiXmlElement* rootElement = doc.FirstChildElement();
 	if (strcmp(rootElement->Value(), "dungeon") == 0) {
 		RestorePosition(rootElement, pGrpHeroes);
-		TiXmlElement* maps = rootElement->FirstChildElement();
-		if (strcmp(maps->Value(), "maps") == 0) {
-			LoadMaps(maps);
+		TiXmlElement* section = rootElement->FirstChildElement();
+		while (section) {
+			if (strcmp(section->Value(), "maps") == 0) {
+				LoadMaps(section);
+			}
+			if (strcmp(section->Value(), "heroes") == 0) {
+				LoadHeroes(section);
+			}
+			section = section->NextSiblingElement();
 		}
-		// todo: LoadPlayer
 	}
 }
 
@@ -921,6 +957,50 @@ void CDungeonMap::LoadMaps(TiXmlElement* maps) {
 			LoadMap(map);
 		}
 		map = map->NextSiblingElement();
+	}
+}
+
+void CDungeonMap::LoadHeroes(TiXmlElement* heroes) {
+	TiXmlElement* hero = heroes->FirstChildElement();
+	while (hero)
+	{
+		const char* heroId = hero->Value();
+		if (strcmp(heroId, "hero") == 0)
+		{
+			LoadHero(hero);
+		}
+		hero = hero->NextSiblingElement();
+	}
+}
+
+void CDungeonMap::LoadHero(TiXmlElement* hero) {
+	int heroId;
+	hero->QueryIntAttribute("index", &heroId);
+	CHeld* held = m_pGrpHelden->InitHeld(heroId);
+	TiXmlElement* heroItem = hero->FirstChildElement();
+	while (heroItem) {
+		int itemId, index, type;
+		heroItem->QueryIntAttribute("item", &itemId);
+		heroItem->QueryIntAttribute("index", &index);
+		heroItem->QueryIntAttribute("type", &type);
+		CWeapon* weapon;
+		CMiscellaneous* misc;
+		CCloth* cloth;
+		switch (type) {
+		case 0: 
+			weapon = new CWeapon(index, m_weaponAtt[index]);
+			held->SwitchItemAt(itemId, (CItem*)weapon);
+			break;
+		case 1:
+			misc = new CMiscellaneous(index, m_miscellaneousAtt[index]);
+			held->SwitchItemAt(itemId, (CItem*)misc);
+			break;
+		case 2:
+			cloth = new CCloth(index, m_clothAtt[index]);
+			held->SwitchItemAt(itemId, (CItem*)cloth);
+			break;
+		}
+		heroItem = heroItem->NextSiblingElement();
 	}
 }
 
