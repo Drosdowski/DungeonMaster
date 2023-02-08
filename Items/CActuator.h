@@ -18,6 +18,7 @@ public:
  
 	int GetType() { return m_type; }
 	int GetData() { return m_data; }
+	int GetIndex() { return m_index; }
 	VEKTOR GetTarget() { return m_target; }
 	ActionTypes GetActionType() { return m_actionType; }
 	ActionTarget GetActionTarget() { return m_actionTarget; }

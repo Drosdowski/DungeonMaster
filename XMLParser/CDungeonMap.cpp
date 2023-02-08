@@ -887,11 +887,28 @@ void CDungeonMap::SaveMap(TiXmlElement* maps, int level) {
 		for (int x = 0; x < m_LevelWidth[level]; x++) {
 			TiXmlElement* tile = new TiXmlElement("tile");
 			tile->SetAttribute("index", tileIndex);
+			
 			CDoor* pDoor = m_pFeld[x][y][level]->HoleDoor();
 			if (pDoor) {
-				tile->SetAttribute("state", pDoor->getState());
-				tiles->LinkEndChild(tile);
+				TiXmlElement* door = new TiXmlElement("door");
+				door->SetAttribute("state", pDoor->getState());
+				tile->LinkEndChild(door);
 			}
+
+			for (int subPos = 0; subPos < 4; subPos++) {
+				std::deque<CActuator*> pActuators = m_pFeld[x][y][level]->GetActuator((COMPASS_DIRECTION)subPos);
+				if (!pActuators.empty()) {
+					TiXmlElement* actuators = new TiXmlElement("actuators");
+					for (CActuator* pActuator : pActuators) {
+						TiXmlElement* actuator = new TiXmlElement("actuator");
+						actuator->SetAttribute("subPos", subPos); 
+						actuator->SetAttribute("index", pActuator->GetIndex()); // Reihenfolge speichern reicht?
+						actuators->LinkEndChild(actuator);
+					}
+					tile->LinkEndChild(actuators);
+				}
+			}
+
 			for (int subPos = 0; subPos < 4; subPos++) {
 				std::deque<CItem*> pItems = m_pFeld[x][y][level]->GetItem((SUBPOS_ABSOLUTE)subPos);
 				// todo items im dungeon speichern, verschwundene nicht vergessen!
@@ -1021,13 +1038,38 @@ void CDungeonMap::LoadMap(TiXmlElement* map) {
 void CDungeonMap::LoadTile(TiXmlElement* tile, int mapIndex) {
 	int index, state;
 	tile->QueryIntAttribute("index", &index);
-	tile->QueryIntAttribute("state", &state);
 	int width = m_LevelWidth[mapIndex];
 	int height = m_LevelHeight[mapIndex];
 	int x = index % width;
 	int y = (int)(index / width);
-	CDoor* pDoor = m_pFeld[x][y][mapIndex]->HoleDoor();
-	if (pDoor) {
-		pDoor->SetState(state);
+	CField* pField = m_pFeld[x][y][mapIndex];
+
+	TiXmlElement* element = tile->FirstChildElement();
+	while (element) {
+		if (strcmp(element->Value(), "door") == 0) {
+			element->QueryIntAttribute("state", &state);
+
+			CDoor* pDoor = pField->HoleDoor();
+			if (pDoor) {
+				pDoor->SetState(state);
+			}
+		}
+		if (strcmp(element->Value(), "actuators") == 0) {
+			TiXmlElement* actuator = element->FirstChildElement();
+			while (actuator) {
+				if (strcmp(actuator->Value(), "actuator") == 0) {
+					int actuatorId, subPos;
+					actuator->QueryIntAttribute("index", &actuatorId);
+					actuator->QueryIntAttribute("subPos", &subPos);
+					std::deque<CActuator*> pActuators = pField->GetActuator((COMPASS_DIRECTION)subPos);
+					if (pActuators.back()->GetIndex() != actuatorId) {
+						pField->RotateActuators((COMPASS_DIRECTION)subPos);
+					}
+				}
+				actuator = actuator->NextSiblingElement();
+			}
+		}
+
+		element = element->FirstChildElement();
 	}
 }
