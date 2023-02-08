@@ -3,6 +3,7 @@
 
 #pragma once
 class CHeld;
+class CGrpHeld;
 class CItemInfos;
 class CPictures : CBasePictures
 {
@@ -25,7 +26,7 @@ public:
 	void DrawActiveWeapon(CDC* pDC, CHeld* held, int id);
 	void KnochenZeichnen(CDC* pDC, int index);
 	void NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName);
-	void RucksackZeichnen(CDC* pDC, CHeld* pHeld);
+	void RucksackZeichnen(CDC* pDC, CGrpHeld* pGrpHelden);
 	void HaendeZeichnen(CDC* pDC, CHeld* pHeld);
 	void SymbolZeichnen(CDC* pDC, int heldIndex, SUBPOS relPos);
 	void WaffeZeichnen(CDC* pDC);
@@ -43,6 +44,7 @@ private:
 	void ZeichneHpStMa(CDC* pDC, WERTE hp, WERTE st, WERTE ma);
 	void ZeichneHungerDurst(CDC* pDC, int i, int j);
 	void ZeichneIcons(CDC* pDC, CHeld* pHeld);
+	void ZeichneItemInfo(CDC* pDC, CItem* item);
 	void GewichtZeichnen(CDC* pDC, CHeld* pHeld);
 
 	void DrawHand(CDC* pDC, CHeld* pHeld, int index);

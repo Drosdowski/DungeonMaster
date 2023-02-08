@@ -584,8 +584,12 @@ void CDMView::ParseClickBackpack(CPoint point) {
 			{
 				newItemInHandToGet = pHeld->SwitchItemAt(slot, itemInHandToPut);
 			}
-			else {
+			else if (!itemInHandToPut) {
 				newItemInHandToGet = pHeld->GetItemCarrying(slot);
+			}
+			else {
+				// not allowed
+				return;
 			}
 			grpHelden->EmptyHand();
 			if (newItemInHandToGet == NULL) {
@@ -828,7 +832,7 @@ void CDMView::UpdateGrafik()
 			else if (m_iModus == MOD_RUCKSACK)
 			{
 				CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
-				m_pPictures->RucksackZeichnen(pDC_, grpHelden->GetActiveHero());
+				m_pPictures->RucksackZeichnen(pDC_, grpHelden);
 			}
 
 		}
