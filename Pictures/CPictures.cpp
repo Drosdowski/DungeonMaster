@@ -5,6 +5,7 @@
 #include "CWallPic.h"
 #include "Items2D/CItemPic.h"
 #include "..\Mobs\Held.h"
+#include "..\Mobs\MobGroups\GrpHeld.h"
 #include "..\Items\FloorDecoration.h"
 #include "..\Items\Item.h"
 #include "..\XMLParser\ItemInfos.h"
@@ -180,16 +181,26 @@ void CPictures::BildZeichnen(CDC* pDC, bool aktiv, int index)
 	// todo hero pic
 }
 
-void CPictures::RucksackZeichnen(CDC* pDC, CHeld* pHeld)
+void CPictures::RucksackZeichnen(CDC* pDC, CGrpHeld* pGrpHelden)
 {
+	CHeld* pHeld = pGrpHelden->GetActiveHero();
+	CItem* pItem = pGrpHelden->GetItemInHand();
+
 	CRucksack* pRucksack = pHeld->GetRucksack();
 	int iModusExtend = pRucksack->HoleModusExtend();
 	ZeichnenHauptbereichHintergrund(pDC, iModusExtend);
 	GewichtZeichnen(pDC, pHeld);
 	if (iModusExtend == MOD_EXT_NORMAL)
 		ZeichneHungerDurst(pDC, pHeld->getFood(), pHeld->getWater());
-	else if (iModusExtend == MOD_EXT_AUGE)
-		ZeichneSkills(pDC, pHeld);
+	else if (iModusExtend == MOD_EXT_AUGE) {
+		if (pItem) {
+			ZeichneItemInfo(pDC, pItem);
+		}
+		else {
+			ZeichneSkills(pDC, pHeld);
+		}
+
+	}
 	ZeichneHpStMa(pDC, pHeld->Hp(), pHeld->St(), pHeld->Ma());
 	ZeichneIcons(pDC, pHeld);
 }
@@ -224,6 +235,10 @@ void CPictures::ZeichneIcons(CDC* pDC, CHeld* pHeld) {
 	}
 
 	tmpdc.DeleteDC();
+}
+
+void CPictures::ZeichneItemInfo(CDC* pDC, CItem* item) {
+	// todo
 }
 
 
