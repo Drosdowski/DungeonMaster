@@ -785,6 +785,10 @@ IDB_MONSTER_WORM_BACK   BITMAP                  "res\\Monster\\MagentaWorm_Back.
 
 IDB_MONSTER_WORM_RIGHT  BITMAP                  "res\\Monster\\MagentaWorm_Right.bmp"
 
+IDB_ITEM3D_BOULDER      BITMAP                  "res\\Items3D\\Item_3d_Boulder.bmp"
+
+IDB_ITEM3D_ROCK         BITMAP                  "res\\Items3D\\Item_3d_Rock.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

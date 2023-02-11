@@ -68,6 +68,7 @@ int CMiscellaneous::GetSheetForGroup() {
 CItem::ItemGroup CMiscellaneous::GetGroup() {
 	if (m_attribute.type >= 9 && m_attribute.type <= 24) return ItemGroup::Key;
 	if (m_attribute.type >= 29 && m_attribute.type <= 32 || m_attribute.type == 1) return ItemGroup::Consumable;
+	if (m_attribute.type == 25) return ItemGroup::Throwable;
 	return ItemGroup::Other;
 }
 

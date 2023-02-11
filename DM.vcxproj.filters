@@ -1451,6 +1451,12 @@
     <Image Include="res\Spells\Teleporter.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Items3D\Item_3d_Boulder.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Item_3d_Rock.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

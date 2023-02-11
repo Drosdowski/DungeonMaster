@@ -20,6 +20,7 @@ public:
 		RubyKey = 22,
 		RaKey = 23,
 		MasterKey = 24,
+		Boulder = 25,
 		Apple = 29,
 		Corn = 30,
 		Bread = 31,

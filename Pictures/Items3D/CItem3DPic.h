@@ -20,6 +20,8 @@ public:
 	CBitmap* GetTorch() { return m_pTorch; }
 	CBitmap* GetWaterskin(int subtype) { return m_pWaterskin[subtype]; }
 	CBitmap* GetCompass() { return m_pCompass; }
+	CBitmap* GetBoulder() { return m_pBoulder; }
+	CBitmap* GetRock() { return m_pRock; }
 
 	CBitmap* GetWhiteCloth() { return m_pWhiteCloth; }
 	CBitmap* GetGreenCloth() { return m_pGreenCloth; }
@@ -63,5 +65,7 @@ private:
 	CBitmap* m_pPoisonDart[4];
 	CBitmap* m_pThrowingStar[3];
 	CBitmap* m_pTorch;
+	CBitmap* m_pBoulder;
+	CBitmap* m_pRock;
 };
 

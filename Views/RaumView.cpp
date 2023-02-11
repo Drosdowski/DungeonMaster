@@ -126,7 +126,7 @@ void CRaumView::DrawSquarePressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene, CA
 		if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) {
 			cdc->SelectObject(bmp);
 			bmp->GetBitmap(&bmpInfo);
-			pDC->TransparentBlt(floorMiddlePos.x - bmpInfo.bmWidth, floorMiddlePos.y - bmpInfo.bmHeight,
+			pDC->TransparentBlt(floorMiddlePos.x - bmpInfo.bmWidth, floorMiddlePos.y - bmpInfo.bmHeight*1.5,
 				bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);
 		}
 	}
@@ -502,7 +502,7 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 
 	std::deque<CActuator*> actuators = pField->GetActuator((COMPASS_DIRECTION)0);  // Boden hat immer POsition 0.
 	for (CActuator* actuator : actuators) {
-		if (actuator->GetType() == 3) {
+		if (actuator->GetGraphic() == 3) {
 			DrawSquarePressurePad(pDC, cdc, xxx, ebene, actuator);
 		}
 	}
@@ -672,6 +672,8 @@ CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {
 		bmp = m_pItem3DPic->GetScreamerSlice();
 	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::WormRound)
 		bmp = m_pItem3DPic->GetWormRound();
+	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Boulder)
+		bmp = m_pItem3DPic->GetBoulder();
 	else
 		bmp = NULL;
 
@@ -719,6 +721,8 @@ CBitmap* CRaumView::GetWeaponBitmap(CWeapon* weapon, bool inAir) {
 		bmp = m_pItem3DPic->GetPoisonDart(inAir);
 	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Torch)
 		bmp = m_pItem3DPic->GetTorch();
+	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Rock)
+		bmp = m_pItem3DPic->GetRock();
 	else
 		bmp = NULL;
 
@@ -1267,16 +1271,20 @@ void CRaumView::TriggerPassiveActuators(VEKTOR fieldPos, VEKTOR heroPos) {
 	std::deque<CActuator*> actuators = field->GetActuator((COMPASS_DIRECTION)0);
 	for (CActuator* actuator : actuators) {
 		TriggerPassiveActuator(heroPos, field, actuator);
+		field->StoreCurrentWeight(heroPos);
 	}
 }
 
 void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator* actuator) {
-	bool criticalWeightBreached = field->CriticalWeightBreached(heroPos, actuator->GetCriticalWeigth()); // todo parameter optimieren?
-	bool criticalWeightGone = field->CriticalWeightGone(heroPos, actuator->GetCriticalWeigth()); // todo parameter optimieren?
+	if (!(actuator->GetIndex() == 8)) return; // todo raus damit !!
+	int critWeight = actuator->GetCriticalWeigth();
+	bool criticalWeightBreached = field->CriticalWeightBreached(heroPos, critWeight); 
+	bool criticalWeightGone = field->CriticalWeightGone(heroPos, critWeight); 
 
 	if (criticalWeightBreached || criticalWeightGone) {
-		switch (actuator->GetType()) {
+		switch (actuator->GetType()) { // was unterscheidet 1 & 3 ?
 		case 3:
+		case 1:
 			VEKTOR target = actuator->GetTarget();
 			CActuator::ActionTypes type = actuator->GetActionType();
 			// TODO: type auswerten!
@@ -1300,7 +1308,7 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 				}
 				break;
 			case CActuator::Hold:
-				if (pDoor != NULL && criticalWeightGone) {
+				if (pDoor != NULL) {
 					pDoor->Toggle(); // todo prüfen 
 				}
 			}

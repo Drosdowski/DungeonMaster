@@ -82,6 +82,7 @@ public:
 
 	void PutActuator(CActuator* actuator, COMPASS_DIRECTION index);
 	VEKTOR HolePos() { return m_posKoord; }
+	void StoreCurrentWeight(VEKTOR heroPos);
 	bool CriticalWeightBreached(VEKTOR heroPos, int criticalWeight);
 	bool CriticalWeightGone(VEKTOR heroPos, int criticalWeight);
 

@@ -246,23 +246,22 @@ int CField::GetWeight(VEKTOR heroPos) {
 	return weight;
 }
 
+void CField::StoreCurrentWeight(VEKTOR heroPos) {
+	int currentWeight = GetWeight(heroPos);
+	m_lastWeight = currentWeight; // direkt speichern, darf nur 1x triggern
+}
+
 bool CField::CriticalWeightBreached(VEKTOR heroPos, int criticalWeight) {
 	int currentWeight = GetWeight(heroPos);
-	int lastWeight = m_lastWeight;
 
-	m_lastWeight = currentWeight; // direkt speichern, darf nur 1x triggern
-
-	if (lastWeight < criticalWeight && currentWeight >= criticalWeight) return true;
+	if (m_lastWeight < criticalWeight && currentWeight >= criticalWeight) return true;
 	return false;
 }
 
 bool CField::CriticalWeightGone(VEKTOR heroPos, int criticalWeight) {
 	int currentWeight = GetWeight(heroPos);
-	int lastWeight = m_lastWeight;
 
-	m_lastWeight = currentWeight; // direkt speichern, darf nur 1x triggern
-
-	if (lastWeight >= criticalWeight && currentWeight < criticalWeight) return true;
+	if (m_lastWeight >= criticalWeight && currentWeight < criticalWeight) return true;
 	return false;
 }
 

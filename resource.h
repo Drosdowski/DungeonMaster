@@ -139,6 +139,8 @@
 #define IDB_ITEM3D_STONECLUB            421
 #define IDB_ITEM3D_SCREAMERSLICE        422
 #define IDB_ITEM3D_WORMROUND            423
+#define IDB_ITEM3D_BOULDER              424
+#define IDB_ITEM3D_ROCK                 425
 #define IDB_MISSILE_CLUB_B              440
 #define IDB_MISSILE_CLUB_F              441
 #define IDB_MISSILE_CLUB_S              442
@@ -322,7 +324,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        535
+#define _APS_NEXT_RESOURCE_VALUE        537
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

@@ -34,7 +34,7 @@ public:
 		Arrow = 27,
 		Slayer = 28,// miss
 		Sling = 29,// miss
-		Rock = 30,// miss
+		Rock = 30,
 		PoisonDart = 31,// miss
 		ThrowingStar = 32
 	};
