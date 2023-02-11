@@ -876,36 +876,44 @@ CGrpMonster* CRaumView::GetMonsterGroup(VEKTOR pos) {
 	return pField->GetMonsterGroup();
 }
 
-VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
+VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos, boolean &collision)
 {
 	CField* pField = m_pMap->GetField(toPos);
 	FeldTyp iTyp = pField->HoleTyp();
 	CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
 	CGrpMonster* pGrpMonster = pField->GetMonsterGroup();
-	if (iTyp == FeldTyp::WALL)
+	if (iTyp == FeldTyp::WALL) {
+		collision = true;
 		return fromPos;
+	}
 	else if (iTyp == FeldTyp::DOOR)
 	{
 		CDoor* pDoor = pField->HoleDoor();
 		if (pDoor->getState() != CDoor::DoorState::OPEN)
+		{
+			collision = true;
 			return fromPos;
+		}
 		if (pGrpMonster) return fromPos;
 	}
-	else if (iTyp == FeldTyp::EMPTY) {
+	else if (iTyp == FeldTyp::EMPTY || iTyp == FeldTyp::TRICKWALL) {
+		collision = false;
 		if (pGrpMonster) return fromPos;
 	}
 	else if (iTyp == FeldTyp::PIT) {
+		collision = false;
 		CPit* pit = pField->HolePit();
 		if (pit->GetState() == CPit::PitState::Opened) {
 			toPos.z++;
 			toPos.x += (m_pMap->GetOffset(fromPos.z).x - m_pMap->GetOffset(toPos.z).x);
 			toPos.y += (m_pMap->GetOffset(fromPos.z).y - m_pMap->GetOffset(toPos.z).y);
 			pGrpHelden->FallingDamage();
-			// todo sound
+			m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-FallingandDying.mp3");
 		}
 		return toPos;
 	}
 	else if (iTyp == FeldTyp::TELEPORT) {
+		collision = false;
 		CTeleporter* tele = pField->HoleTeleporter();
 		if (tele->getScope() == TeleporterAttributes::Scope::Items_Party ||
 			tele->getScope() == TeleporterAttributes::Scope::All) {
@@ -913,7 +921,7 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 			if (tele->getRotationType() == TeleporterAttributes::RotationType::Absolute)
 			{
 				pGrpHelden->SetzeRichtung(tele->getTargetDirection());
-				// todo sound
+				m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Teleporting.mp3");
 			}
 			else
 			{
@@ -932,6 +940,7 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos)
 		}
 	}
 	else if (iTyp == FeldTyp::STAIRS) {
+		collision = false;
 		CStairs* stairsBegin = pField->HoleStairs();
 		if (stairsBegin->GetType() == CStairs::StairType::DOWN)
 		{
