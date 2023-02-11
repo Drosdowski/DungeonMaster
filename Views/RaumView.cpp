@@ -1006,8 +1006,8 @@ void CRaumView::PrepareMoveObjects(VEKTOR heroPos) {
 		}
 		std::deque<CMagicMissile*> magicMissiles = field->GetMagicMissile(posAbs);
 		if (!magicMissiles.empty()) {
-			CMagicMissile* topItem = magicMissiles.back();
-			topItem->ResethasMoved();
+			for (CMagicMissile* magicMissile : magicMissiles)
+				magicMissile->ResethasMoved();
 		}
 	}
 }
@@ -1096,8 +1096,9 @@ void CRaumView::CheckMissileCollisions(VEKTOR heroPos) {
 				if (pGroupMonster) {
 					CMonster* pHittedMonster = pGroupMonster->GetMonsterByAbsSubPos(posAbs);
 					if (pHittedMonster) {
+						topMissile->Explode();
+						topMissile->SetDone();
 						pGroupMonster->DoDamage(topMissile->GetStrength() * (rand() % 6 + 1), heroPos, true);
-						topMissile->ReduceSpeed();						
 					}
 					else {
 						// todo kann auch spieler treffen!
