@@ -1276,7 +1276,6 @@ void CRaumView::TriggerPassiveActuators(VEKTOR fieldPos, VEKTOR heroPos) {
 }
 
 void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator* actuator) {
-	if (!(actuator->GetIndex() == 8)) return; // todo raus damit !!
 	int critWeight = actuator->GetCriticalWeigth();
 	bool criticalWeightBreached = field->CriticalWeightBreached(heroPos, critWeight); 
 	bool criticalWeightGone = field->CriticalWeightGone(heroPos, critWeight); 

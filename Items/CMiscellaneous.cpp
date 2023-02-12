@@ -31,6 +31,9 @@ int CMiscellaneous::GetOffsetForGroup() {
 		if (m_attribute.type == CMiscellaneousAttributes::MiscItemType::Compass) {
 			return m_attribute.subtype; // N W S E
 		}
+		if (m_attribute.type == CMiscellaneousAttributes::MiscItemType::Boulder) {
+			return 0;
+		}
 		assert(false); // todo !!
 	}
 	return -1;
@@ -54,11 +57,11 @@ int CMiscellaneous::GetSheetForGroup() {
 	case Torso:
 	case Legs:
 		return 2;
-	case Throwable:
-		return 1;
 	case Other:
 		if (m_attribute.type == CMiscellaneousAttributes::MiscItemType::Compass)
 			return 0;
+		if (m_attribute.type == CMiscellaneousAttributes::MiscItemType::Boulder)
+			return 4;
 		assert(false); // todo !!
 	}
 	return -1;
@@ -68,7 +71,6 @@ int CMiscellaneous::GetSheetForGroup() {
 CItem::ItemGroup CMiscellaneous::GetGroup() {
 	if (m_attribute.type >= 9 && m_attribute.type <= 24) return ItemGroup::Key;
 	if (m_attribute.type >= 29 && m_attribute.type <= 32 || m_attribute.type == 1) return ItemGroup::Consumable;
-	if (m_attribute.type == 25) return ItemGroup::Throwable;
 	return ItemGroup::Other;
 }
 

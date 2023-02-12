@@ -41,6 +41,7 @@ int CWeapon::GetSheetForGroup() {
 }
 
 CItem::ItemGroup CWeapon::GetGroup() {
+	if (m_attribute.type >= 30) return ItemGroup::Throwable;
 	return ItemGroup::Weapon;
 }
 

@@ -22,7 +22,7 @@ public:
 	VEKTOR GetTarget() { return m_target; }
 	ActionTypes GetActionType() { return m_actionType; }
 	ActionTarget GetActionTarget() { return m_actionTarget; }
-	int GetCriticalWeigth() { return 100; } // todo wo steht das?
+	int GetCriticalWeigth() { return 5; } // todo wo steht das?
 	int GetGraphic() { return m_graphic; }
 	COMPASS_DIRECTION GetPosition() { return m_position; } 
 	bool IsActive() { return m_active;  }
