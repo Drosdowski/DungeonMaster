@@ -701,10 +701,10 @@ void CDungeonMap::ParseTeleporterObjects(TiXmlElement* rootNode) {
 			const char* rotation_type = parentElement->Attribute("rotation_type");
 			attribute.rotation = rotation_type == "Relative" ? TeleporterAttributes::RotationType::Relative : TeleporterAttributes::RotationType::Absolute;
 			const char* scope = parentElement->Attribute("scope");
-			if (strcmp(scope, "All"))  attribute.scope = TeleporterAttributes::Scope::All;
-			if (strcmp(scope, "Creatures"))  attribute.scope = TeleporterAttributes::Scope::Creatures;
-			if (strcmp(scope, "Items"))  attribute.scope = TeleporterAttributes::Scope::Items;
-			if (strcmp(scope, "Items_Party"))  attribute.scope = TeleporterAttributes::Scope::Items_Party;
+			if (strcmp(scope, "All") == 0)  attribute.scope = TeleporterAttributes::Scope::All;
+			if (strcmp(scope, "Creatures") == 0)  attribute.scope = TeleporterAttributes::Scope::Creatures;
+			if (strcmp(scope, "Items") == 0)  attribute.scope = TeleporterAttributes::Scope::Items;
+			if (strcmp(scope, "Items_Party") == 0)  attribute.scope = TeleporterAttributes::Scope::Items_Party;
 			
 			parentElement->QueryIntAttribute("sound", &attribute.sound);
 			m_teleportAtt[index] = attribute;

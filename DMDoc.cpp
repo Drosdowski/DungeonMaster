@@ -145,7 +145,7 @@ void CDMDoc::Laufen()
 					pGrpHeroes->Kollision(m_iWunschRichtung);
 					PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-RunningIntoAWall.mp3");
 				}
-				else
+				else if (posFinal.x != posFrom.x || posFinal.y != posFrom.y || posFinal.z != posFrom.z)
 				{
 					m_pRaumView->TriggerMoveAnimation();
 					pGrpHeroes->Laufen(posFinal);

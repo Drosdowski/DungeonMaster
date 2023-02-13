@@ -924,7 +924,7 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos, boolean &collision)
 			toPos = tele->getTargetField();
 			if (tele->getRotationType() == TeleporterAttributes::RotationType::Absolute)
 			{
-				pGrpHelden->SetzeRichtung(tele->getTargetDirection());
+				m_pDoc->SetzeRichtung(tele->getTargetDirection());
 				m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Teleporting.mp3");
 			}
 			else
@@ -1286,35 +1286,66 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 		case 1:
 			VEKTOR target = actuator->GetTarget();
 			CActuator::ActionTypes type = actuator->GetActionType();
-			// TODO: type auswerten!
 			CField* pTargetField = m_pMap->GetField(target);
-			CDoor* pDoor = pTargetField->HoleDoor(); // todo das kann nicht nur eine Tür treffen!
-			switch (type)
-			{
-			case CActuator::Set:
-				if (pDoor != NULL && criticalWeightBreached) {
-					pDoor->Open();
-				}
-				break;
-			case CActuator::Toggle:
-				if (pDoor != NULL && criticalWeightBreached) {
-					pDoor->Toggle();
-				}
-				break;
-			case CActuator::Clear:
-				if (pDoor != NULL && criticalWeightBreached) {
-					pDoor->Close(); // TODO ???
-				}
-				break;
-			case CActuator::Hold:
-				if (pDoor != NULL) {
-					pDoor->Toggle(); // todo prüfen 
-				}
-			}
-			break;
+			TriggerDoor(pTargetField, type, criticalWeightBreached);
+			TriggerPit(pTargetField, type, criticalWeightBreached); 
 		}
 	}
 
+}
+
+void CRaumView::TriggerPit(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached) {
+	CPit* pPit = pTargetField->HolePit();
+	if (pPit) {
+		switch (type)
+		{
+		case CActuator::Set:
+			if (criticalWeightBreached) {
+				pPit->Open();
+			}
+			break;
+		case CActuator::Toggle:
+			if (criticalWeightBreached) {
+				pPit->Toggle();
+			}
+			break;
+		case CActuator::Clear:
+			if (criticalWeightBreached) {
+				pPit->Close(); 
+			}
+			break;
+		case CActuator::Hold:
+			pPit->Toggle();
+			break;
+		}
+	}
+}
+
+void CRaumView::TriggerDoor(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached) {
+	CDoor* pDoor = pTargetField->HoleDoor(); // todo das kann nicht nur eine Tür treffen!
+	if (pDoor != NULL) {
+		switch (type)
+		{
+		case CActuator::Set:
+			if (criticalWeightBreached) {
+				pDoor->Open();
+			}
+			break;
+		case CActuator::Toggle:
+			if (criticalWeightBreached) {
+				pDoor->Toggle();
+			}
+			break;
+		case CActuator::Clear:
+			if (criticalWeightBreached) {
+				pDoor->Close(); // TODO ???
+			}
+			break;
+		case CActuator::Hold:
+			pDoor->Toggle(); // todo prüfen 
+			break;
+		}
+	}
 }
 
 void CRaumView::TriggerActuatorsNearby() {

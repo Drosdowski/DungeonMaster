@@ -131,6 +131,8 @@ private:
 
 	void TriggerPassiveActuators(VEKTOR fieldPos, VEKTOR heroPos );
 	void TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator* actuator);
+	void TriggerDoor(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached);
+	void TriggerPit(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached);
 };
 
 /////////////////////////////////////////////////////////////////////////////

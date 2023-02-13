@@ -317,7 +317,7 @@ bool CGrpHeld::Laufbereit()
 {
 	bool bLaufbereit = true;
 	for (int i = 1; i < 5; i++)
-		if (m_pMember[i])
+		if (m_pMember[i] && m_pMember[i]->isAlive())
 		{
 			bLaufbereit &= (((CHeld*)m_pMember[i])->St().Aktuell > 0);
 		}
