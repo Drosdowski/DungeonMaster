@@ -1094,7 +1094,10 @@ void CRaumView::CheckMissileCollisions(VEKTOR heroPos) {
 		std::deque<CMagicMissile*> magicMissiles = field->GetMagicMissile(posAbs);
 		if (!magicMissiles.empty()) {
 			CMagicMissile* topMissile = magicMissiles.back(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Missiles je Feld
-			if ((!topMissile->IsExploding()) && (topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob || topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball)) {
+			if ((!topMissile->IsExploding()) && (
+				topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob || 
+				topMissile->GetType() == CMagicMissile::MagicMissileType::Poison || 
+				topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball)) {
 
 				CGrpMonster* pGroupMonster = field->GetMonsterGroup();
 				if (pGroupMonster) {

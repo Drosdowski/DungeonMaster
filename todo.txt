@@ -21,5 +21,4 @@ items / spells hit player
 items auf teleporter
 itemInfo 
 Unterschied throwable / weapon
-Giftwolke & Monster: Schaden, explode ...
 schalter mit UND

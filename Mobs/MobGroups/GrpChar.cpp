@@ -119,6 +119,8 @@ CCharacter* CGrpChar::NearestTarget(VEKTOR hisPos) {
 		if (pChar && pChar->isAlive()) {
 			if (pChar->InFrontOfOpponent(GetVector(), hisPos, emptyNorthRow(), emptyEastRow(), emptySouthRow(), emptyWestRow()))
 				return pChar;
+			else if (nearestTarget == NULL)
+				nearestTarget = pChar;
 		}
 	}
 	return nearestTarget; // Kein Nahkampf von Hinten
