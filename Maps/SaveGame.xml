@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<dungeon start_x="14" start_y="19" start_z="1" start_facing="West">
+<dungeon start_x="18" start_y="19" start_z="1" start_facing="South">
     <heroes>
         <hero index="1">
             <item item="1" index="76" type="0" />
         </hero>
         <hero index="2">
-            <item item="0" index="106" type="0" />
             <item item="1" index="19" type="0" />
             <item item="6" index="62" type="2" />
         </hero>
-        <hero index="3">
-            <item item="4" index="63" type="2" />
-            <item item="6" index="61" type="2" />
-        </hero>
+        <hero index="3" />
     </heroes>
     <maps>
         <map index="0">
@@ -868,8 +864,8 @@
                 <tile index="261" />
                 <tile index="262">
                     <actuators>
-                        <actuator subPos="0" index="0" />
                         <actuator subPos="0" index="271" />
+                        <actuator subPos="0" index="0" />
                     </actuators>
                 </tile>
                 <tile index="263" />
@@ -1308,8 +1304,8 @@
                 <tile index="620" />
                 <tile index="621">
                     <actuators>
-                        <actuator subPos="1" index="53" />
                         <actuator subPos="1" index="274" />
+                        <actuator subPos="1" index="53" />
                     </actuators>
                 </tile>
                 <tile index="622" />

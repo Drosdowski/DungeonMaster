@@ -345,7 +345,8 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 				if (currentActuator->GetActionTarget() == CActuator::Local && currentActuator->Action()) {
 					currentActuator = actuatorsAtPosition.front();
 					if (nextActuator && nextActuator->GetActionTarget() == CActuator::Remote) {
-						InvokeRemoteActuator(nextActuator);
+						//InvokeRemoteActuator(nextActuator);
+						InvokeRemoteActuator(currentActuator);
 					}
 				}
 				else if (currentActuator->GetActionTarget() == CActuator::Remote) {
@@ -431,7 +432,21 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator) {
 	case FeldTyp::WALL:
 		// switch 1: <actuator index="274" position="1">
 		// switch 2: <actuator index="275" position="3">
-		pTargetActuators = pTargetField->GetActuator(COMPASS_DIRECTION::SOUTH);
+		for (int dir = 0; dir < 4; dir++) {
+			pTargetActuators = pTargetField->GetActuator(COMPASS_DIRECTION(dir));
+			if (pTargetActuators.size() > 0) {
+				CActuator* gateActuator = pTargetActuators.back();
+				if (gateActuator->GetType() == 5) {
+					if (activeActuator->GetActionType() == CActuator::Toggle) gateActuator->IncreaseGate();
+					if (activeActuator->GetActionType() == CActuator::Set) gateActuator->DecreaseGate();
+					if (gateActuator->GateFull())
+						InvokeRemoteActuator(gateActuator);
+				}
+				else {
+					assert(false);
+				}
+			}
+		}
 		break;
 
 	default:

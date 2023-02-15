@@ -23,3 +23,5 @@ itemInfo
 Unterschied throwable / weapon
 schalter mit UND
 3d Item Leather Pants
+Tote können nicht zaubern
+stamina 0
