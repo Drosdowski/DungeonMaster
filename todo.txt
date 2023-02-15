@@ -22,3 +22,4 @@ items auf teleporter
 itemInfo 
 Unterschied throwable / weapon
 schalter mit UND
+3d Item Leather Pants

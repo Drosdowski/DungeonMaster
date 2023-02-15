@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<dungeon start_x="18" start_y="19" start_z="1" start_facing="South">
+<dungeon start_x="14" start_y="19" start_z="1" start_facing="West">
     <heroes>
         <hero index="1">
             <item item="1" index="76" type="0" />
@@ -1323,8 +1323,8 @@
                 <tile index="630" />
                 <tile index="631">
                     <actuators>
-                        <actuator subPos="3" index="54" />
                         <actuator subPos="3" index="275" />
+                        <actuator subPos="3" index="54" />
                     </actuators>
                 </tile>
                 <tile index="632" />

@@ -411,6 +411,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 void CDMView::InvokeRemoteActuator(CActuator* activeActuator) {
 	VEKTOR target = activeActuator->GetTarget();
 	CField* pTargetField = m_pRaumView->GetMap()->GetField(target);
+	std::deque<CActuator*> pTargetActuators;
 	CDoor* door;
 	CPit* pit;
 
@@ -427,6 +428,12 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator) {
 		if (activeActuator->GetActionType() == CActuator::Set) pit->Open();
 		if (activeActuator->GetActionType() == CActuator::Clear) pit->Close();
 		break;
+	case FeldTyp::WALL:
+		// switch 1: <actuator index="274" position="1">
+		// switch 2: <actuator index="275" position="3">
+		pTargetActuators = pTargetField->GetActuator(COMPASS_DIRECTION::SOUTH);
+		break;
+
 	default:
 		break;
 	}
