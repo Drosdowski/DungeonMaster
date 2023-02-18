@@ -356,10 +356,14 @@
     <Image Include="res\Items3D\Item_3d_Dagger.bmp" />
     <Image Include="res\Items3D\Item_3d_ElvenDoublet.bmp" />
     <Image Include="res\Items3D\Item_3d_FineRobe.bmp" />
+    <Image Include="res\Items3D\Item_3d_Flask_Empty.bmp" />
+    <Image Include="res\Items3D\Item_3d_Flask_Full.bmp" />
     <Image Include="res\Items3D\Item_3d_LeatherBoots.bmp" />
+    <Image Include="res\Items3D\Item_3d_LeatherCLoth.bmp" />
     <Image Include="res\Items3D\Item_3d_PoisonDart.bmp" />
     <Image Include="res\Items3D\Item_3d_Rock.bmp" />
     <Image Include="res\Items3D\Item_3d_ScreamerSlice.bmp" />
+    <Image Include="res\Items3D\Item_3d_Scroll.bmp" />
     <Image Include="res\Items3D\Item_3d_Slayer.bmp" />
     <Image Include="res\Items3D\Item_3d_StoneClub.bmp" />
     <Image Include="res\Items3D\Item_3d_Sword.bmp" />
@@ -483,6 +487,10 @@
     <Image Include="res\WallDeco\WallDeco_6_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_7_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_7_Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_Holder_Empty_Front.bmp" />
+    <Image Include="res\WallDeco\WallDeco_Holder_Empty_Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_Holder_Full_Front.bmp" />
+    <Image Include="res\WallDeco\WallDeco_Holder_Full_Left.bmp" />
     <Image Include="res\Walls\E.bmp" />
     <Image Include="res\Floor\FloorMoss_F1.bmp" />
     <Image Include="res\Floor\FloorMoss_F3.bmp" />

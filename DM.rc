@@ -789,6 +789,22 @@ IDB_ITEM3D_BOULDER      BITMAP                  "res\\Items3D\\Item_3d_Boulder.b
 
 IDB_ITEM3D_ROCK         BITMAP                  "res\\Items3D\\Item_3d_Rock.bmp"
 
+IDB_ITEM3D_LEATHERCLOTH BITMAP                  "res\\Items3D\\Item_3d_LeatherCLoth.bmp"
+
+IDB_ITEM3D_SCROLL       BITMAP                  "res\\Items3D\\Item_3d_Scroll.bmp"
+
+IDB_ITEM3D_FLASK_EMPTY  BITMAP                  "res\\Items3D\\Item_3d_Flask_Empty.bmp"
+
+IDB_ITEM3D_FLASK_FULL   BITMAP                  "res\\Items3D\\Item_3d_Flask_Full.bmp"
+
+IDB_WALLDECO_46L        BITMAP                  "res\\WallDeco\\WallDeco_Holder_Full_Left.bmp"
+
+IDB_WALLDECO_38F        BITMAP                  "res\\WallDeco\\WallDeco_Holder_Empty_Front.bmp"
+
+IDB_WALLDECO_38L        BITMAP                  "res\\WallDeco\\WallDeco_Holder_Empty_Left.bmp"
+
+IDB_WALLDECO_46F        BITMAP                  "res\\WallDeco\\WallDeco_Holder_Full_Front.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

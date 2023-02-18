@@ -22,3 +22,5 @@ items auf teleporter
 itemInfo 
 Unterschied throwable / weapon
 schalter mit UND
+Flask empty/full , leather cloth , scroll
+Torch Holder Actuator

@@ -1457,6 +1457,30 @@
     <Image Include="res\Items3D\Item_3d_Rock.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Items3D\Item_3d_LeatherCLoth.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Item_3d_Scroll.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Item_3d_Flask_Empty.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Item_3d_Flask_Full.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_Holder_Full_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_Holder_Empty_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_Holder_Empty_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_Holder_Full_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

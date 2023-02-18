@@ -141,6 +141,10 @@
 #define IDB_ITEM3D_WORMROUND            423
 #define IDB_ITEM3D_BOULDER              424
 #define IDB_ITEM3D_ROCK                 425
+#define IDB_ITEM3D_LEATHERCLOTH         426
+#define IDB_ITEM3D_SCROLL               427
+#define IDB_ITEM3D_FLASK_EMPTY          428
+#define IDB_ITEM3D_FLASK_FULL           429
 #define IDB_MISSILE_CLUB_B              440
 #define IDB_MISSILE_CLUB_F              441
 #define IDB_MISSILE_CLUB_S              442
@@ -266,8 +270,10 @@
 #define IDB_WALLDECO_34F                2034
 #define IDB_WALLDECO_35F                2035
 #define IDB_WALLDECO_36F                2036
+#define IDB_WALLDECO_38F                2038
 #define IDB_WALLDECO_44F                2044
 #define IDB_WALLDECO_45F                2045
+#define IDB_WALLDECO_46F                2046
 #define IDB_WALLDECO_47F                2047
 #define IDB_WALLDECO_48F                2048
 #define IDB_WALLDECO_49F                2049
@@ -307,8 +313,10 @@
 #define IDB_WALLDECO_34L                2134
 #define IDB_WALLDECO_35L                2135
 #define IDB_WALLDECO_36L                2136
+#define IDB_WALLDECO_38L                2138
 #define IDB_WALLDECO_44L                2144
 #define IDB_WALLDECO_45L                2145
+#define IDB_WALLDECO_46L                2146
 #define IDB_WALLDECO_47L                2147
 #define IDB_WALLDECO_48L                2148
 #define IDB_WALLDECO_49L                2149
@@ -324,7 +332,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        537
+#define _APS_NEXT_RESOURCE_VALUE        545
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101
