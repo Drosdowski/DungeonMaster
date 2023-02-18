@@ -22,6 +22,7 @@ CActuator::CActuator(int index,
 	m_once_only = once_only;
 	m_active = true;
 	m_action = action;
+	m_gateCounter = 0;
 }
 
 CActuator::~CActuator() {

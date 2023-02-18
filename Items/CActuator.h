@@ -30,6 +30,11 @@ public:
 	bool IsOnceOnly() { return m_once_only > 0; }
 	bool Action() { return m_action; }
 
+	// impro gate coding
+	void IncreaseGate() { m_gateCounter++; }
+	void DecreaseGate() { m_gateCounter--; }
+	bool GateFull() { return m_gateCounter==2; }
+
 private:
 	int m_index;
 	COMPASS_DIRECTION m_position;
@@ -38,6 +43,7 @@ private:
 	int m_data;
 	bool m_active;
 	int m_once_only;
+	int m_gateCounter;
 	bool m_action;
 	VEKTOR m_target;
 	ActionTypes m_actionType;

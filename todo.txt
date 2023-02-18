@@ -22,5 +22,6 @@ items auf teleporter
 itemInfo 
 Unterschied throwable / weapon
 schalter mit UND
-Flask empty/full , leather cloth , scroll
-Torch Holder Actuator
+3d Item Leather Pants
+Tote können nicht zaubern
+stamina 0

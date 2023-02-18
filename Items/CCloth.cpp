@@ -10,32 +10,15 @@ CCloth::~CCloth() {
 }
 
 int CCloth::GetOffsetForGroup() {
-	if (m_attribute.type == CClothAttributes::LeatherBoots) { 
-		return 18;
-	}
-	else if (m_attribute.type == CClothAttributes::ElvenDoublet)
-	{
-		return 7;
-	}
-	else if (m_attribute.type == CClothAttributes::ElvenHuke)
-	{
-		return 23;
-	}
-	else if (m_attribute.type == CClothAttributes::Ghi)
-	{
-		return 10;
-	}
-	else if (m_attribute.type == CClothAttributes::GhiTrousers)
-	{
-		return 26;
-	}
-	else if (m_attribute.type == CClothAttributes::SilkShirt)
-	{
-		return 6;
-	}
-	else if (m_attribute.type == CClothAttributes::Tabard)
-	{
-		return 21;
+	switch (m_attribute.type) {
+	case CClothAttributes::LeatherBoots: return 18;
+	case CClothAttributes::ElvenDoublet: return 7;
+	case CClothAttributes::ElvenHuke: return 23;
+	case CClothAttributes::Ghi: return 10;
+	case CClothAttributes::GhiTrousers: return 26;
+	case CClothAttributes::SilkShirt: return 6;
+	case CClothAttributes::Tabard: return 21;
+	case CClothAttributes::LeatherPants: return 24;
 	}
 	return -1;
 }
