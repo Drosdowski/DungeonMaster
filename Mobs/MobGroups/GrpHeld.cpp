@@ -39,6 +39,7 @@ CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 	//m_posPosition = VEKTOR{ 4,11,1 }; // bei Schalter für Tür
 	//m_posPosition = VEKTOR{ 24,6,1 }; // bei Pit
 	//m_posPosition = VEKTOR{ 12,29,1 }; // bei Trickwall
+	// m_posPosition = VEKTOR{ 10,1,1 }; // keyhole
 	m_posPosition = VEKTOR{ 6,0,1 }; // bei Keule vor 1. Monster
 	//m_posPosition = VEKTOR{ 3,28,2 }; // bei Compass
 	//m_posPosition = VEKTOR{ 15,18,2 }; // 2. etage mitte
@@ -47,6 +48,8 @@ CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 	//m_posPosition = VEKTOR{ 1,12,3 }; // bei Screamer
 	//m_posPosition = VEKTOR{ 9,2,3 }; // bei Worms
 	//m_posPosition = VEKTOR{ 8,5,1 }; // bei torch / key / doublet
+
+	//m_posPosition = VEKTOR{ 7, 5, 4 }; // ca 999 Actuators
 	DrehenAbsolut(richt);
 }
 

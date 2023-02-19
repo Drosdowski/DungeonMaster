@@ -26,3 +26,5 @@ Flask empty/full , leather cloth , scroll
 Torch Holder Actuator
 Tote können nicht zaubern
 stamina 0
+
+TakeItem in alkoven etc -> subpos !

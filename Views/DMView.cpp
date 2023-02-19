@@ -336,6 +336,12 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 			CActuator* currentActuator = actuatorsAtPosition.back();
 			CActuator* nextActuator = actuatorsAtPosition.front();
 			CActuator::ActionTarget actionTarget = currentActuator->GetActionTarget();
+			CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+			CItem* itemInHand = grpHelden->GetItemInHand();
+			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
+			SUBPOS_ABSOLUTE posActuator = (SUBPOS_ABSOLUTE)dir;
+			std::deque<CItem*> itemsInWall = FeldVorHeld->GetItem(posActuator);
+
 			if (!currentActuator->IsActive()) return false;
 
 			if (type == 1) {
@@ -389,19 +395,31 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 					}
 				}
 			}
+			else if (type == 13 || type == 0)
+			{
+				int neededItemId = currentActuator->GetData() + 2; // todo formel verstehen.
+				if (itemInHand == NULL) {
+					InvokeRemoteActuator(currentActuator);
+					grpHelden->TakeItemInHand(FeldVorHeld->TakeItem(posActuator));
+					return true;
+				}
+				else if (itemInHand->GetType() == neededItemId) {
+					InvokeRemoteActuator(currentActuator);
+					FeldVorHeld->PutItem(itemInHand, posActuator);
+					grpHelden->EmptyHand();
+					return true;
+				}
+
+			}
 			else {
 				// Alkoven & co
-				CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
-				CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
-				std::deque<CItem*> itemsInWall = FeldVorHeld->GetItem(SUBPOS_ABSOLUTE::NORTHWEST);
-				CItem* itemInHand = grpHelden->GetItemInHand();
 				if (itemInHand == NULL) {
 					if (itemsInWall.size() > 0) {
-						grpHelden->TakeItemInHand(FeldVorHeld->TakeItem(SUBPOS_ABSOLUTE::NORTHWEST));
+						grpHelden->TakeItemInHand(FeldVorHeld->TakeItem(posActuator)); 
 					}
 				}
 				else {
-					FeldVorHeld->PutItem(itemInHand, SUBPOS_ABSOLUTE::NORTHWEST);
+					FeldVorHeld->PutItem(itemInHand, posActuator);
 					grpHelden->EmptyHand();
 				}
 			}
@@ -430,22 +448,27 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator) {
 		if (activeActuator->GetActionType() == CActuator::Clear) pit->Close();
 		break;
 	case FeldTyp::WALL:
-		// switch 1: <actuator index="274" position="1">
-		// switch 2: <actuator index="275" position="3">
-		for (int dir = 0; dir < 4; dir++) {
-			pTargetActuators = pTargetField->GetActuator(COMPASS_DIRECTION(dir));
-			if (pTargetActuators.size() > 0) {
-				CActuator* gateActuator = pTargetActuators.back();
-				if (gateActuator->GetType() == 5) {
-					if (activeActuator->GetActionType() == CActuator::Toggle) gateActuator->IncreaseGate();
-					if (activeActuator->GetActionType() == CActuator::Set) gateActuator->DecreaseGate();
-					if (gateActuator->GateFull())
-						InvokeRemoteActuator(gateActuator);
-				}
-				else {
-					assert(false);
+		if (activeActuator->GetActionTarget() == CActuator::ActionTarget::Remote) {
+			// switch 1: <actuator index="274" position="1">
+			// switch 2: <actuator index="275" position="3">
+			for (int dir = 0; dir < 4; dir++) {
+				pTargetActuators = pTargetField->GetActuator(COMPASS_DIRECTION(dir));
+				if (pTargetActuators.size() > 0) {
+					CActuator* gateActuator = pTargetActuators.back();
+					if (gateActuator->GetType() == 5) {
+						if (activeActuator->GetActionType() == CActuator::Toggle) gateActuator->IncreaseGate();
+						if (activeActuator->GetActionType() == CActuator::Set) gateActuator->DecreaseGate();
+						if (gateActuator->GateFull())
+							InvokeRemoteActuator(gateActuator);
+					}
+					else {
+						assert(false);
+					}
 				}
 			}
+		}
+		else {
+
 		}
 		break;
 
