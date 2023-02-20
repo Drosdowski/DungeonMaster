@@ -229,6 +229,9 @@ void CDungeonMap::ParseItems(TiXmlElement* rootNode, VEKTOR coords) {
 				else if (strcmp(item->Value(), "cloth") == 0) {
 					ParseCloth(item, coords);
 				}
+				else if (strcmp(item->Value(), "potion") == 0) {
+					ParsePotions(item, coords);
+				}
 				else if (strcmp(item->Value(), "actuator") == 0) {
 					ParseActuator(item, coords);
 				}

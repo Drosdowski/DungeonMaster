@@ -7,7 +7,7 @@ public:
 		WeaponItem,
 		MiscItem,
 		ClothItem,
-		Potion
+		PotionItem
 	};
 	enum ItemGroup {
 		Key = 1,

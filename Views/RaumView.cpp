@@ -13,6 +13,7 @@
 #include "Items/CMiscellaneous.h"
 #include "Items/Cloth.h"
 #include "Items/Weapon.h"
+#include "Items/Potion.h"
 #include "Items/CActuator.h"
 #include "Items\MagicMissile.h"
 #include "RaumView.h"
@@ -546,6 +547,9 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 	else if (typ == CItem::ItemType::ClothItem) {
 		bmp = GetClothBitmap((CCloth*)item, item->IsFlying());
 	}
+	else if (typ == CItem::ItemType::PotionItem) {
+		bmp = GetPotionBitmap((CPotion*)item);
+	}
 	if (bmp) {
 		BITMAP bmpInfo;
 		bmp->GetBitmap(&bmpInfo);
@@ -643,6 +647,15 @@ CBitmap* CRaumView::GetMagicMissileBitmap(CMagicMissile::MagicMissileType type, 
 		return m_pMagicMissilePic->GetDust(exploding, inside);
 	else
 		return NULL;
+}
+
+CBitmap* CRaumView::GetPotionBitmap(CPotion* potion) {
+	CBitmap* bmp;
+	if (potion->GetType() == CPotionAttributes::PotionType::Empty)
+		bmp = m_pItem3DPic->GetFlask(0);
+	else
+		bmp = m_pItem3DPic->GetFlask(1);
+	return bmp;
 }
 
 CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {

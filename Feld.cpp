@@ -100,7 +100,7 @@ CField::~CField()
 				delete (CMiscellaneous*)item;
 			else if (item->getItemType() == CItem::ItemType::ClothItem)
 				delete (CCloth*)item;
-			else if (item->getItemType() == CItem::ItemType::Potion)
+			else if (item->getItemType() == CItem::ItemType::PotionItem)
 				delete (CPotion*)item;
 			else
 				delete item;
