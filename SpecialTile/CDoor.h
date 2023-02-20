@@ -1,5 +1,5 @@
 #pragma once
-#include "..\Attributes\CDoorAttributes.h"
+#include "..\Attributes\DoorAttributes.h"
 
 class CDoor
 {

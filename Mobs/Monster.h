@@ -4,7 +4,7 @@
 // Monster.h : Header-Datei
 //
 #include "Character.h"
-#include "..\Attributes\CCreatureAttributes.h" 
+#include "..\Attributes\CreatureAttributes.h" 
 /////////////////////////////////////////////////////////////////////////////
 // Ansicht CMonster 
 

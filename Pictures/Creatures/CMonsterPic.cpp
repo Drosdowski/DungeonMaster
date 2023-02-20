@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "..\..\Attributes\CCreatureAttributes.h"
+#include "..\..\Attributes\CreatureAttributes.h"
 #include "..\..\Mobs\Monster.h"
 #include "CMonsterPic.h"
 #include "CMummyPic.h"

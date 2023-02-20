@@ -6,7 +6,8 @@ public:
 	enum ItemType {
 		WeaponItem,
 		MiscItem,
-		ClothItem
+		ClothItem,
+		Potion
 	};
 	enum ItemGroup {
 		Key = 1,

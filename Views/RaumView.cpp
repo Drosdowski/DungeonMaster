@@ -668,6 +668,7 @@ CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {
 			bmp = m_pItem3DPic->GetWaterskin(1);
 		else
 			bmp = m_pItem3DPic->GetWaterskin(0);
+
 	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::ScreamerSlice)
 		bmp = m_pItem3DPic->GetScreamerSlice();
 	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::WormRound)
@@ -684,6 +685,9 @@ CBitmap* CRaumView::GetClothBitmap(CCloth* cloth, bool inAir) {
 	CBitmap* bmp;
 	if (cloth->GetType() == CClothAttributes::ClothType::LeatherBoots)
 		bmp = m_pItem3DPic->GetLeatherBoots();
+	else if (cloth->GetType() == CClothAttributes::ClothType::LeatherJerkin ||
+		cloth->GetType() == CClothAttributes::ClothType::LeatherPants)
+		bmp = m_pItem3DPic->GetLeatherCloth();
 	else if (cloth->GetType() == CClothAttributes::ClothType::ElvenDoublet ||
 		cloth->GetType() == CClothAttributes::ClothType::ElvenHuke)
 		bmp = m_pItem3DPic->GetGreenCloth();

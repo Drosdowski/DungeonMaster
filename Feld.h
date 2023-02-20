@@ -21,6 +21,7 @@ class CItem;
 class CMiscellaneous;
 class CCloth;
 class CWeapon;
+class CPotion;
 class CActuator;
 class CFloorDecoration;
 class CWallDecoration;
@@ -68,6 +69,7 @@ public:
 	void PutMisc(CMiscellaneous* item, SUBPOS_ABSOLUTE index);
 	void PutWeapon(CWeapon* item, SUBPOS_ABSOLUTE index);
 	void PutCloth(CCloth* item, SUBPOS_ABSOLUTE index);
+	void PutPotion(CPotion* item, SUBPOS_ABSOLUTE index);
 	void ThrowItem(CItem* item, SUBPOS_ABSOLUTE index, VEKTOR force);
 	void CastMissile(CMagicMissile* missile, SUBPOS_ABSOLUTE index);
 	//void PutItem(CItem* item, SUBPOS subPos);

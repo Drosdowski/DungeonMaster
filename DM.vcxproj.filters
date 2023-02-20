@@ -150,7 +150,7 @@
     <ClCompile Include="SpecialTile\CTeleporter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Attributes\CTeleporterAttributes.cpp">
+    <ClCompile Include="Attributes\TeleporterAttributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Views\CGroupView.cpp">
@@ -159,13 +159,13 @@
     <ClCompile Include="Pictures\CWallDecoPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Attributes\CCreatureAttributes.cpp">
+    <ClCompile Include="Attributes\CreatureAttributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Items\WallDecoration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Attributes\CDoorAttributes.cpp">
+    <ClCompile Include="Attributes\DoorAttributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Items\Item.cpp">
@@ -174,10 +174,10 @@
     <ClCompile Include="Items\Weapon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Attributes\CMiscellaneousAttributes.cpp">
+    <ClCompile Include="Attributes\MiscellaneousAttributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Attributes\CWeaponAttributes.cpp">
+    <ClCompile Include="Attributes\WeaponAttributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Attributes\ClothAttributes.cpp">
@@ -235,6 +235,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Pictures\MagicMissilePic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Items\Potion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Attributes\PotionAttributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -379,7 +385,7 @@
     <ClInclude Include="SpecialTile\CTeleporter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Attributes\CTeleporterAttributes.h">
+    <ClInclude Include="Attributes\TeleporterAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Views\CGroupView.h">
@@ -391,13 +397,13 @@
     <ClInclude Include="Pictures\CWallDecoPic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Attributes\CCreatureAttributes.h">
+    <ClInclude Include="Attributes\CreatureAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Items\WallDecoration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Attributes\CDoorAttributes.h">
+    <ClInclude Include="Attributes\DoorAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Items\Item.h">
@@ -467,6 +473,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\MagicMissilePic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\Potion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Attributes\PotionAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

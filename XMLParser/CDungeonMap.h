@@ -1,11 +1,12 @@
 #pragma once
 #include "../Feld.h"
 #include "../Items/CActuator.h"
-#include "../Attributes/CTeleporterAttributes.h"
-#include "../Attributes/CCreatureAttributes.h"
-#include "../Attributes/CDoorAttributes.h"
+#include "../Attributes/TeleporterAttributes.h"
+#include "../Attributes/CreatureAttributes.h"
+#include "../Attributes/DoorAttributes.h"
 #include "../Attributes/WeaponAttributes.h"
 #include "../Attributes/ClothAttributes.h"
+#include "../Attributes/PotionAttributes.h"
 #include "../Attributes/MiscellaneousAttributes.h"
 #include <XMLParser/ItemInfos.h>
 #include <XMLParser/MonsterInfos.h>
@@ -43,6 +44,7 @@ private:
 	void ParseMiscellaneousObjects(TiXmlElement* rootNode);
 	void ParseWeaponObjects(TiXmlElement* rootNode);
 	void ParseClothObjects(TiXmlElement* rootNode);
+	void ParsePotionObjects(TiXmlElement* rootNode);
 	void ParseObjects(TiXmlElement* rootNode);
 	void ParseTeleporterObjects(TiXmlElement* rootNode);
 
@@ -58,6 +60,7 @@ private:
 	void ParseMiscellaneous(TiXmlElement* rootNode, VEKTOR coords);
 	void ParseWeapons(TiXmlElement* rootNode, VEKTOR coords);
 	void ParseCloth(TiXmlElement* rootNode, VEKTOR coords);
+	void ParsePotions(TiXmlElement* rootNode, VEKTOR coords);
 	void ParseFloorDecoration(TiXmlElement* miscItem, VEKTOR coords);
 	void ParseWallDecoration(TiXmlElement* miscItem, VEKTOR coords);
 	void ParseCreature(TiXmlElement* miscItem, VEKTOR coords);
@@ -88,6 +91,7 @@ private:
 	int m_countMiscellaneous;
 	int m_countWeapons;
 	int m_countClothes;
+	int m_countPotions;
 	int m_countActuators;
 	int m_countTeleporters;
 	int m_countCreatures;
@@ -98,6 +102,7 @@ private:
 	CMiscellaneousAttributes* m_miscellaneousAtt;
 	CWeaponAttributes* m_weaponAtt;
 	CClothAttributes* m_clothAtt;
+	CPotionAttributes* m_potionAtt;
 
 	int* m_actuatorType;
 	CDoorAttributes* m_doorAtt;

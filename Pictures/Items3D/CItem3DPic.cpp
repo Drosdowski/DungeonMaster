@@ -18,6 +18,7 @@ CItem3DPic ::~CItem3DPic() {
 	delete m_pWhiteCloth;
 	delete m_pGreenCloth;
 	delete m_pLeatherBoots;
+	delete m_pLeatherCloth;
 	delete m_pGoldKey;
 	delete m_pIronKey;
 	delete m_pTorch;
@@ -35,8 +36,10 @@ CItem3DPic ::~CItem3DPic() {
 		delete m_pPoisonDart[w];
 		if (w < 3) {
 			delete m_pThrowingStar[w];
-			if (w < 2)
+			if (w < 2) {
 				delete m_pWaterskin[w];
+				delete m_pFlask[w];
+			}
 		}
 	}
 }
@@ -53,11 +56,14 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pWhiteCloth, IDB_ITEM3D_FINEROBE);
 	LoadPic(m_pGreenCloth, IDB_ITEM3D_ELVENDOUBLET);
 	LoadPic(m_pLeatherBoots, IDB_ITEM3D_LEATHERBOOTS);
+	LoadPic(m_pLeatherCloth, IDB_ITEM3D_LEATHERCLOTH);
 	LoadPic(m_pGoldKey, IDB_ITEM3D_GOLDKEY);
 	LoadPic(m_pIronKey, IDB_ITEM3D_IRONKEY);
 	LoadPic(m_pTorch, IDB_ITEM3D_TORCH);
 	LoadPic(m_pWaterskin[0], IDB_ITEM3D_WATERSKIN_E);
 	LoadPic(m_pWaterskin[1], IDB_ITEM3D_WATERSKIN_F);
+	LoadPic(m_pFlask[0], IDB_ITEM3D_FLASK_EMPTY);
+	LoadPic(m_pFlask[1], IDB_ITEM3D_FLASK_FULL);
 	LoadPic(m_pClub[0], IDB_ITEM3D_CLUB);
 	LoadPic(m_pClub[1], IDB_MISSILE_CLUB_B);
 	LoadPic(m_pClub[2], IDB_MISSILE_CLUB_F);

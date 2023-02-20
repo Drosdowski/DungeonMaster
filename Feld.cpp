@@ -12,6 +12,7 @@
 #include "Items\CActuator.h"
 #include "Items\Weapon.h"
 #include "Items\CMiscellaneous.h"
+#include "Items\Potion.h"
 #include "Items\Cloth.h"
 #include "Items\CActuator.h"
 #include "CalculationHelper\CHelpfulValues.h"
@@ -97,8 +98,10 @@ CField::~CField()
 				delete (CWeapon*)item;
 			else if (item->getItemType() == CItem::ItemType::MiscItem)
 				delete (CMiscellaneous*)item;
-			else  if (item->getItemType() == CItem::ItemType::ClothItem)
+			else if (item->getItemType() == CItem::ItemType::ClothItem)
 				delete (CCloth*)item;
+			else if (item->getItemType() == CItem::ItemType::Potion)
+				delete (CPotion*)item;
 			else
 				delete item;
 		}
@@ -188,6 +191,10 @@ void CField::PutCloth(CCloth* cloth, SUBPOS_ABSOLUTE index) {
 
 void CField::PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index) {
 	m_pItem[index].push_back((CItem*)misc);
+}
+
+void CField::PutPotion(CPotion* potion, SUBPOS_ABSOLUTE index) {
+	m_pItem[index].push_back((CItem*)potion);
 }
 
 void CField::PutFloorDeco(CFloorDecoration* deco) {
