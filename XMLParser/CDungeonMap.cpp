@@ -911,7 +911,7 @@ void CDungeonMap::SaveHero(TiXmlElement* heroes, int id) {
 			if (item) {
 				TiXmlElement* heroItem = new TiXmlElement("item");
 				heroItem->SetAttribute("item", itemId);
-				heroItem->SetAttribute("index", item->getIndex());
+				heroItem->SetAttribute("index", item->GetIndex());
 				heroItem->SetAttribute("type", item->getItemType());
 				hero->LinkEndChild(heroItem);
 			}

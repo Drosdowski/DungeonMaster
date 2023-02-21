@@ -532,11 +532,9 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 
 }
 
-void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, COMPASS_DIRECTION heroDir, std::deque<CItem*> pile) {
+void CRaumView::DrawOneOfPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, COMPASS_DIRECTION heroDir, CItem* item) {
 	int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
 	CBitmap* bmp;
-	// TODO - besser als "nur oberstes Malen... "
-	CItem* item = pile.back();	
 	CItem::ItemType typ = item->getItemType();
 	if (typ == CItem::ItemType::MiscItem) {
 		bmp = GetMiscBitmap((CMiscellaneous*)item);
@@ -573,6 +571,13 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 			}
 		}
 
+	}
+}
+
+
+void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, COMPASS_DIRECTION heroDir, std::deque<CItem*> pile) {
+	for (CItem* item : pile) {
+		DrawOneOfPile(pDC, cdc, xxx, ebene, itemSubPos, heroDir, item);
 	}
 }
 

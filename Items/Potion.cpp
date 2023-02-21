@@ -29,3 +29,7 @@ int CPotion::GetSheetForGroup() {
 CItem::ItemGroup CPotion::GetGroup() {
 	return Flask;
 }
+
+void CPotion::MakePotion(CPotionAttributes attributes) {
+	m_attribute = attributes;
+}

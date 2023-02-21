@@ -24,6 +24,7 @@
 #include "..\SpecialTile/CDoor.h"
 #include "..\SpecialTile\CPit.h"
 #include "..\Items/Item.h"
+#include "..\Items/Potion.h"
 #include "..\Items/CMiscellaneous.h"
 #include "..\Items/WallDecoration.h"
 #include "..\Items\MagicMissile.h"
@@ -169,13 +170,30 @@ void CDMView::ParseClickRunes(CPoint point, CGrpHeld* grpHelden) {
 		}
 	}
 }
+void CastPotion(CPotion* potion, int power, CPotionAttributes::PotionType type) {
+	CPotionAttributes attribute;
+	attribute.power = power;
+	attribute.type = type;
+	potion->MakePotion(attribute);
+}
+
 void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
 	if (CScreenCoords::CheckHitSpell(point)) {
 		int* spell = m_pZauberView->getSpell();
+		CItem* itemInHand = grpHelden->GetHero(grpHelden->GetActiveWizard())->GetItemCarrying(1);
+		bool emptyFlaskInHand = itemInHand && itemInHand->GetType() == CPotionAttributes::PotionType::Empty;
+
+		// Magic Missiles
 		if (spell[2] == 4 && spell[3] == 4 && spell[4] == 0) {
 			CastMagicMissile(CMagicMissile::MagicMissileType::Fireball, spell[1]);
-		} else if (spell[2] == 3 && spell[3] == 1 && spell[4] == 0)
+		}
+		else if (spell[2] == 3 && spell[3] == 1 && spell[4] == 0) {
 			CastMagicMissile(CMagicMissile::MagicMissileType::Poison, spell[1]);
+		}
+		// Potions
+		else if (spell[2] == 2 && emptyFlaskInHand) {
+			CastPotion((CPotion*)itemInHand, spell[1], CPotionAttributes::PotionType::Vi);
+		}
 		m_pZauberView->resetRuneTable();
 	}
 }
@@ -246,7 +264,7 @@ void CDMView::ParseClickFountain(CPoint point, CField* FeldVorHeld, COMPASS_DIRE
 				// item in hand füllen
 				if (itemInHand->getItemType() == CItem::ItemType::MiscItem) {
 					CMiscellaneous* container = (CMiscellaneous*)itemInHand;
-					if (container->getIndex() == 11 && container->GetSubtype() < 3) {
+					if (container->GetIndex() == 11 && container->GetSubtype() < 3) {
 						// Waterskin todo empty flask
 						container->SetSubtype(3); // change to full
 					}
@@ -513,7 +531,7 @@ void CDMView::ParseClickFloor(CPoint point) {
 			}
 		}
 	}
-	if (itemRegionClicked != NONE) {
+	if (itemRegionClicked != NONE && topItem) {
 		grpHelden->TakeItemInHand(topItem);
 		ChangeMouseCursor();
 	}
@@ -608,6 +626,12 @@ void CDMView::ParseClickBackpack(CPoint point) {
 					grpHelden->EmptyHand();
 					delete item; // destroy permanently!
 				}
+			}
+		}
+		else if (item->getItemType() == CItem::ItemType::PotionItem) {
+			CPotion* potion = (CPotion*)item;
+			if (potion && potion->GetType() == CPotionAttributes::PotionType::Vi) {
+				pHeld->WerteTemporaerAendern(potion->GetAttributes().power*10, 0, 0);
 			}
 		}
 	}

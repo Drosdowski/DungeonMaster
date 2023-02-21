@@ -86,8 +86,10 @@ void CHeld::DelItem(CItem* pItem) {
 			delete (CWeapon*)pItem;
 		else if (pItem->getItemType() == CItem::ItemType::MiscItem)
 			delete (CMiscellaneous*)pItem;
-		else  if (pItem->getItemType() == CItem::ItemType::ClothItem)
+		else if (pItem->getItemType() == CItem::ItemType::ClothItem)
 			delete (CCloth*)pItem;
+		else if (pItem->getItemType() == CItem::ItemType::PotionItem)
+			delete (CPoint*)pItem;
 	}
 }
 

@@ -10,10 +10,13 @@ public:
 	int GetType() { return m_attribute.type; }
 
 	double GetWeight() { return 0.1; }
+	CPotionAttributes GetAttributes() { return m_attribute; }
 
 	int GetSheetForGroup();
 	int GetOffsetForGroup();
 	ItemGroup GetGroup();
+
+	void MakePotion(CPotionAttributes attributes);
 
 private:
 	CPotionAttributes m_attribute;
