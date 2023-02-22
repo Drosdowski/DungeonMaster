@@ -262,11 +262,20 @@ void CDMView::ParseClickFountain(CPoint point, CField* FeldVorHeld, COMPASS_DIRE
 			}
 			else {
 				// item in hand füllen
-				if (itemInHand->getItemType() == CItem::ItemType::MiscItem) {
+				if (itemInHand->getItemType() == CItem::MiscItem) {
 					CMiscellaneous* container = (CMiscellaneous*)itemInHand;
 					if (container->GetIndex() == 11 && container->GetSubtype() < 3) {
 						// Waterskin todo empty flask
 						container->SetSubtype(3); // change to full
+					}
+				}
+				else if (itemInHand->getItemType() == CItem::PotionItem) {
+					CPotion* potion = (CPotion*)itemInHand;
+					CPotionAttributes att = potion->GetAttributes();
+					if (att.type == CPotionAttributes::Empty)
+					{
+						att.type = CPotionAttributes::Water;
+						potion->MakePotion(att);
 					}
 				}
 			}
@@ -629,9 +638,20 @@ void CDMView::ParseClickBackpack(CPoint point) {
 			}
 		}
 		else if (item->getItemType() == CItem::ItemType::PotionItem) {
+			// drink potions
 			CPotion* potion = (CPotion*)item;
-			if (potion && potion->GetType() == CPotionAttributes::PotionType::Vi) {
-				pHeld->WerteTemporaerAendern(potion->GetAttributes().power*10, 0, 0);
+			CPotionAttributes att = potion->GetAttributes();
+			if (potion->GetType() == CPotionAttributes::Vi) {
+				pHeld->WerteTemporaerAendern(att.power*10, 0, 0);
+				att.power = 0;
+				att.type = CPotionAttributes::PotionType::Empty;
+				potion->MakePotion(att);
+			}
+			else if (potion->GetType() == CPotionAttributes::Water)
+			{
+				pHeld->Trinken(50);
+				att.type = CPotionAttributes::PotionType::Empty;
+				potion->MakePotion(att);
 			}
 		}
 	}

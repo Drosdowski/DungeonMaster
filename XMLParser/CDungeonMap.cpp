@@ -1046,6 +1046,7 @@ void CDungeonMap::LoadHero(TiXmlElement* hero) {
 		CWeapon* weapon;
 		CMiscellaneous* misc;
 		CCloth* cloth;
+		CPotion* potion;
 		switch (type) {
 		case 0: 
 			weapon = new CWeapon(index, m_weaponAtt[index]);
@@ -1058,6 +1059,10 @@ void CDungeonMap::LoadHero(TiXmlElement* hero) {
 		case 2:
 			cloth = new CCloth(index, m_clothAtt[index]);
 			held->SwitchItemAt(itemId, (CItem*)cloth);
+			break;
+		case 3:
+			potion = new CPotion(index, m_potionAtt[index]);
+			held->SwitchItemAt(itemId, (CItem*)potion);
 			break;
 		}
 		heroItem = heroItem->NextSiblingElement();
