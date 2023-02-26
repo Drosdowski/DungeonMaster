@@ -1079,7 +1079,8 @@ void CDungeonMap::LoadHeroes(TiXmlElement* heroes) {
 void CDungeonMap::LoadHero(TiXmlElement* hero) {
 	int heroId;
 	hero->QueryIntAttribute("index", &heroId);
-	CHeld* held = m_pGrpHelden->InitHeld(heroId);
+	m_pGrpHelden->InitHeld(heroId);
+	CHeld* held = m_pGrpHelden->GetActiveHero();
 	TiXmlElement* heroItem = hero->FirstChildElement();
 	while (heroItem) {
 		int itemId, index, type;

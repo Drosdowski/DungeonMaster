@@ -99,7 +99,7 @@ protected:
 	void ParseClickDoorButton(CPoint point, CField* FeldVorHeld);
 	void ParseClickFountain(CPoint point, CField* FeldVorHeld, COMPASS_DIRECTION dir);
 
-	void InvokeRemoteActuator(CActuator* activeActuator);
+	void InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextActuator);
 	void ChangeMouseCursor();
 
 	void Awake();

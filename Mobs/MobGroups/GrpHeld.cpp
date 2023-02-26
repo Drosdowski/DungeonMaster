@@ -62,16 +62,16 @@ CGrpHeld::~CGrpHeld()
 /////////////////////////////////////////////////////////////////////////////
 // Behandlungsroutinen für Nachrichten CGrpHeld 
 
-CHeld* CGrpHeld::InitHeld(const int nr)
+void CGrpHeld::InitHeld(const int nr)
 {
+	if (m_pMember[m_iAktiverHeld])
+		((CHeld*)m_pMember[m_iAktiverHeld])->setInactive();
+	
 	if (m_pMember[nr] == NULL)
 	{
 		CString strName;
 		strName.Format("Held %i", nr);
-
-		if (m_pMember[m_iAktiverHeld])
-			((CHeld*)m_pMember[m_iAktiverHeld])->setInactive();
-
+				
 		m_pMember[nr] = new CHeld(nr, strName);
 		m_iAktiverHeld = nr;
 
@@ -84,9 +84,11 @@ CHeld* CGrpHeld::InitHeld(const int nr)
 		if (m_iAnzHelden == 1)
 			m_iAktiverZauberer = nr;
 
-		return pHeld;
 	}
-	return NULL;
+	else {
+		m_iAktiverHeld = nr;
+		((CHeld*)m_pMember[m_iAktiverHeld])->setActive();
+	}
 }
 
 void CGrpHeld::Aktiviere(int n)

@@ -166,7 +166,7 @@ void CDMDoc::SetzeRichtung(int iRichtung)
 void CDMDoc::InitGruppe(const int nr)
 {
 	CGrpHeld* pGrpHelden = m_pRaumView->GetHeroes();
-	CHeld* pHeld = pGrpHelden->InitHeld(nr);
+	pGrpHelden->InitHeld(nr);
 }
 
 int CDMDoc::HoleGruppenRichtung() 

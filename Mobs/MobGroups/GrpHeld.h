@@ -21,7 +21,7 @@ public:
 
 // Implementierung
 public:
-	CHeld* InitHeld(int nr);
+	void InitHeld(int nr);
 	
 	CHeld* GetHero(int iID) { return (CHeld*)m_pMember[iID]; }
 	CHeld* GetActiveHero() { return (CHeld*)m_pMember[m_iAktiverHeld]; }
