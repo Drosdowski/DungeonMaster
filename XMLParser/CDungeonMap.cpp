@@ -669,6 +669,7 @@ void CDungeonMap::ParseScrollObjects(TiXmlElement* rootNode) {
 			parentElement->QueryIntAttribute("index", &index);
 			TiXmlNode* object = parentElement->FirstChild();
 			att.text = object->Value();
+			att.open = false;
 			m_scrollAtt[index] = att;
 		}
 		parentElement = parentElement->NextSiblingElement();

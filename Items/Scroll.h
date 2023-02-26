@@ -13,6 +13,7 @@ public:
 	int GetSheetForGroup();
 	int GetOffsetForGroup();
 	ItemGroup GetGroup();
+	void SetOpen(bool value);
 
 private:
 	CScrollAttributes m_attribute;

@@ -1505,6 +1505,9 @@
     <Image Include="res\WallDeco\WallDeco_Holder_Full_Front.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\OpenScroll.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

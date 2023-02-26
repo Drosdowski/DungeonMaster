@@ -13,8 +13,17 @@ const char* CScroll::GetText() {
 	return m_attribute.text;
 }
 
+void CScroll::SetOpen(bool value) {
+	m_attribute.open = value;
+}
+
 int CScroll::GetOffsetForGroup() {
-	return 31;
+	if (m_attribute.open) {
+		return 30;
+	}
+	else {
+		return 31;
+	}
 }
 
 int CScroll::GetSheetForGroup() {	
