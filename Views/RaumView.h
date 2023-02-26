@@ -129,6 +129,7 @@ private:
 	CBitmap* GetPotionBitmap(CPotion* potion);
 	CBitmap* GetWeaponBitmap(CWeapon* weapon, bool inAir);
 	CBitmap* GetClothBitmap(CCloth* cloth, bool inAir);
+	CBitmap* GetScrollBitmap(CScroll* scroll);
 	CBitmap* GetMagicMissileBitmap(CMagicMissile::MagicMissileType type, bool exploding, bool inside, int size);
 
 	void TriggerPassiveActuators(VEKTOR fieldPos, VEKTOR heroPos );

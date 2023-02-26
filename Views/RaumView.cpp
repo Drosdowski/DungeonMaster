@@ -548,6 +548,9 @@ void CRaumView::DrawOneOfPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABS
 	else if (typ == CItem::ItemType::PotionItem) {
 		bmp = GetPotionBitmap((CPotion*)item);
 	}
+	else if (typ == CItem::ItemType::ScrollItem) {
+		bmp = GetScrollBitmap((CScroll*)item);
+	}
 	if (bmp) {
 		BITMAP bmpInfo;
 		bmp->GetBitmap(&bmpInfo);
@@ -661,6 +664,10 @@ CBitmap* CRaumView::GetPotionBitmap(CPotion* potion) {
 	else
 		bmp = m_pItem3DPic->GetFlask(1);
 	return bmp;
+}
+
+CBitmap* CRaumView::GetScrollBitmap(CScroll* scroll) {
+	return m_pItem3DPic->GetScroll();
 }
 
 CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {

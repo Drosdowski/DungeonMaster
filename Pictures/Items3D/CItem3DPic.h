@@ -23,6 +23,7 @@ public:
 	CBitmap* GetCompass() { return m_pCompass; }
 	CBitmap* GetBoulder() { return m_pBoulder; }
 	CBitmap* GetRock() { return m_pRock; }
+	CBitmap* GetScroll() { return m_pScroll; }
 
 	CBitmap* GetWhiteCloth() { return m_pWhiteCloth; }
 	CBitmap* GetGreenCloth() { return m_pGreenCloth; }
@@ -71,5 +72,6 @@ private:
 	CBitmap* m_pTorch;
 	CBitmap* m_pBoulder;
 	CBitmap* m_pRock;
+	CBitmap* m_pScroll;
 };
 

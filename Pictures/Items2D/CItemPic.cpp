@@ -6,6 +6,8 @@
 #include <Items/Weapon.h>
 #include <Items/Cloth.h>
 #include <Items/CMiscellaneous.h>
+#include <Items/Potion.h>
+#include <Items/Scroll.h>
 
 
 CItemPic::CItemPic(CDC* pDC) : CBasePictures(pDC)
@@ -26,6 +28,10 @@ CBitmap* CItemPic::GetBitmapSheet(CItem* item) {
 		sheet = ((CCloth*)item)->GetSheetForGroup();
 	else if (item->getItemType() == CItem::ItemType::MiscItem)
 		sheet = ((CMiscellaneous*)item)->GetSheetForGroup();
+	else if (item->getItemType() == CItem::ItemType::PotionItem)
+		sheet = ((CPotion*)item)->GetSheetForGroup();
+	else if (item->getItemType() == CItem::ItemType::ScrollItem)
+		sheet = ((CScroll*)item)->GetSheetForGroup();
 	else
 		sheet = item->GetSheetForGroup();
 	return m_itemSheet[sheet];

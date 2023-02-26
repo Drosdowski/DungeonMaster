@@ -102,6 +102,8 @@ CField::~CField()
 				delete (CCloth*)item;
 			else if (item->getItemType() == CItem::ItemType::PotionItem)
 				delete (CPotion*)item;
+			else if (item->getItemType() == CItem::ItemType::ScrollItem)
+				delete (CScroll*)item;
 			else
 				delete item;
 		}
@@ -195,6 +197,10 @@ void CField::PutMisc(CMiscellaneous* misc, SUBPOS_ABSOLUTE index) {
 
 void CField::PutPotion(CPotion* potion, SUBPOS_ABSOLUTE index) {
 	m_pItem[index].push_back((CItem*)potion);
+}
+
+void CField::PutScroll(CScroll* scroll, SUBPOS_ABSOLUTE index) {
+	m_pItem[index].push_back((CItem*)scroll);
 }
 
 void CField::PutFloorDeco(CFloorDecoration* deco) {

@@ -7,7 +7,8 @@ public:
 		WeaponItem,
 		MiscItem,
 		ClothItem,
-		PotionItem
+		PotionItem,
+		ScrollItem
 	};
 	enum ItemGroup {
 		Key = 1,
@@ -23,7 +24,8 @@ public:
 		Quiver = 11,
 		Throwable = 12,
 		Flask = 13,
-		
+		Scroll = 14,
+
 		Other = 99
 	};
 

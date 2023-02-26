@@ -243,6 +243,12 @@
     <ClCompile Include="Attributes\PotionAttributes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Attributes\ScrollAttributes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Items\Scroll.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -479,6 +485,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Attributes\PotionAttributes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Attributes\ScrollAttributes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\Scroll.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

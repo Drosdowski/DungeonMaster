@@ -10,6 +10,7 @@
 #include "Items/Weapon.h"
 #include "Items/Cloth.h"
 #include "Items/Potion.h"
+#include "Items/Scroll.h"
 #include "SpecialTile/CTeleporter.h"
 #include "CDungeonMap.h"
 
@@ -44,6 +45,7 @@ CDungeonMap::~CDungeonMap()
 	delete[] m_clothAtt;
 	delete[] m_weaponAtt;
 	delete[] m_potionAtt;
+	delete[] m_scrollAtt;
 	
 	delete[] m_actuatorType;
 	delete[] m_teleportAtt;
@@ -232,6 +234,9 @@ void CDungeonMap::ParseItems(TiXmlElement* rootNode, VEKTOR coords) {
 				else if (strcmp(item->Value(), "potion") == 0) {
 					ParsePotions(item, coords);
 				}
+				else if (strcmp(item->Value(), "scroll") == 0) {
+					ParseScrolls(item, coords);
+				}
 				else if (strcmp(item->Value(), "actuator") == 0) {
 					ParseActuator(item, coords);
 				}
@@ -267,6 +272,13 @@ void CDungeonMap::ParsePotions(TiXmlElement* potionItem, VEKTOR coords) {
 	potionItem->QueryIntAttribute("index", &index);
 	potionItem->QueryIntAttribute("position", &subPos);
 	m_pFeld[coords.x][coords.y][coords.z]->PutPotion(new CPotion(index, m_potionAtt[index]), (SUBPOS_ABSOLUTE)subPos);
+}
+
+void CDungeonMap::ParseScrolls(TiXmlElement* scrollItem, VEKTOR coords) {
+	int index, subPos;
+	scrollItem->QueryIntAttribute("index", &index);
+	scrollItem->QueryIntAttribute("position", &subPos);
+	m_pFeld[coords.x][coords.y][coords.z]->PutScroll(new CScroll(index, m_scrollAtt[index]), (SUBPOS_ABSOLUTE)subPos);
 }
 
 void CDungeonMap::ParseWeapons(TiXmlElement* weaponItem, VEKTOR coords) {
@@ -348,6 +360,12 @@ void CDungeonMap::ParseCreature(TiXmlElement* creatureItem, VEKTOR coords) {
 					monsterItem->QueryIntAttribute("position", &position);
 					CPotion* potion = new CPotion(index, m_potionAtt[index]);
 					pGrpMonster->CarryItem(potion, (SUBPOS_ABSOLUTE)position);
+				}
+				else if (strcmp(subParent, "scrolls") == 0) {
+					monsterItem->QueryIntAttribute("index", &index);
+					monsterItem->QueryIntAttribute("position", &position);
+					CScroll* scroll = new CScroll(index, m_scrollAtt[index]);
+					pGrpMonster->CarryItem(scroll, (SUBPOS_ABSOLUTE)position);
 				}
 				monsterItem = parentElement->NextSiblingElement();
 
@@ -639,6 +657,24 @@ void CDungeonMap::ParsePotionObjects(TiXmlElement* rootNode) {
 	}
 }
 
+void CDungeonMap::ParseScrollObjects(TiXmlElement* rootNode) {
+	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "scroll") == 0) 
+		{
+			int index;
+			CScrollAttributes att;
+			parentElement->QueryIntAttribute("index", &index);
+			TiXmlNode* object = parentElement->FirstChild();
+			att.text = object->Value();
+			m_scrollAtt[index] = att;
+		}
+		parentElement = parentElement->NextSiblingElement();
+	}
+}
+
 void CDungeonMap::ParseCreatureObjects(TiXmlElement* rootNode) {
 	TiXmlElement* parentElement = rootNode->FirstChildElement();
 	while (parentElement)
@@ -777,6 +813,10 @@ void CDungeonMap::ParseObjects(TiXmlElement* rootNode) {
 		{
 			ParsePotionObjects(parentElement);
 		}
+		else if (strcmp(parent, "scrolls") == 0)
+		{
+			ParseScrollObjects(parentElement);
+		}
 		else if (strcmp(parent, "actuators") == 0)
 		{
 			ParseActuatorObjects(parentElement);
@@ -810,6 +850,8 @@ void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
 	m_potionAtt = new CPotionAttributes[m_countPotions];
 	rootNode->QueryIntAttribute("number_of_clothes", &m_countClothes);
 	m_clothAtt = new CClothAttributes[m_countClothes];
+	rootNode->QueryIntAttribute("number_of_scrolls", &m_countScrolls);
+	m_scrollAtt = new CScrollAttributes[m_countScrolls];
 	rootNode->QueryIntAttribute("number_of_actuators", &m_countActuators);
 	m_actuatorType = new int[m_countActuators];
 	rootNode->QueryIntAttribute("number_of_teleporters", &m_countTeleporters);
@@ -1047,6 +1089,7 @@ void CDungeonMap::LoadHero(TiXmlElement* hero) {
 		CMiscellaneous* misc;
 		CCloth* cloth;
 		CPotion* potion;
+		CScroll* scroll;
 		switch (type) {
 		case 0: 
 			weapon = new CWeapon(index, m_weaponAtt[index]);
@@ -1063,6 +1106,10 @@ void CDungeonMap::LoadHero(TiXmlElement* hero) {
 		case 3:
 			potion = new CPotion(index, m_potionAtt[index]);
 			held->SwitchItemAt(itemId, (CItem*)potion);
+			break;
+		case 4: 
+			scroll = new CScroll(index, m_scrollAtt[index]);
+			held->SwitchItemAt(itemId, (CItem*)scroll);
 			break;
 		}
 		heroItem = heroItem->NextSiblingElement();

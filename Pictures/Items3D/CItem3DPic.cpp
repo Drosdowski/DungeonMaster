@@ -24,6 +24,7 @@ CItem3DPic ::~CItem3DPic() {
 	delete m_pTorch;
 	delete m_pRock;
 	delete m_pBoulder;
+	delete m_pScroll;
 	for (int w = 0; w < 4; w++)
 	{
 		delete m_pClub[w];
@@ -101,6 +102,7 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pPoisonDart[3], IDB_MISSILE_POISONDART_S);
 	LoadPic(m_pBoulder, IDB_ITEM3D_BOULDER);
 	LoadPic(m_pRock, IDB_ITEM3D_ROCK);
+	LoadPic(m_pScroll, IDB_ITEM3D_SCROLL);
 }
 
 CPoint CItem3DPic::GetFloorMiddle(int x, int ebene) {

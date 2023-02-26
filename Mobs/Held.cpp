@@ -8,6 +8,7 @@
 #include "..\Items\CMiscellaneous.h"
 #include "..\Items\Cloth.h"
 #include "..\Items\Weapon.h"
+#include "..\Items\Scroll.h"
 #include "Monster.h"
 #include "MobGroups/GrpMonster.h"
 #include <Attributes/ClothAttributes.h>
@@ -90,6 +91,8 @@ void CHeld::DelItem(CItem* pItem) {
 			delete (CCloth*)pItem;
 		else if (pItem->getItemType() == CItem::ItemType::PotionItem)
 			delete (CPoint*)pItem;
+		else if (pItem->getItemType() == CItem::ItemType::ScrollItem)
+			delete (CScroll*)pItem;
 	}
 }
 

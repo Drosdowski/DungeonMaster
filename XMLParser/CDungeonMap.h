@@ -8,6 +8,7 @@
 #include "../Attributes/ClothAttributes.h"
 #include "../Attributes/PotionAttributes.h"
 #include "../Attributes/MiscellaneousAttributes.h"
+#include "../Attributes/ScrollAttributes.h"
 #include <XMLParser/ItemInfos.h>
 #include <XMLParser/MonsterInfos.h>
 
@@ -45,6 +46,7 @@ private:
 	void ParseWeaponObjects(TiXmlElement* rootNode);
 	void ParseClothObjects(TiXmlElement* rootNode);
 	void ParsePotionObjects(TiXmlElement* rootNode);
+	void ParseScrollObjects(TiXmlElement* rootNode);
 	void ParseObjects(TiXmlElement* rootNode);
 	void ParseTeleporterObjects(TiXmlElement* rootNode);
 
@@ -61,6 +63,7 @@ private:
 	void ParseWeapons(TiXmlElement* rootNode, VEKTOR coords);
 	void ParseCloth(TiXmlElement* rootNode, VEKTOR coords);
 	void ParsePotions(TiXmlElement* rootNode, VEKTOR coords);
+	void ParseScrolls(TiXmlElement* rootNode, VEKTOR coords);
 	void ParseFloorDecoration(TiXmlElement* miscItem, VEKTOR coords);
 	void ParseWallDecoration(TiXmlElement* miscItem, VEKTOR coords);
 	void ParseCreature(TiXmlElement* miscItem, VEKTOR coords);
@@ -92,6 +95,7 @@ private:
 	int m_countWeapons;
 	int m_countClothes;
 	int m_countPotions;
+	int m_countScrolls;
 	int m_countActuators;
 	int m_countTeleporters;
 	int m_countCreatures;
@@ -103,6 +107,7 @@ private:
 	CWeaponAttributes* m_weaponAtt;
 	CClothAttributes* m_clothAtt;
 	CPotionAttributes* m_potionAtt;
+	CScrollAttributes* m_scrollAtt;
 
 	int* m_actuatorType;
 	CDoorAttributes* m_doorAtt;
