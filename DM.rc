@@ -805,7 +805,7 @@ IDB_WALLDECO_38L        BITMAP                  "res\\WallDeco\\WallDeco_Holder_
 
 IDB_WALLDECO_46F        BITMAP                  "res\\WallDeco\\WallDeco_Holder_Full_Front.bmp"
 
-IDB_BITMAP1             BITMAP                  "res\\OpenScroll.bmp"
+IDB_OPEN_SCROLL         BITMAP                  "C:\\Users\\mdros\\source\\repos\\DungeonMaster\\res\\OpenScroll.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

@@ -42,6 +42,7 @@ CPictures::~CPictures()
 	delete m_pActionsDamage;
 	delete m_pOneHand;
 	delete m_pItemPic;
+	delete m_pOpenScroll;
 }
 
 
@@ -78,7 +79,7 @@ void CPictures::InitBitmaps()
 	LoadPic(m_pActionsArea, IDB_ACTIONS_AREA);
 	LoadPic(m_pActionsDamage, IDB_ACTIONS_DAMAGE);
 	LoadPic(m_pOneHand, IDB_ONE_HAND);
-
+	LoadPic(m_pOpenScroll, IDB_OPEN_SCROLL);
 }
 
 CBitmap* CPictures::GetIconBitmap(CDC* pDC, CItem* pItem) {
@@ -194,7 +195,10 @@ void CPictures::RucksackZeichnen(CDC* pDC, CGrpHeld* pGrpHelden)
 		ZeichneHungerDurst(pDC, pHeld->getFood(), pHeld->getWater());
 	else if (iModusExtend == MOD_EXT_AUGE) {
 		if (pItem) {
-			ZeichneItemInfo(pDC, pItem);
+			if (pItem->getItemType() == CItem::ScrollItem)
+				ZeichneScroll(pDC, (CScroll*)pItem);
+			else
+				ZeichneItemInfo(pDC, pItem);
 		}
 		else {
 			ZeichneSkills(pDC, pHeld);
@@ -240,6 +244,18 @@ void CPictures::ZeichneIcons(CDC* pDC, CHeld* pHeld) {
 void CPictures::ZeichneItemInfo(CDC* pDC, CItem* item) {
 	// todo
 }
+
+void CPictures::ZeichneScroll(CDC* pDC, CScroll* scroll) {
+	CDC tmpdc;
+	tmpdc.CreateCompatibleDC(pDC);
+
+	CPoint posBackpack = CScreenCoords::GetbackPackSlotKoords(23);
+	CBitmap* bmp = m_pOpenScroll;
+	CPoint pos = m_pItemPic->GetSheetKoords((CItem*)scroll);
+	tmpdc.SelectObject(bmp);
+	pDC->StretchBlt(posBackpack.x, posBackpack.y, 256, 146, &tmpdc, pos.x, pos.y, 128, 73, SRCCOPY);
+}
+
 
 
 void CPictures::NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName)

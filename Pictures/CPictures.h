@@ -5,6 +5,7 @@
 class CHeld;
 class CGrpHeld;
 class CItemInfos;
+class CScroll;
 class CPictures : CBasePictures
 {
 public:
@@ -45,6 +46,7 @@ private:
 	void ZeichneHungerDurst(CDC* pDC, int i, int j);
 	void ZeichneIcons(CDC* pDC, CHeld* pHeld);
 	void ZeichneItemInfo(CDC* pDC, CItem* item);
+	void ZeichneScroll(CDC* pDC, CScroll* scroll);
 	void GewichtZeichnen(CDC* pDC, CHeld* pHeld);
 
 	void DrawHand(CDC* pDC, CHeld* pHeld, int index);
@@ -61,6 +63,7 @@ private:
 	CBitmap* m_pOneHand;
 	CBitmap* m_pInterface[2];
 	CBitmap* m_pDamageReceived[2];
+	CBitmap* m_pOpenScroll;
 
 	CItemPic* m_pItemPic;
 	char* m_textBuffer;
