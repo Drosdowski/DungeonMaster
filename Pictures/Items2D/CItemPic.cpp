@@ -50,3 +50,7 @@ CPoint CItemPic::GetSheetKoords(CItem* item) {
 
 	return CPoint(x * 16, y * 16);
 }
+
+CPoint CItemPic::GetScrollKoord() {
+	return CPoint(192, 168);
+}

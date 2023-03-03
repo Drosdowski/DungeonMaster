@@ -279,13 +279,13 @@ IDB_BITMAP_E3R          BITMAP                  "res\\Walls\\Wall3_Right.bmp"
 
 IDB_BITMAP_E3RF         BITMAP                  "res\\Walls\\Wall3_RightF.bmp"
 
-IDB_MONSTER_SKELETON_ATTACK BITMAP                  "res\\Monster\\Skeleton_Attack.bmp"
+IDB_MONSTER_SKELETON_ATTACK BITMAP              "res\\Monster\\Skeleton_Attack.bmp"
 
-IDB_MONSTER_SKELETON_BACK BITMAP                  "res\\Monster\\Skeleton_Back.bmp"
+IDB_MONSTER_SKELETON_BACK BITMAP                "res\\Monster\\Skeleton_Back.bmp"
 
-IDB_MONSTER_SKELETON_FRONT BITMAP                  "res\\Monster\\Skeleton_Front.bmp"
+IDB_MONSTER_SKELETON_FRONT BITMAP               "res\\Monster\\Skeleton_Front.bmp"
 
-IDB_MONSTER_SKELETON_RIGHT BITMAP                  "res\\Monster\\Skeleton_Right.bmp"
+IDB_MONSTER_SKELETON_RIGHT BITMAP               "res\\Monster\\Skeleton_Right.bmp"
 
 IDB_DOOR_FRAME_0        BITMAP                  "res\\Door\\Door_Frame_0_Front.bmp"
 
@@ -675,15 +675,15 @@ IDB_WALLDECO_2F         BITMAP                  "res\\WallDeco\\WallDeco_2_Front
 
 IDB_ITEM3D_COMPASS      BITMAP                  "res\\Items3D\\Item_3d_Compass.bmp"
 
-IDB_MISSILE_THROWINGSTAR_S BITMAP                  "res\\Items3D\\Missile_ThrowingStar_S.bmp"
+IDB_MISSILE_THROWINGSTAR_S BITMAP               "res\\Items3D\\Missile_ThrowingStar_S.bmp"
 
-IDB_MISSILE_THROWINGSTAR_F BITMAP                  "res\\Items3D\\Missile_ThrowingStar_F.bmp"
+IDB_MISSILE_THROWINGSTAR_F BITMAP               "res\\Items3D\\Missile_ThrowingStar_F.bmp"
 
-IDB_MISSILE_POISONDART_S BITMAP                  "res\\Items3D\\Missile_PoisonDart_S.bmp"
+IDB_MISSILE_POISONDART_S BITMAP                 "res\\Items3D\\Missile_PoisonDart_S.bmp"
 
-IDB_MISSILE_POISONDART_B BITMAP                  "res\\Items3D\\Missile_PoisonDart_B.bmp"
+IDB_MISSILE_POISONDART_B BITMAP                 "res\\Items3D\\Missile_PoisonDart_B.bmp"
 
-IDB_MISSILE_POISONDART_F BITMAP                  "res\\Items3D\\Missile_PoisonDart_F.bmp"
+IDB_MISSILE_POISONDART_F BITMAP                 "res\\Items3D\\Missile_PoisonDart_F.bmp"
 
 IDB_MISSILE_SLAYER_S    BITMAP                  "res\\Items3D\\Missile_Slayer_S.bmp"
 
@@ -721,25 +721,25 @@ IDB_INTERFACE_DEAD      BITMAP                  "res\\InterfaceHeroDead.bmp"
 
 IDB_INTERFACE_ALIVE     BITMAP                  "res\\InterfaceHeroAlive.bmp"
 
-IDB_ITEM3D_SCREAMERSLICE BITMAP                  "res\\Items3D\\Item_3d_ScreamerSlice.bmp"
+DB_ITEM3D_SCREAMERSLICE BITMAP                  "res\\Items3D\\Item_3d_ScreamerSlice.bmp"
 
-IDB_MONSTER_SCREAMER_ATTACK BITMAP                  "res\\Monster\\Screamer_Attack.bmp"
+IDB_MONSTER_SCREAMER_ATTACK BITMAP              "res\\Monster\\Screamer_Attack.bmp"
 
-IDB_MONSTER_SCREAMER_FRONT BITMAP                  "res\\Monster\\Screamer_Front.bmp"
+IDB_MONSTER_SCREAMER_FRONT BITMAP               "res\\Monster\\Screamer_Front.bmp"
 
-IDB_MONSTER_ROCKPILE_ATTACK BITMAP                  "res\\Monster\\RockPile_Attack.bmp"
+IDB_MONSTER_ROCKPILE_ATTACK BITMAP              "res\\Monster\\RockPile_Attack.bmp"
 
-IDB_MONSTER_ROCKPILE_FRONT BITMAP                  "res\\Monster\\RockPile_Front.bmp"
+IDB_MONSTER_ROCKPILE_FRONT BITMAP               "res\\Monster\\RockPile_Front.bmp"
 
 IDB_RUNES4              BITMAP                  "res\\Runes4.bmp"
 
 IDB_ITEM3D_WORMROUND    BITMAP                  "res\\Items3D\\Item_3d_WorkRound.bmp"
 
-IDB_MONSTER_TROLIN_ATTACK BITMAP                  "res\\Monster\\Trolin_Attack.bmp"
+IDB_MONSTER_TROLIN_ATTACK BITMAP                "res\\Monster\\Trolin_Attack.bmp"
 
 IDB_MONSTER_TROLIN_BACK BITMAP                  "res\\Monster\\Trolin_Back.bmp"
 
-IDB_MONSTER_TROLIN_FRONT BITMAP                  "res\\Monster\\Trolin_Front.bmp"
+IDB_MONSTER_TROLIN_FRONT BITMAP                 "res\\Monster\\Trolin_Front.bmp"
 
 IDB_MONSTER_TROLIN_RIGHT BITMAP                  "res\\Monster\\Trolin_Right.bmp"
 
@@ -751,15 +751,15 @@ IDB_EXPLODE_POISON      BITMAP                  "res\\Spells\\Explosion_Poison.b
 
 IDB_ANTIMAT_LIGHT       BITMAP                  "res\\Spells\\Light_Antimaterial.bmp"
 
-IDB_INSIDE_FIREBALL_LIGHT BITMAP                  "res\\Spells\\Light_Fireball.bmp"
+IDB_INSIDE_FIREBALL_LIGHT BITMAP                "res\\Spells\\Light_Fireball.bmp"
 
 IDB_INSIDE_POISON_LIGHT BITMAP                  "res\\Spells\\Light_Poison.bmp"
 
 IDB_ANTIMAT_MEDIUM      BITMAP                  "res\\Spells\\Medium_Antimaterial.bmp"
 
-IDB_INSIDE_FIREBALL_MEDIUM BITMAP                  "res\\Spells\\Medium_Fireball.bmp"
+IDB_INSIDE_FIREBALL_MEDIUM BITMAP               "res\\Spells\\Medium_Fireball.bmp"
 
-IDB_INSIDE_POISON_MEDIUM BITMAP                  "res\\Spells\\Medium_Poison.bmp"
+IDB_INSIDE_POISON_MEDIUM BITMAP                 "res\\Spells\\Medium_Poison.bmp"
 
 IDB_MISSILE_ANTIMAT     BITMAP                  "res\\Spells\\Missile_Antimaterial.bmp"
 
@@ -771,7 +771,7 @@ IDB_MISSILE_POISONBLOB  BITMAP                  "res\\Spells\\MissilePoisonBlob.
 
 IDB_ANTIMAT_STRONG      BITMAP                  "res\\Spells\\Strong_Antimaterial.bmp"
 
-IDB_INSIDE_FIREBALL_STRONG BITMAP                  "res\\Spells\\Strong_Fireball.bmp"
+IDB_INSIDE_FIREBALL_STRONG BITMAP               "res\\Spells\\Strong_Fireball.bmp"
 
 IDB_INSIDE_POISON_STRONG BITMAP                  "res\\Spells\\Strong_Poison.bmp"
 
@@ -805,7 +805,7 @@ IDB_WALLDECO_38L        BITMAP                  "res\\WallDeco\\WallDeco_Holder_
 
 IDB_WALLDECO_46F        BITMAP                  "res\\WallDeco\\WallDeco_Holder_Full_Front.bmp"
 
-IDB_OPEN_SCROLL         BITMAP                  "C:\\Users\\mdros\\source\\repos\\DungeonMaster\\res\\OpenScroll.bmp"
+IDB_OPEN_SCROLL         BITMAP                  "res\\OpenScroll.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

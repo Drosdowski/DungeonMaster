@@ -11,6 +11,7 @@ public:
 
 	CBitmap* GetBitmapSheet(CItem* misc);
 	CPoint GetSheetKoords(CItem* misc);
+	CPoint GetScrollKoord();
 
 private:
 	void InitItems();

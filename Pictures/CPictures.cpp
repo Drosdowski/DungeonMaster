@@ -249,11 +249,10 @@ void CPictures::ZeichneScroll(CDC* pDC, CScroll* scroll) {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 
-	CPoint posBackpack = CScreenCoords::GetbackPackSlotKoords(23);
 	CBitmap* bmp = m_pOpenScroll;
-	CPoint pos = m_pItemPic->GetSheetKoords((CItem*)scroll);
+	CPoint pos = m_pItemPic->GetScrollKoord();
 	tmpdc.SelectObject(bmp);
-	pDC->StretchBlt(posBackpack.x, posBackpack.y, 256, 146, &tmpdc, pos.x, pos.y, 128, 73, SRCCOPY);
+	pDC->TransparentBlt(pos.x, pos.y, 256, 146, &tmpdc, 0, 0, 128, 73, TRANS_BLU);
 }
 
 
