@@ -50,6 +50,7 @@
 #define BLAU RGB(0,0,224)
 #define ROT RGB(224,0,0)
 #define WEISS RGB(224,224,224)
+#define WEISSER RGB(240, 240, 240)
 #define ROSA RGB(224,0,224)
 #define HELLBLAU RGB(0,224,224)
 

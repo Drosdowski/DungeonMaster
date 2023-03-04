@@ -8,6 +8,7 @@
 #include "..\Mobs\MobGroups\GrpHeld.h"
 #include "..\Items\FloorDecoration.h"
 #include "..\Items\Item.h"
+#include "..\Items\Scroll.h"
 #include "..\XMLParser\ItemInfos.h"
 #include "..\Rucksack.h"
 #include "..\CalculationHelper\CScreenCoords.h"
@@ -253,6 +254,10 @@ void CPictures::ZeichneScroll(CDC* pDC, CScroll* scroll) {
 	CPoint pos = m_pItemPic->GetScrollKoord();
 	tmpdc.SelectObject(bmp);
 	pDC->TransparentBlt(pos.x, pos.y, 256, 146, &tmpdc, 0, 0, 128, 73, TRANS_BLU);
+
+	pDC->SetTextColor(SCHWARZ);
+	pDC->SetBkColor(WEISSER);
+	pDC->ExtTextOut(pos.x + 40, 192, ETO_CLIPPED | ETO_OPAQUE, CRect(pos.x + 40, 192, pos.x + 200, 263), scroll->GetText(), NULL);
 }
 
 

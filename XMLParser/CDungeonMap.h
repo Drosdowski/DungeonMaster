@@ -17,6 +17,7 @@
 #define FELD_MAX_Z 14
 
 class TiXmlElement;
+class TiXmlDocument;
 class CGrpHeld;
 class CDungeonMap
 {
@@ -119,5 +120,6 @@ private:
 	CItemInfos* m_pItemInfos;
 	CMonsterInfos* m_pMonsterInfos;
 
+	TiXmlDocument* m_pDoc;
 };
 

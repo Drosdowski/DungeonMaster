@@ -50,6 +50,8 @@ CDungeonMap::~CDungeonMap()
 	delete[] m_actuatorType;
 	delete[] m_teleportAtt;
 	delete[] m_creatureAtt;
+
+	delete m_pDoc;
 }
 
 CField* CDungeonMap::GetField(int x, int y, int z) {
@@ -641,7 +643,7 @@ void CDungeonMap::ParsePotionObjects(TiXmlElement* rootNode) {
 	TiXmlElement* parentElement = rootNode->FirstChildElement();
 	while (parentElement)
 	{
-		const char* parent = parentElement->Value();
+		const char* parent = parentElement->Value(); 
 		if (strcmp(parent, "potion") == 0) // several existing
 		{
 			int index, type, power;
@@ -667,8 +669,7 @@ void CDungeonMap::ParseScrollObjects(TiXmlElement* rootNode) {
 			int index;
 			CScrollAttributes att;
 			parentElement->QueryIntAttribute("index", &index);
-			TiXmlNode* object = parentElement->FirstChild();
-			att.text = object->Value();
+			att.text = parentElement->GetText();
 			att.open = false;
 			m_scrollAtt[index] = att;
 		}
@@ -886,15 +887,15 @@ void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
 }
 
 void CDungeonMap::LoadMap() {
-	TiXmlDocument doc("Maps\\0000.DUNGEON [Dungeon].xml");
-	bool loadOkay = doc.LoadFile();
+	m_pDoc = new TiXmlDocument("Maps\\0000.DUNGEON [Dungeon].xml");
+	bool loadOkay = m_pDoc->LoadFile();
 
 	if (!loadOkay)
 	{
-		printf("Could not load test file 'Dungeon.xml'. Error='%s'. Exiting.\n", doc.ErrorDesc());
+		printf("Could not load test file 'Dungeon.xml'. Error='%s'. Exiting.\n", m_pDoc->ErrorDesc());
 		exit(1);
 	}
-	TiXmlElement* rootElement = doc.FirstChildElement();
+	TiXmlElement* rootElement = m_pDoc->FirstChildElement();
 	const char* docname = rootElement->Value();
 	if (strcmp(docname, "dungeon") == 0) {
 
