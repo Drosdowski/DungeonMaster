@@ -187,13 +187,17 @@ void CPictures::RucksackZeichnen(CDC* pDC, CGrpHeld* pGrpHelden)
 {
 	CHeld* pHeld = pGrpHelden->GetActiveHero();
 	CItem* pItem = pGrpHelden->GetItemInHand();
+	CItem* pActiveItem = pHeld->GetItemCarrying(1);
 
 	CRucksack* pRucksack = pHeld->GetRucksack();
 	int iModusExtend = pRucksack->HoleModusExtend();
 	ZeichnenHauptbereichHintergrund(pDC, iModusExtend);
 	GewichtZeichnen(pDC, pHeld);
 	if (iModusExtend == MOD_EXT_NORMAL)
-		ZeichneHungerDurst(pDC, pHeld->getFood(), pHeld->getWater());
+		if (pActiveItem && pActiveItem->getItemType() == CItem::ScrollItem)
+			ZeichneScroll(pDC, (CScroll*)pActiveItem);
+		else
+			ZeichneHungerDurst(pDC, pHeld->getFood(), pHeld->getWater());
 	else if (iModusExtend == MOD_EXT_AUGE) {
 		if (pItem) {
 			if (pItem->getItemType() == CItem::ScrollItem)
@@ -257,7 +261,8 @@ void CPictures::ZeichneScroll(CDC* pDC, CScroll* scroll) {
 
 	pDC->SetTextColor(SCHWARZ);
 	pDC->SetBkColor(WEISSER);
-	pDC->ExtTextOut(pos.x + 40, 192, ETO_CLIPPED | ETO_OPAQUE, CRect(pos.x + 40, 192, pos.x + 200, 263), scroll->GetText(), NULL);
+	CRect r = CRect(pos.x + 40, 192, pos.x + 210, 290);
+	pDC->DrawText(scroll->GetText(), r, ETO_CLIPPED | ETO_OPAQUE);
 }
 
 

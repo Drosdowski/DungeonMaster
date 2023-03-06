@@ -887,6 +887,7 @@ void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
 }
 
 void CDungeonMap::LoadMap() {
+	TiXmlBase::SetCondenseWhiteSpace(false);
 	m_pDoc = new TiXmlDocument("Maps\\0000.DUNGEON [Dungeon].xml");
 	bool loadOkay = m_pDoc->LoadFile();
 

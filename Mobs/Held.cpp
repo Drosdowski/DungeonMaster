@@ -289,6 +289,14 @@ CItem* CHeld::SwitchItemAt(int index, CItem* item)
 	CItem* carryingBefore = m_itemCarrying[index];
 	m_itemCarrying[index] = item;
 	ChangeCompass();
+	if (item->getItemType() == CItem::ScrollItem) {
+		CScroll* pScroll = (CScroll*)item;
+		if (index == 1)
+			pScroll->SetOpen(1);
+		else
+			pScroll->SetOpen(0);
+	}
+
 	return carryingBefore;
 }
 
