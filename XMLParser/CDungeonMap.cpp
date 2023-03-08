@@ -775,7 +775,7 @@ void CDungeonMap::ParseTeleporterObjects(TiXmlElement* rootNode) {
 			parentElement->QueryIntAttribute("dest_map", &attribute.target.z);
 			parentElement->QueryIntAttribute("rotation", &attribute.rotation);
 			const char* rotation_type = parentElement->Attribute("rotation_type");
-			attribute.rotation = rotation_type == "Relative" ? TeleporterAttributes::RotationType::Relative : TeleporterAttributes::RotationType::Absolute;
+			attribute.rotation = (strcmp(rotation_type, "Relative") == 0) ? TeleporterAttributes::RotationType::Relative : TeleporterAttributes::RotationType::Absolute;
 			const char* scope = parentElement->Attribute("scope");
 			if (strcmp(scope, "All") == 0)  attribute.scope = TeleporterAttributes::Scope::All;
 			if (strcmp(scope, "Creatures") == 0)  attribute.scope = TeleporterAttributes::Scope::Creatures;

@@ -1082,9 +1082,11 @@ void CRaumView::MoveMagicMissile(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs, CMagicM
 			CField* newField = m_pMap->GetField(heroPos.x + sign(topMissile->m_flyForce.x), heroPos.y + sign(topMissile->m_flyForce.y), heroPos.z);
 
 			if (!newField->BlockedToWalk()) {
+				COMPASS_DIRECTION direction = topMissile->GetDirection();
 				// todo prüfen topMissile = field->TakeMissile(posAbs);
 				field->TakeMissile(posAbs, topMissile);
-				newField = ChangeFieldWithTeleporter(newField, posAbs);
+				newField = ChangeFieldWithTeleporter(newField, posAbs, direction);
+				topMissile->SetDirection(direction);
 				newField = ChangeFieldWithStairs(newField, topMissile, posAbs);
 				// westlich von west ist ost => anders rum subpos suchen
 				newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topMissile->m_flyForce.x, -topMissile->m_flyForce.y, 0 });
@@ -1188,7 +1190,9 @@ void CRaumView::MoveItems(VEKTOR heroPos) {
 					CField* newField = m_pMap->GetField(heroPos.x + sign(topItem->m_flyForce.x), heroPos.y + sign(topItem->m_flyForce.y), heroPos.z);
 					if (!newField->BlockedToWalk()) {
 						topItem = field->TakeItem(posAbs);
-						newField = ChangeFieldWithTeleporter(newField, posAbs);
+						COMPASS_DIRECTION direction = topItem->GetDirection();
+						newField = ChangeFieldWithTeleporter(newField, posAbs, direction);
+						topItem->SetDirection(direction);
 						newField = ChangeFieldWithStairs(newField, topItem, posAbs);
 						// westlich von west ist ost => anders rum subpos suchen
 						if (topItem->IsFlying()) // todo unnötioge frage?
@@ -1212,26 +1216,21 @@ void CRaumView::MoveItems(VEKTOR heroPos) {
 	}
 }
 
-CField* CRaumView::ChangeFieldWithTeleporter(CField* pField, SUBPOS_ABSOLUTE& subPos) {
+CField* CRaumView::ChangeFieldWithTeleporter(CField* &pField, SUBPOS_ABSOLUTE& subPos, COMPASS_DIRECTION& direction) {
 	CTeleporter* tp = pField->HoleTeleporter();
 
 	if (tp) {
-		// todo Teleport & items
 		COMPASS_DIRECTION dir = tp->getTargetDirection();
 		if (tp->getRotationType() == TeleporterAttributes::RotationType::Absolute) {
 			switch (tp->getRotation()) {
 			case 0:
-				if (subPos == SOUTHWEST) subPos = NORTHWEST; break;
-				if (subPos == SOUTHEAST) subPos = NORTHEAST; break;
+				direction = NORTH; break;
 			case 90:
-				if (subPos == NORTHWEST) subPos = NORTHEAST; break;
-				if (subPos == SOUTHWEST) subPos = SOUTHEAST; break;
+				direction = EAST; break;
 			case 180:
-				if (subPos == SOUTHWEST) subPos = NORTHWEST; break;
-				if (subPos == SOUTHEAST) subPos = NORTHEAST; break;
+				direction = SOUTH; break;
 			case 270:
-				if (subPos == NORTHEAST) subPos = NORTHWEST; break;
-				if (subPos == SOUTHEAST) subPos = SOUTHWEST; break;
+				direction = WEST; break;
 			}
 		}
 		else { // relativ
@@ -1246,6 +1245,8 @@ CField* CRaumView::ChangeFieldWithTeleporter(CField* pField, SUBPOS_ABSOLUTE& su
 				subPos = CHelpfulValues::LeftFrom(subPos); break;
 			}
 		}
+
+		pField = m_pMap->GetField( tp->getTargetField());
 	}
 	return pField;
 }

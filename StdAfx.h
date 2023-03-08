@@ -96,7 +96,8 @@ enum COMPASS_DIRECTION
 	NORTH = 0,
 	EAST = 1,
 	SOUTH = 2,
-	WEST = 3
+	WEST = 3,
+	STOP = -1
 };
 
 enum DMMode {

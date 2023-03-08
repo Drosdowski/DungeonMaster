@@ -506,7 +506,8 @@ void CDMView::ParseClickFloor(CPoint point) {
 	CItem* pItemInHand = grpHelden->GetItemInHand();
 
 	SUBPOS itemRegionClicked = CScreenCoords::CheckHitFloor(point);
-	SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(itemRegionClicked, grpHelden->GetDirection());
+	COMPASS_DIRECTION groupDirection = grpHelden->GetDirection();
+	SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(itemRegionClicked, groupDirection);
 	CItem* topItem = NULL;
 	if (itemRegionClicked == LINKSBACK || itemRegionClicked == RECHTSBACK)
 	{
@@ -516,7 +517,8 @@ void CDMView::ParseClickFloor(CPoint point) {
 			if (pItemInHand == NULL)
 				topItem = FeldVorHeld->TakeItem(itemRegionReal);
 			else {
-				FeldVorHeld = m_pRaumView->ChangeFieldWithTeleporter(FeldVorHeld, itemRegionReal);
+				FeldVorHeld = m_pRaumView->ChangeFieldWithTeleporter(FeldVorHeld, itemRegionReal, groupDirection);
+				grpHelden->SetDirection(groupDirection);
 				FeldVorHeld = m_pRaumView->ChangeFieldWithStairs(FeldVorHeld, pItemInHand, itemRegionReal);
 
 				FeldVorHeld->PutItem(pItemInHand, itemRegionReal);

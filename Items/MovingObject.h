@@ -11,6 +11,9 @@ public:
 	void SetDone() { m_done = true ; }
 	void Stop() { m_flyForce.x = 0; m_flyForce.y = 0; m_done = true; }
 
+	COMPASS_DIRECTION GetDirection();
+	void SetDirection(COMPASS_DIRECTION direction);
+
 	bool IsFlying(); 
 
 	VEKTOR m_flyForce;

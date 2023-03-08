@@ -71,7 +71,7 @@ public:
 
 	virtual ~CRaumView();
 
-	CField* ChangeFieldWithTeleporter(CField* pField, SUBPOS_ABSOLUTE &subPos);
+	CField* ChangeFieldWithTeleporter(CField* &pField, SUBPOS_ABSOLUTE &subPos, COMPASS_DIRECTION &direction);
 	CField* ChangeFieldWithStairs(CField* pField, CMovingObject* pItem, SUBPOS_ABSOLUTE& subPos);
 
 protected:
