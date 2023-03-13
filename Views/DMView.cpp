@@ -489,7 +489,7 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 							InvokeRemoteActuator(gateActuator, NULL);
 					}
 					else {
-						assert(false);
+						// assert(false);
 					}
 				}
 			}

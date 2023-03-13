@@ -34,15 +34,17 @@ void CDoor::ContinueMoving() {
 }
 
 void CDoor::Toggle() {
-	switch (m_state) {
-	case (OPEN):
-	case (OPENING):
-		m_state = CLOSING;
-		break;
-	case (CLOSING):
-	case (CLOSED):
-		m_state = OPENING;
-		break;
+	if (m_state != DESTROYED) {
+		switch (m_state) {
+		case (OPEN):
+		case (OPENING):
+			m_state = CLOSING;
+			break;
+		case (CLOSING):
+		case (CLOSED):
+			m_state = OPENING;
+			break;
+		}
 	}
 }
 

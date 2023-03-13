@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<dungeon start_x="13" start_y="14" start_z="1" start_facing="South">
+<dungeon start_x="28" start_y="27" start_z="1" start_facing="East">
     <heroes>
         <hero index="1">
             <item item="1" index="76" type="0" />
         </hero>
         <hero index="2">
-            <item item="0" index="23" type="1" />
+            <item item="0" index="25" type="0" />
             <item item="1" index="19" type="0" />
             <item item="6" index="62" type="2" />
         </hero>
         <hero index="3">
             <item item="9" index="74" type="0" />
+            <item item="10" index="74" type="0" />
         </hero>
     </heroes>
     <maps>
@@ -1395,7 +1396,7 @@
                 <tile index="692" />
                 <tile index="693" />
                 <tile index="694">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="695" />
                 <tile index="696" />
@@ -1578,8 +1579,8 @@
                 <tile index="861" />
                 <tile index="862">
                     <actuators>
-                        <actuator subPos="0" index="212" />
                         <actuator subPos="0" index="211" />
+                        <actuator subPos="0" index="212" />
                     </actuators>
                 </tile>
                 <tile index="863" />

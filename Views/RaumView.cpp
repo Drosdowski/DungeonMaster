@@ -271,7 +271,7 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 		}
 		DrawFrame(pDC, cdc, xxx, ebene, true); // left Frame
 		DrawFrame(pDC, cdc, xxx, ebene, false); // right Frame
-		bmp = m_pDoorPic->GetDoorFrontPic(pDoor->getType(), ebene);
+		bmp = m_pDoorPic->GetDoorFrontPic(pDoor, ebene);
 		if (bmp) {
 			cdc->SelectObject(bmp);
 			CPoint pos = m_pDoorPic->GetDoorFrontPos(xxx, ebene, wallPos);
@@ -295,7 +295,7 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 	}
 	else if (!doorVisible && (ebene == 0) && (xx == 0)) {
 		// innenrahmen!
-		CBitmap* bmp = m_pDoorPic->GetDoorFrontPic(0, ebene);
+		CBitmap* bmp = m_pDoorPic->GetDoorFrontPic(pDoor, ebene);
 		if (bmp) {
 			cdc->SelectObject(bmp);
 			CPoint pos = m_pDoorPic->GetDoorFrontPos(xxx, ebene, wallPos);
@@ -922,7 +922,7 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos, boolean &collision)
 	else if (iTyp == FeldTyp::DOOR)
 	{
 		CDoor* pDoor = pField->HoleDoor();
-		if (pDoor->getState() != CDoor::DoorState::OPEN)
+		if (pDoor->getState() != CDoor::OPEN && pDoor->getState() != CDoor::DESTROYED)
 		{
 			collision = true;
 			return fromPos;
@@ -936,7 +936,7 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos, boolean &collision)
 	else if (iTyp == FeldTyp::PIT) {
 		collision = false;
 		CPit* pit = pField->HolePit();
-		if (pit->GetState() == CPit::PitState::Opened) {
+		if (pit->GetState() == CPit::Opened ) {
 			toPos.z++;
 			toPos.x += (m_pMap->GetOffset(fromPos.z).x - m_pMap->GetOffset(toPos.z).x);
 			toPos.y += (m_pMap->GetOffset(fromPos.z).y - m_pMap->GetOffset(toPos.z).y);
@@ -1080,9 +1080,9 @@ void CRaumView::MoveMagicMissile(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs, CMagicM
 		else if (newPos == OUTSIDE) {
 			// Feld verlassen
 			CField* newField = m_pMap->GetField(heroPos.x + sign(topMissile->m_flyForce.x), heroPos.y + sign(topMissile->m_flyForce.y), heroPos.z);
+			COMPASS_DIRECTION direction = topMissile->GetDirection();
 
 			if (!newField->BlockedToWalk()) {
-				COMPASS_DIRECTION direction = topMissile->GetDirection();
 				// todo prüfen topMissile = field->TakeMissile(posAbs);
 				field->TakeMissile(posAbs, topMissile);
 				newField = ChangeFieldWithTeleporter(newField, posAbs, direction);
@@ -1096,8 +1096,20 @@ void CRaumView::MoveMagicMissile(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs, CMagicM
 				return; //newField->HolePos();
 			}
 			else {
+				CDoor* pDoor = newField->HoleDoor();
+				if (pDoor) {
+					// Bei Tür noch bewegen, und dann Bumm - Bei Wand sofort.
+					field->TakeMissile(posAbs, topMissile);
+					topMissile->SetDirection(direction);
+					newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topMissile->m_flyForce.x, -topMissile->m_flyForce.y, 0 });
+					newField->CastMissile(topMissile, newPos);
+				}
 				topMissile->Explode();
 				topMissile->SetDone();
+				if (pDoor) {
+					if (pDoor->destroyedByFireball())
+						pDoor->SetState(CDoor::DESTROYED);
+				}
 			}
 		}
 		else {
@@ -1435,7 +1447,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 			// TODO: Merge
 			if (targetField->HoleTyp() == FeldTyp::DOOR) {
 				CDoor* pDoor = targetField->HoleDoor();
-				if (pDoor->getState() != CDoor::DoorState::OPEN)
+				if (pDoor->getState() != CDoor::OPEN && pDoor->getState() != CDoor::DESTROYED)
 					return monPos; // Tür im Weg
 			}
 

@@ -1,12 +1,13 @@
 #pragma once
 #include "CBasePictures.h"
+class CDoor;
 class CDoorPic : public CBasePictures
 {
 public:
 	CDoorPic(CDC* pDC);
 	~CDoorPic();
 
-	CBitmap* GetDoorFrontPic(int iDoorType, int ebene);
+	CBitmap* GetDoorFrontPic(CDoor* pDoor, int ebene);
 	CBitmap* GetDoorTopPic(int ebene);
 	CBitmap* GetDoorFramePic(int ebene, bool left);
 	CBitmap* GetButtonPic(int ebene);
@@ -27,6 +28,7 @@ private:
 	CBitmap* m_pDoorFrontTop[3];
 	CBitmap* m_pDoorIron[4];
 	CBitmap* m_pDoorWood[4];
+	CBitmap* m_pDoorWoodSmashed;
 
 };
 

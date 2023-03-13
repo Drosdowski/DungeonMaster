@@ -8,14 +8,14 @@ public:
 		OPEN = 0,
 		CLOSING = 1,
 		OPENING = 2,
-		CLOSED = 4  // maps needs 0 / 4.
+		CLOSED = 4,  // maps needs 0 / 4.
+		DESTROYED = 5
 	};
 	
 	CDoor(CDoorAttributes attribute, bool doorFrameEastAndWest);
 
 	DoorState getState() { return m_state; }
 	void SetState(int value);
-	CDoorAttributes::DoorType getType() { return m_attributes.type; }
 	bool hasButton() { return m_attributes.button; }
 	bool Visible(int heroDir);
 	int getDoorBottomHeight() { return m_bottomHeight; }
@@ -24,6 +24,11 @@ public:
 	void ContinueMoving();
 	void Open();
 	void Close();
+
+	CDoorAttributes::DoorType getType() { return m_attributes.type; }
+	bool destroyedByFireball() { return m_attributes.fireball; }
+	bool destroyedByForce() { return m_attributes.force; }
+
 
 private:
 	DoorState m_state;

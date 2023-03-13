@@ -22,16 +22,21 @@ CDoorPic::~CDoorPic()
 	delete m_pDoorFrontTop[1];
 	delete m_pDoorFrontTop[2];
 	delete m_pDoorSwitch;
+	delete m_pDoorWoodSmashed;
 }
 
-CBitmap* CDoorPic::GetDoorFrontPic(int iDoorType, int ebene) {
+CBitmap* CDoorPic::GetDoorFrontPic(CDoor* pDoor, int ebene) {
 
 	if (ebene > 0)
 	{
-		if (iDoorType == CDoorAttributes::DoorType::Iron)
+		if (pDoor->getType() == CDoorAttributes::DoorType::Iron)
 			return m_pDoorIron[ebene];
-		if (iDoorType == CDoorAttributes::DoorType::Wood)
-			return m_pDoorWood[ebene];
+		if (pDoor->getType() == CDoorAttributes::DoorType::Wood)
+			if (pDoor->getState() == CDoor::DESTROYED)
+				return m_pDoorWoodSmashed;
+			else
+				return m_pDoorWood[ebene];
+
 		else
 			return NULL;
 	}
@@ -163,5 +168,6 @@ void CDoorPic::InitDoors() {
 	LoadPic(m_pDoorWood[1], IDB_DOOR_WOOD_1);
 	LoadPic(m_pDoorWood[2], IDB_DOOR_WOOD_2);
 	LoadPic(m_pDoorWood[3], IDB_DOOR_WOOD_3);
+	LoadPic(m_pDoorWoodSmashed, IDB_DOOR_WOOD_BASHED);
 	LoadPic(m_pDoorSwitch, IDB_DOOR_SWITCH);
 }
