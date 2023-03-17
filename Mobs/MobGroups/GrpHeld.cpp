@@ -185,6 +185,11 @@ void CGrpHeld::DoActionForChosenHero(int ActionId, CRaumView* pRaumView) {
 						}*/
 					}
 					else {
+						CDoor* pDoor = field->HoleDoor();
+						if (pDoor && pDoor->destroyedByForce() && pDoor->getState() == CDoor::CLOSED)
+						{
+							pDoor->SetState(CDoor::DESTROYED);
+						}
 						// kein Gegner!
 						m_iPhase = 1;
 					}
