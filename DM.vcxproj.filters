@@ -1030,9 +1030,6 @@
     <Image Include="res\Door\Door_Wood_3.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\Door\Door_Mask_Bashed.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\WallDeco\WallDeco_36_Front.bmp">
       <Filter>Resource Files</Filter>
     </Image>
@@ -1506,6 +1503,15 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\OpenScroll.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door\Door_Smashed_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door\Door_Smashed_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door\Door_Smashed_3.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

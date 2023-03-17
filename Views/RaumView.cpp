@@ -105,18 +105,21 @@ CRaumView::~CRaumView()
 /////////////////////////////////////////////////////////////////////////////
 // CRaumView message handlers
 
-void CRaumView::DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene, bool left) {
+void CRaumView::DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene) {
 	BITMAP bmpInfo;
-	CBitmap* bmp = m_pDoorPic->GetDoorFramePic(ebene, left);
-	if (bmp) {
-		CPoint pos = m_pDoorPic->GetDoorFramePos(xxx, ebene, left, m_pWallPic->GetWallPos(xxx, ebene));
-		if (pos != CPoint(0, 0))
-		{
-			cdc->SelectObject(bmp);
-			bmp->GetBitmap(&bmpInfo);
-			pDC->TransparentBlt(pos.x, pos.y, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);
+	for (int i = 0; i < 2; i++) {
+		CBitmap* bmp = m_pDoorPic->GetDoorFramePic(ebene, (i==0));
+		if (bmp) {
+			CPoint pos = m_pDoorPic->GetDoorFramePos(xxx, ebene, (i == 0), m_pWallPic->GetWallPos(xxx, ebene));
+			if (pos != CPoint(0, 0))
+			{
+				cdc->SelectObject(bmp);
+				bmp->GetBitmap(&bmpInfo);
+				pDC->TransparentBlt(pos.x, pos.y, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);
+			}
 		}
 	}
+	
 }
 
 void CRaumView::DrawSquarePressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene, CActuator* pActuator) {
@@ -262,6 +265,7 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 	if (doorVisible && ebene > 0)
 	{
 		CBitmap* bmp = m_pDoorPic->GetDoorTopPic(ebene);
+		CBitmap* bmpMask;
 		if (bmp) {
 			cdc->SelectObject(bmp);
 			CPoint pos = m_pDoorPic->GetDoorTopPos(xxx, ebene, wallPos);
@@ -269,8 +273,7 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 
 			DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, 1, pDC, cdc, TRANS_ORA);
 		}
-		DrawFrame(pDC, cdc, xxx, ebene, true); // left Frame
-		DrawFrame(pDC, cdc, xxx, ebene, false); // right Frame
+		DrawFrame(pDC, cdc, xxx, ebene); // both Frames
 		bmp = m_pDoorPic->GetDoorFrontPic(pDoor, ebene);
 		if (bmp) {
 			cdc->SelectObject(bmp);
@@ -279,6 +282,7 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 			if (pos.x != 0 || pos.y != 0) {
 				int reducedWidth = min(bmpInfo.bmWidth, (MainAreaWidth - pos.x) / 2);
 				int reducedHeight = bmpInfo.bmHeight - pDoor->getDoorBottomHeight();
+
 				pDC->TransparentBlt(pos.x, pos.y, reducedWidth * 2, reducedHeight * 2, cdc, 0, pDoor->getDoorBottomHeight(), reducedWidth, reducedHeight, TRANS_ORA);
 				if (pDoor->hasButton()) {
 					double faktor = m_pPictures->getFaktor(ebene);

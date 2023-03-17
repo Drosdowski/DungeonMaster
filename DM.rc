@@ -369,8 +369,6 @@ IDB_DOOR_WOOD_2         BITMAP                  "res\\Door\\Door_Wood_2.bmp"
 
 IDB_DOOR_WOOD_3         BITMAP                  "res\\Door\\Door_Wood_3.bmp"
 
-IDB_DOOR_WOOD_BASHED    BITMAP                  "res\\Door\\Door_Mask_Bashed.bmp"
-
 IDB_ITEM3D_APPLE        BITMAP                  "res\\Items3D\\Item_3d_Apple.bmp"
 
 IDB_ITEM3D_BREAD        BITMAP                  "res\\Items3D\\Item_3d_Bread.bmp"
@@ -806,6 +804,12 @@ IDB_WALLDECO_38L        BITMAP                  "res\\WallDeco\\WallDeco_Holder_
 IDB_WALLDECO_46F        BITMAP                  "res\\WallDeco\\WallDeco_Holder_Full_Front.bmp"
 
 IDB_OPEN_SCROLL         BITMAP                  "res\\OpenScroll.bmp"
+
+IDB_DOOR_SMASHED_1      BITMAP                  "res\\Door\\Door_Smashed_1.bmp"
+
+IDB_DOOR_SMASHED_2      BITMAP                  "res\\Door\\Door_Smashed_2.bmp"
+
+IDB_DOOR_SMASHED_3      BITMAP                  "res\\Door\\Door_Smashed_3.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

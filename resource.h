@@ -74,8 +74,10 @@
 #define IDB_DOOR_WOOD_1                 257
 #define IDB_DOOR_WOOD_2                 258
 #define IDB_DOOR_WOOD_3                 259
-#define IDB_DOOR_WOOD_BASHED            260
-#define IDB_DOOR_SWITCH                 261
+#define IDB_DOOR_SMASHED_1              260
+#define IDB_DOOR_SMASHED_2              261
+#define IDB_DOOR_SMASHED_3              262
+#define IDB_DOOR_SWITCH                 263
 #define IDB_PRESSURE_PAD_1F             265
 #define IDB_PRESSURE_PAD_1L             266
 #define IDB_PRESSURE_PAD_2F             267
@@ -203,7 +205,6 @@
 #define IDB_MONSTER_WORM_ATTACK         532
 #define IDB_MONSTER_WORM_BACK           533
 #define IDB_MONSTER_WORM_RIGHT          534
-#define DB_ITEM3D_SCREAMERSLICE         547
 #define IDB_MONSTER_SCREAMER_ATTACK     600
 #define IDB_MONSTER_SCREAMER_FRONT      601
 #define IDB_MONSTER_ROCKPILE_ATTACK     602
@@ -334,7 +335,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        548
+#define _APS_NEXT_RESOURCE_VALUE        553
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

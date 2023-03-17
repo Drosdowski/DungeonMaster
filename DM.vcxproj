@@ -327,7 +327,9 @@
     <Image Include="res\Door\Door_Iron_1.bmp" />
     <Image Include="res\Door\Door_Iron_2.bmp" />
     <Image Include="res\Door\Door_Iron_3.bmp" />
-    <Image Include="res\Door\Door_Mask_Bashed.bmp" />
+    <Image Include="res\Door\Door_Smashed_1.bmp" />
+    <Image Include="res\Door\Door_Smashed_2.bmp" />
+    <Image Include="res\Door\Door_Smashed_3.bmp" />
     <Image Include="res\Door\Door_Wood_1.bmp" />
     <Image Include="res\Door\Door_Wood_2.bmp" />
     <Image Include="res\Door\Door_Wood_3.bmp" />
