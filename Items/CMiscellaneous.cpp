@@ -28,12 +28,14 @@ int CMiscellaneous::GetOffsetForGroup() {
 		else
 			assert(false);
 	case Other:
-		if (m_attribute.type == CMiscellaneousAttributes::MiscItemType::Compass) {
-			return m_attribute.subtype; // N W S E
+		switch (m_attribute.type) {
+			case CMiscellaneousAttributes::Compass: return m_attribute.subtype; // N W S E
+			case CMiscellaneousAttributes::Boulder: return 0;
+			case CMiscellaneousAttributes::CopperCoin: return 29;
+			case CMiscellaneousAttributes::SilverCoin: return 30;
+			case CMiscellaneousAttributes::GoldCoin: return 31;
 		}
-		if (m_attribute.type == CMiscellaneousAttributes::MiscItemType::Boulder) {
-			return 0;
-		}
+		
 		assert(false); // todo !!
 	}
 	return -1;
@@ -62,6 +64,8 @@ int CMiscellaneous::GetSheetForGroup() {
 			return 0;
 		if (m_attribute.type == CMiscellaneousAttributes::MiscItemType::Boulder)
 			return 4;
+		if (m_attribute.type >= CMiscellaneousAttributes::MiscItemType::CopperCoin && m_attribute.type <= CMiscellaneousAttributes::MiscItemType::GoldCoin)
+			return 3;
 		assert(false); // todo !!
 	}
 	return -1;

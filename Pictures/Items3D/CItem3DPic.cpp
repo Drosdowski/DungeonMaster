@@ -40,6 +40,7 @@ CItem3DPic ::~CItem3DPic() {
 			if (w < 2) {
 				delete m_pWaterskin[w];
 				delete m_pFlask[w];
+				delete m_pCoin[w];
 			}
 		}
 	}
@@ -65,6 +66,8 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pWaterskin[1], IDB_ITEM3D_WATERSKIN_F);
 	LoadPic(m_pFlask[0], IDB_ITEM3D_FLASK_EMPTY);
 	LoadPic(m_pFlask[1], IDB_ITEM3D_FLASK_FULL);
+	LoadPic(m_pCoin[0], IDB_ITEM3D_COIN_GOLD);
+	LoadPic(m_pCoin[1], IDB_ITEM3D_COIN_SILVER);
 	LoadPic(m_pClub[0], IDB_ITEM3D_CLUB);
 	LoadPic(m_pClub[1], IDB_MISSILE_CLUB_B);
 	LoadPic(m_pClub[2], IDB_MISSILE_CLUB_F);

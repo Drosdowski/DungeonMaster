@@ -362,6 +362,7 @@
     <Image Include="res\Items3D\Item_3d_Cheese.bmp" />
     <Image Include="res\Items3D\Item_3d_Club.bmp" />
     <Image Include="res\Items3D\Item_3d_Compass.bmp" />
+    <Image Include="res\Items3D\Item_3d_CopperGoldCoin.bmp" />
     <Image Include="res\Items3D\Item_3d_Corn.bmp" />
     <Image Include="res\Items3D\Item_3d_Dagger.bmp" />
     <Image Include="res\Items3D\Item_3d_ElvenDoublet.bmp" />
@@ -374,6 +375,7 @@
     <Image Include="res\Items3D\Item_3d_Rock.bmp" />
     <Image Include="res\Items3D\Item_3d_ScreamerSlice.bmp" />
     <Image Include="res\Items3D\Item_3d_Scroll.bmp" />
+    <Image Include="res\Items3D\Item_3d_SilverCoin.bmp" />
     <Image Include="res\Items3D\Item_3d_Slayer.bmp" />
     <Image Include="res\Items3D\Item_3d_StoneClub.bmp" />
     <Image Include="res\Items3D\Item_3d_Sword.bmp" />

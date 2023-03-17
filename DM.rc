@@ -811,6 +811,10 @@ IDB_DOOR_SMASHED_2      BITMAP                  "res\\Door\\Door_Smashed_2.bmp"
 
 IDB_DOOR_SMASHED_3      BITMAP                  "res\\Door\\Door_Smashed_3.bmp"
 
+IDB_ITEM3D_COIN_GOLD    BITMAP                  "res\\Items3D\\Item_3d_CopperGoldCoin.bmp"
+
+IDB_ITEM3D_COIN_SILVER  BITMAP                  "res\\Items3D\\Item_3d_SilverCoin.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -704,6 +704,10 @@ CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {
 		bmp = m_pItem3DPic->GetWormRound();
 	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Boulder)
 		bmp = m_pItem3DPic->GetBoulder();
+	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::SilverCoin)
+		bmp = m_pItem3DPic->GetCoin(1);
+	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::CopperCoin || misc->GetType() == CMiscellaneousAttributes::MiscItemType::GoldCoin)
+		bmp = m_pItem3DPic->GetCoin(0);
 	else
 		bmp = NULL;
 

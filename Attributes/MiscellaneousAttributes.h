@@ -6,6 +6,9 @@ public:
 	enum MiscItemType {
 		Compass = 0,
 		Water = 1,
+		CopperCoin = 6,
+		SilverCoin = 7,
+		GoldCoin = 8,
 		IronKey = 9,
 		KeyOfB = 10,
 		SolidKey = 11,
