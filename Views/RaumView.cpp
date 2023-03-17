@@ -702,6 +702,8 @@ CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {
 		bmp = m_pItem3DPic->GetScreamerSlice();
 	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::WormRound)
 		bmp = m_pItem3DPic->GetWormRound();
+	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Drumstick)
+		bmp = m_pItem3DPic->GetDrumstick();
 	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Boulder)
 		bmp = m_pItem3DPic->GetBoulder();
 	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::SilverCoin)
@@ -716,49 +718,53 @@ CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {
 
 CBitmap* CRaumView::GetClothBitmap(CCloth* cloth, bool inAir) {
 	CBitmap* bmp;
-	if (cloth->GetType() == CClothAttributes::ClothType::LeatherBoots)
-		bmp = m_pItem3DPic->GetLeatherBoots();
-	else if (cloth->GetType() == CClothAttributes::ClothType::LeatherJerkin ||
-		cloth->GetType() == CClothAttributes::ClothType::LeatherPants)
-		bmp = m_pItem3DPic->GetLeatherCloth();
-	else if (cloth->GetType() == CClothAttributes::ClothType::ElvenDoublet ||
-		cloth->GetType() == CClothAttributes::ClothType::ElvenHuke)
-		bmp = m_pItem3DPic->GetGreenCloth();
-	else if (cloth->GetType() == CClothAttributes::ClothType::FineRobeBody ||
-		cloth->GetType() == CClothAttributes::ClothType::FineRobeLegs)
-		bmp = m_pItem3DPic->GetWhiteCloth();
-	else
-		bmp = NULL;
+	switch (cloth->GetType()) {
+		case CClothAttributes::LeatherBoots: 
+			bmp = m_pItem3DPic->GetLeatherBoots(); break;
+		case CClothAttributes::LeatherJerkin: 
+		case CClothAttributes::LeatherPants: 
+			bmp = m_pItem3DPic->GetLeatherCloth(); break;
+		case CClothAttributes::ElvenDoublet:
+		case CClothAttributes::ElvenHuke:
+			bmp = m_pItem3DPic->GetGreenCloth(); break;
+		case CClothAttributes::FineRobeBody:
+		case CClothAttributes::FineRobeLegs:
+		case CClothAttributes::Ghi:
+		case CClothAttributes::GhiTrousers:
+			bmp = m_pItem3DPic->GetWhiteCloth(); break;
+		default:
+			bmp = NULL;
+	}
 
 	return bmp;
 }
 
 CBitmap* CRaumView::GetWeaponBitmap(CWeapon* weapon, bool inAir) {
 	CBitmap* bmp;
-	if (weapon->GetType() >= CWeaponAttributes::WeaponType::Falchion &&
-		weapon->GetType() <= CWeaponAttributes::WeaponType::DiamondEdge ||
-		weapon->GetType() == CWeaponAttributes::WeaponType::TheInquisitor)
+	if (weapon->GetType() >= CWeaponAttributes::Falchion &&
+		weapon->GetType() <= CWeaponAttributes::DiamondEdge ||
+		weapon->GetType() == CWeaponAttributes::TheInquisitor)
 		bmp = m_pItem3DPic->GetSword(inAir);
-	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Axe ||
-		weapon->GetType() == CWeaponAttributes::WeaponType::Hardcleave)
+	else if (weapon->GetType() == CWeaponAttributes::Axe ||
+		weapon->GetType() == CWeaponAttributes::Hardcleave)
 		bmp = m_pItem3DPic->GetAxe(inAir);
-	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Dagger)
+	else if (weapon->GetType() == CWeaponAttributes::Dagger)
 		bmp = m_pItem3DPic->GetDagger(inAir);
-	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Club)
+	else if (weapon->GetType() == CWeaponAttributes::Club)
 		bmp = m_pItem3DPic->GetClub(inAir);
-	else if (weapon->GetType() == CWeaponAttributes::WeaponType::StoneClub)
+	else if (weapon->GetType() == CWeaponAttributes::StoneClub)
 		bmp = m_pItem3DPic->GetStoneClub(inAir);
-	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Arrow)
+	else if (weapon->GetType() == CWeaponAttributes::Arrow)
 		bmp = m_pItem3DPic->GetArrow(inAir);
-	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Slayer)
+	else if (weapon->GetType() == CWeaponAttributes::Slayer)
 		bmp = m_pItem3DPic->GetSlayer(inAir);
-	else if (weapon->GetType() == CWeaponAttributes::WeaponType::ThrowingStar)
+	else if (weapon->GetType() == CWeaponAttributes::ThrowingStar)
 		bmp = m_pItem3DPic->GetThrowingStar(inAir);
-	else if (weapon->GetType() == CWeaponAttributes::WeaponType::PoisonDart)
+	else if (weapon->GetType() == CWeaponAttributes::PoisonDart)
 		bmp = m_pItem3DPic->GetPoisonDart(inAir);
-	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Torch)
+	else if (weapon->GetType() == CWeaponAttributes::Torch)
 		bmp = m_pItem3DPic->GetTorch();
-	else if (weapon->GetType() == CWeaponAttributes::WeaponType::Rock)
+	else if (weapon->GetType() == CWeaponAttributes::Rock)
 		bmp = m_pItem3DPic->GetRock();
 	else
 		bmp = NULL;

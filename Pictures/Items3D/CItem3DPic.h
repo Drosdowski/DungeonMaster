@@ -15,6 +15,7 @@ public:
 	CBitmap* GetCheese() { return m_pCheese; }
 	CBitmap* GetScreamerSlice() { return m_pScreamerSlice; }
 	CBitmap* GetWormRound() { return m_pWormRound; }
+	CBitmap* GetDrumstick() { return m_pDrumstick; }
 	CBitmap* GetGoldKey() { return m_pGoldKey; }
 	CBitmap* GetIronKey() { return m_pIronKey; }
 	CBitmap* GetTorch() { return m_pTorch; }
