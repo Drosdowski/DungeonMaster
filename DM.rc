@@ -815,6 +815,8 @@ IDB_ITEM3D_COIN_GOLD    BITMAP                  "res\\Items3D\\Item_3d_CopperGol
 
 IDB_ITEM3D_COIN_SILVER  BITMAP                  "res\\Items3D\\Item_3d_SilverCoin.bmp"
 
+IDB_ITEM3D_DRUMSTICK    BITMAP                  "res\\Items3D\\Item_3d_Drumstick.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

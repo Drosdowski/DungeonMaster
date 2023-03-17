@@ -29,7 +29,8 @@ public:
 		Bread = 31,
 		Cheese = 32,
 		ScreamerSlice = 33,
-		WormRound = 34
+		WormRound = 34,
+		Drumstick = 35
 	};
 
 	MiscItemType type;

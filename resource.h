@@ -150,6 +150,7 @@
 #define IDB_ITEM3D_FLASK_FULL           429
 #define IDB_ITEM3D_COIN_GOLD            430
 #define IDB_ITEM3D_COIN_SILVER          431
+#define IDB_ITEM3D_DRUMSTICK            432
 #define IDB_MISSILE_CLUB_B              440
 #define IDB_MISSILE_CLUB_F              441
 #define IDB_MISSILE_CLUB_S              442
@@ -337,7 +338,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        555
+#define _APS_NEXT_RESOURCE_VALUE        556
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

@@ -365,6 +365,7 @@
     <Image Include="res\Items3D\Item_3d_CopperGoldCoin.bmp" />
     <Image Include="res\Items3D\Item_3d_Corn.bmp" />
     <Image Include="res\Items3D\Item_3d_Dagger.bmp" />
+    <Image Include="res\Items3D\Item_3d_Drumstick.bmp" />
     <Image Include="res\Items3D\Item_3d_ElvenDoublet.bmp" />
     <Image Include="res\Items3D\Item_3d_FineRobe.bmp" />
     <Image Include="res\Items3D\Item_3d_Flask_Empty.bmp" />

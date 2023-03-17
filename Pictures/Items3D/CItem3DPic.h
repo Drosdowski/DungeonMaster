@@ -75,5 +75,6 @@ private:
 	CBitmap* m_pBoulder;
 	CBitmap* m_pRock;
 	CBitmap* m_pScroll;
+	CBitmap* m_pDrumstick;
 };
 
