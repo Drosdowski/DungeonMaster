@@ -384,10 +384,12 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 				if (itemInHand) {
 					int data = currentActuator->GetData();
 					int neededItemId;
-					if (data > 167) {
+					if (data > 120 && data < 167) {
+						neededItemId = data - 119;
+					} else if (data > 167) {
 						neededItemId = data - 167;
 					}
-					else assert(false); // todo formel verstehen. - coin = 125
+					else assert(false); // todo formel verstehen. - coin = 125  <> index 6 / type 4	  127 => 	Key: 184 => Gold Key=17    186=>topaz=19   176 => 9 Iron Key, 177 => 10
 					if (neededItemId == itemInHand->GetType()) {
 						// Match !
 						if (currentActuator->GetActionTarget() == CActuator::Remote) {

@@ -817,6 +817,14 @@ IDB_ITEM3D_COIN_SILVER  BITMAP                  "res\\Items3D\\Item_3d_SilverCoi
 
 IDB_ITEM3D_DRUMSTICK    BITMAP                  "res\\Items3D\\Item_3d_Drumstick.bmp"
 
+IDB_ITEM3D_SHIELD_L     BITMAP                  "res\\Items3D\\Item_3d_Shield_Large.bmp"
+
+IDB_ITEM3D_SHIELD_S     BITMAP                  "res\\Items3D\\Item_3d_Shield_Small.bmp"
+
+IDB_ITEM3D_MAGICBOX_B   BITMAP                  "res\\Items3D\\Item_3d_MagicBox_Blue.bmp"
+
+IDB_ITEM3D_MAGICBOX_G   BITMAP                  "res\\Items3D\\item_3d_MagicBox_Green.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

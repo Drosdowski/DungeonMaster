@@ -732,6 +732,15 @@ CBitmap* CRaumView::GetClothBitmap(CCloth* cloth, bool inAir) {
 		case CClothAttributes::Ghi:
 		case CClothAttributes::GhiTrousers:
 			bmp = m_pItem3DPic->GetWhiteCloth(); break;
+		case CClothAttributes::Buckler:
+		case CClothAttributes::SmallShield:
+		case CClothAttributes::HideShield:
+			bmp = m_pItem3DPic->GetShield(false); break;
+		case CClothAttributes::LargeShield:
+		case CClothAttributes::WoodenShield:
+		case CClothAttributes::ShieldOfDarc:
+		case CClothAttributes::ShieldOfLyte:
+			bmp = m_pItem3DPic->GetShield(true); break;
 		default:
 			bmp = NULL;
 	}

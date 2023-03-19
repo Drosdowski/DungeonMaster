@@ -42,6 +42,7 @@ CItem3DPic ::~CItem3DPic() {
 				delete m_pWaterskin[w];
 				delete m_pFlask[w];
 				delete m_pCoin[w];
+				delete m_pShield[w];
 			}
 		}
 	}
@@ -100,6 +101,8 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pThrowingStar[0], IDB_ITEM3D_THROWINGSTAR);
 	LoadPic(m_pThrowingStar[1], IDB_MISSILE_THROWINGSTAR_F);
 	LoadPic(m_pThrowingStar[2], IDB_MISSILE_THROWINGSTAR_S);
+	LoadPic(m_pShield[0], IDB_ITEM3D_SHIELD_S);
+	LoadPic(m_pShield[1], IDB_ITEM3D_SHIELD_L);
 	LoadPic(m_pPoisonDart[0], IDB_ITEM3D_POISONDART);
 	LoadPic(m_pPoisonDart[1], IDB_MISSILE_POISONDART_B);
 	LoadPic(m_pPoisonDart[2], IDB_MISSILE_POISONDART_F);

@@ -56,7 +56,7 @@ public:
 		PoleynOfDarc = 50,
 		GreaveOfDarc = 51,
 		ShieldOfDarc = 52,
-		Flamebain = 54,
+		Flamebain = 54,  // Rüstung
 		BootsOfSpeed = 56,
 		Halter = 57
 	};

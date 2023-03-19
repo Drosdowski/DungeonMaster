@@ -18,15 +18,13 @@ BUGS
 SAVE GAME: Monster, Items on floor
 
 items / spells hit player
-items auf teleporter
 itemInfo 
 Unterschied throwable / weapon
-schalter mit UND
 Flask empty/full , leather cloth , scroll
-Torch Holder Actuator
 Tote können nicht zaubern
 stamina 0
 
 TakeItem in alkoven etc -> subpos !
 int GetType in basisklasse?
 save game: Item attribute, z.b. potion!
+Magic Box lesen

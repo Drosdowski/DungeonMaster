@@ -41,6 +41,7 @@ public:
 	CBitmap* GetSlayer(bool inAir);
 	CBitmap* GetThrowingStar(bool inAir);
 	CBitmap* GetPoisonDart(bool inAir);
+	CBitmap* GetShield(bool large) { if (large) return m_pShield[1]; else return m_pShield[0]; }
 
 private:
 	void InitBitmap();
@@ -72,6 +73,7 @@ private:
 	CBitmap* m_pSlayer[4];
 	CBitmap* m_pPoisonDart[4];
 	CBitmap* m_pThrowingStar[3];
+	CBitmap* m_pShield[2];
 	CBitmap* m_pTorch;
 	CBitmap* m_pBoulder;
 	CBitmap* m_pRock;
