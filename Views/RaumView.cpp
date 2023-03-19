@@ -676,40 +676,44 @@ CBitmap* CRaumView::GetScrollBitmap(CScroll* scroll) {
 
 CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {
 	CBitmap* bmp;
-	if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Apple) // TODO Logik auslagern!
+	if (misc->GetType() == CMiscellaneousAttributes::Apple) // TODO Logik auslagern!
 		bmp = m_pItem3DPic->GetApple();
-	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Bread)
+	else if (misc->GetType() == CMiscellaneousAttributes::Bread)
 		bmp = m_pItem3DPic->GetBread();
-	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Corn)
+	else if (misc->GetType() == CMiscellaneousAttributes::Corn)
 		bmp = m_pItem3DPic->GetCorn();
-	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Cheese)
+	else if (misc->GetType() == CMiscellaneousAttributes::Cheese)
 		bmp = m_pItem3DPic->GetCheese();
-	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Compass)
+	else if (misc->GetType() == CMiscellaneousAttributes::Compass)
 		bmp = m_pItem3DPic->GetCompass();
-	else if (misc->GetType() >= CMiscellaneousAttributes::MiscItemType::IronKey &&
-		misc->GetType() <= CMiscellaneousAttributes::MiscItemType::SkeletonKey)
+	else if (misc->GetType() >= CMiscellaneousAttributes::IronKey &&
+		misc->GetType() <= CMiscellaneousAttributes::SkeletonKey)
 		bmp = m_pItem3DPic->GetIronKey();
-	else if (misc->GetType() >= CMiscellaneousAttributes::MiscItemType::GoldKey &&
-		misc->GetType() <= CMiscellaneousAttributes::MiscItemType::MasterKey)
+	else if (misc->GetType() >= CMiscellaneousAttributes::GoldKey &&
+		misc->GetType() <= CMiscellaneousAttributes::MasterKey)
 		bmp = m_pItem3DPic->GetGoldKey();
-	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Water)
+	else if (misc->GetType() == CMiscellaneousAttributes::Water)
 		if (misc->GetSubtype() > 0)
 			bmp = m_pItem3DPic->GetWaterskin(1);
 		else
 			bmp = m_pItem3DPic->GetWaterskin(0);
 
-	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::ScreamerSlice)
+	else if (misc->GetType() == CMiscellaneousAttributes::ScreamerSlice)
 		bmp = m_pItem3DPic->GetScreamerSlice();
-	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::WormRound)
+	else if (misc->GetType() == CMiscellaneousAttributes::WormRound)
 		bmp = m_pItem3DPic->GetWormRound();
-	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Drumstick)
+	else if (misc->GetType() == CMiscellaneousAttributes::Drumstick)
 		bmp = m_pItem3DPic->GetDrumstick();
-	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Boulder)
+	else if (misc->GetType() == CMiscellaneousAttributes::Boulder)
 		bmp = m_pItem3DPic->GetBoulder();
-	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::SilverCoin)
+	else if (misc->GetType() == CMiscellaneousAttributes::SilverCoin)
 		bmp = m_pItem3DPic->GetCoin(1);
-	else if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::CopperCoin || misc->GetType() == CMiscellaneousAttributes::MiscItemType::GoldCoin)
+	else if (misc->GetType() == CMiscellaneousAttributes::CopperCoin || misc->GetType() == CMiscellaneousAttributes::GoldCoin)
 		bmp = m_pItem3DPic->GetCoin(0);
+	else if (misc->GetType() == CMiscellaneousAttributes::MagicBoxBlue)
+		bmp = m_pItem3DPic->GetMagicBox(false);
+	else if (misc->GetType() == CMiscellaneousAttributes::MagicBoxGreen)
+		bmp = m_pItem3DPic->GetMagicBox(true);
 	else
 		bmp = NULL;
 

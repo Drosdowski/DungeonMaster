@@ -26,6 +26,7 @@ public:
 	CBitmap* GetRock() { return m_pRock; }
 	CBitmap* GetScroll() { return m_pScroll; }
 	CBitmap* GetCoin(bool silver) { if (silver) return m_pCoin[1]; else return m_pCoin[0]; }
+	CBitmap* GetMagicBox(bool green) { if (green) return m_pMagicBox[1]; else return m_pMagicBox[0]; }
 
 	CBitmap* GetWhiteCloth() { return m_pWhiteCloth; }
 	CBitmap* GetGreenCloth() { return m_pGreenCloth; }
@@ -54,6 +55,7 @@ private:
 	CBitmap* m_pScreamerSlice;
 	CBitmap* m_pWormRound;
 	CBitmap* m_pCompass;
+	CBitmap* m_pMagicBox[2];
 	CBitmap* m_pLeatherBoots;
 	CBitmap* m_pLeatherCloth;
 	CBitmap* m_pGreenCloth;

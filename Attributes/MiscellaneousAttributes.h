@@ -30,7 +30,9 @@ public:
 		Cheese = 32,
 		ScreamerSlice = 33,
 		WormRound = 34,
-		Drumstick = 35
+		Drumstick = 35,
+		MagicBoxBlue = 42,
+		MagicBoxGreen = 43
 	};
 
 	MiscItemType type;

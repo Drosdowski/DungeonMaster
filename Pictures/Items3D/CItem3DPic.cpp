@@ -42,6 +42,7 @@ CItem3DPic ::~CItem3DPic() {
 				delete m_pWaterskin[w];
 				delete m_pFlask[w];
 				delete m_pCoin[w];
+				delete m_pMagicBox[w];
 				delete m_pShield[w];
 			}
 		}
@@ -64,6 +65,8 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pGoldKey, IDB_ITEM3D_GOLDKEY);
 	LoadPic(m_pIronKey, IDB_ITEM3D_IRONKEY);
 	LoadPic(m_pTorch, IDB_ITEM3D_TORCH);
+	LoadPic(m_pMagicBox[0], IDB_ITEM3D_MAGICBOX_B);
+	LoadPic(m_pMagicBox[1], IDB_ITEM3D_MAGICBOX_G);
 	LoadPic(m_pWaterskin[0], IDB_ITEM3D_WATERSKIN_E);
 	LoadPic(m_pWaterskin[1], IDB_ITEM3D_WATERSKIN_F);
 	LoadPic(m_pFlask[0], IDB_ITEM3D_FLASK_EMPTY);
