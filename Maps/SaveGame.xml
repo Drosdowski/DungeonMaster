@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<dungeon start_x="25" start_y="27" start_z="1" start_facing="East">
+<dungeon start_x="10" start_y="29" start_z="2" start_facing="West">
     <heroes>
         <hero index="1">
             <item item="0" index="107" type="2" />

@@ -140,6 +140,8 @@
     <ClCompile Include="Attributes\PotionAttributes.cpp" />
     <ClCompile Include="Attributes\ScrollAttributes.cpp" />
     <ClCompile Include="Items\Scroll.cpp" />
+    <ClCompile Include="SpecialTile\CPressurePad.cpp" />
+    <ClCompile Include="SpecialTile\TrickWall.cpp" />
     <ClCompile Include="XMLParser\MonsterInfos.cpp" />
     <ClCompile Include="XMLParser\AttackInfos.cpp" />
     <ClCompile Include="Attributes\WeaponAttributes.cpp" />
@@ -228,6 +230,8 @@
     <ClInclude Include="Attributes\PotionAttributes.h" />
     <ClInclude Include="Attributes\ScrollAttributes.h" />
     <ClInclude Include="Items\Scroll.h" />
+    <ClInclude Include="SpecialTile\CPressurePad.h" />
+    <ClInclude Include="SpecialTile\TrickWall.h" />
     <ClInclude Include="XMLParser\MonsterInfos.h" />
     <ClInclude Include="XMLParser\AttackInfos.h" />
     <ClInclude Include="Attributes\ClothAttributes.h" />

@@ -81,6 +81,7 @@ private:
 	CField* ParseStairs(TiXmlElement* rootNode, VEKTOR pos);
 	CField* ParsePit(TiXmlElement* rootNode, VEKTOR pos);
 	CField* ParseTeleport(TiXmlElement* rootNode, VEKTOR pos);
+	CField* ParseTrickWall(TiXmlElement* rootNode, VEKTOR pos);
 
 	CField* m_pFeld[FELD_MAX_X][FELD_MAX_Y][FELD_MAX_Z];
 	CField* m_pEdgeWall;

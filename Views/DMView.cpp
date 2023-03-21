@@ -23,6 +23,7 @@
 #include "..\ColorCursor/ColorCursor.h"
 #include "..\SpecialTile/CDoor.h"
 #include "..\SpecialTile\CPit.h"
+#include "..\SpecialTile\TrickWall.h"
 #include "..\Items/Item.h"
 #include "..\Items/Potion.h"
 #include "..\Items/CMiscellaneous.h"
@@ -445,6 +446,7 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 	std::deque<CActuator*> pTargetActuators;
 	CDoor* door;
 	CPit* pit;
+	CTrickWall* trickwall;
 
 	switch (pTargetField->HoleTyp()) {
 	case FeldTyp::DOOR:
@@ -461,8 +463,14 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 		if (activeActuator->GetActionType() == CActuator::Hold) pit->Open();
 		if (activeActuator->GetActionType() == CActuator::Clear) pit->Close();
 		break;
-	case FeldTyp::WALL: 
 	case FeldTyp::TRICKWALL:
+		trickwall = pTargetField->HoleTrickWall();
+		if (activeActuator->GetActionType() == CActuator::Toggle) trickwall->Toggle();
+		if (activeActuator->GetActionType() == CActuator::Set) trickwall->Open();
+		if (activeActuator->GetActionType() == CActuator::Hold) trickwall->Open();
+		if (activeActuator->GetActionType() == CActuator::Clear) trickwall->Close();
+		break;
+	case FeldTyp::WALL: 
 		if (activeActuator->GetActionTarget() == CActuator::ActionTarget::Remote) {
 			// switch 1: <actuator index="274" position="1">
 			// switch 2: <actuator index="275" position="3">

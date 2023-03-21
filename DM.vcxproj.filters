@@ -249,6 +249,12 @@
     <ClCompile Include="Items\Scroll.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SpecialTile\CPressurePad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialTile\TrickWall.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -491,6 +497,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Items\Scroll.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialTile\CPressurePad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialTile\TrickWall.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

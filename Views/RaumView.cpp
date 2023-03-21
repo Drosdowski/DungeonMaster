@@ -23,6 +23,7 @@
 #include "SpecialTile/CStairs.h"
 #include "SpecialTile/CPit.h"
 #include "SpecialTile/CTeleporter.h"
+#include "SpecialTile/TrickWall.h"
 #include "Items\FloorDecoration.h"
 #include "Items\WallDecoration.h"
 #include "Pictures\CPictures.h"
@@ -873,9 +874,18 @@ void CRaumView::RaumZeichnen(CDC* pDC)
 					}
 				}
 
-				if ((fieldType == FeldTyp::WALL || fieldType == FeldTyp::TRICKWALL) && ((ebene != 0) || (xx != 0)))
+				if (((ebene != 0) || (xx != 0)))
 				{
-					DrawWall(pDC, &compCdc, xxx, ebene, heroDir, pField);
+					if (fieldType == FeldTyp::TRICKWALL)
+					{
+						CTrickWall* pTrickWall = pField->HoleTrickWall();
+						if (pTrickWall->GetState() == CTrickWall::Closed)
+							DrawWall(pDC, &compCdc, xxx, ebene, heroDir, pField);
+					}
+					if (fieldType == FeldTyp::WALL) 
+					{
+						DrawWall(pDC, &compCdc, xxx, ebene, heroDir, pField);
+					}
 				}
 				else if (fieldType == FeldTyp::DOOR)
 				{
@@ -967,7 +977,14 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos, boolean &collision)
 		}
 		if (pGrpMonster) return fromPos;
 	}
-	else if (iTyp == FeldTyp::EMPTY || iTyp == FeldTyp::TRICKWALL) {
+	else if (iTyp == FeldTyp::TRICKWALL) {
+		CTrickWall* pTrickwall = pField->HoleTrickWall();
+		if (pTrickwall->GetState() != CTrickWall::Opened) {
+			collision = true;
+			return fromPos;
+		}
+	}
+	else if (iTyp == FeldTyp::EMPTY ) {
 		collision = false;
 		if (pGrpMonster) return fromPos;
 	}
