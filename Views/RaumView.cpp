@@ -130,7 +130,7 @@ void CRaumView::DrawSquarePressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene, CA
 		if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) {
 			cdc->SelectObject(bmp);
 			bmp->GetBitmap(&bmpInfo);
-			pDC->TransparentBlt(floorMiddlePos.x - bmpInfo.bmWidth, floorMiddlePos.y - bmpInfo.bmHeight*1.5,
+			pDC->TransparentBlt(floorMiddlePos.x - bmpInfo.bmWidth, int(floorMiddlePos.y - bmpInfo.bmHeight*1.5),
 				bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);
 		}
 	}
@@ -723,6 +723,10 @@ CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {
 CBitmap* CRaumView::GetClothBitmap(CCloth* cloth, bool inAir) {
 	CBitmap* bmp;
 	switch (cloth->GetType()) {
+		case CClothAttributes::Sandals:
+			bmp = m_pItem3DPic->GetSandals(); break;
+		case CClothAttributes::SuedeBoots:
+			bmp = m_pItem3DPic->GetSuedeBoots(); break;
 		case CClothAttributes::LeatherBoots: 
 			bmp = m_pItem3DPic->GetLeatherBoots(); break;
 		case CClothAttributes::LeatherJerkin: 
@@ -736,6 +740,13 @@ CBitmap* CRaumView::GetClothBitmap(CCloth* cloth, bool inAir) {
 		case CClothAttributes::Ghi:
 		case CClothAttributes::GhiTrousers:
 			bmp = m_pItem3DPic->GetWhiteCloth(); break;
+
+		case CClothAttributes::BezerkerHelm:
+		case CClothAttributes::Basinet:
+		case CClothAttributes::CasquenCoif:
+		case CClothAttributes::HelmOfDarc:
+		case CClothAttributes::Helmet:
+			bmp = m_pItem3DPic->GetBerzerkerHelm(); break;
 		case CClothAttributes::Buckler:
 		case CClothAttributes::SmallShield:
 		case CClothAttributes::HideShield:
@@ -787,8 +798,8 @@ CBitmap* CRaumView::GetWeaponBitmap(CWeapon* weapon, bool inAir) {
 
 
 void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, CDC* cdc, COLORREF col) {
-	int realWidth = w * 2 * faktor;
-	int realHeight = h * 2 * faktor;
+	int realWidth = int(w * 2 * faktor);
+	int realHeight = int(h * 2 * faktor);
 	int rechterRand = realWidth + x;
 	int reducedWidth = realWidth;
 	if (rechterRand > MainAreaWidth)

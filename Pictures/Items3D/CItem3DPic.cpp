@@ -19,6 +19,9 @@ CItem3DPic ::~CItem3DPic() {
 	delete m_pGreenCloth;
 	delete m_pLeatherBoots;
 	delete m_pLeatherCloth;
+	delete m_pSuedeBoots;
+	delete m_pSandals;
+	delete m_pBerzerkerHelm;
 	delete m_pGoldKey;
 	delete m_pIronKey;
 	delete m_pTorch;
@@ -62,6 +65,9 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pGreenCloth, IDB_ITEM3D_ELVENDOUBLET);
 	LoadPic(m_pLeatherBoots, IDB_ITEM3D_LEATHERBOOTS);
 	LoadPic(m_pLeatherCloth, IDB_ITEM3D_LEATHERCLOTH);
+	LoadPic(m_pSuedeBoots, IDB_ITEM3D_SUEDEBOOTS);
+	LoadPic(m_pSandals, IDB_ITEM3D_SANDALS);
+	LoadPic(m_pBerzerkerHelm, IDB_ITEM3D_BERZERKERHELM);
 	LoadPic(m_pGoldKey, IDB_ITEM3D_GOLDKEY);
 	LoadPic(m_pIronKey, IDB_ITEM3D_IRONKEY);
 	LoadPic(m_pTorch, IDB_ITEM3D_TORCH);

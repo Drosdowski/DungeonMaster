@@ -153,6 +153,11 @@
 #define IDB_ITEM3D_DRUMSTICK            432
 #define IDB_ITEM3D_SHIELD_L             433
 #define IDB_ITEM3D_SHIELD_S             434
+#define IDB_ITEM3D_MAGICBOX_B           435
+#define IDB_ITEM3D_MAGICBOX_G           436
+#define IDB_ITEM3D_SUEDEBOOTS           437
+#define IDB_ITEM3D_SANDALS              438
+#define IDB_ITEM3D_BERZERKERHELM        439
 #define IDB_DMG_REC_SMALL               490
 #define IDB_DMG_REC_BIG                 491
 #define IDB_INTERFACE_DEAD              492
@@ -180,9 +185,6 @@
 #define IDB_MONSTER_WORM_ATTACK         532
 #define IDB_MONSTER_WORM_BACK           533
 #define IDB_MONSTER_WORM_RIGHT          534
-#define IDB_ITEM3D_MAGICBOX_B           558
-#define IDB_BITMAP2                     559
-#define IDB_ITEM3D_MAGICBOX_G           559
 #define IDB_MONSTER_SCREAMER_ATTACK     600
 #define IDB_MONSTER_SCREAMER_FRONT      601
 #define IDB_MONSTER_ROCKPILE_ATTACK     602
@@ -343,7 +345,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        560
+#define _APS_NEXT_RESOURCE_VALUE        563
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

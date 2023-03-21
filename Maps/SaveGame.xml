@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<dungeon start_x="19" start_y="26" start_z="1" start_facing="West">
+<dungeon start_x="25" start_y="27" start_z="1" start_facing="East">
     <heroes>
         <hero index="1">
-            <item item="1" index="76" type="0" />
+            <item item="0" index="107" type="2" />
+            <item item="1" index="97" type="0" />
         </hero>
         <hero index="2">
             <item item="0" index="25" type="0" />
@@ -12,7 +13,7 @@
         <hero index="3">
             <item item="9" index="74" type="0" />
             <item item="10" index="74" type="0" />
-            <item item="22" index="10" type="1" />
+            <item item="22" index="235" type="1" />
         </hero>
     </heroes>
     <maps>
@@ -1416,7 +1417,7 @@
                 <tile index="709" />
                 <tile index="710" />
                 <tile index="711">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="712" />
                 <tile index="713" />
@@ -1564,7 +1565,7 @@
                 <tile index="847" />
                 <tile index="848" />
                 <tile index="849">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="850" />
                 <tile index="851" />
@@ -1602,7 +1603,7 @@
                 <tile index="878" />
                 <tile index="879" />
                 <tile index="880">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="881" />
                 <tile index="882" />
@@ -1621,7 +1622,7 @@
                 </tile>
                 <tile index="892" />
                 <tile index="893">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="894" />
                 <tile index="895" />
@@ -1642,8 +1643,8 @@
                 <tile index="910" />
                 <tile index="911">
                     <actuators>
-                        <actuator subPos="1" index="518" />
                         <actuator subPos="1" index="517" />
+                        <actuator subPos="1" index="518" />
                     </actuators>
                     <actuators>
                         <actuator subPos="3" index="513" />

@@ -28,3 +28,9 @@ TakeItem in alkoven etc -> subpos !
 int GetType in basisklasse?
 save game: Item attribute, z.b. potion!
 Magic Box lesen
+
+Code auslagern: GetMagicMissileBitmap etc.
+
+2. Etage, bei U Gang mit Teleporter: Tür schließt bei Näherung; Kiste...
+Monster Flüchten
+Neue Klasse containers (kisten...)

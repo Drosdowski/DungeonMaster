@@ -461,7 +461,8 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 		if (activeActuator->GetActionType() == CActuator::Hold) pit->Open();
 		if (activeActuator->GetActionType() == CActuator::Clear) pit->Close();
 		break;
-	case FeldTyp::WALL:
+	case FeldTyp::WALL: 
+	case FeldTyp::TRICKWALL:
 		if (activeActuator->GetActionTarget() == CActuator::ActionTarget::Remote) {
 			// switch 1: <actuator index="274" position="1">
 			// switch 2: <actuator index="275" position="3">

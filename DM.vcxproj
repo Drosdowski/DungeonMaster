@@ -358,6 +358,8 @@
     <Image Include="res\InterfaceHeroDead.bmp" />
     <Image Include="res\Items3D\Item_3d_Arrow.bmp" />
     <Image Include="res\Items3D\Item_3d_Axe.bmp" />
+    <Image Include="res\Items3D\Item_3d_Berzerkerhelm.bmp" />
+    <Image Include="res\Items3D\Item_3d_BootsSuede.bmp" />
     <Image Include="res\Items3D\Item_3d_Boulder.bmp" />
     <Image Include="res\Items3D\Item_3d_Cheese.bmp" />
     <Image Include="res\Items3D\Item_3d_Club.bmp" />
@@ -376,6 +378,7 @@
     <Image Include="res\Items3D\item_3d_MagicBox_Green.bmp" />
     <Image Include="res\Items3D\Item_3d_PoisonDart.bmp" />
     <Image Include="res\Items3D\Item_3d_Rock.bmp" />
+    <Image Include="res\Items3D\Item_3d_Sandals.bmp" />
     <Image Include="res\Items3D\Item_3d_ScreamerSlice.bmp" />
     <Image Include="res\Items3D\Item_3d_Scroll.bmp" />
     <Image Include="res\Items3D\Item_3d_Shield_Large.bmp" />

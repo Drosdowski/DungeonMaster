@@ -11,9 +11,16 @@ CCloth::~CCloth() {
 
 int CCloth::GetOffsetForGroup() {
 	switch (m_attribute.type) {
+	case CClothAttributes::BezerkerHelm: return 0;
+	case CClothAttributes::Helmet: return 1;
+	case CClothAttributes::Basinet: return 2;
+	case CClothAttributes::CasquenCoif: return 3;
+	case CClothAttributes::HelmOfDarc: return 6;
 	case CClothAttributes::SilkShirt: return 6;
 	case CClothAttributes::ElvenDoublet: return 7;
 	case CClothAttributes::Ghi: return 10;
+	case CClothAttributes::Sandals: return 16;
+	case CClothAttributes::SuedeBoots: return 17;
 	case CClothAttributes::LeatherBoots: return 18;
 	case CClothAttributes::Tabard: return 21;
 	case CClothAttributes::ElvenHuke: return 23;
@@ -35,7 +42,7 @@ int CCloth::GetOffsetForGroup() {
 
 int CCloth::GetSheetForGroup() {
 	if ((m_attribute.type >= CClothAttributes::Sandals && m_attribute.type <= CClothAttributes::LeatherBoots) ||
-		(m_attribute.type >= CClothAttributes::Buckler && m_attribute.type <= CClothAttributes::SmallShield) ||
+		(m_attribute.type >= CClothAttributes::BezerkerHelm && m_attribute.type <= CClothAttributes::SmallShield) ||
 		(m_attribute.type == CClothAttributes::LargeShield) ||
 		(m_attribute.type == CClothAttributes::ShieldOfLyte) ||
 		(m_attribute.type == CClothAttributes::ShieldOfDarc))

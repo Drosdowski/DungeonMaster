@@ -32,6 +32,9 @@ public:
 	CBitmap* GetGreenCloth() { return m_pGreenCloth; }
 	CBitmap* GetLeatherBoots() { return m_pLeatherBoots; }
 	CBitmap* GetLeatherCloth() { return m_pLeatherCloth; }
+	CBitmap* GetSuedeBoots() { return m_pSuedeBoots; }
+	CBitmap* GetSandals() { return m_pSandals; }
+	CBitmap* GetBerzerkerHelm() { return  m_pBerzerkerHelm; }
 		
 	CBitmap* GetClub(bool inAir);
 	CBitmap* GetStoneClub(bool inAir);
@@ -58,8 +61,11 @@ private:
 	CBitmap* m_pMagicBox[2];
 	CBitmap* m_pLeatherBoots;
 	CBitmap* m_pLeatherCloth;
+	CBitmap* m_pSuedeBoots;
+	CBitmap* m_pSandals;
 	CBitmap* m_pGreenCloth;
 	CBitmap* m_pWhiteCloth;
+	CBitmap* m_pBerzerkerHelm;
 
 	CBitmap* m_pGoldKey;
 	CBitmap* m_pIronKey;
