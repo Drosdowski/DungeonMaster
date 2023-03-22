@@ -8,7 +8,8 @@ public:
 		MiscItem,
 		ClothItem,
 		PotionItem,
-		ScrollItem
+		ScrollItem,
+		ContainerItem
 	};
 	enum ItemGroup {
 		Key = 1,

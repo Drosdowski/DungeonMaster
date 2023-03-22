@@ -249,6 +249,12 @@
     <ClCompile Include="Items\Scroll.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Items\Container.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Attributes\ContainerAttributes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -491,6 +497,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Items\Scroll.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\Container.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Attributes\ContainerAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1542,6 +1554,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Items3D\Item_3d_Berzerkerhelm.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Item_3d_Chest.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items3D\Item_3d_ChestCenter.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

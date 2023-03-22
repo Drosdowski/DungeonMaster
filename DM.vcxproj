@@ -131,6 +131,8 @@
   <ItemGroup>
     <ClCompile Include="Consts\MonsterConst.cpp" />
     <ClCompile Include="Consts\AttackConst.cpp" />
+    <ClCompile Include="Attributes\ContainerAttributes.cpp" />
+    <ClCompile Include="Items\Container.cpp" />
     <ClCompile Include="Items\MovingObject.cpp" />
     <ClCompile Include="Items\MagicMissile.cpp" />
     <ClCompile Include="Pictures\MagicMissilePic.cpp" />
@@ -219,6 +221,8 @@
   <ItemGroup>
     <ClInclude Include="Consts\AttackConst.h" />
     <ClInclude Include="Consts\MonsterConst.h" />
+    <ClInclude Include="Attributes\ContainerAttributes.h" />
+    <ClInclude Include="Items\Container.h" />
     <ClInclude Include="Items\MovingObject.h" />
     <ClInclude Include="Items\MagicMissile.h" />
     <ClInclude Include="Pictures\MagicMissilePic.h" />
@@ -362,6 +366,8 @@
     <Image Include="res\Items3D\Item_3d_BootsSuede.bmp" />
     <Image Include="res\Items3D\Item_3d_Boulder.bmp" />
     <Image Include="res\Items3D\Item_3d_Cheese.bmp" />
+    <Image Include="res\Items3D\Item_3d_Chest.bmp" />
+    <Image Include="res\Items3D\Item_3d_ChestCenter.bmp" />
     <Image Include="res\Items3D\Item_3d_Club.bmp" />
     <Image Include="res\Items3D\Item_3d_Compass.bmp" />
     <Image Include="res\Items3D\Item_3d_CopperGoldCoin.bmp" />

@@ -629,8 +629,8 @@ void CRaumView::DrawMagicMissile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_
 					else {
 						CPoint posWall = m_pWallPic->GetWallPos(xxx, ebene);
 						CPoint posMitte = m_pWallPic->GetCenterFromFrontWall(xxx, ebene);	
-						pos.x = posWall.x + posMitte.x - bmpInfo.bmWidth * faktor;
-						pos.y = posWall.y + posMitte.y - bmpInfo.bmHeight * faktor;
+						pos.x = posWall.x + posMitte.x - (int)(bmpInfo.bmWidth * faktor);
+						pos.y = posWall.y + posMitte.y - (int)(bmpInfo.bmHeight * faktor);
 					}
 					DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
 				}

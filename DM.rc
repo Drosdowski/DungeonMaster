@@ -831,6 +831,10 @@ IDB_ITEM3D_SANDALS      BITMAP                  "res\\Items3D\\Item_3d_Sandals.b
 
 IDB_ITEM3D_BERZERKERHELM BITMAP                  "res\\Items3D\\Item_3d_Berzerkerhelm.bmp"
 
+IDB_ITEM3D_CHEST        BITMAP                  "res\\Items3D\\Item_3d_Chest.bmp"
+
+IDB_ITEM3D_CHEST_C      BITMAP                  "res\\Items3D\\Item_3d_ChestCenter.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

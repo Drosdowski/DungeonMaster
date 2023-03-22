@@ -21,6 +21,7 @@ public:
 	CBitmap* GetTorch() { return m_pTorch; }
 	CBitmap* GetWaterskin(int subtype) { return m_pWaterskin[subtype]; }
 	CBitmap* GetFlask(int subtype) { return m_pFlask[subtype]; }
+	CBitmap* GetChest(bool centered) { return centered ? m_pChest[1] : m_pChest[0]; }
 	CBitmap* GetCompass() { return m_pCompass; }
 	CBitmap* GetBoulder() { return m_pBoulder; }
 	CBitmap* GetRock() { return m_pRock; }
@@ -57,7 +58,6 @@ private:
 	CBitmap* m_pCheese;
 	CBitmap* m_pScreamerSlice;
 	CBitmap* m_pWormRound;
-	CBitmap* m_pCompass;
 	CBitmap* m_pMagicBox[2];
 	CBitmap* m_pLeatherBoots;
 	CBitmap* m_pLeatherCloth;
@@ -69,9 +69,14 @@ private:
 
 	CBitmap* m_pGoldKey;
 	CBitmap* m_pIronKey;
+
 	CBitmap* m_pWaterskin[2];
 	CBitmap* m_pFlask[2];
+	CBitmap* m_pChest[2];
+	
 	CBitmap* m_pCoin[2];
+	CBitmap* m_pCompass;
+
 	CBitmap* m_pClub[4];
 	CBitmap* m_pStoneClub[4];
 	CBitmap* m_pAxe[4];
@@ -82,6 +87,7 @@ private:
 	CBitmap* m_pPoisonDart[4];
 	CBitmap* m_pThrowingStar[3];
 	CBitmap* m_pShield[2];
+	
 	CBitmap* m_pTorch;
 	CBitmap* m_pBoulder;
 	CBitmap* m_pRock;

@@ -8,7 +8,7 @@
 #include <Items/CMiscellaneous.h>
 #include <Items/Potion.h>
 #include <Items/Scroll.h>
-
+#include <Items/Container.h>
 
 CItemPic::CItemPic(CDC* pDC) : CBasePictures(pDC)
 {
@@ -32,6 +32,8 @@ CBitmap* CItemPic::GetBitmapSheet(CItem* item) {
 		sheet = ((CPotion*)item)->GetSheetForGroup();
 	else if (item->getItemType() == CItem::ItemType::ScrollItem)
 		sheet = ((CScroll*)item)->GetSheetForGroup();
+	else if (item->getItemType() == CItem::ItemType::ContainerItem)
+		sheet = ((CContainer*)item)->GetSheetForGroup();
 	else
 		sheet = item->GetSheetForGroup();
 	return m_itemSheet[sheet];
