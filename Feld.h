@@ -30,6 +30,7 @@ class CDoor;
 class CPit;
 class CStairs;
 class CTeleporter;
+class CTrickWall;
 class CMagicMissile;
 class CField
 {
@@ -41,6 +42,7 @@ public:
 	CField(VEKTOR koord, CStairs* pStair);
 	CField(VEKTOR koord, CPit* pPit);
 	CField(VEKTOR koord, CTeleporter* teleItem);
+	CField(VEKTOR koord, CTrickWall* trickwall);
 	CField(VEKTOR koord, FeldTyp fieldType);           // protected constructor used by dynamic creation
 
 
@@ -60,10 +62,10 @@ public:
 
 	CDoor* HoleDoor() { return m_pDoor;  }
 	CStairs* HoleStairs() { return m_pStairs;  }
-	void SetTypeDoor(CDoor* pDoor); 
-	void SetTypeStair(CStairs* pStair); 
-	void SetTypePit(CPit* pPit); 
-	void SetTypeTeleporter(CTeleporter* teleItem);
+	CPit* HolePit() { return m_pPit; }
+	CTeleporter* HoleTeleporter() { return m_pTeleporter; }
+	CTrickWall* HoleTrickWall() { return m_pTrickwall; }
+
 	void SetType(FeldTyp iTyp);
 
 	void PutItem(CItem* item, SUBPOS_ABSOLUTE index);
@@ -81,9 +83,6 @@ public:
 	std::deque<CActuator*> GetActuator(COMPASS_DIRECTION index) { return m_pActuator[index]; }
 	std::deque<CMagicMissile*> GetMagicMissile(SUBPOS_ABSOLUTE index) { return m_pMagicMissiles[index]; }
 
-	CPit* HolePit() { return m_pPit;  }
-	CTeleporter* HoleTeleporter() { return m_pTeleporter; }
-
 	void PutActuator(CActuator* actuator, COMPASS_DIRECTION index);
 	VEKTOR HolePos() { return m_posKoord; }
 	void StoreCurrentWeight(VEKTOR heroPos);
@@ -92,10 +91,17 @@ public:
 
 	void RotateActuators(COMPASS_DIRECTION position);
 
+private:
+	void SetTypeDoor(CDoor* pDoor);
+	void SetTypeStair(CStairs* pStair);
+	void SetTypePit(CPit* pPit);
+	void SetTypeTeleporter(CTeleporter* teleItem);
+	void SetTypeTrickwall(CTrickWall* trickwall);
 
 // Overrides
 
 // Implementation
+public:
 	~CField();
 
 	// Generated message map functions
@@ -116,6 +122,7 @@ protected:
 	CStairs* m_pStairs = NULL;
 	CPit* m_pPit = NULL;
 	CTeleporter* m_pTeleporter = NULL;
+	CTrickWall* m_pTrickwall = NULL;
 
 	int GetWeight(VEKTOR heroPos);
 

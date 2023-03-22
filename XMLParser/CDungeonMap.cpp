@@ -12,6 +12,7 @@
 #include "Items/Potion.h"
 #include "Items/Scroll.h"
 #include "SpecialTile/CTeleporter.h"
+#include "SpecialTile/Trickwall.h"
 #include "CDungeonMap.h"
 
 CDungeonMap::CDungeonMap(CItemInfos* pItemInfos, CMonsterInfos* pMonsterInfos)
@@ -170,6 +171,18 @@ CField* CDungeonMap::ParseDoor(TiXmlElement* rootNode, VEKTOR pos) {
 	return new CField(pos, new CDoor(attribute, (orientation != 0)));
 }
 
+CField* CDungeonMap::ParseTrickWall(TiXmlElement* rootNode, VEKTOR pos) {
+	int is_imaginary, is_open;
+	
+	rootNode->QueryIntAttribute("is_imaginary", &is_imaginary);
+	rootNode->QueryIntAttribute("is_open", &is_open);
+
+	CTrickWall::TrickWallType type = (is_imaginary == 1) ? CTrickWall::Imaginary : CTrickWall::Standard;
+	CTrickWall::TrickWallState state = (is_open == 1) ? CTrickWall::Opened : CTrickWall::Closed;
+	return new CField(pos, new CTrickWall(type, state));
+}
+
+
 void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	const char* parent = rootNode->Value();
 	int index;
@@ -205,6 +218,9 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	}
 	else if (iFieldType == FeldTyp::TELEPORT) {
 		m_pFeld[x][y][etage] = ParseTeleport(rootNode, pos);
+	}
+	else if (iFieldType == FeldTyp::TRICKWALL) {
+		m_pFeld[x][y][etage] = ParseTrickWall(rootNode, pos);
 	}
 	else
 		m_pFeld[x][y][etage] = new CField(pos, iFieldType); // etage 1 / index 30 => m_levelWidth[1] kaputt!

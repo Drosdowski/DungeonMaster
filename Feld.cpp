@@ -5,6 +5,7 @@
 #include "Feld.h"
 #include "SpecialTile\CDoor.h"
 #include "SpecialTile\CTeleporter.h"
+#include "SpecialTile\TrickWall.h"
 #include "Mobs\MobGroups\GrpMonster.h"
 #include "Items\FloorDecoration.h"
 #include "Items\WallDecoration.h"
@@ -63,6 +64,12 @@ CField::CField(VEKTOR koord, CTeleporter* teleItem) {
 	m_posKoord = koord;
 }
 
+CField::CField(VEKTOR koord, CTrickWall* trickwall) {
+	InitVars();
+	SetTypeTrickwall(trickwall);
+	m_posKoord = koord;
+}
+
 void CField::InitVars() {
 	m_lastWeight = 0;
 	m_pGrpMonster = NULL;
@@ -85,6 +92,8 @@ CField::~CField()
 		delete m_pPit;
 	if (m_pTeleporter)
 		delete m_pTeleporter;
+	if (m_pTrickwall)
+		delete m_pTrickwall;
 	if (m_floorOrnateType)
 		delete m_floorOrnateType;
 	for (int p = 0; p < 4; p++) {
@@ -167,6 +176,11 @@ void CField::SetTypePit(CPit* pPit) {
 void CField::SetTypeTeleporter(CTeleporter* teleItem) {
 	m_iTyp = TELEPORT;
 	m_pTeleporter = teleItem;
+}
+
+void CField::SetTypeTrickwall(CTrickWall* trickwall) {
+	m_iTyp = TRICKWALL;
+	m_pTrickwall = trickwall;
 }
 
 
