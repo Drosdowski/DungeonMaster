@@ -34,6 +34,7 @@ class CMagicMissilePic;
 class CHelpfulValues;
 class CDecorationType;
 class CItem;
+class CContainer;
 class CGrpHeld;
 class CRaumView
 {
@@ -90,8 +91,8 @@ protected:
 	CMagicMissilePic* m_pMagicMissilePic;
 
 	VEKTOR MonsterMoveOrAttack(CGrpMonster* pGrpMon);
-	void DrawPile(CDC* pDC, CDC* cdc, int xx, int ebene, SUBPOS_ABSOLUTE SubPos, COMPASS_DIRECTION heroDir, std::deque<CItem*> pile);
-	void DrawOneOfPile(CDC* pDC, CDC* cdc, int xx, int ebene, SUBPOS_ABSOLUTE SubPos, COMPASS_DIRECTION heroDir, CItem* item);
+	void DrawPile(CDC* pDC, CDC* cdc, int xx, int ebene, SUBPOS_ABSOLUTE SubPos, COMPASS_DIRECTION heroDir, std::deque<CItem*> pile, bool center);
+	void DrawOneOfPile(CDC* pDC, CDC* cdc, int xx, int ebene, SUBPOS_ABSOLUTE SubPos, COMPASS_DIRECTION heroDir, CItem* item, bool center);
 	void DrawMagicMissile(CDC* pDC, CDC* cdc, int xx, int ebene, SUBPOS_ABSOLUTE SubPos, COMPASS_DIRECTION heroDir, std::deque<CMagicMissile*> magicMissile);
 	void DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTION richt, CField* pField);
 	void DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTION richt, CDoor* pDoor);
@@ -130,6 +131,7 @@ private:
 	CBitmap* GetWeaponBitmap(CWeapon* weapon, bool inAir);
 	CBitmap* GetClothBitmap(CCloth* cloth, bool inAir);
 	CBitmap* GetScrollBitmap(CScroll* scroll);
+	CBitmap* GetContainerBitmap(CContainer* container, bool center);
 	CBitmap* GetMagicMissileBitmap(CMagicMissile::MagicMissileType type, bool exploding, bool inside, int size);
 
 	void TriggerPassiveActuators(VEKTOR fieldPos, VEKTOR heroPos );

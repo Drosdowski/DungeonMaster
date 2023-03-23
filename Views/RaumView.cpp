@@ -14,6 +14,7 @@
 #include "Items/Cloth.h"
 #include "Items/Weapon.h"
 #include "Items/Potion.h"
+#include "Items/Container.h"
 #include "Items/CActuator.h"
 #include "Items\MagicMissile.h"
 #include "RaumView.h"
@@ -407,7 +408,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 					std::deque<CItem*> pile = pField->GetItem((SUBPOS_ABSOLUTE)0);
 					if (pile.size() > 0) {
 						COMPASS_DIRECTION heroDir = m_pMap->GetHeroes()->GetDirection();
-						DrawPile(pDC, cdc, xxx, ebene, MIDDLE, heroDir, pile);
+						DrawPile(pDC, cdc, xxx, ebene, MIDDLE, heroDir, pile, isBigContainer);
 					}
 				}
 			}
@@ -537,7 +538,7 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 
 }
 
-void CRaumView::DrawOneOfPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, COMPASS_DIRECTION heroDir, CItem* item) {
+void CRaumView::DrawOneOfPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, COMPASS_DIRECTION heroDir, CItem* item, bool center) {
 	int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
 	CBitmap* bmp;
 	CItem::ItemType typ = item->getItemType();
@@ -555,6 +556,9 @@ void CRaumView::DrawOneOfPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABS
 	}
 	else if (typ == CItem::ItemType::ScrollItem) {
 		bmp = GetScrollBitmap((CScroll*)item);
+	}
+	else if (typ == CItem::ItemType::ContainerItem) {
+		bmp = GetContainerBitmap((CContainer*)item, center);
 	}
 	if (bmp) {
 		BITMAP bmpInfo;
@@ -583,9 +587,9 @@ void CRaumView::DrawOneOfPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABS
 }
 
 
-void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, COMPASS_DIRECTION heroDir, std::deque<CItem*> pile) {
+void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, COMPASS_DIRECTION heroDir, std::deque<CItem*> pile, bool center) {
 	for (CItem* item : pile) {
-		DrawOneOfPile(pDC, cdc, xxx, ebene, itemSubPos, heroDir, item);
+		DrawOneOfPile(pDC, cdc, xxx, ebene, itemSubPos, heroDir, item, center);
 	}
 }
 
@@ -673,6 +677,10 @@ CBitmap* CRaumView::GetPotionBitmap(CPotion* potion) {
 
 CBitmap* CRaumView::GetScrollBitmap(CScroll* scroll) {
 	return m_pItem3DPic->GetScroll();
+}
+
+CBitmap* CRaumView::GetContainerBitmap(CContainer* container, bool center) {
+	return m_pItem3DPic->GetChest(center);
 }
 
 CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {
@@ -927,7 +935,7 @@ void CRaumView::RaumZeichnen(CDC* pDC)
 					{
 						std::deque<CItem*> pile = pField->GetItem((SUBPOS_ABSOLUTE)pos);
 						if (pile.size() > 0) {
-							DrawPile(pDC, &compCdc, xxx, ebene, (SUBPOS_ABSOLUTE)pos, heroDir, pile);
+							DrawPile(pDC, &compCdc, xxx, ebene, (SUBPOS_ABSOLUTE)pos, heroDir, pile, false);
 						}
 						std::deque<CMagicMissile*> magicMissiles = pField->GetMagicMissile((SUBPOS_ABSOLUTE)pos);
 						if (magicMissiles.size() > 0) {

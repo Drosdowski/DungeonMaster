@@ -14,6 +14,7 @@
 #include "Items\Weapon.h"
 #include "Items\CMiscellaneous.h"
 #include "Items\Potion.h"
+#include "Items\Container.h"
 #include "Items\Cloth.h"
 #include "Items\CActuator.h"
 #include "CalculationHelper\CHelpfulValues.h"
@@ -215,6 +216,10 @@ void CField::PutPotion(CPotion* potion, SUBPOS_ABSOLUTE index) {
 
 void CField::PutScroll(CScroll* scroll, SUBPOS_ABSOLUTE index) {
 	m_pItem[index].push_back((CItem*)scroll);
+}
+
+void CField::PutContainer(CContainer* container, SUBPOS_ABSOLUTE index) {
+	m_pItem[index].push_back((CItem*)container);
 }
 
 void CField::PutFloorDeco(CFloorDecoration* deco) {
