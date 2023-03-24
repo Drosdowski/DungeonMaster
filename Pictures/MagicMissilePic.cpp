@@ -45,3 +45,19 @@ void CMagicMissilePic::InitBitmap() {
 	LoadPic(m_pInsidePoison[2], IDB_INSIDE_POISON_STRONG);
 
 }
+
+
+CBitmap* CMagicMissilePic::GetMagicMissileBitmap(CMagicMissile::MagicMissileType type, bool exploding, bool inside, int size) {
+	if (type == CMagicMissile::MagicMissileType::AntiMagic)
+		return GetAntiMaterial(exploding, inside);
+	else if (type == CMagicMissile::MagicMissileType::Fireball)
+		return GetFireball(exploding, inside, size);
+	else if (type == CMagicMissile::MagicMissileType::Poison)
+		return GetPoison(exploding, inside, size);
+	else if (type == CMagicMissile::MagicMissileType::PoisonBlob)
+		return GetPoisonBlob(exploding, inside);
+	else if (type == CMagicMissile::MagicMissileType::Dust)
+		return GetDust(exploding, inside);
+	else
+		return NULL;
+}
