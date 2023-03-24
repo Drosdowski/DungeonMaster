@@ -32,9 +32,7 @@ class CItem3DPic;
 class CMonsterPic;
 class CMagicMissilePic;
 class CHelpfulValues;
-class CDecorationType;
 class CItem;
-class CContainer;
 class CGrpHeld;
 class CRaumView
 {
