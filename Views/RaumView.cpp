@@ -742,7 +742,7 @@ void CRaumView::RaumZeichnen(CDC* pDC)
 						DrawWall(pDC, &compCdc, xxx, ebene, heroDir, pField);
 					}
 				}
-				else if (fieldType == FeldTyp::DOOR)
+				if (fieldType == FeldTyp::DOOR)
 				{
 					CDoor* pDoor = pField->HoleDoor();
 					DrawDoor(pDC, &compCdc, xxx, ebene, heroDir, pDoor);
