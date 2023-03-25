@@ -332,6 +332,9 @@ void CDungeonMap::ParseContainers(TiXmlElement* containerItem, VEKTOR coords) {
 			else if (strcmp(itemInChest, "miscellaneous") == 0) {
 				pItem = new CMiscellaneous(index, m_miscellaneousAtt[index]);
 			}
+			else if (strcmp(itemInChest, "weapon") == 0) {
+				pItem = new CWeapon(index, m_weaponAtt[index]);
+			}
 			else {
 				assert(false); // todo
 			}
@@ -342,7 +345,7 @@ void CDungeonMap::ParseContainers(TiXmlElement* containerItem, VEKTOR coords) {
 		itemNumber++;
 	}
 
-	m_pFeld[coords.x][coords.y][coords.z]->PutContainer(new CContainer(index, m_containerAtt[index]), (SUBPOS_ABSOLUTE)subPos);
+	m_pFeld[coords.x][coords.y][coords.z]->PutContainer(new CContainer(index, m_containerAtt[index]), (SUBPOS_ABSOLUTE)MIDDLE);
 }
 
 void CDungeonMap::ParseWeapons(TiXmlElement* weaponItem, VEKTOR coords) {
