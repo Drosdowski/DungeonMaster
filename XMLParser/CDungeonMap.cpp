@@ -304,10 +304,44 @@ void CDungeonMap::ParseScrolls(TiXmlElement* scrollItem, VEKTOR coords) {
 	m_pFeld[coords.x][coords.y][coords.z]->PutScroll(new CScroll(index, m_scrollAtt[index]), (SUBPOS_ABSOLUTE)subPos);
 }
 
-void CDungeonMap::ParseContainers(TiXmlElement* scrollItem, VEKTOR coords) {
+void CDungeonMap::ParseContainers(TiXmlElement* containerItem, VEKTOR coords) {
 	int index, subPos;
-	scrollItem->QueryIntAttribute("index", &index);
-	scrollItem->QueryIntAttribute("position", &subPos);
+	containerItem->QueryIntAttribute("index", &index);
+	
+
+	int  itemNumber = 0; // ignore type, only 0 = chest exist!
+	CContainerAttributes att;
+	TiXmlElement* subElement = containerItem->FirstChildElement();
+	while (subElement)
+	{
+		const char* itemsInChest = subElement->Value();
+		if (strcmp(itemsInChest, "items") == 0) {
+			CItem* pItem;
+			int index;
+
+			TiXmlElement* itemElement = subElement->FirstChildElement();
+			const char* itemInChest = itemElement->Value();
+			itemElement->QueryIntAttribute("index", &index);
+
+			if (strcmp(itemInChest, "potion") == 0) {
+				pItem = new CPotion(index, m_potionAtt[index]);
+			}
+			else if (strcmp(itemInChest, "scroll") == 0) {
+				pItem = new CScroll(index, m_scrollAtt[index]);
+			}
+			else if (strcmp(itemInChest, "miscellaneous") == 0) {
+				pItem = new CMiscellaneous(index, m_miscellaneousAtt[index]);
+			}
+			else {
+				assert(false); // todo
+			}
+			att.items[itemNumber] = pItem;
+
+		}
+		subElement = subElement->NextSiblingElement();
+		itemNumber++;
+	}
+
 	m_pFeld[coords.x][coords.y][coords.z]->PutContainer(new CContainer(index, m_containerAtt[index]), (SUBPOS_ABSOLUTE)subPos);
 }
 
@@ -719,36 +753,9 @@ void CDungeonMap::ParseContainerObjects(TiXmlElement* rootNode) {
 		if (strcmp(parent, "container") == 0)
 		{
 			int index; // ignore type, only 0 = chest exist!
-			CContainerAttributes att;
 			parentElement->QueryIntAttribute("index", &index);
-			TiXmlElement* subElement = parentElement->FirstChildElement();
-			while (subElement)
-			{
-				const char* itemsInChest = subElement->Value();
-				if (strcmp(itemsInChest, "items") == 0) {
-					CItem* pItem;
-					int index;
-
-					TiXmlElement* itemElement = subElement->FirstChildElement();
-					const char* itemInChest = itemElement->Value();
-					itemElement->QueryIntAttribute("index", &index);
-					
-					if (strcmp(itemInChest, "potion") == 0) {
-						pItem = new CPotion(index, m_potionAtt[index]);
-					} else if (strcmp(itemsInChest, "scroll") == 0) {
-					} else if (strcmp(itemsInChest, "miscellaneous") == 0) {
-					}
-					else if (strcmp(itemsInChest, "scroll") == 0) {
-					}
-					else {
-						assert(false); // todo
-					}
-
-
-				}
-				subElement = subElement->NextSiblingElement();
-
-			}
+			CContainerAttributes att;
+			att.open = false;
 			m_containerAtt[index] = att;
 		}
 		parentElement = parentElement->NextSiblingElement();
