@@ -47,6 +47,13 @@ public:
 	CBitmap* GetThrowingStar(bool inAir);
 	CBitmap* GetPoisonDart(bool inAir);
 	CBitmap* GetShield(bool large) { if (large) return m_pShield[1]; else return m_pShield[0]; }
+	CBitmap* GetPotionBitmap(int potionType);
+	CBitmap* GetClothBitmap(int clothType, bool inAir);
+	CBitmap* GetMiscBitmap(int miscType, int subType);
+	CBitmap* GetWeaponBitmap(int weaponType, bool inAir);
+	CBitmap* GetScrollBitmap();
+	CBitmap* GetContainerBitmap(bool center);
+
 
 private:
 	void InitBitmap();

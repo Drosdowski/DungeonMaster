@@ -1,6 +1,11 @@
 #include "stdafx.h"
 #include "..\..\resource.h"
 #include "CItem3DPic.h"
+#include "..\..\Attributes\PotionAttributes.h"
+#include "..\..\Attributes\ClothAttributes.h"
+#include "..\..\Attributes\MiscellaneousAttributes.h"
+#include "..\..\Attributes\WeaponAttributes.h"
+
 
 CItem3DPic::CItem3DPic(CDC* pDC) : CBasePictures(pDC)
 {
@@ -239,4 +244,144 @@ CBitmap* CItem3DPic::GetPoisonDart(bool inAir) {
 	else {
 		return m_pPoisonDart[0];
 	}
+}
+
+CBitmap* CItem3DPic::GetPotionBitmap(int potionType) {
+	CBitmap* bmp;
+	if (potionType == CPotionAttributes::Empty)
+		bmp = GetFlask(0);
+	else
+		bmp = GetFlask(1);
+	return bmp;
+}
+
+CBitmap* CItem3DPic::GetClothBitmap(int clothType, bool inAir) {
+	CBitmap* bmp;
+	switch (clothType) {
+	case CClothAttributes::Sandals:
+		bmp = GetSandals(); break;
+	case CClothAttributes::SuedeBoots:
+		bmp = GetSuedeBoots(); break;
+	case CClothAttributes::LeatherBoots:
+		bmp = GetLeatherBoots(); break;
+	case CClothAttributes::LeatherJerkin:
+	case CClothAttributes::LeatherPants:
+		bmp = GetLeatherCloth(); break;
+	case CClothAttributes::ElvenDoublet:
+	case CClothAttributes::ElvenHuke:
+		bmp = GetGreenCloth(); break;
+	case CClothAttributes::FineRobeBody:
+	case CClothAttributes::FineRobeLegs:
+	case CClothAttributes::Ghi:
+	case CClothAttributes::GhiTrousers:
+		bmp = GetWhiteCloth(); break;
+
+	case CClothAttributes::BezerkerHelm:
+	case CClothAttributes::Basinet:
+	case CClothAttributes::CasquenCoif:
+	case CClothAttributes::HelmOfDarc:
+	case CClothAttributes::Helmet:
+		bmp = GetBerzerkerHelm(); break;
+	case CClothAttributes::Buckler:
+	case CClothAttributes::SmallShield:
+	case CClothAttributes::HideShield:
+		bmp = GetShield(false); break;
+	case CClothAttributes::LargeShield:
+	case CClothAttributes::WoodenShield:
+	case CClothAttributes::ShieldOfDarc:
+	case CClothAttributes::ShieldOfLyte:
+		bmp = GetShield(true); break;
+	default:
+		bmp = NULL;
+	}
+
+	return bmp;
+}
+
+
+CBitmap* CItem3DPic::GetScrollBitmap() {
+	return GetScroll();
+}
+
+CBitmap* CItem3DPic::GetContainerBitmap(bool center) {
+	return GetChest(center);
+}
+
+CBitmap* CItem3DPic::GetMiscBitmap(int miscType, int subType) {
+	CBitmap* bmp;
+	if (miscType == CMiscellaneousAttributes::Apple) 
+		bmp = GetApple();
+	else if (miscType == CMiscellaneousAttributes::Bread)
+		bmp = GetBread();
+	else if (miscType == CMiscellaneousAttributes::Corn)
+		bmp = GetCorn();
+	else if (miscType == CMiscellaneousAttributes::Cheese)
+		bmp = GetCheese();
+	else if (miscType == CMiscellaneousAttributes::Compass)
+		bmp = GetCompass();
+	else if (miscType >= CMiscellaneousAttributes::IronKey &&
+		miscType <= CMiscellaneousAttributes::SkeletonKey)
+		bmp = GetIronKey();
+	else if (miscType >= CMiscellaneousAttributes::GoldKey &&
+		miscType <= CMiscellaneousAttributes::MasterKey)
+		bmp = GetGoldKey();
+	else if (miscType == CMiscellaneousAttributes::Water)
+		if (subType > 0)
+			bmp = GetWaterskin(1);
+		else
+			bmp = GetWaterskin(0);
+
+	else if (miscType == CMiscellaneousAttributes::ScreamerSlice)
+		bmp = GetScreamerSlice();
+	else if (miscType == CMiscellaneousAttributes::WormRound)
+		bmp = GetWormRound();
+	else if (miscType == CMiscellaneousAttributes::Drumstick)
+		bmp = GetDrumstick();
+	else if (miscType == CMiscellaneousAttributes::Boulder)
+		bmp = GetBoulder();
+	else if (miscType == CMiscellaneousAttributes::SilverCoin)
+		bmp = GetCoin(1);
+	else if (miscType == CMiscellaneousAttributes::CopperCoin || miscType == CMiscellaneousAttributes::GoldCoin)
+		bmp = GetCoin(0);
+	else if (miscType == CMiscellaneousAttributes::MagicBoxBlue)
+		bmp = GetMagicBox(false);
+	else if (miscType == CMiscellaneousAttributes::MagicBoxGreen)
+		bmp = GetMagicBox(true);
+	else
+		bmp = NULL;
+
+	return bmp;
+}
+
+CBitmap* CItem3DPic::GetWeaponBitmap(int weaponType, bool inAir) {
+	CBitmap* bmp;
+	if (weaponType >= CWeaponAttributes::Falchion &&
+		weaponType <= CWeaponAttributes::DiamondEdge ||
+		weaponType == CWeaponAttributes::TheInquisitor)
+		bmp = GetSword(inAir);
+	else if (weaponType == CWeaponAttributes::Axe ||
+		weaponType == CWeaponAttributes::Hardcleave)
+		bmp = GetAxe(inAir);
+	else if (weaponType == CWeaponAttributes::Dagger)
+		bmp = GetDagger(inAir);
+	else if (weaponType == CWeaponAttributes::Club)
+		bmp = GetClub(inAir);
+	else if (weaponType == CWeaponAttributes::StoneClub)
+		bmp = GetStoneClub(inAir);
+	else if (weaponType == CWeaponAttributes::Arrow)
+		bmp = GetArrow(inAir);
+	else if (weaponType == CWeaponAttributes::Slayer)
+		bmp = GetSlayer(inAir);
+	else if (weaponType == CWeaponAttributes::ThrowingStar)
+		bmp = GetThrowingStar(inAir);
+	else if (weaponType == CWeaponAttributes::PoisonDart)
+		bmp = GetPoisonDart(inAir);
+	else if (weaponType == CWeaponAttributes::Torch)
+		bmp = GetTorch();
+	else if (weaponType == CWeaponAttributes::Rock)
+		bmp = GetRock();
+	else
+		bmp = NULL;
+
+	return bmp;
 }

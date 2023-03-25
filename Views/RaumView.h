@@ -32,9 +32,7 @@ class CItem3DPic;
 class CMonsterPic;
 class CMagicMissilePic;
 class CHelpfulValues;
-class CDecorationType;
 class CItem;
-class CContainer;
 class CGrpHeld;
 class CRaumView
 {
@@ -125,14 +123,6 @@ private:
 	void MoveMagicMissile(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs, CMagicMissile* topMissile);
 	void CheckMissileCollisions(VEKTOR pos);
 	void CheckFlyingItemCollisions(VEKTOR pos);
-
-	CBitmap* GetMiscBitmap(CMiscellaneous* misc);
-	CBitmap* GetPotionBitmap(CPotion* potion);
-	CBitmap* GetWeaponBitmap(CWeapon* weapon, bool inAir);
-	CBitmap* GetClothBitmap(CCloth* cloth, bool inAir);
-	CBitmap* GetScrollBitmap(CScroll* scroll);
-	CBitmap* GetContainerBitmap(CContainer* container, bool center);
-	CBitmap* GetMagicMissileBitmap(CMagicMissile::MagicMissileType type, bool exploding, bool inside, int size);
 
 	void TriggerPassiveActuators(VEKTOR fieldPos, VEKTOR heroPos );
 	void TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator* actuator);

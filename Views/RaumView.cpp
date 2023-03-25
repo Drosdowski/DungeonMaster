@@ -543,22 +543,23 @@ void CRaumView::DrawOneOfPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABS
 	CBitmap* bmp;
 	CItem::ItemType typ = item->getItemType();
 	if (typ == CItem::ItemType::MiscItem) {
-		bmp = GetMiscBitmap((CMiscellaneous*)item);
+		CMiscellaneous* miscItem = (CMiscellaneous*)item;
+		bmp = m_pItem3DPic->GetMiscBitmap(miscItem->GetType(), miscItem->GetSubtype());
 	}
 	else if (typ == CItem::ItemType::WeaponItem) {
-		bmp = GetWeaponBitmap((CWeapon*)item, item->IsFlying());
+		bmp = m_pItem3DPic->GetWeaponBitmap(((CWeapon*)item)->GetType(), item->IsFlying());
 	}
 	else if (typ == CItem::ItemType::ClothItem) {
-		bmp = GetClothBitmap((CCloth*)item, item->IsFlying());
+		bmp = m_pItem3DPic->GetClothBitmap(((CCloth*)item)->GetType(), item->IsFlying());
 	}
 	else if (typ == CItem::ItemType::PotionItem) {
-		bmp = GetPotionBitmap((CPotion*)item);
+		bmp = m_pItem3DPic->GetPotionBitmap(((CPotion*)item)->GetType()); // todo cast notwendig?
 	}
 	else if (typ == CItem::ItemType::ScrollItem) {
-		bmp = GetScrollBitmap((CScroll*)item);
+		bmp = m_pItem3DPic->GetScrollBitmap();
 	}
 	else if (typ == CItem::ItemType::ContainerItem) {
-		bmp = GetContainerBitmap((CContainer*)item, center);
+		bmp = m_pItem3DPic->GetContainerBitmap(center);
 	}
 	if (bmp) {
 		BITMAP bmpInfo;
@@ -599,7 +600,7 @@ void CRaumView::DrawMagicMissile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_
 	CMagicMissile* magicMissile = magicMissiles.back();
 	bool isInside = (ebene == 0) && (xxx == 4);
 	
-	bmp = GetMagicMissileBitmap(magicMissile->GetType(), magicMissile->IsExploding(), isInside, magicMissile->GetSize());
+	bmp = m_pMagicMissilePic->GetMagicMissileBitmap(magicMissile->GetType(), magicMissile->IsExploding(), isInside, magicMissile->GetSize());
 	if (bmp) {
 		// todo refaktorieren mit Throw... viel DOppelcode!
 		// todo exploding in mitte?
@@ -649,160 +650,6 @@ void CRaumView::DrawMagicMissile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_
 
 		}
 	}
-}
-
-CBitmap* CRaumView::GetMagicMissileBitmap(CMagicMissile::MagicMissileType type, bool exploding, bool inside, int size) {
-	if (type == CMagicMissile::MagicMissileType::AntiMagic)
-		return m_pMagicMissilePic->GetAntiMaterial(exploding, inside);
-	else if (type == CMagicMissile::MagicMissileType::Fireball)
-		return m_pMagicMissilePic->GetFireball(exploding, inside, size);
-	else if (type == CMagicMissile::MagicMissileType::Poison)
-		return m_pMagicMissilePic->GetPoison(exploding, inside, size);
-	else if (type == CMagicMissile::MagicMissileType::PoisonBlob)
-		return m_pMagicMissilePic->GetPoisonBlob(exploding, inside);
-	else if (type == CMagicMissile::MagicMissileType::Dust)
-		return m_pMagicMissilePic->GetDust(exploding, inside);
-	else
-		return NULL;
-}
-
-CBitmap* CRaumView::GetPotionBitmap(CPotion* potion) {
-	CBitmap* bmp;
-	if (potion->GetType() == CPotionAttributes::PotionType::Empty)
-		bmp = m_pItem3DPic->GetFlask(0);
-	else
-		bmp = m_pItem3DPic->GetFlask(1);
-	return bmp;
-}
-
-CBitmap* CRaumView::GetScrollBitmap(CScroll* scroll) {
-	return m_pItem3DPic->GetScroll();
-}
-
-CBitmap* CRaumView::GetContainerBitmap(CContainer* container, bool center) {
-	return m_pItem3DPic->GetChest(center);
-}
-
-CBitmap* CRaumView::GetMiscBitmap(CMiscellaneous* misc) {
-	CBitmap* bmp;
-	if (misc->GetType() == CMiscellaneousAttributes::Apple) // TODO Logik auslagern!
-		bmp = m_pItem3DPic->GetApple();
-	else if (misc->GetType() == CMiscellaneousAttributes::Bread)
-		bmp = m_pItem3DPic->GetBread();
-	else if (misc->GetType() == CMiscellaneousAttributes::Corn)
-		bmp = m_pItem3DPic->GetCorn();
-	else if (misc->GetType() == CMiscellaneousAttributes::Cheese)
-		bmp = m_pItem3DPic->GetCheese();
-	else if (misc->GetType() == CMiscellaneousAttributes::Compass)
-		bmp = m_pItem3DPic->GetCompass();
-	else if (misc->GetType() >= CMiscellaneousAttributes::IronKey &&
-		misc->GetType() <= CMiscellaneousAttributes::SkeletonKey)
-		bmp = m_pItem3DPic->GetIronKey();
-	else if (misc->GetType() >= CMiscellaneousAttributes::GoldKey &&
-		misc->GetType() <= CMiscellaneousAttributes::MasterKey)
-		bmp = m_pItem3DPic->GetGoldKey();
-	else if (misc->GetType() == CMiscellaneousAttributes::Water)
-		if (misc->GetSubtype() > 0)
-			bmp = m_pItem3DPic->GetWaterskin(1);
-		else
-			bmp = m_pItem3DPic->GetWaterskin(0);
-
-	else if (misc->GetType() == CMiscellaneousAttributes::ScreamerSlice)
-		bmp = m_pItem3DPic->GetScreamerSlice();
-	else if (misc->GetType() == CMiscellaneousAttributes::WormRound)
-		bmp = m_pItem3DPic->GetWormRound();
-	else if (misc->GetType() == CMiscellaneousAttributes::Drumstick)
-		bmp = m_pItem3DPic->GetDrumstick();
-	else if (misc->GetType() == CMiscellaneousAttributes::Boulder)
-		bmp = m_pItem3DPic->GetBoulder();
-	else if (misc->GetType() == CMiscellaneousAttributes::SilverCoin)
-		bmp = m_pItem3DPic->GetCoin(1);
-	else if (misc->GetType() == CMiscellaneousAttributes::CopperCoin || misc->GetType() == CMiscellaneousAttributes::GoldCoin)
-		bmp = m_pItem3DPic->GetCoin(0);
-	else if (misc->GetType() == CMiscellaneousAttributes::MagicBoxBlue)
-		bmp = m_pItem3DPic->GetMagicBox(false);
-	else if (misc->GetType() == CMiscellaneousAttributes::MagicBoxGreen)
-		bmp = m_pItem3DPic->GetMagicBox(true);
-	else
-		bmp = NULL;
-
-	return bmp;
-}
-
-CBitmap* CRaumView::GetClothBitmap(CCloth* cloth, bool inAir) {
-	CBitmap* bmp;
-	switch (cloth->GetType()) {
-		case CClothAttributes::Sandals:
-			bmp = m_pItem3DPic->GetSandals(); break;
-		case CClothAttributes::SuedeBoots:
-			bmp = m_pItem3DPic->GetSuedeBoots(); break;
-		case CClothAttributes::LeatherBoots: 
-			bmp = m_pItem3DPic->GetLeatherBoots(); break;
-		case CClothAttributes::LeatherJerkin: 
-		case CClothAttributes::LeatherPants: 
-			bmp = m_pItem3DPic->GetLeatherCloth(); break;
-		case CClothAttributes::ElvenDoublet:
-		case CClothAttributes::ElvenHuke:
-			bmp = m_pItem3DPic->GetGreenCloth(); break;
-		case CClothAttributes::FineRobeBody:
-		case CClothAttributes::FineRobeLegs:
-		case CClothAttributes::Ghi:
-		case CClothAttributes::GhiTrousers:
-			bmp = m_pItem3DPic->GetWhiteCloth(); break;
-
-		case CClothAttributes::BezerkerHelm:
-		case CClothAttributes::Basinet:
-		case CClothAttributes::CasquenCoif:
-		case CClothAttributes::HelmOfDarc:
-		case CClothAttributes::Helmet:
-			bmp = m_pItem3DPic->GetBerzerkerHelm(); break;
-		case CClothAttributes::Buckler:
-		case CClothAttributes::SmallShield:
-		case CClothAttributes::HideShield:
-			bmp = m_pItem3DPic->GetShield(false); break;
-		case CClothAttributes::LargeShield:
-		case CClothAttributes::WoodenShield:
-		case CClothAttributes::ShieldOfDarc:
-		case CClothAttributes::ShieldOfLyte:
-			bmp = m_pItem3DPic->GetShield(true); break;
-		default:
-			bmp = NULL;
-	}
-
-	return bmp;
-}
-
-CBitmap* CRaumView::GetWeaponBitmap(CWeapon* weapon, bool inAir) {
-	CBitmap* bmp;
-	if (weapon->GetType() >= CWeaponAttributes::Falchion &&
-		weapon->GetType() <= CWeaponAttributes::DiamondEdge ||
-		weapon->GetType() == CWeaponAttributes::TheInquisitor)
-		bmp = m_pItem3DPic->GetSword(inAir);
-	else if (weapon->GetType() == CWeaponAttributes::Axe ||
-		weapon->GetType() == CWeaponAttributes::Hardcleave)
-		bmp = m_pItem3DPic->GetAxe(inAir);
-	else if (weapon->GetType() == CWeaponAttributes::Dagger)
-		bmp = m_pItem3DPic->GetDagger(inAir);
-	else if (weapon->GetType() == CWeaponAttributes::Club)
-		bmp = m_pItem3DPic->GetClub(inAir);
-	else if (weapon->GetType() == CWeaponAttributes::StoneClub)
-		bmp = m_pItem3DPic->GetStoneClub(inAir);
-	else if (weapon->GetType() == CWeaponAttributes::Arrow)
-		bmp = m_pItem3DPic->GetArrow(inAir);
-	else if (weapon->GetType() == CWeaponAttributes::Slayer)
-		bmp = m_pItem3DPic->GetSlayer(inAir);
-	else if (weapon->GetType() == CWeaponAttributes::ThrowingStar)
-		bmp = m_pItem3DPic->GetThrowingStar(inAir);
-	else if (weapon->GetType() == CWeaponAttributes::PoisonDart)
-		bmp = m_pItem3DPic->GetPoisonDart(inAir);
-	else if (weapon->GetType() == CWeaponAttributes::Torch)
-		bmp = m_pItem3DPic->GetTorch();
-	else if (weapon->GetType() == CWeaponAttributes::Rock)
-		bmp = m_pItem3DPic->GetRock();
-	else
-		bmp = NULL;
-
-	return bmp;
 }
 
 
@@ -895,7 +742,7 @@ void CRaumView::RaumZeichnen(CDC* pDC)
 						DrawWall(pDC, &compCdc, xxx, ebene, heroDir, pField);
 					}
 				}
-				else if (fieldType == FeldTyp::DOOR)
+				if (fieldType == FeldTyp::DOOR)
 				{
 					CDoor* pDoor = pField->HoleDoor();
 					DrawDoor(pDC, &compCdc, xxx, ebene, heroDir, pDoor);
