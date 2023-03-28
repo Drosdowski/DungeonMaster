@@ -6,10 +6,10 @@ class CCloth : public CItem
 {
 public:
 
-	CCloth(int index, CClothAttributes attribute);
+	CCloth(int index, CClothAttributes* attribute);
 	~CCloth();
 
-	int GetType() { return m_attribute.type; }
+	int GetType() { return m_attribute->type; }
 
 	int GetSheetForGroup();
 	int GetOffsetForGroup();
@@ -18,6 +18,6 @@ public:
 	int GetArmorClass();
 
 private:
-	CClothAttributes m_attribute;
+	CClothAttributes* m_attribute;
 };
 

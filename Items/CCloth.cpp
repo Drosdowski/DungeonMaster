@@ -1,16 +1,16 @@
 #include "stdafx.h"
 #include "Cloth.h"
 
-CCloth::CCloth(int index, CClothAttributes attribute) : CItem(index, ClothItem) {
+CCloth::CCloth(int index, CClothAttributes* attribute) : CItem(index, ClothItem) {
 	m_attribute = attribute;
 }
 
 CCloth::~CCloth() {
-
+	delete m_attribute;
 }
 
 int CCloth::GetOffsetForGroup() {
-	switch (m_attribute.type) {
+	switch (m_attribute->type) {
 	case CClothAttributes::BezerkerHelm: return 0;
 	case CClothAttributes::Helmet: return 1;
 	case CClothAttributes::Basinet: return 2;
@@ -41,15 +41,15 @@ int CCloth::GetOffsetForGroup() {
 }
 
 int CCloth::GetSheetForGroup() {
-	if ((m_attribute.type >= CClothAttributes::Sandals && m_attribute.type <= CClothAttributes::LeatherBoots) ||
-		(m_attribute.type >= CClothAttributes::BezerkerHelm && m_attribute.type <= CClothAttributes::SmallShield) ||
-		(m_attribute.type == CClothAttributes::LargeShield) ||
-		(m_attribute.type == CClothAttributes::ShieldOfLyte) ||
-		(m_attribute.type == CClothAttributes::ShieldOfDarc))
+	if ((m_attribute->type >= CClothAttributes::Sandals && m_attribute->type <= CClothAttributes::LeatherBoots) ||
+		(m_attribute->type >= CClothAttributes::BezerkerHelm && m_attribute->type <= CClothAttributes::SmallShield) ||
+		(m_attribute->type == CClothAttributes::LargeShield) ||
+		(m_attribute->type == CClothAttributes::ShieldOfLyte) ||
+		(m_attribute->type == CClothAttributes::ShieldOfDarc))
 		return 3;
-	else if ((m_attribute.type >= CClothAttributes::ClothType::RobeBody && m_attribute.type <= CClothAttributes::ClothType::ElvenHuke) ||
-			(m_attribute.type >= CClothAttributes::ClothType::LeatherJerkin && m_attribute.type <= CClothAttributes::ClothType::LeatherPants) ||
-			(m_attribute.type >= CClothAttributes::ClothType::BluePants && m_attribute.type <= CClothAttributes::ClothType::GhiTrousers))
+	else if ((m_attribute->type >= CClothAttributes::ClothType::RobeBody && m_attribute->type <= CClothAttributes::ClothType::ElvenHuke) ||
+			(m_attribute->type >= CClothAttributes::ClothType::LeatherJerkin && m_attribute->type <= CClothAttributes::ClothType::LeatherPants) ||
+			(m_attribute->type >= CClothAttributes::ClothType::BluePants && m_attribute->type <= CClothAttributes::ClothType::GhiTrousers))
 		return 2;
 	else
 		return -1;
@@ -57,7 +57,7 @@ int CCloth::GetSheetForGroup() {
 
 
 CItem::ItemGroup CCloth::GetGroup() {
-	switch (m_attribute.type) {
+	switch (m_attribute->type) {
 	case 23: case 24: case 25: case 26: case 27: case 38: case 48:
 		return ItemGroup::Helmet;
 	case 1: case 5: case 7: case 9: case 10: case 11: case 12: case 13: case 16: case 21:
@@ -74,9 +74,9 @@ CItem::ItemGroup CCloth::GetGroup() {
 
 
 double CCloth::GetWeight() {
-	return m_attribute.fixAttributes.weight[0];
+	return m_attribute->fixAttributes.weight[0];
 }
 
 int CCloth::GetArmorClass() {
-	return m_attribute.fixAttributes.armor;
+	return m_attribute->fixAttributes.armor;
 }

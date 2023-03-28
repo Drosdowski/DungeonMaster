@@ -3,7 +3,7 @@
 #include "..\Pictures\Items3D\CItem3DPic.h"
 #include <cassert>
 
-CMiscellaneous::CMiscellaneous(int index, CMiscellaneousAttributes att) : CItem(index, MiscItem) {
+CMiscellaneous::CMiscellaneous(int index, CMiscellaneousAttributes* att) : CItem(index, MiscItem) {
 	m_attribute = att;
 }
 
@@ -16,20 +16,20 @@ int CMiscellaneous::GetOffsetForGroup() {
 	ItemGroup group = GetGroup();
 	switch (group) {
 	case Key:
-		return 16 - CMiscellaneousAttributes::IronKey + m_attribute.type;
+		return 16 - CMiscellaneousAttributes::IronKey + m_attribute->type;
 	case Consumable:
-		if (m_attribute.type >= CMiscellaneousAttributes::Apple)
-			return 8 - CMiscellaneousAttributes::Apple + m_attribute.type;
-		else if (m_attribute.type == CMiscellaneousAttributes::Water)
-			if (m_attribute.subtype == 0)
+		if (m_attribute->type >= CMiscellaneousAttributes::Apple)
+			return 8 - CMiscellaneousAttributes::Apple + m_attribute->type;
+		else if (m_attribute->type == CMiscellaneousAttributes::Water)
+			if (m_attribute->subtype == 0)
 				return 8;
 			else
 				return 9;
 		else
 			assert(false);
 	case Other:
-		switch (m_attribute.type) {
-			case CMiscellaneousAttributes::Compass: return m_attribute.subtype; // N W S E
+		switch (m_attribute->type) {
+			case CMiscellaneousAttributes::Compass: return m_attribute->subtype; // N W S E
 			case CMiscellaneousAttributes::Boulder: return 0;
 			case CMiscellaneousAttributes::MagicBoxBlue: return 4;
 			case CMiscellaneousAttributes::MagicBoxGreen: return 5;
@@ -49,7 +49,7 @@ int CMiscellaneous::GetSheetForGroup() {
 	case Key:
 		return 5;
 	case Consumable:
-		if (m_attribute.type >= CMiscellaneousAttributes::Apple)
+		if (m_attribute->type >= CMiscellaneousAttributes::Apple)
 			return 5;
 		else
 			return 0;
@@ -62,11 +62,11 @@ int CMiscellaneous::GetSheetForGroup() {
 	case Legs:
 		return 2;
 	case Other:
-		if (m_attribute.type == CMiscellaneousAttributes::Compass)
+		if (m_attribute->type == CMiscellaneousAttributes::Compass)
 			return 0;
-		if (m_attribute.type == CMiscellaneousAttributes::Boulder || m_attribute.type >= CMiscellaneousAttributes::MagicBoxBlue)
+		if (m_attribute->type == CMiscellaneousAttributes::Boulder || m_attribute->type >= CMiscellaneousAttributes::MagicBoxBlue)
 			return 4;
-		if (m_attribute.type >= CMiscellaneousAttributes::CopperCoin && m_attribute.type <= CMiscellaneousAttributes::GoldCoin)
+		if (m_attribute->type >= CMiscellaneousAttributes::CopperCoin && m_attribute->type <= CMiscellaneousAttributes::GoldCoin)
 			return 3;
 		assert(false); // todo !!
 	}
@@ -75,11 +75,11 @@ int CMiscellaneous::GetSheetForGroup() {
 
 
 CItem::ItemGroup CMiscellaneous::GetGroup() {
-	if (m_attribute.type >= 9 && m_attribute.type <= 24) return ItemGroup::Key;
-	if (m_attribute.type >= 29 && m_attribute.type <= 35 || m_attribute.type == 1) return ItemGroup::Consumable;
+	if (m_attribute->type >= 9 && m_attribute->type <= 24) return ItemGroup::Key;
+	if (m_attribute->type >= 29 && m_attribute->type <= 35 || m_attribute->type == 1) return ItemGroup::Consumable;
 	return ItemGroup::Other;
 }
 
 double CMiscellaneous::GetWeight() {
-	return m_attribute.fixAttributes.weight[0];
+	return m_attribute->fixAttributes.weight[0];
 }
