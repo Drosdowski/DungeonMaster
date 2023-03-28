@@ -287,21 +287,21 @@ void CDungeonMap::ParseMiscellaneous(TiXmlElement* miscItem, VEKTOR coords) {
 	int index, subPos;
 	miscItem->QueryIntAttribute("index", &index);
 	miscItem->QueryIntAttribute("position", &subPos);
-	m_pFeld[coords.x][coords.y][coords.z]->PutMisc(new CMiscellaneous(index, &m_miscellaneousAtt[index]), (SUBPOS_ABSOLUTE)subPos);
+	m_pFeld[coords.x][coords.y][coords.z]->PutMisc(new CMiscellaneous(index, m_miscellaneousAtt[index]), (SUBPOS_ABSOLUTE)subPos);
 }
 
 void CDungeonMap::ParsePotions(TiXmlElement* potionItem, VEKTOR coords) {
 	int index, subPos;
 	potionItem->QueryIntAttribute("index", &index);
 	potionItem->QueryIntAttribute("position", &subPos);
-	m_pFeld[coords.x][coords.y][coords.z]->PutPotion(new CPotion(index, &m_potionAtt[index]), (SUBPOS_ABSOLUTE)subPos);
+	m_pFeld[coords.x][coords.y][coords.z]->PutPotion(new CPotion(index, m_potionAtt[index]), (SUBPOS_ABSOLUTE)subPos);
 }
 
 void CDungeonMap::ParseScrolls(TiXmlElement* scrollItem, VEKTOR coords) {
 	int index, subPos;
 	scrollItem->QueryIntAttribute("index", &index);
 	scrollItem->QueryIntAttribute("position", &subPos);
-	m_pFeld[coords.x][coords.y][coords.z]->PutScroll(new CScroll(index, &m_scrollAtt[index]), (SUBPOS_ABSOLUTE)subPos);
+	m_pFeld[coords.x][coords.y][coords.z]->PutScroll(new CScroll(index, m_scrollAtt[index]), (SUBPOS_ABSOLUTE)subPos);
 }
 
 void CDungeonMap::ParseContainers(TiXmlElement* containerItem, VEKTOR coords) {
@@ -310,13 +310,9 @@ void CDungeonMap::ParseContainers(TiXmlElement* containerItem, VEKTOR coords) {
 	
 
 	int  itemNumber = 0; // ignore type, only 0 = chest exist!
-<<<<<<< HEAD
 	CContainerAttributes* att = new CContainerAttributes();
-=======
-	CContainerAttributes containerAtt;
->>>>>>> 1b23a2bd77054f8ba4edf20e7b111eaf8bfae40e
 	TiXmlElement* subElement = containerItem->FirstChildElement();
-	CContainer* container = new CContainer(index, &m_containerAtt[index]);
+	CContainer* container = new CContainer(index, m_containerAtt[index]);
 	while (subElement)
 	{
 		const char* itemsInChest = subElement->Value();
@@ -329,13 +325,13 @@ void CDungeonMap::ParseContainers(TiXmlElement* containerItem, VEKTOR coords) {
 			itemElement->QueryIntAttribute("index", &index);
 
 			if (strcmp(itemInChest, "potion") == 0) {
-				pItem = new CPotion(index, &m_potionAtt[index]);
+				pItem = new CPotion(index, m_potionAtt[index]);
 			}
 			else if (strcmp(itemInChest, "scroll") == 0) {
-				pItem = new CScroll(index, &m_scrollAtt[index]);
+				pItem = new CScroll(index, m_scrollAtt[index]);
 			}
 			else if (strcmp(itemInChest, "miscellaneous") == 0) {
-				pItem = new CMiscellaneous(index, &m_miscellaneousAtt[index]);
+				pItem = new CMiscellaneous(index, m_miscellaneousAtt[index]);
 			}
 			else if (strcmp(itemInChest, "weapon") == 0) {
 				pItem = new CWeapon(index, m_weaponAtt[index]);
@@ -343,11 +339,7 @@ void CDungeonMap::ParseContainers(TiXmlElement* containerItem, VEKTOR coords) {
 			else {
 				assert(false); // todo
 			}
-<<<<<<< HEAD
 			container->subItems[itemNumber] = pItem;
-=======
-			containerAtt.items[itemNumber] = pItem;
->>>>>>> 1b23a2bd77054f8ba4edf20e7b111eaf8bfae40e
 
 		}
 		else {
@@ -356,11 +348,8 @@ void CDungeonMap::ParseContainers(TiXmlElement* containerItem, VEKTOR coords) {
 		subElement = subElement->NextSiblingElement();
 		itemNumber++;
 	}
-	for (int i = itemNumber; i < 8; i++) {
-		containerAtt.items[i] = NULL;
-	}
 
-	m_pFeld[coords.x][coords.y][coords.z]->PutContainer(new CContainer(index, containerAtt), (SUBPOS_ABSOLUTE)0);
+	m_pFeld[coords.x][coords.y][coords.z]->PutContainer(container, (SUBPOS_ABSOLUTE)0);
 }
 
 void CDungeonMap::ParseWeapons(TiXmlElement* weaponItem, VEKTOR coords) {
@@ -368,7 +357,7 @@ void CDungeonMap::ParseWeapons(TiXmlElement* weaponItem, VEKTOR coords) {
 	weaponItem->QueryIntAttribute("index", &index);
 	weaponItem->QueryIntAttribute("position", &subPos);
 
-	m_pFeld[coords.x][coords.y][coords.z]->PutWeapon(new CWeapon(index, &m_weaponAtt[index]), (SUBPOS_ABSOLUTE)subPos);
+	m_pFeld[coords.x][coords.y][coords.z]->PutWeapon(new CWeapon(index, m_weaponAtt[index]), (SUBPOS_ABSOLUTE)subPos);
 	//CWeaponAttributes x;
 	//m_pFeld[coords.x][coords.y][coords.z]->PutWeapon(new CWeapon(index, x), (SUBPOS_ABSOLUTE)subPos);
 }
@@ -378,7 +367,7 @@ void CDungeonMap::ParseCloth(TiXmlElement* clothItem, VEKTOR coords) {
 	clothItem->QueryIntAttribute("index", &index);
 	clothItem->QueryIntAttribute("position", &subPos);
 
-	m_pFeld[coords.x][coords.y][coords.z]->PutCloth(new CCloth(index, &m_clothAtt[index]), (SUBPOS_ABSOLUTE)subPos);
+	m_pFeld[coords.x][coords.y][coords.z]->PutCloth(new CCloth(index, m_clothAtt[index]), (SUBPOS_ABSOLUTE)subPos);
 }
 
 void CDungeonMap::ParseFloorDecoration(TiXmlElement* decoItem, VEKTOR coords) {
@@ -421,38 +410,38 @@ void CDungeonMap::ParseCreature(TiXmlElement* creatureItem, VEKTOR coords) {
 				{
 					monsterItem->QueryIntAttribute("index", &index);
 					monsterItem->QueryIntAttribute("position", &position);
-					CMiscellaneous* misc = new CMiscellaneous(index, &m_miscellaneousAtt[index]);
+					CMiscellaneous* misc = new CMiscellaneous(index, m_miscellaneousAtt[index]);
 					pGrpMonster->CarryItem(misc, (SUBPOS_ABSOLUTE)position);
 
 				}
 				else if (strcmp(subParent, "weapon") == 0) {
 					monsterItem->QueryIntAttribute("index", &index);
 					monsterItem->QueryIntAttribute("position", &position);
-					CWeapon* weapon = new CWeapon(index, &m_weaponAtt[index]);
+					CWeapon* weapon = new CWeapon(index, m_weaponAtt[index]);
 					pGrpMonster->CarryItem(weapon, (SUBPOS_ABSOLUTE)position);
 				}
 				else if (strcmp(subParent, "cloth") == 0) {
 					monsterItem->QueryIntAttribute("index", &index);
 					monsterItem->QueryIntAttribute("position", &position);
-					CCloth* cloth = new CCloth(index, &m_clothAtt[index]);
+					CCloth* cloth = new CCloth(index, m_clothAtt[index]);
 					pGrpMonster->CarryItem(cloth, (SUBPOS_ABSOLUTE)position);
 				}
 				else if (strcmp(subParent, "potions") == 0) {
 					monsterItem->QueryIntAttribute("index", &index);
 					monsterItem->QueryIntAttribute("position", &position);
-					CPotion* potion = new CPotion(index, &m_potionAtt[index]);
+					CPotion* potion = new CPotion(index, m_potionAtt[index]);
 					pGrpMonster->CarryItem(potion, (SUBPOS_ABSOLUTE)position);
 				}
 				else if (strcmp(subParent, "scrolls") == 0) {
 					monsterItem->QueryIntAttribute("index", &index);
 					monsterItem->QueryIntAttribute("position", &position);
-					CScroll* scroll = new CScroll(index, &m_scrollAtt[index]);
+					CScroll* scroll = new CScroll(index, m_scrollAtt[index]);
 					pGrpMonster->CarryItem(scroll, (SUBPOS_ABSOLUTE)position);
 				}
 				else if (strcmp(subParent, "containers") == 0) {
 					monsterItem->QueryIntAttribute("index", &index);
 					monsterItem->QueryIntAttribute("position", &position);
-					CContainer* container = new CContainer(index, &m_containerAtt[index]);
+					CContainer* container = new CContainer(index, m_containerAtt[index]);
 					pGrpMonster->CarryItem(container, (SUBPOS_ABSOLUTE)position);
 				}
 				monsterItem = parentElement->NextSiblingElement();
@@ -1206,27 +1195,27 @@ void CDungeonMap::LoadHero(TiXmlElement* hero) {
 		CContainer* container;
 		switch (type) {
 		case CItem::WeaponItem:
-			weapon = new CWeapon(index, &m_weaponAtt[index]);
+			weapon = new CWeapon(index, m_weaponAtt[index]);
 			held->SwitchItemAt(itemId, (CItem*)weapon);
 			break;
 		case CItem::MiscItem:
-			misc = new CMiscellaneous(index, &m_miscellaneousAtt[index]);
+			misc = new CMiscellaneous(index, m_miscellaneousAtt[index]);
 			held->SwitchItemAt(itemId, (CItem*)misc);
 			break;
 		case CItem::ClothItem:
-			cloth = new CCloth(index, &m_clothAtt[index]);
+			cloth = new CCloth(index, m_clothAtt[index]);
 			held->SwitchItemAt(itemId, (CItem*)cloth);
 			break;
 		case CItem::PotionItem:
-			potion = new CPotion(index, &m_potionAtt[index]);
+			potion = new CPotion(index, m_potionAtt[index]);
 			held->SwitchItemAt(itemId, (CItem*)potion);
 			break;
 		case CItem::ScrollItem:
-			scroll = new CScroll(index, &m_scrollAtt[index]);
+			scroll = new CScroll(index, m_scrollAtt[index]);
 			held->SwitchItemAt(itemId, (CItem*)scroll);
 			break;
 		case CItem::ContainerItem:
-			container = new CContainer(index, &m_containerAtt[index]);
+			container = new CContainer(index, m_containerAtt[index]);
 			held->SwitchItemAt(itemId, (CItem*)container);
 			break;
 		}

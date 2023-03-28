@@ -1,12 +1,11 @@
 #include "stdafx.h"
 #include "Container.h"
 
-CContainer::CContainer(int index, CContainerAttributes* attributes) : CItem(index, ContainerItem) {
+CContainer::CContainer(int index, CContainerAttributes attributes) : CItem(index, ContainerItem) {
 	m_attribute = attributes;
 }
 
 CContainer::~CContainer() {
-	delete m_attribute;
 	for (int i = 0; i < 8; i++) {
 		if (subItems[i])
 			delete subItems[i];
@@ -14,11 +13,11 @@ CContainer::~CContainer() {
 }
 
 void CContainer::SetOpen(bool value) {
-	m_attribute->open = value;
+	m_attribute.open = value;
 }
 
 int CContainer::GetOffsetForGroup() {
-	if (m_attribute->open) {
+	if (m_attribute.open) {
 		return 17;
 	}
 	else {

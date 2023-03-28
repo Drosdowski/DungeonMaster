@@ -4,12 +4,12 @@
 class CWeapon : public CItem
 {
 public:
-	CWeapon(int index, CWeaponAttributes* attribute);
+	CWeapon(int index, CWeaponAttributes attribute);
 	~CWeapon();
 
-	int GetType() { return m_attribute->type; }
-	int GetCharges() { return m_attribute->charges; }
-	CWeaponConst  GetAttributes() { return m_attribute->fixAttributes;  }
+	int GetType() { return m_attribute.type; }
+	int GetCharges() { return m_attribute.charges; }
+	CWeaponConst  GetAttributes() { return m_attribute.fixAttributes;  }
 	void reduceCharges();
 	double GetWeight();
 
@@ -18,6 +18,6 @@ public:
 	ItemGroup GetGroup();
 
 private:
-	CWeaponAttributes* m_attribute;
+	CWeaponAttributes m_attribute;
 };
 

@@ -172,9 +172,9 @@ void CDMView::ParseClickRunes(CPoint point, CGrpHeld* grpHelden) {
 	}
 }
 void CastPotion(CPotion* potion, int power, CPotionAttributes::PotionType type) {
-	CPotionAttributes* attribute = new CPotionAttributes();
-	attribute->power = power;
-	attribute->type = type;
+	CPotionAttributes attribute;
+	attribute.power = power;
+	attribute.type = type;
 	potion->MakePotion(attribute);
 }
 
@@ -272,10 +272,10 @@ void CDMView::ParseClickFountain(CPoint point, CField* FeldVorHeld, COMPASS_DIRE
 				}
 				else if (itemInHand->getItemType() == CItem::PotionItem) {
 					CPotion* potion = (CPotion*)itemInHand;
-					CPotionAttributes* att = potion->GetAttributes();
-					if (att->type == CPotionAttributes::Empty)
+					CPotionAttributes att = potion->GetAttributes();
+					if (att.type == CPotionAttributes::Empty)
 					{
-						att->type = CPotionAttributes::Water;
+						att.type = CPotionAttributes::Water;
 						potion->MakePotion(att);
 					}
 				}
@@ -650,17 +650,17 @@ void CDMView::ParseClickBackpack(CPoint point) {
 		else if (item->getItemType() == CItem::ItemType::PotionItem) {
 			// drink potions
 			CPotion* potion = (CPotion*)item;
-			CPotionAttributes* att = potion->GetAttributes();
+			CPotionAttributes att = potion->GetAttributes();
 			if (potion->GetType() == CPotionAttributes::Vi) {
-				pHeld->WerteTemporaerAendern(att->power*10, 0, 0);
-				att->power = 0;
-				att->type = CPotionAttributes::PotionType::Empty;
+				pHeld->WerteTemporaerAendern(att.power*10, 0, 0);
+				att.power = 0;
+				att.type = CPotionAttributes::PotionType::Empty;
 				potion->MakePotion(att);
 			}
 			else if (potion->GetType() == CPotionAttributes::Water)
 			{
 				pHeld->Trinken(50);
-				att->type = CPotionAttributes::PotionType::Empty;
+				att.type = CPotionAttributes::PotionType::Empty;
 				potion->MakePotion(att);
 			}
 		}

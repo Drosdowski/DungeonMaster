@@ -5,7 +5,7 @@
 class CScroll : public CItem
 {
 public:
-	CScroll(int index, CScrollAttributes* attribute);
+	CScroll(int index, CScrollAttributes attribute);
 	~CScroll();
 
 	const char* GetText();
@@ -13,11 +13,11 @@ public:
 	int GetSheetForGroup();
 	int GetOffsetForGroup();
 	ItemGroup GetGroup();
-	bool IsOpen() { return m_attribute->open; }
+	bool IsOpen() { return m_attribute.open; }
 	void SetOpen(bool value);
 	double GetWeight() { return 0.1; }
 
 private:
-	CScrollAttributes* m_attribute;
+	CScrollAttributes m_attribute;
 };
 
