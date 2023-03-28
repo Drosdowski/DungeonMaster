@@ -15,6 +15,8 @@ public:
 	void SetOpen(bool value);
 	double GetWeight() { return 0.1; }
 
+	void SetSubitems(CItem* items, int index) { m_subItems[index] = items; }
+
 private:
 	CContainerAttributes m_attribute;
 };

@@ -44,12 +44,16 @@ public:
 	virtual double GetWeight() { return -1; }
 	virtual int GetArmourClass() { return 0; }
 
-	CItem* subItems[8];
+	void ClearSubitems(int index) { m_subItems[index] = NULL; }
 
+protected:
+	CItem* m_subItems[8];
 
 private:
 	int m_index;
 	ItemType m_itemType;
+
+
 
 };
 

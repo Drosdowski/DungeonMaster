@@ -4,6 +4,8 @@
 CItem::CItem(int index, ItemType type) : CMovingObject() {
 	m_index = index;
 	m_itemType = type;
+	for (int i = 0; i < 8; i++)
+		ClearSubitems(i);
 }
 
 

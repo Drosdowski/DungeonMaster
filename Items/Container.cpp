@@ -1,5 +1,10 @@
 #include "stdafx.h"
 #include "Container.h"
+#include "Weapon.h"
+#include "CMiscellaneous.h"
+#include "Cloth.h"
+#include "Potion.h"
+#include "Scroll.h"
 
 CContainer::CContainer(int index, CContainerAttributes attributes) : CItem(index, ContainerItem) {
 	m_attribute = attributes;
@@ -7,8 +12,24 @@ CContainer::CContainer(int index, CContainerAttributes attributes) : CItem(index
 
 CContainer::~CContainer() {
 	for (int i = 0; i < 8; i++) {
-		if (subItems[i])
-			delete subItems[i];
+		CItem* item = m_subItems[i];
+		if (item)
+		{
+			if (item->getItemType() == CItem::ItemType::WeaponItem)
+				delete (CWeapon*)item;
+			else if (item->getItemType() == CItem::ItemType::MiscItem)
+				delete (CMiscellaneous*)item;
+			else if (item->getItemType() == CItem::ItemType::ClothItem)
+				delete (CCloth*)item;
+			else if (item->getItemType() == CItem::ItemType::PotionItem)
+				delete (CPotion*)item;
+			else if (item->getItemType() == CItem::ItemType::ScrollItem)
+				delete (CScroll*)item;
+			else if (item->getItemType() == CItem::ItemType::ContainerItem)
+				delete (CContainer*)item;
+			else
+				delete item;
+		}
 	}
 }
 

@@ -307,10 +307,8 @@ void CDungeonMap::ParseScrolls(TiXmlElement* scrollItem, VEKTOR coords) {
 void CDungeonMap::ParseContainers(TiXmlElement* containerItem, VEKTOR coords) {
 	int index, subPos;
 	containerItem->QueryIntAttribute("index", &index);
-	
 
 	int  itemNumber = 0; // ignore type, only 0 = chest exist!
-	CContainerAttributes* att = new CContainerAttributes();
 	TiXmlElement* subElement = containerItem->FirstChildElement();
 	CContainer* container = new CContainer(index, m_containerAtt[index]);
 	while (subElement)
@@ -339,11 +337,10 @@ void CDungeonMap::ParseContainers(TiXmlElement* containerItem, VEKTOR coords) {
 			else {
 				assert(false); // todo
 			}
-			container->subItems[itemNumber] = pItem;
-
+			container->SetSubitems(pItem, itemNumber);
 		}
 		else {
-			container->subItems[itemNumber] = NULL;
+			container->ClearSubitems(itemNumber);
 		}
 		subElement = subElement->NextSiblingElement();
 		itemNumber++;
