@@ -9,6 +9,7 @@
 #include "..\Items\Cloth.h"
 #include "..\Items\Weapon.h"
 #include "..\Items\Scroll.h"
+#include "..\Items\Container.h"
 #include "Monster.h"
 #include "MobGroups/GrpMonster.h"
 #include <Attributes/ClothAttributes.h>
@@ -93,6 +94,8 @@ void CHeld::DelItem(CItem* pItem) {
 			delete (CPoint*)pItem;
 		else if (pItem->getItemType() == CItem::ItemType::ScrollItem)
 			delete (CScroll*)pItem;
+		else if (pItem->getItemType() == CItem::ItemType::ContainerItem)
+			delete (CContainer*)pItem;
 	}
 }
 
@@ -295,6 +298,12 @@ CItem* CHeld::SwitchItemAt(int index, CItem* item)
 			pScroll->SetOpen(1);
 		else
 			pScroll->SetOpen(0);
+	} else if (item->getItemType() == CItem::ContainerItem) {
+		CContainer* pContainer = (CContainer*)item;
+		if (index == 1)
+			pContainer->SetOpen(true);
+		else
+			pContainer->SetOpen(false);
 	}
 
 	return carryingBefore;

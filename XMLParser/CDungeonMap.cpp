@@ -310,7 +310,7 @@ void CDungeonMap::ParseContainers(TiXmlElement* containerItem, VEKTOR coords) {
 	
 
 	int  itemNumber = 0; // ignore type, only 0 = chest exist!
-	CContainerAttributes att;
+	CContainerAttributes containerAtt;
 	TiXmlElement* subElement = containerItem->FirstChildElement();
 	while (subElement)
 	{
@@ -338,14 +338,17 @@ void CDungeonMap::ParseContainers(TiXmlElement* containerItem, VEKTOR coords) {
 			else {
 				assert(false); // todo
 			}
-			att.items[itemNumber] = pItem;
+			containerAtt.items[itemNumber] = pItem;
 
 		}
 		subElement = subElement->NextSiblingElement();
 		itemNumber++;
 	}
+	for (int i = itemNumber; i < 8; i++) {
+		containerAtt.items[i] = NULL;
+	}
 
-	m_pFeld[coords.x][coords.y][coords.z]->PutContainer(new CContainer(index, m_containerAtt[index]), (SUBPOS_ABSOLUTE)MIDDLE);
+	m_pFeld[coords.x][coords.y][coords.z]->PutContainer(new CContainer(index, containerAtt), (SUBPOS_ABSOLUTE)0);
 }
 
 void CDungeonMap::ParseWeapons(TiXmlElement* weaponItem, VEKTOR coords) {

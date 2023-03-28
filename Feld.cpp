@@ -114,6 +114,8 @@ CField::~CField()
 				delete (CPotion*)item;
 			else if (item->getItemType() == CItem::ItemType::ScrollItem)
 				delete (CScroll*)item;
+			else if (item->getItemType() == CItem::ItemType::ContainerItem)
+				delete (CContainer*)item;
 			else
 				delete item;
 		}

@@ -9,6 +9,7 @@
 #include "..\Items\FloorDecoration.h"
 #include "..\Items\Item.h"
 #include "..\Items\Scroll.h"
+#include "..\Items\Container.h"
 #include "..\XMLParser\ItemInfos.h"
 #include "..\Rucksack.h"
 #include "..\CalculationHelper\CScreenCoords.h"
@@ -196,6 +197,8 @@ void CPictures::RucksackZeichnen(CDC* pDC, CGrpHeld* pGrpHelden)
 	if (iModusExtend == MOD_EXT_NORMAL)
 		if (pActiveItem && pActiveItem->getItemType() == CItem::ScrollItem)
 			ZeichneScroll(pDC, (CScroll*)pActiveItem);
+		else if (pActiveItem && pActiveItem->getItemType() == CItem::ContainerItem)
+			ZeichneContainer(pDC, (CContainer*)pActiveItem);
 		else
 			ZeichneHungerDurst(pDC, pHeld->getFood(), pHeld->getWater());
 	else if (iModusExtend == MOD_EXT_AUGE) {
@@ -248,6 +251,10 @@ void CPictures::ZeichneIcons(CDC* pDC, CHeld* pHeld) {
 
 void CPictures::ZeichneItemInfo(CDC* pDC, CItem* item) {
 	// todo
+}
+
+void CPictures::ZeichneContainer(CDC* pDC, CContainer* pContainer) {
+
 }
 
 void CPictures::ZeichneScroll(CDC* pDC, CScroll* scroll) {
