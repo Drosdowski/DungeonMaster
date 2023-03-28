@@ -3,9 +3,6 @@
 
 CContainer::CContainer(int index, CContainerAttributes* attributes) : CItem(index, ContainerItem) {
 	m_attribute = attributes;
-	for (int i = 0; i < 8; i++) {
-		subItems[i] = NULL;
-	}
 }
 
 CContainer::~CContainer() {

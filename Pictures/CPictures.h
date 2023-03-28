@@ -6,6 +6,7 @@ class CHeld;
 class CGrpHeld;
 class CItemInfos;
 class CScroll;
+class CContainer;
 class CPictures : CBasePictures
 {
 public:
@@ -47,6 +48,7 @@ private:
 	void ZeichneIcons(CDC* pDC, CHeld* pHeld);
 	void ZeichneItemInfo(CDC* pDC, CItem* item);
 	void ZeichneScroll(CDC* pDC, CScroll* scroll);
+	void ZeichneContainer(CDC* pDC, CContainer* pContainer);
 	void GewichtZeichnen(CDC* pDC, CHeld* pHeld);
 
 	void DrawHand(CDC* pDC, CHeld* pHeld, int index);
