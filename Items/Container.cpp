@@ -54,3 +54,28 @@ int CContainer::GetSheetForGroup() {
 CItem::ItemGroup CContainer::GetGroup() {
 	return Container;
 }
+
+double CContainer::GetWeight() {
+	float weight = 5;
+	for (int i = 0; i < 8; i++) {
+		CItem* item = m_subItems[i];
+		if (item)
+		{
+			if (item->getItemType() == CItem::ItemType::WeaponItem)
+				weight += ((CWeapon*)item)->GetWeight();
+			else if (item->getItemType() == CItem::ItemType::MiscItem)
+				weight += ((CMiscellaneous*)item)->GetWeight();
+			else if (item->getItemType() == CItem::ItemType::ClothItem)
+				weight += ((CCloth*)item)->GetWeight();
+			else if (item->getItemType() == CItem::ItemType::PotionItem)
+				weight += ((CPotion*)item)->GetWeight();
+			else if (item->getItemType() == CItem::ItemType::ScrollItem)
+				weight += ((CScroll*)item)->GetWeight();
+			else if (item->getItemType() == CItem::ItemType::ContainerItem)
+				weight += ((CContainer*)item)->GetWeight();
+			else
+				weight += item->GetWeight();
+		}
+	}
+	return round(weight);
+}

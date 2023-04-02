@@ -13,7 +13,7 @@ public:
 	ItemGroup GetGroup();
 	bool IsOpen() { return m_attribute.open; }
 	void SetOpen(bool value);
-	double GetWeight() { return 0.1; }
+	double GetWeight();
 
 	void SetSubitems(CItem* items, int index) { m_subItems[index] = items; }
 
