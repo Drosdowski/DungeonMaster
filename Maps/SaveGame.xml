@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<dungeon start_x="28" start_y="29" start_z="1" start_facing="West">
+<dungeon start_x="0" start_y="24" start_z="2" start_facing="South">
     <heroes>
         <hero index="1">
             <item item="0" index="107" type="2" />
@@ -2388,7 +2388,7 @@
                 <tile index="520" />
                 <tile index="521" />
                 <tile index="522">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="523" />
                 <tile index="524" />
@@ -2696,8 +2696,8 @@
                 </tile>
                 <tile index="801">
                     <actuators>
-                        <actuator subPos="0" index="72" />
                         <actuator subPos="0" index="65" />
+                        <actuator subPos="0" index="72" />
                     </actuators>
                 </tile>
                 <tile index="802">
@@ -2705,8 +2705,8 @@
                 </tile>
                 <tile index="803">
                     <actuators>
-                        <actuator subPos="0" index="73" />
                         <actuator subPos="0" index="66" />
+                        <actuator subPos="0" index="73" />
                     </actuators>
                 </tile>
                 <tile index="804">
@@ -2714,8 +2714,8 @@
                 </tile>
                 <tile index="805">
                     <actuators>
-                        <actuator subPos="0" index="74" />
                         <actuator subPos="0" index="67" />
+                        <actuator subPos="0" index="74" />
                     </actuators>
                 </tile>
                 <tile index="806">
@@ -2732,8 +2732,8 @@
                 </tile>
                 <tile index="809">
                     <actuators>
-                        <actuator subPos="0" index="76" />
                         <actuator subPos="0" index="69" />
+                        <actuator subPos="0" index="76" />
                     </actuators>
                 </tile>
                 <tile index="810">
@@ -2741,8 +2741,8 @@
                 </tile>
                 <tile index="811">
                     <actuators>
-                        <actuator subPos="0" index="77" />
                         <actuator subPos="0" index="70" />
+                        <actuator subPos="0" index="77" />
                     </actuators>
                 </tile>
                 <tile index="812">
@@ -2912,8 +2912,8 @@
                 <tile index="936" />
                 <tile index="937">
                     <actuators>
-                        <actuator subPos="2" index="626" />
                         <actuator subPos="2" index="101" />
+                        <actuator subPos="2" index="626" />
                     </actuators>
                 </tile>
                 <tile index="938" />

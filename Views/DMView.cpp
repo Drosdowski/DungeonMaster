@@ -463,6 +463,9 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 		if (activeActuator->GetActionType() == CActuator::Hold) pit->Open();
 		if (activeActuator->GetActionType() == CActuator::Clear) pit->Close();
 		break;
+	case FeldTyp::TELEPORT:
+		// todo trigger teleport
+		break;
 	case FeldTyp::TRICKWALL:
 		trickwall = pTargetField->HoleTrickWall();
 		if (activeActuator->GetActionType() == CActuator::Toggle) trickwall->Toggle();
