@@ -207,7 +207,7 @@ void CPictures::RucksackZeichnen(CDC* pDC, CGrpHeld* pGrpHelden)
 		if (pItem) {
 			if (pItem->getItemType() == CItem::ScrollItem)
 				ZeichneScroll(pDC, (CScroll*)pItem);
-			else if (pActiveItem && pActiveItem->getItemType() == CItem::ContainerItem)
+			else if (pItem->getItemType() == CItem::ContainerItem)
 				ZeichneContainer(pDC, (CContainer*)pItem);
 			else
 				ZeichneItemInfo(pDC, pItem);
