@@ -56,7 +56,7 @@ CItem::ItemGroup CContainer::GetGroup() {
 }
 
 double CContainer::GetWeight() {
-	float weight = 5;
+	double weight = 5;
 	for (int i = 0; i < 8; i++) {
 		CItem* item = m_subItems[i];
 		if (item)

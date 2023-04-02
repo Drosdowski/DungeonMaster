@@ -161,18 +161,19 @@ CPoint CHelpfulValues::CalcRelSubFloorPosition(BITMAP bmpInfo, CPoint wallMiddle
 
 	/*Coords - Mitte des Items
 		Ebene | x   |  y	  (225 - x)
-		0	  | 130 | 370		95
+		0	  | 130 | 365		95
 		1v	  | 150 | 325		75
-		1h	  | 165 | 300		60
-		2v	  | 177 | 280		48
-		2h	  | 185 | 265		40
-		3v	  | 191 | 255		34 */
+		1h	  | 165 | 310		60
+		2v	  | 177 | 285		48
+		2h	  | 185 | 275		40
+		3v	  | 191 | 255		34 
+		3h	  | 191 | 250		34 */
 
 	switch (ebene) {
 	case 0:
 		if (!vorne) {
 			posX += (int)xFaktor * 95;
-			posY = 370;
+			posY = 365;
 		}
 		break;
 	case 1:
@@ -182,17 +183,17 @@ CPoint CHelpfulValues::CalcRelSubFloorPosition(BITMAP bmpInfo, CPoint wallMiddle
 		}
 		else {
 			posX += (int)xFaktor * 60;
-			posY = 300;
+			posY = 310;
 		}
 		break;
 	case 2:
 		if (vorne) {
 			posX += (int)xFaktor * 48;
-			posY = 280;
+			posY = 285;
 		}
 		else {
 			posX += (int)xFaktor * 40;
-			posY = 265;
+			posY = 275;
 		}
 		break;
 	case 3:
@@ -209,7 +210,7 @@ CPoint CHelpfulValues::CalcRelSubFloorPosition(BITMAP bmpInfo, CPoint wallMiddle
 
 	if (posY > 0) {
 		posX -= (int)(bmpInfo.bmWidth * faktor); // entspr- halber Breite, später Faktor 2
-		posY -= (int)(bmpInfo.bmHeight * faktor);
+		posY -= (int)(bmpInfo.bmHeight * faktor * 2);
 		posY -= 55;
 	}
 
