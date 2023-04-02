@@ -835,6 +835,8 @@ IDB_ITEM3D_CHEST        BITMAP                  "res\\Items3D\\Item_3d_Chest.bmp
 
 IDB_ITEM3D_CHEST_C      BITMAP                  "res\\Items3D\\Item_3d_ChestCenter.bmp"
 
+IDB_OPEN_CHEST          BITMAP                  "res\\OpenChest.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

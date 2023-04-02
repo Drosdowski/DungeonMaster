@@ -45,6 +45,7 @@ CPictures::~CPictures()
 	delete m_pOneHand;
 	delete m_pItemPic;
 	delete m_pOpenScroll;
+	delete m_pOpenChest;
 }
 
 
@@ -82,6 +83,7 @@ void CPictures::InitBitmaps()
 	LoadPic(m_pActionsDamage, IDB_ACTIONS_DAMAGE);
 	LoadPic(m_pOneHand, IDB_ONE_HAND);
 	LoadPic(m_pOpenScroll, IDB_OPEN_SCROLL);
+	LoadPic(m_pOpenChest, IDB_OPEN_CHEST);
 }
 
 CBitmap* CPictures::GetIconBitmap(CDC* pDC, CItem* pItem) {
@@ -205,6 +207,8 @@ void CPictures::RucksackZeichnen(CDC* pDC, CGrpHeld* pGrpHelden)
 		if (pItem) {
 			if (pItem->getItemType() == CItem::ScrollItem)
 				ZeichneScroll(pDC, (CScroll*)pItem);
+			else if (pActiveItem && pActiveItem->getItemType() == CItem::ContainerItem)
+				ZeichneContainer(pDC, (CContainer*)pItem);
 			else
 				ZeichneItemInfo(pDC, pItem);
 		}
@@ -254,7 +258,13 @@ void CPictures::ZeichneItemInfo(CDC* pDC, CItem* item) {
 }
 
 void CPictures::ZeichneContainer(CDC* pDC, CContainer* pContainer) {
+	CDC tmpdc;
+	tmpdc.CreateCompatibleDC(pDC);
 
+	CBitmap* bmp = m_pOpenChest;
+	CPoint pos = m_pItemPic->GetChestKoord();
+	tmpdc.SelectObject(bmp);
+	pDC->TransparentBlt(pos.x, pos.y, 256, 146, &tmpdc, 0, 0, 144, 73, TRANS_BLU);
 }
 
 void CPictures::ZeichneScroll(CDC* pDC, CScroll* scroll) {

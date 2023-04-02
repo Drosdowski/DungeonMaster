@@ -13,7 +13,8 @@
 #define IDB_BITMAP_RUCK                 142
 #define IDB_BITMAP_TREP                 143
 #define IDB_BITMAP_PINV                 144
-#define IDB_OPEN_SCROLL                 161
+#define IDB_OPEN_SCROLL                 160
+#define IDB_OPEN_CHEST                  161
 #define IDB_MAGICBG                     162
 #define IDB_LEVER_UP_FRONT              163
 #define IDB_LEVER_UP_RIGHT              164
@@ -347,7 +348,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        565
+#define _APS_NEXT_RESOURCE_VALUE        566
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

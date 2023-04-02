@@ -445,6 +445,7 @@
     <Image Include="res\Monster\Trolin_Back.bmp" />
     <Image Include="res\Monster\Trolin_Front.bmp" />
     <Image Include="res\Monster\Trolin_Right.bmp" />
+    <Image Include="res\OpenChest.bmp" />
     <Image Include="res\OpenScroll.bmp" />
     <Image Include="res\P.bmp" />
     <Image Include="res\Runes4.bmp" />

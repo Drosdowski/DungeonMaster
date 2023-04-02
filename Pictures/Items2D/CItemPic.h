@@ -12,6 +12,7 @@ public:
 	CBitmap* GetBitmapSheet(CItem* misc);
 	CPoint GetSheetKoords(CItem* misc);
 	CPoint GetScrollKoord();
+	CPoint GetChestKoord();
 
 private:
 	void InitItems();

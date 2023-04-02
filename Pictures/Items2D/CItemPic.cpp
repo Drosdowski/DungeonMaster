@@ -56,3 +56,7 @@ CPoint CItemPic::GetSheetKoords(CItem* item) {
 CPoint CItemPic::GetScrollKoord() {
 	return CPoint(192, 168);
 }
+
+CPoint CItemPic::GetChestKoord() {
+	return CPoint(180, 168);
+}
