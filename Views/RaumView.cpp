@@ -766,12 +766,6 @@ void CRaumView::RaumZeichnen(CDC* pDC)
 					}
 
 				}
-				else if (fieldType == FeldTyp::TELEPORT) {
-					CTeleporter* tele = pField->HoleTeleporter();
-					if (tele && tele->isVisible()) {
-						DrawTeleporter(pDC, &compCdc, xxx, ebene, tele);
-					}
-				}
 				else if (fieldType == FeldTyp::EMPTY) {
 					// Platten, Pfützen, Fussabdrücke, ...
 					DrawOnFloor(pDC, &compCdc, xxx, ebene, pField);
@@ -792,6 +786,12 @@ void CRaumView::RaumZeichnen(CDC* pDC)
 					if (ebene > 0 && xxx > 1)
 					{
 						DrawMonsterGroup(pDC, &compCdc, xxx, ebene, heroDir, pField);
+					}
+				}
+				if (fieldType == FeldTyp::TELEPORT) {
+					CTeleporter* tele = pField->HoleTeleporter();
+					if (tele && tele->isVisible()) {
+						DrawTeleporter(pDC, &compCdc, xxx, ebene, tele);
 					}
 				}
 			}
