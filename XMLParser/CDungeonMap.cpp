@@ -136,7 +136,7 @@ CField* CDungeonMap::ParseTeleport(TiXmlElement* rootNode, VEKTOR pos) {
 			TiXmlElement* teleItem = parentElement->FirstChildElement();
 			if (teleItem) {
 				teleItem->QueryIntAttribute("index", &index);
-				CTeleporter* teleItem = new CTeleporter(m_teleportAtt[index], is_visible, is_open);
+				CTeleporter* teleItem = new CTeleporter(m_teleportAtt[index], is_visible, (CTeleporter::TeleporterState) is_open);
 				return new CField(pos, teleItem);
 			}
 

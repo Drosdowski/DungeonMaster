@@ -304,3 +304,16 @@ void CField::RotateActuators(COMPASS_DIRECTION position) {
 	m_pActuator[position].pop_back();
 	m_pActuator[position].push_front(actuator);
 }
+
+void CField::DrehenAbsolut(COMPASS_DIRECTION direction) {
+	for (int i = 0; i < 4; i++) {
+		for (CItem* item : m_pItem[i]) {
+
+		}
+	}
+}
+
+void CField::DrehenRelativ(int iRelRichtung) {
+
+}
+
