@@ -241,7 +241,7 @@ void CPictures::ZeichneIcons(CDC* pDC, CHeld* pHeld) {
 	for (int iconID = 0; iconID < 30; iconID++) {
 		CItem* item = pHeld->GetItemCarrying(iconID);
 		if (item) {
-			CPoint posBackpack = CScreenCoords::GetbackPackSlotKoords(iconID);
+			CPoint posBackpack = CScreenCoords::GetBackPackSlotKoords(iconID);
 			CBitmap* bmp = m_pItemPic->GetBitmapSheet(item);
 			CPoint pos = m_pItemPic->GetSheetKoords(item);
 			tmpdc.SelectObject(bmp);
@@ -264,7 +264,7 @@ void CPictures::ZeichneContainer(CDC* pDC, CContainer* pContainer) {
 	CBitmap* bmp = m_pOpenChest;
 	CPoint pos = m_pItemPic->GetChestKoord();
 	tmpdc.SelectObject(bmp);
-	pDC->TransparentBlt(pos.x, pos.y, 256, 146, &tmpdc, 0, 0, 144, 73, TRANS_BLU);
+	pDC->TransparentBlt(pos.x, pos.y, 288, 146, &tmpdc, 0, 0, 144, 73, TRANS_BLU);
 }
 
 void CPictures::ZeichneScroll(CDC* pDC, CScroll* scroll) {

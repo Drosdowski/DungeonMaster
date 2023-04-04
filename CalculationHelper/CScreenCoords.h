@@ -22,7 +22,8 @@ public:
 	static SUBPOS CheckHitFloor(CPoint point);
 	static SUBPOS CheckHitAir(CPoint point); // throwing
 
-	static CPoint GetbackPackSlotKoords(int index);
+	static CPoint GetBackPackSlotKoords(int index);
+	static CPoint GetContainerSlotKoords(int index);
 
 
 private:

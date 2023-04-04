@@ -5,7 +5,7 @@
 CScreenCoords::CScreenCoords() {
 }
 
-CPoint CScreenCoords::GetbackPackSlotKoords(int index)
+CPoint CScreenCoords::GetBackPackSlotKoords(int index)
 {
 	switch (index) {
 
@@ -31,6 +31,13 @@ CPoint CScreenCoords::GetbackPackSlotKoords(int index)
 		else
 			return CPoint(0, 0);
 	}
+}
+
+CPoint CScreenCoords::GetContainerSlotKoords(int index) {
+	switch (index) {
+	case 0: return CPoint(234, 178);
+	}
+	return CPoint(0, 0);
 }
 
 int CScreenCoords::CheckHitArrows(CPoint point) {
@@ -157,7 +164,7 @@ int CScreenCoords::CheckHitPortraitHands(CPoint point) {
 
 int CScreenCoords::CheckHitBackpackSlots(CPoint point) {
 	for (int i = 0; i < 30; i++)
-		if (CheckHitSlot(point, GetbackPackSlotKoords(i))) {
+		if (CheckHitSlot(point, GetBackPackSlotKoords(i))) {
 			return i;
 		}
 	return -1;

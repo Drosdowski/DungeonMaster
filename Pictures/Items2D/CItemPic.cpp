@@ -58,5 +58,5 @@ CPoint CItemPic::GetScrollKoord() {
 }
 
 CPoint CItemPic::GetChestKoord() {
-	return CPoint(180, 168);
+	return CPoint(160, 168);
 }
