@@ -92,6 +92,8 @@ public:
 	bool CriticalWeightGone(VEKTOR heroPos, int criticalWeight);
 
 	void RotateActuators(COMPASS_DIRECTION position);
+	void DrehenAbsolut(COMPASS_DIRECTION direction);
+	void DrehenRelativ(int iRelRichtung);
 
 private:
 	void SetTypeDoor(CDoor* pDoor);

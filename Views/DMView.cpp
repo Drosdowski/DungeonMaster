@@ -24,6 +24,7 @@
 #include "..\SpecialTile/CDoor.h"
 #include "..\SpecialTile\CPit.h"
 #include "..\SpecialTile\TrickWall.h"
+#include "..\SpecialTile\CTeleporter.h"
 #include "..\Items/Item.h"
 #include "..\Items/Potion.h"
 #include "..\Items/CMiscellaneous.h"
@@ -447,6 +448,7 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 	CDoor* door;
 	CPit* pit;
 	CTrickWall* trickwall;
+	CTeleporter* port;
 
 	switch (pTargetField->HoleTyp()) {
 	case FeldTyp::DOOR:
@@ -464,7 +466,15 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 		if (activeActuator->GetActionType() == CActuator::Clear) pit->Close();
 		break;
 	case FeldTyp::TELEPORT:
-		// todo trigger teleport
+		port = pTargetField->HoleTeleporter();
+		if (port->getScope() == TeleporterAttributes::None) {
+			port->setOpen(CTeleporter::Active);
+			port->Trigger(GetDocument(), m_pRaumView->GetHeroes(), m_pRaumView->GetMap(), target);
+			port->setOpen(CTeleporter::Inactive);
+		}
+		else {
+			port->setOpen(CTeleporter::Inactive);
+		}
 		break;
 	case FeldTyp::TRICKWALL:
 		trickwall = pTargetField->HoleTrickWall();

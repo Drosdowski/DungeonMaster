@@ -812,12 +812,13 @@ CGrpMonster* CRaumView::GetMonsterGroup(VEKTOR pos) {
 	return pField->GetMonsterGroup();
 }
 
-VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos, boolean &collision)
+VEKTOR CRaumView::Betrete(VEKTOR toPos, boolean &collision)
 {
 	CField* pField = m_pMap->GetField(toPos);
 	FeldTyp iTyp = pField->HoleTyp();
 	CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
 	CGrpMonster* pGrpMonster = pField->GetMonsterGroup();
+	VEKTOR fromPos = pGrpHelden->GetVector();
 	if (iTyp == FeldTyp::WALL) {
 		collision = true;
 		return fromPos;
@@ -858,29 +859,7 @@ VEKTOR CRaumView::Betrete(VEKTOR fromPos, VEKTOR toPos, boolean &collision)
 	else if (iTyp == FeldTyp::TELEPORT) {
 		collision = false;
 		CTeleporter* tele = pField->HoleTeleporter();
-		if (tele->getScope() == TeleporterAttributes::Scope::Items_Party ||
-			tele->getScope() == TeleporterAttributes::Scope::All) {
-			toPos = tele->getTargetField();
-			if (tele->getRotationType() == TeleporterAttributes::RotationType::Absolute)
-			{
-				m_pDoc->SetzeRichtung(tele->getTargetDirection());
-				m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Teleporting.mp3");
-			}
-			else
-			{
-				if (tele->getTargetDirection() == 90)
-				{
-					pGrpHelden->DrehenRelativ(RECHTS);
-				}
-				else if (tele->getTargetDirection() == 180) {
-					pGrpHelden->DrehenRelativ(RECHTS);
-					pGrpHelden->DrehenRelativ(RECHTS);
-				}
-				else if (tele->getTargetDirection() == 270) {
-					pGrpHelden->DrehenRelativ(LINKS);
-				}
-			}
-		}
+		toPos = tele->Trigger(m_pDoc, pGrpHelden, m_pMap, toPos);
 	}
 	else if (iTyp == FeldTyp::STAIRS) {
 		collision = false;

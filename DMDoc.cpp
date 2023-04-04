@@ -113,7 +113,7 @@ void CDMDoc::Laufen()
 			m_pRaumView->TriggerMoveAnimation();
 			if (m_pRaumView->OnStairs()) {
 				// auf Treppe drehen = Treppe nutzen!
-				posFinal = m_pRaumView->Betrete(posFrom, posFrom, collision);
+				posFinal = m_pRaumView->Betrete(posFrom, collision);
 				pGrpHeroes->Laufen(posFinal);
 			}
 			else {
@@ -132,14 +132,14 @@ void CDMDoc::Laufen()
 		{
 			if (m_pRaumView->OnStairs() && m_iWunschRichtung == RUECKWAERTS) {
 				// Sonderregel: Treppe rückwärts läuft nicht gegen die Wand hinter der Gruppe, sondern rauf/runter
-				posFinal = m_pRaumView->Betrete(posFrom, posFrom, collision);
+				posFinal = m_pRaumView->Betrete(posFrom, collision);
 				m_pRaumView->TriggerMoveAnimation();
 				pGrpHeroes->Laufen(posFinal);
 			}
 			else {
 
 				posTarget = pGrpHeroes->HoleZielFeld(m_iWunschRichtung);
-				posFinal = m_pRaumView->Betrete(posFrom, posTarget, collision);
+				posFinal = m_pRaumView->Betrete(posTarget, collision);
 				if (collision)
 				{
 					pGrpHeroes->Kollision(m_iWunschRichtung);

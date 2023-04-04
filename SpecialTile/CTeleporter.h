@@ -1,9 +1,17 @@
 #pragma once
 #include "..\Attributes\TeleporterAttributes.h"
+class CDMDoc;
+class CGrpHeld;
+class CDungeonMap;
 class CTeleporter
 {
 public:
-	CTeleporter(TeleporterAttributes attributes, bool visible, bool open);
+	enum TeleporterState {
+		Inactive = 0,
+		Active = 1
+	};
+
+	CTeleporter(TeleporterAttributes attributes, bool visible, TeleporterState open);
 	~CTeleporter() {};
 
 	VEKTOR getTargetField() { return m_attributes.target; }
@@ -13,10 +21,12 @@ public:
 	int getRotation() { return m_attributes.rotation; }
 	bool isVisible() { return m_isVisible; }
 	bool hasSound() { return m_attributes.sound; }
+	void setOpen(TeleporterState value) { m_open = value; }
+	VEKTOR Trigger(CDMDoc* pDoc, CGrpHeld* pGrpHelden, CDungeonMap* pMap, VEKTOR telePos);
 
 private:
 	bool m_isVisible;
-	bool m_open;
+	TeleporterState m_open;
 	TeleporterAttributes m_attributes;
 	
 };

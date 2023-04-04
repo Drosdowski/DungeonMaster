@@ -53,7 +53,7 @@ public:
 	void TriggerActuatorsNearby();
 
 	void InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures); // TODO: pDOC & pDC private merken
-	VEKTOR Betrete(VEKTOR from, VEKTOR to, boolean &collision);
+	VEKTOR Betrete(VEKTOR to, boolean &collision);
 	CGrpMonster* GetMonsterGroup(VEKTOR pos);
 	CDungeonMap* GetMap() { return m_pMap; }
 	CGrpHeld* GetHeroes() { return m_pMap->GetHeroes(); }
