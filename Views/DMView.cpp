@@ -638,14 +638,14 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 void CDMView::ParseClickBackpack(CPoint point) {
 	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 	CHeld* pHeld = grpHelden->GetActiveHero();
+	CItem* itemInMainHand = grpHelden->GetItemInHand();
 	if (CScreenCoords::CheckHitEye(point))
 		pHeld->GetRucksack()->SetzeModusExtend(MOD_EXT_AUGE);
 	else if (CScreenCoords::CheckHitMouth(point))
 	{
-		CItem* item = grpHelden->GetItemInHand();
 		CWeapon* weapon = NULL;
-		if (item->getItemType() == CItem::ItemType::MiscItem) {
-			CMiscellaneous* misc = (CMiscellaneous*)item;
+		if (itemInMainHand->getItemType() == CItem::ItemType::MiscItem) {
+			CMiscellaneous* misc = (CMiscellaneous*)itemInMainHand;
 			if (misc && misc->GetGroup() == CMiscellaneous::ItemGroup::Consumable) {
 				if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Water) {
 					if (misc->GetSubtype() > 0) {
@@ -656,13 +656,13 @@ void CDMView::ParseClickBackpack(CPoint point) {
 				else {
 					pHeld->Essen(50);
 					grpHelden->EmptyHand();
-					delete item; // destroy permanently!
+					delete itemInMainHand; // destroy permanently!
 				}
 			}
 		}
-		else if (item->getItemType() == CItem::ItemType::PotionItem) {
+		else if (itemInMainHand->getItemType() == CItem::ItemType::PotionItem) {
 			// drink potions
-			CPotion* potion = (CPotion*)item;
+			CPotion* potion = (CPotion*)itemInMainHand;
 			CPotionAttributes att = potion->GetAttributes();
 			if (potion->GetType() == CPotionAttributes::Vi) {
 				pHeld->WerteTemporaerAendern(att.power*10, 0, 0);
@@ -689,33 +689,42 @@ void CDMView::ParseClickBackpack(CPoint point) {
 		// todo refaktorieren mit PutGetItem()
 		int slot = CScreenCoords::CheckHitBackpackSlots(point);
 		if (slot >= 0) {
-			CItem* itemInHandToPut = grpHelden->GetItemInHand();
-			CItem* newItemInHandToGet = NULL;
-
-			if (itemInHandToPut && itemInHandToPut->CheckGroup(slot, itemInHandToPut->GetGroup()))
-			{
-				newItemInHandToGet = pHeld->SwitchItemAt(slot, itemInHandToPut);
-			}
-			else if (!itemInHandToPut) {
-				newItemInHandToGet = pHeld->GetItemCarrying(slot);
-			}
-			else {
-				// not allowed
-				return;
-			}
-			grpHelden->EmptyHand();
-			if (newItemInHandToGet == NULL) {
-				// ablegen - passt.
-			}
-			else {
-				// tauschen		
-				grpHelden->TakeItemInHand(newItemInHandToGet);
-				if (!itemInHandToPut)
-					pHeld->RemoveItemCarrying(slot);
-
-			}
-			
+			SwitchItem(itemInMainHand, slot, grpHelden);
 		}
+	}
+	if (itemInMainHand->getItemType() == CItem::ContainerItem) {
+		int slot = CScreenCoords::CheckHitContainerSlots(point);
+		if (slot >= 0) {
+			SwitchItem(itemInMainHand, slot, grpHelden);
+		}
+	}
+}
+
+void CDMView::SwitchItem(CItem* itemInMainHand, int slot, CGrpHeld* grpHelden) {
+	CHeld* pHeld = grpHelden->GetActiveHero();
+	CItem* newItemInHandToGet = NULL;
+
+	if (itemInMainHand && itemInMainHand->CheckGroup(slot, itemInMainHand->GetGroup()))
+	{
+		newItemInHandToGet = pHeld->SwitchItemAt(slot, itemInMainHand);
+	}
+	else if (!itemInMainHand) {
+		newItemInHandToGet = pHeld->GetItemCarrying(slot);
+	}
+	else {
+		// not allowed
+		return;
+	}
+	grpHelden->EmptyHand();
+	if (newItemInHandToGet == NULL) {
+		// ablegen - passt.
+	}
+	else {
+		// tauschen		
+		grpHelden->TakeItemInHand(newItemInHandToGet);
+		if (!itemInMainHand)
+			pHeld->RemoveItemCarrying(slot);
+
 	}
 }
 

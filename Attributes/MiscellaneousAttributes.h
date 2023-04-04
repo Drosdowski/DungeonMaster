@@ -32,7 +32,8 @@ public:
 		WormRound = 34,
 		Drumstick = 35,
 		MagicBoxBlue = 42,
-		MagicBoxGreen = 43
+		MagicBoxGreen = 43,
+		MirrorOfDawn = 44
 	};
 
 	MiscItemType type;

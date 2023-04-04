@@ -35,7 +35,14 @@ CPoint CScreenCoords::GetBackPackSlotKoords(int index)
 
 CPoint CScreenCoords::GetContainerSlotKoords(int index) {
 	switch (index) {
-	case 0: return CPoint(234, 178);
+	case 0: return CPoint(234, 178); // 36-53 = 16 => 72 => 162 + 2*36       6-  => 12 => 166 + 2*6
+	case 1: return CPoint(212, 212); // 25-   = 162 + 2*25					23
+	case 2: return CPoint(222, 246); // 30-   = 162 + 2*30
+	case 3: return CPoint(256, 256);									// 45 => 166+90
+	case 4: return CPoint(290, 262);									// 48
+	case 5: return CPoint(324, 266); 
+	case 6: return CPoint(338, 268); 
+	case 7: return CPoint(362, 270); 
 	}
 	return CPoint(0, 0);
 }
@@ -169,6 +176,15 @@ int CScreenCoords::CheckHitBackpackSlots(CPoint point) {
 		}
 	return -1;
 }
+
+int CScreenCoords::CheckHitContainerSlots(CPoint point) {
+	for (int i = 0; i < 8; i++)
+		if (CheckHitSlot(point, GetContainerSlotKoords(i))) {
+			return i;
+		}
+	return -1;
+}
+
 
 bool CScreenCoords::CheckHitDeco(CPoint point, CSize size) {
 	if (size == CSize(0, 0))

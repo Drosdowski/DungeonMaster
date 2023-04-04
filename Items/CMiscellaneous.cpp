@@ -36,6 +36,7 @@ int CMiscellaneous::GetOffsetForGroup() {
 			case CMiscellaneousAttributes::CopperCoin: return 29;
 			case CMiscellaneousAttributes::SilverCoin: return 30;
 			case CMiscellaneousAttributes::GoldCoin: return 31;
+			case CMiscellaneousAttributes::MirrorOfDawn: return 6;
 		}
 		
 		assert(false); // todo !!

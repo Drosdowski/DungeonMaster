@@ -49,6 +49,10 @@ VEKTOR CTeleporter::Trigger(CDMDoc* pDoc, CGrpHeld* pGrpHelden, CDungeonMap* pMa
 			SUBPOS_ABSOLUTE pos = (SUBPOS_ABSOLUTE)i;
 			for (CItem* item : pFieldFrom->GetItem(pos)) {
 				pFieldTo->PutItem(pFieldFrom->TakeItem(pos), pos);
+				if (!soundPlayed) {
+					pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Teleporting.mp3");
+					soundPlayed = true;
+				}
 			}
 		}
 

@@ -21,6 +21,7 @@ class CRaumView;
 class CGroupView;
 class CZauberView;
 class CPictures;
+class CItem;
 class CDMView : public CView
 {
 protected: // create from serialization only
@@ -104,6 +105,8 @@ protected:
 	void Awake();
 	// Spells
 	void CastMagicMissile(CMagicMissile::MagicMissileType missileType, int size);
+private:
+	void SwitchItem(CItem* itemInMainHand, int slot, CGrpHeld* grpHelden);
 
 };
 

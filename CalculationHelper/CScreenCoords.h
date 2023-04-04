@@ -12,6 +12,7 @@ public:
 	static int CheckHitHeroes(CPoint point);
 	static int CheckHitPortraitHands(CPoint point);
 	static int CheckHitBackpackSlots(CPoint point);
+	static int CheckHitContainerSlots(CPoint point);
 	static bool CheckHitDeco(CPoint point, CSize size);
 	static bool CheckHitMainScr(CPoint);
 	static bool CheckHitEye(CPoint);

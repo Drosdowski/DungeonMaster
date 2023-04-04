@@ -262,9 +262,20 @@ void CPictures::ZeichneContainer(CDC* pDC, CContainer* pContainer) {
 	tmpdc.CreateCompatibleDC(pDC);
 
 	CBitmap* bmp = m_pOpenChest;
-	CPoint pos = m_pItemPic->GetChestKoord();
+	CPoint posChest = m_pItemPic->GetChestKoord();
 	tmpdc.SelectObject(bmp);
-	pDC->TransparentBlt(pos.x, pos.y, 288, 146, &tmpdc, 0, 0, 144, 73, TRANS_BLU);
+	pDC->TransparentBlt(posChest.x, posChest.y, 288, 146, &tmpdc, 0, 0, 144, 73, TRANS_BLU);
+
+	for (int iconID = 0; iconID < 8; iconID++) {
+		CItem* item = pContainer->GetSubItem(iconID);
+		if (item) {
+			CPoint posContainer = CScreenCoords::GetContainerSlotKoords(iconID);
+			CBitmap* bmp = m_pItemPic->GetBitmapSheet(item);
+			CPoint pos = m_pItemPic->GetSheetKoords(item);
+			tmpdc.SelectObject(bmp);
+			pDC->StretchBlt(posContainer.x, posContainer.y, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, SRCCOPY);
+		}
+	}
 }
 
 void CPictures::ZeichneScroll(CDC* pDC, CScroll* scroll) {
