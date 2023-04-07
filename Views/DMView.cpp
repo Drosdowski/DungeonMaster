@@ -28,6 +28,7 @@
 #include "..\Items/Item.h"
 #include "..\Items/Potion.h"
 #include "..\Items/CMiscellaneous.h"
+#include "..\Items/Container.h"
 #include "..\Items/WallDecoration.h"
 #include "..\Items\MagicMissile.h"
 #include <cassert>
@@ -641,7 +642,7 @@ void CDMView::ParseClickBackpack(CPoint point) {
 	CItem* itemInMainHand = grpHelden->GetItemInHand();
 	if (CScreenCoords::CheckHitEye(point))
 		pHeld->GetRucksack()->SetzeModusExtend(MOD_EXT_AUGE);
-	else if (CScreenCoords::CheckHitMouth(point))
+	else if (itemInMainHand && CScreenCoords::CheckHitMouth(point))
 	{
 		CWeapon* weapon = NULL;
 		if (itemInMainHand->getItemType() == CItem::ItemType::MiscItem) {
@@ -689,18 +690,27 @@ void CDMView::ParseClickBackpack(CPoint point) {
 		// todo refaktorieren mit PutGetItem()
 		int slot = CScreenCoords::CheckHitBackpackSlots(point);
 		if (slot >= 0) {
-			SwitchItem(itemInMainHand, slot, grpHelden);
+			SwitchBackpackItem(itemInMainHand, slot, grpHelden);
+		}
+		else {
+			CItem* pItem = pHeld->GetItemCarrying(1);
+			if (pItem->getItemType() == CItem::ContainerItem) {
+				slot = CScreenCoords::CheckHitContainerSlots(point);
+				if (slot >= 0) {
+					SwitchContainerItem(itemInMainHand, slot, grpHelden, (CContainer*)pItem);
+				}
+			}
 		}
 	}
-	if (itemInMainHand->getItemType() == CItem::ContainerItem) {
+	if (itemInMainHand && itemInMainHand->getItemType() == CItem::ContainerItem) {
 		int slot = CScreenCoords::CheckHitContainerSlots(point);
 		if (slot >= 0) {
-			SwitchItem(itemInMainHand, slot, grpHelden);
+			SwitchBackpackItem(itemInMainHand, slot, grpHelden);
 		}
 	}
 }
 
-void CDMView::SwitchItem(CItem* itemInMainHand, int slot, CGrpHeld* grpHelden) {
+void CDMView::SwitchBackpackItem(CItem* itemInMainHand, int slot, CGrpHeld* grpHelden) {
 	CHeld* pHeld = grpHelden->GetActiveHero();
 	CItem* newItemInHandToGet = NULL;
 
@@ -724,6 +734,29 @@ void CDMView::SwitchItem(CItem* itemInMainHand, int slot, CGrpHeld* grpHelden) {
 		grpHelden->TakeItemInHand(newItemInHandToGet);
 		if (!itemInMainHand)
 			pHeld->RemoveItemCarrying(slot);
+
+	}
+}
+
+void CDMView::SwitchContainerItem(CItem* itemInMainHand, int slot, CGrpHeld* grpHelden, CContainer* pContainer) {
+	CItem* newItemInHandToGet = NULL;
+
+	if (itemInMainHand)
+	{
+		newItemInHandToGet = pContainer->SwitchItemAt(slot, itemInMainHand);
+	}
+	else  {
+		newItemInHandToGet = pContainer->GetItemCarrying(slot);
+	}
+	grpHelden->EmptyHand();
+	if (newItemInHandToGet == NULL) {
+		// ablegen - passt.
+	}
+	else {
+		// tauschen		
+		grpHelden->TakeItemInHand(newItemInHandToGet);
+		if (!itemInMainHand)
+			pContainer->RemoveItemCarrying(slot);
 
 	}
 }

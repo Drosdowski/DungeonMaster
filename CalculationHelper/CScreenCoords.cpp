@@ -35,14 +35,14 @@ CPoint CScreenCoords::GetBackPackSlotKoords(int index)
 
 CPoint CScreenCoords::GetContainerSlotKoords(int index) {
 	switch (index) {
-	case 0: return CPoint(234, 178); // 36-53 = 16 => 72 => 162 + 2*36       6-  => 12 => 166 + 2*6
-	case 1: return CPoint(212, 212); // 25-   = 162 + 2*25					23
-	case 2: return CPoint(222, 246); // 30-   = 162 + 2*30
-	case 3: return CPoint(256, 256);									// 45 => 166+90
-	case 4: return CPoint(290, 262);									// 48
-	case 5: return CPoint(324, 266); 
-	case 6: return CPoint(338, 268); 
-	case 7: return CPoint(362, 270); 
+	case 0: return CPoint(234, 182); // 36-53 = 16 => 72 => 162 + 2*36       6-  => 12 => 166 + 2*6
+	case 1: return CPoint(212, 216); // 25-   = 162 + 2*25					23
+	case 2: return CPoint(222, 250); // 30-   = 162 + 2*30
+	case 3: return CPoint(256, 260);									// 45 => 166+90
+	case 4: return CPoint(290, 266);									// 48
+	case 5: return CPoint(324, 270); 
+	case 6: return CPoint(358, 272); 
+	case 7: return CPoint(392, 274); 
 	}
 	return CPoint(0, 0);
 }

@@ -79,3 +79,19 @@ double CContainer::GetWeight() {
 	}
 	return round(weight);
 }
+
+CItem* CContainer::SwitchItemAt(int index, CItem* item)
+{
+	CItem* carryingBefore = m_subItems[index];
+	m_subItems[index] = item;
+	if (item->getItemType() == CItem::ScrollItem) {
+		CScroll* pScroll = (CScroll*)item;
+		pScroll->SetOpen(0);
+	}
+	else if (item->getItemType() == CItem::ContainerItem) {
+		CContainer* pContainer = (CContainer*)item;
+		pContainer->SetOpen(false);
+	}
+
+	return carryingBefore;
+}
