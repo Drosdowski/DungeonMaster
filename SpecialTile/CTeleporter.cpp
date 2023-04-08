@@ -11,7 +11,7 @@ CTeleporter::CTeleporter(TeleporterAttributes attributes, bool visible, Teleport
 }
 
 VEKTOR CTeleporter::Trigger(CDMDoc* pDoc, CGrpHeld* pGrpHelden, CDungeonMap* pMap, VEKTOR telePos) {
-	VEKTOR heroPos = pGrpHelden->GetVector(); 
+	VEKTOR heroPos = telePos;
 	VEKTOR toPos = getTargetField();
 	bool soundPlayed = false;
 	if (getScope() == TeleporterAttributes::Scope::Items_Party ||

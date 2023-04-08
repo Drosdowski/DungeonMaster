@@ -380,7 +380,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 				InvokeRemoteActuator(currentActuator, nextActuator);
 				return true; // RotateActuators
 			}
-			else if (type == 4) {
+			else if (type == 4 || type == 3) {
 				// Item Receiver - Lock / ... ?
 				CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 				CItem* itemInHand = grpHelden->GetItemInHand();
@@ -400,9 +400,12 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 						}
 						else assert(false); // todo ...
 
-						grpHelden->EmptyHand();
-						delete (itemInHand);
-						::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
+						if (type == 4)
+						{
+							grpHelden->EmptyHand();
+							delete (itemInHand);
+							::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
+						}
 						if (currentActuator->IsOnceOnly()) {
 							currentActuator->Deactivate();
 						}
@@ -595,7 +598,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 				CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
 				if (FeldVorHeld) {
 					ParseClickDoorButton(point, FeldVorHeld);
-					if (FeldVorHeld->BlockedToWalk()) {
+					if (FeldVorHeld->BlockedToPut()) {
 						COMPASS_DIRECTION dir = CHelpfulValues::OppositeDirection(grpHelden->GetDirection());
 						std::deque<CActuator*> actuators = (FeldVorHeld->GetActuator(dir));
 						if (!actuators.empty()) {
