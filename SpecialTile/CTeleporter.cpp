@@ -19,9 +19,11 @@ VEKTOR CTeleporter::Trigger(CDMDoc* pDoc, CGrpHeld* pGrpHelden, CDungeonMap* pMa
 		heroPos = toPos;
 		if (getRotationType() == TeleporterAttributes::RotationType::Absolute)
 		{
-			pDoc->SetzeRichtung(getTargetDirection());
-			soundPlayed = true;
-			pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Teleporting.mp3");
+			pGrpHelden->DrehenAbsolut(getTargetDirection());
+			if (m_attributes.sound) {
+				soundPlayed = true;
+				pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Teleporting.mp3");
+			}
 		}
 		else
 		{
@@ -49,7 +51,7 @@ VEKTOR CTeleporter::Trigger(CDMDoc* pDoc, CGrpHeld* pGrpHelden, CDungeonMap* pMa
 			SUBPOS_ABSOLUTE pos = (SUBPOS_ABSOLUTE)i;
 			for (CItem* item : pFieldFrom->GetItem(pos)) {
 				pFieldTo->PutItem(pFieldFrom->TakeItem(pos), pos);
-				if (!soundPlayed) {
+				if (!soundPlayed && m_attributes.sound) {
 					pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Teleporting.mp3");
 					soundPlayed = true;
 				}
