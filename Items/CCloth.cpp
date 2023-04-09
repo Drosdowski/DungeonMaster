@@ -17,6 +17,7 @@ int CCloth::GetOffsetForGroup() {
 	case CClothAttributes::HelmOfDarc: return 6;
 	case CClothAttributes::SilkShirt: return 6;
 	case CClothAttributes::ElvenDoublet: return 7;
+	case CClothAttributes::LeatherJerkin: return 8;
 	case CClothAttributes::Ghi: return 10;
 	case CClothAttributes::Sandals: return 16;
 	case CClothAttributes::SuedeBoots: return 17;
