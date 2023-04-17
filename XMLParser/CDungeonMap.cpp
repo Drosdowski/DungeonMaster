@@ -466,7 +466,7 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 			<direction>North< / direction> <!--remote specific-->
 			< / actuator> <!--North / TopLeft-->
 			< / items> */
-	int index, position, type, graphic, data, once_only;
+	int index, position, type, graphic, data, once_only, delay;
 	int action = 0;
 	VEKTOR target = coords;
 	CActuator::ActionTypes actionType;
@@ -478,19 +478,7 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 	TiXmlElement* actuatorAttributes = actuatorItem->FirstChildElement();
 	while (actuatorAttributes)
 	{
-		if (strcmp(actuatorAttributes->Value(), "action_type") == 0) {
-			const char* strActionType = actuatorAttributes->GetText();
-			if (strcmp(strActionType, "Set") == 0) actionType = CActuator::Set;
-			if (strcmp(strActionType, "Clear") == 0) actionType = CActuator::Clear;
-			if (strcmp(strActionType, "Hold") == 0) actionType = CActuator::Hold;
-			if (strcmp(strActionType, "Toggle") == 0) actionType = CActuator::Toggle;
-		}
-		else if (strcmp(actuatorAttributes->Value(), "action_target") == 0) {
-			const char* strActionTarget = actuatorAttributes->GetText();
-			if (strcmp(strActionTarget, "remote") == 0) actionTarget = CActuator::Remote;
-			if (strcmp(strActionTarget, "local") == 0) actionTarget = CActuator::Local;
-		}
-		else if (strcmp(actuatorAttributes->Value(), "type") == 0) {
+		if (strcmp(actuatorAttributes->Value(), "type") == 0) {
 			const char* strValue = actuatorAttributes->GetText();
 			std::stringstream streamValue;
 			streamValue << strValue;
@@ -507,6 +495,24 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 			std::stringstream streamValue;
 			streamValue << strValue;
 			streamValue >> graphic;
+		}
+		else if (strcmp(actuatorAttributes->Value(), "action_target") == 0) {
+			const char* strActionTarget = actuatorAttributes->GetText();
+			if (strcmp(strActionTarget, "remote") == 0) actionTarget = CActuator::Remote;
+			if (strcmp(strActionTarget, "local") == 0) actionTarget = CActuator::Local;
+		}
+		else if (strcmp(actuatorAttributes->Value(), "delay") == 0) {
+			const char* strValue = actuatorAttributes->GetText();
+			std::stringstream streamValue;
+			streamValue << strValue;
+			streamValue >> delay;
+		}
+		else if (strcmp(actuatorAttributes->Value(), "action_type") == 0) {
+			const char* strActionType = actuatorAttributes->GetText();
+			if (strcmp(strActionType, "Set") == 0) actionType = CActuator::Set;
+			if (strcmp(strActionType, "Clear") == 0) actionType = CActuator::Clear;
+			if (strcmp(strActionType, "Hold") == 0) actionType = CActuator::Hold;
+			if (strcmp(strActionType, "Toggle") == 0) actionType = CActuator::Toggle;
 		}
 		else if (strcmp(actuatorAttributes->Value(), "target_x") == 0) {
 			const char* strValue = actuatorAttributes->GetText();
@@ -538,7 +544,7 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 
 	//WallDecorationType graphicType = graphic > 0 ? m_wallDecorationTypes[graphic, coords.z] : None;
 	//if (graphicType < 0 || graphicType > 255) graphicType = None; 
-	CActuator* actuator = new CActuator(index, (COMPASS_DIRECTION)position, target, actionType, actionTarget, type, data, graphic, once_only, (action == 1));
+	CActuator* actuator = new CActuator(index, (COMPASS_DIRECTION)position, target, actionType, actionTarget, type, data, graphic, once_only, delay, (action == 1));
 	m_pFeld[coords.x][coords.y][coords.z]->PutActuator(actuator, (COMPASS_DIRECTION)position);
 }
 

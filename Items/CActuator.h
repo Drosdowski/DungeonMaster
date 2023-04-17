@@ -13,7 +13,7 @@ public:
 		Local
 	};
 
-	CActuator(int index, COMPASS_DIRECTION position, VEKTOR target, ActionTypes actionTypes, ActionTarget actionTarget, int type, int data, int graphic, int once_only, bool action);
+	CActuator(int index, COMPASS_DIRECTION position, VEKTOR target, ActionTypes actionTypes, ActionTarget actionTarget, int type, int data, int graphic, int once_only, int delay, bool action);
 	~CActuator();
  
 	int GetType() { return m_type; }
@@ -35,15 +35,21 @@ public:
 	void DecreaseGate() { m_gateCounter--; }
 	bool GateFull() { return m_gateCounter==2; }
 
+	bool delayDone() { return m_delayCounter == 0; }
+	void decreaseDelay() { m_delayCounter--; }
+	void resetDelay() { m_delayCounter = m_delay; }
+
 private:
 	int m_index;
 	COMPASS_DIRECTION m_position;
 	int m_type;
 	int m_graphic;
 	int m_data;
-	bool m_active;
 	int m_once_only;
 	int m_gateCounter;
+	int m_delayCounter;
+	int m_delay;
+	bool m_active;
 	bool m_action;
 	VEKTOR m_target;
 	ActionTypes m_actionType;

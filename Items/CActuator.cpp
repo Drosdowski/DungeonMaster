@@ -10,6 +10,7 @@ CActuator::CActuator(int index,
 					 int data, 
 					 int graphic, 
 					 int once_only,
+					 int delay,
 					 bool action) {
 	m_index = index;
 	m_target = target;
@@ -20,9 +21,12 @@ CActuator::CActuator(int index,
 	m_data = data;
 	m_graphic = graphic;
 	m_once_only = once_only;
+	m_delay = delay;
 	m_active = true;
 	m_action = action;
 	m_gateCounter = 0;
+
+	resetDelay();
 }
 
 CActuator::~CActuator() {
