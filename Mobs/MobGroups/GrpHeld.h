@@ -36,7 +36,7 @@ public:
 	void EmptyHand();
 
 	virtual bool Laufbereit();
-	void Laufen(VEKTOR WunschPos);
+	void Laufen(VEKTOR WunschPos, bool teleport);
 
 	void PutGetItem(int handOfHeroId, int heroId);
 	void ThrowItemInHeroHand(CHeld* hero, CField* field, SUBPOS seite);

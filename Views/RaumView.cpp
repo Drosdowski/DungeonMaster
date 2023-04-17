@@ -858,8 +858,10 @@ VEKTOR CRaumView::Betrete(VEKTOR toPos, boolean &collision)
 	}
 	else if (iTyp == FeldTyp::TELEPORT) {
 		collision = false;
-		CTeleporter* tele = pField->HoleTeleporter();
-		toPos = tele->Trigger(m_pDoc, pGrpHelden, m_pMap, toPos);
+		CTeleporter* pTeleport = pField->HoleTeleporter();
+		if (pTeleport->isOpen()) {
+			toPos = pTeleport->Trigger(m_pDoc, m_pMap, toPos);
+		}
 	}
 	else if (iTyp == FeldTyp::STAIRS) {
 		collision = false;
@@ -1202,11 +1204,21 @@ void CRaumView::MoveAnythingNearby() {
 
 void CRaumView::TriggerPassiveActuators(VEKTOR fieldPos, VEKTOR heroPos) {
 	CField* field = m_pMap->GetField(fieldPos);
-	std::deque<CActuator*> actuators = field->GetActuator((COMPASS_DIRECTION)0);
-	for (CActuator* actuator : actuators) {
-		TriggerPassiveActuator(heroPos, field, actuator);
+	std::deque<CActuator*> actuatorsAtPosition;
+
+	for (int direction = 0; direction < 4; direction++) {
+		// Alle Aktuatoren sammeln, egal welche Position. Aber je Position nur den jeweils ersten.
+		std::deque<CActuator*> actuators = field->GetActuator((COMPASS_DIRECTION)direction);
+		if (!actuators.empty()) {			
+			actuatorsAtPosition.push_back(actuators[0]);
+		}
+	}
+
+	if (!actuatorsAtPosition.empty()) {
+		TriggerPassiveActuator(heroPos, field, actuatorsAtPosition[0]);
 		field->StoreCurrentWeight(heroPos);
 	}
+
 }
 
 void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator* actuator) {
@@ -1223,9 +1235,27 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 			CField* pTargetField = m_pMap->GetField(target);
 			TriggerDoor(pTargetField, type, criticalWeightBreached);
 			TriggerPit(pTargetField, type, criticalWeightBreached); 
+			TriggerTeleport(pTargetField, type, criticalWeightBreached);
 		}
 	}
-
+	if (actuator->GetType() == 5) {
+		VEKTOR target = actuator->GetActionTarget() == CActuator::ActionTarget::Remote ? actuator->GetTarget() : field->HolePos();
+		CField* pTargetField = GetMap()->GetField(target);
+		CActuator::ActionTypes type = actuator->GetActionType();
+		
+		TriggerDoor(pTargetField, type, true);
+		TriggerPit(pTargetField, type, true);
+		TriggerTeleport(pTargetField, type, true);
+		/*for (int dir = 0; dir < 4; dir++) {
+			pTargetActuators = pTargetField->GetActuator(COMPASS_DIRECTION(dir));
+			if (pTargetActuators.size() > 0) {
+				CActuator* gateActuator = pTargetActuators.back();
+				if (actuator->GetActionType() == CActuator::Toggle) gateActuator->IncreaseGate();
+				if (gateActuator->GateFull())
+					InvokeRemoteActuator(gateActuator, NULL);
+			}
+		}*/
+	}
 }
 
 void CRaumView::TriggerPit(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached) {
@@ -1279,6 +1309,43 @@ void CRaumView::TriggerDoor(CField* pTargetField, CActuator::ActionTypes type, b
 			pDoor->Toggle(); // todo prüfen 
 			break;
 		}
+	}
+}
+
+void CRaumView::TriggerTeleport(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached) {
+	CGrpHeld* pGrpHeroes = m_pMap->GetHeroes();
+	VEKTOR heroPos = pGrpHeroes->GetVector(); // Namen angleichen - HolePos etc
+	CTeleporter* pTeleport = pTargetField->HoleTeleporter(); 
+	VEKTOR newPos = heroPos;
+	if (pTeleport != NULL) {
+		switch (type)
+		{
+		case CActuator::Set:
+			if (criticalWeightBreached) {
+				pTeleport->setOpen(CTeleporter::Active);
+				newPos = pTeleport->Trigger(m_pDoc, m_pMap, pTargetField->HolePos());
+			}
+			break;
+		case CActuator::Toggle:
+			if (criticalWeightBreached) {
+				pTeleport->toggleOpen();
+				if (pTeleport->isOpen()) {
+					newPos = pTeleport->Trigger(m_pDoc, m_pMap, pTargetField->HolePos());
+				}
+			}
+			break;
+		case CActuator::Clear:
+			if (criticalWeightBreached) {
+				pTeleport->setOpen(CTeleporter::Inactive); 
+			}
+			break;
+		case CActuator::Hold:
+			newPos = pTeleport->Trigger(m_pDoc, m_pMap, pTargetField->HolePos()); // todo prüfen 
+			break;
+		}
+	}
+	if (newPos.x != heroPos.x || newPos.y != heroPos.y || newPos.z != heroPos.z) {
+		pGrpHeroes->Laufen(newPos, true);
 	}
 }
 
@@ -1344,7 +1411,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 			{
 				// Kommt näher => Move!
 
-				pGrpMon->Laufen(targetPos);
+				pGrpMon->Laufen(targetPos, false);
 				m_pDoc->PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-Move(Skeleton).mp3");
 
 				return targetPos;

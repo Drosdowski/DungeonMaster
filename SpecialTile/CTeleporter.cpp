@@ -10,35 +10,41 @@ CTeleporter::CTeleporter(TeleporterAttributes attributes, bool visible, Teleport
 	m_open = open;
 }
 
-VEKTOR CTeleporter::Trigger(CDMDoc* pDoc, CGrpHeld* pGrpHelden, CDungeonMap* pMap, VEKTOR telePos) {
-	VEKTOR heroPos = telePos;
+VEKTOR CTeleporter::Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos) {
+	CGrpHeld* pGrpHelden = pMap->GetHeroes();
+	VEKTOR heroPos = pGrpHelden->GetVector();
 	VEKTOR toPos = getTargetField();
 	bool soundPlayed = false;
 	if (getScope() == TeleporterAttributes::Scope::Items_Party ||
 		getScope() == TeleporterAttributes::Scope::All) {
-		heroPos = toPos;
-		if (getRotationType() == TeleporterAttributes::RotationType::Absolute)
-		{
-			pGrpHelden->DrehenAbsolut(getTargetDirection());
-			if (m_attributes.sound) {
-				soundPlayed = true;
-				pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Teleporting.mp3");
+		if (heroPos.x == telePos.x && heroPos.y == telePos.y && heroPos.z == telePos.z) { // todo vektor equal function
+			if (!(heroPos.x == toPos.x && heroPos.y == toPos.y && heroPos.z == toPos.z)) {
+				heroPos = toPos;
+				if (!soundPlayed && m_attributes.sound) {
+					pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Teleporting.mp3");
+					soundPlayed = true;
+				}
 			}
-		}
-		else
-		{
-			if (getTargetDirection() == 90)
+			if (getRotationType() == TeleporterAttributes::RotationType::Absolute)
 			{
-				pGrpHelden->DrehenRelativ(RECHTS);
+				pGrpHelden->DrehenAbsolut(getTargetDirection());
 			}
-			else if (getTargetDirection() == 180) {
-				pGrpHelden->DrehenRelativ(RECHTS);
-				pGrpHelden->DrehenRelativ(RECHTS);
-			}
-			else if (getTargetDirection() == 270) {
-				pGrpHelden->DrehenRelativ(LINKS);
+			else
+			{
+				if (getTargetDirection() == 90)
+				{
+					pGrpHelden->DrehenRelativ(RECHTS);
+				}
+				else if (getTargetDirection() == 180) {
+					pGrpHelden->DrehenRelativ(RECHTS);
+					pGrpHelden->DrehenRelativ(RECHTS);
+				}
+				else if (getTargetDirection() == 270) {
+					pGrpHelden->DrehenRelativ(LINKS);
+				}
 			}
 		}
+
 	} 
 	if (getScope() == TeleporterAttributes::Scope::Items_Party ||
 		getScope() == TeleporterAttributes::Scope::Items ||

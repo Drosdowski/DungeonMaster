@@ -480,7 +480,7 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 		port = pTargetField->HoleTeleporter();
 		if (port->getScope() == TeleporterAttributes::None) {
 			port->setOpen(CTeleporter::Active);
-			port->Trigger(GetDocument(), m_pRaumView->GetHeroes(), m_pRaumView->GetMap(), target);
+			port->Trigger(GetDocument(), m_pRaumView->GetMap(), target);
 			port->setOpen(CTeleporter::Inactive);
 		}
 		else {

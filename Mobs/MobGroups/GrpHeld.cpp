@@ -41,8 +41,8 @@ CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 	//m_posPosition = VEKTOR{ 12,29,1 }; // bei Trickwall
 	// m_posPosition = VEKTOR{ 10,1,1 }; // keyhole
 	//m_posPosition = VEKTOR{ 6,0,1 }; // bei Keule vor 1. Monster
-	m_posPosition = VEKTOR{ 7,14,2 }; // bei Trigger 127
-	//m_posPosition = VEKTOR{ 3,28,2 }; // bei Compass
+	//m_posPosition = VEKTOR{ 7,14,2 }; // bei Trigger 127
+	m_posPosition = VEKTOR{ 3,28,2 }; // bei Compass
 	//m_posPosition = VEKTOR{ 15,18,2 }; // 2. etage mitte
 	//m_posPosition = VEKTOR{ 1,31,2 }; // 2. etage Treppe
 	//m_posPosition = VEKTOR{ 15,18,3 }; // 3. Etage Teleport
@@ -336,13 +336,14 @@ bool CGrpHeld::Laufbereit()
 	return bLaufbereit;
 }
 
-void CGrpHeld::Laufen(VEKTOR WunschPos) {
+void CGrpHeld::Laufen(VEKTOR WunschPos, bool teleport) {
 	for (int i = 1; i <= 4; i++)
 	{
 		CHeld* pHero = (CHeld*)m_pMember[i];
 		if (pHero && (pHero->isAlive()))
 		{
-			pHero->WerteTemporaerAendern(0, -1, 0);
+			if (!teleport)
+				pHero->WerteTemporaerAendern(0, -1, 0);
 			pHero->MoveDone();
 		}
 	}
