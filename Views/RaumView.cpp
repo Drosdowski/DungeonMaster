@@ -1227,42 +1227,34 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 		return;
 	}
 
+	VEKTOR target = actuator->GetActionTarget() == CActuator::ActionTarget::Remote ? actuator->GetTarget() : field->HolePos();
+	CField* pTargetField = m_pMap->GetField(target);
 	int critWeight = actuator->GetCriticalWeigth();
 	bool criticalWeightBreached = field->CriticalWeightBreached(heroPos, critWeight); 
 	bool criticalWeightGone = field->CriticalWeightGone(heroPos, critWeight); 
 
-		switch (actuator->GetType()) { // was unterscheidet 1 & 3 ?
-		case 1:
-		case 3:
-			if (criticalWeightBreached || criticalWeightGone) {
-				VEKTOR target = actuator->GetTarget();
-				CActuator::ActionTypes type = actuator->GetActionType();
-				CField* pTargetField = m_pMap->GetField(target);
-				TriggerDoor(pTargetField, type, criticalWeightBreached);
-				TriggerPit(pTargetField, type, criticalWeightBreached);
-				TriggerTeleport(pTargetField, type, criticalWeightBreached);
-				actuator->resetDelay();
-			}
-			break;
-		case 5:
-			VEKTOR target = actuator->GetActionTarget() == CActuator::ActionTarget::Remote ? actuator->GetTarget() : field->HolePos();
-			CField* pTargetField = GetMap()->GetField(target);
+	switch (actuator->GetType()) { // was unterscheidet 1 & 3 ?
+	case 1:
+	case 3:
+		if (criticalWeightBreached || criticalWeightGone) {
+			//VEKTOR target = actuator->GetTarget();
 			CActuator::ActionTypes type = actuator->GetActionType();
-
-			TriggerDoor(pTargetField, type, true);
-			TriggerPit(pTargetField, type, true);
-			TriggerTeleport(pTargetField, type, true);
+			TriggerDoor(pTargetField, type, criticalWeightBreached);
+			TriggerPit(pTargetField, type, criticalWeightBreached);
+			TriggerTeleport(pTargetField, type, criticalWeightBreached);
 			actuator->resetDelay();
-			/*for (int dir = 0; dir < 4; dir++) {
-				pTargetActuators = pTargetField->GetActuator(COMPASS_DIRECTION(dir));
-				if (pTargetActuators.size() > 0) {
-					CActuator* gateActuator = pTargetActuators.back();
-					if (actuator->GetActionType() == CActuator::Toggle) gateActuator->IncreaseGate();
-					if (gateActuator->GateFull())
-						InvokeRemoteActuator(gateActuator, NULL);
-				}
-			}*/
-			break;
+			field->RotateActuators(actuator->GetPosition());
+		}
+		break;
+	case 5:
+		CActuator::ActionTypes type = actuator->GetActionType();
+
+		TriggerDoor(pTargetField, type, true);
+		TriggerPit(pTargetField, type, true);
+		TriggerTeleport(pTargetField, type, true);
+		actuator->resetDelay();
+		field->RotateActuators(actuator->GetPosition());
+		break;
 	}
 }
 
