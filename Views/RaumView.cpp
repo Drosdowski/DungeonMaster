@@ -858,10 +858,10 @@ VEKTOR CRaumView::Betrete(VEKTOR toPos, boolean &collision)
 	}
 	else if (iTyp == FeldTyp::TELEPORT) {
 		collision = false;
-		CTeleporter* pTeleport = pField->HoleTeleporter();
+		/*CTeleporter* pTeleport = pField->HoleTeleporter();
 		if (pTeleport->isOpen()) {
-			toPos = pTeleport->Trigger(m_pDoc, m_pMap, toPos);
-		}
+			toPos = pTeleport->Trigger(m_pDoc, m_pMap, toPos, true);
+		}*/ // triggert später!
 	}
 	else if (iTyp == FeldTyp::STAIRS) {
 		collision = false;
@@ -1354,6 +1354,8 @@ void CRaumView::TriggerActuatorsNearby() {
 	for (int i = max(held.x - 4, 0); i < min(held.x + 4, m_pMap->GetMaxWidth(held.z)); i++) {
 		for (int j = max(held.y - 4, 0); j < min(held.y + 4, m_pMap->GetMaxHeight(held.z)); j++) {
 			TriggerPassiveActuators(VEKTOR{ i, j, held.z }, held);
+			// todo: Teleporter passiv triggern = prüfen, wer auf dem feld ist, und falls aktiv teleportieren
+			// dafür restliche trigger alle raus !
 		}
 	}
 }
