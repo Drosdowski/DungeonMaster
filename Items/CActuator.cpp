@@ -21,7 +21,7 @@ CActuator::CActuator(int index,
 	m_data = data;
 	m_graphic = graphic;
 	m_once_only = once_only;
-	m_delay = delay;
+	m_delay = delay * 4;
 	m_active = true;
 	m_action = action;
 	m_gateCounter = 0;

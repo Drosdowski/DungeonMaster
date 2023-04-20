@@ -884,6 +884,21 @@ VEKTOR CRaumView::Betrete(VEKTOR toPos, boolean &collision)
 	return toPos;
 }
 
+void CRaumView::TeleportHeroes(VEKTOR heroPos) {
+	CField* field = m_pMap->GetField(heroPos);
+	CTeleporter* pTeleporter = field->HoleTeleporter();
+	if (pTeleporter) {
+			if (pTeleporter->getScope() == TeleporterAttributes::Scope::Items_Party ||
+				pTeleporter->getScope() == TeleporterAttributes::Scope::All) {
+
+			CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
+			VEKTOR toPos;
+			pTeleporter->Trigger(m_pDoc, m_pMap, heroPos);
+		}
+
+	}
+}
+
 void CRaumView::MoveMonsters(VEKTOR heroPos) {
 	CField* field = m_pMap->GetField(heroPos);
 	CGrpMonster* pGrpMon = field->GetMonsterGroup();
@@ -1188,6 +1203,7 @@ void CRaumView::MoveAnythingNearby() {
 	for (int i = max(held.x - 4, 0); i < min(held.x + 4, m_pMap->GetMaxWidth(held.z)); i++) {
 		for (int j = max(held.y - 4, 0); j < min(held.y + 4, m_pMap->GetMaxHeight(held.z)); j++) {
 			VEKTOR pos = { i, j, held.z };
+			TeleportHeroes(pos);
 			MoveMonsters(pos);
 			MoveDoors(pos);
 			PrepareMoveObjects(pos);
@@ -1237,7 +1253,6 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 	case 1:
 	case 3:
 		if (criticalWeightBreached || criticalWeightGone) {
-			//VEKTOR target = actuator->GetTarget();
 			CActuator::ActionTypes type = actuator->GetActionType();
 			TriggerDoor(pTargetField, type, criticalWeightBreached);
 			TriggerPit(pTargetField, type, criticalWeightBreached);
@@ -1323,14 +1338,14 @@ void CRaumView::TriggerTeleport(CField* pTargetField, CActuator::ActionTypes typ
 		case CActuator::Set:
 			if (criticalWeightBreached) {
 				pTeleport->setOpen(CTeleporter::Active);
-				newPos = pTeleport->Trigger(m_pDoc, m_pMap, pTargetField->HolePos());
+				pTeleport->Trigger(m_pDoc, m_pMap, pTargetField->HolePos());
 			}
 			break;
 		case CActuator::Toggle:
 			if (criticalWeightBreached) {
 				pTeleport->toggleOpen();
 				if (pTeleport->isOpen()) {
-					newPos = pTeleport->Trigger(m_pDoc, m_pMap, pTargetField->HolePos());
+					pTeleport->Trigger(m_pDoc, m_pMap, pTargetField->HolePos());
 				}
 			}
 			break;
@@ -1340,12 +1355,9 @@ void CRaumView::TriggerTeleport(CField* pTargetField, CActuator::ActionTypes typ
 			}
 			break;
 		case CActuator::Hold:
-			newPos = pTeleport->Trigger(m_pDoc, m_pMap, pTargetField->HolePos()); // todo prüfen 
+			pTeleport->Trigger(m_pDoc, m_pMap, pTargetField->HolePos()); // todo prüfen 
 			break;
 		}
-	}
-	if (newPos.x != heroPos.x || newPos.y != heroPos.y || newPos.z != heroPos.z) {
-		pGrpHeroes->Laufen(newPos, true);
 	}
 }
 

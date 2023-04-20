@@ -2,6 +2,7 @@
 #include "CTeleporter.h"
 #include "..\DMDoc.h"
 #include "..\Mobs\MobGroups\GrpHeld.h"
+#include "..\Mobs\MobGroups\GrpMonster.h"
 #include "..\XMLParser\CDungeonMap.h"
 
 CTeleporter::CTeleporter(TeleporterAttributes attributes, bool visible, TeleporterState open) {
@@ -10,19 +11,55 @@ CTeleporter::CTeleporter(TeleporterAttributes attributes, bool visible, Teleport
 	m_open = open;
 }
 
-VEKTOR CTeleporter::Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos) {
+void CTeleporter::Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos) {
 	CGrpHeld* pGrpHelden = pMap->GetHeroes();
+	CField* pField = pMap->GetField(telePos);
+	CGrpMonster* pGrpMonster = pField->GetMonsterGroup();
 	VEKTOR heroPos = pGrpHelden->GetVector();
 	VEKTOR toPos = getTargetField();
 	bool soundPlayed = false;
 	if (getScope() == TeleporterAttributes::Scope::Items_Party ||
 		getScope() == TeleporterAttributes::Scope::All) {
+
+		// Teleport Monsters
+		if (pGrpMonster) {
+			pGrpMonster->Laufen(toPos, true);
+			if (!soundPlayed && m_attributes.sound) {
+				pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Teleporting.mp3");
+				soundPlayed = true;
+			}
+			if (getRotationType() == TeleporterAttributes::RotationType::Absolute)
+			{
+				pGrpMonster->DrehenAbsolut(getTargetDirection());
+			}
+			else
+			{
+				if (getTargetDirection() == 90)
+				{
+					pGrpMonster->DrehenRelativ(RECHTS);
+				}
+				else if (getTargetDirection() == 180) {
+					pGrpMonster->DrehenRelativ(RECHTS);
+					pGrpMonster->DrehenRelativ(RECHTS);
+				}
+				else if (getTargetDirection() == 270) {
+					pGrpMonster->DrehenRelativ(LINKS);
+				}
+			}
+		}
+
+		// Teleport Heroes
 		if (heroPos.x == telePos.x && heroPos.y == telePos.y && heroPos.z == telePos.z) { // todo vektor equal function
 			if (!(heroPos.x == toPos.x && heroPos.y == toPos.y && heroPos.z == toPos.z)) {
-				heroPos = toPos;
+				pGrpHelden->Laufen(toPos, true);
 				if (!soundPlayed && m_attributes.sound) {
 					pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Teleporting.mp3");
 					soundPlayed = true;
+				}
+				pGrpMonster = pMap->GetField(toPos)->GetMonsterGroup();
+				if (pGrpMonster) {
+					// todo telefrag !!
+					ASSERT(false);
 				}
 			}
 			if (getRotationType() == TeleporterAttributes::RotationType::Absolute)
@@ -46,6 +83,8 @@ VEKTOR CTeleporter::Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos) {
 		}
 
 	} 
+
+	// Item Teleport
 	if (getScope() == TeleporterAttributes::Scope::Items_Party ||
 		getScope() == TeleporterAttributes::Scope::Items ||
 		getScope() == TeleporterAttributes::Scope::All) {
@@ -64,28 +103,5 @@ VEKTOR CTeleporter::Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos) {
 			}
 		}
 
-		/*if (getRotationType() == TeleporterAttributes::RotationType::Absolute)
-		{
-			pField->DrehenAbsolut(getTargetDirection());
-			if (!soundPlayed) {
-				pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Teleporting.mp3");
-				soundPlayed = true;
-			}
-		}
-		else
-		{
-			if (getTargetDirection() == 90)
-			{
-				pField->DrehenRelativ(RECHTS);
-			}
-			else if (getTargetDirection() == 180) {
-				pField->DrehenRelativ(RECHTS);
-				pField->DrehenRelativ(RECHTS);
-			}
-			else if (getTargetDirection() == 270) {
-				pField->DrehenRelativ(LINKS);
-			}
-		}*/
 	}
-	return heroPos;
 }

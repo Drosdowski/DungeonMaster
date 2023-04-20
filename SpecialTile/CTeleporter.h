@@ -23,7 +23,7 @@ public:
 	bool hasSound() { return m_attributes.sound; }
 	void setOpen(TeleporterState value) { m_open = value; }
 	void toggleOpen() { m_open = (m_open == TeleporterState::Active ? TeleporterState::Inactive : TeleporterState::Active); }
-	VEKTOR Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos);
+	void Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos);
 	bool isOpen() { return (m_open == TeleporterState::Active); }
 
 private:
