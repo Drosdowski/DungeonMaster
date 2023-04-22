@@ -1013,8 +1013,14 @@ void CRaumView::MoveMagicMissile(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs, CMagicM
 				topMissile->Explode();
 				topMissile->SetDone();
 				if (pDoor) {
-					if (pDoor->destroyedByFireball())
+					if (topMissile->GetType() == CMagicMissile::Fireball && pDoor->destroyedByFireball()) {
 						pDoor->SetState(CDoor::DESTROYED);
+					}
+					if (topMissile->GetType() == CMagicMissile::OpenDoor && pDoor->hasButton() && pDoor->getState() == CDoor::CLOSED)
+					{
+						pDoor->Toggle();
+					}
+
 				}
 			}
 		}
