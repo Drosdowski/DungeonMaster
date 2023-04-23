@@ -53,6 +53,7 @@ public:
 	CBitmap* GetWeaponBitmap(int weaponType, bool inAir);
 	CBitmap* GetScrollBitmap();
 	CBitmap* GetContainerBitmap(bool center);
+	CBitmap* GetGemBitmap(char color);
 
 
 private:
@@ -100,5 +101,6 @@ private:
 	CBitmap* m_pRock;
 	CBitmap* m_pScroll;
 	CBitmap* m_pDrumstick;
+	CBitmap* m_pGem[3];
 };
 

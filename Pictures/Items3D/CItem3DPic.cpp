@@ -307,6 +307,15 @@ CBitmap* CItem3DPic::GetContainerBitmap(bool center) {
 	return GetChest(center);
 }
 
+CBitmap* CItem3DPic::GetGemBitmap(char color) {
+	switch (color) {
+	case 'B': return m_pGem[0];
+	case 'O': return m_pGem[1];
+	case 'G': return m_pGem[2];
+	default: ASSERT(false);
+	}
+}
+
 CBitmap* CItem3DPic::GetMiscBitmap(int miscType, int subType) {
 	CBitmap* bmp;
 	if (miscType == CMiscellaneousAttributes::Apple) 

@@ -37,6 +37,9 @@ int CMiscellaneous::GetOffsetForGroup() {
 			case CMiscellaneousAttributes::SilverCoin: return 30;
 			case CMiscellaneousAttributes::GoldCoin: return 31;
 			case CMiscellaneousAttributes::MirrorOfDawn: return 6;
+			case CMiscellaneousAttributes::BlueGem: return 1;
+			case CMiscellaneousAttributes::OrangeGem: return 2;
+			case CMiscellaneousAttributes::GreenGem: return 3;
 		}
 		
 		assert(false); // todo !!
@@ -65,7 +68,7 @@ int CMiscellaneous::GetSheetForGroup() {
 	case Other:
 		if (m_attribute.type == CMiscellaneousAttributes::Compass)
 			return 0;
-		if (m_attribute.type == CMiscellaneousAttributes::Boulder || m_attribute.type >= CMiscellaneousAttributes::MagicBoxBlue)
+		if (m_attribute.type >= CMiscellaneousAttributes::Boulder && m_attribute.type <= CMiscellaneousAttributes::RabbitsFoot)
 			return 4;
 		if (m_attribute.type >= CMiscellaneousAttributes::CopperCoin && m_attribute.type <= CMiscellaneousAttributes::GoldCoin)
 			return 3;

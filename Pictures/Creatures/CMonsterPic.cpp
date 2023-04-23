@@ -8,14 +8,16 @@
 #include "RockPilePic.h"
 #include "MagentaWormPic.h"
 #include "TrolinPic.h"
+#include "GigglerPic.h"
 
 CMonsterPic::CMonsterPic(CDC* pDC) : CBasePictures(pDC) {
 	m_pMummyPic = new CMummyPic(pDC);
 	m_pSkeletonPic = new CSkeletonPic(pDC);
 	m_pScreamerPic = new CScreamerPic(pDC);
 	m_pRockPilePic = new CRockPilePic(pDC);
-	m_pMagentaWorm = new CMagentaWormPic(pDC);
-	m_pTrolin = new CTrolinPic(pDC);
+	m_pMagentaWormPic = new CMagentaWormPic(pDC);
+	m_pTrolinPic = new CTrolinPic(pDC);
+	m_pGigglerPic = new CGigglerPic(pDC);
 }
 
 CMonsterPic::~CMonsterPic() {
@@ -23,8 +25,9 @@ CMonsterPic::~CMonsterPic() {
 	delete m_pMummyPic;
 	delete m_pScreamerPic;
 	delete m_pRockPilePic;
-	delete m_pMagentaWorm;
-	delete m_pTrolin;
+	delete m_pMagentaWormPic;
+	delete m_pTrolinPic;
+	delete m_pGigglerPic;
 }
 
 CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
@@ -40,9 +43,11 @@ CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
 	case MonsterTyp::ROCKPILE:
 		return m_pRockPilePic->GetRockPilePic(pMonster->isAttacking());
 	case MonsterTyp::MAGENTA_WORM:
-		return m_pMagentaWorm->GetMagentaWormPic(pMonster->isAttacking());
+		return m_pMagentaWormPic->GetMagentaWormPic(pMonster->isAttacking());
 	case MonsterTyp::TROLIN:
-		return m_pTrolin->GetTrolinPic(iRicht, pMonster->isAttacking());
+		return m_pTrolinPic->GetTrolinPic(iRicht, pMonster->isAttacking());
+	case MonsterTyp::GIGGLER:
+		return m_pGigglerPic->GetGigglerPic(iRicht, pMonster->isAttacking());
 	default:
 		break;
 	}

@@ -24,6 +24,9 @@ public:
 		RaKey = 23,
 		MasterKey = 24,
 		Boulder = 25,
+		BlueGem = 26,
+		OrangeGem = 27,
+		GreenGem = 28,
 		Apple = 29,
 		Corn = 30,
 		Bread = 31,
@@ -33,7 +36,8 @@ public:
 		Drumstick = 35,
 		MagicBoxBlue = 42,
 		MagicBoxGreen = 43,
-		MirrorOfDawn = 44
+		MirrorOfDawn = 44,
+		RabbitsFoot = 46
 	};
 
 	MiscItemType type;
