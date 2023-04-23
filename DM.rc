@@ -837,6 +837,20 @@ IDB_ITEM3D_CHEST_C      BITMAP                  "res\\Items3D\\Item_3d_ChestCent
 
 IDB_OPEN_CHEST          BITMAP                  "res\\OpenChest.bmp"
 
+IDB_ITEM3D_GEM_BLUE     BITMAP                  "res\\Items3D\\Item_3d_Gem_Blue.bmp"
+
+IDB_ITEM3D_GEM_GREEN    BITMAP                  "res\\Items3D\\Item_3d_Gem_Green.bmp"
+
+IDB_ITEM3D_GEM_ORANGE   BITMAP                  "res\\Items3D\\Item_3d_Gem_Orange.bmp"
+
+IDB_MONSTER_GIGGLER_ATTACK BITMAP                  "res\\Monster\\Giggler_Attack.bmp"
+
+IDB_MONSTER_GIGGLER_BACK BITMAP                  "res\\Monster\\Giggler_Back.bmp"
+
+IDB_MONSTER_GIGGLER_FRONT BITMAP                  "res\\Monster\\Giggler_Front.bmp"
+
+IDB_MONSTER_GIGGLER_RIGHT BITMAP                  "res\\Monster\\Giggler_Right.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -382,6 +382,9 @@
     <Image Include="res\Items3D\Item_3d_FineRobe.bmp" />
     <Image Include="res\Items3D\Item_3d_Flask_Empty.bmp" />
     <Image Include="res\Items3D\Item_3d_Flask_Full.bmp" />
+    <Image Include="res\Items3D\Item_3d_Gem_Blue.bmp" />
+    <Image Include="res\Items3D\Item_3d_Gem_Green.bmp" />
+    <Image Include="res\Items3D\Item_3d_Gem_Orange.bmp" />
     <Image Include="res\Items3D\Item_3d_LeatherBoots.bmp" />
     <Image Include="res\Items3D\Item_3d_LeatherCLoth.bmp" />
     <Image Include="res\Items3D\Item_3d_MagicBox_Blue.bmp" />
@@ -433,6 +436,10 @@
     <Image Include="res\Monster\0494.IMG1 [Creature 15 (Side) - Magenta Worm].png" />
     <Image Include="res\Monster\0495.IMG1 [Creature 15 (Back) - Magenta Worm].png" />
     <Image Include="res\Monster\0496.IMG1 [Creature 15 (Attack) - Magenta Worm].png" />
+    <Image Include="res\Monster\Giggler_Attack.bmp" />
+    <Image Include="res\Monster\Giggler_Back.bmp" />
+    <Image Include="res\Monster\Giggler_Front.bmp" />
+    <Image Include="res\Monster\Giggler_Right.bmp" />
     <Image Include="res\Monster\MagentaWorm_Attack.bmp" />
     <Image Include="res\Monster\MagentaWorm_Back.bmp" />
     <Image Include="res\Monster\MagentaWorm_Front.bmp" />
