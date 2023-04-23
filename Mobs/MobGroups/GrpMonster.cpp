@@ -31,7 +31,7 @@ CGrpMonster::CGrpMonster(VEKTOR pos, COMPASS_DIRECTION richt)
 		m_pMember[i] = NULL;
 	m_posPosition = pos;
 	DrehenAbsolut(richt);
-	carriedItem = NULL;
+	carriedItems = {};
 }
 
 CGrpMonster::CGrpMonster(VEKTOR pos, CCreatureAttributes attributes) {
@@ -46,20 +46,22 @@ CGrpMonster::CGrpMonster(VEKTOR pos, CCreatureAttributes attributes) {
 	}
 	m_posPosition = pos;
 	DrehenAbsolut(attributes.direction);
-	carriedItem = NULL;
+	carriedItems = {};
 }
 
 
 CGrpMonster::~CGrpMonster()
 {
-	if (carriedItem)
+	for (CItem* carriedItem : carriedItems)
 	{
-		if (carriedItem->getItemType() == CItem::ItemType::WeaponItem)
+		if (carriedItem->getItemType() == CItem::WeaponItem)
 			delete (CWeapon*)carriedItem;
-		else if (carriedItem->getItemType() == CItem::ItemType::MiscItem)
+		else if (carriedItem->getItemType() == CItem::MiscItem)
 			delete (CMiscellaneous*)carriedItem;
-		else  if (carriedItem->getItemType() == CItem::ItemType::ClothItem)
+		else  if (carriedItem->getItemType() == CItem::ClothItem)
 			delete (CCloth*)carriedItem;
+		else  if (carriedItem->getItemType() == CItem::PotionItem)
+			delete (CPotion*)carriedItem;
 	}
 }
 
@@ -99,7 +101,8 @@ bool CGrpMonster::Altern(CField* field)
 				CMagicMissile* dust = new CMagicMissile(CMagicMissile::MagicMissileType::Dust, pMonster->GetSize());
 				dust->Explode();
 
-				field->CastMissile(dust, pMonster->HoleSubPosition());
+				m_lastPosition = pMonster->HoleSubPosition();
+				field->CastMissile(dust, m_lastPosition);
 				delete m_pMember[i];
 				m_pMember[i] = NULL;
 			}
@@ -328,7 +331,18 @@ void CGrpMonster::Laufen(VEKTOR WunschPos, boolean teleport) {
 	m_posPosition = WunschPos;
 }
 
-void CGrpMonster::CarryItem(CItem* item, SUBPOS_ABSOLUTE pos) {
-	carriedItem = item;
-	carriedItemPos = pos;
+void CGrpMonster::CarryItem(CItem* item) {
+	carriedItems.push_back(item);
+}
+
+
+std::deque<CItem*> CGrpMonster::DropInventory() {
+	if (!carriedItems.empty()) {
+		std::deque<CItem*> inventory = carriedItems;
+		carriedItems.clear();
+		return inventory;
+	}
+	else {
+		return {};
+	}
 }

@@ -3,6 +3,7 @@
 
 // GrpMonster.h : Header-Datei
 //
+#include <deque>
 #include "GrpChar.h"
 #include "..\Monster.h"
 #include "..\..\Attributes\CreatureAttributes.h"
@@ -45,7 +46,9 @@ public:
 	void TurnToHero(VEKTOR heroPos);
 	void Laufen(VEKTOR WunschPos, boolean teleport);
 	void EndAttack();
-	void CarryItem(CItem* item, SUBPOS_ABSOLUTE pos);
+	void CarryItem(CItem* item);
+	std::deque<CItem*> DropInventory();
+	SUBPOS_ABSOLUTE GetLastPos() { return m_lastPosition; }
 	virtual ~CGrpMonster();
 private:
 	void InitMonster(int nr, CCreatureAttributes attributes);
@@ -53,8 +56,8 @@ private:
 	bool isSubPosAbsoluteFree(SUBPOS_ABSOLUTE pos);
 
 	CMonster* GetBySubpos(SUBPOS pos);
-	CItem* carriedItem;
-	SUBPOS_ABSOLUTE carriedItemPos;
+	std::deque<CItem*> carriedItems;
+	SUBPOS_ABSOLUTE m_lastPosition;
 };
 
 /////////////////////////////////////////////////////////////////////////////

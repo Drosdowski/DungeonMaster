@@ -407,40 +407,40 @@ void CDungeonMap::ParseCreature(TiXmlElement* creatureItem, VEKTOR coords) {
 					monsterItem->QueryIntAttribute("index", &index);
 					monsterItem->QueryIntAttribute("position", &position);
 					CMiscellaneous* misc = new CMiscellaneous(index, m_miscellaneousAtt[index]);
-					pGrpMonster->CarryItem(misc, (SUBPOS_ABSOLUTE)position);
+					pGrpMonster->CarryItem(misc);
 
 				}
 				else if (strcmp(subParent, "weapon") == 0) {
 					monsterItem->QueryIntAttribute("index", &index);
 					monsterItem->QueryIntAttribute("position", &position);
 					CWeapon* weapon = new CWeapon(index, m_weaponAtt[index]);
-					pGrpMonster->CarryItem(weapon, (SUBPOS_ABSOLUTE)position);
+					pGrpMonster->CarryItem(weapon);
 				}
 				else if (strcmp(subParent, "cloth") == 0) {
 					monsterItem->QueryIntAttribute("index", &index);
 					monsterItem->QueryIntAttribute("position", &position);
 					CCloth* cloth = new CCloth(index, m_clothAtt[index]);
-					pGrpMonster->CarryItem(cloth, (SUBPOS_ABSOLUTE)position);
+					pGrpMonster->CarryItem(cloth);
 				}
-				else if (strcmp(subParent, "potions") == 0) {
+				else if (strcmp(subParent, "potion") == 0) {
 					monsterItem->QueryIntAttribute("index", &index);
 					monsterItem->QueryIntAttribute("position", &position);
 					CPotion* potion = new CPotion(index, m_potionAtt[index]);
-					pGrpMonster->CarryItem(potion, (SUBPOS_ABSOLUTE)position);
+					pGrpMonster->CarryItem(potion);
 				}
-				else if (strcmp(subParent, "scrolls") == 0) {
+				else if (strcmp(subParent, "scroll") == 0) {
 					monsterItem->QueryIntAttribute("index", &index);
 					monsterItem->QueryIntAttribute("position", &position);
 					CScroll* scroll = new CScroll(index, m_scrollAtt[index]);
-					pGrpMonster->CarryItem(scroll, (SUBPOS_ABSOLUTE)position);
+					pGrpMonster->CarryItem(scroll);
 				}
-				else if (strcmp(subParent, "containers") == 0) {
+				else if (strcmp(subParent, "container") == 0) {
 					monsterItem->QueryIntAttribute("index", &index);
 					monsterItem->QueryIntAttribute("position", &position);
 					CContainer* container = new CContainer(index, m_containerAtt[index]);
-					pGrpMonster->CarryItem(container, (SUBPOS_ABSOLUTE)position);
+					pGrpMonster->CarryItem(container);
 				}
-				monsterItem = parentElement->NextSiblingElement();
+				monsterItem = monsterItem->NextSiblingElement();
 
 			}
 		}

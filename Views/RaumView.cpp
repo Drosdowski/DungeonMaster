@@ -906,6 +906,13 @@ void CRaumView::MoveMonsters(VEKTOR heroPos) {
 	{
 		if (!pGrpMon->Altern(field)) {
 			// Gruppe ausgestorben!
+			std::deque<CItem*> inventory = pGrpMon->DropInventory();
+			if (!inventory.empty()) {
+				for (CItem* pItem : inventory) {
+					field->PutItem(pItem, pGrpMon->GetLastPos());
+				}
+				inventory.clear();
+			}
 			field->RemoveMonsterGroup();
 		}
 		else if (pGrpMon->AnyoneReady())
