@@ -366,6 +366,7 @@
     <Image Include="res\Floor\SquarePressurePad_3L.bmp" />
     <Image Include="res\InterfaceHeroAlive.bmp" />
     <Image Include="res\InterfaceHeroDead.bmp" />
+    <Image Include="res\Items3D\Bones.bmp" />
     <Image Include="res\Items3D\Item_3d_Arrow.bmp" />
     <Image Include="res\Items3D\Item_3d_Axe.bmp" />
     <Image Include="res\Items3D\Item_3d_Berzerkerhelm.bmp" />

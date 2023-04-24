@@ -85,7 +85,7 @@ private:
 	WERTE m_ST;	// Stamina
 
 	CString m_strName;
-	CItem* m_itemCarrying[30];
+	CItem* m_itemCarrying[31]; // Letztes Item sind die Knochen, sieht man natürlich nicht im Backpack.
 
 	double round1(double value);
 	bool hitSucessful(CAttackConst ac, int levelDif);

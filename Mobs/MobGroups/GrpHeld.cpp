@@ -46,7 +46,8 @@ CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 	//m_posPosition = VEKTOR{ 15,18,2 }; // 2. etage mitte
 	//m_posPosition = VEKTOR{ 1,31,2 }; // 2. etage Treppe
 	//m_posPosition = VEKTOR{ 15,18,3 }; // 3. Etage Teleport
-	m_posPosition = VEKTOR{ 6,24,1 }; // bei Screamer
+	//m_posPosition = VEKTOR{ 6,24,1 }; // bei Screamer
+	m_posPosition = VEKTOR{ 2,31,1 }; // bei Chest
 	//m_posPosition = VEKTOR{ 9,2,3 }; // bei Worms
 	//m_posPosition = VEKTOR{ 8,5,1 }; // bei torch / key / doublet
 
@@ -244,6 +245,7 @@ bool CGrpHeld::Altern(CField* field)
 			bool heroAlive = pHeld->Altern(field);
 			if (!heroAlive) {
 				// nicht löschen - wiederbeleben möglich!
+
 			}
 			else {
 				anyoneAlive = true;

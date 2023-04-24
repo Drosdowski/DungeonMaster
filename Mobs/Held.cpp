@@ -66,6 +66,13 @@ CHeld::CHeld(int iIndex, CString strName): CCharacter(true)
 	for (int i = 0; i < 30; i++) {
 		m_itemCarrying[i] = NULL;
 	}
+	CMiscellaneousAttributes att;
+	att.type = CMiscellaneousAttributes::MiscItemType::Bones;
+	att.subtype = iIndex;
+	CMiscConst fixAtt;
+	fixAtt.weight[0] = 10;
+	att.fixAttributes = fixAtt;
+	m_itemCarrying[30] = new CMiscellaneous(255, att);
 
 	m_pRucksack = new CRucksack();
 }
@@ -73,7 +80,7 @@ CHeld::CHeld(int iIndex, CString strName): CCharacter(true)
 
 CHeld::~CHeld()
 {
-	for (int i = 0; i < 30; i++) {
+	for (int i = 0; i < 31; i++) {
 		if (m_itemCarrying[i]) {
 
 			DelItem(m_itemCarrying[i]);

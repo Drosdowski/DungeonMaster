@@ -37,7 +37,8 @@ public:
 		MagicBoxBlue = 42,
 		MagicBoxGreen = 43,
 		MirrorOfDawn = 44,
-		RabbitsFoot = 46
+		RabbitsFoot = 46,
+		Bones = 255
 	};
 
 	MiscItemType type;

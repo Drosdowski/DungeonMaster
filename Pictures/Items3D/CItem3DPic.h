@@ -28,6 +28,7 @@ public:
 	CBitmap* GetScroll() { return m_pScroll; }
 	CBitmap* GetCoin(bool silver) { if (silver) return m_pCoin[1]; else return m_pCoin[0]; }
 	CBitmap* GetMagicBox(bool green) { if (green) return m_pMagicBox[1]; else return m_pMagicBox[0]; }
+	CBitmap* GetBones() { return m_pBones; }
 
 	CBitmap* GetWhiteCloth() { return m_pWhiteCloth; }
 	CBitmap* GetGreenCloth() { return m_pGreenCloth; }
@@ -36,7 +37,7 @@ public:
 	CBitmap* GetSuedeBoots() { return m_pSuedeBoots; }
 	CBitmap* GetSandals() { return m_pSandals; }
 	CBitmap* GetBerzerkerHelm() { return  m_pBerzerkerHelm; }
-		
+
 	CBitmap* GetClub(bool inAir);
 	CBitmap* GetStoneClub(bool inAir);
 	CBitmap* GetSword(bool inAir);
@@ -54,7 +55,6 @@ public:
 	CBitmap* GetScrollBitmap();
 	CBitmap* GetContainerBitmap(bool center);
 	CBitmap* GetGemBitmap(char color);
-
 
 private:
 	void InitBitmap();
@@ -102,5 +102,6 @@ private:
 	CBitmap* m_pScroll;
 	CBitmap* m_pDrumstick;
 	CBitmap* m_pGem[3];
+	CBitmap* m_pBones;
 };
 

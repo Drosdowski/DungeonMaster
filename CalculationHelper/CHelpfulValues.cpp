@@ -173,13 +173,13 @@ CPoint CHelpfulValues::CalcRelSubFloorPosition(BITMAP bmpInfo, CPoint wallMiddle
 	case 0:
 		if (!vorne) {
 			posX += (int)xFaktor * 95;
-			posY = 365;
+			posY = 370;
 		}
 		break;
 	case 1:
 		if (vorne) {
 			posX += (int)xFaktor * 75;
-			posY = 325;
+			posY = 360;
 		}
 		else {
 			posX += (int)xFaktor * 60;

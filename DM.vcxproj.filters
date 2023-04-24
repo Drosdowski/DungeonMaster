@@ -1604,6 +1604,9 @@
     <Image Include="res\Monster\Giggler_Right.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Items3D\Bones.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

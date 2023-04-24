@@ -34,6 +34,7 @@ CItem3DPic ::~CItem3DPic() {
 	delete m_pBoulder;
 	delete m_pScroll;
 	delete m_pDrumstick;
+	delete m_pBones;
 	for (int w = 0; w < 4; w++)
 	{
 		delete m_pClub[w];
@@ -128,6 +129,7 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pRock, IDB_ITEM3D_ROCK);
 	LoadPic(m_pScroll, IDB_ITEM3D_SCROLL);
 	LoadPic(m_pDrumstick, IDB_ITEM3D_DRUMSTICK);
+	LoadPic(m_pBones, IDB_ITEM3D_BONES);
 }
 
 CPoint CItem3DPic::GetFloorMiddle(int x, int ebene) {

@@ -851,6 +851,8 @@ IDB_MONSTER_GIGGLER_FRONT BITMAP                  "res\\Monster\\Giggler_Front.b
 
 IDB_MONSTER_GIGGLER_RIGHT BITMAP                  "res\\Monster\\Giggler_Right.bmp"
 
+IDB_ITEM3D_BONES        BITMAP                  "res\\Items3D\\Bones.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

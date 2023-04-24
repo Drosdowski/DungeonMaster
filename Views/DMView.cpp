@@ -1022,8 +1022,17 @@ void CDMView::OnTimer(UINT nIDEvent)
 	if (!m_bPause) {
 		CGrpHeld* pGrpHeld = m_pRaumView->GetHeroes();
 		if (!pGrpHeld->Altern(m_pRaumView->GetMap()->GetField( pGrpHeld->GetVector()))) {
-			// 
+			// todo: alle tot
 		}
+		for (int i = 1; i < 5; i++)
+		{
+			CHeld* pHeld = pGrpHeld->GetHero(i);
+			if (pHeld && !pHeld->isAlive() && pHeld->GetItemCarrying(30))
+			{
+				ASSERT(false); // todo drop all
+			}
+		}
+
 		if (m_pRaumView->GetHeroes()->GetNumberOfHeroes() > 0) {
 			m_pRaumView->MoveAnythingNearby();
 			m_pRaumView->TriggerActuatorsNearby();
