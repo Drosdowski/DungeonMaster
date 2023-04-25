@@ -320,7 +320,7 @@ CBitmap* CItem3DPic::GetGemBitmap(char color) {
 
 CBitmap* CItem3DPic::GetMiscBitmap(int miscType, int subType) {
 	CBitmap* bmp;
-	if (miscType == CMiscellaneousAttributes::Apple) 
+	if (miscType == CMiscellaneousAttributes::Apple)
 		bmp = GetApple();
 	else if (miscType == CMiscellaneousAttributes::Bread)
 		bmp = GetBread();
@@ -358,6 +358,14 @@ CBitmap* CItem3DPic::GetMiscBitmap(int miscType, int subType) {
 		bmp = GetMagicBox(false);
 	else if (miscType == CMiscellaneousAttributes::MagicBoxGreen)
 		bmp = GetMagicBox(true);
+	else if (miscType == CMiscellaneousAttributes::BlueGem)
+		bmp = GetGemBitmap('B');
+	else if (miscType == CMiscellaneousAttributes::OrangeGem)
+		bmp = GetGemBitmap('O');
+	else if (miscType == CMiscellaneousAttributes::GreenGem)
+		bmp = GetGemBitmap('G');
+	else if (miscType == CMiscellaneousAttributes::Bones)
+		bmp = GetBones();
 	else
 		bmp = NULL;
 
