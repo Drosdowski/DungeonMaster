@@ -14,6 +14,7 @@ public:
 	static SUBPOS_ABSOLUTE FindNextSubposWithoutFieldChange(SUBPOS_ABSOLUTE posAbs, VEKTOR force);
 
 	VEKTOR static MakeVektor(COMPASS_DIRECTION direction, int force);
+	bool static VektorEqual(VEKTOR a, VEKTOR b) { return a.x == b.x && a.y == b.y && a.z == b.z; }
 	CPoint static CalcSubPosition(CPoint p, SUBPOS subPos, double &faktor); // for monsters - todo weg damit!
 	CPoint static CalcRelSubFloorPosition(BITMAP bmpInfo, CPoint wallPos, SUBPOS subPos, double faktor, int xx, int ebene); // for items 
 	SUBPOS static GetRelativeSubPosActive(SUBPOS_ABSOLUTE pos, COMPASS_DIRECTION heroDir);

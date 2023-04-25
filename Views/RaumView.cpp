@@ -958,18 +958,18 @@ void CRaumView::PrepareMoveObjects(VEKTOR heroPos) {
 	}
 }
 
-void CRaumView::MoveMagicMissiles(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs) {
-	CField* field = m_pMap->GetField(heroPos);
+void CRaumView::MoveMagicMissiles(VEKTOR position, SUBPOS_ABSOLUTE posAbs) {
+	CField* field = m_pMap->GetField(position);
 	std::deque<CMagicMissile*> magicMissiles = field->GetMagicMissile(posAbs);
 	if (!magicMissiles.empty()) {
 		for (CMagicMissile* magicMissile : magicMissiles) 
-			MoveMagicMissile(heroPos, posAbs, magicMissile);
+			MoveMagicMissile(position, posAbs, magicMissile);
 	}
 }
 
-void CRaumView::MoveMagicMissile(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs, CMagicMissile* topMissile) {
+void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagicMissile* topMissile) {
 	// todo refaktorieren mit moveItems
-	CField* field = m_pMap->GetField(heroPos);
+	CField* field = m_pMap->GetField(position);
 	if (!topMissile->HasMovedThisTick()) {
 
 		SUBPOS_ABSOLUTE newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, topMissile->m_flyForce);
@@ -986,13 +986,18 @@ void CRaumView::MoveMagicMissile(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs, CMagicM
 				}
 			}
 			else {
+				CGrpHeld* pGrpHeld = m_pMap->GetHeroes();
+				if (CHelpfulValues::VektorEqual(position, pGrpHeld->GetVector()))
+				{
+					pGrpHeld->DoDamage(topMissile->GetStrength() * 10, position, true);
+				}
 				field->TakeMissile(posAbs, topMissile);
 				delete topMissile;
 			}
 		}
 		else if (newPos == OUTSIDE) {
 			// Feld verlassen
-			CField* newField = m_pMap->GetField(heroPos.x + sign(topMissile->m_flyForce.x), heroPos.y + sign(topMissile->m_flyForce.y), heroPos.z);
+			CField* newField = m_pMap->GetField(position.x + sign(topMissile->m_flyForce.x), position.y + sign(topMissile->m_flyForce.y), position.z);
 			COMPASS_DIRECTION direction = topMissile->GetDirection();
 
 			if (!newField->BlockedToWalk()) {
