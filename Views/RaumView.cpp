@@ -846,15 +846,8 @@ VEKTOR CRaumView::Betrete(VEKTOR toPos, boolean &collision)
 	}
 	else if (iTyp == FeldTyp::PIT) {
 		collision = false;
-		CPit* pit = pField->HolePit();
-		if (pit->GetState() == CPit::Opened ) {
-			toPos.z++;
-			toPos.x += (m_pMap->GetOffset(fromPos.z).x - m_pMap->GetOffset(toPos.z).x);
-			toPos.y += (m_pMap->GetOffset(fromPos.z).y - m_pMap->GetOffset(toPos.z).y);
-			pGrpHelden->FallingDamage();
-			m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-FallingandDying.mp3");
-		}
-		return toPos;
+		//FallingHeroes(toPos);
+		//return toPos;
 	}
 	else if (iTyp == FeldTyp::TELEPORT) {
 		collision = false;
@@ -884,23 +877,39 @@ VEKTOR CRaumView::Betrete(VEKTOR toPos, boolean &collision)
 	return toPos;
 }
 
-void CRaumView::TeleportHeroes(VEKTOR heroPos) {
+void CRaumView::FallingHeroes(VEKTOR heroPos) {
+	CField* pField = m_pMap->GetField(heroPos);
+	CPit* pit = pField->HolePit();
+	if (pit)
+	{
+		if (pit->GetState() == CPit::Opened) {
+			heroPos.x += (m_pMap->GetOffset(heroPos.z).x - m_pMap->GetOffset(heroPos.z + 1).x);
+			heroPos.y += (m_pMap->GetOffset(heroPos.z).y - m_pMap->GetOffset(heroPos.z + 1).y);
+			heroPos.z++;
+			CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
+			pGrpHelden->Laufen(heroPos, true);
+			pGrpHelden->FallingDamage();
+			m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-FallingandDying.mp3");
+		}
+	}
+}
+
+
+void CRaumView::TeleportAll(VEKTOR heroPos) {
 	CField* field = m_pMap->GetField(heroPos);
 	CTeleporter* pTeleporter = field->HoleTeleporter();
 	if (pTeleporter) {
-			if (pTeleporter->getScope() == TeleporterAttributes::Scope::Items_Party ||
-				pTeleporter->getScope() == TeleporterAttributes::Scope::All) {
+		if (pTeleporter->getScope() == TeleporterAttributes::Scope::Items_Party ||
+			pTeleporter->getScope() == TeleporterAttributes::Scope::All) {
 
-			CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
-			VEKTOR toPos;
 			pTeleporter->Trigger(m_pDoc, m_pMap, heroPos);
 		}
 
 	}
 }
 
-void CRaumView::MoveMonsters(VEKTOR heroPos) {
-	CField* field = m_pMap->GetField(heroPos);
+void CRaumView::MoveMonsters(VEKTOR monnsterPos) {
+	CField* field = m_pMap->GetField(monnsterPos);
 	CGrpMonster* pGrpMon = field->GetMonsterGroup();
 	if (pGrpMon)
 	{
@@ -915,14 +924,26 @@ void CRaumView::MoveMonsters(VEKTOR heroPos) {
 			}
 			field->RemoveMonsterGroup();
 		}
-		else if (pGrpMon->AnyoneReady())
-		{
-			VEKTOR target = MonsterMoveOrAttack(pGrpMon);
-			if (target.x != heroPos.x || target.y != heroPos.y) {
-				CField* targetField = m_pMap->GetField(target);
-				field->SetMonsterGroup(NULL);
-				targetField->SetMonsterGroup(pGrpMon);
-				pGrpMon->MoveDone(); 
+		else {
+			CPit* pit = field->HolePit();
+			if (pit) {
+				if (pit->GetState() == CPit::Opened) {
+					monnsterPos.x += (m_pMap->GetOffset(monnsterPos.z).x - m_pMap->GetOffset(monnsterPos.z + 1).x);
+					monnsterPos.y += (m_pMap->GetOffset(monnsterPos.z).y - m_pMap->GetOffset(monnsterPos.z + 1).y);
+					monnsterPos.z++;
+					pGrpMon->FallingDamage();
+				}
+			}
+			if (pGrpMon->AnyoneReady())
+			{
+
+				VEKTOR target = MonsterMoveOrAttack(pGrpMon);
+				if (target.x != monnsterPos.x || target.y != monnsterPos.y) {
+					CField* targetField = m_pMap->GetField(target);
+					field->SetMonsterGroup(NULL);
+					targetField->SetMonsterGroup(pGrpMon);
+					pGrpMon->MoveDone();
+				}
 			}
 		}
 	}
@@ -1109,45 +1130,60 @@ void CRaumView::CheckFlyingItemCollisions(VEKTOR heroPos) {
 }
 
 
-void CRaumView::MoveItems(VEKTOR heroPos) {
-	CField* field = m_pMap->GetField(heroPos);
+void CRaumView::MoveItems(VEKTOR itemPos) {
+	CField* field = m_pMap->GetField(itemPos);
 
 	for (int s = 0; s < 4; s++) {
 		SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
 		std::deque<CItem*> pile = field->GetItem(posAbs);
 		if (!pile.empty()) {
-			CItem* topItem = pile.back(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Items je Feld
-			if (topItem->IsFlying() && !topItem->HasMovedThisTick()) {
-				// fliegendes Item gefunden
-				SUBPOS_ABSOLUTE newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, topItem->m_flyForce);
+			for (CItem* pItem : pile) {
+				if (pItem->IsFlying() && !pItem->HasMovedThisTick()) {
+					// fliegendes Item gefunden
+					SUBPOS_ABSOLUTE newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, pItem->m_flyForce);
 
-				if (newPos == OUTSIDE) {
-					// Feld verlassen
-					CField* newField = m_pMap->GetField(heroPos.x + sign(topItem->m_flyForce.x), heroPos.y + sign(topItem->m_flyForce.y), heroPos.z);
-					if (!newField->BlockedToWalk()) {
-						topItem = field->TakeItem(posAbs);
-						COMPASS_DIRECTION direction = topItem->GetDirection();
-						newField = ChangeFieldWithTeleporter(newField, posAbs, direction);
-						topItem->SetDirection(direction);
-						newField = ChangeFieldWithStairs(newField, topItem, posAbs);
-						// westlich von west ist ost => anders rum subpos suchen
-						if (topItem->IsFlying()) // todo unnötioge frage?
-							newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topItem->m_flyForce.x, -topItem->m_flyForce.y, 0 });
-						else
-							newPos = posAbs;
-						newField->PutItem(topItem, newPos);
+					if (newPos == OUTSIDE) {
+						// Feld verlassen
+						CField* newField = m_pMap->GetField(itemPos.x + sign(pItem->m_flyForce.x), itemPos.y + sign(pItem->m_flyForce.y), itemPos.z);
+						if (!newField->BlockedToWalk()) {
+							pItem = field->TakeItem(posAbs);
+							COMPASS_DIRECTION direction = pItem->GetDirection();
+							newField = ChangeFieldWithTeleporter(newField, posAbs, direction);
+							pItem->SetDirection(direction);
+							newField = ChangeFieldWithStairs(newField, pItem, posAbs);
+							// westlich von west ist ost => anders rum subpos suchen
+							if (pItem->IsFlying()) // todo unnötioge frage?
+								newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -pItem->m_flyForce.x, -pItem->m_flyForce.y, 0 });
+							else
+								newPos = posAbs;
+							newField->PutItem(pItem, newPos);
+						}
+						else {
+							// nicht bewegen, sondern stehen bleiben (unten)
+							pItem->m_flyForce = { 0,0,0 };
+						}
 					}
 					else {
-						// nicht bewegen, sondern stehen bleiben (unten)
-						topItem->m_flyForce = { 0,0,0 };
+						pItem = field->TakeItem(posAbs);
+						pItem->ReduceSpeed();
+						field->PutItem(pItem, newPos);
 					}
 				}
-				else {
-					topItem = field->TakeItem(posAbs);
-					topItem->ReduceSpeed();
-					field->PutItem(topItem, newPos);
+				if (!pItem->IsFlying()) {
+					CPit* pit = field->HolePit();
+					if (pit) {
+						if (pit->GetState() == CPit::Opened) {
+							pItem = field->TakeItem(posAbs);
+							itemPos.x += (m_pMap->GetOffset(itemPos.z).x - m_pMap->GetOffset(itemPos.z + 1).x);
+							itemPos.y += (m_pMap->GetOffset(itemPos.z).y - m_pMap->GetOffset(itemPos.z + 1).y);
+							itemPos.z++;
+							CField* newField = m_pMap->GetField(itemPos);
+							newField->PutItem(pItem, posAbs);
+						}
+					}
 				}
 			}
+
 		}
 	}
 }
@@ -1218,10 +1254,11 @@ CField* CRaumView::ChangeFieldWithStairs(CField* pField, CMovingObject* pItem, S
 
 void CRaumView::MoveAnythingNearby() {
 	VEKTOR held = m_pMap->GetHeroes()->GetVector();
+	FallingHeroes(held);
 	for (int i = max(held.x - 4, 0); i < min(held.x + 4, m_pMap->GetMaxWidth(held.z)); i++) {
 		for (int j = max(held.y - 4, 0); j < min(held.y + 4, m_pMap->GetMaxHeight(held.z)); j++) {
 			VEKTOR pos = { i, j, held.z };
-			TeleportHeroes(pos);
+			TeleportAll(pos);
 			MoveMonsters(pos);
 			MoveDoors(pos);
 			PrepareMoveObjects(pos);

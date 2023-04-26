@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<dungeon start_x="2" start_y="31" start_z="1" start_facing="West">
+<dungeon start_x="7" start_y="16" start_z="2" start_facing="West">
     <heroes>
         <hero index="1">
-            <item item="0" index="241" type="1" />
-            <item item="17" index="0" type="5" />
+            <item item="23" index="210" type="1" />
         </hero>
-        <hero index="2" />
     </heroes>
     <maps>
         <map index="0">
@@ -2248,7 +2246,7 @@
                 <tile index="423" />
                 <tile index="424" />
                 <tile index="425">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="426">
                     <actuators>
@@ -2295,7 +2293,7 @@
                 </tile>
                 <tile index="457" />
                 <tile index="458">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="459" />
                 <tile index="460" />
@@ -2372,7 +2370,7 @@
                     </actuators>
                 </tile>
                 <tile index="517">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="518" />
                 <tile index="519" />
@@ -2817,8 +2815,8 @@
                 <tile index="867" />
                 <tile index="868">
                     <actuators>
-                        <actuator subPos="0" index="624" />
                         <actuator subPos="0" index="623" />
+                        <actuator subPos="0" index="624" />
                     </actuators>
                 </tile>
                 <tile index="869" />
@@ -3210,13 +3208,13 @@
                 <tile index="166" />
                 <tile index="167">
                     <actuators>
-                        <actuator subPos="0" index="184" />
                         <actuator subPos="0" index="133" />
                         <actuator subPos="0" index="113" />
                         <actuator subPos="0" index="112" />
                         <actuator subPos="0" index="111" />
                         <actuator subPos="0" index="109" />
                         <actuator subPos="0" index="108" />
+                        <actuator subPos="0" index="184" />
                     </actuators>
                 </tile>
                 <tile index="168" />
@@ -3357,9 +3355,9 @@
                 <tile index="283" />
                 <tile index="284">
                     <actuators>
-                        <actuator subPos="0" index="379" />
                         <actuator subPos="0" index="288" />
                         <actuator subPos="0" index="177" />
+                        <actuator subPos="0" index="379" />
                     </actuators>
                 </tile>
                 <tile index="285" />
@@ -4449,9 +4447,9 @@
                 </tile>
                 <tile index="196">
                     <actuators>
-                        <actuator subPos="0" index="390" />
                         <actuator subPos="0" index="389" />
                         <actuator subPos="0" index="388" />
+                        <actuator subPos="0" index="390" />
                     </actuators>
                 </tile>
                 <tile index="197">
@@ -4497,11 +4495,11 @@
                 </tile>
                 <tile index="225">
                     <actuators>
-                        <actuator subPos="0" index="382" />
                         <actuator subPos="0" index="373" />
                         <actuator subPos="0" index="372" />
                         <actuator subPos="0" index="371" />
                         <actuator subPos="0" index="370" />
+                        <actuator subPos="0" index="382" />
                     </actuators>
                 </tile>
                 <tile index="226" />
@@ -4538,9 +4536,9 @@
                 <tile index="252" />
                 <tile index="253">
                     <actuators>
-                        <actuator subPos="0" index="443" />
                         <actuator subPos="0" index="442" />
                         <actuator subPos="0" index="441" />
+                        <actuator subPos="0" index="443" />
                     </actuators>
                 </tile>
                 <tile index="254" />
@@ -4551,9 +4549,9 @@
                 </tile>
                 <tile index="256">
                     <actuators>
-                        <actuator subPos="0" index="375" />
                         <actuator subPos="0" index="368" />
                         <actuator subPos="0" index="367" />
+                        <actuator subPos="0" index="375" />
                     </actuators>
                 </tile>
                 <tile index="257">
@@ -4610,9 +4608,9 @@
                 </tile>
                 <tile index="286">
                     <actuators>
-                        <actuator subPos="0" index="362" />
                         <actuator subPos="0" index="361" />
                         <actuator subPos="0" index="360" />
+                        <actuator subPos="0" index="362" />
                     </actuators>
                 </tile>
                 <tile index="287">
@@ -7283,11 +7281,11 @@
                 </tile>
                 <tile index="494">
                     <actuators>
-                        <actuator subPos="0" index="667" />
                         <actuator subPos="0" index="666" />
                         <actuator subPos="0" index="665" />
                         <actuator subPos="0" index="664" />
                         <actuator subPos="0" index="599" />
+                        <actuator subPos="0" index="667" />
                     </actuators>
                 </tile>
                 <tile index="495">
@@ -8507,9 +8505,9 @@
                 </tile>
                 <tile index="654">
                     <actuators>
-                        <actuator subPos="0" index="242" />
                         <actuator subPos="0" index="238" />
                         <actuator subPos="0" index="231" />
+                        <actuator subPos="0" index="242" />
                     </actuators>
                 </tile>
                 <tile index="655">
@@ -11405,11 +11403,11 @@
                 <tile index="149" />
                 <tile index="150">
                     <actuators>
-                        <actuator subPos="2" index="204" />
                         <actuator subPos="2" index="205" />
                         <actuator subPos="2" index="206" />
                         <actuator subPos="2" index="207" />
                         <actuator subPos="2" index="208" />
+                        <actuator subPos="2" index="204" />
                     </actuators>
                 </tile>
                 <tile index="151" />
@@ -12957,11 +12955,11 @@
                 </tile>
                 <tile index="376">
                     <actuators>
-                        <actuator subPos="0" index="675" />
                         <actuator subPos="0" index="674" />
                         <actuator subPos="0" index="671" />
                         <actuator subPos="0" index="646" />
                         <actuator subPos="0" index="173" />
+                        <actuator subPos="0" index="675" />
                     </actuators>
                 </tile>
                 <tile index="377">
@@ -13967,11 +13965,11 @@
                 <tile index="252" />
                 <tile index="253">
                     <actuators>
-                        <actuator subPos="0" index="461" />
                         <actuator subPos="0" index="460" />
                         <actuator subPos="0" index="350" />
                         <actuator subPos="0" index="348" />
                         <actuator subPos="0" index="346" />
+                        <actuator subPos="0" index="461" />
                     </actuators>
                 </tile>
                 <tile index="254">
@@ -14042,9 +14040,9 @@
                 <tile index="303" />
                 <tile index="304">
                     <actuators>
-                        <actuator subPos="0" index="510" />
                         <actuator subPos="0" index="509" />
                         <actuator subPos="0" index="508" />
+                        <actuator subPos="0" index="510" />
                     </actuators>
                 </tile>
                 <tile index="305" />
@@ -14306,9 +14304,9 @@
                 <tile index="101" />
                 <tile index="102">
                     <actuators>
-                        <actuator subPos="2" index="147" />
                         <actuator subPos="2" index="146" />
                         <actuator subPos="2" index="535" />
+                        <actuator subPos="2" index="147" />
                     </actuators>
                 </tile>
                 <tile index="103" />
@@ -14403,9 +14401,9 @@
                 <tile index="177" />
                 <tile index="178">
                     <actuators>
-                        <actuator subPos="1" index="533" />
                         <actuator subPos="1" index="531" />
                         <actuator subPos="1" index="414" />
+                        <actuator subPos="1" index="533" />
                     </actuators>
                 </tile>
                 <tile index="179" />

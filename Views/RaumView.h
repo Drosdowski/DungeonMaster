@@ -115,7 +115,8 @@ protected:
 private:
 	int wallXFactor[5];
 	CHelpfulValues* m_values;
-	void TeleportHeroes(VEKTOR heroPos);
+	void FallingHeroes(VEKTOR pos);
+	void TeleportAll(VEKTOR heroPos);
 	void MoveMonsters(VEKTOR heroPos);
 	void MoveDoors(VEKTOR heroPos);
 	void PrepareMoveObjects(VEKTOR heroPos);
