@@ -1409,7 +1409,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 		CMonster* attackingMonster = pGrpMon->AttackHero(monPos, heroPos);
 		if (attackingMonster)
 		{
-			m_pDoc->PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
+			m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
 
 			m_pMap->GetHeroes()->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
 		}
@@ -1444,7 +1444,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 				// Kommt näher => Move!
 
 				pGrpMon->Laufen(targetPos, false);
-				m_pDoc->PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-Move(Skeleton).mp3");
+				m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(Skeleton).mp3");
 
 				return targetPos;
 			}
@@ -1537,7 +1537,7 @@ void CRaumView::OnTrigger()
 		CDoor* door = feld->HoleDoor();
 		if (door) {
 			door->Toggle();
-			m_pDoc->PlayDMSound("C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-Door.mp3");
+			m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Door.mp3");
 
 		}
 	}
