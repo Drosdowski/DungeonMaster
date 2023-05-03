@@ -18,10 +18,10 @@ void CTeleporter::Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos) {
 	VEKTOR heroPos = pGrpHelden->GetVector();
 	VEKTOR toPos = getTargetField();
 	bool soundPlayed = false;
-	if (getScope() == TeleporterAttributes::Scope::Items_Party ||
+	// Teleport Monsters
+	if (getScope() == TeleporterAttributes::Scope::Creatures ||
 		getScope() == TeleporterAttributes::Scope::All) {
 
-		// Teleport Monsters
 		if (pGrpMonster) {
 			pGrpMonster->Laufen(toPos, true);
 			if (!soundPlayed && m_attributes.sound) {
@@ -47,8 +47,10 @@ void CTeleporter::Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos) {
 				}
 			}
 		}
-
-		// Teleport Heroes
+	} 
+	// Teleport Heroes
+	if (getScope() == TeleporterAttributes::Scope::Items_Party ||
+		getScope() == TeleporterAttributes::Scope::All) {
 		if (heroPos.x == telePos.x && heroPos.y == telePos.y && heroPos.z == telePos.z) { // todo vektor equal function
 			if (!(heroPos.x == toPos.x && heroPos.y == toPos.y && heroPos.z == toPos.z)) {
 				pGrpHelden->Laufen(toPos, true);

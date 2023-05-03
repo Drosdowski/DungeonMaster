@@ -1,11 +1,8 @@
-Um die Ecke: Brot, Hinten links
 Waffen
 Rüstung
 Info Texte
 Experience / Level
 
-Sounds
-zaubern 
 kämpfen besser
 
 Dinge auf Treppe legen/werfen
@@ -17,19 +14,15 @@ BUGS
 
 SAVE GAME: Monster, Items on floor
 
-items / spells hit player
+items hit player
 itemInfo 
 Unterschied throwable / weapon
-Flask empty/full , leather cloth , scroll
-Tote können nicht zaubern
+Flask empty/full , leather cloth
+Tote können nicht zaubern 
 stamina 0
 
-TakeItem in alkoven etc -> subpos !
 int GetType in basisklasse?
 save game: Item attribute, z.b. potion!
 
 
 Monster Flüchten
-Neue Klasse containers (kisten...)
-3. Etage: Teleporter an/aus
-kisten mitnehmen
