@@ -17,11 +17,9 @@ SAVE GAME: Monster, Items on floor
 items hit player
 itemInfo 
 Unterschied throwable / weapon
-Flask empty/full , leather cloth
 Tote können nicht zaubern 
 stamina 0
 
-int GetType in basisklasse?
 save game: Item attribute, z.b. potion!
 
 

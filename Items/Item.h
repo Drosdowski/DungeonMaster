@@ -36,6 +36,7 @@ public:
 	
 	bool CheckGroup(int slotId, ItemGroup group);
 	ItemType getItemType() { return m_itemType; }
+	char* getItemTypeString();
 	int GetIndex() { return m_index; }
 
 	virtual int GetType() { return -1; }

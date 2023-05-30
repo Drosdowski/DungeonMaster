@@ -9,6 +9,7 @@
 #include "..\..\CalculationHelper\CHelpfulValues.h"
 #include "..\..\Items\CMiscellaneous.h"
 #include "..\..\Items\Weapon.h"
+#include "..\..\Items\Potion.h"
 #include "..\..\Items\Cloth.h"
 #include "..\..\Items\MagicMissile.h"
 
@@ -23,15 +24,6 @@ static char THIS_FILE[] = __FILE__;
 
 CGrpMonster::CGrpMonster()
 {
-}
-
-CGrpMonster::CGrpMonster(VEKTOR pos, COMPASS_DIRECTION richt)
-{
-	for (int i=1; i<=4; i++)
-		m_pMember[i] = NULL;
-	m_posPosition = pos;
-	DrehenAbsolut(richt);
-	carriedItems = {};
 }
 
 CGrpMonster::CGrpMonster(VEKTOR pos, CCreatureAttributes attributes) {

@@ -1095,11 +1095,19 @@ void CDungeonMap::SaveMap(TiXmlElement* maps, int level) {
 					}
 					tile->LinkEndChild(actuators);
 				}
-			}
-
-			for (int subPos = 0; subPos < 4; subPos++) {
+			
+				// items speichern - ersetzt Map, also alles speichern
 				std::deque<CItem*> pItems = m_pFeld[x][y][level]->GetItem((SUBPOS_ABSOLUTE)subPos);
-				// todo items im dungeon speichern, verschwundene nicht vergessen!
+				if (!pItems.empty()) {
+					TiXmlElement* items = new TiXmlElement("items");
+					for (CItem* pItem : pItems) {
+						TiXmlElement* item = new TiXmlElement(pItem->getItemTypeString());
+						item->SetAttribute("subPos", subPos);
+						item->SetAttribute("index", pItem->GetIndex());
+						items->LinkEndChild(item);
+					}
+					tile->LinkEndChild(items);
+				}
 			}
 			tiles->LinkEndChild(tile);
 			tileIndex++;
@@ -1273,7 +1281,30 @@ void CDungeonMap::LoadTile(TiXmlElement* tile, int mapIndex) {
 				actuator = actuator->NextSiblingElement();
 			}
 		}
+		if (strcmp(element->Value(), "items") == 0) {
+			TiXmlElement* item = element->FirstChildElement();
+			while (item) {
+				int itemId, subPos;
+				item->QueryIntAttribute("index", &itemId);
+				item->QueryIntAttribute("subPos", &subPos);
+				if (strcmp(item->Value(), "Weapon") == 0) {
+					pField->PutWeapon(new CWeapon(itemId, m_weaponAtt[index]), (SUBPOS_ABSOLUTE)subPos);
+				} else if (strcmp(item->Value(), "Misc") == 0) {
+					pField->PutMisc(new CMiscellaneous(itemId, m_miscellaneousAtt[index]), (SUBPOS_ABSOLUTE)subPos);
+				} else if (strcmp(item->Value(), "Potion") == 0) {
+					pField->PutPotion(new CPotion(itemId, m_potionAtt[index]), (SUBPOS_ABSOLUTE)subPos);
+				} else if (strcmp(item->Value(), "Scroll") == 0) {
+					pField->PutScroll(new CScroll(itemId, m_scrollAtt[index]), (SUBPOS_ABSOLUTE)subPos);
+				} else if (strcmp(item->Value(), "Container") == 0) {
+					// todo INhalt von Container !!
+					pField->PutContainer(new CContainer(itemId, m_containerAtt[index]), (SUBPOS_ABSOLUTE)subPos);
+				}
+				else assert(false);
 
+				item = item->NextSiblingElement();
+
+			}
+		}
 		element = element->FirstChildElement();
 	}
 }

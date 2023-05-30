@@ -94,6 +94,12 @@
                     <actuators>
                         <actuator subPos="2" index="29" />
                     </actuators>
+                    <items>
+                        <item subPos="2" index="38" />
+                        <item subPos="2" index="39" />
+                        <item subPos="2" index="2" />
+                        <item subPos="2" index="40" />
+                    </items>
                 </tile>
                 <tile index="51" />
                 <tile index="52" />
@@ -117,6 +123,11 @@
                     <actuators>
                         <actuator subPos="2" index="21" />
                     </actuators>
+                    <items>
+                        <item subPos="2" index="16" />
+                        <item subPos="2" index="17" />
+                        <item subPos="2" index="6" />
+                    </items>
                 </tile>
                 <tile index="65" />
                 <tile index="66" />
@@ -149,6 +160,13 @@
                     <actuators>
                         <actuator subPos="3" index="60" />
                     </actuators>
+                    <items>
+                        <item subPos="3" index="49" />
+                        <item subPos="3" index="50" />
+                        <item subPos="3" index="51" />
+                        <item subPos="3" index="13" />
+                        <item subPos="3" index="14" />
+                    </items>
                 </tile>
                 <tile index="89" />
                 <tile index="90" />
@@ -183,6 +201,12 @@
                     <actuators>
                         <actuator subPos="0" index="22" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="18" />
+                        <item subPos="0" index="19" />
+                        <item subPos="0" index="89" />
+                        <item subPos="0" index="116" />
+                    </items>
                 </tile>
                 <tile index="119" />
                 <tile index="120" />
@@ -203,6 +227,12 @@
                     <actuators>
                         <actuator subPos="1" index="18" />
                     </actuators>
+                    <items>
+                        <item subPos="1" index="7" />
+                        <item subPos="1" index="0" />
+                        <item subPos="1" index="8" />
+                        <item subPos="1" index="9" />
+                    </items>
                 </tile>
                 <tile index="135" />
                 <tile index="136" />
@@ -213,12 +243,24 @@
                     <actuators>
                         <actuator subPos="0" index="30" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="41" />
+                        <item subPos="0" index="42" />
+                        <item subPos="0" index="43" />
+                        <item subPos="0" index="3" />
+                    </items>
                 </tile>
                 <tile index="141" />
                 <tile index="142">
                     <actuators>
                         <actuator subPos="2" index="61" />
                     </actuators>
+                    <items>
+                        <item subPos="2" index="52" />
+                        <item subPos="2" index="53" />
+                        <item subPos="2" index="20" />
+                        <item subPos="2" index="54" />
+                    </items>
                 </tile>
                 <tile index="143" />
                 <tile index="144" />
@@ -232,6 +274,12 @@
                     <actuators>
                         <actuator subPos="2" index="15" />
                     </actuators>
+                    <items>
+                        <item subPos="2" index="0" />
+                        <item subPos="2" index="1" />
+                        <item subPos="2" index="88" />
+                        <item subPos="2" index="115" />
+                    </items>
                 </tile>
                 <tile index="152" />
                 <tile index="153" />
@@ -241,6 +289,12 @@
                     <actuators>
                         <actuator subPos="2" index="27" />
                     </actuators>
+                    <items>
+                        <item subPos="2" index="32" />
+                        <item subPos="2" index="33" />
+                        <item subPos="2" index="34" />
+                        <item subPos="2" index="11" />
+                    </items>
                 </tile>
                 <tile index="157" />
                 <tile index="158" />
@@ -255,7 +309,11 @@
                         <actuator subPos="1" index="63" />
                     </actuators>
                 </tile>
-                <tile index="166" />
+                <tile index="166">
+                    <items>
+                        <item subPos="0" index="148" />
+                    </items>
+                </tile>
                 <tile index="167">
                     <door state="4" />
                 </tile>
@@ -288,6 +346,11 @@
                     <actuators>
                         <actuator subPos="0" index="20" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="180" />
+                        <item subPos="0" index="14" />
+                        <item subPos="0" index="15" />
+                    </items>
                 </tile>
                 <tile index="190" />
                 <tile index="191" />
@@ -300,13 +363,27 @@
                     <actuators>
                         <actuator subPos="0" index="286" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="51" />
+                        <item subPos="0" index="70" />
+                        <item subPos="0" index="119" />
+                        <item subPos="0" index="120" />
+                    </items>
                 </tile>
                 <tile index="198" />
                 <tile index="199" />
-                <tile index="200" />
+                <tile index="200">
+                    <items>
+                        <item subPos="1" index="146" />
+                    </items>
+                </tile>
                 <tile index="201" />
                 <tile index="202" />
-                <tile index="203" />
+                <tile index="203">
+                    <items>
+                        <item subPos="1" index="150" />
+                    </items>
+                </tile>
                 <tile index="204" />
                 <tile index="205" />
                 <tile index="206" />
@@ -316,12 +393,25 @@
                     <actuators>
                         <actuator subPos="0" index="24" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="25" />
+                        <item subPos="0" index="26" />
+                        <item subPos="0" index="27" />
+                        <item subPos="0" index="8" />
+                        <item subPos="0" index="9" />
+                    </items>
                 </tile>
                 <tile index="210" />
                 <tile index="211">
                     <actuators>
                         <actuator subPos="2" index="28" />
                     </actuators>
+                    <items>
+                        <item subPos="2" index="35" />
+                        <item subPos="2" index="36" />
+                        <item subPos="2" index="37" />
+                        <item subPos="2" index="1" />
+                    </items>
                 </tile>
                 <tile index="212" />
                 <tile index="213" />
@@ -329,7 +419,11 @@
                 <tile index="215" />
                 <tile index="216" />
                 <tile index="217" />
-                <tile index="218" />
+                <tile index="218">
+                    <items>
+                        <item subPos="1" index="249" />
+                    </items>
+                </tile>
                 <tile index="219" />
                 <tile index="220" />
                 <tile index="221" />
@@ -346,12 +440,23 @@
                     <actuators>
                         <actuator subPos="3" index="59" />
                     </actuators>
+                    <items>
+                        <item subPos="3" index="47" />
+                        <item subPos="3" index="7" />
+                        <item subPos="3" index="48" />
+                        <item subPos="3" index="12" />
+                        <item subPos="3" index="105" />
+                    </items>
                 </tile>
                 <tile index="232" />
                 <tile index="233" />
                 <tile index="234" />
                 <tile index="235" />
-                <tile index="236" />
+                <tile index="236">
+                    <items>
+                        <item subPos="2" index="248" />
+                    </items>
+                </tile>
                 <tile index="237" />
                 <tile index="238" />
                 <tile index="239">
@@ -367,11 +472,21 @@
                     <actuators>
                         <actuator subPos="3" index="23" />
                     </actuators>
+                    <items>
+                        <item subPos="3" index="22" />
+                        <item subPos="3" index="23" />
+                        <item subPos="3" index="7" />
+                        <item subPos="3" index="13" />
+                    </items>
                 </tile>
                 <tile index="245">
                     <actuators>
                         <actuator subPos="1" index="25" />
                     </actuators>
+                    <items>
+                        <item subPos="1" index="28" />
+                        <item subPos="1" index="21" />
+                    </items>
                 </tile>
                 <tile index="246" />
                 <tile index="247" />
@@ -389,6 +504,9 @@
                         <actuator subPos="1" index="152" />
                         <actuator subPos="1" index="7" />
                     </actuators>
+                    <items>
+                        <item subPos="1" index="99" />
+                    </items>
                 </tile>
                 <tile index="256" />
                 <tile index="257" />
@@ -397,11 +515,24 @@
                     <actuators>
                         <actuator subPos="0" index="16" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="2" />
+                        <item subPos="0" index="3" />
+                        <item subPos="0" index="4" />
+                        <item subPos="0" index="1" />
+                        <item subPos="0" index="2" />
+                        <item subPos="0" index="3" />
+                    </items>
                 </tile>
                 <tile index="260">
                     <actuators>
                         <actuator subPos="2" index="19" />
                     </actuators>
+                    <items>
+                        <item subPos="2" index="10" />
+                        <item subPos="2" index="11" />
+                        <item subPos="2" index="12" />
+                    </items>
                 </tile>
                 <tile index="261" />
                 <tile index="262" />
@@ -412,6 +543,14 @@
                     <actuators>
                         <actuator subPos="3" index="58" />
                     </actuators>
+                    <items>
+                        <item subPos="3" index="44" />
+                        <item subPos="3" index="45" />
+                        <item subPos="3" index="4" />
+                        <item subPos="3" index="5" />
+                        <item subPos="3" index="46" />
+                        <item subPos="3" index="6" />
+                    </items>
                 </tile>
                 <tile index="267" />
                 <tile index="268" />
@@ -420,7 +559,14 @@
                 <tile index="271" />
                 <tile index="272" />
                 <tile index="273" />
-                <tile index="274" />
+                <tile index="274">
+                    <items>
+                        <item subPos="0" index="11" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="0" />
+                    </items>
+                </tile>
                 <tile index="275" />
                 <tile index="276" />
                 <tile index="277" />
@@ -438,7 +584,11 @@
                     </actuators>
                 </tile>
                 <tile index="287" />
-                <tile index="288" />
+                <tile index="288">
+                    <items>
+                        <item subPos="3" index="242" />
+                    </items>
+                </tile>
                 <tile index="289" />
                 <tile index="290" />
                 <tile index="291" />
@@ -453,6 +603,12 @@
                     <actuators>
                         <actuator subPos="0" index="26" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="10" />
+                        <item subPos="0" index="29" />
+                        <item subPos="0" index="30" />
+                        <item subPos="0" index="31" />
+                    </items>
                 </tile>
                 <tile index="300" />
                 <tile index="301" />
@@ -462,6 +618,9 @@
                     <actuators>
                         <actuator subPos="2" index="529" />
                     </actuators>
+                    <items>
+                        <item subPos="2" index="118" />
+                    </items>
                 </tile>
                 <tile index="305" />
                 <tile index="306" />
@@ -475,6 +634,13 @@
                     <actuators>
                         <actuator subPos="0" index="17" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="5" />
+                        <item subPos="0" index="6" />
+                        <item subPos="0" index="4" />
+                        <item subPos="0" index="5" />
+                        <item subPos="0" index="106" />
+                    </items>
                 </tile>
                 <tile index="314" />
                 <tile index="315" />
@@ -494,6 +660,9 @@
                     <actuators>
                         <actuator subPos="0" index="620" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="32" />
+                    </items>
                 </tile>
                 <tile index="329" />
                 <tile index="330" />
@@ -520,7 +689,11 @@
                 <tile index="3" />
                 <tile index="4" />
                 <tile index="5" />
-                <tile index="6" />
+                <tile index="6">
+                    <items>
+                        <item subPos="0" index="18" />
+                    </items>
+                </tile>
                 <tile index="7" />
                 <tile index="8" />
                 <tile index="9" />
@@ -553,7 +726,11 @@
                 <tile index="22" />
                 <tile index="23" />
                 <tile index="24" />
-                <tile index="25" />
+                <tile index="25">
+                    <items>
+                        <item subPos="3" index="9" />
+                    </items>
+                </tile>
                 <tile index="26" />
                 <tile index="27">
                     <door state="0" />
@@ -618,9 +795,20 @@
                 <tile index="59" />
                 <tile index="60" />
                 <tile index="61" />
-                <tile index="62" />
+                <tile index="62">
+                    <items>
+                        <item subPos="0" index="58" />
+                    </items>
+                    <items>
+                        <item subPos="3" index="74" />
+                    </items>
+                </tile>
                 <tile index="63" />
-                <tile index="64" />
+                <tile index="64">
+                    <items>
+                        <item subPos="2" index="84" />
+                    </items>
+                </tile>
                 <tile index="65" />
                 <tile index="66" />
                 <tile index="67" />
@@ -676,9 +864,22 @@
                 <tile index="99" />
                 <tile index="100" />
                 <tile index="101" />
-                <tile index="102" />
+                <tile index="102">
+                    <items>
+                        <item subPos="2" index="208" />
+                        <item subPos="2" index="250" />
+                    </items>
+                    <items>
+                        <item subPos="3" index="26" />
+                        <item subPos="3" index="29" />
+                    </items>
+                </tile>
                 <tile index="103" />
-                <tile index="104" />
+                <tile index="104">
+                    <items>
+                        <item subPos="3" index="19" />
+                    </items>
+                </tile>
                 <tile index="105" />
                 <tile index="106" />
                 <tile index="107" />
@@ -725,6 +926,9 @@
                         <actuator subPos="0" index="621" />
                         <actuator subPos="0" index="622" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="76" />
+                    </items>
                 </tile>
                 <tile index="135" />
                 <tile index="136" />
@@ -767,12 +971,28 @@
                     <door state="0" />
                 </tile>
                 <tile index="167" />
-                <tile index="168" />
+                <tile index="168">
+                    <items>
+                        <item subPos="0" index="20" />
+                        <item subPos="0" index="16" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="63" />
+                    </items>
+                    <items>
+                        <item subPos="2" index="21" />
+                        <item subPos="2" index="22" />
+                    </items>
+                </tile>
                 <tile index="169" />
                 <tile index="170" />
                 <tile index="171" />
                 <tile index="172" />
-                <tile index="173" />
+                <tile index="173">
+                    <items>
+                        <item subPos="2" index="18" />
+                    </items>
+                </tile>
                 <tile index="174" />
                 <tile index="175" />
                 <tile index="176" />
@@ -830,7 +1050,11 @@
                 <tile index="220" />
                 <tile index="221" />
                 <tile index="222" />
-                <tile index="223" />
+                <tile index="223">
+                    <items>
+                        <item subPos="0" index="21" />
+                    </items>
+                </tile>
                 <tile index="224" />
                 <tile index="225" />
                 <tile index="226" />
@@ -845,7 +1069,11 @@
                 <tile index="235" />
                 <tile index="236" />
                 <tile index="237" />
-                <tile index="238" />
+                <tile index="238">
+                    <items>
+                        <item subPos="1" index="17" />
+                    </items>
+                </tile>
                 <tile index="239" />
                 <tile index="240" />
                 <tile index="241" />
@@ -881,13 +1109,24 @@
                 <tile index="266" />
                 <tile index="267" />
                 <tile index="268" />
-                <tile index="269" />
-                <tile index="270" />
+                <tile index="269">
+                    <items>
+                        <item subPos="3" index="19" />
+                    </items>
+                </tile>
+                <tile index="270">
+                    <items>
+                        <item subPos="3" index="61" />
+                    </items>
+                </tile>
                 <tile index="271">
                     <actuators>
                         <actuator subPos="3" index="203" />
                         <actuator subPos="3" index="155" />
                     </actuators>
+                    <items>
+                        <item subPos="3" index="17" />
+                    </items>
                 </tile>
                 <tile index="272" />
                 <tile index="273" />
@@ -916,7 +1155,11 @@
                     <door state="0" />
                 </tile>
                 <tile index="288" />
-                <tile index="289" />
+                <tile index="289">
+                    <items>
+                        <item subPos="0" index="15" />
+                    </items>
+                </tile>
                 <tile index="290" />
                 <tile index="291" />
                 <tile index="292" />
@@ -924,7 +1167,14 @@
                     <door state="0" />
                 </tile>
                 <tile index="294" />
-                <tile index="295" />
+                <tile index="295">
+                    <items>
+                        <item subPos="0" index="14" />
+                    </items>
+                    <items>
+                        <item subPos="3" index="62" />
+                    </items>
+                </tile>
                 <tile index="296" />
                 <tile index="297" />
                 <tile index="298" />
@@ -969,7 +1219,12 @@
                 <tile index="332" />
                 <tile index="333" />
                 <tile index="334" />
-                <tile index="335" />
+                <tile index="335">
+                    <items>
+                        <item subPos="0" index="55" />
+                        <item subPos="0" index="16" />
+                    </items>
+                </tile>
                 <tile index="336" />
                 <tile index="337" />
                 <tile index="338" />
@@ -985,7 +1240,11 @@
                 <tile index="348" />
                 <tile index="349" />
                 <tile index="350" />
-                <tile index="351" />
+                <tile index="351">
+                    <items>
+                        <item subPos="0" index="22" />
+                    </items>
+                </tile>
                 <tile index="352" />
                 <tile index="353" />
                 <tile index="354" />
@@ -1003,9 +1262,25 @@
                 <tile index="366" />
                 <tile index="367" />
                 <tile index="368" />
-                <tile index="369" />
+                <tile index="369">
+                    <items>
+                        <item subPos="1" index="106" />
+                    </items>
+                </tile>
                 <tile index="370" />
-                <tile index="371" />
+                <tile index="371">
+                    <items>
+                        <item subPos="0" index="59" />
+                        <item subPos="0" index="0" />
+                        <item subPos="0" index="2" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="1" />
+                        <item subPos="1" index="7" />
+                        <item subPos="1" index="110" />
+                        <item subPos="1" index="1" />
+                    </items>
+                </tile>
                 <tile index="372" />
                 <tile index="373" />
                 <tile index="374" />
@@ -1021,7 +1296,11 @@
                 <tile index="378" />
                 <tile index="379" />
                 <tile index="380" />
-                <tile index="381" />
+                <tile index="381">
+                    <items>
+                        <item subPos="2" index="106" />
+                    </items>
+                </tile>
                 <tile index="382" />
                 <tile index="383" />
                 <tile index="384" />
@@ -1094,8 +1373,17 @@
                         <actuator subPos="1" index="154" />
                         <actuator subPos="1" index="153" />
                     </actuators>
+                    <items>
+                        <item subPos="1" index="24" />
+                    </items>
                 </tile>
-                <tile index="432" />
+                <tile index="432">
+                    <items>
+                        <item subPos="0" index="107" />
+                        <item subPos="0" index="108" />
+                        <item subPos="0" index="109" />
+                    </items>
+                </tile>
                 <tile index="433" />
                 <tile index="434" />
                 <tile index="435" />
@@ -1124,7 +1412,14 @@
                 <tile index="458" />
                 <tile index="459" />
                 <tile index="460" />
-                <tile index="461" />
+                <tile index="461">
+                    <items>
+                        <item subPos="0" index="23" />
+                    </items>
+                    <items>
+                        <item subPos="2" index="74" />
+                    </items>
+                </tile>
                 <tile index="462">
                     <actuators>
                         <actuator subPos="0" index="56" />
@@ -1193,7 +1488,11 @@
                 <tile index="513" />
                 <tile index="514" />
                 <tile index="515" />
-                <tile index="516" />
+                <tile index="516">
+                    <items>
+                        <item subPos="1" index="104" />
+                    </items>
+                </tile>
                 <tile index="517" />
                 <tile index="518" />
                 <tile index="519" />
@@ -1262,7 +1561,11 @@
                 <tile index="578" />
                 <tile index="579" />
                 <tile index="580" />
-                <tile index="581" />
+                <tile index="581">
+                    <items>
+                        <item subPos="0" index="107" />
+                    </items>
+                </tile>
                 <tile index="582" />
                 <tile index="583" />
                 <tile index="584" />
@@ -1336,7 +1639,11 @@
                 <tile index="635" />
                 <tile index="636" />
                 <tile index="637" />
-                <tile index="638" />
+                <tile index="638">
+                    <items>
+                        <item subPos="0" index="10" />
+                    </items>
+                </tile>
                 <tile index="639" />
                 <tile index="640" />
                 <tile index="641" />
@@ -1585,6 +1892,9 @@
                         <actuator subPos="0" index="211" />
                         <actuator subPos="0" index="212" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="25" />
+                    </items>
                 </tile>
                 <tile index="863" />
                 <tile index="864" />
@@ -1641,7 +1951,11 @@
                 <tile index="907" />
                 <tile index="908" />
                 <tile index="909" />
-                <tile index="910" />
+                <tile index="910">
+                    <items>
+                        <item subPos="3" index="234" />
+                    </items>
+                </tile>
                 <tile index="911">
                     <actuators>
                         <actuator subPos="1" index="517" />
@@ -1652,7 +1966,11 @@
                         <actuator subPos="3" index="512" />
                     </actuators>
                 </tile>
-                <tile index="912" />
+                <tile index="912">
+                    <items>
+                        <item subPos="0" index="97" />
+                    </items>
+                </tile>
                 <tile index="913" />
                 <tile index="914" />
                 <tile index="915" />
@@ -1678,6 +1996,9 @@
                         <actuator subPos="1" index="448" />
                         <actuator subPos="1" index="447" />
                     </actuators>
+                    <items>
+                        <item subPos="1" index="92" />
+                    </items>
                 </tile>
                 <tile index="934" />
                 <tile index="935" />
@@ -1686,7 +2007,11 @@
                 <tile index="938" />
                 <tile index="939" />
                 <tile index="940" />
-                <tile index="941" />
+                <tile index="941">
+                    <items>
+                        <item subPos="0" index="125" />
+                    </items>
+                </tile>
                 <tile index="942" />
                 <tile index="943" />
                 <tile index="944" />
@@ -1700,7 +2025,11 @@
                 <tile index="952" />
                 <tile index="953" />
                 <tile index="954" />
-                <tile index="955" />
+                <tile index="955">
+                    <items>
+                        <item subPos="0" index="10" />
+                    </items>
+                </tile>
                 <tile index="956" />
                 <tile index="957" />
                 <tile index="958" />
@@ -1721,7 +2050,11 @@
                 <tile index="969" />
                 <tile index="970" />
                 <tile index="971" />
-                <tile index="972" />
+                <tile index="972">
+                    <items>
+                        <item subPos="2" index="73" />
+                    </items>
+                </tile>
                 <tile index="973" />
                 <tile index="974" />
                 <tile index="975" />
@@ -1743,7 +2076,11 @@
                 <tile index="991" />
                 <tile index="992" />
                 <tile index="993" />
-                <tile index="994" />
+                <tile index="994">
+                    <items>
+                        <item subPos="0" index="0" />
+                    </items>
+                </tile>
                 <tile index="995" />
                 <tile index="996" />
                 <tile index="997" />
@@ -1756,7 +2093,11 @@
                 <tile index="1004" />
                 <tile index="1005" />
                 <tile index="1006" />
-                <tile index="1007" />
+                <tile index="1007">
+                    <items>
+                        <item subPos="0" index="235" />
+                    </items>
+                </tile>
                 <tile index="1008" />
                 <tile index="1009" />
                 <tile index="1010" />
@@ -1822,7 +2163,11 @@
                 <tile index="42" />
                 <tile index="43" />
                 <tile index="44" />
-                <tile index="45" />
+                <tile index="45">
+                    <items>
+                        <item subPos="2" index="32" />
+                    </items>
+                </tile>
                 <tile index="46">
                     <actuators>
                         <actuator subPos="3" index="479" />
@@ -1840,14 +2185,25 @@
                 <tile index="55" />
                 <tile index="56" />
                 <tile index="57" />
-                <tile index="58" />
+                <tile index="58">
+                    <items>
+                        <item subPos="0" index="32" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="218" />
+                    </items>
+                </tile>
                 <tile index="59" />
                 <tile index="60" />
                 <tile index="61" />
                 <tile index="62" />
                 <tile index="63" />
                 <tile index="64" />
-                <tile index="65" />
+                <tile index="65">
+                    <items>
+                        <item subPos="3" index="224" />
+                    </items>
+                </tile>
                 <tile index="66" />
                 <tile index="67" />
                 <tile index="68" />
@@ -1943,12 +2299,20 @@
                     </actuators>
                 </tile>
                 <tile index="146" />
-                <tile index="147" />
+                <tile index="147">
+                    <items>
+                        <item subPos="0" index="75" />
+                    </items>
+                </tile>
                 <tile index="148" />
                 <tile index="149" />
                 <tile index="150" />
                 <tile index="151" />
-                <tile index="152" />
+                <tile index="152">
+                    <items>
+                        <item subPos="2" index="181" />
+                    </items>
+                </tile>
                 <tile index="153" />
                 <tile index="154" />
                 <tile index="155" />
@@ -1980,10 +2344,18 @@
                 <tile index="176" />
                 <tile index="177" />
                 <tile index="178" />
-                <tile index="179" />
+                <tile index="179">
+                    <items>
+                        <item subPos="0" index="85" />
+                    </items>
+                </tile>
                 <tile index="180" />
                 <tile index="181" />
-                <tile index="182" />
+                <tile index="182">
+                    <items>
+                        <item subPos="1" index="29" />
+                    </items>
+                </tile>
                 <tile index="183" />
                 <tile index="184" />
                 <tile index="185" />
@@ -2000,7 +2372,11 @@
                 <tile index="196" />
                 <tile index="197" />
                 <tile index="198" />
-                <tile index="199" />
+                <tile index="199">
+                    <items>
+                        <item subPos="0" index="58" />
+                    </items>
+                </tile>
                 <tile index="200" />
                 <tile index="201" />
                 <tile index="202" />
@@ -2130,21 +2506,47 @@
                 <tile index="312" />
                 <tile index="313" />
                 <tile index="314" />
-                <tile index="315" />
+                <tile index="315">
+                    <items>
+                        <item subPos="0" index="113" />
+                    </items>
+                </tile>
                 <tile index="316" />
                 <tile index="317" />
                 <tile index="318" />
                 <tile index="319" />
-                <tile index="320" />
+                <tile index="320">
+                    <items>
+                        <item subPos="0" index="13" />
+                    </items>
+                    <items>
+                        <item subPos="2" index="114" />
+                        <item subPos="2" index="113" />
+                    </items>
+                    <items>
+                        <item subPos="3" index="70" />
+                    </items>
+                </tile>
                 <tile index="321" />
                 <tile index="322" />
                 <tile index="323" />
                 <tile index="324" />
                 <tile index="325" />
                 <tile index="326" />
-                <tile index="327" />
+                <tile index="327">
+                    <items>
+                        <item subPos="2" index="21" />
+                    </items>
+                    <items>
+                        <item subPos="3" index="118" />
+                    </items>
+                </tile>
                 <tile index="328" />
-                <tile index="329" />
+                <tile index="329">
+                    <items>
+                        <item subPos="3" index="55" />
+                    </items>
+                </tile>
                 <tile index="330" />
                 <tile index="331" />
                 <tile index="332" />
@@ -2205,7 +2607,11 @@
                 <tile index="376" />
                 <tile index="377" />
                 <tile index="378" />
-                <tile index="379" />
+                <tile index="379">
+                    <items>
+                        <item subPos="3" index="50" />
+                    </items>
+                </tile>
                 <tile index="380" />
                 <tile index="381" />
                 <tile index="382" />
@@ -2239,19 +2645,38 @@
                 <tile index="406">
                     <door state="4" />
                 </tile>
-                <tile index="407" />
+                <tile index="407">
+                    <items>
+                        <item subPos="0" index="225" />
+                    </items>
+                </tile>
                 <tile index="408" />
                 <tile index="409" />
                 <tile index="410" />
                 <tile index="411" />
                 <tile index="412" />
-                <tile index="413" />
+                <tile index="413">
+                    <items>
+                        <item subPos="2" index="57" />
+                    </items>
+                </tile>
                 <tile index="414" />
                 <tile index="415" />
-                <tile index="416" />
+                <tile index="416">
+                    <items>
+                        <item subPos="0" index="7" />
+                    </items>
+                </tile>
                 <tile index="417" />
                 <tile index="418" />
-                <tile index="419" />
+                <tile index="419">
+                    <items>
+                        <item subPos="0" index="213" />
+                        <item subPos="0" index="214" />
+                        <item subPos="0" index="215" />
+                        <item subPos="0" index="216" />
+                    </items>
+                </tile>
                 <tile index="420" />
                 <tile index="421" />
                 <tile index="422" />
@@ -2270,7 +2695,11 @@
                 <tile index="429" />
                 <tile index="430" />
                 <tile index="431" />
-                <tile index="432" />
+                <tile index="432">
+                    <items>
+                        <item subPos="0" index="1" />
+                    </items>
+                </tile>
                 <tile index="433" />
                 <tile index="434" />
                 <tile index="435" />
@@ -2294,7 +2723,11 @@
                 </tile>
                 <tile index="450" />
                 <tile index="451" />
-                <tile index="452" />
+                <tile index="452">
+                    <items>
+                        <item subPos="3" index="69" />
+                    </items>
+                </tile>
                 <tile index="453" />
                 <tile index="454" />
                 <tile index="455" />
@@ -2339,7 +2772,11 @@
                 <tile index="480" />
                 <tile index="481" />
                 <tile index="482" />
-                <tile index="483" />
+                <tile index="483">
+                    <items>
+                        <item subPos="2" index="27" />
+                    </items>
+                </tile>
                 <tile index="484" />
                 <tile index="485" />
                 <tile index="486" />
@@ -2414,7 +2851,11 @@
                 <tile index="541" />
                 <tile index="542" />
                 <tile index="543" />
-                <tile index="544" />
+                <tile index="544">
+                    <items>
+                        <item subPos="0" index="28" />
+                    </items>
+                </tile>
                 <tile index="545" />
                 <tile index="546" />
                 <tile index="547" />
@@ -2423,6 +2864,9 @@
                     <actuators>
                         <actuator subPos="3" index="84" />
                     </actuators>
+                    <items>
+                        <item subPos="3" index="26" />
+                    </items>
                 </tile>
                 <tile index="550" />
                 <tile index="551" />
@@ -2447,9 +2891,21 @@
                 <tile index="566" />
                 <tile index="567" />
                 <tile index="568" />
-                <tile index="569" />
-                <tile index="570" />
-                <tile index="571" />
+                <tile index="569">
+                    <items>
+                        <item subPos="0" index="33" />
+                    </items>
+                </tile>
+                <tile index="570">
+                    <items>
+                        <item subPos="0" index="71" />
+                    </items>
+                </tile>
+                <tile index="571">
+                    <items>
+                        <item subPos="2" index="217" />
+                    </items>
+                </tile>
                 <tile index="572" />
                 <tile index="573" />
                 <tile index="574" />
@@ -2458,7 +2914,11 @@
                 <tile index="577" />
                 <tile index="578" />
                 <tile index="579" />
-                <tile index="580" />
+                <tile index="580">
+                    <items>
+                        <item subPos="0" index="53" />
+                    </items>
+                </tile>
                 <tile index="581">
                     <door state="4" />
                 </tile>
@@ -2504,7 +2964,11 @@
                 <tile index="617" />
                 <tile index="618" />
                 <tile index="619" />
-                <tile index="620" />
+                <tile index="620">
+                    <items>
+                        <item subPos="1" index="134" />
+                    </items>
+                </tile>
                 <tile index="621" />
                 <tile index="622" />
                 <tile index="623" />
@@ -2519,7 +2983,11 @@
                 <tile index="632" />
                 <tile index="633" />
                 <tile index="634" />
-                <tile index="635" />
+                <tile index="635">
+                    <items>
+                        <item subPos="2" index="54" />
+                    </items>
+                </tile>
                 <tile index="636" />
                 <tile index="637" />
                 <tile index="638" />
@@ -2559,7 +3027,11 @@
                 <tile index="670" />
                 <tile index="671" />
                 <tile index="672" />
-                <tile index="673" />
+                <tile index="673">
+                    <items>
+                        <item subPos="1" index="33" />
+                    </items>
+                </tile>
                 <tile index="674" />
                 <tile index="675" />
                 <tile index="676" />
@@ -2597,7 +3069,16 @@
                 <tile index="708" />
                 <tile index="709" />
                 <tile index="710" />
-                <tile index="711" />
+                <tile index="711">
+                    <items>
+                        <item subPos="0" index="12" />
+                        <item subPos="0" index="111" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="68" />
+                        <item subPos="1" index="112" />
+                    </items>
+                </tile>
                 <tile index="712" />
                 <tile index="713" />
                 <tile index="714" />
@@ -2651,7 +3132,11 @@
                 </tile>
                 <tile index="757" />
                 <tile index="758" />
-                <tile index="759" />
+                <tile index="759">
+                    <items>
+                        <item subPos="3" index="34" />
+                    </items>
+                </tile>
                 <tile index="760" />
                 <tile index="761" />
                 <tile index="762" />
@@ -2781,7 +3266,11 @@
                 <tile index="831">
                     <door state="4" />
                 </tile>
-                <tile index="832" />
+                <tile index="832">
+                    <items>
+                        <item subPos="0" index="8" />
+                    </items>
+                </tile>
                 <tile index="833" />
                 <tile index="834" />
                 <tile index="835" />
@@ -2808,13 +3297,30 @@
                 <tile index="856" />
                 <tile index="857" />
                 <tile index="858" />
-                <tile index="859" />
+                <tile index="859">
+                    <items>
+                        <item subPos="1" index="25" />
+                    </items>
+                    <items>
+                        <item subPos="3" index="72" />
+                    </items>
+                </tile>
                 <tile index="860">
                     <actuators>
                         <actuator subPos="3" index="176" />
                     </actuators>
                 </tile>
-                <tile index="861" />
+                <tile index="861">
+                    <items>
+                        <item subPos="0" index="40" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="220" />
+                    </items>
+                    <items>
+                        <item subPos="3" index="219" />
+                    </items>
+                </tile>
                 <tile index="862">
                     <actuators>
                         <actuator subPos="1" index="46" />
@@ -2827,8 +3333,8 @@
                 <tile index="867" />
                 <tile index="868">
                     <actuators>
-                        <actuator subPos="0" index="624" />
                         <actuator subPos="0" index="623" />
+                        <actuator subPos="0" index="624" />
                     </actuators>
                 </tile>
                 <tile index="869" />
@@ -2857,6 +3363,10 @@
                     <actuators>
                         <actuator subPos="2" index="91" />
                     </actuators>
+                    <items>
+                        <item subPos="2" index="28" />
+                        <item subPos="2" index="49" />
+                    </items>
                 </tile>
                 <tile index="892" />
                 <tile index="893" />
@@ -2865,13 +3375,30 @@
                 <tile index="896" />
                 <tile index="897" />
                 <tile index="898" />
-                <tile index="899" />
+                <tile index="899">
+                    <items>
+                        <item subPos="1" index="34" />
+                    </items>
+                </tile>
                 <tile index="900" />
                 <tile index="901" />
                 <tile index="902" />
                 <tile index="903" />
-                <tile index="904" />
-                <tile index="905" />
+                <tile index="904">
+                    <items>
+                        <item subPos="0" index="30" />
+                        <item subPos="0" index="31" />
+                        <item subPos="0" index="29" />
+                    </items>
+                </tile>
+                <tile index="905">
+                    <items>
+                        <item subPos="0" index="64" />
+                        <item subPos="0" index="65" />
+                        <item subPos="0" index="66" />
+                        <item subPos="0" index="67" />
+                    </items>
+                </tile>
                 <tile index="906">
                     <actuators>
                         <actuator subPos="0" index="625" />
@@ -2883,7 +3410,11 @@
                 <tile index="910" />
                 <tile index="911" />
                 <tile index="912" />
-                <tile index="913" />
+                <tile index="913">
+                    <items>
+                        <item subPos="0" index="28" />
+                    </items>
+                </tile>
                 <tile index="914" />
                 <tile index="915" />
                 <tile index="916" />
@@ -2952,6 +3483,9 @@
                         <actuator subPos="1" index="452" />
                         <actuator subPos="1" index="451" />
                     </actuators>
+                    <items>
+                        <item subPos="1" index="90" />
+                    </items>
                 </tile>
                 <tile index="957" />
                 <tile index="958" />
@@ -2960,6 +3494,9 @@
                         <actuator subPos="3" index="450" />
                         <actuator subPos="3" index="449" />
                     </actuators>
+                    <items>
+                        <item subPos="3" index="91" />
+                    </items>
                 </tile>
                 <tile index="960" />
                 <tile index="961" />
@@ -2999,6 +3536,9 @@
                     <actuators>
                         <actuator subPos="3" index="619" />
                     </actuators>
+                    <items>
+                        <item subPos="3" index="254" />
+                    </items>
                 </tile>
                 <tile index="989" />
                 <tile index="990" />
@@ -3006,6 +3546,12 @@
                     <actuators>
                         <actuator subPos="3" index="95" />
                     </actuators>
+                    <items>
+                        <item subPos="3" index="35" />
+                        <item subPos="3" index="51" />
+                        <item subPos="3" index="52" />
+                        <item subPos="3" index="221" />
+                    </items>
                 </tile>
                 <tile index="992" />
                 <tile index="993" />
@@ -3059,7 +3605,12 @@
                 <tile index="13" />
                 <tile index="14" />
                 <tile index="15" />
-                <tile index="16" />
+                <tile index="16">
+                    <items>
+                        <item subPos="1" index="73" />
+                        <item subPos="1" index="74" />
+                    </items>
+                </tile>
                 <tile index="17" />
                 <tile index="18" />
                 <tile index="19" />
@@ -3125,7 +3676,11 @@
                 <tile index="79" />
                 <tile index="80" />
                 <tile index="81" />
-                <tile index="82" />
+                <tile index="82">
+                    <items>
+                        <item subPos="1" index="89" />
+                    </items>
+                </tile>
                 <tile index="83" />
                 <tile index="84" />
                 <tile index="85" />
@@ -3269,7 +3824,12 @@
                 <tile index="195" />
                 <tile index="196" />
                 <tile index="197" />
-                <tile index="198" />
+                <tile index="198">
+                    <items>
+                        <item subPos="2" index="31" />
+                        <item subPos="2" index="6" />
+                    </items>
+                </tile>
                 <tile index="199" />
                 <tile index="200" />
                 <tile index="201" />
@@ -3277,7 +3837,11 @@
                 <tile index="203" />
                 <tile index="204" />
                 <tile index="205" />
-                <tile index="206" />
+                <tile index="206">
+                    <items>
+                        <item subPos="0" index="5" />
+                    </items>
+                </tile>
                 <tile index="207">
                     <actuators>
                         <actuator subPos="0" index="128" />
@@ -3333,7 +3897,15 @@
                 <tile index="253" />
                 <tile index="254" />
                 <tile index="255" />
-                <tile index="256" />
+                <tile index="256">
+                    <items>
+                        <item subPos="0" index="66" />
+                        <item subPos="0" index="126" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="54" />
+                    </items>
+                </tile>
                 <tile index="257" />
                 <tile index="258" />
                 <tile index="259" />
@@ -3343,7 +3915,11 @@
                 <tile index="263" />
                 <tile index="264" />
                 <tile index="265" />
-                <tile index="266" />
+                <tile index="266">
+                    <items>
+                        <item subPos="0" index="56" />
+                    </items>
+                </tile>
                 <tile index="267" />
                 <tile index="268" />
                 <tile index="269" />
@@ -3385,7 +3961,11 @@
                 <tile index="295" />
                 <tile index="296" />
                 <tile index="297" />
-                <tile index="298" />
+                <tile index="298">
+                    <items>
+                        <item subPos="2" index="36" />
+                    </items>
+                </tile>
                 <tile index="299" />
                 <tile index="300" />
                 <tile index="301" />
@@ -3476,7 +4056,11 @@
                 <tile index="372" />
                 <tile index="373" />
                 <tile index="374" />
-                <tile index="375" />
+                <tile index="375">
+                    <items>
+                        <item subPos="0" index="88" />
+                    </items>
+                </tile>
                 <tile index="376" />
                 <tile index="377" />
                 <tile index="378" />
@@ -3499,7 +4083,11 @@
                 <tile index="391" />
                 <tile index="392" />
                 <tile index="393" />
-                <tile index="394" />
+                <tile index="394">
+                    <items>
+                        <item subPos="1" index="41" />
+                    </items>
+                </tile>
                 <tile index="395" />
                 <tile index="396" />
                 <tile index="397" />
@@ -3706,7 +4294,11 @@
                 <tile index="561" />
                 <tile index="562" />
                 <tile index="563" />
-                <tile index="564" />
+                <tile index="564">
+                    <items>
+                        <item subPos="1" index="61" />
+                    </items>
+                </tile>
                 <tile index="565" />
                 <tile index="566" />
                 <tile index="567" />
@@ -3721,10 +4313,19 @@
                 <tile index="576" />
                 <tile index="577" />
                 <tile index="578" />
-                <tile index="579" />
+                <tile index="579">
+                    <items>
+                        <item subPos="0" index="4" />
+                    </items>
+                </tile>
                 <tile index="580" />
                 <tile index="581" />
-                <tile index="582" />
+                <tile index="582">
+                    <items>
+                        <item subPos="0" index="40" />
+                        <item subPos="0" index="22" />
+                    </items>
+                </tile>
                 <tile index="583" />
                 <tile index="584" />
                 <tile index="585" />
@@ -3814,7 +4415,14 @@
                 <tile index="663" />
                 <tile index="664" />
                 <tile index="665" />
-                <tile index="666" />
+                <tile index="666">
+                    <items>
+                        <item subPos="0" index="6" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="7" />
+                    </items>
+                </tile>
                 <tile index="667" />
                 <tile index="668" />
                 <tile index="669" />
@@ -3832,7 +4440,12 @@
                 <tile index="681" />
                 <tile index="682" />
                 <tile index="683" />
-                <tile index="684" />
+                <tile index="684">
+                    <items>
+                        <item subPos="1" index="119" />
+                        <item subPos="1" index="174" />
+                    </items>
+                </tile>
                 <tile index="685" />
                 <tile index="686" />
                 <tile index="687" />
@@ -3855,7 +4468,11 @@
                 <tile index="702" />
                 <tile index="703" />
                 <tile index="704" />
-                <tile index="705" />
+                <tile index="705">
+                    <items>
+                        <item subPos="2" index="90" />
+                    </items>
+                </tile>
                 <tile index="706" />
                 <tile index="707" />
                 <tile index="708" />
@@ -3890,7 +4507,11 @@
                 <tile index="735" />
                 <tile index="736" />
                 <tile index="737" />
-                <tile index="738" />
+                <tile index="738">
+                    <items>
+                        <item subPos="2" index="24" />
+                    </items>
+                </tile>
                 <tile index="739" />
                 <tile index="740">
                     <actuators>
@@ -3921,7 +4542,11 @@
                 <tile index="758" />
                 <tile index="759" />
                 <tile index="760" />
-                <tile index="761" />
+                <tile index="761">
+                    <items>
+                        <item subPos="0" index="223" />
+                    </items>
+                </tile>
                 <tile index="762" />
                 <tile index="763" />
                 <tile index="764" />
@@ -4147,6 +4772,9 @@
                     <actuators>
                         <actuator subPos="0" index="352" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="124" />
+                    </items>
                 </tile>
                 <tile index="971" />
                 <tile index="972" />
@@ -4205,7 +4833,15 @@
                 <tile index="1012" />
                 <tile index="1013" />
                 <tile index="1014" />
-                <tile index="1015" />
+                <tile index="1015">
+                    <items>
+                        <item subPos="0" index="30" />
+                        <item subPos="0" index="42" />
+                    </items>
+                    <items>
+                        <item subPos="2" index="135" />
+                    </items>
+                </tile>
                 <tile index="1016" />
                 <tile index="1017" />
                 <tile index="1018" />
@@ -4321,7 +4957,11 @@
                 <tile index="96" />
                 <tile index="97" />
                 <tile index="98" />
-                <tile index="99" />
+                <tile index="99">
+                    <items>
+                        <item subPos="3" index="19" />
+                    </items>
+                </tile>
                 <tile index="100" />
                 <tile index="101" />
                 <tile index="102" />
@@ -4340,7 +4980,11 @@
                 <tile index="115" />
                 <tile index="116" />
                 <tile index="117" />
-                <tile index="118" />
+                <tile index="118">
+                    <items>
+                        <item subPos="3" index="83" />
+                    </items>
+                </tile>
                 <tile index="119" />
                 <tile index="120" />
                 <tile index="121" />
@@ -4362,7 +5006,11 @@
                 <tile index="137" />
                 <tile index="138" />
                 <tile index="139" />
-                <tile index="140" />
+                <tile index="140">
+                    <items>
+                        <item subPos="1" index="92" />
+                    </items>
+                </tile>
                 <tile index="141" />
                 <tile index="142" />
                 <tile index="143" />
@@ -4472,16 +5120,27 @@
                 <tile index="198" />
                 <tile index="199" />
                 <tile index="200" />
-                <tile index="201" />
+                <tile index="201">
+                    <items>
+                        <item subPos="2" index="127" />
+                    </items>
+                </tile>
                 <tile index="202">
                     <actuators>
                         <actuator subPos="3" index="218" />
                         <actuator subPos="3" index="215" />
                     </actuators>
+                    <items>
+                        <item subPos="3" index="67" />
+                    </items>
                 </tile>
                 <tile index="203" />
                 <tile index="204" />
-                <tile index="205" />
+                <tile index="205">
+                    <items>
+                        <item subPos="1" index="91" />
+                    </items>
+                </tile>
                 <tile index="206" />
                 <tile index="207" />
                 <tile index="208" />
@@ -4491,11 +5150,23 @@
                 <tile index="212" />
                 <tile index="213" />
                 <tile index="214" />
-                <tile index="215" />
+                <tile index="215">
+                    <items>
+                        <item subPos="0" index="105" />
+                        <item subPos="0" index="20" />
+                    </items>
+                </tile>
                 <tile index="216" />
                 <tile index="217" />
                 <tile index="218" />
-                <tile index="219" />
+                <tile index="219">
+                    <items>
+                        <item subPos="0" index="32" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="31" />
+                    </items>
+                </tile>
                 <tile index="220" />
                 <tile index="221" />
                 <tile index="222" />
@@ -4542,9 +5213,17 @@
                 <tile index="246" />
                 <tile index="247" />
                 <tile index="248" />
-                <tile index="249" />
+                <tile index="249">
+                    <items>
+                        <item subPos="2" index="33" />
+                    </items>
+                </tile>
                 <tile index="250" />
-                <tile index="251" />
+                <tile index="251">
+                    <items>
+                        <item subPos="3" index="128" />
+                    </items>
+                </tile>
                 <tile index="252" />
                 <tile index="253">
                     <actuators>
@@ -4650,7 +5329,11 @@
                 <tile index="304" />
                 <tile index="305" />
                 <tile index="306" />
-                <tile index="307" />
+                <tile index="307">
+                    <items>
+                        <item subPos="0" index="2" />
+                    </items>
+                </tile>
                 <tile index="308" />
                 <tile index="309" />
                 <tile index="310" />
@@ -4673,7 +5356,11 @@
                 <tile index="320" />
                 <tile index="321" />
                 <tile index="322" />
-                <tile index="323" />
+                <tile index="323">
+                    <items>
+                        <item subPos="2" index="44" />
+                    </items>
+                </tile>
                 <tile index="324" />
                 <tile index="325" />
                 <tile index="326" />
@@ -4744,7 +5431,14 @@
                 <tile index="385" />
                 <tile index="386" />
                 <tile index="387" />
-                <tile index="388" />
+                <tile index="388">
+                    <items>
+                        <item subPos="0" index="62" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="61" />
+                    </items>
+                </tile>
                 <tile index="389" />
                 <tile index="390" />
                 <tile index="391" />
@@ -4783,7 +5477,11 @@
                 <tile index="424" />
                 <tile index="425" />
                 <tile index="426" />
-                <tile index="427" />
+                <tile index="427">
+                    <items>
+                        <item subPos="0" index="46" />
+                    </items>
+                </tile>
                 <tile index="428" />
                 <tile index="429" />
                 <tile index="430" />
@@ -4892,6 +5590,9 @@
                         <actuator subPos="0" index="214" />
                         <actuator subPos="0" index="213" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="27" />
+                    </items>
                 </tile>
                 <tile index="524" />
                 <tile index="525" />
@@ -4948,7 +5649,11 @@
                 <tile index="574" />
                 <tile index="575" />
                 <tile index="576" />
-                <tile index="577" />
+                <tile index="577">
+                    <items>
+                        <item subPos="0" index="149" />
+                    </items>
+                </tile>
                 <tile index="578" />
                 <tile index="579" />
                 <tile index="580" />
@@ -4956,7 +5661,11 @@
                 <tile index="582" />
                 <tile index="583" />
                 <tile index="584" />
-                <tile index="585" />
+                <tile index="585">
+                    <items>
+                        <item subPos="3" index="57" />
+                    </items>
+                </tile>
                 <tile index="586" />
                 <tile index="587" />
                 <tile index="588" />
@@ -5205,10 +5914,29 @@
                 <tile index="809" />
                 <tile index="810" />
                 <tile index="811" />
-                <tile index="812" />
-                <tile index="813" />
+                <tile index="812">
+                    <items>
+                        <item subPos="0" index="20" />
+                        <item subPos="0" index="94" />
+                    </items>
+                </tile>
+                <tile index="813">
+                    <items>
+                        <item subPos="0" index="76" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="48" />
+                    </items>
+                </tile>
                 <tile index="814" />
-                <tile index="815" />
+                <tile index="815">
+                    <items>
+                        <item subPos="0" index="43" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="45" />
+                    </items>
+                </tile>
                 <tile index="816" />
                 <tile index="817" />
                 <tile index="818">
@@ -5235,7 +5963,11 @@
                 <tile index="831" />
                 <tile index="832" />
                 <tile index="833" />
-                <tile index="834" />
+                <tile index="834">
+                    <items>
+                        <item subPos="3" index="60" />
+                    </items>
+                </tile>
                 <tile index="835" />
                 <tile index="836" />
                 <tile index="837" />
@@ -5259,7 +5991,11 @@
                 </tile>
                 <tile index="850" />
                 <tile index="851" />
-                <tile index="852" />
+                <tile index="852">
+                    <items>
+                        <item subPos="3" index="59" />
+                    </items>
+                </tile>
                 <tile index="853">
                     <door state="4" />
                 </tile>
@@ -5276,7 +6012,11 @@
                 <tile index="864" />
                 <tile index="865" />
                 <tile index="866" />
-                <tile index="867" />
+                <tile index="867">
+                    <items>
+                        <item subPos="1" index="37" />
+                    </items>
+                </tile>
                 <tile index="868" />
                 <tile index="869" />
                 <tile index="870" />
@@ -5291,7 +6031,14 @@
                 <tile index="879" />
                 <tile index="880" />
                 <tile index="881" />
-                <tile index="882" />
+                <tile index="882">
+                    <items>
+                        <item subPos="0" index="104" />
+                    </items>
+                    <items>
+                        <item subPos="2" index="38" />
+                    </items>
+                </tile>
                 <tile index="883">
                     <actuators>
                         <actuator subPos="1" index="601" />
@@ -5320,7 +6067,14 @@
                 </tile>
                 <tile index="895" />
                 <tile index="896" />
-                <tile index="897" />
+                <tile index="897">
+                    <items>
+                        <item subPos="2" index="77" />
+                        <item subPos="2" index="78" />
+                        <item subPos="2" index="79" />
+                        <item subPos="2" index="80" />
+                    </items>
+                </tile>
                 <tile index="898" />
                 <tile index="899" />
                 <tile index="900" />
@@ -5374,14 +6128,22 @@
                 <tile index="14" />
                 <tile index="15" />
                 <tile index="16" />
-                <tile index="17" />
+                <tile index="17">
+                    <items>
+                        <item subPos="3" index="226" />
+                    </items>
+                </tile>
                 <tile index="18" />
                 <tile index="19" />
                 <tile index="20" />
                 <tile index="21" />
                 <tile index="22" />
                 <tile index="23" />
-                <tile index="24" />
+                <tile index="24">
+                    <items>
+                        <item subPos="1" index="95" />
+                    </items>
+                </tile>
                 <tile index="25" />
                 <tile index="26" />
                 <tile index="27" />
@@ -5399,7 +6161,14 @@
                 <tile index="39" />
                 <tile index="40" />
                 <tile index="41" />
-                <tile index="42" />
+                <tile index="42">
+                    <items>
+                        <item subPos="1" index="246" />
+                    </items>
+                    <items>
+                        <item subPos="3" index="41" />
+                    </items>
+                </tile>
                 <tile index="43" />
                 <tile index="44" />
                 <tile index="45" />
@@ -5426,7 +6195,11 @@
                 <tile index="66" />
                 <tile index="67" />
                 <tile index="68" />
-                <tile index="69" />
+                <tile index="69">
+                    <items>
+                        <item subPos="3" index="36" />
+                    </items>
+                </tile>
                 <tile index="70" />
                 <tile index="71" />
                 <tile index="72">
@@ -5434,6 +6207,9 @@
                         <actuator subPos="3" index="428" />
                         <actuator subPos="3" index="427" />
                     </actuators>
+                    <items>
+                        <item subPos="3" index="84" />
+                    </items>
                 </tile>
                 <tile index="73" />
                 <tile index="74" />
@@ -5475,7 +6251,11 @@
                 <tile index="110" />
                 <tile index="111" />
                 <tile index="112" />
-                <tile index="113" />
+                <tile index="113">
+                    <items>
+                        <item subPos="3" index="143" />
+                    </items>
+                </tile>
                 <tile index="114" />
                 <tile index="115" />
                 <tile index="116" />
@@ -5526,7 +6306,11 @@
                 <tile index="148" />
                 <tile index="149" />
                 <tile index="150" />
-                <tile index="151" />
+                <tile index="151">
+                    <items>
+                        <item subPos="2" index="87" />
+                    </items>
+                </tile>
                 <tile index="152" />
                 <tile index="153" />
                 <tile index="154" />
@@ -5565,7 +6349,11 @@
                     <door state="4" />
                 </tile>
                 <tile index="177" />
-                <tile index="178" />
+                <tile index="178">
+                    <items>
+                        <item subPos="2" index="59" />
+                    </items>
+                </tile>
                 <tile index="179" />
                 <tile index="180" />
                 <tile index="181" />
@@ -5574,7 +6362,11 @@
                 <tile index="184" />
                 <tile index="185" />
                 <tile index="186" />
-                <tile index="187" />
+                <tile index="187">
+                    <items>
+                        <item subPos="1" index="243" />
+                    </items>
+                </tile>
                 <tile index="188" />
                 <tile index="189" />
                 <tile index="190" />
@@ -5590,14 +6382,27 @@
                 <tile index="200" />
                 <tile index="201" />
                 <tile index="202" />
-                <tile index="203" />
+                <tile index="203">
+                    <items>
+                        <item subPos="0" index="93" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="75" />
+                        <item subPos="1" index="144" />
+                    </items>
+                </tile>
                 <tile index="204" />
                 <tile index="205" />
                 <tile index="206" />
                 <tile index="207" />
                 <tile index="208" />
                 <tile index="209" />
-                <tile index="210" />
+                <tile index="210">
+                    <items>
+                        <item subPos="0" index="38" />
+                        <item subPos="0" index="114" />
+                    </items>
+                </tile>
                 <tile index="211" />
                 <tile index="212" />
                 <tile index="213" />
@@ -5733,7 +6538,14 @@
                 <tile index="313" />
                 <tile index="314" />
                 <tile index="315" />
-                <tile index="316" />
+                <tile index="316">
+                    <items>
+                        <item subPos="1" index="278" />
+                    </items>
+                    <items>
+                        <item subPos="2" index="279" />
+                    </items>
+                </tile>
                 <tile index="317">
                     <door state="4" />
                 </tile>
@@ -5784,7 +6596,11 @@
                 <tile index="330" />
                 <tile index="331" />
                 <tile index="332" />
-                <tile index="333" />
+                <tile index="333">
+                    <items>
+                        <item subPos="0" index="277" />
+                    </items>
+                </tile>
                 <tile index="334">
                     <door state="4" />
                 </tile>
@@ -5849,6 +6665,9 @@
                         <actuator subPos="1" index="426" />
                         <actuator subPos="1" index="425" />
                     </actuators>
+                    <items>
+                        <item subPos="1" index="82" />
+                    </items>
                 </tile>
                 <tile index="376" />
                 <tile index="377" />
@@ -5861,7 +6680,11 @@
                 <tile index="382" />
                 <tile index="383" />
                 <tile index="384" />
-                <tile index="385" />
+                <tile index="385">
+                    <items>
+                        <item subPos="3" index="244" />
+                    </items>
+                </tile>
                 <tile index="386" />
                 <tile index="387" />
                 <tile index="388" />
@@ -5894,7 +6717,15 @@
                 <tile index="413" />
                 <tile index="414" />
                 <tile index="415" />
-                <tile index="416" />
+                <tile index="416">
+                    <items>
+                        <item subPos="1" index="48" />
+                        <item subPos="1" index="72" />
+                    </items>
+                    <items>
+                        <item subPos="2" index="94" />
+                    </items>
+                </tile>
                 <tile index="417" />
                 <tile index="418" />
                 <tile index="419">
@@ -5962,7 +6793,12 @@
                 <tile index="460" />
                 <tile index="461" />
                 <tile index="462" />
-                <tile index="463" />
+                <tile index="463">
+                    <items>
+                        <item subPos="0" index="67" />
+                        <item subPos="0" index="93" />
+                    </items>
+                </tile>
                 <tile index="464" />
                 <tile index="465" />
                 <tile index="466" />
@@ -6030,10 +6866,18 @@
                 <tile index="500" />
                 <tile index="501" />
                 <tile index="502" />
-                <tile index="503" />
+                <tile index="503">
+                    <items>
+                        <item subPos="1" index="43" />
+                    </items>
+                </tile>
                 <tile index="504" />
                 <tile index="505" />
-                <tile index="506" />
+                <tile index="506">
+                    <items>
+                        <item subPos="0" index="95" />
+                    </items>
+                </tile>
                 <tile index="507" />
                 <tile index="508" />
                 <tile index="509" />
@@ -6044,7 +6888,11 @@
                 <tile index="514" />
                 <tile index="515" />
                 <tile index="516" />
-                <tile index="517" />
+                <tile index="517">
+                    <items>
+                        <item subPos="0" index="47" />
+                    </items>
+                </tile>
                 <tile index="518" />
                 <tile index="519" />
                 <tile index="520" />
@@ -6156,6 +7004,9 @@
                         <actuator subPos="3" index="550" />
                         <actuator subPos="3" index="549" />
                     </actuators>
+                    <items>
+                        <item subPos="3" index="273" />
+                    </items>
                 </tile>
                 <tile index="603" />
                 <tile index="604" />
@@ -6240,7 +7091,14 @@
                 <tile index="669" />
                 <tile index="670" />
                 <tile index="671" />
-                <tile index="672" />
+                <tile index="672">
+                    <items>
+                        <item subPos="0" index="46" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="84" />
+                    </items>
+                </tile>
                 <tile index="673" />
                 <tile index="674" />
                 <tile index="675" />
@@ -6327,7 +7185,16 @@
                 <tile index="732" />
                 <tile index="733" />
                 <tile index="734" />
-                <tile index="735" />
+                <tile index="735">
+                    <items>
+                        <item subPos="0" index="47" />
+                        <item subPos="0" index="8" />
+                    </items>
+                    <items>
+                        <item subPos="3" index="66" />
+                        <item subPos="3" index="9" />
+                    </items>
+                </tile>
                 <tile index="736" />
                 <tile index="737" />
                 <tile index="738" />
@@ -6402,7 +7269,11 @@
                     </actuators>
                 </tile>
                 <tile index="785" />
-                <tile index="786" />
+                <tile index="786">
+                    <items>
+                        <item subPos="2" index="101" />
+                    </items>
+                </tile>
                 <tile index="787" />
                 <tile index="788" />
                 <tile index="789" />
@@ -6500,7 +7371,11 @@
                 <tile index="853" />
                 <tile index="854" />
                 <tile index="855" />
-                <tile index="856" />
+                <tile index="856">
+                    <items>
+                        <item subPos="1" index="117" />
+                    </items>
+                </tile>
                 <tile index="857" />
                 <tile index="858" />
                 <tile index="859" />
@@ -6537,7 +7412,11 @@
                     </actuators>
                 </tile>
                 <tile index="876" />
-                <tile index="877" />
+                <tile index="877">
+                    <items>
+                        <item subPos="0" index="9" />
+                    </items>
+                </tile>
                 <tile index="878">
                     <actuators>
                         <actuator subPos="0" index="561" />
@@ -6581,7 +7460,11 @@
                 <tile index="894" />
                 <tile index="895" />
                 <tile index="896" />
-                <tile index="897" />
+                <tile index="897">
+                    <items>
+                        <item subPos="2" index="245" />
+                    </items>
+                </tile>
                 <tile index="898" />
                 <tile index="899" />
                 <tile index="900" />
@@ -6601,7 +7484,11 @@
                 <tile index="909" />
                 <tile index="910" />
                 <tile index="911" />
-                <tile index="912" />
+                <tile index="912">
+                    <items>
+                        <item subPos="0" index="68" />
+                    </items>
+                </tile>
                 <tile index="913" />
                 <tile index="914" />
                 <tile index="915" />
@@ -6696,6 +7583,11 @@
                     <actuators>
                         <actuator subPos="2" index="281" />
                     </actuators>
+                    <items>
+                        <item subPos="2" index="65" />
+                        <item subPos="2" index="117" />
+                        <item subPos="2" index="120" />
+                    </items>
                 </tile>
                 <tile index="6" />
                 <tile index="7" />
@@ -6725,7 +7617,11 @@
                 <tile index="27" />
                 <tile index="28" />
                 <tile index="29" />
-                <tile index="30" />
+                <tile index="30">
+                    <items>
+                        <item subPos="2" index="132" />
+                    </items>
+                </tile>
                 <tile index="31" />
                 <tile index="32" />
                 <tile index="33" />
@@ -6764,6 +7660,11 @@
                     <actuators>
                         <actuator subPos="1" index="110" />
                     </actuators>
+                    <items>
+                        <item subPos="1" index="15" />
+                        <item subPos="1" index="16" />
+                        <item subPos="1" index="17" />
+                    </items>
                 </tile>
                 <tile index="64" />
                 <tile index="65" />
@@ -6771,6 +7672,11 @@
                     <actuators>
                         <actuator subPos="3" index="280" />
                     </actuators>
+                    <items>
+                        <item subPos="3" index="18" />
+                        <item subPos="3" index="20" />
+                        <item subPos="3" index="21" />
+                    </items>
                 </tile>
                 <tile index="67" />
                 <tile index="68" />
@@ -6802,19 +7708,48 @@
                 <tile index="94" />
                 <tile index="95" />
                 <tile index="96" />
-                <tile index="97" />
+                <tile index="97">
+                    <items>
+                        <item subPos="0" index="81" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="42" />
+                    </items>
+                </tile>
                 <tile index="98" />
                 <tile index="99" />
                 <tile index="100" />
-                <tile index="101" />
+                <tile index="101">
+                    <items>
+                        <item subPos="0" index="173" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="82" />
+                    </items>
+                </tile>
                 <tile index="102" />
                 <tile index="103" />
                 <tile index="104" />
-                <tile index="105" />
+                <tile index="105">
+                    <items>
+                        <item subPos="0" index="44" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="83" />
+                    </items>
+                </tile>
                 <tile index="106" />
                 <tile index="107" />
                 <tile index="108" />
-                <tile index="109" />
+                <tile index="109">
+                    <items>
+                        <item subPos="0" index="45" />
+                        <item subPos="0" index="64" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="49" />
+                    </items>
+                </tile>
                 <tile index="110" />
                 <tile index="111" />
                 <tile index="112" />
@@ -6822,6 +7757,9 @@
                     <actuators>
                         <actuator subPos="1" index="536" />
                     </actuators>
+                    <items>
+                        <item subPos="1" index="19" />
+                    </items>
                 </tile>
                 <tile index="114" />
                 <tile index="115" />
@@ -6854,6 +7792,9 @@
                     <actuators>
                         <actuator subPos="0" index="269" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="62" />
+                    </items>
                 </tile>
                 <tile index="130" />
                 <tile index="131">
@@ -6868,6 +7809,12 @@
                     <actuators>
                         <actuator subPos="0" index="320" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="97" />
+                    </items>
+                    <items>
+                        <item subPos="2" index="63" />
+                    </items>
                 </tile>
                 <tile index="134" />
                 <tile index="135">
@@ -6882,6 +7829,9 @@
                     <actuators>
                         <actuator subPos="0" index="321" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="40" />
+                    </items>
                 </tile>
                 <tile index="138" />
                 <tile index="139">
@@ -6896,6 +7846,9 @@
                     <actuators>
                         <actuator subPos="0" index="322" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="18" />
+                    </items>
                 </tile>
                 <tile index="142" />
                 <tile index="143" />
@@ -6935,6 +7888,10 @@
                     <actuators>
                         <actuator subPos="0" index="150" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="169" />
+                        <item subPos="0" index="170" />
+                    </items>
                 </tile>
                 <tile index="177">
                     <actuators>
@@ -7041,6 +7998,14 @@
                     <actuators>
                         <actuator subPos="0" index="538" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="22" />
+                        <item subPos="0" index="24" />
+                        <item subPos="0" index="25" />
+                        <item subPos="0" index="26" />
+                        <item subPos="0" index="122" />
+                        <item subPos="0" index="27" />
+                    </items>
                 </tile>
                 <tile index="269" />
                 <tile index="270" />
@@ -7241,7 +8206,11 @@
                 <tile index="451" />
                 <tile index="452" />
                 <tile index="453" />
-                <tile index="454" />
+                <tile index="454">
+                    <items>
+                        <item subPos="2" index="175" />
+                    </items>
+                </tile>
                 <tile index="455" />
                 <tile index="456" />
                 <tile index="457" />
@@ -7299,6 +8268,9 @@
                         <actuator subPos="0" index="599" />
                         <actuator subPos="0" index="667" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="103" />
+                    </items>
                 </tile>
                 <tile index="495">
                     <actuators>
@@ -7353,7 +8325,12 @@
                 <tile index="541" />
                 <tile index="542" />
                 <tile index="543" />
-                <tile index="544" />
+                <tile index="544">
+                    <items>
+                        <item subPos="2" index="29" />
+                        <item subPos="2" index="30" />
+                    </items>
+                </tile>
                 <tile index="545" />
                 <tile index="546" />
                 <tile index="547" />
@@ -7387,6 +8364,9 @@
                     <actuators>
                         <actuator subPos="0" index="643" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="81" />
+                    </items>
                 </tile>
                 <tile index="575" />
                 <tile index="576" />
@@ -7449,6 +8429,9 @@
                         <actuator subPos="1" index="670" />
                         <actuator subPos="1" index="669" />
                     </actuators>
+                    <items>
+                        <item subPos="1" index="34" />
+                    </items>
                 </tile>
                 <tile index="626" />
                 <tile index="627" />
@@ -7548,7 +8531,11 @@
                 <tile index="715" />
                 <tile index="716" />
                 <tile index="717" />
-                <tile index="718" />
+                <tile index="718">
+                    <items>
+                        <item subPos="1" index="8" />
+                    </items>
+                </tile>
                 <tile index="719" />
                 <tile index="720" />
                 <tile index="721" />
@@ -7578,7 +8565,15 @@
                 <tile index="745" />
                 <tile index="746" />
                 <tile index="747" />
-                <tile index="748" />
+                <tile index="748">
+                    <items>
+                        <item subPos="1" index="140" />
+                        <item subPos="1" index="9" />
+                    </items>
+                    <items>
+                        <item subPos="2" index="141" />
+                    </items>
+                </tile>
                 <tile index="749" />
                 <tile index="750" />
                 <tile index="751" />
@@ -7662,7 +8657,11 @@
                 <tile index="829" />
                 <tile index="830" />
                 <tile index="831" />
-                <tile index="832" />
+                <tile index="832">
+                    <items>
+                        <item subPos="0" index="272" />
+                    </items>
+                </tile>
                 <tile index="833" />
                 <tile index="834" />
                 <tile index="835" />
@@ -7846,7 +8845,11 @@
                         <actuator subPos="1" index="223" />
                     </actuators>
                 </tile>
-                <tile index="67" />
+                <tile index="67">
+                    <items>
+                        <item subPos="0" index="6" />
+                    </items>
+                </tile>
                 <tile index="68" />
                 <tile index="69" />
                 <tile index="70" />
@@ -7863,7 +8866,11 @@
                 <tile index="81" />
                 <tile index="82" />
                 <tile index="83" />
-                <tile index="84" />
+                <tile index="84">
+                    <items>
+                        <item subPos="1" index="77" />
+                    </items>
+                </tile>
                 <tile index="85" />
                 <tile index="86" />
                 <tile index="87" />
@@ -8011,7 +9018,11 @@
                 <tile index="219" />
                 <tile index="220" />
                 <tile index="221" />
-                <tile index="222" />
+                <tile index="222">
+                    <items>
+                        <item subPos="0" index="64" />
+                    </items>
+                </tile>
                 <tile index="223" />
                 <tile index="224" />
                 <tile index="225" />
@@ -8051,7 +9062,14 @@
                 <tile index="254" />
                 <tile index="255" />
                 <tile index="256" />
-                <tile index="257" />
+                <tile index="257">
+                    <items>
+                        <item subPos="2" index="253" />
+                    </items>
+                    <items>
+                        <item subPos="3" index="252" />
+                    </items>
+                </tile>
                 <tile index="258" />
                 <tile index="259" />
                 <tile index="260" />
@@ -8164,7 +9182,11 @@
                         <actuator subPos="1" index="225" />
                     </actuators>
                 </tile>
-                <tile index="354" />
+                <tile index="354">
+                    <items>
+                        <item subPos="0" index="136" />
+                    </items>
+                </tile>
                 <tile index="355" />
                 <tile index="356" />
                 <tile index="357" />
@@ -8386,7 +9408,14 @@
                 <tile index="547" />
                 <tile index="548" />
                 <tile index="549" />
-                <tile index="550" />
+                <tile index="550">
+                    <items>
+                        <item subPos="0" index="78" />
+                    </items>
+                    <items>
+                        <item subPos="2" index="10" />
+                    </items>
+                </tile>
                 <tile index="551" />
                 <tile index="552" />
                 <tile index="553" />
@@ -8545,14 +9574,22 @@
                 <tile index="667" />
                 <tile index="668" />
                 <tile index="669" />
-                <tile index="670" />
+                <tile index="670">
+                    <items>
+                        <item subPos="1" index="69" />
+                    </items>
+                </tile>
                 <tile index="671" />
                 <tile index="672" />
                 <tile index="673" />
                 <tile index="674" />
                 <tile index="675" />
                 <tile index="676" />
-                <tile index="677" />
+                <tile index="677">
+                    <items>
+                        <item subPos="0" index="3" />
+                    </items>
+                </tile>
                 <tile index="678">
                     <actuators>
                         <actuator subPos="3" index="266" />
@@ -8586,7 +9623,14 @@
                 <tile index="699" />
                 <tile index="700" />
                 <tile index="701" />
-                <tile index="702" />
+                <tile index="702">
+                    <items>
+                        <item subPos="2" index="39" />
+                    </items>
+                    <items>
+                        <item subPos="3" index="38" />
+                    </items>
+                </tile>
                 <tile index="703" />
                 <tile index="704" />
                 <tile index="705" />
@@ -8636,7 +9680,14 @@
                 <tile index="744" />
                 <tile index="745" />
                 <tile index="746" />
-                <tile index="747" />
+                <tile index="747">
+                    <items>
+                        <item subPos="0" index="44" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="247" />
+                    </items>
+                </tile>
                 <tile index="748" />
                 <tile index="749" />
                 <tile index="750" />
@@ -8752,7 +9803,11 @@
                 <tile index="841" />
                 <tile index="842" />
                 <tile index="843" />
-                <tile index="844" />
+                <tile index="844">
+                    <items>
+                        <item subPos="1" index="76" />
+                    </items>
+                </tile>
                 <tile index="845" />
                 <tile index="846" />
                 <tile index="847" />
@@ -8781,12 +9836,20 @@
                 <tile index="870" />
                 <tile index="871" />
                 <tile index="872" />
-                <tile index="873" />
+                <tile index="873">
+                    <items>
+                        <item subPos="3" index="53" />
+                    </items>
+                </tile>
                 <tile index="874" />
                 <tile index="875" />
                 <tile index="876" />
                 <tile index="877" />
-                <tile index="878" />
+                <tile index="878">
+                    <items>
+                        <item subPos="1" index="35" />
+                    </items>
+                </tile>
                 <tile index="879" />
                 <tile index="880" />
                 <tile index="881" />
@@ -8823,8 +9886,16 @@
                 <tile index="908" />
                 <tile index="909" />
                 <tile index="910" />
-                <tile index="911" />
-                <tile index="912" />
+                <tile index="911">
+                    <items>
+                        <item subPos="1" index="10" />
+                    </items>
+                </tile>
+                <tile index="912">
+                    <items>
+                        <item subPos="3" index="232" />
+                    </items>
+                </tile>
                 <tile index="913" />
                 <tile index="914" />
                 <tile index="915" />
@@ -8984,13 +10055,24 @@
                 <tile index="25" />
                 <tile index="26" />
                 <tile index="27" />
-                <tile index="28" />
+                <tile index="28">
+                    <items>
+                        <item subPos="0" index="5" />
+                    </items>
+                    <items>
+                        <item subPos="2" index="12" />
+                    </items>
+                </tile>
                 <tile index="29" />
                 <tile index="30" />
                 <tile index="31" />
                 <tile index="32" />
                 <tile index="33" />
-                <tile index="34" />
+                <tile index="34">
+                    <items>
+                        <item subPos="0" index="79" />
+                    </items>
+                </tile>
                 <tile index="35" />
                 <tile index="36" />
                 <tile index="37" />
@@ -9003,7 +10085,11 @@
                 <tile index="44" />
                 <tile index="45" />
                 <tile index="46" />
-                <tile index="47" />
+                <tile index="47">
+                    <items>
+                        <item subPos="1" index="171" />
+                    </items>
+                </tile>
                 <tile index="48" />
                 <tile index="49" />
                 <tile index="50" />
@@ -9021,7 +10107,11 @@
                 <tile index="62" />
                 <tile index="63" />
                 <tile index="64" />
-                <tile index="65" />
+                <tile index="65">
+                    <items>
+                        <item subPos="2" index="55" />
+                    </items>
+                </tile>
                 <tile index="66">
                     <actuators>
                         <actuator subPos="3" index="282" />
@@ -9210,7 +10300,16 @@
                 <tile index="215" />
                 <tile index="216" />
                 <tile index="217" />
-                <tile index="218" />
+                <tile index="218">
+                    <items>
+                        <item subPos="2" index="189" />
+                        <item subPos="2" index="190" />
+                        <item subPos="2" index="191" />
+                    </items>
+                    <items>
+                        <item subPos="3" index="188" />
+                    </items>
+                </tile>
                 <tile index="219" />
                 <tile index="220" />
                 <tile index="221" />
@@ -9351,7 +10450,15 @@
                 <tile index="339" />
                 <tile index="340" />
                 <tile index="341" />
-                <tile index="342" />
+                <tile index="342">
+                    <items>
+                        <item subPos="0" index="65" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="123" />
+                        <item subPos="1" index="85" />
+                    </items>
+                </tile>
                 <tile index="343" />
                 <tile index="344" />
                 <tile index="345" />
@@ -9471,7 +10578,12 @@
                 <tile index="449" />
                 <tile index="450" />
                 <tile index="451" />
-                <tile index="452" />
+                <tile index="452">
+                    <items>
+                        <item subPos="0" index="13" />
+                        <item subPos="0" index="14" />
+                    </items>
+                </tile>
                 <tile index="453" />
                 <tile index="454" />
                 <tile index="455" />
@@ -9541,6 +10653,9 @@
                     <actuators>
                         <actuator subPos="2" index="537" />
                     </actuators>
+                    <items>
+                        <item subPos="2" index="80" />
+                    </items>
                 </tile>
                 <tile index="508">
                     <actuators>
@@ -9687,7 +10802,14 @@
                 <tile index="640" />
                 <tile index="641" />
                 <tile index="642" />
-                <tile index="643" />
+                <tile index="643">
+                    <items>
+                        <item subPos="2" index="11" />
+                    </items>
+                    <items>
+                        <item subPos="3" index="23" />
+                    </items>
+                </tile>
                 <tile index="644" />
                 <tile index="645" />
                 <tile index="646" />
@@ -9771,7 +10893,11 @@
                     <door state="4" />
                 </tile>
                 <tile index="722" />
-                <tile index="723" />
+                <tile index="723">
+                    <items>
+                        <item subPos="2" index="13" />
+                    </items>
+                </tile>
                 <tile index="724" />
                 <tile index="725" />
                 <tile index="726" />
@@ -9784,7 +10910,12 @@
                 <tile index="733" />
                 <tile index="734" />
                 <tile index="735" />
-                <tile index="736" />
+                <tile index="736">
+                    <items>
+                        <item subPos="1" index="60" />
+                        <item subPos="1" index="101" />
+                    </items>
+                </tile>
                 <tile index="737" />
                 <tile index="738" />
                 <tile index="739" />
@@ -9845,8 +10976,16 @@
                 </tile>
                 <tile index="791" />
                 <tile index="792" />
-                <tile index="793" />
-                <tile index="794" />
+                <tile index="793">
+                    <items>
+                        <item subPos="1" index="164" />
+                    </items>
+                </tile>
+                <tile index="794">
+                    <items>
+                        <item subPos="2" index="172" />
+                    </items>
+                </tile>
                 <tile index="795" />
                 <tile index="796" />
                 <tile index="797" />
@@ -10089,7 +11228,11 @@
                 <tile index="23" />
                 <tile index="24" />
                 <tile index="25" />
-                <tile index="26" />
+                <tile index="26">
+                    <items>
+                        <item subPos="2" index="52" />
+                    </items>
+                </tile>
                 <tile index="27" />
                 <tile index="28" />
                 <tile index="29" />
@@ -10125,7 +11268,12 @@
                 <tile index="59" />
                 <tile index="60" />
                 <tile index="61" />
-                <tile index="62" />
+                <tile index="62">
+                    <items>
+                        <item subPos="3" index="202" />
+                        <item subPos="3" index="203" />
+                    </items>
+                </tile>
                 <tile index="63" />
                 <tile index="64" />
                 <tile index="65" />
@@ -10174,7 +11322,11 @@
                 <tile index="108" />
                 <tile index="109" />
                 <tile index="110" />
-                <tile index="111" />
+                <tile index="111">
+                    <items>
+                        <item subPos="2" index="274" />
+                    </items>
+                </tile>
                 <tile index="112" />
                 <tile index="113" />
                 <tile index="114" />
@@ -10288,7 +11440,12 @@
                         <actuator subPos="2" index="48" />
                     </actuators>
                 </tile>
-                <tile index="209" />
+                <tile index="209">
+                    <items>
+                        <item subPos="1" index="16" />
+                        <item subPos="1" index="108" />
+                    </items>
+                </tile>
                 <tile index="210" />
                 <tile index="211" />
                 <tile index="212">
@@ -10472,13 +11629,21 @@
                 <tile index="366" />
                 <tile index="367" />
                 <tile index="368" />
-                <tile index="369" />
+                <tile index="369">
+                    <items>
+                        <item subPos="1" index="184" />
+                    </items>
+                </tile>
                 <tile index="370" />
                 <tile index="371" />
                 <tile index="372" />
                 <tile index="373" />
                 <tile index="374" />
-                <tile index="375" />
+                <tile index="375">
+                    <items>
+                        <item subPos="0" index="81" />
+                    </items>
+                </tile>
                 <tile index="376" />
                 <tile index="377">
                     <actuators>
@@ -10622,7 +11787,11 @@
                 <tile index="482" />
                 <tile index="483" />
                 <tile index="484" />
-                <tile index="485" />
+                <tile index="485">
+                    <items>
+                        <item subPos="1" index="102" />
+                    </items>
+                </tile>
                 <tile index="486" />
                 <tile index="487">
                     <actuators>
@@ -10662,7 +11831,11 @@
                 <tile index="510" />
                 <tile index="511" />
                 <tile index="512" />
-                <tile index="513" />
+                <tile index="513">
+                    <items>
+                        <item subPos="0" index="138" />
+                    </items>
+                </tile>
                 <tile index="514" />
                 <tile index="515" />
                 <tile index="516" />
@@ -10705,6 +11878,9 @@
                         <actuator subPos="1" index="401" />
                         <actuator subPos="1" index="378" />
                     </actuators>
+                    <items>
+                        <item subPos="1" index="68" />
+                    </items>
                 </tile>
                 <tile index="544" />
                 <tile index="545" />
@@ -10722,7 +11898,15 @@
                         <actuator subPos="0" index="303" />
                     </actuators>
                 </tile>
-                <tile index="552" />
+                <tile index="552">
+                    <items>
+                        <item subPos="1" index="42" />
+                    </items>
+                    <items>
+                        <item subPos="2" index="43" />
+                        <item subPos="2" index="179" />
+                    </items>
+                </tile>
                 <tile index="553" />
                 <tile index="554" />
                 <tile index="555" />
@@ -10833,12 +12017,23 @@
                 <tile index="648" />
                 <tile index="649" />
                 <tile index="650" />
-                <tile index="651" />
+                <tile index="651">
+                    <items>
+                        <item subPos="0" index="56" />
+                    </items>
+                </tile>
                 <tile index="652" />
                 <tile index="653" />
                 <tile index="654" />
                 <tile index="655" />
-                <tile index="656" />
+                <tile index="656">
+                    <items>
+                        <item subPos="0" index="204" />
+                    </items>
+                    <items>
+                        <item subPos="3" index="201" />
+                    </items>
+                </tile>
                 <tile index="657" />
                 <tile index="658" />
                 <tile index="659" />
@@ -10996,7 +12191,12 @@
                 <tile index="786" />
                 <tile index="787" />
                 <tile index="788" />
-                <tile index="789" />
+                <tile index="789">
+                    <items>
+                        <item subPos="1" index="96" />
+                        <item subPos="1" index="97" />
+                    </items>
+                </tile>
                 <tile index="790" />
                 <tile index="791" />
                 <tile index="792" />
@@ -11023,7 +12223,11 @@
                 <tile index="809" />
                 <tile index="810" />
                 <tile index="811" />
-                <tile index="812" />
+                <tile index="812">
+                    <items>
+                        <item subPos="2" index="98" />
+                    </items>
+                </tile>
                 <tile index="813" />
                 <tile index="814" />
                 <tile index="815" />
@@ -11037,9 +12241,20 @@
                 <tile index="818" />
                 <tile index="819" />
                 <tile index="820" />
-                <tile index="821" />
+                <tile index="821">
+                    <items>
+                        <item subPos="3" index="57" />
+                    </items>
+                </tile>
                 <tile index="822" />
-                <tile index="823" />
+                <tile index="823">
+                    <items>
+                        <item subPos="0" index="14" />
+                    </items>
+                    <items>
+                        <item subPos="3" index="86" />
+                    </items>
+                </tile>
                 <tile index="824" />
                 <tile index="825" />
                 <tile index="826" />
@@ -11067,9 +12282,20 @@
                 </tile>
                 <tile index="847" />
                 <tile index="848" />
-                <tile index="849" />
+                <tile index="849">
+                    <items>
+                        <item subPos="2" index="82" />
+                    </items>
+                    <items>
+                        <item subPos="3" index="163" />
+                    </items>
+                </tile>
                 <tile index="850" />
-                <tile index="851" />
+                <tile index="851">
+                    <items>
+                        <item subPos="1" index="139" />
+                    </items>
+                </tile>
                 <tile index="852" />
                 <tile index="853" />
                 <tile index="854" />
@@ -11186,13 +12412,21 @@
                 <tile index="949" />
                 <tile index="950" />
                 <tile index="951" />
-                <tile index="952" />
+                <tile index="952">
+                    <items>
+                        <item subPos="0" index="15" />
+                    </items>
+                </tile>
                 <tile index="953" />
                 <tile index="954" />
                 <tile index="955" />
                 <tile index="956" />
                 <tile index="957" />
-                <tile index="958" />
+                <tile index="958">
+                    <items>
+                        <item subPos="2" index="185" />
+                    </items>
+                </tile>
                 <tile index="959" />
                 <tile index="960" />
                 <tile index="961" />
@@ -11250,7 +12484,11 @@
                 <tile index="3" />
                 <tile index="4" />
                 <tile index="5" />
-                <tile index="6" />
+                <tile index="6">
+                    <items>
+                        <item subPos="0" index="70" />
+                    </items>
+                </tile>
                 <tile index="7" />
                 <tile index="8" />
                 <tile index="9" />
@@ -11346,16 +12584,28 @@
                 <tile index="90" />
                 <tile index="91" />
                 <tile index="92" />
-                <tile index="93" />
+                <tile index="93">
+                    <items>
+                        <item subPos="0" index="49" />
+                    </items>
+                </tile>
                 <tile index="94" />
                 <tile index="95" />
-                <tile index="96" />
+                <tile index="96">
+                    <items>
+                        <item subPos="3" index="60" />
+                    </items>
+                </tile>
                 <tile index="97" />
                 <tile index="98" />
                 <tile index="99" />
                 <tile index="100" />
                 <tile index="101" />
-                <tile index="102" />
+                <tile index="102">
+                    <items>
+                        <item subPos="1" index="71" />
+                    </items>
+                </tile>
                 <tile index="103" />
                 <tile index="104" />
                 <tile index="105" />
@@ -11408,10 +12658,18 @@
                 <tile index="142" />
                 <tile index="143" />
                 <tile index="144" />
-                <tile index="145" />
+                <tile index="145">
+                    <items>
+                        <item subPos="1" index="166" />
+                    </items>
+                </tile>
                 <tile index="146" />
                 <tile index="147" />
-                <tile index="148" />
+                <tile index="148">
+                    <items>
+                        <item subPos="0" index="270" />
+                    </items>
+                </tile>
                 <tile index="149" />
                 <tile index="150">
                     <actuators>
@@ -11462,17 +12720,29 @@
                     </actuators>
                 </tile>
                 <tile index="182" />
-                <tile index="183" />
+                <tile index="183">
+                    <items>
+                        <item subPos="1" index="50" />
+                    </items>
+                </tile>
                 <tile index="184" />
                 <tile index="185" />
-                <tile index="186" />
+                <tile index="186">
+                    <items>
+                        <item subPos="0" index="15" />
+                    </items>
+                </tile>
                 <tile index="187" />
                 <tile index="188" />
                 <tile index="189" />
                 <tile index="190">
                     <door state="4" />
                 </tile>
-                <tile index="191" />
+                <tile index="191">
+                    <items>
+                        <item subPos="0" index="4" />
+                    </items>
+                </tile>
                 <tile index="192" />
                 <tile index="193" />
                 <tile index="194" />
@@ -11659,7 +12929,11 @@
                     </actuators>
                 </tile>
                 <tile index="348" />
-                <tile index="349" />
+                <tile index="349">
+                    <items>
+                        <item subPos="2" index="121" />
+                    </items>
+                </tile>
                 <tile index="350" />
                 <tile index="351">
                     <actuators>
@@ -11782,6 +13056,9 @@
                     <actuators>
                         <actuator subPos="1" index="566" />
                     </actuators>
+                    <items>
+                        <item subPos="1" index="39" />
+                    </items>
                 </tile>
                 <tile index="421" />
                 <tile index="422">
@@ -11827,7 +13104,11 @@
                 </tile>
                 <tile index="440" />
                 <tile index="441" />
-                <tile index="442" />
+                <tile index="442">
+                    <items>
+                        <item subPos="0" index="131" />
+                    </items>
+                </tile>
                 <tile index="443" />
                 <tile index="444" />
                 <tile index="445" />
@@ -11866,7 +13147,11 @@
                         <actuator subPos="0" index="578" />
                     </actuators>
                 </tile>
-                <tile index="457" />
+                <tile index="457">
+                    <items>
+                        <item subPos="0" index="266" />
+                    </items>
+                </tile>
                 <tile index="458" />
                 <tile index="459">
                     <actuators>
@@ -11915,7 +13200,11 @@
                 <tile index="495" />
                 <tile index="496" />
                 <tile index="497" />
-                <tile index="498" />
+                <tile index="498">
+                    <items>
+                        <item subPos="0" index="129" />
+                    </items>
+                </tile>
                 <tile index="499" />
                 <tile index="500" />
                 <tile index="501" />
@@ -11959,7 +13248,11 @@
                 <tile index="539" />
                 <tile index="540" />
                 <tile index="541" />
-                <tile index="542" />
+                <tile index="542">
+                    <items>
+                        <item subPos="0" index="267" />
+                    </items>
+                </tile>
                 <tile index="543" />
                 <tile index="544" />
                 <tile index="545" />
@@ -11998,7 +13291,11 @@
                 <tile index="578" />
                 <tile index="579" />
                 <tile index="580" />
-                <tile index="581" />
+                <tile index="581">
+                    <items>
+                        <item subPos="2" index="268" />
+                    </items>
+                </tile>
                 <tile index="582" />
                 <tile index="583" />
                 <tile index="584" />
@@ -12013,6 +13310,9 @@
                     <actuators>
                         <actuator subPos="2" index="647" />
                     </actuators>
+                    <items>
+                        <item subPos="2" index="167" />
+                    </items>
                 </tile>
                 <tile index="593" />
                 <tile index="594" />
@@ -12068,7 +13368,11 @@
                         <actuator subPos="0" index="492" />
                     </actuators>
                 </tile>
-                <tile index="626" />
+                <tile index="626">
+                    <items>
+                        <item subPos="2" index="271" />
+                    </items>
+                </tile>
                 <tile index="627" />
                 <tile index="628" />
                 <tile index="629" />
@@ -12122,6 +13426,9 @@
                     <actuators>
                         <actuator subPos="0" index="501" />
                     </actuators>
+                    <items>
+                        <item subPos="1" index="269" />
+                    </items>
                 </tile>
                 <tile index="667" />
                 <tile index="668" />
@@ -12271,6 +13578,9 @@
                         <actuator subPos="1" index="642" />
                         <actuator subPos="1" index="641" />
                     </actuators>
+                    <items>
+                        <item subPos="1" index="30" />
+                    </items>
                 </tile>
                 <tile index="766" />
                 <tile index="767" />
@@ -12310,19 +13620,30 @@
                 <tile index="801" />
                 <tile index="802" />
                 <tile index="803" />
-                <tile index="804" />
+                <tile index="804">
+                    <items>
+                        <item subPos="0" index="56" />
+                    </items>
+                </tile>
                 <tile index="805" />
                 <tile index="806">
                     <actuators>
                         <actuator subPos="2" index="637" />
                         <actuator subPos="2" index="630" />
                     </actuators>
+                    <items>
+                        <item subPos="2" index="69" />
+                        <item subPos="2" index="222" />
+                    </items>
                 </tile>
                 <tile index="807">
                     <actuators>
                         <actuator subPos="2" index="636" />
                         <actuator subPos="2" index="629" />
                     </actuators>
+                    <items>
+                        <item subPos="2" index="255" />
+                    </items>
                 </tile>
                 <tile index="808" />
                 <tile index="809" />
@@ -12360,10 +13681,17 @@
                         <actuator subPos="1" index="638" />
                         <actuator subPos="1" index="631" />
                     </actuators>
+                    <items>
+                        <item subPos="1" index="24" />
+                        <item subPos="1" index="265" />
+                    </items>
                 </tile>
                 <tile index="836" />
                 <tile index="837" />
                 <tile index="838">
+                    <items>
+                        <item subPos="0" index="11" />
+                    </items>
                     <actuators>
                         <actuator subPos="3" index="635" />
                         <actuator subPos="3" index="628" />
@@ -12406,6 +13734,9 @@
                         <actuator subPos="1" index="639" />
                         <actuator subPos="1" index="632" />
                     </actuators>
+                    <items>
+                        <item subPos="1" index="50" />
+                    </items>
                 </tile>
                 <tile index="866" />
                 <tile index="867" />
@@ -12414,6 +13745,9 @@
                         <actuator subPos="3" index="634" />
                         <actuator subPos="3" index="627" />
                     </actuators>
+                    <items>
+                        <item subPos="3" index="264" />
+                    </items>
                 </tile>
                 <tile index="869" />
                 <tile index="870" />
@@ -12451,6 +13785,9 @@
                         <actuator subPos="0" index="640" />
                         <actuator subPos="0" index="633" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="51" />
+                    </items>
                 </tile>
                 <tile index="897" />
                 <tile index="898" />
@@ -12487,7 +13824,15 @@
                 <tile index="927" />
                 <tile index="928" />
                 <tile index="929" />
-                <tile index="930" />
+                <tile index="930">
+                    <items>
+                        <item subPos="0" index="100" />
+                    </items>
+                    <items>
+                        <item subPos="3" index="101" />
+                        <item subPos="3" index="102" />
+                    </items>
+                </tile>
                 <tile index="931" />
                 <tile index="932" />
                 <tile index="933" />
@@ -12548,9 +13893,21 @@
                 <tile index="24" />
                 <tile index="25" />
                 <tile index="26" />
-                <tile index="27" />
-                <tile index="28" />
-                <tile index="29" />
+                <tile index="27">
+                    <items>
+                        <item subPos="2" index="28" />
+                    </items>
+                </tile>
+                <tile index="28">
+                    <items>
+                        <item subPos="0" index="111" />
+                    </items>
+                </tile>
+                <tile index="29">
+                    <items>
+                        <item subPos="2" index="73" />
+                    </items>
+                </tile>
                 <tile index="30" />
                 <tile index="31" />
                 <tile index="32" />
@@ -12596,7 +13953,11 @@
                 <tile index="64" />
                 <tile index="65" />
                 <tile index="66" />
-                <tile index="67" />
+                <tile index="67">
+                    <items>
+                        <item subPos="2" index="96" />
+                    </items>
+                </tile>
                 <tile index="68" />
                 <tile index="69" />
                 <tile index="70" />
@@ -12622,7 +13983,15 @@
                 <tile index="90" />
                 <tile index="91" />
                 <tile index="92" />
-                <tile index="93" />
+                <tile index="93">
+                    <items>
+                        <item subPos="1" index="79" />
+                        <item subPos="1" index="160" />
+                    </items>
+                    <items>
+                        <item subPos="2" index="156" />
+                    </items>
+                </tile>
                 <tile index="94" />
                 <tile index="95" />
                 <tile index="96" />
@@ -12666,7 +14035,14 @@
                 <tile index="132" />
                 <tile index="133" />
                 <tile index="134" />
-                <tile index="135" />
+                <tile index="135">
+                    <items>
+                        <item subPos="1" index="157" />
+                    </items>
+                    <items>
+                        <item subPos="2" index="200" />
+                    </items>
+                </tile>
                 <tile index="136" />
                 <tile index="137" />
                 <tile index="138" />
@@ -12807,7 +14183,21 @@
                         <actuator subPos="3" index="421" />
                     </actuators>
                 </tile>
-                <tile index="252" />
+                <tile index="252">
+                    <items>
+                        <item subPos="0" index="26" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="27" />
+                        <item subPos="1" index="155" />
+                    </items>
+                    <items>
+                        <item subPos="2" index="17" />
+                    </items>
+                    <items>
+                        <item subPos="3" index="54" />
+                    </items>
+                </tile>
                 <tile index="253" />
                 <tile index="254" />
                 <tile index="255" />
@@ -13002,6 +14392,9 @@
                     <actuators>
                         <actuator subPos="1" index="654" />
                     </actuators>
+                    <items>
+                        <item subPos="1" index="275" />
+                    </items>
                 </tile>
                 <tile index="396" />
                 <tile index="397">
@@ -13016,7 +14409,11 @@
                 <tile index="402" />
                 <tile index="403" />
                 <tile index="404" />
-                <tile index="405" />
+                <tile index="405">
+                    <items>
+                        <item subPos="2" index="52" />
+                    </items>
+                </tile>
                 <tile index="406" />
                 <tile index="407" />
                 <tile index="408">
@@ -13024,13 +14421,21 @@
                 </tile>
                 <tile index="409" />
                 <tile index="410" />
-                <tile index="411" />
+                <tile index="411">
+                    <items>
+                        <item subPos="3" index="53" />
+                    </items>
+                </tile>
                 <tile index="412" />
                 <tile index="413" />
                 <tile index="414" />
                 <tile index="415" />
                 <tile index="416" />
-                <tile index="417" />
+                <tile index="417">
+                    <items>
+                        <item subPos="1" index="159" />
+                    </items>
+                </tile>
                 <tile index="418" />
                 <tile index="419" />
                 <tile index="420" />
@@ -13052,7 +14457,11 @@
                 <tile index="436" />
                 <tile index="437" />
                 <tile index="438" />
-                <tile index="439" />
+                <tile index="439">
+                    <items>
+                        <item subPos="0" index="112" />
+                    </items>
+                </tile>
                 <tile index="440" />
                 <tile index="441" />
                 <tile index="442" />
@@ -13084,8 +14493,16 @@
                 <tile index="468" />
                 <tile index="469" />
                 <tile index="470" />
-                <tile index="471" />
-                <tile index="472" />
+                <tile index="471">
+                    <items>
+                        <item subPos="2" index="158" />
+                    </items>
+                </tile>
+                <tile index="472">
+                    <items>
+                        <item subPos="0" index="58" />
+                    </items>
+                </tile>
                 <tile index="473" />
                 <tile index="474" />
                 <tile index="475" />
@@ -13112,7 +14529,15 @@
                 <tile index="496" />
                 <tile index="497" />
                 <tile index="498" />
-                <tile index="499" />
+                <tile index="499">
+                    <items>
+                        <item subPos="1" index="153" />
+                        <item subPos="1" index="154" />
+                    </items>
+                    <items>
+                        <item subPos="2" index="77" />
+                    </items>
+                </tile>
                 <tile index="500" />
                 <tile index="501" />
                 <tile index="502" />
@@ -13317,7 +14742,11 @@
                 <tile index="688" />
                 <tile index="689" />
                 <tile index="690" />
-                <tile index="691" />
+                <tile index="691">
+                    <items>
+                        <item subPos="1" index="151" />
+                    </items>
+                </tile>
                 <tile index="692" />
                 <tile index="693" />
                 <tile index="694" />
@@ -13377,6 +14806,9 @@
                     <actuators>
                         <actuator subPos="0" index="145" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="168" />
+                    </items>
                 </tile>
                 <tile index="738" />
                 <tile index="739" />
@@ -13487,7 +14919,11 @@
                 <tile index="829" />
                 <tile index="830" />
                 <tile index="831" />
-                <tile index="832" />
+                <tile index="832">
+                    <items>
+                        <item subPos="1" index="78" />
+                    </items>
+                </tile>
                 <tile index="833" />
                 <tile index="834" />
                 <tile index="835">
@@ -13582,19 +15018,35 @@
                     <door state="4" />
                 </tile>
                 <tile index="913" />
-                <tile index="914" />
+                <tile index="914">
+                    <items>
+                        <item subPos="0" index="162" />
+                    </items>
+                </tile>
                 <tile index="915" />
                 <tile index="916" />
-                <tile index="917" />
+                <tile index="917">
+                    <items>
+                        <item subPos="1" index="103" />
+                    </items>
+                </tile>
                 <tile index="918" />
-                <tile index="919" />
+                <tile index="919">
+                    <items>
+                        <item subPos="0" index="104" />
+                    </items>
+                </tile>
                 <tile index="920" />
                 <tile index="921" />
                 <tile index="922" />
                 <tile index="923" />
                 <tile index="924" />
                 <tile index="925" />
-                <tile index="926" />
+                <tile index="926">
+                    <items>
+                        <item subPos="1" index="110" />
+                    </items>
+                </tile>
                 <tile index="927" />
                 <tile index="928" />
                 <tile index="929" />
@@ -13644,7 +15096,14 @@
                 <tile index="973" />
                 <tile index="974" />
                 <tile index="975" />
-                <tile index="976" />
+                <tile index="976">
+                    <items>
+                        <item subPos="1" index="161" />
+                    </items>
+                    <items>
+                        <item subPos="2" index="199" />
+                    </items>
+                </tile>
                 <tile index="977" />
                 <tile index="978" />
                 <tile index="979" />
@@ -13657,7 +15116,11 @@
                 <tile index="986" />
                 <tile index="987" />
                 <tile index="988" />
-                <tile index="989" />
+                <tile index="989">
+                    <items>
+                        <item subPos="2" index="109" />
+                    </items>
+                </tile>
                 <tile index="990" />
                 <tile index="991" />
             </tiles>
@@ -13740,6 +15203,10 @@
                     <actuators>
                         <actuator subPos="0" index="313" />
                     </actuators>
+                    <items>
+                        <item subPos="0" index="115" />
+                        <item subPos="0" index="86" />
+                    </items>
                 </tile>
                 <tile index="63">
                     <door state="4" />
@@ -14261,7 +15728,11 @@
                 <tile index="46" />
                 <tile index="47" />
                 <tile index="48" />
-                <tile index="49" />
+                <tile index="49">
+                    <items>
+                        <item subPos="0" index="176" />
+                    </items>
+                </tile>
                 <tile index="50" />
                 <tile index="51" />
                 <tile index="52" />
@@ -14320,6 +15791,9 @@
                         <actuator subPos="2" index="535" />
                         <actuator subPos="2" index="147" />
                     </actuators>
+                    <items>
+                        <item subPos="2" index="80" />
+                    </items>
                 </tile>
                 <tile index="103" />
                 <tile index="104" />
@@ -14349,6 +15823,9 @@
                     <actuators>
                         <actuator subPos="1" index="534" />
                     </actuators>
+                    <items>
+                        <item subPos="1" index="31" />
+                    </items>
                 </tile>
                 <tile index="128" />
                 <tile index="129" />
@@ -14401,7 +15878,11 @@
                 <tile index="165" />
                 <tile index="166" />
                 <tile index="167" />
-                <tile index="168" />
+                <tile index="168">
+                    <items>
+                        <item subPos="0" index="206" />
+                    </items>
+                </tile>
                 <tile index="169" />
                 <tile index="170" />
                 <tile index="171" />
@@ -14418,7 +15899,11 @@
                         <actuator subPos="1" index="533" />
                     </actuators>
                 </tile>
-                <tile index="179" />
+                <tile index="179">
+                    <items>
+                        <item subPos="3" index="276" />
+                    </items>
+                </tile>
                 <tile index="180" />
                 <tile index="181" />
                 <tile index="182" />
@@ -14431,16 +15916,28 @@
                 <tile index="189" />
                 <tile index="190" />
                 <tile index="191" />
-                <tile index="192" />
+                <tile index="192">
+                    <items>
+                        <item subPos="2" index="130" />
+                    </items>
+                </tile>
                 <tile index="193" />
                 <tile index="194" />
                 <tile index="195" />
                 <tile index="196" />
-                <tile index="197" />
+                <tile index="197">
+                    <items>
+                        <item subPos="1" index="87" />
+                    </items>
+                </tile>
                 <tile index="198" />
                 <tile index="199" />
                 <tile index="200" />
-                <tile index="201" />
+                <tile index="201">
+                    <items>
+                        <item subPos="3" index="92" />
+                    </items>
+                </tile>
                 <tile index="202" />
                 <tile index="203" />
                 <tile index="204" />
@@ -14466,15 +15963,40 @@
                 <tile index="219" />
                 <tile index="220" />
                 <tile index="221" />
-                <tile index="222" />
+                <tile index="222">
+                    <items>
+                        <item subPos="2" index="88" />
+                    </items>
+                </tile>
                 <tile index="223" />
                 <tile index="224" />
                 <tile index="225" />
-                <tile index="226" />
+                <tile index="226">
+                    <items>
+                        <item subPos="0" index="94" />
+                        <item subPos="0" index="90" />
+                    </items>
+                </tile>
                 <tile index="227" />
-                <tile index="228" />
+                <tile index="228">
+                    <items>
+                        <item subPos="1" index="95" />
+                    </items>
+                </tile>
                 <tile index="229" />
-                <tile index="230" />
+                <tile index="230">
+                    <items>
+                        <item subPos="0" index="99" />
+                    </items>
+                    <items>
+                        <item subPos="1" index="98" />
+                        <item subPos="1" index="100" />
+                    </items>
+                    <items>
+                        <item subPos="2" index="182" />
+                        <item subPos="2" index="99" />
+                    </items>
+                </tile>
                 <tile index="231">
                     <actuators>
                         <actuator subPos="2" index="287" />
@@ -14501,10 +16023,19 @@
                 <tile index="244" />
                 <tile index="245" />
                 <tile index="246" />
-                <tile index="247" />
+                <tile index="247">
+                    <items>
+                        <item subPos="0" index="85" />
+                        <item subPos="0" index="86" />
+                    </items>
+                </tile>
                 <tile index="248" />
                 <tile index="249" />
-                <tile index="250" />
+                <tile index="250">
+                    <items>
+                        <item subPos="1" index="89" />
+                    </items>
+                </tile>
                 <tile index="251" />
                 <tile index="252" />
                 <tile index="253" />
@@ -14523,20 +16054,51 @@
                 <tile index="266" />
                 <tile index="267" />
                 <tile index="268" />
-                <tile index="269" />
+                <tile index="269">
+                    <items>
+                        <item subPos="3" index="137" />
+                    </items>
+                </tile>
                 <tile index="270" />
                 <tile index="271" />
-                <tile index="272" />
+                <tile index="272">
+                    <items>
+                        <item subPos="0" index="63" />
+                    </items>
+                </tile>
                 <tile index="273" />
                 <tile index="274" />
-                <tile index="275" />
+                <tile index="275">
+                    <items>
+                        <item subPos="0" index="187" />
+                    </items>
+                </tile>
                 <tile index="276" />
-                <tile index="277" />
+                <tile index="277">
+                    <items>
+                        <item subPos="3" index="177" />
+                    </items>
+                </tile>
                 <tile index="278" />
-                <tile index="279" />
+                <tile index="279">
+                    <items>
+                        <item subPos="0" index="93" />
+                    </items>
+                </tile>
                 <tile index="280" />
                 <tile index="281" />
-                <tile index="282" />
+                <tile index="282">
+                    <items>
+                        <item subPos="1" index="183" />
+                    </items>
+                    <items>
+                        <item subPos="2" index="103" />
+                        <item subPos="2" index="0" />
+                    </items>
+                    <items>
+                        <item subPos="3" index="102" />
+                    </items>
+                </tile>
                 <tile index="283" />
                 <tile index="284" />
                 <tile index="285" />
@@ -14550,7 +16112,11 @@
                 <tile index="293" />
                 <tile index="294" />
                 <tile index="295" />
-                <tile index="296" />
+                <tile index="296">
+                    <items>
+                        <item subPos="0" index="205" />
+                    </items>
+                </tile>
                 <tile index="297" />
                 <tile index="298" />
                 <tile index="299" />
@@ -14558,8 +16124,16 @@
                 <tile index="301" />
                 <tile index="302" />
                 <tile index="303" />
-                <tile index="304" />
-                <tile index="305" />
+                <tile index="304">
+                    <items>
+                        <item subPos="1" index="91" />
+                    </items>
+                </tile>
+                <tile index="305">
+                    <items>
+                        <item subPos="1" index="96" />
+                    </items>
+                </tile>
                 <tile index="306" />
                 <tile index="307" />
                 <tile index="308" />
@@ -14578,7 +16152,11 @@
                 <tile index="321" />
                 <tile index="322" />
                 <tile index="323" />
-                <tile index="324" />
+                <tile index="324">
+                    <items>
+                        <item subPos="2" index="186" />
+                    </items>
+                </tile>
                 <tile index="325" />
                 <tile index="326" />
                 <tile index="327" />

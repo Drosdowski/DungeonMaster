@@ -19,7 +19,6 @@ class CGrpMonster : public CGrpChar
 {
 public:
 	
-	CGrpMonster(VEKTOR pos, COMPASS_DIRECTION richt); // todo eliminieren.
 	CGrpMonster(VEKTOR pos, CCreatureAttributes attributes);
 protected:
 	CGrpMonster();           // Dynamische Erstellung verwendet geschützten Konstruktor

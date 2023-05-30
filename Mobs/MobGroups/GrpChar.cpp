@@ -202,7 +202,7 @@ void CGrpChar::DrehenRelativ(int iRelRichtung)
 		DrehenAbsolut((COMPASS_DIRECTION)((m_grpDirection + 3) % 4));
 		break;
 	case RECHTS:
-		DrehenAbsolut((COMPASS_DIRECTION)((m_grpDirection + 1) % 4)); // todo auslagern
+		DrehenAbsolut((COMPASS_DIRECTION)((m_grpDirection + 1) % 4));
 		break;
 	}
 	ChangeCompass();

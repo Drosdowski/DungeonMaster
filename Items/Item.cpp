@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Item.h"
+#include <cassert>
 
 CItem::CItem(int index, ItemType type) : CMovingObject() {
 	m_index = index;
@@ -21,5 +22,15 @@ bool CItem::CheckGroup(int slotId, ItemGroup group) {
 	return true;
 }
 
-
+char* CItem::getItemTypeString() {
+	switch (m_itemType) {
+	case WeaponItem: return "Weapon";
+	case MiscItem: return "Misc";
+	case ClothItem: return "Cloth";
+	case PotionItem: return "Potion";
+	case ScrollItem: return "Scroll";
+	case ContainerItem: return "Container";
+	default: assert(false);
+	}
+}
 
