@@ -15,6 +15,7 @@
 #include "SpecialTile/CTeleporter.h"
 #include "SpecialTile/Trickwall.h"
 #include "CDungeonMap.h"
+#include <fstream>
 
 CDungeonMap::CDungeonMap(CItemInfos* pItemInfos, CMonsterInfos* pMonsterInfos)
 { 
@@ -23,6 +24,9 @@ CDungeonMap::CDungeonMap(CItemInfos* pItemInfos, CMonsterInfos* pMonsterInfos)
 	m_pEdgeWall = new CField(v, FeldTyp::WALL);
 	m_pItemInfos = pItemInfos; 
 	m_pMonsterInfos = pMonsterInfos;
+	std::ifstream f(FILENAME);
+	saveGameExists = f.good();
+	f.close();
 	LoadMap();
 	m_pGrpHelden = new CGrpHeld(m_start, m_startRicht);
 	LoadGame(m_pGrpHelden);
@@ -54,7 +58,7 @@ CDungeonMap::~CDungeonMap()
 	delete[] m_teleportAtt;
 	delete[] m_creatureAtt;
 
-	delete m_pDoc;
+	//delete m_pDoc;
 }
 
 CField* CDungeonMap::GetField(int x, int y, int z) {
@@ -228,49 +232,54 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 		m_pFeld[x][y][etage] = new CField(pos, iFieldType); // etage 1 / index 30 => m_levelWidth[1] kaputt!
 	
 	if (hasObjects == 1 || allowDecorations >= 1) {
-		ParseItems(rootNode, VEKTOR{x ,y, etage});
+		TiXmlElement* parentElement = rootNode->FirstChildElement();
+		if (parentElement)
+		{
+			ParseItems(parentElement, VEKTOR{x ,y, etage}, true);
+		}
 	}
 }
 
-void CDungeonMap::ParseItems(TiXmlElement* rootNode, VEKTOR coords) {
-	TiXmlElement* parentElement = rootNode->FirstChildElement();
-	while (parentElement)
-	{
-		const char* parent = parentElement->Value();
-		if (strcmp(parent, "items") == 0)
+void CDungeonMap::ParseItems(TiXmlElement* rootNode, VEKTOR coords, bool initDungeon) {
+	const char* parent = rootNode->Value();
+	if (strcmp(parent, "items") == 0)
 		{
-			TiXmlElement* item = parentElement->FirstChildElement();
+			TiXmlElement* item = rootNode->FirstChildElement();
 			while (item)
 			{
-				if (strcmp(item->Value(), "miscellaneous") == 0) {
-					ParseMiscellaneous(item, coords);
+				if (initDungeon && !saveGameExists || !initDungeon) {
+					if (strcmp(item->Value(), "miscellaneous") == 0) {
+						ParseMiscellaneous(item, coords);
+					}
+					else if (strcmp(item->Value(), "weapon") == 0) {
+						ParseWeapons(item, coords);
+					}
+					else if (strcmp(item->Value(), "cloth") == 0) {
+						ParseCloth(item, coords);
+					}
+					else if (strcmp(item->Value(), "potion") == 0) {
+						ParsePotions(item, coords);
+					}
+					else if (strcmp(item->Value(), "scroll") == 0) {
+						ParseScrolls(item, coords);
+					}
+					else if (strcmp(item->Value(), "container") == 0) {
+						ParseContainers(item, coords);
+					}
+					else if (strcmp(item->Value(), "creature") == 0 && monsterAktiv) {
+						ParseCreature(item, coords);
+					}
 				}
-				else if (strcmp(item->Value(), "weapon") == 0) {
-					ParseWeapons(item, coords);
-				}
-				else if (strcmp(item->Value(), "cloth") == 0) {
-					ParseCloth(item, coords);
-				}
-				else if (strcmp(item->Value(), "potion") == 0) {
-					ParsePotions(item, coords);
-				}
-				else if (strcmp(item->Value(), "scroll") == 0) {
-					ParseScrolls(item, coords);
-				}
-				else if (strcmp(item->Value(), "container") == 0) {
-					ParseContainers(item, coords);
-				}
-				else if (strcmp(item->Value(), "actuator") == 0) {
-					ParseActuator(item, coords);
-				}
-				else if (strcmp(item->Value(), "random_floor_decoration") == 0) {
-					ParseFloorDecoration(item, coords);
-				}
-				else if (strcmp(item->Value(), "random_wall_decoration") == 0) {
-					ParseWallDecoration(item, coords);
-				}
-				else if (strcmp(item->Value(), "creature") == 0 && monsterAktiv) {
-					ParseCreature(item, coords);
+				if (initDungeon) {
+					if (strcmp(item->Value(), "actuator") == 0) {
+						ParseActuator(item, coords);
+					}
+					else if (strcmp(item->Value(), "random_floor_decoration") == 0) {
+						ParseFloorDecoration(item, coords);
+					}
+					else if (strcmp(item->Value(), "random_wall_decoration") == 0) {
+						ParseWallDecoration(item, coords);
+					}
 				}
 			
 				item = item->NextSiblingElement();
@@ -278,9 +287,6 @@ void CDungeonMap::ParseItems(TiXmlElement* rootNode, VEKTOR coords) {
 
 
 		}
-		parentElement = parentElement->NextSiblingElement();
-
-	}
 }
 
 void CDungeonMap::ParseMiscellaneous(TiXmlElement* miscItem, VEKTOR coords) {
@@ -1102,8 +1108,8 @@ void CDungeonMap::SaveMap(TiXmlElement* maps, int level) {
 					TiXmlElement* items = new TiXmlElement("items");
 					for (CItem* pItem : pItems) {
 						TiXmlElement* item = new TiXmlElement(pItem->getItemTypeString());
-						item->SetAttribute("subPos", subPos);
 						item->SetAttribute("index", pItem->GetIndex());
+						item->SetAttribute("position", subPos);
 						items->LinkEndChild(item);
 					}
 					tile->LinkEndChild(items);
@@ -1118,7 +1124,7 @@ void CDungeonMap::SaveMap(TiXmlElement* maps, int level) {
 
 
 void CDungeonMap::LoadGame(CGrpHeld* pGrpHeroes) {
-	TiXmlDocument doc("Maps\\SaveGame.xml");
+	TiXmlDocument doc(FILENAME);
 	bool loadOkay = doc.LoadFile();
 
 	if (!loadOkay)
@@ -1281,30 +1287,8 @@ void CDungeonMap::LoadTile(TiXmlElement* tile, int mapIndex) {
 				actuator = actuator->NextSiblingElement();
 			}
 		}
-		if (strcmp(element->Value(), "items") == 0) {
-			TiXmlElement* item = element->FirstChildElement();
-			while (item) {
-				int itemId, subPos;
-				item->QueryIntAttribute("index", &itemId);
-				item->QueryIntAttribute("subPos", &subPos);
-				if (strcmp(item->Value(), "Weapon") == 0) {
-					pField->PutWeapon(new CWeapon(itemId, m_weaponAtt[index]), (SUBPOS_ABSOLUTE)subPos);
-				} else if (strcmp(item->Value(), "Misc") == 0) {
-					pField->PutMisc(new CMiscellaneous(itemId, m_miscellaneousAtt[index]), (SUBPOS_ABSOLUTE)subPos);
-				} else if (strcmp(item->Value(), "Potion") == 0) {
-					pField->PutPotion(new CPotion(itemId, m_potionAtt[index]), (SUBPOS_ABSOLUTE)subPos);
-				} else if (strcmp(item->Value(), "Scroll") == 0) {
-					pField->PutScroll(new CScroll(itemId, m_scrollAtt[index]), (SUBPOS_ABSOLUTE)subPos);
-				} else if (strcmp(item->Value(), "Container") == 0) {
-					// todo INhalt von Container !!
-					pField->PutContainer(new CContainer(itemId, m_containerAtt[index]), (SUBPOS_ABSOLUTE)subPos);
-				}
-				else assert(false);
+		ParseItems(element, VEKTOR{ x, y, mapIndex }, false);
 
-				item = item->NextSiblingElement();
-
-			}
-		}
-		element = element->FirstChildElement();
+		element = element->NextSiblingElement();
 	}
 }

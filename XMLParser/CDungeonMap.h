@@ -17,6 +17,8 @@
 #define FELD_MAX_Y 32
 #define FELD_MAX_Z 14
 
+#define FILENAME "Maps\\SaveGame.xml"
+
 class TiXmlElement;
 class TiXmlDocument;
 class CGrpHeld;
@@ -60,7 +62,7 @@ private:
 	void ParseWallDecorationGraphic(TiXmlElement* rootNode, int etage);
 	void ParseTiles(TiXmlElement* rootNode, int etage);
 	void ParseTile(TiXmlElement* rootNode, int etage);
-	void ParseItems(TiXmlElement* rootNode, VEKTOR coords);
+	void ParseItems(TiXmlElement* rootNode, VEKTOR coords, bool initDungeon);
 	void ParseActuator(TiXmlElement* miscItem, VEKTOR coords);
 	void ParseMiscellaneous(TiXmlElement* rootNode, VEKTOR coords);
 	void ParseWeapons(TiXmlElement* rootNode, VEKTOR coords);
@@ -107,6 +109,7 @@ private:
 	int m_countCreatures;
 	int m_countFloors;
 	CGrpHeld* m_pGrpHelden;
+	bool saveGameExists;
 
 	// dynamic arrays
 	CMiscellaneousAttributes* m_miscellaneousAtt;

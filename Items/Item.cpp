@@ -24,12 +24,12 @@ bool CItem::CheckGroup(int slotId, ItemGroup group) {
 
 char* CItem::getItemTypeString() {
 	switch (m_itemType) {
-	case WeaponItem: return "Weapon";
-	case MiscItem: return "Misc";
-	case ClothItem: return "Cloth";
-	case PotionItem: return "Potion";
-	case ScrollItem: return "Scroll";
-	case ContainerItem: return "Container";
+	case WeaponItem: return "weapon";
+	case MiscItem: return "misc";
+	case ClothItem: return "cloth";
+	case PotionItem: return "potion";
+	case ScrollItem: return "scroll";
+	case ContainerItem: return "container";
 	default: assert(false);
 	}
 }
