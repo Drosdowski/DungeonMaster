@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <sstream>
+#include <fstream>
 #include <string>
 #include "TinyXML/tinyxml.h"
 #include "Mobs/MobGroups/GrpHeld.h"
@@ -15,7 +16,6 @@
 #include "SpecialTile/CTeleporter.h"
 #include "SpecialTile/Trickwall.h"
 #include "CDungeonMap.h"
-#include <fstream>
 
 CDungeonMap::CDungeonMap(CItemInfos* pItemInfos, CMonsterInfos* pMonsterInfos)
 { 
@@ -58,7 +58,7 @@ CDungeonMap::~CDungeonMap()
 	delete[] m_teleportAtt;
 	delete[] m_creatureAtt;
 
-	//delete m_pDoc;
+	delete m_pDoc;
 }
 
 CField* CDungeonMap::GetField(int x, int y, int z) {
@@ -360,8 +360,6 @@ void CDungeonMap::ParseWeapons(TiXmlElement* weaponItem, VEKTOR coords) {
 	weaponItem->QueryIntAttribute("position", &subPos);
 
 	m_pFeld[coords.x][coords.y][coords.z]->PutWeapon(new CWeapon(index, m_weaponAtt[index]), (SUBPOS_ABSOLUTE)subPos);
-	//CWeaponAttributes x;
-	//m_pFeld[coords.x][coords.y][coords.z]->PutWeapon(new CWeapon(index, x), (SUBPOS_ABSOLUTE)subPos);
 }
 
 void CDungeonMap::ParseCloth(TiXmlElement* clothItem, VEKTOR coords) {
