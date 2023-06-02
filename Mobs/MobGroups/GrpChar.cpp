@@ -55,7 +55,7 @@ int CGrpChar::InReihe(int byte)
 
 void CGrpChar::Kollision(int wunschRichtung) {
 	for (int i = 1; i <= 4; i++)
-		if ((m_pMember[i]) && (m_pMember[i]->isAlive() > 0))
+		if ((m_pMember[i]) && (m_pMember[i]->isAlive()))
 		{
 			if (CharCollision(i, wunschRichtung))
 				m_pMember[i]->AddDmg(2);

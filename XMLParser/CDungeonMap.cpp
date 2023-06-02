@@ -24,6 +24,9 @@ CDungeonMap::CDungeonMap(CItemInfos* pItemInfos, CMonsterInfos* pMonsterInfos)
 	m_pEdgeWall = new CField(v, FeldTyp::WALL);
 	m_pItemInfos = pItemInfos; 
 	m_pMonsterInfos = pMonsterInfos;
+	m_startRicht = COMPASS_DIRECTION::NORTH;
+	m_actuatorType = {};
+	m_pDoc = NULL;
 	std::ifstream f(FILENAME);
 	saveGameExists = f.good();
 	f.close();
@@ -37,7 +40,7 @@ CDungeonMap::~CDungeonMap()
 	delete m_pEdgeWall;
 	delete m_pGrpHelden;
 	for (int z = 0; z < FELD_MAX_Z; z++) {
-		if (m_wallDecorationTypes[z])
+		if (m_wallDecorationTypes && m_wallDecorationTypes[z])
 			delete m_wallDecorationTypes[z];
 		for (int i = 0; i < m_LevelWidth[z]; i++)
 			for (int j = 0; j < m_LevelHeight[z]; j++) {
@@ -311,9 +314,8 @@ void CDungeonMap::ParseScrolls(TiXmlElement* scrollItem, VEKTOR coords) {
 }
 
 void CDungeonMap::ParseContainers(TiXmlElement* containerItem, VEKTOR coords) {
-	int index, subPos;
+	int index;
 	containerItem->QueryIntAttribute("index", &index);
-	
 
 	int  itemNumber = 0; // ignore type, only 0 = chest exist!
 	TiXmlElement* subElement = containerItem->FirstChildElement();
@@ -998,6 +1000,7 @@ void CDungeonMap::LoadMap() {
 	if (!loadOkay)
 	{
 		printf("Could not load test file 'Dungeon.xml'. Error='%s'. Exiting.\n", m_pDoc->ErrorDesc());
+		return;
 		exit(1);
 	}
 	TiXmlElement* rootElement = m_pDoc->FirstChildElement();

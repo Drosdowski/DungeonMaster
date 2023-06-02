@@ -267,7 +267,6 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 	if (doorVisible && ebene > 0)
 	{
 		CBitmap* bmp = m_pDoorPic->GetDoorTopPic(ebene);
-		CBitmap* bmpMask;
 		if (bmp) {
 			cdc->SelectObject(bmp);
 			CPoint pos = m_pDoorPic->GetDoorTopPos(xxx, ebene, wallPos);

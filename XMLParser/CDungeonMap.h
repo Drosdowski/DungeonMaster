@@ -112,23 +112,21 @@ private:
 	bool saveGameExists;
 
 	// dynamic arrays
-	CMiscellaneousAttributes* m_miscellaneousAtt;
-	CWeaponAttributes* m_weaponAtt;
-	CClothAttributes* m_clothAtt;
-	CPotionAttributes* m_potionAtt;
-	CScrollAttributes* m_scrollAtt;
-	CContainerAttributes* m_containerAtt;
+	CMiscellaneousAttributes* m_miscellaneousAtt = NULL;
+	CWeaponAttributes* m_weaponAtt = NULL;
+	CClothAttributes* m_clothAtt = NULL;
+	CPotionAttributes* m_potionAtt = NULL;
+	CScrollAttributes* m_scrollAtt = NULL;
+	CContainerAttributes* m_containerAtt = NULL;
 
 	int* m_actuatorType;
-	CDoorAttributes* m_doorAtt;
-	TeleporterAttributes* m_teleportAtt;
-	CCreatureAttributes* m_creatureAtt;
-	WallDecorationType** m_wallDecorationTypes;
-	//CActuator::ActionTypes* m_actionType;
-	//VEKTOR* m_actionTarget;
-	CItemInfos* m_pItemInfos;
-	CMonsterInfos* m_pMonsterInfos;
+	CDoorAttributes* m_doorAtt = NULL;
+	TeleporterAttributes* m_teleportAtt = NULL;
+	CCreatureAttributes* m_creatureAtt = NULL;
+	WallDecorationType** m_wallDecorationTypes = NULL;
+	CItemInfos* m_pItemInfos = NULL;
+	CMonsterInfos* m_pMonsterInfos = NULL;
 
-	TiXmlDocument* m_pDoc;
+	TiXmlDocument* m_pDoc = NULL;
 };
 

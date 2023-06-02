@@ -12,6 +12,7 @@
 #include "..\..\Items\Potion.h"
 #include "..\..\Items\Cloth.h"
 #include "..\..\Items\MagicMissile.h"
+#include <cassert>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -275,6 +276,7 @@ MonsterTyp CGrpMonster::GetType() {
 			return pMonster->getType();
 		}
 	}
+	assert(false);
 }
 
 

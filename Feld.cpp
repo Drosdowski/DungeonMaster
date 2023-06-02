@@ -16,7 +16,9 @@
 #include "Items\Potion.h"
 #include "Items\Container.h"
 #include "Items\Cloth.h"
+#include "Items\Scroll.h"
 #include "Items\CActuator.h"
+#include "Items\MagicMissile.h"
 #include "CalculationHelper\CHelpfulValues.h"
 #include <cassert>
 

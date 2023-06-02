@@ -45,13 +45,13 @@ void CMonsterInfos::ParseMonster(TiXmlElement* element) {
 	CMonsterConst attribute;
 	element->QueryIntAttribute("type", &type);
 	element->QueryIntAttribute("size", &attribute.size);
-	attribute.levitate = (help == 1);
 	element->QueryIntAttribute("levitate", &help);
-	attribute.non_material = (help == 1);
+	attribute.levitate = (help == 1);
 	element->QueryIntAttribute("non_material", &help);
+	attribute.non_material = (help == 1);
 	element->QueryIntAttribute("height", &attribute.height);
-	attribute.mirror_front = (help == 1);
 	element->QueryIntAttribute("mirror_front", &help);
+	attribute.mirror_front = (help == 1);
 	element->QueryIntAttribute("mirror_front_dist", &attribute.mirror_front_dist);
 	element->QueryIntAttribute("move_dur", &attribute.move_dur);
 	element->QueryIntAttribute("attack_dur", &attribute.attack_dur);
