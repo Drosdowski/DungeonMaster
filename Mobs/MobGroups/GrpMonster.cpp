@@ -27,7 +27,7 @@ CGrpMonster::CGrpMonster()
 {
 }
 
-CGrpMonster::CGrpMonster(VEKTOR pos, CCreatureAttributes attributes) {
+CGrpMonster::CGrpMonster(VEKTOR pos, CCreatureAttributes attributes, int index) {
 	for (int i = 1; i <= 4; i++)
 		m_pMember[i] = NULL;
 	
@@ -38,6 +38,7 @@ CGrpMonster::CGrpMonster(VEKTOR pos, CCreatureAttributes attributes) {
 		}
 	}
 	m_posPosition = pos;
+	m_index = index;
 	DrehenAbsolut(attributes.direction);
 	carriedItems = {};
 }

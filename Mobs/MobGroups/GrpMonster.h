@@ -19,7 +19,7 @@ class CGrpMonster : public CGrpChar
 {
 public:
 	
-	CGrpMonster(VEKTOR pos, CCreatureAttributes attributes);
+	CGrpMonster(VEKTOR pos, CCreatureAttributes attributes, int index);
 protected:
 	CGrpMonster();           // Dynamische Erstellung verwendet geschützten Konstruktor
 
@@ -48,6 +48,7 @@ public:
 	void CarryItem(CItem* item);
 	std::deque<CItem*> DropInventory();
 	SUBPOS_ABSOLUTE GetLastPos() { return m_lastPosition; }
+	int GetIndex() { return m_index; }
 	virtual ~CGrpMonster();
 private:
 	void InitMonster(int nr, CCreatureAttributes attributes);
@@ -57,6 +58,7 @@ private:
 	CMonster* GetBySubpos(SUBPOS pos);
 	std::deque<CItem*> carriedItems;
 	SUBPOS_ABSOLUTE m_lastPosition;
+	int m_index;
 };
 
 /////////////////////////////////////////////////////////////////////////////

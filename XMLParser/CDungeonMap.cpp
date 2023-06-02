@@ -269,9 +269,6 @@ void CDungeonMap::ParseItems(TiXmlElement* rootNode, VEKTOR coords, bool initDun
 					else if (strcmp(item->Value(), "container") == 0) {
 						ParseContainers(item, coords);
 					}
-					else if (strcmp(item->Value(), "creature") == 0 && monsterAktiv) {
-						ParseCreature(item, coords);
-					}
 				}
 				if (initDungeon) {
 					if (strcmp(item->Value(), "actuator") == 0) {
@@ -282,6 +279,9 @@ void CDungeonMap::ParseItems(TiXmlElement* rootNode, VEKTOR coords, bool initDun
 					}
 					else if (strcmp(item->Value(), "random_wall_decoration") == 0) {
 						ParseWallDecoration(item, coords);
+					}
+					else if (strcmp(item->Value(), "creature") == 0 && monsterAktiv) {
+						ParseCreature(item, coords);
 					}
 				}
 			
@@ -393,7 +393,7 @@ void CDungeonMap::ParseCreature(TiXmlElement* creatureItem, VEKTOR coords) {
 	creatureItem->QueryIntAttribute("position", &position);
 
 	CCreatureAttributes attribute = m_creatureAtt[index];
-	CGrpMonster* pGrpMonster = new CGrpMonster(coords, attribute);
+	CGrpMonster* pGrpMonster = new CGrpMonster(coords, attribute, index);
 
 	m_pFeld[coords.x][coords.y][coords.z]->SetMonsterGroup(pGrpMonster);
 
@@ -1096,26 +1096,48 @@ void CDungeonMap::SaveMap(TiXmlElement* maps, int level) {
 					TiXmlElement* actuators = new TiXmlElement("actuators");
 					for (CActuator* pActuator : pActuators) {
 						TiXmlElement* actuator = new TiXmlElement("actuator");
-						actuator->SetAttribute("subPos", subPos); 
 						actuator->SetAttribute("index", pActuator->GetIndex()); // Reihenfolge speichern reicht?
+						actuator->SetAttribute("subPos", subPos);
 						actuators->LinkEndChild(actuator);
 					}
 					tile->LinkEndChild(actuators);
 				}
-			
-				// items speichern - ersetzt Map, also alles speichern
+			}
+			// items speichern - ersetzt Map, also alles speichern
+			// Monstergruppen sind auch unter "items" einsortiert
+			CGrpMonster* pGrpMonsters = m_pFeld[x][y][level]->GetMonsterGroup();
+			TiXmlElement* items = new TiXmlElement("items");
+			for (int subPos = 0; subPos < 4; subPos++) {
 				std::deque<CItem*> pItems = m_pFeld[x][y][level]->GetItem((SUBPOS_ABSOLUTE)subPos);
-				if (!pItems.empty()) {
-					TiXmlElement* items = new TiXmlElement("items");
+				if (!pItems.empty() || pGrpMonsters) {
+					if (pGrpMonsters) {
+						TiXmlElement* creature = new TiXmlElement("creature");
+						creature->SetAttribute("index", pGrpMonsters->GetIndex());
+						creature->SetAttribute("subPos", subPos);
+						for (int i=1; i<5; i++) {
+							CMonster* monster = pGrpMonsters->GetMonster(i);
+							if (monster && monster->HoleSubPosition() == subPos) {
+								CString strHp;
+								strHp.Format("hp-%i", i);
+								creature->SetAttribute(strHp, (int)monster->Hp().Aktuell);
+							}
+						}
+						items->LinkEndChild(creature);
+
+					}
 					for (CItem* pItem : pItems) {
 						TiXmlElement* item = new TiXmlElement(pItem->getItemTypeString());
 						item->SetAttribute("index", pItem->GetIndex());
 						item->SetAttribute("position", subPos);
 						items->LinkEndChild(item);
 					}
-					tile->LinkEndChild(items);
+
 				}
 			}
+			if (items->NoChildren()) 
+				delete items; 
+			else
+				tile->LinkEndChild(items);
 			tiles->LinkEndChild(tile);
 			tileIndex++;
 		}
