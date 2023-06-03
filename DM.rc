@@ -853,6 +853,18 @@ IDB_MONSTER_GIGGLER_RIGHT BITMAP                  "res\\Monster\\Giggler_Right.b
 
 IDB_ITEM3D_BONES        BITMAP                  "res\\Items3D\\Bones.bmp"
 
+IDB_DOOR_IRON_FULL_1    BITMAP                  "res\\Door\\Door_Iron_Full_1.bmp"
+
+IDB_DOOR_IRON_FULL_2    BITMAP                  "res\\Door\\Door_Iron_Full_2.bmp"
+
+IDB_DOOR_IRON_FULL_3    BITMAP                  "res\\Door\\Door_Iron_Full_3.bmp"
+
+IDB_DOOR_RA_1           BITMAP                  "res\\Door\\Door_Ra_1.bmp"
+
+IDB_DOOR_RA_2           BITMAP                  "res\\Door\\Door_Ra_2.bmp"
+
+IDB_DOOR_RA_3           BITMAP                  "res\\Door\\Door_Ra_3.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

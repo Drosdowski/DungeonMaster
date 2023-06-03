@@ -337,6 +337,12 @@
     <Image Include="res\Door\Door_Iron_1.bmp" />
     <Image Include="res\Door\Door_Iron_2.bmp" />
     <Image Include="res\Door\Door_Iron_3.bmp" />
+    <Image Include="res\Door\Door_Iron_Full_1.bmp" />
+    <Image Include="res\Door\Door_Iron_Full_2.bmp" />
+    <Image Include="res\Door\Door_Iron_Full_3.bmp" />
+    <Image Include="res\Door\Door_Ra_1.bmp" />
+    <Image Include="res\Door\Door_Ra_2.bmp" />
+    <Image Include="res\Door\Door_Ra_3.bmp" />
     <Image Include="res\Door\Door_Smashed_1.bmp" />
     <Image Include="res\Door\Door_Smashed_2.bmp" />
     <Image Include="res\Door\Door_Smashed_3.bmp" />

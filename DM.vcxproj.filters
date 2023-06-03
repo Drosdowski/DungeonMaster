@@ -1607,6 +1607,24 @@
     <Image Include="res\Items3D\Bones.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Door\Door_Iron_Full_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door\Door_Iron_Full_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door\Door_Iron_Full_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door\Door_Ra_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door\Door_Ra_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Door\Door_Ra_3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

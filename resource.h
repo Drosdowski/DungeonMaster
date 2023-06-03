@@ -34,17 +34,12 @@
 #define IDB_DOOR_IRON_1                 210
 #define IDB_DOOR_IRON_2                 211
 #define IDB_DOOR_IRON_3                 213
-#define IDB_ACTIONS_AREA                216
-#define IDB_ONE_HAND                    217
-#define IDB_ACTIONS_DAMAGE              219
-#define IDB_REITER1                     221
-#define IDB_REITER2                     222
-#define IDB_REITER3                     223
-#define IDB_REITER4                     224
-#define IDB_RUNES1                      225
-#define IDB_RUNES2                      226
-#define IDB_RUNES3                      227
-#define IDB_RUNES4                      228
+#define IDB_DOOR_IRON_FULL_1            214
+#define IDB_DOOR_IRON_FULL_2            215
+#define IDB_DOOR_IRON_FULL_3            216
+#define IDB_DOOR_RA_1                   217
+#define IDB_DOOR_RA_2                   218
+#define IDB_DOOR_RA_3                   219
 #define IDB_STAIRS_DOWN_0L              229
 #define IDB_STAIRS_DOWN_1F              230
 #define IDB_STAIRS_UP_1L                231
@@ -242,6 +237,17 @@
 #define IDB_MISSILE_FIREBALL            780
 #define IDB_MISSILE_POISON              781
 #define IDB_MISSILE_POISONBLOB          782
+#define IDB_ACTIONS_AREA                901
+#define IDB_ONE_HAND                    902
+#define IDB_ACTIONS_DAMAGE              903
+#define IDB_REITER1                     904
+#define IDB_REITER2                     905
+#define IDB_REITER3                     906
+#define IDB_REITER4                     907
+#define IDB_RUNES1                      908
+#define IDB_RUNES2                      909
+#define IDB_RUNES3                      910
+#define IDB_RUNES4                      911
 #define IDB_BITMAP_E0L                  1001
 #define IDB_BITMAP_E0LF                 1002
 #define IDB_BITMAP_E0R                  1004
@@ -356,7 +362,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        574
+#define _APS_NEXT_RESOURCE_VALUE        580
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101
