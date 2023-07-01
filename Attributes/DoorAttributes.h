@@ -8,7 +8,9 @@ public:
 	};
 	enum DoorType {
 		Iron = 0,
-		Wood = 1
+		Wood = 1,
+		FullIron = 2,
+		Ra = 3
 	};
 
 	DoorType type;

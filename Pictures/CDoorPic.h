@@ -27,7 +27,9 @@ private:
 	CBitmap* m_pDoorFrameFarRight;
 	CBitmap* m_pDoorFrontTop[3];
 	CBitmap* m_pDoorIron[4];
+	CBitmap* m_pDoorIronFull[4];
 	CBitmap* m_pDoorWood[4];
+	CBitmap* m_pDoorRa[4];
 	CBitmap* m_pDoorWoodSmashed[4];
 
 };
