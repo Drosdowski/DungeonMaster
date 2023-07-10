@@ -17,7 +17,7 @@ SAVE GAME: Monster, Items on floor
 items hit player
 itemInfo 
 Unterschied throwable / weapon
-Tote können nicht zaubern 
+Zauberspruch je zauberer speichern
 stamina 0
 
 save game: Item attribute, z.b. potion!

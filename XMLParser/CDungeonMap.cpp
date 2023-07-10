@@ -1105,6 +1105,7 @@ void CDungeonMap::SaveMap(TiXmlElement* maps, int level) {
 			}
 			// items speichern - ersetzt Map, also alles speichern
 			// Monstergruppen sind auch unter "items" einsortiert
+			// eigene subPos Schleife, um alles in einem ITEM einzugliedern
 			CGrpMonster* pGrpMonsters = m_pFeld[x][y][level]->GetMonsterGroup();
 			TiXmlElement* items = new TiXmlElement("items");
 			for (int subPos = 0; subPos < 4; subPos++) {

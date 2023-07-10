@@ -165,11 +165,12 @@ void CDMView::ParseClickWizardChoice(CPoint point, CGrpHeld* grpHelden) {
 void CDMView::ParseClickRunes(CPoint point, CGrpHeld* grpHelden) {
 	int runeId = CScreenCoords::CheckHitRunes(point);
 	if (runeId > 0) {
-		CHeld* caster = grpHelden->GetHero(grpHelden->GetActiveWizard());
+		const int heroId = grpHelden->GetActiveWizard();
+		CHeld* caster = grpHelden->GetHero(heroId);
 		
-		int manaNeeded = CHelpfulValues::ManaCost(m_pZauberView->getRuneTableId(), runeId, m_pZauberView->GetPower());
+		int manaNeeded = CHelpfulValues::ManaCost(m_pZauberView->getRuneTableId(heroId), runeId, m_pZauberView->GetPower(heroId));
 		if (caster->UseMana(manaNeeded)) {
-			m_pZauberView->storeRune(runeId);
+			m_pZauberView->storeRune(runeId, heroId);
 		}
 	}
 }
@@ -182,12 +183,17 @@ void CastPotion(CPotion* potion, int power, CPotionAttributes::PotionType type) 
 
 void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
 	if (CScreenCoords::CheckHitSpell(point)) {
-		int* spell = m_pZauberView->getSpell();
-		CItem* itemInHand = grpHelden->GetHero(grpHelden->GetActiveWizard())->GetItemCarrying(1);
+		const int heroId = grpHelden->GetActiveWizard();
+		CHeld* pHeld = grpHelden->GetHero(heroId);
+		if (!pHeld->isAlive())
+			return;
+		int* spell = m_pZauberView->getSpell(heroId);
+
+		CItem* itemInHand = pHeld->GetItemCarrying(1);
 		bool emptyFlaskInHand = itemInHand && itemInHand->GetType() == CPotionAttributes::PotionType::Empty;
 
 		// Magic Missiles
-		if (spell[2] == 4 && spell[3] == 4 && spell[4] == 0) {
+		if (spell[2, heroId] == 4 && spell[3] == 4 && spell[4] == 0) {
 			CastMagicMissile(CMagicMissile::MagicMissileType::Fireball, spell[1]);
 		}
 		else if (spell[2] == 3 && spell[3] == 1 && spell[4] == 0) {
@@ -200,7 +206,7 @@ void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
 		else if (spell[2] == 2 && emptyFlaskInHand) {
 			CastPotion((CPotion*)itemInHand, spell[1], CPotionAttributes::PotionType::Vi);
 		}
-		m_pZauberView->resetRuneTable();
+		m_pZauberView->resetRuneTable(heroId);
 	}
 }
 

@@ -18,20 +18,20 @@ public:
 // Attribute
 public:
 // Operationen
-	int getRuneTableId() { return m_iRuneTable; }
-	int GetPower();
-	void resetRuneTable();
-	void storeRune(int index);
-	int* getSpell() { return m_spell; }
+	int getRuneTableId(int heroId) { return m_iRuneTable[heroId]; }
+	int GetPower(int heroId);
+	void resetRuneTable(int heroId);
+	void storeRune(int index, int heroId);
+	int* getSpell(int heroId) { return m_spell[heroId]; }
 
 // Implementierung
 public:
 	void Zeichnen(CPictures* pPictures, CDC* pDC, int iActiveWizard);
 
 private:
-	int* m_spell = NULL;
-	int m_iRuneTable;
-	void nextRuneTable();
+	int* m_spell[5];
+	int m_iRuneTable[5];
+	void nextRuneTable(int heroId);
 };
 
 /////////////////////////////////////////////////////////////////////////////
