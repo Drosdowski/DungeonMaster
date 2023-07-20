@@ -158,16 +158,23 @@ void CGrpHeld::DoActionForChosenHero(int ActionId, CRaumView* pRaumView) {
 				else {
 
 					if (pVictims) {
-						// Nahkampf!
-						CAttackConst ac = attackInfos->GetAttack(attackType);
-						CMonsterConst mc = monsterInfos->GetMonsterInfo(pVictims->GetType());
-
-						int dmg = pHero->CalcDmg(weapon, ac, mc, pVictims, diff); // todo doof so, besser in CMonster die MOnsterInfo rein
-						if (dmg > 0) {
-							pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
-							pHero->AttackModeWithDmg(dmg);
+						if ((attackType == "N") && (ActionId == 3)) {
+							// Warcry
+							pVictims->Scare();
 							m_iPhase = 3;
 							m_iPhaseDelay = 2;
+						} else {
+							// Nahkampf!
+							CAttackConst ac = attackInfos->GetAttack(attackType);
+							CMonsterConst mc = monsterInfos->GetMonsterInfo(pVictims->GetType());
+
+							int dmg = pHero->CalcDmg(weapon, ac, mc, pVictims, diff); // todo doof so, besser in CMonster die MOnsterInfo rein
+							if (dmg > 0) {
+								pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
+								pHero->AttackModeWithDmg(dmg);
+								m_iPhase = 3;
+								m_iPhaseDelay = 2;
+							}
 						}
 						/*
 						int itemIndex = -1;

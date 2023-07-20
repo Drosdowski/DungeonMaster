@@ -30,6 +30,7 @@ public:
 	virtual int GetIDB(int index);
 	void AttackDone() { m_iReady = m_attributes.monsterInfo.attack_dur; } 
 	void MoveDone() { m_iReady = m_attributes.monsterInfo.move_dur; } 
+	void Scare();
 	int getDealingDmg() { return m_dealingDmg; }
 	MonsterTyp getType() { return m_iTyp; }
 	void setType(MonsterTyp typ) { m_iTyp = typ; }

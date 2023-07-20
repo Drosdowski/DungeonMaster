@@ -43,6 +43,7 @@ public:
 	bool SetzeModus(int iModus);	
 	CMonster* AttackHero(VEKTOR myPos, VEKTOR hisPos);
 	void TurnToHero(VEKTOR heroPos);
+	void Scare();
 	void Laufen(VEKTOR WunschPos, boolean teleport);
 	void EndAttack();
 	void CarryItem(CItem* item);

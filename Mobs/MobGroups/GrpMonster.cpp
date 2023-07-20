@@ -341,3 +341,13 @@ std::deque<CItem*> CGrpMonster::DropInventory() {
 		return {};
 	}
 }
+
+
+void CGrpMonster::Scare() {
+	for (int i = 1; i < 5; i++) {
+		CMOnster* pMonster= m_pMember[i];
+		if (pMonster && pMonster->isAlive()) {
+			pMonster->Scare();
+		}
+	}
+}

@@ -57,6 +57,9 @@ public:
 
 	virtual ~CGrpHeld();
 
+private:
+	void closeCombat();
+
 	// Generierte Nachrichtenzuordnungsfunktionen
 protected:
 	int m_iPhase = 1;
