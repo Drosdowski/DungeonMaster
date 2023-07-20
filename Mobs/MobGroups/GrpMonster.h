@@ -55,10 +55,12 @@ private:
 	void InitMonster(int nr, CCreatureAttributes attributes);
 	void TryToAdavanceToFirstRow(int index, VEKTOR monPos, VEKTOR heroPos);
 	bool isSubPosAbsoluteFree(SUBPOS_ABSOLUTE pos);
+	void RandomMove();
 
 	CMonster* GetBySubpos(SUBPOS pos);
 	std::deque<CItem*> carriedItems;
 	SUBPOS_ABSOLUTE m_lastPosition;
+	int m_iScaredCounter;
 	int m_index;
 };
 

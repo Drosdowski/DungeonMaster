@@ -39,6 +39,7 @@ CGrpMonster::CGrpMonster(VEKTOR pos, CCreatureAttributes attributes, int index) 
 	}
 	m_posPosition = pos;
 	m_index = index;
+	m_iScaredCounter = 0;
 	DrehenAbsolut(attributes.direction);
 	carriedItems = {};
 }
@@ -82,9 +83,22 @@ bool CGrpMonster::SetzeModus(int iModus)
 	return true;
 }
 
+void CGrpMonster::RandomMove() {
+	m_grpDirection = (COMPASS_DIRECTION)( rand() % 4);
+}
+
+void CGrpMonster::Scare() {
+	m_iScaredCounter += 5;
+}
+
 bool CGrpMonster::Altern(CField* field)
 {
 	bool anyoneAlive = false;
+	if (m_iScaredCounter > 0) {
+		RandomMove();
+		m_iScaredCounter--;
+	}
+
 	for (int i=1; i<5; i++)
 	{
 		CMonster* pMonster= (CMonster*) m_pMember[i];
@@ -207,6 +221,10 @@ CMonster* CGrpMonster::GetBySubpos(SUBPOS pos) {
 }
 
 bool CGrpMonster::AnyoneReady() {
+	if (m_iScaredCounter > 0) {
+		return false;
+	}
+
 	for (int i = 1; i < 5; i++)
 	{
 		CMonster* pMonster = (CMonster*)m_pMember[i];
@@ -342,12 +360,3 @@ std::deque<CItem*> CGrpMonster::DropInventory() {
 	}
 }
 
-
-void CGrpMonster::Scare() {
-	for (int i = 1; i < 5; i++) {
-		CMOnster* pMonster= m_pMember[i];
-		if (pMonster && pMonster->isAlive()) {
-			pMonster->Scare();
-		}
-	}
-}

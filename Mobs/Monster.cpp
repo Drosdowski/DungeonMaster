@@ -18,7 +18,6 @@ static char THIS_FILE[] = __FILE__;
 CMonster::CMonster(CCreatureAttributes attributes, int subId): CCharacter(false)
 {
 	m_iReady = 0;
-	m_iScaredCounter = 0;
 	m_attributes = attributes;
 	m_HP.Max = m_HP.Aktuell = attributes.hitPoints[subId];
 	transCol = TRANS_BLU;
@@ -41,9 +40,6 @@ bool CMonster::Altern(CField* field)
 	if (m_iReady > 0) {
 		m_iReady--;
 	}
-	if (m_iScaredCounter > 0) {
-		m_iScaredCounter--;
-	}
 
 	// erstmal konstant, später abhängig 
 	// von max-Werten 
@@ -65,8 +61,6 @@ bool CMonster::Altern(CField* field)
 	return alive;
 }
 
-
-
 int CMonster::GetIDB(int index) {
 	return 0;
 }
@@ -87,8 +81,6 @@ int CMonster::CalcDmg(int ID) {
 	return rand() % m_attributes.monsterInfo.attack_power;
 }
 
-void CMonster::Scare() {
-	m_iScaredCounter += 5;
-}
+
 
 
