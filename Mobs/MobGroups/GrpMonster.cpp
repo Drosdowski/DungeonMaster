@@ -85,20 +85,23 @@ bool CGrpMonster::SetzeModus(int iModus)
 
 void CGrpMonster::RandomMove() {
 	m_grpDirection = (COMPASS_DIRECTION)( rand() % 4);
+	for (int i = 1; i < 5; i++)
+	{
+		CMonster* pMonster = (CMonster*)m_pMember[i];
+		if (pMonster) {
+			pMonster->TurnTo(m_grpDirection);
+			pMonster->EndAttack();
+		}
+	}
 }
 
 void CGrpMonster::Scare() {
-	m_iScaredCounter += 5;
+	m_iScaredCounter += 8;
 }
 
 bool CGrpMonster::Altern(CField* field)
 {
 	bool anyoneAlive = false;
-	if (m_iScaredCounter > 0) {
-		RandomMove();
-		m_iScaredCounter--;
-	}
-
 	for (int i=1; i<5; i++)
 	{
 		CMonster* pMonster= (CMonster*) m_pMember[i];
@@ -224,10 +227,6 @@ CMonster* CGrpMonster::GetBySubpos(SUBPOS pos) {
 }
 
 bool CGrpMonster::AnyoneReady() {
-	if (m_iScaredCounter > 0) {
-		return false;
-	}
-
 	for (int i = 1; i < 5; i++)
 	{
 		CMonster* pMonster = (CMonster*)m_pMember[i];
@@ -258,6 +257,13 @@ void CGrpMonster::MoveDone() {
 		if (pMonster) {
 			pMonster->MoveDone();
 		}
+	}
+}
+
+void CGrpMonster::ScaredAction() {
+	if (m_iScaredCounter > 0) {
+		RandomMove();
+		m_iScaredCounter--;
 	}
 }
 

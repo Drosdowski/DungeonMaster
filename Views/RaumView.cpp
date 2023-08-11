@@ -907,8 +907,8 @@ void CRaumView::TeleportAll(VEKTOR heroPos) {
 	}
 }
 
-void CRaumView::MoveMonsters(VEKTOR monnsterPos) {
-	CField* field = m_pMap->GetField(monnsterPos);
+void CRaumView::MoveMonsters(VEKTOR monsterPos) {
+	CField* field = m_pMap->GetField(monsterPos);
 	CGrpMonster* pGrpMon = field->GetMonsterGroup();
 	if (pGrpMon)
 	{
@@ -927,17 +927,16 @@ void CRaumView::MoveMonsters(VEKTOR monnsterPos) {
 			CPit* pit = field->HolePit();
 			if (pit) {
 				if (pit->GetState() == CPit::Opened) {
-					monnsterPos.x += (m_pMap->GetOffset(monnsterPos.z).x - m_pMap->GetOffset(monnsterPos.z + 1).x);
-					monnsterPos.y += (m_pMap->GetOffset(monnsterPos.z).y - m_pMap->GetOffset(monnsterPos.z + 1).y);
-					monnsterPos.z++;
+					monsterPos.x += (m_pMap->GetOffset(monsterPos.z).x - m_pMap->GetOffset(monsterPos.z + 1).x);
+					monsterPos.y += (m_pMap->GetOffset(monsterPos.z).y - m_pMap->GetOffset(monsterPos.z + 1).y);
+					monsterPos.z++;
 					pGrpMon->FallingDamage();
 				}
 			}
 			if (pGrpMon->AnyoneReady())
 			{
-
 				VEKTOR target = MonsterMoveOrAttack(pGrpMon);
-				if (target.x != monnsterPos.x || target.y != monnsterPos.y) {
+				if (target.x != monsterPos.x || target.y != monsterPos.y) {
 					CField* targetField = m_pMap->GetField(target);
 					field->SetMonsterGroup(NULL);
 					targetField->SetMonsterGroup(pGrpMon);
@@ -945,6 +944,7 @@ void CRaumView::MoveMonsters(VEKTOR monnsterPos) {
 				}
 			}
 		}
+		
 	}
 }
 
@@ -1432,79 +1432,83 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	VEKTOR monPos = pGrpMon->GetVector();
 	if (pGrpMon->GetVector().z != heroPos.z) return monPos; // Falsche Etage, nix tun!
 
-	// Versuch, in Blickrichtung zu gehen, ggf. Angriff!
-	VEKTOR targetPos = pGrpMon->HoleZielFeld(VORWAERTS);
-	CField* targetField = m_pMap->GetField(targetPos);
-
-	COMPASS_DIRECTION heroRicht = m_pMap->GetHeroes()->GetDirection();
-
-	int xDist = monPos.x - heroPos.x;
-	int yDist = monPos.y - heroPos.y;
-	int absDist = abs(xDist) + abs(yDist);
-	if (targetPos.x == heroPos.x && targetPos.y == heroPos.y) {
-		CMonster* attackingMonster = pGrpMon->AttackHero(monPos, heroPos);
-		if (attackingMonster)
-		{
-			m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
-
-			m_pMap->GetHeroes()->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
-		}
-		return monPos;
+	if (pGrpMon->IsScared()) {
+		pGrpMon->ScaredAction();
 	}
 	else {
-		pGrpMon->EndAttack(); // Attacke ggf. beenden
-	}
-	if (pGrpMon->EveryoneReady()) {
-		if (absDist == 1) {
-			// Steht neben Held, falsch gedreht -> drehen!
-			pGrpMon->TurnToHero(heroPos);
+		// Versuch, in Blickrichtung zu gehen, ggf. Angriff!
+		VEKTOR targetPos = pGrpMon->HoleZielFeld(VORWAERTS);
+		CField* targetField = m_pMap->GetField(targetPos);
+
+		COMPASS_DIRECTION heroRicht = m_pMap->GetHeroes()->GetDirection();
+
+		int xDist = monPos.x - heroPos.x;
+		int yDist = monPos.y - heroPos.y;
+		int absDist = abs(xDist) + abs(yDist);
+		if (targetPos.x == heroPos.x && targetPos.y == heroPos.y) {
+			CMonster* attackingMonster = pGrpMon->AttackHero(monPos, heroPos);
+			if (attackingMonster)
+			{
+				m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
+
+				m_pMap->GetHeroes()->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
+			}
 			return monPos;
 		}
-		// Nein: Bewege näher / drehe hin
-		// todo: schlauer bewegungsalgorithmus!
-
-		int targetDist = (abs(targetPos.x - heroPos.x) + abs(targetPos.y - heroPos.y));
-		if ((targetPos.x != monPos.x || targetPos.y != monPos.y) &&
-			(targetField->HoleTyp() == FeldTyp::EMPTY && targetField->GetMonsterGroup() == NULL) ||
-			(targetField->HoleTyp() == FeldTyp::DOOR && targetField->GetMonsterGroup() == NULL)) { // TODO nur Open!
-			// Feld vorhanden - Monster drauf?
-			// TODO: Merge
-			if (targetField->HoleTyp() == FeldTyp::DOOR) {
-				CDoor* pDoor = targetField->HoleDoor();
-				if (pDoor->getState() != CDoor::OPEN && pDoor->getState() != CDoor::DESTROYED)
-					return monPos; // Tür im Weg
+		else {
+			pGrpMon->EndAttack(); // Attacke ggf. beenden
+		}
+		if (pGrpMon->EveryoneReady()) {
+			if (absDist == 1) {
+				// Steht neben Held, falsch gedreht -> drehen!
+				pGrpMon->TurnToHero(heroPos);
+				return monPos;
 			}
+			// Nein: Bewege näher / drehe hin
+			// todo: schlauer bewegungsalgorithmus!
 
-			if (absDist > targetDist)
-			{
-				// Kommt näher => Move!
+			int targetDist = (abs(targetPos.x - heroPos.x) + abs(targetPos.y - heroPos.y));
+			if ((targetPos.x != monPos.x || targetPos.y != monPos.y) &&
+				(targetField->HoleTyp() == FeldTyp::EMPTY && targetField->GetMonsterGroup() == NULL) ||
+				(targetField->HoleTyp() == FeldTyp::DOOR && targetField->GetMonsterGroup() == NULL)) { // TODO nur Open!
+				// Feld vorhanden - Monster drauf?
+				// TODO: Merge
+				if (targetField->HoleTyp() == FeldTyp::DOOR) {
+					CDoor* pDoor = targetField->HoleDoor();
+					if (pDoor->getState() != CDoor::OPEN && pDoor->getState() != CDoor::DESTROYED)
+						return monPos; // Tür im Weg
+				}
 
-				pGrpMon->Laufen(targetPos, false);
-				m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(Skeleton).mp3");
+				if (absDist > targetDist)
+				{
+					// Kommt näher => Move!
 
-				return targetPos;
+					pGrpMon->Laufen(targetPos, false);
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(Skeleton).mp3");
+
+					return targetPos;
+				}
+				else {
+					if (absDist < targetDist)
+						pGrpMon->DrehenAbsolut(CHelpfulValues::OppositeDirection(heroRicht));
+					// neues Ziel weiter weg -> drehen!
+				}
 			}
 			else {
 				if (absDist < targetDist)
 					pGrpMon->DrehenAbsolut(CHelpfulValues::OppositeDirection(heroRicht));
 				// neues Ziel weiter weg -> drehen!
-			}
-		}
-		else {
-			if (absDist < targetDist)
-				pGrpMon->DrehenAbsolut(CHelpfulValues::OppositeDirection(heroRicht));
-				// neues Ziel weiter weg -> drehen!
 
-		}
-		// TODO stairs
-		if (abs(xDist) >= abs(yDist)) {
-			if (xDist > 0) {
-				// Monster steht tendenziel rechts vom mir -> versuch nach links zu gehen (+drehen)
-				// TODO
+			}
+			// TODO stairs
+			if (abs(xDist) >= abs(yDist)) {
+				if (xDist > 0) {
+					// Monster steht tendenziel rechts vom mir -> versuch nach links zu gehen (+drehen)
+					// TODO
+				}
 			}
 		}
 	}
-
 	return monPos;
 
 }
