@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<dungeon start_x="2" start_y="31" start_z="1" start_facing="North">
+<dungeon start_x="20" start_y="16" start_z="2" start_facing="South">
     <heroes>
         <hero index="1" />
         <hero index="2" />
@@ -1762,13 +1762,12 @@
                     <items>
                         <creature index="154" subPos="0" />
                         <creature index="154" subPos="1" />
-                        <creature index="154" subPos="2" />
-                        <creature index="154" subPos="3" hp-1="350" />
+                        <creature index="154" subPos="2" hp-1="350" />
+                        <creature index="154" subPos="3" />
                     </items>
                 </tile>
                 <tile index="774" />
-                <tile index="775" />
-                <tile index="776">
+                <tile index="775">
                     <items>
                         <creature index="7" subPos="0" hp-2="52" />
                         <creature index="7" subPos="1" hp-4="52" />
@@ -1776,6 +1775,7 @@
                         <creature index="7" subPos="3" hp-1="51" />
                     </items>
                 </tile>
+                <tile index="776" />
                 <tile index="777" />
                 <tile index="778" />
                 <tile index="779" />
@@ -2831,7 +2831,7 @@
                 <tile index="528" />
                 <tile index="529" />
                 <tile index="530">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="531" />
                 <tile index="532" />
@@ -2915,7 +2915,14 @@
                 <tile index="592" />
                 <tile index="593" />
                 <tile index="594" />
-                <tile index="595" />
+                <tile index="595">
+                    <items>
+                        <creature index="17" subPos="0" hp-1="23" />
+                        <creature index="17" subPos="1" hp-2="23" />
+                        <creature index="17" subPos="2" />
+                        <creature index="17" subPos="3" />
+                    </items>
+                </tile>
                 <tile index="596" />
                 <tile index="597" />
                 <tile index="598" />
@@ -2956,7 +2963,14 @@
                 <tile index="622" />
                 <tile index="623" />
                 <tile index="624" />
-                <tile index="625" />
+                <tile index="625">
+                    <items>
+                        <creature index="18" subPos="0" hp-1="38" />
+                        <creature index="18" subPos="1" hp-2="35" />
+                        <creature index="18" subPos="2" />
+                        <creature index="18" subPos="3" hp-3="34" />
+                    </items>
+                </tile>
                 <tile index="626" />
                 <tile index="627" />
                 <tile index="628" />
@@ -3006,14 +3020,7 @@
                 <tile index="656" />
                 <tile index="657" />
                 <tile index="658" />
-                <tile index="659">
-                    <items>
-                        <creature index="17" subPos="0" hp-2="23" />
-                        <creature index="17" subPos="1" />
-                        <creature index="17" subPos="2" />
-                        <creature index="17" subPos="3" hp-1="23" />
-                    </items>
-                </tile>
+                <tile index="659" />
                 <tile index="660" />
                 <tile index="661" />
                 <tile index="662" />
@@ -3047,14 +3054,7 @@
                 <tile index="686" />
                 <tile index="687" />
                 <tile index="688" />
-                <tile index="689">
-                    <items>
-                        <creature index="18" subPos="0" hp-2="35" />
-                        <creature index="18" subPos="1" />
-                        <creature index="18" subPos="2" hp-3="34" />
-                        <creature index="18" subPos="3" hp-1="38" />
-                    </items>
-                </tile>
+                <tile index="689" />
                 <tile index="690" />
                 <tile index="691" />
                 <tile index="692" />
@@ -3346,8 +3346,8 @@
                 <tile index="867" />
                 <tile index="868">
                     <actuators>
-                        <actuator index="624" subPos="0" />
                         <actuator index="623" subPos="0" />
+                        <actuator index="624" subPos="0" />
                     </actuators>
                 </tile>
                 <tile index="869" />

@@ -134,27 +134,30 @@ void CGrpMonster::EndAttack() {
 }
 
 CMonster* CGrpMonster::AttackHero(VEKTOR monsterPos, VEKTOR heroPos) {
-	for (int i = 1; i < 5; i++)
+	if (AnyoneReady())
 	{
-		CMonster* pMonster = (CMonster*)m_pMember[i];
-		if (pMonster && pMonster->IstBereit()) {	
-			//CHeld* held = (CHeld*)NearestTarget(hisPos);
+		for (int i = 1; i < 5; i++)
+		{
+			CMonster* pMonster = (CMonster*)m_pMember[i];
+			if (pMonster && pMonster->IstBereit()) {
+				//CHeld* held = (CHeld*)NearestTarget(hisPos);
 
-			if (pMonster->InFrontOfOpponent(monsterPos, heroPos, emptyNorthRow(), emptyEastRow(), emptySouthRow(), emptyWestRow())) {
-				if (pMonster->GetDirection() == m_grpDirection)
-				{
-					int dmg = pMonster->CalcDmg(1); // todo monster attacke random
-					pMonster->AttackModeWithDmg(dmg);
-					pMonster->AttackDone();
-					return pMonster; // pro Tick nur ein Angriff / Gruppe
+				if (pMonster->InFrontOfOpponent(monsterPos, heroPos, emptyNorthRow(), emptyEastRow(), emptySouthRow(), emptyWestRow())) {
+					if (pMonster->GetDirection() == m_grpDirection)
+					{
+						int dmg = pMonster->CalcDmg(1); // todo monster attacke random
+						pMonster->AttackModeWithDmg(dmg);
+						pMonster->AttackDone();
+						return pMonster; // pro Tick nur ein Angriff / Gruppe
+					}
+					else {
+						pMonster->SetDirection(m_grpDirection); // Einzeldrehung zur Attacke
+					}
 				}
 				else {
-					pMonster->SetDirection(m_grpDirection); // Einzeldrehung zur Attacke
+					TryToAdavanceToFirstRow(i, monsterPos, heroPos);
 				}
 			}
-			else {
-				TryToAdavanceToFirstRow(i, monsterPos, heroPos);
-			}			
 		}
 	}
 
