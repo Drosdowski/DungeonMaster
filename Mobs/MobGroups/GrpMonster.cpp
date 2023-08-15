@@ -110,7 +110,7 @@ bool CGrpMonster::Altern(CField* field)
 	{
 		CMonster* pMonster= (CMonster*) m_pMember[i];
 		if (pMonster) {
-			bool monsterAlive = pMonster->Altern(field);
+			bool monsterAlive = pMonster->Altern();
 			if (!monsterAlive)
 			{
 				CMagicMissile* dust = new CMagicMissile(CMagicMissile::MagicMissileType::Dust, pMonster->GetSize());

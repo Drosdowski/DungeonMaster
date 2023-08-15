@@ -63,7 +63,7 @@ public:
 
 // Implementation
 public:
-	virtual bool Altern(CField* field);
+	virtual bool Altern();
 	virtual ~CHeld();
 	virtual WERTE St() { return m_ST; };
 	virtual WERTE Ma() { return m_MA; };

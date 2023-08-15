@@ -115,9 +115,9 @@ void CHeld::DelItem(CItem* pItem) {
 /////////////////////////////// Hilfsfunktionen /////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
-bool CHeld::Altern(CField* field)
+bool CHeld::Altern()
 {
-	bool alive = CCharacter::Altern(field);
+	bool alive = CCharacter::Altern();
 	if (m_dealingDmg > 0)
 	{
 		m_dealingDmg = 0;

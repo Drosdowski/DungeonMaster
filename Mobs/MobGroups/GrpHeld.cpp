@@ -161,7 +161,7 @@ bool CGrpHeld::Altern(CField* field)
 		CHeld* pHeld = (CHeld*)m_pMember[i];
 		if (pHeld)
 		{
-			bool heroAlive = pHeld->Altern(field);
+			bool heroAlive = pHeld->Altern();
 			if (!heroAlive) {
 				// nicht löschen - wiederbeleben möglich!
 
