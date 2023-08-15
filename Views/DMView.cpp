@@ -241,7 +241,10 @@ void CDMView::ParseClickAction(CPoint point) {
 			grpHelden->PassAction();
 		}
 		else {
-			grpHelden->DoActionForChosenHero(actionNumber, m_pRaumView);
+			if (grpHelden->GetActionPhase() == 2)
+			{
+				m_pRaumView->DoActionForChosenHero(grpHelden, actionNumber);
+			}
 		}
 		UpdateGrafik();
 	}

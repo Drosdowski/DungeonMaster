@@ -12,7 +12,6 @@ class CMonster;
 class CItem;
 class CAttackInfos;
 class CMonsterInfos;
-class CRaumView;
 class CGrpHeld: public CGrpChar
 {
 public:
@@ -42,9 +41,9 @@ public:
 	void ThrowItemInHeroHand(CHeld* hero, CField* field, SUBPOS seite);
 
 	void Aktiviere(int n);
+	void setPhaseDelay(int n) { m_iPhaseDelay = n; }
 	void PassAction();
 	void ChooseHeroForAction(int ID);
-	void DoActionForChosenHero(int ID, CRaumView* pRaumView);
 	bool SetActiveCaster(int ID);
 	
 	bool Altern(CField* field);

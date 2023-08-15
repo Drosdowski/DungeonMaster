@@ -1613,3 +1613,90 @@ CSize CRaumView::GetSizeOfFrontDeco(CField* pField, COMPASS_DIRECTION dir)
 	}
 	return CSize(0, 0);
 }
+
+int CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
+	VEKTOR monPos = pGrpHero->HoleZielFeld(VORWAERTS);
+	CHeld* pHero = (CHeld*)pGrpHero->GetHeroForAction();
+	CGrpMonster* pVictims = GetMonsterGroup(monPos);
+	CAttackInfos* attackInfos = GetAttackInfos();
+	CMonsterInfos* monsterInfos = GetMonsterInfos();
+	CField* field = GetMap()->GetField(monPos);
+	int diff = GetMap()->GetLevelDifficulty(monPos.z);
+	if (pHero) {
+		if (pHero->isAlive()) {
+			CItem* item = pHero->GetItemCarrying(1);
+			VEKTOR myPos = pGrpHero->GetVector();
+			CWeapon* weapon = NULL;
+			CString attackType;
+			if (item && item->getItemType() == CItem::ItemType::WeaponItem) {
+				weapon = (CWeapon*)item;
+				attackType = weapon->GetAttributes().style[ActionId - 1].type;
+			}
+			else {
+				/*CWeaponAttributes att;
+				att.fixAttributes.damage = 1;
+				weapon = new CWeapon(HANDINDEX, att);*/
+				attackType = "N"; // Punch / Kick / Warcry
+			}
+
+			if (attackType == "throw")
+			{
+				SUBPOS_ABSOLUTE abspos = pHero->HoleSubPosition();
+				SUBPOS pos = CHelpfulValues::GetRelativeSubPosPassive(abspos, pGrpHero->GetDirection());
+				pGrpHero->ThrowItemInHeroHand(pHero, field, pos);
+				pGrpHero->setPhaseDelay(2);
+				return 3;
+			}
+			else {
+
+				if (pVictims) {
+					if ((attackType == "N") && (ActionId == 3)) {
+						// Warcry
+						pVictims->Scare();
+						pGrpHero->setPhaseDelay(2);
+						return 3;
+					}
+					else {
+						// Nahkampf!
+						CAttackConst ac = attackInfos->GetAttack(attackType);
+						CMonsterConst mc = monsterInfos->GetMonsterInfo(pVictims->GetType());
+
+						int dmg = pHero->CalcDmg(weapon, ac, mc, pVictims, diff); // todo doof so, besser in CMonster die MOnsterInfo rein
+						if (dmg > 0) {
+							pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
+							pHero->AttackModeWithDmg(dmg);
+							pGrpHero->setPhaseDelay(2);
+							return 3;
+						}
+					}
+					/*
+					int itemIndex = -1;
+					if (item && item->getItemType() == CItem::ItemType::WeaponItem) {
+						itemIndex = item->getIndex();
+					}
+					else if (item == NULL) {
+						itemIndex = HANDINDEX;
+					}
+					if (itemIndex >= 0) {
+						CAttackConst ac = attackInfos->GetAttack(itemIndex);
+						int dmg = pHero->CalcDmg(ac, pVictims, myPos.z);
+						pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
+						pHero->AttackModeWithDmg(dmg);
+						m_iPhase = 3;
+						m_iPhaseDelay = 2;
+					}*/
+				}
+				else {
+					CDoor* pDoor = field->HoleDoor();
+					if (pDoor && pDoor->destroyedByForce() && pDoor->getState() == CDoor::CLOSED)
+					{
+						pDoor->SetState(CDoor::DESTROYED);
+					}
+					// kein Gegner!
+					return 1;
+				}
+			}
+		}
+	}
+
+}
