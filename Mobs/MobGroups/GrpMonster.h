@@ -32,7 +32,7 @@ public:
 	CMonster* GetMonster(int ID);
 	// TODO bool ExistsAndDies();
 	void MoveDone();
-	void ScaredAction();
+	void ScaredAction(VEKTOR nextPos, boolean collision);
 	bool IsScared() { return m_iScaredCounter > 0;}
 	bool AnyoneReady();
 	bool EveryoneReady();
@@ -57,7 +57,7 @@ private:
 	void InitMonster(int nr, CCreatureAttributes attributes);
 	void TryToAdavanceToFirstRow(int index, VEKTOR monPos, VEKTOR heroPos);
 	bool isSubPosAbsoluteFree(SUBPOS_ABSOLUTE pos);
-	void RandomMove();
+	void RandomMove(VEKTOR nextPos, boolean collision);
 
 	CMonster* GetBySubpos(SUBPOS pos);
 	std::deque<CItem*> carriedItems;

@@ -1430,16 +1430,19 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	// Prüfen: Held angreifbar? Erstmal nur Nahkampf!
 	VEKTOR heroPos = m_pMap->GetHeroes()->GetVector();
 	VEKTOR monPos = pGrpMon->GetVector();
+	VEKTOR targetPos;
 	if (pGrpMon->GetVector().z != heroPos.z) return monPos; // Falsche Etage, nix tun!
 
 	if (pGrpMon->IsScared()) {
-		pGrpMon->ScaredAction();
+		targetPos = pGrpMon->HoleZielFeld(RUECKWAERTS);
+		boolean collision = false;
+		Betrete(targetPos, collision);
+		pGrpMon->ScaredAction(targetPos, collision);
 	}
 	else {
 		// Versuch, in Blickrichtung zu gehen, ggf. Angriff!
-		VEKTOR targetPos = pGrpMon->HoleZielFeld(VORWAERTS);
+		targetPos = pGrpMon->HoleZielFeld(VORWAERTS);
 		CField* targetField = m_pMap->GetField(targetPos);
-
 		COMPASS_DIRECTION heroRicht = m_pMap->GetHeroes()->GetDirection();
 
 		int xDist = monPos.x - heroPos.x;
