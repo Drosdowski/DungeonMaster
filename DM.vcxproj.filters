@@ -264,6 +264,12 @@
     <ClCompile Include="Pictures\Creatures\GigglerPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Items\Text.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Attributes\TextAttributes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -521,6 +527,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\Creatures\GigglerPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\Text.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Attributes\TextAttributes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

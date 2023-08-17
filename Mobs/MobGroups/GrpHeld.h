@@ -12,6 +12,7 @@ class CMonster;
 class CItem;
 class CAttackInfos;
 class CMonsterInfos;
+class CField; // todo refactor
 class CGrpHeld: public CGrpChar
 {
 public:

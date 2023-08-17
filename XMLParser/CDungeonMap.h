@@ -10,6 +10,7 @@
 #include "../Attributes/MiscellaneousAttributes.h"
 #include "../Attributes/ScrollAttributes.h"
 #include "../Attributes/ContainerAttributes.h"
+#include "../Attributes/TextAttributes.h"
 #include <XMLParser/ItemInfos.h>
 #include <XMLParser/MonsterInfos.h>
 
@@ -54,6 +55,7 @@ private:
 	void ParseContainerObjects(TiXmlElement* rootNode);
 	void ParseObjects(TiXmlElement* rootNode);
 	void ParseTeleporterObjects(TiXmlElement* rootNode);
+	void ParseTextObjects(TiXmlElement* rootNode);
 
 	void ParseMaps(TiXmlElement* rootNode);
 	void ParseMap(TiXmlElement* rootNode, int etage);
@@ -70,6 +72,7 @@ private:
 	void ParsePotions(TiXmlElement* rootNode, VEKTOR coords);
 	void ParseScrolls(TiXmlElement* rootNode, VEKTOR coords);
 	void ParseContainers(TiXmlElement* rootNode, VEKTOR coords);
+	void ParseText(TiXmlElement* rootNode, VEKTOR coords);
 	void ParseFloorDecoration(TiXmlElement* miscItem, VEKTOR coords);
 	void ParseWallDecoration(TiXmlElement* miscItem, VEKTOR coords);
 	void ParseCreature(TiXmlElement* miscItem, VEKTOR coords);
@@ -108,6 +111,7 @@ private:
 	int m_countTeleporters;
 	int m_countCreatures;
 	int m_countFloors;
+	int m_countTexts;
 	CGrpHeld* m_pGrpHelden;
 	bool saveGameExists;
 
@@ -123,6 +127,7 @@ private:
 	CDoorAttributes* m_doorAtt = NULL;
 	TeleporterAttributes* m_teleportAtt = NULL;
 	CCreatureAttributes* m_creatureAtt = NULL;
+	CTextAttributes* m_pTextInfos = NULL;
 	WallDecorationType** m_wallDecorationTypes = NULL;
 	CItemInfos* m_pItemInfos = NULL;
 	CMonsterInfos* m_pMonsterInfos = NULL;

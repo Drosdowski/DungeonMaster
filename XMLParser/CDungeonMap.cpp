@@ -60,6 +60,7 @@ CDungeonMap::~CDungeonMap()
 	delete[] m_actuatorType;
 	delete[] m_teleportAtt;
 	delete[] m_creatureAtt;
+	delete[] m_pTextInfos;
 
 	delete m_pDoc;
 }
@@ -386,6 +387,13 @@ void CDungeonMap::ParseWallDecoration(TiXmlElement* decoItem, VEKTOR coords) {
 	CWallDecoration* deco = new CWallDecoration(m_wallDecorationTypes[coords.z][graphic-1]);
 	m_pFeld[coords.x][coords.y][coords.z]->PutWallDeco(deco, position);
 }
+
+void CDungeonMap::ParseText(TiXmlElement* rootNode, VEKTOR coords) {
+	int index;
+	rootNode->QueryIntAttribute("index", &index);
+	//CString text = m_pTextInfos[index];
+}
+
 
 void CDungeonMap::ParseCreature(TiXmlElement* creatureItem, VEKTOR coords) {
 	int index, position;
@@ -890,6 +898,32 @@ void CDungeonMap::ParseTeleporterObjects(TiXmlElement* rootNode) {
 	}
 }
 
+void CDungeonMap::ParseTextObjects(TiXmlElement* rootNode) {
+	/*< text index = "0"
+		visible = "0"
+		actuator = "0"
+		complex = "0"
+		text_data = "0"*/
+	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "text") == 0) // several existing
+		{
+			CTextAttributes textAttribute;
+			int index;
+			parentElement->QueryIntAttribute("index", &index);
+			parentElement->QueryIntAttribute("visible", &textAttribute.visible);
+			parentElement->QueryIntAttribute("text_data", &textAttribute.text_data);
+			const char* strText = parentElement->GetText();
+			textAttribute.text = strText;
+			m_pTextInfos[index] = textAttribute;
+			
+		}
+		parentElement = parentElement->NextSiblingElement();
+	}
+}
+
 void CDungeonMap::ParseObjects(TiXmlElement* rootNode) {
 	TiXmlElement* parentElement = rootNode->FirstChildElement();
 	while (parentElement)
@@ -935,6 +969,10 @@ void CDungeonMap::ParseObjects(TiXmlElement* rootNode) {
 		{
 			ParseCreatureObjects(parentElement);
 		}
+		else if (strcmp(parent, "texts") == 0)
+		{
+			ParseTextObjects(parentElement);
+		}
 		parentElement = parentElement->NextSiblingElement();
 	}
 }
@@ -968,6 +1006,8 @@ void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
 	m_wallDecorationTypes = new WallDecorationType * [m_countFloors];
 	rootNode->QueryIntAttribute("number_of_creatures", &m_countCreatures);
 	m_creatureAtt = new CCreatureAttributes[m_countCreatures];
+	rootNode->QueryIntAttribute("number_of_texts", &m_countTexts);
+	m_pTextInfos = new CTextAttributes[m_countTexts];
 
 	const char* startDir = rootNode->Attribute("start_facing");
 	if (strcmp(startDir, "North") == 0) m_startRicht = COMPASS_DIRECTION::NORTH;
