@@ -7,6 +7,7 @@
 #include "Mobs/MobGroups/GrpMonster.h"
 #include "Items\FloorDecoration.h"
 #include "Items\WallDecoration.h"
+#include "Items/Text.h"
 #include "Items/CMiscellaneous.h"
 #include "Items/Weapon.h"
 #include "Items/Cloth.h"
@@ -284,6 +285,9 @@ void CDungeonMap::ParseItems(TiXmlElement* rootNode, VEKTOR coords, bool initDun
 					else if (strcmp(item->Value(), "creature") == 0 && monsterAktiv) {
 						ParseCreature(item, coords);
 					}
+					else if (strcmp(item->Value(), "text") == 0) {
+						ParseText(item, coords);
+					}
 				}
 			
 				item = item->NextSiblingElement();
@@ -389,9 +393,14 @@ void CDungeonMap::ParseWallDecoration(TiXmlElement* decoItem, VEKTOR coords) {
 }
 
 void CDungeonMap::ParseText(TiXmlElement* rootNode, VEKTOR coords) {
-	int index;
+	int index, position;
 	rootNode->QueryIntAttribute("index", &index);
-	//CString text = m_pTextInfos[index];
+	rootNode->QueryIntAttribute("position", &position);
+	if (index == 118)
+	{
+		CText* text = new CText(index, m_pTextInfos[index]);
+		m_pFeld[coords.x][coords.y][coords.z]->PutWallText(text, position);
+	}
 }
 
 

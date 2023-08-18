@@ -18,6 +18,7 @@
 #include "Items\Cloth.h"
 #include "Items\Scroll.h"
 #include "Items\CActuator.h"
+#include "Items\Text.h"
 #include "Items\MagicMissile.h"
 #include "CalculationHelper\CHelpfulValues.h"
 #include <cassert>
@@ -99,12 +100,14 @@ CField::~CField()
 		delete m_pTrickwall;
 	if (m_floorOrnateType)
 		delete m_floorOrnateType;
-	for (int p = 0; p < 4; p++) {
-		if (m_wallOrnateType[p])
-			delete m_wallOrnateType[p];
-	}
-
 	for (int i = 0; i < 4; i++) {
+		if (m_wallOrnateType[i])
+			delete m_wallOrnateType[i];
+		for (CText* text: m_wallText[i])
+		{
+			delete (CText*)text;
+		}
+	
 		for (CItem* item : m_pItem[i]) {
 			if (item->getItemType() == CItem::ItemType::WeaponItem)
 				delete (CWeapon*)item;
@@ -129,6 +132,7 @@ CField::~CField()
 			delete actuator;
 		}
 	}
+
 }
 
 CGrpMonster* CField::GetMonsterGroup() {
@@ -233,6 +237,10 @@ void CField::PutFloorDeco(CFloorDecoration* deco) {
 
 void CField::PutWallDeco(CWallDecoration* deco, int position) {
 	m_wallOrnateType[position] = deco;
+}
+
+void CField::PutWallText(CText* text, int position) {
+	m_wallText[position].push_back(text);
 }
 
 void CField::PutActuator(CActuator* actuator, COMPASS_DIRECTION index) {

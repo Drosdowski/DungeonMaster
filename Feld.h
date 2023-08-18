@@ -27,6 +27,7 @@ class CContainer;
 class CActuator;
 class CFloorDecoration;
 class CWallDecoration;
+class CText;
 class CDoor;
 class CPit;
 class CStairs;
@@ -60,6 +61,7 @@ public:
 	CWallDecoration* GetWallDeco(int position) { return  m_wallOrnateType[position]; }
 	void PutFloorDeco(CFloorDecoration* deco);
 	void PutWallDeco(CWallDecoration* deco, int position);
+	void PutWallText(CText* text, int position);
 
 	CDoor* HoleDoor() { return m_pDoor;  }
 	CStairs* HoleStairs() { return m_pStairs;  }
@@ -118,6 +120,7 @@ protected:
 	//int m_pWallDecoration[4];
 	CFloorDecoration* m_floorOrnateType;
 	CWallDecoration* m_wallOrnateType[4];
+	std::deque<CText*> m_wallText[4];
 	std::deque<CItem*> m_pItem[4];
 	std::deque<CMagicMissile*> m_pMagicMissiles[4];
 	std::deque <CActuator*> m_pActuator[4];
