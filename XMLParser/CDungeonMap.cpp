@@ -396,11 +396,8 @@ void CDungeonMap::ParseText(TiXmlElement* rootNode, VEKTOR coords) {
 	int index, position;
 	rootNode->QueryIntAttribute("index", &index);
 	rootNode->QueryIntAttribute("position", &position);
-	if (index == 118)
-	{
-		CText* text = new CText(index, m_pTextInfos[index]);
-		m_pFeld[coords.x][coords.y][coords.z]->PutWallText(text, position);
-	}
+	CText* text = new CText(index, m_pTextInfos[index]);
+	m_pFeld[coords.x][coords.y][coords.z]->PutWallText(text, position);
 }
 
 
