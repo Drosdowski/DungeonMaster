@@ -17,6 +17,7 @@
 #include "Items/Container.h"
 #include "Items/CActuator.h"
 #include "Items\MagicMissile.h"
+#include "Items\Text.h"
 #include "RaumView.h"
 #include "XMLParser\CDungeonMap.h"
 #include "XMLParser\ItemInfos.h"
@@ -43,6 +44,9 @@
 #include "Mobs\MobGroups\GrpMonster.h"
 #include "Mobs\MobGroups\GrpHeld.h"
 #include <cassert>
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -411,6 +415,10 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 					}
 				}
 			}
+			CText* text = pField->GetFirstText(richtOppo);
+			if (text) {
+				WriteOnWall(pDC, centerFrontWall, text);
+			}
 		}
 
 	}
@@ -447,6 +455,38 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 		}
 	}
 }
+
+void CRaumView::WriteOnWall(CDC* pDC, CPoint pos, CText* text) {
+	FT_Library ft;
+	if (FT_Init_FreeType(&ft)) {
+		return;
+	}
+	FT_Face face;
+	if (FT_New_Face(ft, "DALEK___.ttf", 0, &face)) {
+		FT_Done_FreeType(ft);
+		return;
+	}
+
+	FT_Set_Pixel_Sizes(face, 0, 24); // 24 size
+	int x = pos.x;
+	int y = pos.y;
+	CString ausgabe = text->GetText();
+	for (size_t i = 0; i < strlen(ausgabe); i++) {
+		if (ausgabe[i] == '\n')
+		{
+			x = pos.x;
+			y += face->size->metrics.height >> 6;
+			continue;
+		}
+		FT_Load_Char(face, ausgabe[i], FT_LOAD_RENDER);
+		x += face->glyph->advance.x >> 6;
+	}
+
+
+	FT_Done_Face(face);
+	FT_Done_FreeType(ft);
+}
+
 
 void CRaumView::DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTION richt, CField* pField) {
 	CGrpMonster* pGrpMon = (CGrpMonster*)pField->GetMonsterGroup();

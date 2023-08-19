@@ -1,5 +1,6 @@
 #pragma once
 #include <Attributes/TextAttributes.h>
+#include <afxstr.h>
 
 class CText
 {
