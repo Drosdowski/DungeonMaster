@@ -381,12 +381,12 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 	//CZoomBlt::DrawFullTrans(pDC, cdc, posWall.x, posWall.y, bmpInfo.bmWidth, bmpInfo.bmHeight, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_VIO);
 
 	// Deko auf FRONT Wand zeichnen
+	CPoint centerFrontWall;
 	if (bmpDecoFront)
 	{
 		if (((xxx == 4) && (ebene == 1)) ||
 			((xxx > 1) && (ebene == 2)) ||
 			(ebene == 3)) {
-			CPoint centerFrontWall;
 			if (m_pWallDecoPic->DrawNearFloor(graphicTypeFront))
 				centerFrontWall = m_pWallPic->GetBottomCenterFromFrontWall(xxx, ebene);
 			else
@@ -414,10 +414,6 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 						DrawPile(pDC, cdc, xxx, ebene, MIDDLE, heroDir, pile, isBigContainer);
 					}
 				}
-			}
-			CText* text = pField->GetFirstText(richtOppo);
-			if (text) {
-				WriteOnWall(pDC, centerFrontWall, text);
 			}
 		}
 
@@ -454,6 +450,16 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 
 		}
 	}
+
+	if (((xxx == 4) && (ebene == 1)) ||
+		((xxx > 1) && (ebene == 2))) {
+		CText* text = pField->GetFirstText(richtOppo);
+		if (text) {
+			centerFrontWall = m_pWallPic->GetCenterFromFrontWall(xxx, ebene);
+			WriteOnWall(pDC, centerFrontWall, text);
+		}
+	}
+
 }
 
 void CRaumView::WriteOnWall(CDC* pDC, CPoint pos, CText* text) {
@@ -468,6 +474,8 @@ void CRaumView::WriteOnWall(CDC* pDC, CPoint pos, CText* text) {
 	}
 
 	FT_Set_Pixel_Sizes(face, 0, 24); // 24 size
+	HDC hDC = pDC->GetSafeHdc();
+	SetTextColor(hDC, RGB(0, 0, 0));
 	int x = pos.x;
 	int y = pos.y;
 	CString ausgabe = text->GetText();
@@ -479,12 +487,29 @@ void CRaumView::WriteOnWall(CDC* pDC, CPoint pos, CText* text) {
 			continue;
 		}
 		FT_Load_Char(face, ausgabe[i], FT_LOAD_RENDER);
+
+		FT_Bitmap& bitmap = face->glyph->bitmap;
+
+		for (int row = 0; row < bitmap.rows; ++row) {
+			for (int col = 0; col < bitmap.width; ++col) {
+				int index = row * bitmap.width + col;
+				BYTE pixelValue = bitmap.buffer[index]; // Wert des Pixels
+
+				// Zeichnen Sie den Pixelwert auf den HDC bei den Koordinaten (x + col, y + row)
+				// Je nach Framework und Zeichnungsfunktionen kann dies unterschiedlich sein
+				if (pixelValue > 0)
+					SetPixel(hDC, x + col, y + row, RGB(pixelValue, pixelValue, pixelValue));
+			}
+		}
+
 		x += face->glyph->advance.x >> 6;
 	}
 
 
 	FT_Done_Face(face);
 	FT_Done_FreeType(ft);
+
+	ReleaseDC(NULL, hDC);
 }
 
 

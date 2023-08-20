@@ -80,6 +80,7 @@ void CField::InitVars() {
 	m_floorOrnateType = NULL;
 	for (int p = 0; p < 4; p++) {
 		m_wallOrnateType[p] = NULL;
+		m_wallText[p].clear();
 	}
 }
 
@@ -328,3 +329,10 @@ void CField::DrehenRelativ(int iRelRichtung) {
 
 }
 
+CText* CField::GetFirstText(int position)
+{ 
+	if (m_wallText[position].size() > 0)
+		return m_wallText[position].back();
+	else
+		return NULL;
+}

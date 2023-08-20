@@ -86,7 +86,7 @@ public:
 	std::deque<CItem*> GetItem(SUBPOS_ABSOLUTE index) { return m_pItem[index]; }
 	std::deque<CActuator*> GetActuator(COMPASS_DIRECTION index) { return m_pActuator[index]; }
 	std::deque<CMagicMissile*> GetMagicMissile(SUBPOS_ABSOLUTE index) { return m_pMagicMissiles[index]; }
-	CText* GetFirstText(int position) { return m_wallText[position].back(); }
+	CText* GetFirstText(int position);
 
 	void PutActuator(CActuator* actuator, COMPASS_DIRECTION index);
 	VEKTOR HolePos() { return m_posKoord; }
