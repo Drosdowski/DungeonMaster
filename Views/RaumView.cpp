@@ -452,7 +452,8 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 	}
 
 	if (((xxx == 4) && (ebene == 1)) ||
-		((xxx > 1) && (ebene == 2))) {
+		((xxx > 1) && (ebene == 2)) ||
+		(ebene == 3)) {
 		CText* text = pField->GetFirstText(richtOppo);
 		if (text) {
 			centerFrontWall = m_pWallPic->GetCenterFromFrontWall(xxx, ebene);
