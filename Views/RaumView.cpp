@@ -452,11 +452,14 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 	}
 
 	if (((xxx == 4) && (ebene == 1)) ||
-		((xxx > 1) && (ebene == 2)) ||
-		(ebene == 3)) {
+		((xxx > 1) && (ebene == 2))) {
 		CText* text = pField->GetFirstText(richtOppo);
 		if (text) {
 			centerFrontWall = m_pWallPic->GetCenterFromFrontWall(xxx, ebene);
+			centerFrontWall.x += posWall.x;
+			centerFrontWall.y += posWall.y;
+			// todo warum brauche ich diese Zeile ???
+			pDC->Ellipse(centerFrontWall.x, centerFrontWall.y, centerFrontWall.x, centerFrontWall.y);
 			WriteOnWall(pDC, centerFrontWall, text);
 		}
 	}
@@ -474,17 +477,36 @@ void CRaumView::WriteOnWall(CDC* pDC, CPoint pos, CText* text) {
 		return;
 	}
 
-	FT_Set_Pixel_Sizes(face, 0, 24); // 24 size
+	FT_Set_Pixel_Sizes(face, 0, 18); // 24 size
 	HDC hDC = pDC->GetSafeHdc();
 	SetTextColor(hDC, RGB(0, 0, 0));
 	int x = pos.x;
 	int y = pos.y;
 	CString ausgabe = text->GetText();
+	// Breite ermitteln
+	int maxWidth, currentWidth= 0;
+	int maxHeight, allheight = 0;
+	for (size_t i = 0; i < strlen(ausgabe); i++) {
+		if (ausgabe[i] == '\n')
+		{
+			maxWidth = max(currentWidth, maxWidth);
+			allheight += maxHeight;
+			maxHeight = 0;
+			currentWidth = 0;
+			continue;
+		}
+		FT_Load_Char(face, ausgabe[i], FT_LOAD_RENDER);
+		currentWidth += (face->glyph->advance.x >> 6);
+		maxHeight = max(face->glyph->advance.y >> 6, maxHeight);
+	}
+	maxWidth = max(currentWidth, maxWidth);
+	allheight += maxHeight;
+	// Zeichnen
 	for (size_t i = 0; i < strlen(ausgabe); i++) {
 		if (ausgabe[i] == '\n')
 		{
 			x = pos.x;
-			y += face->size->metrics.height >> 6;
+			y += face->size->metrics.height >> 6; // Faktor 64 , da Glyphen ín 1/64 Abständen berechnet werden
 			continue;
 		}
 		FT_Load_Char(face, ausgabe[i], FT_LOAD_RENDER);
@@ -499,7 +521,7 @@ void CRaumView::WriteOnWall(CDC* pDC, CPoint pos, CText* text) {
 				// Zeichnen Sie den Pixelwert auf den HDC bei den Koordinaten (x + col, y + row)
 				// Je nach Framework und Zeichnungsfunktionen kann dies unterschiedlich sein
 				if (pixelValue > 0)
-					SetPixel(hDC, x + col, y + row, RGB(pixelValue, pixelValue, pixelValue));
+					SetPixel(hDC, x + col - maxWidth/4, y + row - allheight /4 + allheight / 8, RGB(pixelValue, pixelValue, pixelValue));
 			}
 		}
 
@@ -510,7 +532,7 @@ void CRaumView::WriteOnWall(CDC* pDC, CPoint pos, CText* text) {
 	FT_Done_Face(face);
 	FT_Done_FreeType(ft);
 
-	ReleaseDC(NULL, hDC);
+	//ReleaseDC(NULL, hDC);
 }
 
 
