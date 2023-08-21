@@ -48,8 +48,8 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\mdros\source\repos\DungeonMaster\lib;$(LibraryPath)</LibraryPath>
-    <ExternalIncludePath>C:\Users\mdros\source\repos\DungeonMaster\include;$(ExternalIncludePath)</ExternalIncludePath>
-    <LibraryWPath>C:\Users\mdros\source\repos\DungeonMaster\include;$(LibraryWPath)</LibraryWPath>
+    <ExternalIncludePath>$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryWPath>$(LibraryWPath)</LibraryWPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

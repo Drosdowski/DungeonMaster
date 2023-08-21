@@ -458,8 +458,6 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 			centerFrontWall = m_pWallPic->GetCenterFromFrontWall(xxx, ebene);
 			centerFrontWall.x += posWall.x;
 			centerFrontWall.y += posWall.y;
-			// todo warum brauche ich diese Zeile ???
-			pDC->Ellipse(centerFrontWall.x-2, centerFrontWall.y-2, centerFrontWall.x+2, centerFrontWall.y+2);
 			WriteOnWall(pDC, centerFrontWall, text, ebene);
 		}
 	}
