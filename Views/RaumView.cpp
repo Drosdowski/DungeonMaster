@@ -477,36 +477,41 @@ void CRaumView::WriteOnWall(CDC* pDC, CPoint pos, CText* text, int ebene) {
 		return;
 	}
 
-	FT_Set_Pixel_Sizes(face, 0, ebene == 1 ? 24 : 12); // 24 size
+	FT_Set_Pixel_Sizes(face, 0, ebene == 1 ? 20 : 12); // 24 size
 	HDC hDC = pDC->GetSafeHdc();
 	SetTextColor(hDC, RGB(0, 0, 0));
 	int x = pos.x;
 	int y = pos.y;
 	CString ausgabe = text->GetText();
 	// Breite ermitteln
-	int maxWidth =0, currentWidth= 0;
+	int rowWidth[5];
+	int currentWidth = 0;
 	int maxHeight =0, allheight = 0;
+	int line = 0;
 	for (size_t i = 0; i < strlen(ausgabe); ++i) {
 		if (ausgabe[i] == '\n')
 		{
-			maxWidth = max(currentWidth, maxWidth);
+			rowWidth[line] = currentWidth;
 			allheight += maxHeight;
 			maxHeight = 0;
 			currentWidth = 0;
+			line++;
 			continue;
 		}
 		FT_Load_Char(face, ausgabe[i], FT_LOAD_RENDER);
 		currentWidth += (face->glyph->advance.x >> 6);
-		maxHeight = max(face->glyph->advance.y >> 6, maxHeight);
+		maxHeight = max(face->size->metrics.height >> 6, maxHeight);
 	}
-	maxWidth = max(currentWidth, maxWidth);
+	rowWidth[line] = currentWidth;
 	allheight += maxHeight;
+	line = 0;
 	// Zeichnen
 	for (size_t i = 0; i < strlen(ausgabe); i++) {
 		if (ausgabe[i] == '\n')
 		{
 			x = pos.x;
 			y += face->size->metrics.height >> 6; // Faktor 64 , da Glyphen ín 1/64 Abständen berechnet werden
+			line++;
 			continue;
 		}
 		FT_Load_Char(face, ausgabe[i], FT_LOAD_RENDER);
@@ -521,8 +526,8 @@ void CRaumView::WriteOnWall(CDC* pDC, CPoint pos, CText* text, int ebene) {
 				// Zeichnen Sie den Pixelwert auf den HDC bei den Koordinaten (x + col, y + row)
 				// Je nach Framework und Zeichnungsfunktionen kann dies unterschiedlich sein
 				if (pixelValue > 0) {
-					int xKoord = x + col - maxWidth / 4;
-					int yKoord = y + row - allheight / 4 + allheight / 8;
+					int xKoord = x + col - rowWidth[line] / 2;
+					int yKoord = y + row - allheight / 2 + allheight / 8;
 					if (xKoord < MainAreaWidth && yKoord < MainAreaHeight)
 						SetPixel(hDC, xKoord, yKoord, RGB(pixelValue, pixelValue, pixelValue));
 
