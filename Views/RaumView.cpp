@@ -459,14 +459,14 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 			centerFrontWall.x += posWall.x;
 			centerFrontWall.y += posWall.y;
 			// todo warum brauche ich diese Zeile ???
-			pDC->Ellipse(centerFrontWall.x, centerFrontWall.y, centerFrontWall.x, centerFrontWall.y);
-			WriteOnWall(pDC, centerFrontWall, text);
+			pDC->Ellipse(centerFrontWall.x-2, centerFrontWall.y-2, centerFrontWall.x+2, centerFrontWall.y+2);
+			WriteOnWall(pDC, centerFrontWall, text, ebene);
 		}
 	}
 
 }
 
-void CRaumView::WriteOnWall(CDC* pDC, CPoint pos, CText* text) {
+void CRaumView::WriteOnWall(CDC* pDC, CPoint pos, CText* text, int ebene) {
 	FT_Library ft;
 	if (FT_Init_FreeType(&ft)) {
 		return;
@@ -477,16 +477,16 @@ void CRaumView::WriteOnWall(CDC* pDC, CPoint pos, CText* text) {
 		return;
 	}
 
-	FT_Set_Pixel_Sizes(face, 0, 18); // 24 size
+	FT_Set_Pixel_Sizes(face, 0, ebene == 1 ? 24 : 12); // 24 size
 	HDC hDC = pDC->GetSafeHdc();
 	SetTextColor(hDC, RGB(0, 0, 0));
 	int x = pos.x;
 	int y = pos.y;
 	CString ausgabe = text->GetText();
 	// Breite ermitteln
-	int maxWidth, currentWidth= 0;
-	int maxHeight, allheight = 0;
-	for (size_t i = 0; i < strlen(ausgabe); i++) {
+	int maxWidth =0, currentWidth= 0;
+	int maxHeight =0, allheight = 0;
+	for (size_t i = 0; i < strlen(ausgabe); ++i) {
 		if (ausgabe[i] == '\n')
 		{
 			maxWidth = max(currentWidth, maxWidth);
@@ -520,8 +520,13 @@ void CRaumView::WriteOnWall(CDC* pDC, CPoint pos, CText* text) {
 
 				// Zeichnen Sie den Pixelwert auf den HDC bei den Koordinaten (x + col, y + row)
 				// Je nach Framework und Zeichnungsfunktionen kann dies unterschiedlich sein
-				if (pixelValue > 0)
-					SetPixel(hDC, x + col - maxWidth/4, y + row - allheight /4 + allheight / 8, RGB(pixelValue, pixelValue, pixelValue));
+				if (pixelValue > 0) {
+					int xKoord = x + col - maxWidth / 4;
+					int yKoord = y + row - allheight / 4 + allheight / 8;
+					if (xKoord < MainAreaWidth && yKoord < MainAreaHeight)
+						SetPixel(hDC, xKoord, yKoord, RGB(pixelValue, pixelValue, pixelValue));
+
+				}
 			}
 		}
 

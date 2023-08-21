@@ -134,7 +134,7 @@ private:
 	void TriggerPit(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached);
 	void TriggerTeleport(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached);
 
-	void WriteOnWall(CDC* pDC, CPoint pos, CText* text);
+	void WriteOnWall(CDC* pDC, CPoint pos, CText* text, int ebene);
 };
 
 /////////////////////////////////////////////////////////////////////////////
