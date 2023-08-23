@@ -104,19 +104,19 @@ void CGrpHeld::Aktiviere(int n)
 }
 
 void CGrpHeld::ChooseHeroForAction(int ID) {
-	if (m_iPhase == 1)
+	if (m_iPhase == CHOOSE_HERO)
 	{
 		if (m_pMember[ID] && m_pMember[ID]->isAlive()) {
-			m_iPhase = 2;
+			m_iPhase = CHOOSE_ACTION;
 			m_iHeroForAction = ID;
 		}
 	}
 }
 
 void CGrpHeld::PassAction() {
-	if (m_iPhase == 2) {
+	if (m_iPhase == CHOOSE_ACTION) {
 		GetHero(m_iHeroForAction)->EndAttack();
-		m_iPhase = 1;
+		m_iPhase = CHOOSE_HERO;
 	}
 
 }
@@ -171,10 +171,10 @@ bool CGrpHeld::Altern(CField* field)
 			}
 		}
 	}
-	if (m_iPhase == 3)
+	if (m_iPhase == SHOW_DAMAGE)
 	{ 
 		if (m_iPhaseDelay <= 0)
-			m_iPhase = 1;
+			m_iPhase = CHOOSE_HERO;
 		else
 			m_iPhaseDelay--;
 	}

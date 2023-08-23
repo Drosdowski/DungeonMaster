@@ -214,6 +214,13 @@ enum MonsterTyp {
 	TROLIN = 16
 };
 
+enum Phase {
+	CHOOSE_HERO = 1,
+	CHOOSE_ACTION = 2,
+	SHOW_DAMAGE = 3,
+	PASS = -1
+};
+
 
 #define HANDINDEX 46
 

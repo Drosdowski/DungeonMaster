@@ -29,7 +29,7 @@ public:
 
 	int GetActiveWizard() { return m_iAktiverZauberer; }
 	int GetNumberOfHeroes() { return m_iAnzHelden;  }
-	int GetActionPhase() { return m_iPhase; }
+	Phase GetActionPhase() { return m_iPhase; }
 	
 	CItem* GetItemInHand() { return m_pItemInHand; }
 	void TakeItemInHand(CItem* item);
@@ -42,6 +42,7 @@ public:
 	void ThrowItemInHeroHand(CHeld* hero, CField* field, SUBPOS seite);
 
 	void Aktiviere(int n);
+	void setPhase(Phase p) { m_iPhase = p; }
 	void setPhaseDelay(int n) { m_iPhaseDelay = n; }
 	void PassAction();
 	void ChooseHeroForAction(int ID);
@@ -62,7 +63,7 @@ private:
 
 	// Generierte Nachrichtenzuordnungsfunktionen
 protected:
-	int m_iPhase = 1;
+	Phase m_iPhase = CHOOSE_HERO;
 	int m_iPhaseDelay = 0;
 	int m_iHeroForAction = 1;
 	int m_iAktiverZauberer = 0;

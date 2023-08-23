@@ -65,7 +65,7 @@ public:
 	void RaumZeichnen(CDC* pDC);
 	void DrawActionAreaChoice(CDC* pDC, int weaponIndex);
 	void DrawActionAreaDamage(CDC* pDC, int dmg);
-	int DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId);
+	void DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId);
 
 	bool OnStairs();
 	CSize GetSizeOfFrontDeco(CField* pfield, COMPASS_DIRECTION dir);

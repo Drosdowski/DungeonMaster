@@ -477,7 +477,7 @@ void CRaumView::WriteOnWall(CDC* pDC, CPoint pos, CText* text, int ebene) {
 
 	FT_Set_Pixel_Sizes(face, 0, ebene == 1 ? 20 : 12); // 24 size
 	HDC hDC = pDC->GetSafeHdc();
-	SetTextColor(hDC, RGB(0, 0, 0));
+	SetTextColor(hDC, WEISS);
 	int x = pos.x;
 	int y = pos.y;
 	CString ausgabe = text->GetText();
@@ -485,6 +485,7 @@ void CRaumView::WriteOnWall(CDC* pDC, CPoint pos, CText* text, int ebene) {
 	int rowWidth[5];
 	int currentWidth = 0;
 	int maxHeight =0, allheight = 0;
+	int maxRows = 0;
 	int line = 0;
 	for (size_t i = 0; i < strlen(ausgabe); ++i) {
 		if (ausgabe[i] == '\n')
@@ -498,7 +499,8 @@ void CRaumView::WriteOnWall(CDC* pDC, CPoint pos, CText* text, int ebene) {
 		}
 		FT_Load_Char(face, ausgabe[i], FT_LOAD_RENDER);
 		currentWidth += (face->glyph->advance.x >> 6);
-		maxHeight = max(face->size->metrics.height >> 6, maxHeight);
+		maxHeight = max((int)(face->size->metrics.height >> 6), maxHeight);
+		maxRows = max((int)(face->glyph->bitmap.rows), maxRows);
 	}
 	rowWidth[line] = currentWidth;
 	allheight += maxHeight;
@@ -516,16 +518,20 @@ void CRaumView::WriteOnWall(CDC* pDC, CPoint pos, CText* text, int ebene) {
 
 		FT_Bitmap& bitmap = face->glyph->bitmap;
 
-		for (int row = 0; row < bitmap.rows; ++row) {
-			for (int col = 0; col < bitmap.width; ++col) {
+		int xDelay = x - rowWidth[line] / 2;
+		int yDelay = y - allheight / 2 + allheight / 8;
+		if (maxRows > (int)bitmap.rows)
+			yDelay++; // 1 extra pixel for smaller letter
+		for (unsigned row = 0; row < bitmap.rows; ++row) {
+			for (unsigned col = 0; col < bitmap.width; ++col) {
 				int index = row * bitmap.width + col;
 				BYTE pixelValue = bitmap.buffer[index]; // Wert des Pixels
 
 				// Zeichnen Sie den Pixelwert auf den HDC bei den Koordinaten (x + col, y + row)
 				// Je nach Framework und Zeichnungsfunktionen kann dies unterschiedlich sein
 				if (pixelValue > 0) {
-					int xKoord = x + col - rowWidth[line] / 2;
-					int yKoord = y + row - allheight / 2 + allheight / 8;
+					int xKoord = xDelay + col;
+					int yKoord = yDelay + row;
 					if (xKoord < MainAreaWidth && yKoord < MainAreaHeight)
 						SetPixel(hDC, xKoord, yKoord, RGB(pixelValue, pixelValue, pixelValue));
 
@@ -635,7 +641,7 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 
 void CRaumView::DrawOneOfPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, COMPASS_DIRECTION heroDir, CItem* item, bool center) {
 	int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
-	CBitmap* bmp;
+	CBitmap* bmp = NULL;
 	CItem::ItemType typ = item->getItemType();
 	if (typ == CItem::ItemType::MiscItem) {
 		CMiscellaneous* miscItem = (CMiscellaneous*)item;
@@ -1710,7 +1716,7 @@ CSize CRaumView::GetSizeOfFrontDeco(CField* pField, COMPASS_DIRECTION dir)
 	return CSize(0, 0);
 }
 
-int CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
+void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 	VEKTOR monPos = pGrpHero->HoleZielFeld(VORWAERTS);
 	CHeld* pHero = (CHeld*)pGrpHero->GetHeroForAction();
 	CGrpMonster* pVictims = GetMonsterGroup(monPos);
@@ -1741,7 +1747,7 @@ int CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 				SUBPOS pos = CHelpfulValues::GetRelativeSubPosPassive(abspos, pGrpHero->GetDirection());
 				pGrpHero->ThrowItemInHeroHand(pHero, field, pos);
 				pGrpHero->setPhaseDelay(2);
-				return 3;
+				pGrpHero->setPhase(SHOW_DAMAGE);
 			}
 			else {
 
@@ -1750,7 +1756,7 @@ int CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 						// Warcry
 						pVictims->Scare();
 						pGrpHero->setPhaseDelay(2);
-						return 3;
+						pGrpHero->setPhase(SHOW_DAMAGE);
 					}
 					else {
 						// Nahkampf!
@@ -1762,7 +1768,7 @@ int CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 							pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
 							pHero->AttackModeWithDmg(dmg);
 							pGrpHero->setPhaseDelay(2);
-							return 3;
+							pGrpHero->setPhase(SHOW_DAMAGE);
 						}
 					}
 					/*
@@ -1789,7 +1795,7 @@ int CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 						pDoor->SetState(CDoor::DESTROYED);
 					}
 					// kein Gegner!
-					return 1;
+					pGrpHero->setPhase(CHOOSE_HERO);
 				}
 			}
 		}

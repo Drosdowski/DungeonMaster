@@ -229,22 +229,20 @@ void CDMView::CastMagicMissile(CMagicMissile::MagicMissileType missileType, int 
 void CDMView::ParseClickAction(CPoint point) {
 	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 
-	int actionPhase = grpHelden->GetActionPhase();
+	Phase actionPhase = grpHelden->GetActionPhase();
 	int actionNumber = CScreenCoords::CheckHitAction(point, actionPhase);
-	if (actionNumber > 0 && actionPhase == 1)
+	if (actionNumber > 0 && actionPhase == CHOOSE_HERO)
 	{
 		grpHelden->ChooseHeroForAction(actionNumber);
 	}
-	else if (actionNumber != 0 && actionPhase == 2) {
-		if (actionNumber == -1) // pass
+	else if (actionNumber != 0 && actionPhase == CHOOSE_ACTION) {
+		if (actionNumber == PASS) 
 		{
 			grpHelden->PassAction();
 		}
 		else {
-			if (grpHelden->GetActionPhase() == 2)
-			{
-				m_pRaumView->DoActionForChosenHero(grpHelden, actionNumber);
-			}
+			// action auch setzen !
+			m_pRaumView->DoActionForChosenHero(grpHelden, actionNumber);
 		}
 		UpdateGrafik();
 	}

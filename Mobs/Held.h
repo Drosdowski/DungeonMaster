@@ -42,7 +42,7 @@ public:
 	//virtual void WertePermanentAendern(int hp, int st, int ma);
 	void ChangeCompass();
 
-	int CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, CGrpMonster* pOpponents, int levelDif);
+	double CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, CGrpMonster* pOpponents, int levelDif);
 	double LifePart() { return (double)m_HP.Aktuell / (double)m_HP.Max; }
 	double StaminaPart() { return (double)m_ST.Aktuell / (double)m_ST.Max; }
 	double ManaPart() { return (double)m_MA.Aktuell / (double)m_MA.Max; }
@@ -91,7 +91,7 @@ private:
 	bool hitSucessful(CAttackConst ac, int levelDif);
 	void DelItem(CItem* pItem);
 	int ACC_Coeff(int levelDif, int armor);
-	void ReduceWhenOverload(int d6_weapon_weight, int d5_load_coefficient, int &dmg);
+	void ReduceWhenOverload(double d6_weapon_weight, double d5_load_coefficient, double &dmg);
 
 };
 

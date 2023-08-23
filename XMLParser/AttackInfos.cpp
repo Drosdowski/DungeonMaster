@@ -65,4 +65,5 @@ CAttackConst CAttackInfos::GetAttack(CString type) {
 			return ac;
 	}
 	assert(false); // type not found!
+	return attackInfos[0];
 }

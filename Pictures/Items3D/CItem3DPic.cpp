@@ -314,7 +314,7 @@ CBitmap* CItem3DPic::GetGemBitmap(char color) {
 	case 'B': return m_pGem[0];
 	case 'O': return m_pGem[1];
 	case 'G': return m_pGem[2];
-	default: ASSERT(false);
+	default: ASSERT(false); return NULL;
 	}
 }
 

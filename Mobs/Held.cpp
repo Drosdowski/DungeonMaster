@@ -162,7 +162,7 @@ void CHeld::WerteTemporaerAendern(double hp, double st, double ma)
 	m_MA.Aktuell = min(max(ma + m_MA.Aktuell, 0), m_MA.Max);
 }
 
-int CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, CGrpMonster* pOpponents, int levelDif) {
+double CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, CGrpMonster* pOpponents, int levelDif) {
 	// https://www.dungeon-master.com/forum/viewtopic.php?t=31345
 	// todo xp gain  --- Mastery = log2(Experience=469)
 	// https://gamefaqs.gamespot.com/snes/588299-dungeon-master/faqs/33244 => Exo Gain! (5e. Actions)
@@ -177,10 +177,10 @@ int CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, CGrpMonst
 
 		// damage berechnen!
 		CWeapon* weapon = (CWeapon*)m_itemCarrying[1];
-		int d3_strength = m_sVitals.str.Aktuell;
-		int d5_load_coefficient = MaxLoad();
-		int d6_weapon_weight = weapon ? weapon->GetWeight() : 0;
-		int d7_damage_coefficient = d3_strength + (rand() % 15);
+		double d3_strength = m_sVitals.str.Aktuell;
+		double d5_load_coefficient = MaxLoad();
+		double d6_weapon_weight = weapon ? weapon->GetWeight() : 0;
+		double d7_damage_coefficient = d3_strength + (rand() % 15);
 
 		ReduceWhenOverload(d6_weapon_weight, d5_load_coefficient, d7_damage_coefficient);
 		d7_damage_coefficient += weapon ? weapon->GetAttributes().damage : 1;
@@ -217,9 +217,9 @@ int CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, CGrpMonst
 		d7_damage_coefficient /= 2;
 		int d0 = 0;
 		if (d7_damage_coefficient > 0)
-			d0 = rand() % d7_damage_coefficient;
+			d0 = rand() % (int)d7_damage_coefficient;
 		d7_damage_coefficient += rand() % 4 + d0;
-		d7_damage_coefficient += rand() % d7_damage_coefficient;
+		d7_damage_coefficient += rand() % (int)d7_damage_coefficient;
 		d7_damage_coefficient /= 4;
 		d7_damage_coefficient += rand() % 4 + 1;
 
@@ -236,7 +236,7 @@ int CHeld::ACC_Coeff(int levelDif, int armor) {
 	return levelDif + armor + (rand() % 32);
 }
 
-void CHeld::ReduceWhenOverload(int d6_weapon_weight, int d5_load_coefficient, int &dmg) {
+void CHeld::ReduceWhenOverload(double d6_weapon_weight, double d5_load_coefficient, double &dmg) {
 	int temp_coefficient[2];
 
 	if (d6_weapon_weight <= d5_load_coefficient)
@@ -255,7 +255,7 @@ void CHeld::ReduceWhenOverload(int d6_weapon_weight, int d5_load_coefficient, in
 bool CHeld::hitSucessful(CAttackConst ac, int levelDif) {
 	double d6_hitProbaility = ac.to_hit / 75.0;
 	int d7_baseDamage = ac.damage;
-	int quickness = m_sVitals.dex.Aktuell + (rand() % 8);
+	int quickness = (int)m_sVitals.dex.Aktuell + (rand() % 8);
 	int loadingEffect = (int)((quickness / 2) * CurLoad() / MaxLoad());
 	quickness -= loadingEffect;
 	int chanceToHit = min(max((quickness / 2), rand() % 8 + 1), 100 - rand() % 8);
@@ -268,7 +268,7 @@ bool CHeld::hitSucessful(CAttackConst ac, int levelDif) {
 			return true;
 		else
 		{
-			int luckNeeded = 75 - d6_hitProbaility;
+			int luckNeeded = 75 - (int)d6_hitProbaility;
 			if ((rand() % 100) > luckNeeded)
 				return true;
 			else {
