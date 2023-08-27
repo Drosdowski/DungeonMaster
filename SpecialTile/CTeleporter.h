@@ -21,18 +21,21 @@ public:
 	int getRotation() { return m_attributes.rotation; }
 	bool isVisible() { return m_isVisible && isOpen(); }
 	bool hasSound() { return m_attributes.sound; }
-	void setOpen(TeleporterState value, int delay) { m_open = value; m_delay = delay; }
+	void setOpen(TeleporterState value, int delay);
 	void toggleOpen() { m_open = (m_open == TeleporterState::Active ? TeleporterState::Inactive : TeleporterState::Active); }
 	void Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos);
-	bool isOpen() { return (m_open == TeleporterState::Active && m_delay == 0); }
-	bool delayDone() { return m_delay > 0; }
-	void decreaseDelay() { m_delay--; }
+	bool isOpen();
+	bool openDelayDone() { return m_openingDelay == 0; }
+	void decreaseOpenDelay() { m_openingDelay--; }
+	bool closeDelayDone() { return m_closingDelay == 0; }
+	void decreaseCloseDelay() { m_closingDelay--; }
 
 private:
 	bool m_isVisible;
 	TeleporterState m_open;
 	TeleporterAttributes m_attributes;
-	int m_delay;
+	int m_openingDelay;
+	int m_closingDelay;
 	
 };
 

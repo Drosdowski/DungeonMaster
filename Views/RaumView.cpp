@@ -1234,11 +1234,14 @@ void CRaumView::CheckOtherDelays(VEKTOR fieldPos) {
 	CField* field = m_pMap->GetField(fieldPos);
 	CTeleporter* tele = field->HoleTeleporter();
 	if (tele) {
-		if (!tele->delayDone()) {
-			tele->decreaseDelay();
-			if (tele->delayDone()) {
+		if (!tele->openDelayDone()) {
+			tele->decreaseOpenDelay();
+			if (tele->openDelayDone()) {
 				tele->Trigger(m_pDoc, m_pMap, fieldPos);
 			}
+		}
+		if (!tele->closeDelayDone()) {
+			tele->decreaseCloseDelay();
 		}
 	}
 

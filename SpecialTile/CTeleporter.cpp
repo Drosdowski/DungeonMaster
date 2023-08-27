@@ -4,12 +4,16 @@
 #include "..\Mobs\MobGroups\GrpHeld.h"
 #include "..\Mobs\MobGroups\GrpMonster.h"
 #include "..\XMLParser\CDungeonMap.h"
+#include <cassert>
 
 CTeleporter::CTeleporter(TeleporterAttributes attributes, bool visible, TeleporterState open) {
 	m_attributes = attributes;
 	m_isVisible = visible;
 	m_open = open;
-	m_delay = 0;
+	if (open < 0 || open > 1) assert(false);
+
+	m_openingDelay = 0;
+	m_closingDelay = 0;
 }
 
 void CTeleporter::Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos) {
@@ -107,4 +111,24 @@ void CTeleporter::Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos) {
 		}
 
 	}
+}
+
+void CTeleporter::setOpen(TeleporterState value, int delay)
+{ 
+	if (value < 0 || value > 1) assert(false);
+	if (m_open == TeleporterState::Inactive && value == TeleporterState::Active)
+	{
+		m_openingDelay = delay;
+	}
+	else if (m_open == TeleporterState::Active && value == TeleporterState::Inactive) 
+	{
+		m_closingDelay = delay;
+	}
+	m_open = value;
+}
+
+bool CTeleporter::isOpen()
+{
+	if (m_open < 0 || m_open > 1) assert(false);
+	return (m_open == TeleporterState::Active && m_openingDelay == 0) || (m_open == TeleporterState::Inactive && m_closingDelay > 0);
 }
