@@ -372,7 +372,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 	if (actuatorsAtPosition.size() > 0)
 		if (CScreenCoords::CheckHitDeco(point, size))
 		{
-			int type = actuatorsAtPosition.back()->GetType();
+			CActuator::ActuatorType type = actuatorsAtPosition.back()->GetType();
 			CActuator* currentActuator = actuatorsAtPosition.back();
 			CActuator* nextActuator = actuatorsAtPosition.front();
 			CActuator::ActionTarget actionTarget = currentActuator->GetActionTarget();
@@ -384,13 +384,13 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 
 			if (!currentActuator->IsActive()) return false;
 
-			if (type == 1) {
+			if (type == CActuator::PressurePadTPCI) {
 				// Schalter 
 				//VEKTOR target;
 				InvokeRemoteActuator(currentActuator, nextActuator);
 				return true; // RotateActuators
 			}
-			else if (type == 4 || type == 3) {
+			else if (type == CActuator::Slot /* || type == 3 */) {
 				// Item Receiver - Lock / ... ?
 				CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 				CItem* itemInHand = grpHelden->GetItemInHand();
@@ -430,7 +430,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 					}
 				}
 			}
-			else if (type == 13 || type == 0)
+			else if (type == CActuator::Storage || type == CActuator::Inactive)
 			{
 				int neededItemId = currentActuator->GetData() + 2; // todo formel verstehen.
 				if (itemInHand == NULL) {
@@ -489,12 +489,13 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 	case FeldTyp::TELEPORT:
 		port = pTargetField->HoleTeleporter();
 		if (port->getScope() == TeleporterAttributes::None) {
-			port->setOpen(CTeleporter::Active);
+			port->setOpen(CTeleporter::Active, 0);
 			port->Trigger(GetDocument(), m_pRaumView->GetMap(), target);
-			port->setOpen(CTeleporter::Inactive);
+			// reactivate with delay
+			port->setOpen(CTeleporter::Inactive, activeActuator->GetDelay());
 		}
 		else {
-			port->setOpen(CTeleporter::Inactive);
+			port->setOpen(CTeleporter::Inactive, 0);
 		}
 		break;
 	case FeldTyp::TRICKWALL:
@@ -512,7 +513,7 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 				pTargetActuators = pTargetField->GetActuator(COMPASS_DIRECTION(dir));
 				if (pTargetActuators.size() > 0) {
 					CActuator* gateActuator = pTargetActuators.back();
-					if (gateActuator->GetType() == 5) {
+					if (gateActuator->GetType() == CActuator::Gate) {
 						if (activeActuator->GetActionType() == CActuator::Toggle) gateActuator->IncreaseGate();
 						if (gateActuator->GateFull())
 							InvokeRemoteActuator(gateActuator, NULL);
@@ -528,7 +529,7 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 				pTargetActuators = pTargetField->GetActuator(COMPASS_DIRECTION(dir));
 				if (pTargetActuators.size() > 0) {
 					CActuator* gateActuator = pTargetActuators.back();
-					if (gateActuator->GetType() == 5) {
+					if (gateActuator->GetType() == CActuator::Gate) {
 						if (activeActuator->GetActionType() == CActuator::Set) gateActuator->DecreaseGate();
 						if (gateActuator->GateFull())
 							InvokeRemoteActuator(gateActuator, NULL);

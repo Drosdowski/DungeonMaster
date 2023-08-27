@@ -127,7 +127,7 @@ private:
 	void MoveMagicMissile(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs, CMagicMissile* topMissile);
 	void CheckMissileCollisions(VEKTOR pos);
 	void CheckFlyingItemCollisions(VEKTOR pos);
-
+	void CheckOtherDelays(VEKTOR fieldPos);
 	void TriggerPassiveActuators(VEKTOR fieldPos, VEKTOR heroPos );
 	void TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator* actuator);
 	void TriggerDoor(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached);

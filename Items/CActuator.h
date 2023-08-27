@@ -12,11 +12,21 @@ public:
 		Remote,
 		Local
 	};
+	enum ActuatorType {
+		Inactive = 0,
+		PressurePadTPCI = 1, // People, Creatures, Throwing, Items
+		PressurePadTPC = 2, // People, Creatures, Throwing
+		PressurePadP = 3, // People
+		Slot = 4,
+		Gate = 5,
+		CreatureGen = 6,
+		Storage = 13
+	};
 
-	CActuator(int index, COMPASS_DIRECTION position, VEKTOR target, ActionTypes actionTypes, ActionTarget actionTarget, int type, int data, int graphic, int once_only, int delay, bool action);
+	CActuator(int index, COMPASS_DIRECTION position, VEKTOR target, ActionTypes actionTypes, ActionTarget actionTarget, ActuatorType type, int data, int graphic, int once_only, int delay, bool action);
 	~CActuator();
  
-	int GetType() { return m_type; }
+	ActuatorType GetType() { return m_type; }
 	int GetData() { return m_data; }
 	int GetIndex() { return m_index; }
 	VEKTOR GetTarget() { return m_target; }
@@ -38,11 +48,12 @@ public:
 	bool delayDone() { return m_delayCounter == 0; }
 	void decreaseDelay() { m_delayCounter--; }
 	void resetDelay() { m_delayCounter = m_delay; }
+	int GetDelay() { return m_delay; }
 
 private:
 	int m_index;
 	COMPASS_DIRECTION m_position;
-	int m_type;
+	ActuatorType m_type;
 	int m_graphic;
 	int m_data;
 	int m_once_only;

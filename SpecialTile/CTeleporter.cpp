@@ -9,6 +9,7 @@ CTeleporter::CTeleporter(TeleporterAttributes attributes, bool visible, Teleport
 	m_attributes = attributes;
 	m_isVisible = visible;
 	m_open = open;
+	m_delay = 0;
 }
 
 void CTeleporter::Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos) {

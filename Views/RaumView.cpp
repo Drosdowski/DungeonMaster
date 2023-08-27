@@ -610,7 +610,7 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 
 	std::deque<CActuator*> actuators = pField->GetActuator((COMPASS_DIRECTION)0);  // Boden hat immer POsition 0.
 	for (CActuator* actuator : actuators) {
-		if (actuator->GetGraphic() == 3) {
+		if (actuator->GetGraphic() == 3 || actuator->GetGraphic() == 1) {
 			DrawSquarePressurePad(pDC, cdc, xxx, ebene, actuator);
 		}
 	}
@@ -1230,6 +1230,21 @@ void CRaumView::CheckFlyingItemCollisions(VEKTOR heroPos) {
 	}
 }
 
+void CRaumView::CheckOtherDelays(VEKTOR fieldPos) {
+	CField* field = m_pMap->GetField(fieldPos);
+	CTeleporter* tele = field->HoleTeleporter();
+	if (tele) {
+		if (!tele->delayDone()) {
+			tele->decreaseDelay();
+			if (tele->delayDone()) {
+				tele->Trigger(m_pDoc, m_pMap, fieldPos);
+			}
+		}
+	}
+
+	// TODO auch trickwall, pit, ...
+}
+
 
 void CRaumView::MoveItems(VEKTOR itemPos) {
 	CField* field = m_pMap->GetField(itemPos);
@@ -1405,9 +1420,10 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 	bool criticalWeightBreached = field->CriticalWeightBreached(heroPos, critWeight); 
 	bool criticalWeightGone = field->CriticalWeightGone(heroPos, critWeight); 
 
-	switch (actuator->GetType()) { // was unterscheidet 1 & 3 ?
-	case 1:
-	case 3:
+	switch (actuator->GetType()) { // TODO: Unterscheidung 1,2,3 monster / items / etc
+	case CActuator::PressurePadTPCI:
+	case CActuator::PressurePadTPC:
+	case CActuator::PressurePadP:
 		if (criticalWeightBreached || criticalWeightGone) {
 			CActuator::ActionTypes type = actuator->GetActionType();
 			TriggerDoor(pTargetField, type, criticalWeightBreached);
@@ -1417,7 +1433,7 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 			field->RotateActuators(actuator->GetPosition());
 		}
 		break;
-	case 5:
+	case CActuator::Gate:
 		CActuator::ActionTypes type = actuator->GetActionType();
 
 		TriggerDoor(pTargetField, type, true);
@@ -1493,7 +1509,7 @@ void CRaumView::TriggerTeleport(CField* pTargetField, CActuator::ActionTypes typ
 		{
 		case CActuator::Set:
 			if (criticalWeightBreached) {
-				pTeleport->setOpen(CTeleporter::Active);
+				pTeleport->setOpen(CTeleporter::Active, 0);
 				pTeleport->Trigger(m_pDoc, m_pMap, pTargetField->HolePos());
 			}
 			break;
@@ -1507,7 +1523,7 @@ void CRaumView::TriggerTeleport(CField* pTargetField, CActuator::ActionTypes typ
 			break;
 		case CActuator::Clear:
 			if (criticalWeightBreached) {
-				pTeleport->setOpen(CTeleporter::Inactive); 
+				pTeleport->setOpen(CTeleporter::Inactive, 0); 
 			}
 			break;
 		case CActuator::Hold:
@@ -1522,6 +1538,7 @@ void CRaumView::TriggerActuatorsNearby() {
 	for (int i = max(held.x - 4, 0); i < min(held.x + 4, m_pMap->GetMaxWidth(held.z)); i++) {
 		for (int j = max(held.y - 4, 0); j < min(held.y + 4, m_pMap->GetMaxHeight(held.z)); j++) {
 			TriggerPassiveActuators(VEKTOR{ i, j, held.z }, held);
+			CheckOtherDelays(VEKTOR{ i, j, held.z });
 			// todo: Teleporter passiv triggern = prüfen, wer auf dem feld ist, und falls aktiv teleportieren
 			// dafür restliche trigger alle raus !
 		}
