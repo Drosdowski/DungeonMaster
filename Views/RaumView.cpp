@@ -1310,7 +1310,7 @@ void CRaumView::MoveItems(VEKTOR itemPos) {
 CField* CRaumView::ChangeFieldWithTeleporter(CField* &pField, SUBPOS_ABSOLUTE& subPos, COMPASS_DIRECTION& direction) {
 	CTeleporter* tp = pField->HoleTeleporter();
 
-	if (tp) {
+	if (tp && tp->isOpen()) {
 		COMPASS_DIRECTION dir = tp->getTargetDirection();
 		if (tp->getRotationType() == TeleporterAttributes::RotationType::Absolute) {
 			switch (tp->getRotation()) {
@@ -1431,9 +1431,13 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 			CActuator::ActionTypes type = actuator->GetActionType();
 			TriggerDoor(pTargetField, type, criticalWeightBreached);
 			TriggerPit(pTargetField, type, criticalWeightBreached);
+
 			TriggerTeleport(pTargetField, type, criticalWeightBreached);
 			actuator->resetDelay();
-			field->RotateActuators(actuator->GetPosition());
+			if (actuator->GetType() != CActuator::PressurePadP)
+			{ 
+				field->RotateActuators(actuator->GetPosition());
+			}
 		}
 		break;
 	case CActuator::Gate:
