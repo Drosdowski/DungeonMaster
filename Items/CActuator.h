@@ -32,13 +32,14 @@ public:
 	VEKTOR GetTarget() { return m_target; }
 	ActionTypes GetActionType() { return m_actionType; }
 	ActionTarget GetActionTarget() { return m_actionTarget; }
-	int GetCriticalWeigth() { return 1; } // todo wo steht das?
+	double GetCriticalWeigth() { return 0.1; } // todo wo steht das?
 	int GetGraphic() { return m_graphic; }
 	COMPASS_DIRECTION GetPosition() { return m_position; } 
 	bool IsActive() { return m_active;  }
 	void Deactivate() { m_active = false; }
 	bool IsOnceOnly() { return m_once_only > 0; }
 	bool Action() { return m_action; }
+
 
 	// impro gate coding
 	void IncreaseGate() { m_gateCounter++; }

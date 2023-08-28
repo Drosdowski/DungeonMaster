@@ -1427,7 +1427,7 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 
 	VEKTOR target = actuator->GetActionTarget() == CActuator::ActionTarget::Remote ? actuator->GetTarget() : field->HolePos();
 	CField* pTargetField = m_pMap->GetField(target);
-	int critWeight = actuator->GetCriticalWeigth();
+	double critWeight = actuator->GetCriticalWeigth();
 	bool criticalWeightBreached = field->CriticalWeightBreached(heroPos, critWeight); 
 	bool criticalWeightGone = field->CriticalWeightGone(heroPos, critWeight); 
 
