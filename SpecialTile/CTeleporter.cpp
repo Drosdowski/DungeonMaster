@@ -6,14 +6,11 @@
 #include "..\XMLParser\CDungeonMap.h"
 #include <cassert>
 
-CTeleporter::CTeleporter(TeleporterAttributes attributes, bool visible, TeleporterState open) {
+CTeleporter::CTeleporter(TeleporterAttributes attributes, bool visible, TeleporterState open) : CDelayedTile() {
 	m_attributes = attributes;
 	m_isVisible = visible;
 	m_open = open;
 	if (open < 0 || open > 1) assert(false);
-
-	m_openingDelay = 0;
-	m_closingDelay = 0;
 }
 
 void CTeleporter::Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos) {
@@ -118,11 +115,11 @@ void CTeleporter::setOpen(TeleporterState value, int delay)
 	if (value < 0 || value > 1) assert(false);
 	if (m_open == TeleporterState::Inactive && value == TeleporterState::Active)
 	{
-		m_openingDelay = delay;
+		CDelayedTile::Open(delay);
 	}
 	else if (m_open == TeleporterState::Active && value == TeleporterState::Inactive) 
 	{
-		m_closingDelay = delay;
+		CDelayedTile::Close(delay);
 	}
 	m_open = value;
 }
@@ -130,5 +127,5 @@ void CTeleporter::setOpen(TeleporterState value, int delay)
 bool CTeleporter::isOpen()
 {
 	if (m_open < 0 || m_open > 1) assert(false);
-	return (m_open == TeleporterState::Active && m_openingDelay == 0) || (m_open == TeleporterState::Inactive && m_closingDelay > 0);
+	return (m_open == TeleporterState::Active && openDelayDone()) || (m_open == TeleporterState::Inactive && !closeDelayDone());
 }

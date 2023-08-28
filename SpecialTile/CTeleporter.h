@@ -1,9 +1,10 @@
 #pragma once
+#include "DelayedTile.h"
 #include "..\Attributes\TeleporterAttributes.h"
 class CDMDoc;
 class CGrpHeld;
 class CDungeonMap;
-class CTeleporter
+class CTeleporter : public CDelayedTile
 {
 public:
 	enum TeleporterState {
@@ -25,17 +26,11 @@ public:
 	void toggleOpen() { m_open = (m_open == TeleporterState::Active ? TeleporterState::Inactive : TeleporterState::Active); }
 	void Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos);
 	bool isOpen();
-	bool openDelayDone() { return m_openingDelay == 0; }
-	void decreaseOpenDelay() { m_openingDelay--; }
-	bool closeDelayDone() { return m_closingDelay == 0; }
-	void decreaseCloseDelay() { m_closingDelay--; }
 
 private:
 	bool m_isVisible;
 	TeleporterState m_open;
 	TeleporterAttributes m_attributes;
-	int m_openingDelay;
-	int m_closingDelay;
-	
+
 };
 

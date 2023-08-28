@@ -501,9 +501,15 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 	case FeldTyp::TRICKWALL:
 		trickwall = pTargetField->HoleTrickWall();
 		if (activeActuator->GetActionType() == CActuator::Toggle) trickwall->Toggle();
-		if (activeActuator->GetActionType() == CActuator::Set) trickwall->Open();
-		if (activeActuator->GetActionType() == CActuator::Hold) trickwall->Open();
-		if (activeActuator->GetActionType() == CActuator::Clear) trickwall->Close();
+		if (activeActuator->GetActionType() == CActuator::Set) {
+			trickwall->Open(0);
+			trickwall->Close(activeActuator->GetDelay());
+		}
+		if (activeActuator->GetActionType() == CActuator::Hold) trickwall->Open(0);
+		if (activeActuator->GetActionType() == CActuator::Clear) {
+			trickwall->Close(0);
+			trickwall->Open(activeActuator->GetDelay());
+		}
 		break;
 	case FeldTyp::WALL: 
 		if (activeActuator->GetActionTarget() == CActuator::ActionTarget::Remote) {
