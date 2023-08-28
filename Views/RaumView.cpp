@@ -1244,8 +1244,16 @@ void CRaumView::CheckOtherDelays(VEKTOR fieldPos) {
 			tele->decreaseCloseDelay();
 		}
 	}
-
-	// TODO auch trickwall, pit, ...
+	CTrickWall* twall = field->HoleTrickWall();
+	if (twall) {
+		if (!twall->openDelayDone()) {
+			twall->decreaseOpenDelay();
+		}
+		if (!twall->closeDelayDone()) {
+			twall->decreaseCloseDelay();
+		}
+	}
+	// TODO auch pit, ...
 }
 
 

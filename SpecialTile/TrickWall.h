@@ -1,6 +1,6 @@
 #pragma once
 #include "DelayedTile.h"
-class CTrickWall : CDelayedTile
+class CTrickWall : public CDelayedTile
 {
 public:
 	enum TrickWallType {
@@ -17,12 +17,12 @@ public:
 	~CTrickWall();
 
 	TrickWallType GetType() { return m_type; }
-	TrickWallState GetState() { return m_state; }
+	TrickWallState GetState();
 
 	void Open(int delay);
 	void Close(int delay);
 	void Toggle();
-#
+
 
 private:
 	TrickWallType m_type;

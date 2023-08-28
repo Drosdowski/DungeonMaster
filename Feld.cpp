@@ -279,8 +279,8 @@ CMagicMissile* CField::TakeMissile(SUBPOS_ABSOLUTE subPos, CMagicMissile* pMissi
 		return NULL;
 }
 
-int CField::GetWeight(VEKTOR heroPos) {
-	int weight = 0;
+double CField::GetWeight(VEKTOR heroPos) {
+	double weight = 0;
 	if (GetMonsterGroup() != NULL) weight = 100; // max
 	if (m_posKoord.x == heroPos.x && m_posKoord.y == heroPos.y && m_posKoord.z == heroPos.z) weight = 100; // max
 	for (int i = 0; i < 4; i++) {
@@ -293,18 +293,18 @@ int CField::GetWeight(VEKTOR heroPos) {
 }
 
 void CField::StoreCurrentWeight(VEKTOR heroPos) {
-	int currentWeight = GetWeight(heroPos);
+	double currentWeight = GetWeight(heroPos);
 	m_lastWeight = currentWeight; // direkt speichern, darf nur 1x triggern
 }
 
-bool CField::CriticalWeightBreached(VEKTOR heroPos, int criticalWeight) {
-	int currentWeight = GetWeight(heroPos);
+bool CField::CriticalWeightBreached(VEKTOR heroPos, double criticalWeight) {
+	double currentWeight = GetWeight(heroPos);
 
 	if (m_lastWeight < criticalWeight && currentWeight >= criticalWeight) return true;
 	return false;
 }
 
-bool CField::CriticalWeightGone(VEKTOR heroPos, int criticalWeight) {
+bool CField::CriticalWeightGone(VEKTOR heroPos, double criticalWeight) {
 	int currentWeight = GetWeight(heroPos);
 
 	if (m_lastWeight >= criticalWeight && currentWeight < criticalWeight) return true;
@@ -313,8 +313,10 @@ bool CField::CriticalWeightGone(VEKTOR heroPos, int criticalWeight) {
 
 void CField::RotateActuators(COMPASS_DIRECTION position) {
 	CActuator* actuator = m_pActuator[position].back();
-	m_pActuator[position].pop_back();
-	m_pActuator[position].push_front(actuator);
+	if (actuator->delayDone()) { // todo experimentell: wann rotate? delay triggert gleich beides.
+		m_pActuator[position].pop_back();
+		m_pActuator[position].push_front(actuator);
+	}
 }
 
 void CField::DrehenAbsolut(COMPASS_DIRECTION direction) {

@@ -27,3 +27,11 @@ void CTrickWall::Toggle() {
 	else
 		m_state = TrickWallState::Opened;
 }
+
+CTrickWall::TrickWallState CTrickWall::GetState()
+{ 
+	if (m_state == Opened && openDelayDone() || m_state == Closed && !closeDelayDone())
+		return Opened;
+	else
+		return Closed;
+}

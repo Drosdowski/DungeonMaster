@@ -91,8 +91,8 @@ public:
 	void PutActuator(CActuator* actuator, COMPASS_DIRECTION index);
 	VEKTOR HolePos() { return m_posKoord; }
 	void StoreCurrentWeight(VEKTOR heroPos);
-	bool CriticalWeightBreached(VEKTOR heroPos, int criticalWeight);
-	bool CriticalWeightGone(VEKTOR heroPos, int criticalWeight);
+	bool CriticalWeightBreached(VEKTOR heroPos, double criticalWeight);
+	bool CriticalWeightGone(VEKTOR heroPos, double criticalWeight);
 
 	void RotateActuators(COMPASS_DIRECTION position);
 	void DrehenAbsolut(COMPASS_DIRECTION direction);
@@ -132,9 +132,9 @@ protected:
 	CTeleporter* m_pTeleporter = NULL;
 	CTrickWall* m_pTrickwall = NULL;
 
-	int GetWeight(VEKTOR heroPos);
+	double GetWeight(VEKTOR heroPos);
 
-	int m_lastWeight;
+	double m_lastWeight;
 
 	//{{AFX_MSG(CField)
 		// NOTE - the ClassWizard will add and remove member functions here.

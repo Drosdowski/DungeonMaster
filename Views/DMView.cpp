@@ -492,7 +492,7 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 			port->setOpen(CTeleporter::Active, 0);
 			port->Trigger(GetDocument(), m_pRaumView->GetMap(), target);
 			// reactivate with delay
-			port->setOpen(CTeleporter::Inactive, activeActuator->GetDelay());
+			port->setOpen(CTeleporter::Inactive, nextActuator->GetDelay());
 		}
 		else {
 			port->setOpen(CTeleporter::Inactive, 0);
@@ -503,12 +503,12 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 		if (activeActuator->GetActionType() == CActuator::Toggle) trickwall->Toggle();
 		if (activeActuator->GetActionType() == CActuator::Set) {
 			trickwall->Open(0);
-			trickwall->Close(activeActuator->GetDelay());
+			trickwall->Close(nextActuator->GetDelay());
 		}
 		if (activeActuator->GetActionType() == CActuator::Hold) trickwall->Open(0);
 		if (activeActuator->GetActionType() == CActuator::Clear) {
 			trickwall->Close(0);
-			trickwall->Open(activeActuator->GetDelay());
+			trickwall->Open(nextActuator->GetDelay());
 		}
 		break;
 	case FeldTyp::WALL: 
