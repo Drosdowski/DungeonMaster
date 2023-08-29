@@ -280,20 +280,20 @@ int CHelpfulValues::ManaCost(int layer, int runeId, int power) {
 		case 3:
 			switch (runeId) {
 			case 1: return 2 + 2 * power;
-			case 2: return 5 + (power - 1) * 2.5;
+			case 2: return 5 + (int)((power - 1) * 2.5);
 			case 3: return 3 + 3 * power;
-			case 4: return 7 + (power - 1) * 3.5;
-			case 5: return 7 + (power - 1) * 3.5; // really
-			case 6: return 9 + (power - 1) * 4.5;
+			case 4: return 7 + (int)((power - 1) * 3.5);
+			case 5: return 7 + (int)((power - 1) * 3.5); // really
+			case 6: return 9 + (int)((power - 1) * 4.5);
 			}
 		case 4:
 			switch (runeId) {
 			case 1: return power + 1;
 			case 2: return power + 1;
-			case 3: return 3 + (power - 1) * 1.5;
+			case 3: return 3 + (int)((power - 1) * 1.5);
 			case 4: return 2 + 2 * power;
 			case 5: return 3 + 3 * power;
-			case 6: return 7 + (power - 1) * 3.5;
+			case 6: return 7 + (int)((power - 1) * 3.5);
 			}
 		}
 	}

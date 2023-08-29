@@ -40,14 +40,14 @@ CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 	//m_posPosition = VEKTOR{ 24,6,1 }; // bei Pit
 	//m_posPosition = VEKTOR{ 12,29,1 }; // bei Trickwall
 	// m_posPosition = VEKTOR{ 10,1,1 }; // keyhole
-	//m_posPosition = VEKTOR{ 6,0,1 }; // bei Keule vor 1. Monster
+	m_posPosition = VEKTOR{ 6,0,1 }; // bei Keule vor 1. Monster
 	//m_posPosition = VEKTOR{ 7,14,2 }; // bei Trigger 127
 	//m_posPosition = VEKTOR{ 3,28,2 }; // bei Compass
 	//m_posPosition = VEKTOR{ 15,18,2 }; // 2. etage mitte
 	//m_posPosition = VEKTOR{ 1,31,2 }; // 2. etage Treppe
 	//m_posPosition = VEKTOR{ 15,18,3 }; // 3. Etage Teleport
 	//m_posPosition = VEKTOR{ 6,24,1 }; // bei Screamer
-	m_posPosition = VEKTOR{ 2,31,1 }; // bei Chest
+	//m_posPosition = VEKTOR{ 2,31,1 }; // bei Chest
 	//m_posPosition = VEKTOR{ 9,2,3 }; // bei Worms
 	//m_posPosition = VEKTOR{ 8,5,1 }; // bei torch / key / doublet
 

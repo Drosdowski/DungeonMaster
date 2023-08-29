@@ -405,7 +405,7 @@ void CPictures::DrawActionAreaChoice(CDC* pDC, CItemInfos* m_pItemInfos, int wea
 	
 	m_pActionsArea->GetBitmap(&bmpInfo);
 	double partFactor = (numberActions + 1) / 4.0;
-	pDC->TransparentBlt(448, 150, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2 * partFactor, &tmpdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight * partFactor, SRCCOPY);
+	pDC->TransparentBlt(448, 150, bmpInfo.bmWidth * 2, (int)(bmpInfo.bmHeight * 2 * partFactor), &tmpdc, 0, 0, bmpInfo.bmWidth, (int)(bmpInfo.bmHeight * partFactor), SRCCOPY);
 	for (int j = 0; j < 3; j++) {
 		DrawText(pDC, 474, 170 + j * 23, actionText[j], 20, WEISS, SCHWARZ);
 	}

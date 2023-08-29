@@ -237,7 +237,7 @@ int CHeld::ACC_Coeff(int levelDif, int armor) {
 }
 
 void CHeld::ReduceWhenOverload(double d6_weapon_weight, double d5_load_coefficient, double &dmg) {
-	int temp_coefficient[2];
+	double temp_coefficient[2];
 
 	if (d6_weapon_weight <= d5_load_coefficient)
 		dmg += d6_weapon_weight - 12;

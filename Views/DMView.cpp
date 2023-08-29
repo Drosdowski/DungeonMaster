@@ -436,13 +436,17 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 				if (itemInHand == NULL) {
 					InvokeRemoteActuator(currentActuator, nextActuator);
 					grpHelden->TakeItemInHand(FeldVorHeld->TakeItem(posActuator));
-					return true;
+					return false;
 				}
-				else if (itemInHand->GetType() == neededItemId) {
+				else if (currentActuator->GetData() == 0) {
+					FeldVorHeld->PutItem(itemInHand, posActuator);
+					grpHelden->EmptyHand();
+					return false;
+				} else if (itemInHand->GetType() == neededItemId) {
 					InvokeRemoteActuator(currentActuator, nextActuator);
 					FeldVorHeld->PutItem(itemInHand, posActuator);
 					grpHelden->EmptyHand();
-					return true;
+					return false;
 				}
 
 			}
@@ -482,9 +486,11 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 	case FeldTyp::PIT:
 		pit = pTargetField->HolePit();
 		if (activeActuator->GetActionType() == CActuator::Toggle) pit->Toggle();
-		if (activeActuator->GetActionType() == CActuator::Set) pit->Open();
-		if (activeActuator->GetActionType() == CActuator::Hold) pit->Open();
-		if (activeActuator->GetActionType() == CActuator::Clear) pit->Close();
+		if (activeActuator->GetActionType() == CActuator::Set) {
+			pit->Close(activeActuator->GetDelay());
+		}
+		if (activeActuator->GetActionType() == CActuator::Hold) pit->Open(0);
+		if (activeActuator->GetActionType() == CActuator::Clear) pit->Close(0);
 		break;
 	case FeldTyp::TELEPORT:
 		port = pTargetField->HoleTeleporter();

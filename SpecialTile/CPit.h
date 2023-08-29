@@ -1,5 +1,6 @@
 #pragma once
-class CPit
+#include "DelayedTile.h"
+class CPit : public CDelayedTile
 {
 public:
 	enum PitType {
@@ -17,10 +18,10 @@ public:
 	~CPit();
 
 	PitType GetType() { return m_type; }
-	PitState GetState() { return m_state; }
+	PitState GetState(); 
 
-	void Open();
-	void Close();
+	void Open(int delay);
+	void Close(int delay);
 	void Toggle();
 
 private:

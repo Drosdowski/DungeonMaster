@@ -610,7 +610,7 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 
 	std::deque<CActuator*> actuators = pField->GetActuator((COMPASS_DIRECTION)0);  // Boden hat immer POsition 0.
 	for (CActuator* actuator : actuators) {
-		if (actuator->GetGraphic() == 3 || actuator->GetGraphic() == 1) {
+		if (actuator->GetGraphic() == 3 || actuator->GetGraphic() == 1 || actuator->GetGraphic() == 4) {
 			DrawSquarePressurePad(pDC, cdc, xxx, ebene, actuator);
 		}
 	}
@@ -1253,7 +1253,18 @@ void CRaumView::CheckOtherDelays(VEKTOR fieldPos) {
 			twall->decreaseCloseDelay();
 		}
 	}
-	// TODO auch pit, ...
+	CPit* pit = field->HolePit();
+	if (pit) {
+		if (!pit->openDelayDone()) {
+			pit->decreaseOpenDelay();
+			if (pit->openDelayDone()) {
+				// todo FallingHeroes(fieldPos);
+			}
+		}
+		if (!pit->closeDelayDone()) {
+			pit->decreaseCloseDelay();
+		}
+	}
 }
 
 
@@ -1428,9 +1439,9 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 	VEKTOR target = actuator->GetActionTarget() == CActuator::ActionTarget::Remote ? actuator->GetTarget() : field->HolePos();
 	CField* pTargetField = m_pMap->GetField(target);
 	double critWeight = actuator->GetCriticalWeigth();
-	bool criticalWeightBreached = field->CriticalWeightBreached(heroPos, critWeight); 
-	bool criticalWeightGone = field->CriticalWeightGone(heroPos, critWeight); 
-
+	bool isWall = field->HoleTyp() == FeldTyp::WALL;
+	bool criticalWeightBreached = !isWall && field->CriticalWeightBreached(heroPos, critWeight);
+	bool criticalWeightGone = !isWall && field->CriticalWeightGone(heroPos, critWeight);
 	switch (actuator->GetType()) { // TODO: Unterscheidung 1,2,3 monster / items / etc
 	case CActuator::PressurePadTPCI:
 	case CActuator::PressurePadTPC:
@@ -1467,7 +1478,7 @@ void CRaumView::TriggerPit(CField* pTargetField, CActuator::ActionTypes type, bo
 		{
 		case CActuator::Set:
 			if (criticalWeightBreached) {
-				pPit->Open();
+				pPit->Open(0);
 			}
 			break;
 		case CActuator::Toggle:
@@ -1477,7 +1488,7 @@ void CRaumView::TriggerPit(CField* pTargetField, CActuator::ActionTypes type, bo
 			break;
 		case CActuator::Clear:
 			if (criticalWeightBreached) {
-				pPit->Close(); 
+				pPit->Close(0); 
 			}
 			break;
 		case CActuator::Hold:
@@ -1795,7 +1806,7 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 						CAttackConst ac = attackInfos->GetAttack(attackType);
 						CMonsterConst mc = monsterInfos->GetMonsterInfo(pVictims->GetType());
 
-						int dmg = pHero->CalcDmg(weapon, ac, mc, pVictims, diff); // todo doof so, besser in CMonster die MOnsterInfo rein
+						double dmg = pHero->CalcDmg(weapon, ac, mc, pVictims, diff); // todo doof so, besser in CMonster die MOnsterInfo rein
 						if (dmg > 0) {
 							pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
 							pHero->AttackModeWithDmg(dmg);

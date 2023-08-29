@@ -3,7 +3,7 @@ class CItemConst
 {
 public:
 
-	double weight[3];
+	double weight[3] = { 0,0,0 };
 
 	int strengthplus = 0;
 	int dexterityplus = 0;
