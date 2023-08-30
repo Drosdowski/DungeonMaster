@@ -8,8 +8,8 @@ public:
 	static void DrawFullRect(CDC* pDC, int x, int y, int w, int h, int c);
 
 	static RECT ScreenRect();
-	static double fx();
-	static double fy();
+	static int fx(int x);
+	static int fy(int y);
 
 private:
 	static const int origX = 320;

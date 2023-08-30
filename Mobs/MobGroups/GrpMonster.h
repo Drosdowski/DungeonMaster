@@ -29,7 +29,6 @@ public:
 public:
 	bool Altern(CField* field);
 	CMonster* GetMonster(int ID);
-	// TODO bool ExistsAndDies();
 	void MoveDone();
 	void ScaredAction(VEKTOR nextPos, boolean collision);
 	bool IsScared() { return m_iScaredCounter > 0;}

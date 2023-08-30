@@ -85,7 +85,7 @@ bool CScreenCoords::CheckHitSpell(CPoint point) {
 int CScreenCoords::CheckHitActiveWizard(CPoint point, int activeWizardID) {
 	if (InRect(point, 465, 80, 640, 95))
 	{
-		int fx = CZoomBlt::fx() / 2;
+		int fx = CZoomBlt::fx(1);
 		int relX = (point.x / fx) - 466;
 		switch (activeWizardID)
 		{
