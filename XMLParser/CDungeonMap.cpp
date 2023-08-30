@@ -487,7 +487,7 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 			< / actuator> <!--North / TopLeft-->
 			< / items> */
 	int index, position, graphic, data, once_only, delay;
-	int action = 0;
+	int action = -1;
 	VEKTOR target = coords;
 	CActuator::ActuatorType actuatorType;
 	CActuator::ActionTypes actionType;
@@ -567,7 +567,7 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 
 	//WallDecorationType graphicType = graphic > 0 ? m_wallDecorationTypes[graphic, coords.z] : None;
 	//if (graphicType < 0 || graphicType > 255) graphicType = None; 
-	CActuator* actuator = new CActuator(index, (COMPASS_DIRECTION)position, target, actionType, actionTarget, actuatorType, data, graphic, once_only, delay, (action == 1));
+	CActuator* actuator = new CActuator(index, (COMPASS_DIRECTION)position, target, actionType, actionTarget, actuatorType, data, graphic, once_only, delay, action);
 	m_pFeld[coords.x][coords.y][coords.z]->PutActuator(actuator, (COMPASS_DIRECTION)position);
 }
 

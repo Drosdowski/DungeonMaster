@@ -23,7 +23,7 @@ public:
 		Storage = 13
 	};
 
-	CActuator(int index, COMPASS_DIRECTION position, VEKTOR target, ActionTypes actionTypes, ActionTarget actionTarget, ActuatorType type, int data, int graphic, int once_only, int delay, bool action);
+	CActuator(int index, COMPASS_DIRECTION position, VEKTOR target, ActionTypes actionTypes, ActionTarget actionTarget, ActuatorType type, int data, int graphic, int once_only, int delay, int action);
 	~CActuator();
  
 	ActuatorType GetType() { return m_type; }
@@ -38,7 +38,7 @@ public:
 	bool IsActive() { return m_active;  }
 	void Deactivate() { m_active = false; }
 	bool IsOnceOnly() { return m_once_only > 0; }
-	bool Action() { return m_action; }
+	int Action() { return m_action; }
 
 
 	// impro gate coding
@@ -62,7 +62,7 @@ private:
 	int m_delayCounter;
 	int m_delay;
 	bool m_active;
-	bool m_action;
+	int m_action;
 	VEKTOR m_target;
 	ActionTypes m_actionType;
 	ActionTarget m_actionTarget;

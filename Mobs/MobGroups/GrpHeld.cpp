@@ -36,11 +36,11 @@ CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 	//m_posPosition = VEKTOR{ 6,9,0 }; // bei 1. Pressure Pad
 	//m_posPosition = VEKTOR{ 16,0,1 }; // bei 9 Pressure Pad
 	//m_posPosition = VEKTOR{ 18,17,1 }; // bei UND Schalter
-	//m_posPosition = VEKTOR{ 4,11,1 }; // bei Schalter für Tür
+	m_posPosition = VEKTOR{ 4,11,1 }; // bei Schalter für Tür
 	//m_posPosition = VEKTOR{ 24,6,1 }; // bei Pit
 	//m_posPosition = VEKTOR{ 12,29,1 }; // bei Trickwall
 	// m_posPosition = VEKTOR{ 10,1,1 }; // keyhole
-	m_posPosition = VEKTOR{ 6,0,1 }; // bei Keule vor 1. Monster
+	//m_posPosition = VEKTOR{ 6,0,1 }; // bei Keule vor 1. Monster
 	//m_posPosition = VEKTOR{ 7,14,2 }; // bei Trigger 127
 	//m_posPosition = VEKTOR{ 3,28,2 }; // bei Compass
 	//m_posPosition = VEKTOR{ 15,18,2 }; // 2. etage mitte

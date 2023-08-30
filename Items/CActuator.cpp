@@ -11,7 +11,7 @@ CActuator::CActuator(int index,
 					 int graphic, 
 					 int once_only,
 					 int delay,
-					 bool action) {
+					 int action) {
 	m_index = index;
 	m_target = target;
 	m_actionType = actionType;

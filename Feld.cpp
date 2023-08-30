@@ -311,7 +311,7 @@ bool CField::CriticalWeightBreached(VEKTOR heroPos, double criticalWeight) {
 }
 
 bool CField::CriticalWeightGone(VEKTOR heroPos, double criticalWeight) {
-	int currentWeight = GetWeight(heroPos);
+	double currentWeight = GetWeight(heroPos);
 
 	if (m_lastWeight >= criticalWeight && currentWeight < criticalWeight) return true;
 	return false;
@@ -319,7 +319,10 @@ bool CField::CriticalWeightGone(VEKTOR heroPos, double criticalWeight) {
 
 void CField::RotateActuators(COMPASS_DIRECTION position) {
 	CActuator* actuator = m_pActuator[position].back();
-	if (actuator->GetActionTarget() == CActuator::Local) { // todo experimentell: wann rotate? delay triggert gleich beides.
+	bool action = actuator->Action() == 1 || (
+		m_pActuator[position].front()->Action() == 1 && actuator->Action() == -1
+		);
+	if (actuator->GetActionTarget() == CActuator::Local || action ) { // todo experimentell: wann rotate? delay triggert gleich beides.
 		m_pActuator[position].pop_back();
 		m_pActuator[position].push_front(actuator);
 	}
