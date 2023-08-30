@@ -32,5 +32,6 @@ char* CItem::getItemTypeString() {
 	case ContainerItem: return "container";
 	default: assert(false);
 	}
+	return "";
 }
 

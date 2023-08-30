@@ -24,7 +24,7 @@ public:
 	bool hasSound() { return m_attributes.sound; }
 	void setOpen(TeleporterState value, int delay);
 	void toggleOpen() { m_open = (m_open == TeleporterState::Active ? TeleporterState::Inactive : TeleporterState::Active); }
-	void Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos);
+	void Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos, bool triggerRotate);
 	bool isOpen();
 
 private:

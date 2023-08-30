@@ -487,16 +487,20 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 		pit = pTargetField->HolePit();
 		if (activeActuator->GetActionType() == CActuator::Toggle) pit->Toggle();
 		if (activeActuator->GetActionType() == CActuator::Set) {
-			pit->Close(activeActuator->GetDelay());
+			pit->Close(0);
 		}
 		if (activeActuator->GetActionType() == CActuator::Hold) pit->Open(0);
-		if (activeActuator->GetActionType() == CActuator::Clear) pit->Close(0);
+		if (activeActuator->GetActionType() == CActuator::Clear) {
+			pit->Close(0);
+			// reactivate with delay
+			pit->Open(nextActuator->GetDelay());
+		}
 		break;
 	case FeldTyp::TELEPORT:
 		port = pTargetField->HoleTeleporter();
 		if (port->getScope() == TeleporterAttributes::None) {
 			port->setOpen(CTeleporter::Active, 0);
-			port->Trigger(GetDocument(), m_pRaumView->GetMap(), target);
+			port->Trigger(GetDocument(), m_pRaumView->GetMap(), target, true);
 			// reactivate with delay
 			port->setOpen(CTeleporter::Inactive, nextActuator->GetDelay());
 		}

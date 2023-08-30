@@ -263,6 +263,7 @@ CString CHelpfulValues::SkillClass(int nr) {
 	case 2: return "PRIEST";
 	case 3: return "WIZARD";
 	}
+	return "UNK";
 }
 
 int CHelpfulValues::ManaCost(int layer, int runeId, int power) {
@@ -297,6 +298,7 @@ int CHelpfulValues::ManaCost(int layer, int runeId, int power) {
 			}
 		}
 	}
+	return 0;
 }
 
 

@@ -1003,7 +1003,7 @@ void CRaumView::TeleportAll(VEKTOR heroPos) {
 		if (pTeleporter->getScope() == TeleporterAttributes::Scope::Items_Party ||
 			pTeleporter->getScope() == TeleporterAttributes::Scope::All) {
 
-			pTeleporter->Trigger(m_pDoc, m_pMap, heroPos);
+			pTeleporter->Trigger(m_pDoc, m_pMap, heroPos, false);
 		}
 
 	}
@@ -1237,7 +1237,7 @@ void CRaumView::CheckOtherDelays(VEKTOR fieldPos) {
 		if (!tele->openDelayDone()) {
 			tele->decreaseOpenDelay();
 			if (tele->openDelayDone()) {
-				tele->Trigger(m_pDoc, m_pMap, fieldPos);
+				tele->Trigger(m_pDoc, m_pMap, fieldPos, true);
 			}
 		}
 		if (!tele->closeDelayDone()) {
@@ -1450,8 +1450,8 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 			CActuator::ActionTypes type = actuator->GetActionType();
 			TriggerDoor(pTargetField, type, criticalWeightBreached);
 			TriggerPit(pTargetField, type, criticalWeightBreached);
-
-			TriggerTeleport(pTargetField, type, criticalWeightBreached);
+			TriggerTrickwall(pTargetField, type, criticalWeightBreached);
+			TriggerTeleport(pTargetField, type, criticalWeightBreached, true);
 			actuator->resetDelay();
 			if (actuator->GetType() != CActuator::PressurePadP)
 			{ 
@@ -1464,10 +1464,38 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 
 		TriggerDoor(pTargetField, type, true);
 		TriggerPit(pTargetField, type, true);
-		TriggerTeleport(pTargetField, type, true);
+		TriggerTeleport(pTargetField, type, true, true);
 		actuator->resetDelay();
 		field->RotateActuators(actuator->GetPosition());
 		break;
+	}
+}
+
+void CRaumView::TriggerTrickwall(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached)
+{
+	CTrickWall* pTWall = pTargetField->HoleTrickWall();
+	if (pTWall) {
+		switch (type)
+		{
+		case CActuator::Set:
+			if (criticalWeightBreached) {
+				pTWall->Open(0);
+			}
+			break;
+		case CActuator::Toggle:
+			if (criticalWeightBreached) {
+				pTWall->Toggle();
+			}
+			break;
+		case CActuator::Clear:
+			if (criticalWeightBreached) {
+				pTWall->Close(0);
+			}
+			break;
+		case CActuator::Hold:
+			pTWall->Toggle();
+			break;
+		}
 	}
 }
 
@@ -1525,7 +1553,7 @@ void CRaumView::TriggerDoor(CField* pTargetField, CActuator::ActionTypes type, b
 	}
 }
 
-void CRaumView::TriggerTeleport(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached) {
+void CRaumView::TriggerTeleport(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached, boolean triggerRotate) {
 	CGrpHeld* pGrpHeroes = m_pMap->GetHeroes();
 	VEKTOR heroPos = pGrpHeroes->GetVector(); // Namen angleichen - HolePos etc
 	CTeleporter* pTeleport = pTargetField->HoleTeleporter(); 
@@ -1536,14 +1564,14 @@ void CRaumView::TriggerTeleport(CField* pTargetField, CActuator::ActionTypes typ
 		case CActuator::Set:
 			if (criticalWeightBreached) {
 				pTeleport->setOpen(CTeleporter::Active, 0);
-				pTeleport->Trigger(m_pDoc, m_pMap, pTargetField->HolePos());
+				pTeleport->Trigger(m_pDoc, m_pMap, pTargetField->HolePos(), triggerRotate);
 			}
 			break;
 		case CActuator::Toggle:
 			if (criticalWeightBreached) {
 				pTeleport->toggleOpen();
 				if (pTeleport->isOpen()) {
-					pTeleport->Trigger(m_pDoc, m_pMap, pTargetField->HolePos());
+					pTeleport->Trigger(m_pDoc, m_pMap, pTargetField->HolePos(), triggerRotate);
 				}
 			}
 			break;
@@ -1553,7 +1581,7 @@ void CRaumView::TriggerTeleport(CField* pTargetField, CActuator::ActionTypes typ
 			}
 			break;
 		case CActuator::Hold:
-			pTeleport->Trigger(m_pDoc, m_pMap, pTargetField->HolePos()); // todo prüfen 
+			pTeleport->Trigger(m_pDoc, m_pMap, pTargetField->HolePos(), triggerRotate); // todo prüfen 
 			break;
 		}
 	}
@@ -1806,7 +1834,7 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 						CAttackConst ac = attackInfos->GetAttack(attackType);
 						CMonsterConst mc = monsterInfos->GetMonsterInfo(pVictims->GetType());
 
-						double dmg = pHero->CalcDmg(weapon, ac, mc, pVictims, diff); // todo doof so, besser in CMonster die MOnsterInfo rein
+						int dmg = pHero->CalcDmg(weapon, ac, mc, pVictims, diff); // todo doof so, besser in CMonster die MOnsterInfo rein
 						if (dmg > 0) {
 							pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
 							pHero->AttackModeWithDmg(dmg);

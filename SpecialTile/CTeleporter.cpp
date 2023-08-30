@@ -13,7 +13,7 @@ CTeleporter::CTeleporter(TeleporterAttributes attributes, bool visible, Teleport
 	if (open < 0 || open > 1) assert(false);
 }
 
-void CTeleporter::Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos) {
+void CTeleporter::Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos, bool triggerRotate) {
 	CGrpHeld* pGrpHelden = pMap->GetHeroes();
 	CField* pField = pMap->GetField(telePos);
 	CGrpMonster* pGrpMonster = pField->GetMonsterGroup();
@@ -66,22 +66,25 @@ void CTeleporter::Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos) {
 					ASSERT(false);
 				}
 			}
-			if (getRotationType() == TeleporterAttributes::RotationType::Absolute)
+			if (triggerRotate)
 			{
-				pGrpHelden->DrehenAbsolut(getTargetDirection());
-			}
-			else
-			{
-				if (getTargetDirection() == 90)
+				if (getRotationType() == TeleporterAttributes::RotationType::Absolute)
 				{
-					pGrpHelden->DrehenRelativ(RECHTS);
+					pGrpHelden->DrehenAbsolut(getTargetDirection());
 				}
-				else if (getTargetDirection() == 180) {
-					pGrpHelden->DrehenRelativ(RECHTS);
-					pGrpHelden->DrehenRelativ(RECHTS);
-				}
-				else if (getTargetDirection() == 270) {
-					pGrpHelden->DrehenRelativ(LINKS);
+				else
+				{
+					if (getTargetDirection() == 90)
+					{
+						pGrpHelden->DrehenRelativ(RECHTS);
+					}
+					else if (getTargetDirection() == 180) {
+						pGrpHelden->DrehenRelativ(RECHTS);
+						pGrpHelden->DrehenRelativ(RECHTS);
+					}
+					else if (getTargetDirection() == 270) {
+						pGrpHelden->DrehenRelativ(LINKS);
+					}
 				}
 			}
 		}

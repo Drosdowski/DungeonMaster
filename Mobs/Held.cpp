@@ -162,7 +162,7 @@ void CHeld::WerteTemporaerAendern(double hp, double st, double ma)
 	m_MA.Aktuell = min(max(ma + m_MA.Aktuell, 0), m_MA.Max);
 }
 
-double CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, CGrpMonster* pOpponents, int levelDif) {
+int CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, CGrpMonster* pOpponents, int levelDif) {
 	// https://www.dungeon-master.com/forum/viewtopic.php?t=31345
 	// todo xp gain  --- Mastery = log2(Experience=469)
 	// https://gamefaqs.gamespot.com/snes/588299-dungeon-master/faqs/33244 => Exo Gain! (5e. Actions)
@@ -227,7 +227,7 @@ double CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, CGrpMo
 		//nt d1_mastery todo skill mastery + 10
 		m_ST.Aktuell -= (rand() % 3 + 4);
 
-		return d7_damage_coefficient;
+		return (int)d7_damage_coefficient;
 	}
 
 }

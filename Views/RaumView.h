@@ -132,8 +132,8 @@ private:
 	void TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator* actuator);
 	void TriggerDoor(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached);
 	void TriggerPit(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached);
-	void TriggerTeleport(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached);
-
+	void TriggerTeleport(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached, boolean triggerRotate);
+	void TriggerTrickwall(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached);
 	void WriteOnWall(CDC* pDC, CPoint pos, CText* text, int ebene);
 };
 

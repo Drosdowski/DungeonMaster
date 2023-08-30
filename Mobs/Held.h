@@ -42,7 +42,7 @@ public:
 	//virtual void WertePermanentAendern(int hp, int st, int ma);
 	void ChangeCompass();
 
-	double CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, CGrpMonster* pOpponents, int levelDif);
+	int CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, CGrpMonster* pOpponents, int levelDif);
 	double LifePart() { return (double)m_HP.Aktuell / (double)m_HP.Max; }
 	double StaminaPart() { return (double)m_ST.Aktuell / (double)m_ST.Max; }
 	double ManaPart() { return (double)m_MA.Aktuell / (double)m_MA.Max; }
