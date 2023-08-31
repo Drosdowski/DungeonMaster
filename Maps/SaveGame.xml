@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<dungeon start_x="13" start_y="12" start_z="2" start_facing="North">
+<dungeon start_x="21" start_y="5" start_z="2" start_facing="East">
     <heroes>
         <hero index="1" />
         <hero index="2" />
@@ -85,7 +85,7 @@
                     <items>
                         <cloth index="38" position="2" />
                         <cloth index="39" position="2" />
-                        <misc index="2" position="2" />
+                        <miscellaneous index="2" position="2" />
                         <cloth index="40" position="2" />
                     </items>
                 </tile>
@@ -217,7 +217,7 @@
                     </actuators>
                     <items>
                         <cloth index="7" position="1" />
-                        <misc index="0" position="1" />
+                        <miscellaneous index="0" position="1" />
                         <cloth index="8" position="1" />
                         <cloth index="9" position="1" />
                     </items>
@@ -235,7 +235,7 @@
                         <cloth index="41" position="0" />
                         <cloth index="42" position="0" />
                         <cloth index="43" position="0" />
-                        <misc index="3" position="0" />
+                        <miscellaneous index="3" position="0" />
                     </items>
                 </tile>
                 <tile index="141" />
@@ -299,7 +299,7 @@
                 </tile>
                 <tile index="166">
                     <items>
-                        <misc index="148" position="0" />
+                        <miscellaneous index="148" position="0" />
                     </items>
                 </tile>
                 <tile index="167">
@@ -335,7 +335,7 @@
                         <actuator index="20" subPos="0" />
                     </actuators>
                     <items>
-                        <misc index="180" position="0" />
+                        <miscellaneous index="180" position="0" />
                         <cloth index="14" position="0" />
                         <cloth index="15" position="0" />
                     </items>
@@ -362,14 +362,14 @@
                 <tile index="199" />
                 <tile index="200">
                     <items>
-                        <misc index="146" position="1" />
+                        <miscellaneous index="146" position="1" />
                     </items>
                 </tile>
                 <tile index="201" />
                 <tile index="202" />
                 <tile index="203">
                     <items>
-                        <misc index="150" position="1" />
+                        <miscellaneous index="150" position="1" />
                     </items>
                 </tile>
                 <tile index="204" />
@@ -398,7 +398,7 @@
                         <cloth index="35" position="2" />
                         <cloth index="36" position="2" />
                         <cloth index="37" position="2" />
-                        <misc index="1" position="2" />
+                        <miscellaneous index="1" position="2" />
                     </items>
                 </tile>
                 <tile index="212" />
@@ -409,7 +409,7 @@
                 <tile index="217" />
                 <tile index="218">
                     <items>
-                        <misc index="249" position="1" />
+                        <miscellaneous index="249" position="1" />
                     </items>
                 </tile>
                 <tile index="219" />
@@ -430,7 +430,7 @@
                     </actuators>
                     <items>
                         <cloth index="47" position="3" />
-                        <misc index="7" position="3" />
+                        <miscellaneous index="7" position="3" />
                         <cloth index="48" position="3" />
                         <weapon index="12" position="3" />
                         <cloth index="105" position="3" />
@@ -442,7 +442,7 @@
                 <tile index="235" />
                 <tile index="236">
                     <items>
-                        <misc index="248" position="2" />
+                        <miscellaneous index="248" position="2" />
                     </items>
                 </tile>
                 <tile index="237" />
@@ -534,10 +534,10 @@
                     <items>
                         <cloth index="44" position="3" />
                         <cloth index="45" position="3" />
-                        <misc index="4" position="3" />
-                        <misc index="5" position="3" />
+                        <miscellaneous index="4" position="3" />
+                        <miscellaneous index="5" position="3" />
                         <cloth index="46" position="3" />
-                        <misc index="6" position="3" />
+                        <miscellaneous index="6" position="3" />
                     </items>
                 </tile>
                 <tile index="267" />
@@ -549,7 +549,7 @@
                 <tile index="273" />
                 <tile index="274">
                     <items>
-                        <misc index="11" position="0" />
+                        <miscellaneous index="11" position="0" />
                         <scroll index="0" position="1" />
                     </items>
                 </tile>
@@ -572,7 +572,7 @@
                 <tile index="287" />
                 <tile index="288">
                     <items>
-                        <misc index="242" position="3" />
+                        <miscellaneous index="242" position="3" />
                     </items>
                 </tile>
                 <tile index="289" />
@@ -714,7 +714,7 @@
                 <tile index="24" />
                 <tile index="25">
                     <items>
-                        <misc index="9" position="3" />
+                        <miscellaneous index="9" position="3" />
                     </items>
                 </tile>
                 <tile index="26" />
@@ -783,14 +783,14 @@
                 <tile index="61" />
                 <tile index="62">
                     <items>
-                        <misc index="58" position="0" />
-                        <misc index="74" position="3" />
+                        <miscellaneous index="58" position="0" />
+                        <miscellaneous index="74" position="3" />
                     </items>
                 </tile>
                 <tile index="63" />
                 <tile index="64">
                     <items>
-                        <misc index="84" position="2" />
+                        <miscellaneous index="84" position="2" />
                     </items>
                 </tile>
                 <tile index="65" />
@@ -850,8 +850,8 @@
                 <tile index="101" />
                 <tile index="102">
                     <items>
-                        <misc index="208" position="2" />
-                        <misc index="250" position="2" />
+                        <miscellaneous index="208" position="2" />
+                        <miscellaneous index="250" position="2" />
                         <weapon index="26" position="3" />
                         <scroll index="29" position="3" />
                     </items>
@@ -859,7 +859,7 @@
                 <tile index="103" />
                 <tile index="104">
                     <items>
-                        <misc index="19" position="3" />
+                        <miscellaneous index="19" position="3" />
                     </items>
                 </tile>
                 <tile index="105" />
@@ -955,7 +955,7 @@
                 <tile index="167" />
                 <tile index="168">
                     <items>
-                        <misc index="20" position="0" />
+                        <miscellaneous index="20" position="0" />
                         <weapon index="16" position="0" />
                         <cloth index="63" position="1" />
                         <weapon index="21" position="2" />
@@ -968,7 +968,7 @@
                 <tile index="172" />
                 <tile index="173">
                     <items>
-                        <misc index="18" position="2" />
+                        <miscellaneous index="18" position="2" />
                     </items>
                 </tile>
                 <tile index="174" />
@@ -1030,7 +1030,7 @@
                 <tile index="222" />
                 <tile index="223">
                     <items>
-                        <misc index="21" position="0" />
+                        <miscellaneous index="21" position="0" />
                     </items>
                 </tile>
                 <tile index="224" />
@@ -1049,7 +1049,7 @@
                 <tile index="237" />
                 <tile index="238">
                     <items>
-                        <misc index="17" position="1" />
+                        <miscellaneous index="17" position="1" />
                     </items>
                 </tile>
                 <tile index="239" />
@@ -1135,7 +1135,7 @@
                 <tile index="288" />
                 <tile index="289">
                     <items>
-                        <misc index="15" position="0" />
+                        <miscellaneous index="15" position="0" />
                     </items>
                 </tile>
                 <tile index="290" />
@@ -1147,7 +1147,7 @@
                 <tile index="294" />
                 <tile index="295">
                     <items>
-                        <misc index="14" position="0" />
+                        <miscellaneous index="14" position="0" />
                         <cloth index="62" position="3" />
                     </items>
                 </tile>
@@ -1198,7 +1198,7 @@
                 <tile index="335">
                     <items>
                         <cloth index="55" position="0" />
-                        <misc index="16" position="0" />
+                        <miscellaneous index="16" position="0" />
                     </items>
                 </tile>
                 <tile index="336" />
@@ -1218,7 +1218,7 @@
                 <tile index="350" />
                 <tile index="351">
                     <items>
-                        <misc index="22" position="0" />
+                        <miscellaneous index="22" position="0" />
                     </items>
                 </tile>
                 <tile index="352" />
@@ -1240,7 +1240,7 @@
                 <tile index="368" />
                 <tile index="369">
                     <items>
-                        <misc index="106" position="1" />
+                        <miscellaneous index="106" position="1" />
                     </items>
                 </tile>
                 <tile index="370" />
@@ -1251,7 +1251,7 @@
                         <scroll index="2" position="0" />
                         <potion index="1" position="1" />
                         <potion index="7" position="1" />
-                        <misc index="110" position="1" />
+                        <miscellaneous index="110" position="1" />
                         <scroll index="1" position="1" />
                     </items>
                 </tile>
@@ -1353,9 +1353,9 @@
                 </tile>
                 <tile index="432">
                     <items>
-                        <misc index="107" position="0" />
-                        <misc index="108" position="0" />
-                        <misc index="109" position="0" />
+                        <miscellaneous index="107" position="0" />
+                        <miscellaneous index="108" position="0" />
+                        <miscellaneous index="109" position="0" />
                     </items>
                 </tile>
                 <tile index="433" />
@@ -1388,7 +1388,7 @@
                 <tile index="460" />
                 <tile index="461">
                     <items>
-                        <misc index="23" position="0" />
+                        <miscellaneous index="23" position="0" />
                         <weapon index="74" position="2" />
                     </items>
                 </tile>
@@ -1613,7 +1613,7 @@
                 <tile index="637" />
                 <tile index="638">
                     <items>
-                        <misc index="10" position="0" />
+                        <miscellaneous index="10" position="0" />
                     </items>
                 </tile>
                 <tile index="639" />
@@ -1925,7 +1925,7 @@
                 <tile index="909" />
                 <tile index="910">
                     <items>
-                        <misc index="234" position="3" />
+                        <miscellaneous index="234" position="3" />
                     </items>
                 </tile>
                 <tile index="911">
@@ -1981,7 +1981,7 @@
                 <tile index="940" />
                 <tile index="941">
                     <items>
-                        <misc index="125" position="0" />
+                        <miscellaneous index="125" position="0" />
                     </items>
                 </tile>
                 <tile index="942" />
@@ -2067,7 +2067,7 @@
                 <tile index="1006" />
                 <tile index="1007">
                     <items>
-                        <misc index="235" position="0" />
+                        <miscellaneous index="235" position="0" />
                     </items>
                 </tile>
                 <tile index="1008" />
@@ -2142,8 +2142,8 @@
                 </tile>
                 <tile index="46">
                     <actuators>
-                        <actuator index="103" subPos="3" />
                         <actuator index="479" subPos="3" />
+                        <actuator index="103" subPos="3" />
                     </actuators>
                 </tile>
                 <tile index="47" />
@@ -2159,8 +2159,8 @@
                 <tile index="57" />
                 <tile index="58">
                     <items>
-                        <misc index="32" position="0" />
-                        <misc index="218" position="1" />
+                        <miscellaneous index="32" position="0" />
+                        <miscellaneous index="218" position="1" />
                     </items>
                 </tile>
                 <tile index="59" />
@@ -2171,7 +2171,7 @@
                 <tile index="64" />
                 <tile index="65">
                     <items>
-                        <misc index="224" position="3" />
+                        <miscellaneous index="224" position="3" />
                     </items>
                 </tile>
                 <tile index="66" />
@@ -2280,7 +2280,7 @@
                 <tile index="151" />
                 <tile index="152">
                     <items>
-                        <misc index="181" position="2" />
+                        <miscellaneous index="181" position="2" />
                     </items>
                 </tile>
                 <tile index="153" />
@@ -2323,7 +2323,7 @@
                 <tile index="181" />
                 <tile index="182">
                     <items>
-                        <misc index="29" position="1" />
+                        <miscellaneous index="29" position="1" />
                     </items>
                 </tile>
                 <tile index="183" />
@@ -2478,7 +2478,7 @@
                 <tile index="314" />
                 <tile index="315">
                     <items>
-                        <misc index="113" position="0" />
+                        <miscellaneous index="113" position="0" />
                     </items>
                 </tile>
                 <tile index="316" />
@@ -2487,7 +2487,7 @@
                 <tile index="319" />
                 <tile index="320">
                     <items>
-                        <misc index="13" position="0" />
+                        <miscellaneous index="13" position="0" />
                         <cloth index="114" position="2" />
                         <cloth index="113" position="2" />
                         <weapon index="70" position="3" />
@@ -2502,13 +2502,13 @@
                 <tile index="327">
                     <items>
                         <cloth index="21" position="2" />
-                        <misc index="118" position="3" />
+                        <miscellaneous index="118" position="3" />
                     </items>
                 </tile>
                 <tile index="328" />
                 <tile index="329">
                     <items>
-                        <misc index="55" position="3" />
+                        <miscellaneous index="55" position="3" />
                     </items>
                 </tile>
                 <tile index="330" />
@@ -2547,11 +2547,11 @@
                 <tile index="363" />
                 <tile index="364" />
                 <tile index="365">
-                    <door state="0" />
+                    <door state="4" />
                 </tile>
                 <tile index="366" />
                 <tile index="367">
-                    <door state="0" />
+                    <door state="4" />
                 </tile>
                 <tile index="368" />
                 <tile index="369" />
@@ -2573,7 +2573,7 @@
                 <tile index="378" />
                 <tile index="379">
                     <items>
-                        <misc index="50" position="3" />
+                        <miscellaneous index="50" position="3" />
                     </items>
                 </tile>
                 <tile index="380" />
@@ -2611,7 +2611,7 @@
                 </tile>
                 <tile index="407">
                     <items>
-                        <misc index="225" position="0" />
+                        <miscellaneous index="225" position="0" />
                     </items>
                 </tile>
                 <tile index="408" />
@@ -2635,10 +2635,10 @@
                 <tile index="418" />
                 <tile index="419">
                     <items>
-                        <misc index="213" position="0" />
-                        <misc index="214" position="0" />
-                        <misc index="215" position="0" />
-                        <misc index="216" position="0" />
+                        <miscellaneous index="213" position="0" />
+                        <miscellaneous index="214" position="0" />
+                        <miscellaneous index="215" position="0" />
+                        <miscellaneous index="216" position="0" />
                     </items>
                 </tile>
                 <tile index="420" />
@@ -2738,7 +2738,7 @@
                 <tile index="482" />
                 <tile index="483">
                     <items>
-                        <misc index="27" position="2" />
+                        <miscellaneous index="27" position="2" />
                     </items>
                 </tile>
                 <tile index="484" />
@@ -2829,7 +2829,7 @@
                         <actuator index="84" subPos="3" />
                     </actuators>
                     <items>
-                        <misc index="26" position="3" />
+                        <miscellaneous index="26" position="3" />
                     </items>
                 </tile>
                 <tile index="550" />
@@ -2857,7 +2857,7 @@
                 <tile index="568" />
                 <tile index="569">
                     <items>
-                        <misc index="33" position="0" />
+                        <miscellaneous index="33" position="0" />
                     </items>
                 </tile>
                 <tile index="570">
@@ -2867,7 +2867,7 @@
                 </tile>
                 <tile index="571">
                     <items>
-                        <misc index="217" position="2" />
+                        <miscellaneous index="217" position="2" />
                     </items>
                 </tile>
                 <tile index="572" />
@@ -2880,7 +2880,7 @@
                 <tile index="579" />
                 <tile index="580">
                     <items>
-                        <misc index="53" position="0" />
+                        <miscellaneous index="53" position="0" />
                     </items>
                 </tile>
                 <tile index="581">
@@ -2930,7 +2930,7 @@
                 <tile index="619" />
                 <tile index="620">
                     <items>
-                        <misc index="134" position="1" />
+                        <miscellaneous index="134" position="1" />
                     </items>
                 </tile>
                 <tile index="621" />
@@ -2949,7 +2949,7 @@
                 <tile index="634" />
                 <tile index="635">
                     <items>
-                        <misc index="54" position="2" />
+                        <miscellaneous index="54" position="2" />
                     </items>
                 </tile>
                 <tile index="636" />
@@ -3035,10 +3035,10 @@
                 <tile index="710" />
                 <tile index="711">
                     <items>
-                        <misc index="12" position="0" />
-                        <misc index="111" position="0" />
+                        <miscellaneous index="12" position="0" />
+                        <miscellaneous index="111" position="0" />
                         <cloth index="68" position="1" />
-                        <misc index="112" position="1" />
+                        <miscellaneous index="112" position="1" />
                     </items>
                 </tile>
                 <tile index="712" />
@@ -3273,8 +3273,8 @@
                 <tile index="861">
                     <items>
                         <weapon index="40" position="0" />
-                        <misc index="220" position="1" />
-                        <misc index="219" position="3" />
+                        <miscellaneous index="220" position="1" />
+                        <miscellaneous index="219" position="3" />
                     </items>
                 </tile>
                 <tile index="862">
@@ -3333,7 +3333,7 @@
                 <tile index="898" />
                 <tile index="899">
                     <items>
-                        <misc index="34" position="1" />
+                        <miscellaneous index="34" position="1" />
                     </items>
                 </tile>
                 <tile index="900" />
@@ -3342,8 +3342,8 @@
                 <tile index="903" />
                 <tile index="904">
                     <items>
-                        <misc index="30" position="0" />
-                        <misc index="31" position="0" />
+                        <miscellaneous index="30" position="0" />
+                        <miscellaneous index="31" position="0" />
                         <weapon index="29" position="0" />
                     </items>
                 </tile>
@@ -3368,7 +3368,7 @@
                 <tile index="912" />
                 <tile index="913">
                     <items>
-                        <misc index="28" position="0" />
+                        <miscellaneous index="28" position="0" />
                     </items>
                 </tile>
                 <tile index="914" />
@@ -3493,7 +3493,7 @@
                         <actuator index="619" subPos="3" />
                     </actuators>
                     <items>
-                        <misc index="254" position="3" />
+                        <miscellaneous index="254" position="3" />
                     </items>
                 </tile>
                 <tile index="989" />
@@ -3503,10 +3503,10 @@
                         <actuator index="95" subPos="3" />
                     </actuators>
                     <items>
-                        <misc index="35" position="3" />
-                        <misc index="51" position="3" />
-                        <misc index="52" position="3" />
-                        <misc index="221" position="3" />
+                        <miscellaneous index="35" position="3" />
+                        <miscellaneous index="51" position="3" />
+                        <miscellaneous index="52" position="3" />
+                        <miscellaneous index="221" position="3" />
                     </items>
                 </tile>
                 <tile index="992" />
@@ -3856,7 +3856,7 @@
                 <tile index="256">
                     <items>
                         <weapon index="66" position="0" />
-                        <misc index="126" position="0" />
+                        <miscellaneous index="126" position="0" />
                         <cloth index="54" position="1" />
                     </items>
                 </tile>
@@ -3871,7 +3871,7 @@
                 <tile index="265" />
                 <tile index="266">
                     <items>
-                        <misc index="56" position="0" />
+                        <miscellaneous index="56" position="0" />
                     </items>
                 </tile>
                 <tile index="267" />
@@ -4276,7 +4276,7 @@
                 <tile index="581" />
                 <tile index="582">
                     <items>
-                        <misc index="40" position="0" />
+                        <miscellaneous index="40" position="0" />
                         <potion index="22" position="0" />
                     </items>
                 </tile>
@@ -4394,8 +4394,8 @@
                 <tile index="683" />
                 <tile index="684">
                     <items>
-                        <misc index="119" position="1" />
-                        <misc index="174" position="1" />
+                        <miscellaneous index="119" position="1" />
+                        <miscellaneous index="174" position="1" />
                     </items>
                 </tile>
                 <tile index="685" />
@@ -4496,7 +4496,7 @@
                 <tile index="760" />
                 <tile index="761">
                     <items>
-                        <misc index="223" position="0" />
+                        <miscellaneous index="223" position="0" />
                     </items>
                 </tile>
                 <tile index="762" />
@@ -4725,7 +4725,7 @@
                         <actuator index="352" subPos="0" />
                     </actuators>
                     <items>
-                        <misc index="124" position="0" />
+                        <miscellaneous index="124" position="0" />
                     </items>
                 </tile>
                 <tile index="971" />
@@ -4788,8 +4788,8 @@
                 <tile index="1015">
                     <items>
                         <weapon index="30" position="0" />
-                        <misc index="42" position="0" />
-                        <misc index="135" position="2" />
+                        <miscellaneous index="42" position="0" />
+                        <miscellaneous index="135" position="2" />
                     </items>
                 </tile>
                 <tile index="1016" />
@@ -5072,7 +5072,7 @@
                 <tile index="200" />
                 <tile index="201">
                     <items>
-                        <misc index="127" position="2" />
+                        <miscellaneous index="127" position="2" />
                     </items>
                 </tile>
                 <tile index="202">
@@ -5102,7 +5102,7 @@
                 <tile index="214" />
                 <tile index="215">
                     <items>
-                        <misc index="105" position="0" />
+                        <miscellaneous index="105" position="0" />
                         <potion index="20" position="0" />
                     </items>
                 </tile>
@@ -5169,7 +5169,7 @@
                 <tile index="250" />
                 <tile index="251">
                     <items>
-                        <misc index="128" position="3" />
+                        <miscellaneous index="128" position="3" />
                     </items>
                 </tile>
                 <tile index="252" />
@@ -5306,7 +5306,7 @@
                 <tile index="322" />
                 <tile index="323">
                     <items>
-                        <misc index="44" position="2" />
+                        <miscellaneous index="44" position="2" />
                     </items>
                 </tile>
                 <tile index="324" />
@@ -5381,8 +5381,8 @@
                 <tile index="387" />
                 <tile index="388">
                     <items>
-                        <misc index="62" position="0" />
-                        <misc index="61" position="1" />
+                        <miscellaneous index="62" position="0" />
+                        <miscellaneous index="61" position="1" />
                     </items>
                 </tile>
                 <tile index="389" />
@@ -5597,7 +5597,7 @@
                 <tile index="576" />
                 <tile index="577">
                     <items>
-                        <misc index="149" position="0" />
+                        <miscellaneous index="149" position="0" />
                     </items>
                 </tile>
                 <tile index="578" />
@@ -5609,7 +5609,7 @@
                 <tile index="584" />
                 <tile index="585">
                     <items>
-                        <misc index="57" position="3" />
+                        <miscellaneous index="57" position="3" />
                     </items>
                 </tile>
                 <tile index="586" />
@@ -5869,14 +5869,14 @@
                 <tile index="813">
                     <items>
                         <cloth index="76" position="0" />
-                        <misc index="48" position="1" />
+                        <miscellaneous index="48" position="1" />
                     </items>
                 </tile>
                 <tile index="814" />
                 <tile index="815">
                     <items>
-                        <misc index="43" position="0" />
-                        <misc index="45" position="1" />
+                        <miscellaneous index="43" position="0" />
+                        <miscellaneous index="45" position="1" />
                     </items>
                 </tile>
                 <tile index="816" />
@@ -5907,7 +5907,7 @@
                 <tile index="833" />
                 <tile index="834">
                     <items>
-                        <misc index="60" position="3" />
+                        <miscellaneous index="60" position="3" />
                     </items>
                 </tile>
                 <tile index="835" />
@@ -5935,7 +5935,7 @@
                 <tile index="851" />
                 <tile index="852">
                     <items>
-                        <misc index="59" position="3" />
+                        <miscellaneous index="59" position="3" />
                     </items>
                 </tile>
                 <tile index="853">
@@ -5975,7 +5975,7 @@
                 <tile index="881" />
                 <tile index="882">
                     <items>
-                        <misc index="104" position="0" />
+                        <miscellaneous index="104" position="0" />
                         <weapon index="38" position="2" />
                     </items>
                 </tile>
@@ -6070,7 +6070,7 @@
                 <tile index="16" />
                 <tile index="17">
                     <items>
-                        <misc index="226" position="3" />
+                        <miscellaneous index="226" position="3" />
                     </items>
                 </tile>
                 <tile index="18" />
@@ -6103,7 +6103,7 @@
                 <tile index="41" />
                 <tile index="42">
                     <items>
-                        <misc index="246" position="1" />
+                        <miscellaneous index="246" position="1" />
                         <potion index="41" position="3" />
                     </items>
                 </tile>
@@ -6191,7 +6191,7 @@
                 <tile index="112" />
                 <tile index="113">
                     <items>
-                        <misc index="143" position="3" />
+                        <miscellaneous index="143" position="3" />
                     </items>
                 </tile>
                 <tile index="114" />
@@ -6302,7 +6302,7 @@
                 <tile index="186" />
                 <tile index="187">
                     <items>
-                        <misc index="243" position="1" />
+                        <miscellaneous index="243" position="1" />
                     </items>
                 </tile>
                 <tile index="188" />
@@ -6324,7 +6324,7 @@
                     <items>
                         <weapon index="93" position="0" />
                         <weapon index="75" position="1" />
-                        <misc index="144" position="1" />
+                        <miscellaneous index="144" position="1" />
                     </items>
                 </tile>
                 <tile index="204" />
@@ -6335,8 +6335,8 @@
                 <tile index="209" />
                 <tile index="210">
                     <items>
-                        <misc index="38" position="0" />
-                        <misc index="114" position="0" />
+                        <miscellaneous index="38" position="0" />
+                        <miscellaneous index="114" position="0" />
                     </items>
                 </tile>
                 <tile index="211" />
@@ -6476,8 +6476,8 @@
                 <tile index="315" />
                 <tile index="316">
                     <items>
-                        <misc index="278" position="1" />
-                        <misc index="279" position="2" />
+                        <miscellaneous index="278" position="1" />
+                        <miscellaneous index="279" position="2" />
                     </items>
                 </tile>
                 <tile index="317">
@@ -6532,7 +6532,7 @@
                 <tile index="332" />
                 <tile index="333">
                     <items>
-                        <misc index="277" position="0" />
+                        <miscellaneous index="277" position="0" />
                     </items>
                 </tile>
                 <tile index="334">
@@ -6616,7 +6616,7 @@
                 <tile index="384" />
                 <tile index="385">
                     <items>
-                        <misc index="244" position="3" />
+                        <miscellaneous index="244" position="3" />
                     </items>
                 </tile>
                 <tile index="386" />
@@ -6727,7 +6727,7 @@
                 <tile index="462" />
                 <tile index="463">
                     <items>
-                        <misc index="67" position="0" />
+                        <miscellaneous index="67" position="0" />
                         <cloth index="93" position="0" />
                     </items>
                 </tile>
@@ -6822,7 +6822,7 @@
                 <tile index="516" />
                 <tile index="517">
                     <items>
-                        <misc index="47" position="0" />
+                        <miscellaneous index="47" position="0" />
                     </items>
                 </tile>
                 <tile index="518" />
@@ -6937,7 +6937,7 @@
                         <actuator index="549" subPos="3" />
                     </actuators>
                     <items>
-                        <misc index="273" position="3" />
+                        <miscellaneous index="273" position="3" />
                     </items>
                 </tile>
                 <tile index="603" />
@@ -7025,7 +7025,7 @@
                 <tile index="671" />
                 <tile index="672">
                     <items>
-                        <misc index="46" position="0" />
+                        <miscellaneous index="46" position="0" />
                         <cloth index="84" position="1" />
                     </items>
                 </tile>
@@ -7119,7 +7119,7 @@
                     <items>
                         <weapon index="47" position="0" />
                         <potion index="8" position="0" />
-                        <misc index="66" position="3" />
+                        <miscellaneous index="66" position="3" />
                         <potion index="9" position="3" />
                     </items>
                 </tile>
@@ -7390,7 +7390,7 @@
                 <tile index="896" />
                 <tile index="897">
                     <items>
-                        <misc index="245" position="2" />
+                        <miscellaneous index="245" position="2" />
                     </items>
                 </tile>
                 <tile index="898" />
@@ -7414,7 +7414,7 @@
                 <tile index="911" />
                 <tile index="912">
                     <items>
-                        <misc index="68" position="0" />
+                        <miscellaneous index="68" position="0" />
                     </items>
                 </tile>
                 <tile index="913" />
@@ -7512,9 +7512,9 @@
                         <actuator index="281" subPos="2" />
                     </actuators>
                     <items>
-                        <misc index="65" position="2" />
-                        <misc index="117" position="2" />
-                        <misc index="120" position="2" />
+                        <miscellaneous index="65" position="2" />
+                        <miscellaneous index="117" position="2" />
+                        <miscellaneous index="120" position="2" />
                     </items>
                 </tile>
                 <tile index="6" />
@@ -7547,7 +7547,7 @@
                 <tile index="29" />
                 <tile index="30">
                     <items>
-                        <misc index="132" position="2" />
+                        <miscellaneous index="132" position="2" />
                     </items>
                 </tile>
                 <tile index="31" />
@@ -7647,7 +7647,7 @@
                 <tile index="100" />
                 <tile index="101">
                     <items>
-                        <misc index="173" position="0" />
+                        <miscellaneous index="173" position="0" />
                         <cloth index="82" position="1" />
                     </items>
                 </tile>
@@ -7666,8 +7666,8 @@
                 <tile index="109">
                     <items>
                         <weapon index="45" position="0" />
-                        <misc index="64" position="0" />
-                        <misc index="49" position="1" />
+                        <miscellaneous index="64" position="0" />
+                        <miscellaneous index="49" position="1" />
                     </items>
                 </tile>
                 <tile index="110" />
@@ -7730,7 +7730,7 @@
                         <actuator index="320" subPos="0" />
                     </actuators>
                     <items>
-                        <misc index="97" position="0" />
+                        <miscellaneous index="97" position="0" />
                         <weapon index="63" position="2" />
                     </items>
                 </tile>
@@ -7807,8 +7807,8 @@
                         <actuator index="150" subPos="0" />
                     </actuators>
                     <items>
-                        <misc index="169" position="0" />
-                        <misc index="170" position="0" />
+                        <miscellaneous index="169" position="0" />
+                        <miscellaneous index="170" position="0" />
                     </items>
                 </tile>
                 <tile index="177">
@@ -7921,7 +7921,7 @@
                         <scroll index="24" position="0" />
                         <scroll index="25" position="0" />
                         <scroll index="26" position="0" />
-                        <misc index="122" position="0" />
+                        <miscellaneous index="122" position="0" />
                         <scroll index="27" position="0" />
                     </items>
                 </tile>
@@ -8126,7 +8126,7 @@
                 <tile index="453" />
                 <tile index="454">
                     <items>
-                        <misc index="175" position="2" />
+                        <miscellaneous index="175" position="2" />
                     </items>
                 </tile>
                 <tile index="455" />
@@ -8485,9 +8485,9 @@
                 <tile index="747" />
                 <tile index="748">
                     <items>
-                        <misc index="140" position="1" />
+                        <miscellaneous index="140" position="1" />
                         <scroll index="9" position="1" />
-                        <misc index="141" position="2" />
+                        <miscellaneous index="141" position="2" />
                     </items>
                 </tile>
                 <tile index="749" />
@@ -8575,7 +8575,7 @@
                 <tile index="831" />
                 <tile index="832">
                     <items>
-                        <misc index="272" position="0" />
+                        <miscellaneous index="272" position="0" />
                     </items>
                 </tile>
                 <tile index="833" />
@@ -8784,7 +8784,7 @@
                 <tile index="83" />
                 <tile index="84">
                     <items>
-                        <misc index="77" position="1" />
+                        <miscellaneous index="77" position="1" />
                     </items>
                 </tile>
                 <tile index="85" />
@@ -8980,8 +8980,8 @@
                 <tile index="256" />
                 <tile index="257">
                     <items>
-                        <misc index="253" position="2" />
-                        <misc index="252" position="3" />
+                        <miscellaneous index="253" position="2" />
+                        <miscellaneous index="252" position="3" />
                     </items>
                 </tile>
                 <tile index="258" />
@@ -9098,7 +9098,7 @@
                 </tile>
                 <tile index="354">
                     <items>
-                        <misc index="136" position="0" />
+                        <miscellaneous index="136" position="0" />
                     </items>
                 </tile>
                 <tile index="355" />
@@ -9324,7 +9324,7 @@
                 <tile index="549" />
                 <tile index="550">
                     <items>
-                        <misc index="78" position="0" />
+                        <miscellaneous index="78" position="0" />
                         <potion index="10" position="2" />
                     </items>
                 </tile>
@@ -9593,7 +9593,7 @@
                 <tile index="747">
                     <items>
                         <potion index="44" position="0" />
-                        <misc index="247" position="1" />
+                        <miscellaneous index="247" position="1" />
                     </items>
                 </tile>
                 <tile index="748" />
@@ -9713,7 +9713,7 @@
                 <tile index="843" />
                 <tile index="844">
                     <items>
-                        <misc index="76" position="1" />
+                        <miscellaneous index="76" position="1" />
                     </items>
                 </tile>
                 <tile index="845" />
@@ -9801,7 +9801,7 @@
                 </tile>
                 <tile index="912">
                     <items>
-                        <misc index="232" position="3" />
+                        <miscellaneous index="232" position="3" />
                     </items>
                 </tile>
                 <tile index="913" />
@@ -9976,7 +9976,7 @@
                 <tile index="33" />
                 <tile index="34">
                     <items>
-                        <misc index="79" position="0" />
+                        <miscellaneous index="79" position="0" />
                     </items>
                 </tile>
                 <tile index="35" />
@@ -9993,7 +9993,7 @@
                 <tile index="46" />
                 <tile index="47">
                     <items>
-                        <misc index="171" position="1" />
+                        <miscellaneous index="171" position="1" />
                     </items>
                 </tile>
                 <tile index="48" />
@@ -10208,10 +10208,10 @@
                 <tile index="217" />
                 <tile index="218">
                     <items>
-                        <misc index="189" position="2" />
-                        <misc index="190" position="2" />
-                        <misc index="191" position="2" />
-                        <misc index="188" position="3" />
+                        <miscellaneous index="189" position="2" />
+                        <miscellaneous index="190" position="2" />
+                        <miscellaneous index="191" position="2" />
+                        <miscellaneous index="188" position="3" />
                     </items>
                 </tile>
                 <tile index="219" />
@@ -10357,7 +10357,7 @@
                 <tile index="342">
                     <items>
                         <weapon index="65" position="0" />
-                        <misc index="123" position="1" />
+                        <miscellaneous index="123" position="1" />
                         <weapon index="85" position="1" />
                     </items>
                 </tile>
@@ -10556,7 +10556,7 @@
                         <actuator index="537" subPos="2" />
                     </actuators>
                     <items>
-                        <misc index="80" position="2" />
+                        <miscellaneous index="80" position="2" />
                     </items>
                 </tile>
                 <tile index="508">
@@ -10813,7 +10813,7 @@
                 <tile index="736">
                     <items>
                         <weapon index="60" position="1" />
-                        <misc index="101" position="1" />
+                        <miscellaneous index="101" position="1" />
                     </items>
                 </tile>
                 <tile index="737" />
@@ -10878,12 +10878,12 @@
                 <tile index="792" />
                 <tile index="793">
                     <items>
-                        <misc index="164" position="1" />
+                        <miscellaneous index="164" position="1" />
                     </items>
                 </tile>
                 <tile index="794">
                     <items>
-                        <misc index="172" position="2" />
+                        <miscellaneous index="172" position="2" />
                     </items>
                 </tile>
                 <tile index="795" />
@@ -11170,8 +11170,8 @@
                 <tile index="61" />
                 <tile index="62">
                     <items>
-                        <misc index="202" position="3" />
-                        <misc index="203" position="3" />
+                        <miscellaneous index="202" position="3" />
+                        <miscellaneous index="203" position="3" />
                     </items>
                 </tile>
                 <tile index="63" />
@@ -11224,7 +11224,7 @@
                 <tile index="110" />
                 <tile index="111">
                     <items>
-                        <misc index="274" position="2" />
+                        <miscellaneous index="274" position="2" />
                     </items>
                 </tile>
                 <tile index="112" />
@@ -11531,7 +11531,7 @@
                 <tile index="368" />
                 <tile index="369">
                     <items>
-                        <misc index="184" position="1" />
+                        <miscellaneous index="184" position="1" />
                     </items>
                 </tile>
                 <tile index="370" />
@@ -11541,7 +11541,7 @@
                 <tile index="374" />
                 <tile index="375">
                     <items>
-                        <misc index="81" position="0" />
+                        <miscellaneous index="81" position="0" />
                     </items>
                 </tile>
                 <tile index="376" />
@@ -11733,7 +11733,7 @@
                 <tile index="512" />
                 <tile index="513">
                     <items>
-                        <misc index="138" position="0" />
+                        <miscellaneous index="138" position="0" />
                     </items>
                 </tile>
                 <tile index="514" />
@@ -11802,7 +11802,7 @@
                     <items>
                         <potion index="42" position="1" />
                         <potion index="43" position="2" />
-                        <misc index="179" position="2" />
+                        <miscellaneous index="179" position="2" />
                     </items>
                 </tile>
                 <tile index="553" />
@@ -11926,8 +11926,8 @@
                 <tile index="655" />
                 <tile index="656">
                     <items>
-                        <misc index="204" position="0" />
-                        <misc index="201" position="3" />
+                        <miscellaneous index="204" position="0" />
+                        <miscellaneous index="201" position="3" />
                     </items>
                 </tile>
                 <tile index="657" />
@@ -12178,14 +12178,14 @@
                 <tile index="848" />
                 <tile index="849">
                     <items>
-                        <misc index="82" position="2" />
-                        <misc index="163" position="3" />
+                        <miscellaneous index="82" position="2" />
+                        <miscellaneous index="163" position="3" />
                     </items>
                 </tile>
                 <tile index="850" />
                 <tile index="851">
                     <items>
-                        <misc index="139" position="1" />
+                        <miscellaneous index="139" position="1" />
                     </items>
                 </tile>
                 <tile index="852" />
@@ -12316,7 +12316,7 @@
                 <tile index="957" />
                 <tile index="958">
                     <items>
-                        <misc index="185" position="2" />
+                        <miscellaneous index="185" position="2" />
                     </items>
                 </tile>
                 <tile index="959" />
@@ -12378,7 +12378,7 @@
                 <tile index="5" />
                 <tile index="6">
                     <items>
-                        <misc index="70" position="0" />
+                        <miscellaneous index="70" position="0" />
                     </items>
                 </tile>
                 <tile index="7" />
@@ -12552,14 +12552,14 @@
                 <tile index="144" />
                 <tile index="145">
                     <items>
-                        <misc index="166" position="1" />
+                        <miscellaneous index="166" position="1" />
                     </items>
                 </tile>
                 <tile index="146" />
                 <tile index="147" />
                 <tile index="148">
                     <items>
-                        <misc index="270" position="0" />
+                        <miscellaneous index="270" position="0" />
                     </items>
                 </tile>
                 <tile index="149" />
@@ -12823,7 +12823,7 @@
                 <tile index="348" />
                 <tile index="349">
                     <items>
-                        <misc index="121" position="2" />
+                        <miscellaneous index="121" position="2" />
                     </items>
                 </tile>
                 <tile index="350" />
@@ -12998,7 +12998,7 @@
                 <tile index="441" />
                 <tile index="442">
                     <items>
-                        <misc index="131" position="0" />
+                        <miscellaneous index="131" position="0" />
                     </items>
                 </tile>
                 <tile index="443" />
@@ -13041,7 +13041,7 @@
                 </tile>
                 <tile index="457">
                     <items>
-                        <misc index="266" position="0" />
+                        <miscellaneous index="266" position="0" />
                     </items>
                 </tile>
                 <tile index="458" />
@@ -13094,7 +13094,7 @@
                 <tile index="497" />
                 <tile index="498">
                     <items>
-                        <misc index="129" position="0" />
+                        <miscellaneous index="129" position="0" />
                     </items>
                 </tile>
                 <tile index="499" />
@@ -13142,7 +13142,7 @@
                 <tile index="541" />
                 <tile index="542">
                     <items>
-                        <misc index="267" position="0" />
+                        <miscellaneous index="267" position="0" />
                     </items>
                 </tile>
                 <tile index="543" />
@@ -13185,7 +13185,7 @@
                 <tile index="580" />
                 <tile index="581">
                     <items>
-                        <misc index="268" position="2" />
+                        <miscellaneous index="268" position="2" />
                     </items>
                 </tile>
                 <tile index="582" />
@@ -13203,7 +13203,7 @@
                         <actuator index="647" subPos="2" />
                     </actuators>
                     <items>
-                        <misc index="167" position="2" />
+                        <miscellaneous index="167" position="2" />
                     </items>
                 </tile>
                 <tile index="593" />
@@ -13262,7 +13262,7 @@
                 </tile>
                 <tile index="626">
                     <items>
-                        <misc index="271" position="2" />
+                        <miscellaneous index="271" position="2" />
                     </items>
                 </tile>
                 <tile index="627" />
@@ -13319,7 +13319,7 @@
                         <actuator index="501" subPos="0" />
                     </actuators>
                     <items>
-                        <misc index="269" position="1" />
+                        <miscellaneous index="269" position="1" />
                     </items>
                 </tile>
                 <tile index="667" />
@@ -13524,8 +13524,8 @@
                         <actuator index="630" subPos="2" />
                     </actuators>
                     <items>
-                        <misc index="69" position="2" />
-                        <misc index="222" position="2" />
+                        <miscellaneous index="69" position="2" />
+                        <miscellaneous index="222" position="2" />
                     </items>
                 </tile>
                 <tile index="807">
@@ -13534,7 +13534,7 @@
                         <actuator index="629" subPos="2" />
                     </actuators>
                     <items>
-                        <misc index="255" position="2" />
+                        <miscellaneous index="255" position="2" />
                     </items>
                 </tile>
                 <tile index="808" />
@@ -13575,7 +13575,7 @@
                     </actuators>
                     <items>
                         <potion index="24" position="1" />
-                        <misc index="265" position="1" />
+                        <miscellaneous index="265" position="1" />
                     </items>
                 </tile>
                 <tile index="836" />
@@ -13638,7 +13638,7 @@
                         <actuator index="627" subPos="3" />
                     </actuators>
                     <items>
-                        <misc index="264" position="3" />
+                        <miscellaneous index="264" position="3" />
                     </items>
                 </tile>
                 <tile index="869" />
@@ -13795,7 +13795,7 @@
                 </tile>
                 <tile index="29">
                     <items>
-                        <misc index="73" position="2" />
+                        <miscellaneous index="73" position="2" />
                     </items>
                 </tile>
                 <tile index="30" />
@@ -13876,8 +13876,8 @@
                 <tile index="93">
                     <items>
                         <weapon index="79" position="1" />
-                        <misc index="160" position="1" />
-                        <misc index="156" position="2" />
+                        <miscellaneous index="160" position="1" />
+                        <miscellaneous index="156" position="2" />
                     </items>
                 </tile>
                 <tile index="94" />
@@ -13925,8 +13925,8 @@
                 <tile index="134" />
                 <tile index="135">
                     <items>
-                        <misc index="157" position="1" />
-                        <misc index="200" position="2" />
+                        <miscellaneous index="157" position="1" />
+                        <miscellaneous index="200" position="2" />
                     </items>
                 </tile>
                 <tile index="136" />
@@ -14073,7 +14073,7 @@
                     <items>
                         <potion index="26" position="0" />
                         <potion index="27" position="1" />
-                        <misc index="155" position="1" />
+                        <miscellaneous index="155" position="1" />
                         <scroll index="17" position="2" />
                         <potion index="54" position="3" />
                     </items>
@@ -14273,7 +14273,7 @@
                         <actuator index="654" subPos="1" />
                     </actuators>
                     <items>
-                        <misc index="275" position="1" />
+                        <miscellaneous index="275" position="1" />
                     </items>
                 </tile>
                 <tile index="396" />
@@ -14313,7 +14313,7 @@
                 <tile index="416" />
                 <tile index="417">
                     <items>
-                        <misc index="159" position="1" />
+                        <miscellaneous index="159" position="1" />
                     </items>
                 </tile>
                 <tile index="418" />
@@ -14375,7 +14375,7 @@
                 <tile index="470" />
                 <tile index="471">
                     <items>
-                        <misc index="158" position="2" />
+                        <miscellaneous index="158" position="2" />
                     </items>
                 </tile>
                 <tile index="472">
@@ -14411,8 +14411,8 @@
                 <tile index="498" />
                 <tile index="499">
                     <items>
-                        <misc index="153" position="1" />
-                        <misc index="154" position="1" />
+                        <miscellaneous index="153" position="1" />
+                        <miscellaneous index="154" position="1" />
                         <weapon index="77" position="2" />
                     </items>
                 </tile>
@@ -14622,7 +14622,7 @@
                 <tile index="690" />
                 <tile index="691">
                     <items>
-                        <misc index="151" position="1" />
+                        <miscellaneous index="151" position="1" />
                     </items>
                 </tile>
                 <tile index="692" />
@@ -14685,7 +14685,7 @@
                         <actuator index="145" subPos="0" />
                     </actuators>
                     <items>
-                        <misc index="168" position="0" />
+                        <miscellaneous index="168" position="0" />
                     </items>
                 </tile>
                 <tile index="738" />
@@ -14898,7 +14898,7 @@
                 <tile index="913" />
                 <tile index="914">
                     <items>
-                        <misc index="162" position="0" />
+                        <miscellaneous index="162" position="0" />
                     </items>
                 </tile>
                 <tile index="915" />
@@ -14976,8 +14976,8 @@
                 <tile index="975" />
                 <tile index="976">
                     <items>
-                        <misc index="161" position="1" />
-                        <misc index="199" position="2" />
+                        <miscellaneous index="161" position="1" />
+                        <miscellaneous index="199" position="2" />
                     </items>
                 </tile>
                 <tile index="977" />
@@ -15080,7 +15080,7 @@
                         <actuator index="313" subPos="0" />
                     </actuators>
                     <items>
-                        <misc index="115" position="0" />
+                        <miscellaneous index="115" position="0" />
                         <weapon index="86" position="0" />
                     </items>
                 </tile>
@@ -15606,7 +15606,7 @@
                 <tile index="48" />
                 <tile index="49">
                     <items>
-                        <misc index="176" position="0" />
+                        <miscellaneous index="176" position="0" />
                     </items>
                 </tile>
                 <tile index="50" />
@@ -15756,7 +15756,7 @@
                 <tile index="167" />
                 <tile index="168">
                     <items>
-                        <misc index="206" position="0" />
+                        <miscellaneous index="206" position="0" />
                     </items>
                 </tile>
                 <tile index="169" />
@@ -15777,7 +15777,7 @@
                 </tile>
                 <tile index="179">
                     <items>
-                        <misc index="276" position="3" />
+                        <miscellaneous index="276" position="3" />
                     </items>
                 </tile>
                 <tile index="180" />
@@ -15794,7 +15794,7 @@
                 <tile index="191" />
                 <tile index="192">
                     <items>
-                        <misc index="130" position="2" />
+                        <miscellaneous index="130" position="2" />
                     </items>
                 </tile>
                 <tile index="193" />
@@ -15803,7 +15803,7 @@
                 <tile index="196" />
                 <tile index="197">
                     <items>
-                        <misc index="87" position="1" />
+                        <miscellaneous index="87" position="1" />
                     </items>
                 </tile>
                 <tile index="198" />
@@ -15811,7 +15811,7 @@
                 <tile index="200" />
                 <tile index="201">
                     <items>
-                        <misc index="92" position="3" />
+                        <miscellaneous index="92" position="3" />
                     </items>
                 </tile>
                 <tile index="202" />
@@ -15841,7 +15841,7 @@
                 <tile index="221" />
                 <tile index="222">
                     <items>
-                        <misc index="88" position="2" />
+                        <miscellaneous index="88" position="2" />
                     </items>
                 </tile>
                 <tile index="223" />
@@ -15849,23 +15849,23 @@
                 <tile index="225" />
                 <tile index="226">
                     <items>
-                        <misc index="94" position="0" />
-                        <misc index="90" position="0" />
+                        <miscellaneous index="94" position="0" />
+                        <miscellaneous index="90" position="0" />
                     </items>
                 </tile>
                 <tile index="227" />
                 <tile index="228">
                     <items>
-                        <misc index="95" position="1" />
+                        <miscellaneous index="95" position="1" />
                     </items>
                 </tile>
                 <tile index="229" />
                 <tile index="230">
                     <items>
-                        <misc index="99" position="0" />
-                        <misc index="98" position="1" />
-                        <misc index="100" position="1" />
-                        <misc index="182" position="2" />
+                        <miscellaneous index="99" position="0" />
+                        <miscellaneous index="98" position="1" />
+                        <miscellaneous index="100" position="1" />
+                        <miscellaneous index="182" position="2" />
                         <cloth index="99" position="2" />
                     </items>
                 </tile>
@@ -15897,15 +15897,15 @@
                 <tile index="246" />
                 <tile index="247">
                     <items>
-                        <misc index="85" position="0" />
-                        <misc index="86" position="0" />
+                        <miscellaneous index="85" position="0" />
+                        <miscellaneous index="86" position="0" />
                     </items>
                 </tile>
                 <tile index="248" />
                 <tile index="249" />
                 <tile index="250">
                     <items>
-                        <misc index="89" position="1" />
+                        <miscellaneous index="89" position="1" />
                     </items>
                 </tile>
                 <tile index="251" />
@@ -15928,43 +15928,43 @@
                 <tile index="268" />
                 <tile index="269">
                     <items>
-                        <misc index="137" position="3" />
+                        <miscellaneous index="137" position="3" />
                     </items>
                 </tile>
                 <tile index="270" />
                 <tile index="271" />
                 <tile index="272">
                     <items>
-                        <misc index="63" position="0" />
+                        <miscellaneous index="63" position="0" />
                     </items>
                 </tile>
                 <tile index="273" />
                 <tile index="274" />
                 <tile index="275">
                     <items>
-                        <misc index="187" position="0" />
+                        <miscellaneous index="187" position="0" />
                     </items>
                 </tile>
                 <tile index="276" />
                 <tile index="277">
                     <items>
-                        <misc index="177" position="3" />
+                        <miscellaneous index="177" position="3" />
                     </items>
                 </tile>
                 <tile index="278" />
                 <tile index="279">
                     <items>
-                        <misc index="93" position="0" />
+                        <miscellaneous index="93" position="0" />
                     </items>
                 </tile>
                 <tile index="280" />
                 <tile index="281" />
                 <tile index="282">
                     <items>
-                        <misc index="183" position="1" />
-                        <misc index="103" position="2" />
+                        <miscellaneous index="183" position="1" />
+                        <miscellaneous index="103" position="2" />
                         <weapon index="0" position="2" />
-                        <misc index="102" position="3" />
+                        <miscellaneous index="102" position="3" />
                     </items>
                 </tile>
                 <tile index="283" />
@@ -15982,7 +15982,7 @@
                 <tile index="295" />
                 <tile index="296">
                     <items>
-                        <misc index="205" position="0" />
+                        <miscellaneous index="205" position="0" />
                     </items>
                 </tile>
                 <tile index="297" />
@@ -15994,12 +15994,12 @@
                 <tile index="303" />
                 <tile index="304">
                     <items>
-                        <misc index="91" position="1" />
+                        <miscellaneous index="91" position="1" />
                     </items>
                 </tile>
                 <tile index="305">
                     <items>
-                        <misc index="96" position="1" />
+                        <miscellaneous index="96" position="1" />
                     </items>
                 </tile>
                 <tile index="306" />
@@ -16022,7 +16022,7 @@
                 <tile index="323" />
                 <tile index="324">
                     <items>
-                        <misc index="186" position="2" />
+                        <miscellaneous index="186" position="2" />
                     </items>
                 </tile>
                 <tile index="325" />

@@ -492,8 +492,11 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 		if (activeActuator->GetActionType() == CActuator::Hold) pit->Open(0);
 		if (activeActuator->GetActionType() == CActuator::Clear) {
 			pit->Close(0);
-			// reactivate with delay
-			pit->Open(nextActuator->GetDelay());
+			if (activeActuator->Action() == -1 && nextActuator->Action() == -1)
+			{
+				// reactivate with delay
+				pit->Open(nextActuator->GetDelay());
+			}
 		}
 		break;
 	case FeldTyp::TELEPORT:
@@ -501,8 +504,11 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 		if (port->getScope() == TeleporterAttributes::None) {
 			port->setOpen(CTeleporter::Active, 0);
 			port->Trigger(GetDocument(), m_pRaumView->GetMap(), target, true);
-			// reactivate with delay
-			port->setOpen(CTeleporter::Inactive, nextActuator->GetDelay());
+			if (activeActuator->Action() == -1 && nextActuator->Action() == -1)
+			{
+				// reactivate with delay
+				port->setOpen(CTeleporter::Inactive, nextActuator->GetDelay());
+			}
 		}
 		else {
 			port->setOpen(CTeleporter::Inactive, 0);
@@ -513,12 +519,18 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 		if (activeActuator->GetActionType() == CActuator::Toggle) trickwall->Toggle();
 		if (activeActuator->GetActionType() == CActuator::Set) {
 			trickwall->Open(0);
-			trickwall->Close(nextActuator->GetDelay());
+			if (activeActuator->Action() == -1 && nextActuator->Action() == -1)
+			{
+				trickwall->Close(nextActuator->GetDelay());
+			}
 		}
 		if (activeActuator->GetActionType() == CActuator::Hold) trickwall->Open(0);
 		if (activeActuator->GetActionType() == CActuator::Clear) {
 			trickwall->Close(0);
-			trickwall->Open(nextActuator->GetDelay());
+			if (activeActuator->Action() == -1 && nextActuator->Action() == -1)
+			{ 
+				trickwall->Open(nextActuator->GetDelay());
+			}
 		}
 		break;
 	case FeldTyp::WALL: 
