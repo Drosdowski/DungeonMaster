@@ -191,6 +191,7 @@
 #define IDB_MONSTER_GIGGLER_BACK        536
 #define IDB_MONSTER_GIGGLER_FRONT       537
 #define IDB_MONSTER_GIGGLER_RIGHT       538
+#define IDB_CHAMPIONS                   582
 #define IDB_MONSTER_SCREAMER_ATTACK     600
 #define IDB_MONSTER_SCREAMER_FRONT      601
 #define IDB_MONSTER_ROCKPILE_ATTACK     602
@@ -277,6 +278,10 @@
 #define IDB_WALLDECO_5F                 2005
 #define IDB_WALLDECO_6F                 2006
 #define IDB_WALLDECO_7F                 2007
+#define IDB_WALLDECO_8F                 2008
+#define IDB_WALLDECO_9F                 2009
+#define IDB_WALLDECO_12F                2012
+#define IDB_WALLDECO_13F                2013
 #define IDB_WALLDECO_14F                2014
 #define IDB_WALLDECO_15F                2015
 #define IDB_WALLDECO_16F                2016
@@ -300,7 +305,10 @@
 #define IDB_WALLDECO_34F                2034
 #define IDB_WALLDECO_35F                2035
 #define IDB_WALLDECO_36F                2036
+#define IDB_WALLDECO_37F                2037
 #define IDB_WALLDECO_38F                2038
+#define IDB_WALLDECO_39F                2039
+#define IDB_WALLDECO_43F                2043
 #define IDB_WALLDECO_44F                2044
 #define IDB_WALLDECO_45F                2045
 #define IDB_WALLDECO_46F                2046
@@ -320,6 +328,10 @@
 #define IDB_WALLDECO_5L                 2105
 #define IDB_WALLDECO_6L                 2106
 #define IDB_WALLDECO_7L                 2107
+#define IDB_WALLDECO_8L                 2108
+#define IDB_WALLDECO_9L                 2109
+#define IDB_WALLDECO_12L                2112
+#define IDB_WALLDECO_13L                2113
 #define IDB_WALLDECO_14L                2114
 #define IDB_WALLDECO_15L                2115
 #define IDB_WALLDECO_16L                2116
@@ -343,7 +355,10 @@
 #define IDB_WALLDECO_34L                2134
 #define IDB_WALLDECO_35L                2135
 #define IDB_WALLDECO_36L                2136
+#define IDB_WALLDECO_37L                2137
 #define IDB_WALLDECO_38L                2138
+#define IDB_WALLDECO_39L                2139
+#define IDB_WALLDECO_43L                2143
 #define IDB_WALLDECO_44L                2144
 #define IDB_WALLDECO_45L                2145
 #define IDB_WALLDECO_46L                2146
@@ -362,7 +377,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        580
+#define _APS_NEXT_RESOURCE_VALUE        595
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

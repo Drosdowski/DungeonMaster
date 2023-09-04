@@ -865,6 +865,36 @@ IDB_DOOR_RA_2           BITMAP                  "res\\Door\\Door_Ra_2.bmp"
 
 IDB_DOOR_RA_3           BITMAP                  "res\\Door\\Door_Ra_3.bmp"
 
+IDB_WALLDECO_43F        BITMAP                  "res\\WallDeco\\WallDeco_43_Front.bmp"
+
+IDB_WALLDECO_43L        BITMAP                  "res\\WallDeco\\WallDeco_43Left.bmp"
+
+IDB_CHAMPIONS           BITMAP                  "res\\Items2D\\ChampionPortraits.bmp"
+
+IDB_WALLDECO_8F         BITMAP                  "res\\WallDeco\\WallDeco_8_Front.bmp"
+
+IDB_WALLDECO_8L         BITMAP                  "res\\WallDeco\\WallDeco_8_Left.bmp"
+
+IDB_WALLDECO_9F         BITMAP                  "res\\WallDeco\\WallDeco_9_Front.bmp"
+
+IDB_WALLDECO_9L         BITMAP                  "res\\WallDeco\\WallDeco_9_Left.bmp"
+
+IDB_WALLDECO_12F        BITMAP                  "res\\WallDeco\\WallDeco_12_Front.bmp"
+
+IDB_WALLDECO_12L        BITMAP                  "res\\WallDeco\\WallDeco_12_Left.bmp"
+
+IDB_WALLDECO_13F        BITMAP                  "res\\WallDeco\\WallDeco_13_Front.bmp"
+
+IDB_WALLDECO_13L        BITMAP                  "res\\WallDeco\\WallDeco_13_Left.bmp"
+
+IDB_WALLDECO_37F        BITMAP                  "res\\WallDeco\\WallDeco_37_Front.bmp"
+
+IDB_WALLDECO_37L        BITMAP                  "res\\WallDeco\\WallDeco_37_Left.bmp"
+
+IDB_WALLDECO_39F        BITMAP                  "res\\WallDeco\\WallDeco_39_Front.bmp"
+
+IDB_WALLDECO_39L        BITMAP                  "res\\WallDeco\\WallDeco_39_Left.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -1643,6 +1643,51 @@
     <Image Include="res\Door\Door_Ra_3.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\WallDeco\WallDeco_43_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_43Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Items2D\ChampionPortraits.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_8_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_8_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_9_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_9_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_12_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_12_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_13_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_13_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_37_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_37_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_39_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\WallDeco\WallDeco_39_Left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

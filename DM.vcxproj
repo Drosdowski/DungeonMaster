@@ -384,6 +384,7 @@
     <Image Include="res\Floor\SquarePressurePad_3L.bmp" />
     <Image Include="res\InterfaceHeroAlive.bmp" />
     <Image Include="res\InterfaceHeroDead.bmp" />
+    <Image Include="res\Items2D\ChampionPortraits.bmp" />
     <Image Include="res\Items3D\Bones.bmp" />
     <Image Include="res\Items3D\Item_3d_Arrow.bmp" />
     <Image Include="res\Items3D\Item_3d_Axe.bmp" />
@@ -497,6 +498,10 @@
     <Image Include="res\Spells\Teleporter.bmp" />
     <Image Include="res\Steine.bmp" />
     <Image Include="res\walldeco\bitmap1.bmp" />
+    <Image Include="res\WallDeco\WallDeco_12_Front.bmp" />
+    <Image Include="res\WallDeco\WallDeco_12_Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_13_Front.bmp" />
+    <Image Include="res\WallDeco\WallDeco_13_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_14_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_14_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_15_Front.bmp" />
@@ -519,8 +524,14 @@
     <Image Include="res\WallDeco\WallDeco_34_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_36_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_36_Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_37_Front.bmp" />
+    <Image Include="res\WallDeco\WallDeco_37_Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_39_Front.bmp" />
+    <Image Include="res\WallDeco\WallDeco_39_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_3_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_3_Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_43Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_43_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_44_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_45_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_47_Front.bmp" />
@@ -547,6 +558,10 @@
     <Image Include="res\WallDeco\WallDeco_6_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_7_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_7_Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_8_Front.bmp" />
+    <Image Include="res\WallDeco\WallDeco_8_Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_9_Front.bmp" />
+    <Image Include="res\WallDeco\WallDeco_9_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_Holder_Empty_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_Holder_Empty_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_Holder_Full_Front.bmp" />
