@@ -9,6 +9,7 @@ public:
 	CDC* GetMyDC() { return m_pDC; }
 
 	void LoadPic(CBitmap*& mPic, int ID);
+	void LoadPicAndScale(CBitmap*& mPic, int ID, bool maximum);
 	void LoadPicAndFlip(CBitmap*& mPic, int ID);
 
 

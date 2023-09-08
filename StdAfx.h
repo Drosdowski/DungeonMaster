@@ -196,6 +196,7 @@ enum FloorDecorationType
 
 enum DoorDecorationType 
 {
+	PlainDoor = -1,
 	SqareGrid = 0,
 	IronBars = 1,
 	Jewels = 2,

@@ -19,6 +19,7 @@ public:
 	bool hasButton() { return m_attributes.button; }
 	bool Visible(int heroDir);
 	int getDoorBottomHeight() { return m_bottomHeight; }
+	DoorDecorationType getOrnate() { if (m_attributes.ornateId > 0) return m_ornate; else return PlainDoor; }
 	bool getDoorFrameEastAndWest() { return m_doorFrameEastAndWest; }
 	void Toggle();
 	void ContinueMoving();

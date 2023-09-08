@@ -927,6 +927,8 @@ IDB_WALLDECO_0F         BITMAP                  "res\\WallDeco\\WallDeco_0_Front
 
 IDB_WALLDECO_0L         BITMAP                  "res\\WallDeco\\WallDeco_0-Left.bmp"
 
+IDB_DOOR_BLACK_1        BITMAP                  "res\\Door\\Door_Black_1.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

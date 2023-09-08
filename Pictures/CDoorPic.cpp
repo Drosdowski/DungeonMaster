@@ -18,6 +18,7 @@ CDoorPic::~CDoorPic()
 		delete m_pDoorIronFull[zwiebel];
 		delete m_pDoorWood[zwiebel];
 		delete m_pDoorRa[zwiebel];
+		delete m_pDoorBlack[zwiebel];
 		delete m_pDoorWoodSmashed[zwiebel];
 	}
 	delete m_pDoorFrameFarLeft;
@@ -33,9 +34,12 @@ CBitmap* CDoorPic::GetDoorFrontPic(CDoor* pDoor, int ebene) {
 	{
 		if (pDoor->getType() == CDoorAttributes::DoorType::Iron)
 		{
-			return m_pDoorIron[ebene];
-			/*return m_pDoorIronFull[ebene];
-			return m_pDoorRa[ebene];*/
+			switch (pDoor->getOrnate()) {				
+			case DoorDecorationType::IronBars: return m_pDoorIronFull[ebene];
+			case DoorDecorationType::RaDoor: return m_pDoorRa[ebene];
+			case DoorDecorationType::Black: return m_pDoorBlack[ebene];
+			default: return m_pDoorIron[ebene];
+			}
 		}
 		else if (pDoor->getType() == CDoorAttributes::DoorType::Wood)
 			if (pDoor->getState() == CDoor::DESTROYED)
@@ -183,6 +187,9 @@ void CDoorPic::InitDoors() {
 	LoadPic(m_pDoorRa[1], IDB_DOOR_RA_1);
 	LoadPic(m_pDoorRa[2], IDB_DOOR_RA_2);
 	LoadPic(m_pDoorRa[3], IDB_DOOR_RA_3); 
+	LoadPic(m_pDoorBlack[1], IDB_DOOR_BLACK_1);
+	LoadPicAndScale(m_pDoorBlack[2], IDB_DOOR_BLACK_1, false);
+	LoadPicAndScale(m_pDoorBlack[3], IDB_DOOR_BLACK_1, true);
 	LoadPic(m_pDoorWoodSmashed[1], IDB_DOOR_SMASHED_1);
 	LoadPic(m_pDoorWoodSmashed[2], IDB_DOOR_SMASHED_2);
 	LoadPic(m_pDoorWoodSmashed[3], IDB_DOOR_SMASHED_3);

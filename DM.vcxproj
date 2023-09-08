@@ -339,6 +339,7 @@
     <Image Include="res\DM.ico" />
     <Image Include="res\DMDoc.ico" />
     <Image Include="res\Door\DoorSwitch.bmp" />
+    <Image Include="res\Door\Door_Black_1.bmp" />
     <Image Include="res\Door\Door_Frame_0_Front.bmp" />
     <Image Include="res\Door\Door_Frame_1_Left.bmp" />
     <Image Include="res\Door\Door_Frame_2_Left.bmp" />

@@ -1736,6 +1736,9 @@
     <Image Include="res\WallDeco\WallDeco_0-Left.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Door\Door_Black_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

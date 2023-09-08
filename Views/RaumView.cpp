@@ -387,15 +387,17 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 		if (((xxx == 4) && (ebene == 1)) ||
 			((xxx > 1) && (ebene == 2)) ||
 			(ebene == 3)) {
-			if (m_pWallDecoPic->DrawNearFloor(graphicTypeFront))
+			bool drawNearFloor = m_pWallDecoPic->DrawNearFloor(graphicTypeFront);
+			if (drawNearFloor)
 				centerFrontWall = m_pWallPic->GetBottomCenterFromFrontWall(xxx, ebene);
 			else
 				centerFrontWall = m_pWallPic->GetCenterFromFrontWall(xxx, ebene);
+
 			if (bmpDecoFront && centerFrontWall.x > 0 && centerFrontWall.y > 0) {
 				cdc->SelectObject(bmpDecoFront);
 				bmpDecoFront->GetBitmap(&bmpDecoInfo);
 				int decoPosX = posWall.x + centerFrontWall.x - (int)(bmpDecoInfo.bmWidth * faktor);
-				int decoPosY = posWall.y + centerFrontWall.y - (int)(bmpDecoInfo.bmHeight * faktor) / 2;
+				int decoPosY = posWall.y + centerFrontWall.y - (int)(bmpDecoInfo.bmHeight * faktor) / (drawNearFloor ? 1 : 2);
 				isBigContainer = ((graphicTypeFront == SquareAlcove ||
 					graphicTypeFront == ArchedAlcove ||
 					graphicTypeFront == ViAltar ||

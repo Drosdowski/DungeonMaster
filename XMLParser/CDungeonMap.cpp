@@ -185,7 +185,7 @@ CField* CDungeonMap::ParseDoor(TiXmlElement* rootNode, VEKTOR pos, int etage) {
 		parentElement = parentElement->NextSiblingElement();
 
 	}
-	return new CField(pos, new CDoor(attribute, m_doorDecorationTypes[etage][attribute.ornateId], (orientation != 0)));
+	return new CField(pos, new CDoor(attribute, m_doorDecorationTypes[etage][attribute.ornateId - 1], (orientation != 0)));
 }
 
 CField* CDungeonMap::ParseTrickWall(TiXmlElement* rootNode, VEKTOR pos) {

@@ -30,6 +30,7 @@ private:
 	CBitmap* m_pDoorIronFull[4];
 	CBitmap* m_pDoorWood[4];
 	CBitmap* m_pDoorRa[4];
+	CBitmap* m_pDoorBlack[4];
 	CBitmap* m_pDoorWoodSmashed[4];
 
 };
