@@ -62,6 +62,10 @@ private:
 	void ParseDungeon(TiXmlElement* rootNode);
 	void ParseWallDecorationGraphics(TiXmlElement* rootNode, int etage);
 	void ParseWallDecorationGraphic(TiXmlElement* rootNode, int etage);
+	void ParseFloorDecorationGraphics(TiXmlElement* rootNode, int etage);
+	void ParseFloorDecorationGraphic(TiXmlElement* rootNode, int etage);
+	void ParseDoorDecorationGraphics(TiXmlElement* rootNode, int etage);
+	void ParseDoorDecorationGraphic(TiXmlElement* rootNode, int etage);
 	void ParseTiles(TiXmlElement* rootNode, int etage);
 	void ParseTile(TiXmlElement* rootNode, int etage);
 	void ParseItems(TiXmlElement* rootNode, VEKTOR coords, bool initDungeon);
@@ -85,7 +89,7 @@ private:
 	void LoadMaps(TiXmlElement* maps);
 	void LoadTile(TiXmlElement* tile, int index);
 
-	CField* ParseDoor(TiXmlElement* rootNode, VEKTOR pos);
+	CField* ParseDoor(TiXmlElement* rootNode, VEKTOR pos, int etage);
 	CField* ParseStairs(TiXmlElement* rootNode, VEKTOR pos);
 	CField* ParsePit(TiXmlElement* rootNode, VEKTOR pos);
 	CField* ParseTeleport(TiXmlElement* rootNode, VEKTOR pos);
@@ -129,6 +133,8 @@ private:
 	CCreatureAttributes* m_creatureAtt = NULL;
 	CTextAttributes* m_pTextInfos = NULL;
 	WallDecorationType** m_wallDecorationTypes = NULL;
+	FloorDecorationType** m_floorDecorationTypes = NULL;
+	DoorDecorationType** m_doorDecorationTypes = NULL;
 	CItemInfos* m_pItemInfos = NULL;
 	CMonsterInfos* m_pMonsterInfos = NULL;
 

@@ -43,12 +43,18 @@ CDungeonMap::~CDungeonMap()
 	for (int z = 0; z < FELD_MAX_Z; z++) {
 		if (m_wallDecorationTypes && m_wallDecorationTypes[z])
 			delete m_wallDecorationTypes[z];
+		if (m_floorDecorationTypes && m_floorDecorationTypes[z])
+			delete m_floorDecorationTypes[z];
+		if (m_doorDecorationTypes && m_doorDecorationTypes[z])
+			delete m_doorDecorationTypes[z];
 		for (int i = 0; i < m_LevelWidth[z]; i++)
 			for (int j = 0; j < m_LevelHeight[z]; j++) {
 				delete m_pFeld[i][j][z];
 			}
 	}
 	delete m_wallDecorationTypes;
+	delete m_floorDecorationTypes;
+	delete m_doorDecorationTypes;
 		
 	delete[] m_doorAtt;
 	delete[] m_miscellaneousAtt;
@@ -157,9 +163,9 @@ CField* CDungeonMap::ParseTeleport(TiXmlElement* rootNode, VEKTOR pos) {
 }
 
 
-CField* CDungeonMap::ParseDoor(TiXmlElement* rootNode, VEKTOR pos) {
+CField* CDungeonMap::ParseDoor(TiXmlElement* rootNode, VEKTOR pos, int etage) {
 	int orientation;
-	CDoorAttributes attribute;
+	CDoorAttributes attribute = {};
 	rootNode->QueryIntAttribute("orientation", &orientation);
 	
 	TiXmlElement* parentElement = rootNode->FirstChildElement();
@@ -179,7 +185,7 @@ CField* CDungeonMap::ParseDoor(TiXmlElement* rootNode, VEKTOR pos) {
 		parentElement = parentElement->NextSiblingElement();
 
 	}
-	return new CField(pos, new CDoor(attribute, (orientation != 0)));
+	return new CField(pos, new CDoor(attribute, m_doorDecorationTypes[etage][attribute.ornateId], (orientation != 0)));
 }
 
 CField* CDungeonMap::ParseTrickWall(TiXmlElement* rootNode, VEKTOR pos) {
@@ -219,7 +225,7 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 
 	if (iFieldType == FeldTyp::DOOR)
 	{
-		m_pFeld[x][y][etage] = ParseDoor(rootNode, pos);
+		m_pFeld[x][y][etage] = ParseDoor(rootNode, pos, etage);
 	}
 	else if (iFieldType == FeldTyp::STAIRS) {
 		m_pFeld[x][y][etage] = ParseStairs(rootNode, pos);
@@ -593,6 +599,48 @@ void CDungeonMap::ParseWallDecorationGraphics(TiXmlElement* rootNode, int etage)
 	}
 }
 
+void CDungeonMap::ParseFloorDecorationGraphics(TiXmlElement* rootNode, int etage) {
+	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "floor_decoration_graphic") == 0)
+		{
+			ParseFloorDecorationGraphic(parentElement, etage);
+		}
+		parentElement = parentElement->NextSiblingElement();
+	}
+}
+void CDungeonMap::ParseFloorDecorationGraphic(TiXmlElement* rootNode, int etage) {
+	int index;
+	rootNode->QueryIntAttribute("index", &index);
+	int type;
+	rootNode->QueryIntAttribute("type", &type);
+
+	m_floorDecorationTypes[etage][index] = (FloorDecorationType)type;
+}
+void CDungeonMap::ParseDoorDecorationGraphics(TiXmlElement* rootNode, int etage) {
+	TiXmlElement* parentElement = rootNode->FirstChildElement();
+	while (parentElement)
+	{
+		const char* parent = parentElement->Value();
+		if (strcmp(parent, "door_decoration_graphic") == 0)
+		{
+			ParseDoorDecorationGraphic(parentElement, etage);
+		}
+		parentElement = parentElement->NextSiblingElement();
+	}
+}
+void CDungeonMap::ParseDoorDecorationGraphic(TiXmlElement* rootNode, int etage) {
+	int index;
+	rootNode->QueryIntAttribute("index", &index);
+	int type;
+	rootNode->QueryIntAttribute("type", &type);
+
+	m_doorDecorationTypes[etage][index] = (DoorDecorationType)type;
+}
+
+
 void CDungeonMap::ParseTiles(TiXmlElement* tiles, int etage) {
 	TiXmlElement* parentElement = tiles->FirstChildElement();
 	while (parentElement)
@@ -609,6 +657,8 @@ void CDungeonMap::ParseTiles(TiXmlElement* tiles, int etage) {
 
 void CDungeonMap::ParseMap(TiXmlElement* rootNode, int etage) {
 	m_wallDecorationTypes[etage] = NULL;
+	m_floorDecorationTypes[etage] = NULL;
+	m_doorDecorationTypes[etage] = NULL;
 	TiXmlElement* parentElement = rootNode->FirstChildElement();
 	while (parentElement)
 	{
@@ -617,6 +667,14 @@ void CDungeonMap::ParseMap(TiXmlElement* rootNode, int etage) {
 		{
 			m_wallDecorationTypes[etage] = new WallDecorationType[15];
 			ParseWallDecorationGraphics(parentElement, etage);
+		} else if (strcmp(parent, "floor_decoration_graphics") == 0)
+		{
+			m_floorDecorationTypes[etage] = new FloorDecorationType[15];
+			ParseFloorDecorationGraphics(parentElement, etage);
+		} else if (strcmp(parent, "door_decoration_graphics") == 0)
+		{
+			m_doorDecorationTypes[etage] = new DoorDecorationType[15];
+			ParseDoorDecorationGraphics(parentElement, etage);
 		}
 		parentElement = parentElement->NextSiblingElement();
 	}
@@ -663,7 +721,7 @@ void CDungeonMap::ParseDoorObjects(TiXmlElement* rootNode) {
 			CDoorAttributes attribute;
 			parentElement->QueryIntAttribute("index", &index);
 			parentElement->QueryIntAttribute("type", &type);
-			parentElement->QueryIntAttribute("ornate", &attribute.ornate);
+			parentElement->QueryIntAttribute("ornate", &attribute.ornateId);
 			parentElement->QueryIntAttribute("button", &button);
 			parentElement->QueryIntAttribute("fireball", &fireball);
 			parentElement->QueryIntAttribute("force", &force);
@@ -1013,6 +1071,8 @@ void CDungeonMap::ParseDungeon(TiXmlElement* rootNode) {
 	m_teleportAtt = new TeleporterAttributes[m_countTeleporters];
 	rootNode->QueryIntAttribute("number_of_maps", &m_countFloors);
 	m_wallDecorationTypes = new WallDecorationType * [m_countFloors];
+	m_floorDecorationTypes = new FloorDecorationType * [m_countFloors];
+	m_doorDecorationTypes = new DoorDecorationType * [m_countFloors];
 	rootNode->QueryIntAttribute("number_of_creatures", &m_countCreatures);
 	m_creatureAtt = new CCreatureAttributes[m_countCreatures];
 	rootNode->QueryIntAttribute("number_of_texts", &m_countTexts);

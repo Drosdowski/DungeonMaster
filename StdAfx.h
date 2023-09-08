@@ -194,6 +194,22 @@ enum FloorDecorationType
 	FloorCrack = 2 // typ 6
 };
 
+enum DoorDecorationType 
+{
+	SqareGrid = 0,
+	IronBars = 1,
+	Jewels = 2,
+	WoodenBars = 3,
+	Arched = 4,
+	BlockLock = 5,
+	Corner = 6,
+	Black = 7,
+	RedTriangle = 8,
+	Triangle = 9,
+	RaDoor = 10,
+	IronDoorDamages = 11
+};
+
 enum FeldTyp {
 	WALL = 0,
 	EMPTY = 1,

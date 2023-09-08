@@ -1,11 +1,12 @@
 #include "stdafx.h"
 #include "CDoor.h"
 
-CDoor::CDoor(CDoorAttributes attribute, bool doorFrameEastAndWest) {
+CDoor::CDoor(CDoorAttributes attribute, DoorDecorationType ornate, bool doorFrameEastAndWest) {
 	m_attributes = attribute;
 	m_state = CLOSED;
 	m_bottomHeight = 0;
 	m_doorFrameEastAndWest = doorFrameEastAndWest;
+	m_ornate = ornate;
 }
 
 void CDoor::ContinueMoving() {

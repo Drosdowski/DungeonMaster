@@ -99,6 +99,7 @@ protected:
 	bool ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators, COMPASS_DIRECTION dir, CSize size);
 	void ParseClickDoorButton(CPoint point, CField* FeldVorHeld);
 	void ParseClickFountain(CPoint point, CField* FeldVorHeld, COMPASS_DIRECTION dir);
+	// void ParseClickMirror(CPoint point, CField* FeldVorHeld);
 
 	void InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextActuator);
 	void ChangeMouseCursor();

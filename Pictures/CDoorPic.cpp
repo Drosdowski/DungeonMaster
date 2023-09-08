@@ -32,11 +32,11 @@ CBitmap* CDoorPic::GetDoorFrontPic(CDoor* pDoor, int ebene) {
 	if (ebene > 0)
 	{
 		if (pDoor->getType() == CDoorAttributes::DoorType::Iron)
+		{
 			return m_pDoorIron[ebene];
-		else if (pDoor->getType() == CDoorAttributes::DoorType::FullIron)
-			return m_pDoorIronFull[ebene];
-		else if (pDoor->getType() == CDoorAttributes::DoorType::Ra)
-			return m_pDoorRa[ebene];
+			/*return m_pDoorIronFull[ebene];
+			return m_pDoorRa[ebene];*/
+		}
 		else if (pDoor->getType() == CDoorAttributes::DoorType::Wood)
 			if (pDoor->getState() == CDoor::DESTROYED)
 			{

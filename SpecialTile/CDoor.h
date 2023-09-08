@@ -11,8 +11,8 @@ public:
 		CLOSED = 4,  // maps needs 0 / 4.
 		DESTROYED = 5
 	};
-	
-	CDoor(CDoorAttributes attribute, bool doorFrameEastAndWest);
+
+	CDoor(CDoorAttributes attribute, DoorDecorationType ornate, bool doorFrameEastAndWest);
 
 	DoorState getState() { return m_state; }
 	void SetState(int value);
@@ -32,6 +32,7 @@ public:
 
 private:
 	DoorState m_state;
+	DoorDecorationType m_ornate;
 	CDoorAttributes m_attributes;
 	int m_bottomHeight = 0;
 	bool m_doorFrameEastAndWest; // Wall at 00 / 02

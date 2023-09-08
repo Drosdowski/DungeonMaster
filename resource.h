@@ -271,6 +271,7 @@
 #define IDB_BITMAP_E3MF                 1034
 #define IDB_BITMAP_E3R                  1035
 #define IDB_BITMAP_E3RF                 1036
+#define IDB_WALLDECO_0F                 2000
 #define IDB_WALLDECO_1F                 2001
 #define IDB_WALLDECO_2F                 2002
 #define IDB_WALLDECO_3F                 2003
@@ -308,6 +309,9 @@
 #define IDB_WALLDECO_37F                2037
 #define IDB_WALLDECO_38F                2038
 #define IDB_WALLDECO_39F                2039
+#define IDB_WALLDECO_40F                2040
+#define IDB_WALLDECO_41F                2041
+#define IDB_WALLDECO_42F                2042
 #define IDB_WALLDECO_43F                2043
 #define IDB_WALLDECO_44F                2044
 #define IDB_WALLDECO_45F                2045
@@ -321,6 +325,11 @@
 #define IDB_WALLDECO_53F                2053
 #define IDB_WALLDECO_54F                2054
 #define IDB_WALLDECO_55F                2055
+#define IDB_WALLDECO_56F                2056
+#define IDB_WALLDECO_57F                2057
+#define IDB_WALLDECO_58F                2058
+#define IDB_WALLDECO_59F                2059
+#define IDB_WALLDECO_0L                 2100
 #define IDB_WALLDECO_1L                 2101
 #define IDB_WALLDECO_2L                 2102
 #define IDB_WALLDECO_3L                 2103
@@ -358,6 +367,9 @@
 #define IDB_WALLDECO_37L                2137
 #define IDB_WALLDECO_38L                2138
 #define IDB_WALLDECO_39L                2139
+#define IDB_WALLDECO_40L                2140
+#define IDB_WALLDECO_41L                2141
+#define IDB_WALLDECO_42L                2142
 #define IDB_WALLDECO_43L                2143
 #define IDB_WALLDECO_44L                2144
 #define IDB_WALLDECO_45L                2145
@@ -371,13 +383,17 @@
 #define IDB_WALLDECO_53L                2153
 #define IDB_WALLDECO_54L                2154
 #define IDB_WALLDECO_55L                2155
+#define IDB_WALLDECO_56L                2156
+#define IDB_WALLDECO_57L                2157
+#define IDB_WALLDECO_58L                2158
+#define IDB_WALLDECO_59L                2159
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        595
+#define _APS_NEXT_RESOURCE_VALUE        627
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

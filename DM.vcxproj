@@ -498,6 +498,8 @@
     <Image Include="res\Spells\Teleporter.bmp" />
     <Image Include="res\Steine.bmp" />
     <Image Include="res\walldeco\bitmap1.bmp" />
+    <Image Include="res\WallDeco\WallDeco_0-Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_0_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_12_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_12_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_13_Front.bmp" />
@@ -530,6 +532,12 @@
     <Image Include="res\WallDeco\WallDeco_39_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_3_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_3_Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_40_Front.bmp" />
+    <Image Include="res\WallDeco\WallDeco_40_Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_41_Front.bmp" />
+    <Image Include="res\WallDeco\WallDeco_41_Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_42_Front.bmp" />
+    <Image Include="res\WallDeco\WallDeco_42_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_43Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_43_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_44_Left.bmp" />
@@ -554,6 +562,14 @@
     <Image Include="res\WallDeco\WallDeco_54_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_55_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_55_Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_56_Front.bmp" />
+    <Image Include="res\WallDeco\WallDeco_56_Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_57_Front.bmp" />
+    <Image Include="res\WallDeco\WallDeco_57_Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_58_Front.bmp" />
+    <Image Include="res\WallDeco\WallDeco_58_Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_59-Left.bmp" />
+    <Image Include="res\WallDeco\WallDeco_59_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_6_Front.bmp" />
     <Image Include="res\WallDeco\WallDeco_6_Left.bmp" />
     <Image Include="res\WallDeco\WallDeco_7_Front.bmp" />
