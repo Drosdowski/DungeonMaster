@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Pictures\ChampionPortrait.cpp" />
     <ClCompile Include="Consts\MonsterConst.cpp" />
     <ClCompile Include="Consts\AttackConst.cpp" />
     <ClCompile Include="Attributes\ContainerAttributes.cpp" />
@@ -231,6 +232,7 @@
     <ResourceCompile Include="DM.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Pictures\ChampionPortrait.h" />
     <ClInclude Include="Consts\AttackConst.h" />
     <ClInclude Include="Consts\MonsterConst.h" />
     <ClInclude Include="Attributes\ContainerAttributes.h" />

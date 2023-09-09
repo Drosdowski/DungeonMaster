@@ -339,9 +339,12 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 			graphicTypeFront = pWallDeco->GetDecoType();
 		}
 	}
-	if (graphicTypeFront != None)
+	if (graphicTypeFront != None) {
 		bmpDecoFront = m_pWallDecoPic->GetPicFront(graphicTypeFront);
-
+		if (graphicTypeFront == WallDecorationType::ChampionMirror && ebene == 1 && xx == 0) {
+			// TODO Hero Picture
+		}
+	}
 
 	std::deque<CActuator*> actuatorsSide;
 	COMPASS_DIRECTION richtSide;
