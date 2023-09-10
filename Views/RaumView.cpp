@@ -128,7 +128,7 @@ void CRaumView::DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene) {
 	
 }
 
-void CRaumView::DrawSquarePressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene, CActuator* pActuator) {
+void CRaumView::DrawSquarePressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene) {
 	BITMAP bmpInfo;
 	CBitmap* bmp = m_pPressurePadPic->GetPressurePadPic(xxx, ebene);
 	if (bmp) {
@@ -401,10 +401,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 				isBigContainer = ((graphicTypeFront == SquareAlcove ||
 					graphicTypeFront == ArchedAlcove ||
 					graphicTypeFront == ViAltar ||
-					graphicTypeFront == Fountain ));
-
-				if (!isBigContainer)
-					decoPosY -= (int)(bmpDecoInfo.bmHeight * faktor) / 2;
+					graphicTypeFront == Fountain));
 
 				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
 
@@ -613,7 +610,7 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 	std::deque<CActuator*> actuators = pField->GetActuator((COMPASS_DIRECTION)0);  // Boden hat immer POsition 0.
 	for (CActuator* actuator : actuators) {
 		if (actuator->GetGraphic() == 3 || actuator->GetGraphic() == 1 || actuator->GetGraphic() == 4) {
-			DrawSquarePressurePad(pDC, cdc, xxx, ebene, actuator);
+			DrawSquarePressurePad(pDC, cdc, xxx, ebene);
 		}
 	}
 
@@ -627,15 +624,18 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 		else if (floorDeco->GetDecoType() == FloorPuddle) {
 			decoBmp = m_pOrnatePic->GetPuddlePic(ebene, xxx);
 		}
-		CPoint center = m_pPressurePadPic->GetPos(xxx, ebene);
-		if (decoBmp && center.x > 0 && center.y > 0) {
-			double faktor = m_pPictures->getFaktor(ebene);
-			cdc->SelectObject(decoBmp);
-			decoBmp->GetBitmap(&bmpDecoInfo);
-			int decoPosX = center.x - (int)(bmpDecoInfo.bmWidth * faktor);
-			int decoPosY = center.y - (int)(bmpDecoInfo.bmHeight * faktor);
+		if (decoBmp)
+		{
+			CPoint center = m_pPressurePadPic->GetPos(xxx, ebene);
+			if (decoBmp && center.x > 0 && center.y > 0) {
+				double faktor = m_pPictures->getFaktor(ebene);
+				cdc->SelectObject(decoBmp);
+				decoBmp->GetBitmap(&bmpDecoInfo);
+				int decoPosX = center.x - (int)(bmpDecoInfo.bmWidth * faktor);
+				int decoPosY = center.y - (int)(bmpDecoInfo.bmHeight * faktor);
 
-			DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
+				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
+			}
 		}
 	}
 

@@ -386,7 +386,7 @@ void CDungeonMap::ParseCloth(TiXmlElement* clothItem, VEKTOR coords) {
 void CDungeonMap::ParseFloorDecoration(TiXmlElement* decoItem, VEKTOR coords) {
 	int graphic;
 	decoItem->QueryIntAttribute("graphic", &graphic);
-	CFloorDecoration* deco = new CFloorDecoration((FloorDecorationType)(graphic-1));
+	CFloorDecoration* deco = new CFloorDecoration(m_floorDecorationTypes[coords.z][graphic]);
 	m_pFeld[coords.x][coords.y][coords.z]->PutFloorDeco(deco);
 }
 
@@ -578,9 +578,8 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 }
 
 void CDungeonMap::ParseWallDecorationGraphic(TiXmlElement* rootNode, int etage) {
-	int index;
+	int index, type;
 	rootNode->QueryIntAttribute("index", &index);
-	int type;
 	rootNode->QueryIntAttribute("type", &type);
 	
 	m_wallDecorationTypes[etage][index] = (WallDecorationType)type;
@@ -612,12 +611,11 @@ void CDungeonMap::ParseFloorDecorationGraphics(TiXmlElement* rootNode, int etage
 	}
 }
 void CDungeonMap::ParseFloorDecorationGraphic(TiXmlElement* rootNode, int etage) {
-	int index;
+	int index, type;
 	rootNode->QueryIntAttribute("index", &index);
-	int type;
 	rootNode->QueryIntAttribute("type", &type);
 
-	m_floorDecorationTypes[etage][index] = (FloorDecorationType)type;
+	m_floorDecorationTypes[etage][index] = (FloorDecorationType)(type + 1);
 }
 void CDungeonMap::ParseDoorDecorationGraphics(TiXmlElement* rootNode, int etage) {
 	TiXmlElement* parentElement = rootNode->FirstChildElement();
@@ -632,9 +630,8 @@ void CDungeonMap::ParseDoorDecorationGraphics(TiXmlElement* rootNode, int etage)
 	}
 }
 void CDungeonMap::ParseDoorDecorationGraphic(TiXmlElement* rootNode, int etage) {
-	int index;
+	int index, type;
 	rootNode->QueryIntAttribute("index", &index);
-	int type;
 	rootNode->QueryIntAttribute("type", &type);
 
 	m_doorDecorationTypes[etage][index] = (DoorDecorationType)type;
@@ -1127,7 +1124,6 @@ WallDecorationType CDungeonMap::GetWallDecorationType(int ebene, int graphic)
 	else
 		return None;
 }
-
 
 void CDungeonMap::SaveGame(CGrpHeld* pGrpHeroes) {
 	TiXmlDocument doc; // ("Maps\\SaveGame.XML")

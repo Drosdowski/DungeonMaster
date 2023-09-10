@@ -290,7 +290,7 @@ void CPictures::ZeichneScroll(CDC* pDC, CScroll* scroll) {
 	pDC->SetTextColor(SCHWARZ);
 	pDC->SetBkColor(WEISSER);
 	CRect r = CRect(pos.x + 40, 192, pos.x + 210, 290);
-	pDC->DrawText(scroll->GetText(), r, ETO_CLIPPED | ETO_OPAQUE);
+	pDC->DrawText(scroll->GetText(), r, ETO_CLIPPED | ETO_OPAQUE | DT_CENTER);
 }
 
 

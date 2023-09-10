@@ -101,7 +101,7 @@ protected:
 	void DrawFloorPit(CDC* pDC, CDC* cdc, int xxx, int ebene, CPit* pit);
 	void DrawCeilingPit(CDC* pDC, CDC* cdc, int xxx, int ebene, CPit* pit);
 	void DrawTeleporter(CDC* pDC, CDC* cdc, int xxx, int ebene, CTeleporter* tele);
-	void DrawSquarePressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene, CActuator* pActuator);
+	void DrawSquarePressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene);
 	void DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pField);
 	void DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene);
 	void DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTION richt, CField* pField);

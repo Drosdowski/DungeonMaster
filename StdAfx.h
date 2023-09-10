@@ -189,9 +189,16 @@ enum WallDecorationType
 
 enum FloorDecorationType
 {
-	FloorMoss = 0, // typ 2
-	FloorPuddle = 1, // typ 8
-	FloorCrack = 2 // typ 6
+	FootPrints = 0,
+	Square = 1,
+	SquarePressurePad = 2,
+	FloorMoss = 3,
+	RoundGrate = 4,
+	RoundPressurePlate = 5,
+	BlackFlamePit = 6,
+	FloorCrack = 7, 
+	TinyPressurePad = 8,
+	FloorPuddle = 9
 };
 
 enum DoorDecorationType 
