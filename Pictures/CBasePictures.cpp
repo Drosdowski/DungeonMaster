@@ -48,6 +48,7 @@ void CBasePictures::LoadPicAndScale(CBitmap*& mPic, int ID, bool maximum) {
 	targetDC.StretchBlt(0, 0, newWidth, newHeight, &sourceDC,
 		0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, SRCCOPY);
 	
+	delete bmp;
 	DeleteDC(sourceDC);
 	DeleteDC(targetDC);
 
