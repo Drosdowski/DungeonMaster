@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "CTeleporter.h"
+#include "..\CalculationHelper\CHelpfulValues.h"
 #include "..\DMDoc.h"
 #include "..\Mobs\MobGroups\GrpHeld.h"
 #include "..\Mobs\MobGroups\GrpMonster.h"
@@ -53,8 +54,8 @@ void CTeleporter::Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos, bool 
 	// Teleport Heroes
 	if (getScope() == TeleporterAttributes::Scope::Items_Party ||
 		getScope() == TeleporterAttributes::Scope::All) {
-		if (heroPos.x == telePos.x && heroPos.y == telePos.y && heroPos.z == telePos.z) { // todo vektor equal function
-			if (!(heroPos.x == toPos.x && heroPos.y == toPos.y && heroPos.z == toPos.z)) {
+		if (CHelpfulValues::VektorEqual(heroPos, telePos)) { 
+			if (!(CHelpfulValues::VektorEqual(heroPos, toPos))) {
 				pGrpHelden->Laufen(toPos, true);
 				if (!soundPlayed && m_attributes.sound) {
 					pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Teleporting.mp3");
