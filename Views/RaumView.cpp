@@ -40,6 +40,7 @@
 #include "Pictures\Creatures\CMonsterPic.h"
 #include "Pictures\Items3D\CItem3DPic.h"
 #include "Pictures\MagicMissilePic.h"
+#include "Pictures\ChampionPortrait.h"
 #include "Mobs\Monster.h"
 #include "Mobs\MobGroups\GrpMonster.h"
 #include "Mobs\MobGroups\GrpHeld.h"
@@ -86,6 +87,7 @@ CRaumView::CRaumView()
 	m_pMonsterPic = NULL;
 	m_pItem3DPic = NULL;
 	m_pMagicMissilePic = NULL;
+	m_pChampionPortraits = NULL;
 }
 
 CRaumView::~CRaumView()
@@ -105,6 +107,7 @@ CRaumView::~CRaumView()
 	delete m_pMonsterPic;
 	delete m_pItem3DPic;
 	delete m_pMagicMissilePic;
+	delete m_pChampionPortraits;
 	delete m_pMap;
 }
 
@@ -340,10 +343,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 		}
 	}
 	if (graphicTypeFront != None) {
-		bmpDecoFront = m_pWallDecoPic->GetPicFront(graphicTypeFront);
-		if (graphicTypeFront == WallDecorationType::ChampionMirror && ebene == 1 && xx == 0) {
-			// TODO Hero Picture
-		}
+		bmpDecoFront = m_pWallDecoPic->GetPicFront(graphicTypeFront);		
 	}
 
 	std::deque<CActuator*> actuatorsSide;
@@ -414,6 +414,21 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 					if (pile.size() > 0) {
 						COMPASS_DIRECTION heroDir = m_pMap->GetHeroes()->GetDirection();
 						DrawPile(pDC, cdc, xxx, ebene, MIDDLE, heroDir, pile, isBigContainer);
+					}
+				}
+				else if (graphicTypeFront == ChampionMirror) {
+					if (ebene == 1 && xx == 0) {
+						// Hero Picture
+						CBitmap* heroPic = m_pChampionPortraits->GetChampions();
+						int heroId = actuatorsFront.back()->GetData();
+						CPoint koord = m_pChampionPortraits->GetKoords(heroId);
+
+						CDC tmpdc;
+						tmpdc.CreateCompatibleDC(pDC);
+						tmpdc.SelectObject(heroPic);
+
+						pDC->TransparentBlt(decoPosX+16*2, decoPosY+6*2, 32*2, 29*2, &tmpdc, koord.x, koord.y, 32, 29, TRANS_GRE);
+						tmpdc.DeleteDC();
 					}
 				}
 			}
@@ -1718,6 +1733,8 @@ void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
 	m_pMonsterPic = new CMonsterPic(pDC);
 	m_pItem3DPic = new CItem3DPic(pDC);
 	m_pMagicMissilePic = new CMagicMissilePic(pDC);
+	m_pChampionPortraits = new CChampionPortrait(pDC);
+
 	
 	m_pItemInfos = new CItemInfos();
 	m_pAttackInfos = new CAttackInfos();

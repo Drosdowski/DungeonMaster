@@ -158,9 +158,9 @@ CPoint CWallPic::GetCenterFromFrontWall(int x, int ebene) {
 	case 0:
 		break;
 	case 1:
-		if (x == 2) { xKoord = 0; yKoord = 40 * 2; }
-		if (x == 3) { xKoord = 160 * 2; yKoord = 40 * 2; }
-		if (x == 4) { xKoord = 80 * 2; yKoord = 40 * 2; }
+		if (x == 2) { xKoord = 0; yKoord = 36 * 2; }
+		if (x == 3) { xKoord = 160 * 2; yKoord = 36 * 2; }
+		if (x == 4) { xKoord = 80 * 2; yKoord = 36 * 2; }
 		break;
 	case 2:
 		if (x == 2) { xKoord = 10 * 2; yKoord = 25 * 2; }

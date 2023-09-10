@@ -32,6 +32,7 @@ class CTeleportPic;
 class CItem3DPic;
 class CMonsterPic;
 class CMagicMissilePic;
+class CChampionPortrait;
 class CHelpfulValues;
 class CItem;
 class CGrpHeld;
@@ -89,6 +90,7 @@ protected:
 	CMonsterPic* m_pMonsterPic;
 	CItem3DPic* m_pItem3DPic;
 	CMagicMissilePic* m_pMagicMissilePic;
+	CChampionPortrait* m_pChampionPortraits;
 
 	VEKTOR MonsterMoveOrAttack(CGrpMonster* pGrpMon);
 	void DrawPile(CDC* pDC, CDC* cdc, int xx, int ebene, SUBPOS_ABSOLUTE SubPos, COMPASS_DIRECTION heroDir, std::deque<CItem*> pile, bool center);
