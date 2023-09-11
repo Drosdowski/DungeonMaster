@@ -359,6 +359,8 @@ void CDMView::ParseClickAir(CPoint point) {
 }
 
 bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators, COMPASS_DIRECTION dir, CSize size) {
+	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+	
 	std::deque<CActuator*> actuatorsAtPosition;
 	COMPASS_DIRECTION pos;
 	for (CActuator* actuator : actuators) {
@@ -376,7 +378,6 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 			CActuator* currentActuator = actuatorsAtPosition.back();
 			CActuator* nextActuator = actuatorsAtPosition.front();
 			CActuator::ActionTarget actionTarget = currentActuator->GetActionTarget();
-			CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 			CItem* itemInHand = grpHelden->GetItemInHand();
 			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
 			SUBPOS_ABSOLUTE posActuator = (SUBPOS_ABSOLUTE)dir;
@@ -449,6 +450,10 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 					return false;
 				}
 
+			}
+			else if (type == CActuator::ChampionMirror) {
+				// xxx
+				grpHelden->InitHeld(1);
 			}
 			else {
 				// Alkoven & co
@@ -632,41 +637,33 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 		if (m_iModus == MOD_LAUFEN)
 		{
 			ParseClickArrows(point);
-			if (grpHelden && grpHelden->GetNumberOfHeroes() > 0)
-			{
-				ParseClickFloor(point);
-				ParseClickMagic(point);
-				ParseClickAction(point);
-				if (!ParseClickPortraitHands(point, false))
-					ParseClickPortrait(point);
+			ParseClickFloor(point);
+			ParseClickMagic(point);
+			ParseClickAction(point);
+			if (!ParseClickPortraitHands(point, false))
+				ParseClickPortrait(point);
 
-				// Unterscheiden: Anklicken oder werfen?
-				CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
-				if (FeldVorHeld) {
-					ParseClickDoorButton(point, FeldVorHeld);
-					if (FeldVorHeld->BlockedToPut()) {
-						COMPASS_DIRECTION dir = CHelpfulValues::OppositeDirection(grpHelden->GetDirection());
-						std::deque<CActuator*> actuators = (FeldVorHeld->GetActuator(dir));
-						if (!actuators.empty()) {
-							CSize size = m_pRaumView->GetSizeOfFrontDeco(FeldVorHeld, dir);
 
-							if (ParseClickActuator(point, actuators, dir, size))
-								FeldVorHeld->RotateActuators(dir);
-						}
-						ParseClickFountain(point, FeldVorHeld, dir);
+			// Unterscheiden: Anklicken oder werfen?
+			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
+			if (FeldVorHeld) {
+				ParseClickDoorButton(point, FeldVorHeld);
+				if (FeldVorHeld->BlockedToPut()) {
+					COMPASS_DIRECTION dir = CHelpfulValues::OppositeDirection(grpHelden->GetDirection());
+					std::deque<CActuator*> actuators = (FeldVorHeld->GetActuator(dir));
+					if (!actuators.empty()) {
+						CSize size = m_pRaumView->GetSizeOfFrontDeco(FeldVorHeld, dir);
 
+						if (ParseClickActuator(point, actuators, dir, size))
+							FeldVorHeld->RotateActuators(dir);
 					}
-					else {
-						ParseClickAir(point);
-					}
+					ParseClickFountain(point, FeldVorHeld, dir);
+
 				}
-
-
+				else {
+					ParseClickAir(point);
+				}
 			}
-
-			/*if (CScreenCoords::CheckHitDeco(point)) { // todo aufräumen
-				m_pRaumView->OnTrigger();
-			}*/
 
 		}
 		else if (m_iModus == MOD_RUCKSACK)

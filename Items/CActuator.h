@@ -20,7 +20,8 @@ public:
 		Slot = 4,
 		Gate = 5,
 		CreatureGen = 6,
-		Storage = 13
+		Storage = 13,
+		ChampionMirror = 127
 	};
 
 	CActuator(int index, COMPASS_DIRECTION position, VEKTOR target, ActionTypes actionTypes, ActionTarget actionTarget, ActuatorType type, int data, int graphic, int once_only, int delay, int action);
