@@ -22,6 +22,7 @@ public:
 // Implementierung
 public:
 	void InitHeld(int nr);
+	void RessurectHero(CString text);
 	
 	CHeld* GetHero(int iID) { return (CHeld*)m_pMember[iID]; }
 	CHeld* GetActiveHero() { return (CHeld*)m_pMember[m_iAktiverHeld]; }
@@ -59,7 +60,8 @@ public:
 	virtual ~CGrpHeld();
 
 private:
-	void closeCombat();
+	void CloseCombat();
+	void NewHero(CString strName, int nr);
 
 	// Generierte Nachrichtenzuordnungsfunktionen
 protected:

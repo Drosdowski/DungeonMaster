@@ -452,8 +452,9 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 
 			}
 			else if (type == CActuator::ChampionMirror) {
-				// xxx
-				grpHelden->InitHeld(1);
+				int id = currentActuator->GetData();
+				CString text = m_pRaumView->GetMap()->GetText(id);
+				grpHelden->RessurectHero(text);
 			}
 			else {
 				// Alkoven & co

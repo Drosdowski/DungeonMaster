@@ -75,17 +75,7 @@ void CGrpHeld::InitHeld(const int nr)
 		CString strName;
 		strName.Format("Held %i", nr);
 				
-		m_pMember[nr] = new CHeld(nr, strName);
-		m_iAktiverHeld = nr;
-
-		CHeld* pHeld = (CHeld*)m_pMember[nr];
-		pHeld->SetDirection(m_grpDirection);
-
-		SetNewCharOnNextFreePos(nr);
-
-		m_iAnzHelden++;
-		if (m_iAnzHelden == 1)
-			m_iAktiverZauberer = nr;
+		NewHero(strName, nr);
 
 	}
 	else {
@@ -93,6 +83,32 @@ void CGrpHeld::InitHeld(const int nr)
 		((CHeld*)m_pMember[m_iAktiverHeld])->setActive();
 	}
 }
+
+void CGrpHeld::NewHero(CString strName, int nr) {
+	m_pMember[nr] = new CHeld(nr, strName);
+	m_iAktiverHeld = nr;
+
+	CHeld* pHeld = (CHeld*)m_pMember[nr];
+	pHeld->SetDirection(m_grpDirection);
+
+	SetNewCharOnNextFreePos(nr);
+
+	m_iAnzHelden++;
+	if (m_iAnzHelden == 1)
+		m_iAktiverZauberer = nr;
+}
+
+void CGrpHeld::RessurectHero(CString text) {
+	int nr = 1;
+	while (m_pMember[nr] != NULL && nr < 5) {
+		nr++;
+	}
+	if (nr < 5) {
+		int newlinePos = text.Find(_T("\n"));
+		NewHero(text.Left(newlinePos), nr);
+	}
+}
+
 
 void CGrpHeld::Aktiviere(int n)
 {
