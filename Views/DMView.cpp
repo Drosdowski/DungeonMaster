@@ -31,6 +31,7 @@
 #include "..\Items/Container.h"
 #include "..\Items/WallDecoration.h"
 #include "..\Items\MagicMissile.h"
+#include "..\Items\Text.h"
 #include <cassert>
 
 #ifdef _DEBUG
@@ -452,8 +453,8 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 
 			}
 			else if (type == CActuator::ChampionMirror) {
-				int id = currentActuator->GetData();
-				CString text = m_pRaumView->GetMap()->GetText(id);
+				CField* field = m_pRaumView->GetMap()->GetField(grpHelden->GetVector());
+				CString text = field->GetFirstText(0)->GetText();
 				grpHelden->RessurectHero(text);
 			}
 			else {

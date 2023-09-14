@@ -1422,7 +1422,3 @@ void CDungeonMap::LoadTile(TiXmlElement* tile, int mapIndex) {
 	}
 
 }
-
-CString CDungeonMap::GetText(int id) {
-	return m_pTextInfos[id].text;
-}

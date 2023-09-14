@@ -41,7 +41,6 @@ public:
 	WallDecorationType GetWallDecorationType(int ebene, int graphic);
 	void SaveGame(CGrpHeld* pGrpHeroes);
 	void LoadGame(CGrpHeld* pGrpHeroes);
-	CString GetText(int id);
 
 private:
 
