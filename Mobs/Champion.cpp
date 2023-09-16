@@ -2,13 +2,12 @@
 #include "Champion.h"
 
 
-void CChampion::ParseVitalsFromText() {
+void CChampion::ParseVitalsFromText(CString block2) {
 	// AA = 00 ... AP = 15
 	// BA = 16 ... BP = 31
 	// CA = 32 ... CP = 47
 	// DA = 48 ... DP = 63  
 	// 
-	CString block2 = "DHCGCDCLCNCKCI";
 	int str = TupelToNumber(block2.Mid(2, 2));
 	vitals.str.Aktuell = str;
 	vitals.str.Max = str;
@@ -27,8 +26,6 @@ void CChampion::ParseVitalsFromText() {
 	int am = TupelToNumber(block2.Mid(12, 2));
 	vitals.am.Aktuell = am;
 	vitals.am.Max = am;
-
-
 	//																								  xxxxxxxxxxxx                           
 	// Syra: Novice Priest / Apprentice WIzard   38/35/43/45/42/40	=> 53/72/15		AADFACNAAAAP	DHCGCDCLCNCKCI	AAAAAAAAADBBACDD
 	// Chani: Novice Fighter / Apprentice WIzard 37/47/57/37/47/37  => 47/67/17		AACPACJOAABB	DJCFCPDJCFCPCF	BDACAAAAAAAADCDB
