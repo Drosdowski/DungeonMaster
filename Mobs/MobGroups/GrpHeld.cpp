@@ -30,7 +30,7 @@ CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 	for (int i = 1; i <= 4; i++)
 		m_pMember[i] = NULL;
 	//m_posPosition = pos;
-	m_posPosition = VEKTOR{ 2,7,0 }; // bei Monster Gruppe / orig. start position
+	m_posPosition = VEKTOR{ 10,5,0 }; // bei Monster Gruppe / orig. start position
 	//m_posPosition = VEKTOR{ 2,11,0 }; // viele items
 	// m_posPosition = VEKTOR{ 19,11,1 }; // bei Items
 	//m_posPosition = VEKTOR{ 14,8,1 }; // bei Stiefel

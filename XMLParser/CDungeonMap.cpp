@@ -40,7 +40,7 @@ CDungeonMap::~CDungeonMap()
 {
 	delete m_pEdgeWall;
 	delete m_pGrpHelden;
-	for (int z = 0; z < FELD_MAX_Z; z++) {
+	for (int z = 0; z < m_countFloors; z++) {
 		if (m_wallDecorationTypes && m_wallDecorationTypes[z])
 			delete m_wallDecorationTypes[z];
 		if (m_floorDecorationTypes && m_floorDecorationTypes[z])

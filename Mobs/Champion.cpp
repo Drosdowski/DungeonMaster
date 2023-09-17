@@ -2,8 +2,27 @@
 #include "Champion.h"
 
 CChampion::CChampion(CString text) {
-	int newlinePos = text.Find(_T("\n"));
-	m_name = text.Left(newlinePos);
+	int i = 0;
+	CStringArray saItems;
+	for (CString sItem = text.Tokenize("\n", i); i >= 0; sItem = text.Tokenize("\n", i))
+	{
+		saItems.Add(sItem);
+	}
+	int sub = 0;
+	m_name = saItems.GetAt(0);
+	if (saItems.GetSize() == 6)
+	{
+		m_subname = saItems.GetAt(1);
+	}
+	else {
+		sub = 1;
+	}
+	CString gender = saItems.GetAt(2-sub);
+	m_gender = (gender == "F" ? female : male);
+
+	CString block1 = saItems.GetAt(3 - sub);
+	ParseVitalsFromText(saItems.GetAt(4 - sub));
+	ParseLevelsFromText(saItems.GetAt(5 - sub));
 }
 
 void CChampion::ParseVitalsFromText(CString block2) {
@@ -13,23 +32,23 @@ void CChampion::ParseVitalsFromText(CString block2) {
 	// DA = 48 ... DP = 63  
 	// 
 	int str = TupelToNumber(block2.Mid(2, 2));
-	vitals.str.Aktuell = str;
-	vitals.str.Max = str;
+	m_vitals.str.Aktuell = str;
+	m_vitals.str.Max = str;
 	int dex = TupelToNumber(block2.Mid(4, 2));
-	vitals.dex.Aktuell = dex;
-	vitals.dex.Max = dex;
+	m_vitals.dex.Aktuell = dex;
+	m_vitals.dex.Max = dex;
 	int vit = TupelToNumber(block2.Mid(6, 2));
-	vitals.vit.Aktuell = vit;
-	vitals.vit.Max = vit;
+	m_vitals.vit.Aktuell = vit;
+	m_vitals.vit.Max = vit;
 	int wis = TupelToNumber(block2.Mid(8, 2));
-	vitals.wis.Aktuell = wis;
-	vitals.wis.Max = wis;
+	m_vitals.wis.Aktuell = wis;
+	m_vitals.wis.Max = wis;
 	int af = TupelToNumber(block2.Mid(10, 2));
-	vitals.af.Aktuell = af;
-	vitals.af.Max = af;
+	m_vitals.af.Aktuell = af;
+	m_vitals.af.Max = af;
 	int am = TupelToNumber(block2.Mid(12, 2));
-	vitals.am.Aktuell = am;
-	vitals.am.Max = am;
+	m_vitals.am.Aktuell = am;
+	m_vitals.am.Max = am;
 	//																								  xxxxxxxxxxxx                           
 	// Syra: Novice Priest / Apprentice WIzard   38/35/43/45/42/40	=> 53/72/15		AADFACNAAAAP	DHCGCDCLCNCKCI	AAAAAAAAADBBACDD
 	// Chani: Novice Fighter / Apprentice WIzard 37/47/57/37/47/37  => 47/67/17		AACPACJOAABB	DJCFCPDJCFCPCF	BDACAAAAAAAADCDB
