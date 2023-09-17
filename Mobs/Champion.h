@@ -13,5 +13,6 @@ class CChampion
 	VITALS vitals;
 private:
 	void ParseVitalsFromText(CString block2);
+	void ParseLevelsFromText(CString block3);
 	int TupelToNumber(CString str);
 };
