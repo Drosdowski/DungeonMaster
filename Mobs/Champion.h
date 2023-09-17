@@ -1,16 +1,25 @@
 #pragma once
 class CChampion
 {
+public:
 	enum GenderType { // no more than these!
 		male,
 		female
 	};
 
-	CString name;
-	CString subname;
-	int pictureId;
-	GenderType gender;
-	VITALS vitals;
+	CChampion(CString text);
+	~CChampion() {};
+
+	CString GetName() { return m_name; }
+	VITALS GetVitals() { return m_vitals; }
+
+private:
+
+	CString m_name;
+	CString m_subname;
+	int m_pictureId;
+	GenderType m_gender;
+	VITALS m_vitals;
 
 };
 

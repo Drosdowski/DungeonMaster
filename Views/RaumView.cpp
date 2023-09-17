@@ -1895,3 +1895,18 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 	}
 
 }
+
+CBitmap* CRaumView::GetHeroPic(int heroId) {
+	CBitmap* heroPic = m_pChampionPortraits->GetChampions();
+	CPoint koord = m_pChampionPortraits->GetKoords(heroId);
+
+	/*CDC* pDC = GetDC();
+	CDC tmpdc;
+	tmpdc.CreateCompatibleDC(pDC);
+	tmpdc.SelectObject(heroPic);
+
+	pDC->TransparentBlt(0, 0, 32 * 2, 29 * 2, &tmpdc, koord.x, koord.y, 32, 29, TRANS_GRE);
+	tmpdc.DeleteDC();*/
+
+	return heroPic;
+}

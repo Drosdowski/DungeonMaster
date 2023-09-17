@@ -12,6 +12,7 @@ class CMonster;
 class CItem;
 class CAttackInfos;
 class CMonsterInfos;
+class CChampion;
 class CField; // todo refactor
 class CGrpHeld: public CGrpChar
 {
@@ -61,7 +62,7 @@ public:
 
 private:
 	void CloseCombat();
-	void NewHero(CString strName, int nr);
+	void NewHero(CChampion* champ, int nr);
 
 	// Generierte Nachrichtenzuordnungsfunktionen
 protected:

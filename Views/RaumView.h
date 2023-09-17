@@ -62,6 +62,7 @@ public:
 	CItemInfos* GetItemInfos() { return m_pItemInfos; }
 	CAttackInfos* GetAttackInfos() { return m_pAttackInfos; }
 	CMonsterInfos* GetMonsterInfos() { return m_pMonsterInfos; }
+	CBitmap* GetHeroPic(int data);
 	void TriggerMoveAnimation();
 	void RaumZeichnen(CDC* pDC);
 	void DrawActionAreaChoice(CDC* pDC, int weaponIndex);
@@ -117,6 +118,7 @@ protected:
 	CMonsterInfos* m_pMonsterInfos;
 
 private:
+	CDC* m_pDC;
 	int wallXFactor[5];
 	CHelpfulValues* m_values;
 	void FallingHeroes(VEKTOR pos);

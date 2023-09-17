@@ -16,11 +16,12 @@
 class CRucksack;
 class CItem;
 class CWeapon;
+class CChampion;
 class CGrpMonster;
 class CHeld : public CCharacter
 {
 public:
-	CHeld(int iIndex, CString strName);
+	CHeld(int iIndex, CChampion* champ);
 protected:
 	CHeld();           // protected constructor used by dynamic creation
 

@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "Rucksack.h"
 #include "..\Held.h"
+#include "..\Champion.h"
 #include "..\..\CalculationHelper\CHelpfulValues.h"
 #include "..\..\Items\Item.h"
 #include "..\..\Items\Weapon.h"
@@ -73,9 +74,9 @@ void CGrpHeld::InitHeld(const int nr)
 	if (m_pMember[nr] == NULL)
 	{
 		CString strName;
-		strName.Format("Held %i", nr);
+		strName.Format("Held %i\n", nr);
 				
-		NewHero(strName, nr);
+		NewHero(new CChampion(strName), nr);
 
 	}
 	else {
@@ -84,8 +85,8 @@ void CGrpHeld::InitHeld(const int nr)
 	}
 }
 
-void CGrpHeld::NewHero(CString strName, int nr) {
-	m_pMember[nr] = new CHeld(nr, strName);
+void CGrpHeld::NewHero(CChampion* champ, int nr) {
+	m_pMember[nr] = new CHeld(nr, champ);
 	m_iAktiverHeld = nr;
 
 	CHeld* pHeld = (CHeld*)m_pMember[nr];
@@ -104,8 +105,8 @@ void CGrpHeld::RessurectHero(CString text) {
 		nr++;
 	}
 	if (nr < 5) {
-		int newlinePos = text.Find(_T("\n"));
-		NewHero(text.Left(newlinePos), nr);
+		CChampion* champ = new CChampion(text);
+		NewHero(champ, nr);
 	}
 }
 

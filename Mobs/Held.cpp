@@ -11,6 +11,7 @@
 #include "..\Items\Scroll.h"
 #include "..\Items\Container.h"
 #include "Monster.h"
+#include "Champion.h"
 #include "MobGroups/GrpMonster.h"
 #include <Attributes/ClothAttributes.h>
 #include "..\XMLParser\AttackInfos.h"
@@ -28,7 +29,7 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CHeld
 
-CHeld::CHeld(int iIndex, CString strName): CCharacter(true)
+CHeld::CHeld(int iIndex, CChampion* champ): CCharacter(true)
 {
 	m_HP.Max = 100; // todo level up: increase http://dmweb.free.fr/?q=node/691
 	m_MA.Max = 100;
@@ -36,16 +37,13 @@ CHeld::CHeld(int iIndex, CString strName): CCharacter(true)
 
 	m_iCurrentLuck = 0;
 
-	m_sVitals.str.Max = 60; m_sVitals.str.Aktuell = 60;
-	m_sVitals.dex.Max = 50; m_sVitals.dex.Aktuell = 50;
-	m_sVitals.vit.Max = 40; m_sVitals.vit.Aktuell = 40;
-	m_sVitals.wis.Max = 30; m_sVitals.wis.Aktuell = 30;
+	m_sVitals = champ->GetVitals();
 	
 	m_HP.Aktuell = m_HP.Max;
 	m_ST.Aktuell = m_ST.Max;
 	m_MA.Aktuell = m_MA.Max;
 	m_bAktiv = true;
-	m_strName = strName;
+	m_strName = champ->GetName();
 	m_iIndex = iIndex;
 	m_iFood = maxFood;
 	m_iWater = maxWater;
@@ -72,7 +70,10 @@ CHeld::CHeld(int iIndex, CString strName): CCharacter(true)
 	CMiscConst fixAtt;
 	fixAtt.weight[0] = 10;
 	att.fixAttributes = fixAtt;
+
 	m_itemCarrying[30] = new CMiscellaneous(255, att);
+
+	delete champ;
 
 	m_pRucksack = new CRucksack();
 }

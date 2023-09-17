@@ -383,6 +383,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
 			SUBPOS_ABSOLUTE posActuator = (SUBPOS_ABSOLUTE)dir;
 			std::deque<CItem*> itemsInWall = FeldVorHeld->GetItem(posActuator);
+			int data = currentActuator->GetData();
 
 			if (!currentActuator->IsActive()) return false;
 
@@ -397,7 +398,6 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 				CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 				CItem* itemInHand = grpHelden->GetItemInHand();
 				if (itemInHand) {
-					int data = currentActuator->GetData();
 					int neededItemId;
 					if (data > 120 && data < 130) {
 						neededItemId = data - 119;
@@ -455,6 +455,8 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 			else if (type == CActuator::ChampionMirror) {
 				CField* field = m_pRaumView->GetMap()->GetField(grpHelden->GetVector());
 				CString text = field->GetFirstText(0)->GetText();
+				CBitmap* pic = m_pRaumView->GetHeroPic(data);			
+
 				grpHelden->RessurectHero(text);
 			}
 			else {
