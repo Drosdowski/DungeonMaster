@@ -354,6 +354,9 @@ void CDungeonMap::ParseContainers(TiXmlElement* containerItem, VEKTOR coords) {
 			else if (strcmp(itemInChest, "weapon") == 0) {
 				pItem = new CWeapon(index, m_weaponAtt[index]);
 			}
+			else if (strcmp(itemInChest, "cloth") == 0) {
+				pItem = new CCloth(index, m_clothAtt[index]);
+			}
 			else {
 				assert(false); // todo
 			}

@@ -436,8 +436,11 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 			{
 				int neededItemId = currentActuator->GetData() + 2; // todo formel verstehen.
 				if (itemInHand == NULL) {
-					InvokeRemoteActuator(currentActuator, nextActuator);
 					grpHelden->TakeItemInHand(FeldVorHeld->TakeItem(posActuator));
+					if (!type == CActuator::Inactive) {
+						// Torch Holder => Empty holder = Item gone
+						InvokeRemoteActuator(currentActuator, nextActuator);
+					}
 					return false;
 				}
 				else if (currentActuator->GetData() == 0) {
@@ -445,7 +448,10 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 					grpHelden->EmptyHand();
 					return false;
 				} else if (itemInHand->GetType() == neededItemId) {
-					InvokeRemoteActuator(currentActuator, nextActuator);
+					if (!type == CActuator::Inactive) {
+						// Torch Holder => Empty holder = Item gone
+						InvokeRemoteActuator(currentActuator, nextActuator);					
+					}
 					FeldVorHeld->PutItem(itemInHand, posActuator);
 					grpHelden->EmptyHand();
 					return false;
@@ -744,7 +750,7 @@ void CDMView::ParseClickBackpack(CPoint point) {
 		}
 		else {
 			CItem* pItem = pHeld->GetItemCarrying(1);
-			if (pItem->getItemType() == CItem::ContainerItem) {
+			if (pItem && pItem->getItemType() == CItem::ContainerItem) {
 				slot = CScreenCoords::CheckHitContainerSlots(point);
 				if (slot >= 0) {
 					SwitchContainerItem(itemInMainHand, slot, grpHelden, (CContainer*)pItem);
