@@ -50,6 +50,7 @@ private:
 	void ZeichneScroll(CDC* pDC, CScroll* scroll);
 	void ZeichneContainer(CDC* pDC, CContainer* pContainer);
 	void GewichtZeichnen(CDC* pDC, CHeld* pHeld);
+	void ZeichneVitalText(CDC* pDC, CString text, int index, int y);
 
 	void DrawHand(CDC* pDC, CHeld* pHeld, int index);
 	void DrawText(CDC* pDC, int x, int y, CString text, int h, COLORREF fc, COLORREF bc);

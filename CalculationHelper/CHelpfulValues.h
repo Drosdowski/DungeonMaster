@@ -27,6 +27,7 @@ public:
 
 	CString static SkillGrade(int exp);
 	CString static SkillClass(int nr);
+	CString static VitalName(int nr);
 	int static ManaCost(int layer, int runeId, int power);
 
 private:

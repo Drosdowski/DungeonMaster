@@ -266,6 +266,19 @@ CString CHelpfulValues::SkillClass(int nr) {
 	return "UNK";
 }
 
+CString CHelpfulValues::VitalName(int nr) {
+	switch (nr) {
+	case 0: return "STRENGTH";
+	case 1: return "DEXTERITY";
+	case 2: return "WISDOM";
+	case 3: return "VITALITY";
+	case 4: return "ANTI-MAGIC";
+	case 5: return "ANTI-FIRE";
+	}
+	return "UNK";
+}
+
+
 int CHelpfulValues::ManaCost(int layer, int runeId, int power) {
 	switch (layer) {
 		case 1: return runeId;

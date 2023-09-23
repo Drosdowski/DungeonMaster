@@ -385,10 +385,32 @@ void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld)
 			strTitel = CHelpfulValues::SkillGrade(sExp[i]);
 			strKlasse = CHelpfulValues::SkillClass(i-1);
 			strZeile.Format("%s %s", strTitel, strKlasse);
-			pDC->TextOut(230, 160 + i * 16, strZeile);
+			pDC->TextOut(220, 160 + i * 16, strZeile);
 		}
 	}
+	CString strValues;
+	strValues.Format("%i/ %i", (int)sVitals.str.Max, (int)sVitals.str.Aktuell);
+	ZeichneVitalText(pDC, strValues, 0, 240);
+	strValues.Format("%i/ %i", (int)sVitals.dex.Max, (int)sVitals.dex.Aktuell);
+	ZeichneVitalText(pDC, strValues, 1, 256);
+	strValues.Format("%i/ %i", (int)sVitals.vit.Max, (int)sVitals.vit.Aktuell);
+	ZeichneVitalText(pDC, strValues, 2, 272);
+	strValues.Format("%i/ %i", (int)sVitals.wis.Max, (int)sVitals.wis.Aktuell);
+	ZeichneVitalText(pDC, strValues, 3, 288);
+	strValues.Format("%i/ %i", (int)sVitals.af.Max, (int)sVitals.af.Aktuell);
+	ZeichneVitalText(pDC, strValues, 4, 304);
+	strValues.Format("%i/ %i", (int)sVitals.am.Max, (int)sVitals.am.Aktuell);
+	ZeichneVitalText(pDC, strValues, 5, 320);
 }
+
+void CPictures::ZeichneVitalText(CDC* pDC, CString text, int index, int y) {
+	CString strZeile, strVital;
+	strVital.Format("%s", CHelpfulValues::VitalName(index));
+	pDC->TextOut(220, y, strVital);
+	pDC->TextOut(380, y, text);
+}
+
+
 
 void CPictures::DrawActionAreaChoice(CDC* pDC, CItemInfos* m_pItemInfos, int weaponIndex) {
 	CDC tmpdc;
