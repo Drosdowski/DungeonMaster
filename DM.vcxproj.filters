@@ -279,6 +279,9 @@
     <ClCompile Include="Mobs\Champion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pictures\DMFont.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -551,6 +554,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Mobs\Champion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\DMFont.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
