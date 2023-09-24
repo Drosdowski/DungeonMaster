@@ -272,6 +272,9 @@
 #define IDB_BITMAP_E3MF                 1034
 #define IDB_BITMAP_E3R                  1035
 #define IDB_BITMAP_E3RF                 1036
+#define IDB_FONT_BLACK                  1501
+#define IDB_FONT_WALL                   1502
+#define IDB_FONT_WHITE                  1503
 #define IDB_WALLDECO_0F                 2000
 #define IDB_WALLDECO_1F                 2001
 #define IDB_WALLDECO_2F                 2002
@@ -394,7 +397,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        628
+#define _APS_NEXT_RESOURCE_VALUE        631
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

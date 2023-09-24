@@ -929,6 +929,12 @@ IDB_WALLDECO_0L         BITMAP                  "res\\WallDeco\\WallDeco_0-Left.
 
 IDB_DOOR_BLACK_1        BITMAP                  "res\\Door\\Door_Black_1.bmp"
 
+IDB_FONT_BLACK          BITMAP                  "res\\Fonts\\Font_Black.bmp"
+
+IDB_FONT_WALL           BITMAP                  "res\\Fonts\\Font_Wall.bmp"
+
+IDB_FONT_WHITE          BITMAP                  "res\\Fonts\\Font_White.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -1751,6 +1751,15 @@
     <Image Include="res\Door\Door_Black_1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Fonts\Font_Black.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Fonts\Font_Wall.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Fonts\Font_White.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
