@@ -307,7 +307,7 @@ void CPictures::NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName)
 	pDC->SetBkColor(DUNKELGRAU);
 	int x = (index - 1) * 138;
 	//pDC->ExtTextOut(x + 4, -2, ETO_CLIPPED | ETO_OPAQUE, CRect(x, 0, x + 78, 14), strName, NULL);
-	DrawOrigFontText(pDC, x, -2, strName);
+	DrawOrigFontText(pDC, x-4, -2, strName);
 }
 
 void CPictures::SchadenZeichnen(CDC* pDC, int index, bool bigDmg, int dmg)
@@ -458,10 +458,11 @@ void CPictures::DrawOrigFontText(CDC* pDC, int x, int y, CString text) {
 		char letter = text.GetAt(textIndex);
 		CBitmap* bmpLetter = GetOrigFontLetter(pDC, letter);
 		tmpdc.SelectObject(bmpLetter);
-		CPoint pos = { x + 14 * textIndex, y };		
+		CPoint pos = { x + 12 * textIndex, y };		
 		pDC->TransparentBlt(pos.x, pos.y, 8*2, 8*2, &tmpdc, 0, 0, 16, 16, TRANS_GRE);
 		delete bmpLetter;
 	}
+	DeleteObject(tmpdc);
 }
 
 CBitmap* CPictures::GetOrigFontLetter(CDC* pDC, char letter) {

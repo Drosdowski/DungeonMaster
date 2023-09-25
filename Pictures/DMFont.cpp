@@ -13,7 +13,7 @@ CDMFont:: ~CDMFont() {
 	delete m_pFontWall;
 	delete m_pFontLightGrey;
 }
-
+	
 void CDMFont::InitFonts() {
 	LoadPic(m_pFontBlack, IDB_FONT_BLACK);  // 192x6	A-Z
 	LoadPic(m_pFontWhite, IDB_FONT_WHITE); // 1024x6  Blank, A-Z, (2 Rows!)
@@ -58,8 +58,11 @@ CPoint CDMFont::GetKoordsLightGreyChar(char letter) {
 	else if (letter == ':') {
 		return CPoint(x + 80, y + 20);
 	}
-	else if (letter == '0') {
+	else if (letter == ' ') {
 		return CPoint(x + 90, y + 20);
+	}
+	else {
+		return CPoint(0, 0);
 	}
 
 }
