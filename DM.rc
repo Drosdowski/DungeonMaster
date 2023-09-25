@@ -935,6 +935,8 @@ IDB_FONT_WALL           BITMAP                  "res\\Fonts\\Font_Wall.bmp"
 
 IDB_FONT_WHITE          BITMAP                  "res\\Fonts\\Font_White.bmp"
 
+IDB_FONT_LIGHTGREY      BITMAP                  "res\\Fonts\\Font_LightGrey.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

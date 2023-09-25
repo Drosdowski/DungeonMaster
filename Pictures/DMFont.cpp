@@ -11,12 +11,14 @@ CDMFont:: ~CDMFont() {
 	delete m_pFontBlack;
 	delete m_pFontWhite;
 	delete m_pFontWall;
+	delete m_pFontLightGrey;
 }
 
 void CDMFont::InitFonts() {
 	LoadPic(m_pFontBlack, IDB_FONT_BLACK);  // 192x6	A-Z
 	LoadPic(m_pFontWhite, IDB_FONT_WHITE); // 1024x6  Blank, A-Z, (2 Rows!)
 	LoadPic(m_pFontWall, IDB_FONT_WALL);  // 288x8
+	LoadPic(m_pFontLightGrey, IDB_FONT_LIGHTGREY);  // 8x8
 }
 
 CPoint CDMFont::GetKoordsBlack(char letter) {
@@ -32,7 +34,37 @@ CPoint CDMFont::GetKoordsWhiteChar(char letter) {
 	}
 }
 
-CPoint GetKoordsWhiteSpecialLetter(char letter) {
+CPoint CDMFont::GetKoordsLightGreyChar(char letter) {
+	int x = 27;
+	int y = 31;
+	if (letter >= 'A' && letter <= 'K') {
+		return CPoint(x + 10 * (letter - 'A'), y);
+	}
+	else if (letter >= 'L' && letter <= 'U') { 
+		return CPoint(x + 10 * (letter - 'L'), y + 10);
+	}
+	else if (letter >= 'V' && letter <= 'Z') {
+		return CPoint(x + 10 * (letter - 'V'), y + 20);
+	}
+	else if (letter == ',') {
+		return CPoint(x + 50, y + 20);
+	}
+	else if (letter == '.') {
+		return CPoint(x + 60, y + 20);
+	}
+	else if (letter == ';') {
+		return CPoint(x + 70, y + 20);
+	}
+	else if (letter == ':') {
+		return CPoint(x + 80, y + 20);
+	}
+	else if (letter == '0') {
+		return CPoint(x + 90, y + 20);
+	}
+
+}
+
+CPoint CDMFont::GetKoordsWhiteSpecialLetter(char letter) {
 	if (letter >= 65 && letter < 91) { 
 		int x = 10 + 8 * (letter - 65);
 		int y = 0;

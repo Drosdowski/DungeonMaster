@@ -1766,6 +1766,9 @@
     <Image Include="res\Fonts\Font_White.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Fonts\Font_LightGrey.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

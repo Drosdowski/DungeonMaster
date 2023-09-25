@@ -307,7 +307,7 @@ void CPictures::NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName)
 	pDC->SetBkColor(DUNKELGRAU);
 	int x = (index - 1) * 138;
 	//pDC->ExtTextOut(x + 4, -2, ETO_CLIPPED | ETO_OPAQUE, CRect(x, 0, x + 78, 14), strName, NULL);
-	DrawOrigFontText(pDC, x, 2, strName);
+	DrawOrigFontText(pDC, x, -2, strName);
 }
 
 void CPictures::SchadenZeichnen(CDC* pDC, int index, bool bigDmg, int dmg)
@@ -459,7 +459,7 @@ void CPictures::DrawOrigFontText(CDC* pDC, int x, int y, CString text) {
 		CBitmap* bmpLetter = GetOrigFontLetter(pDC, letter);
 		tmpdc.SelectObject(bmpLetter);
 		CPoint pos = { x + 14 * textIndex, y };		
-		pDC->TransparentBlt(pos.x, pos.y, 8*2, 6*2, &tmpdc, 0, 0, 16, 12, SRCCOPY);
+		pDC->TransparentBlt(pos.x, pos.y, 8*2, 8*2, &tmpdc, 0, 0, 16, 16, TRANS_GRE);
 		delete bmpLetter;
 	}
 }
@@ -470,14 +470,14 @@ CBitmap* CPictures::GetOrigFontLetter(CDC* pDC, char letter) {
 	iconDC.CreateCompatibleDC(pDC);
 	sheetDC.CreateCompatibleDC(pDC);
 
-	CBitmap* bmpSheet = m_pDMFont->GetWhiteLetter();
+	CBitmap* bmpSheet = m_pDMFont->GetLightGreyLetters();
 	CBitmap* bmpChar = new CBitmap();
-	bmpChar->CreateCompatibleBitmap(pDC, 16, 12);
+	bmpChar->CreateCompatibleBitmap(pDC, 16, 16);
 
-	CPoint p = m_pDMFont->GetKoordsWhiteChar(letter);
+	CPoint p = m_pDMFont->GetKoordsLightGreyChar(letter);
 	sheetDC.SelectObject(bmpSheet);
 	iconDC.SelectObject(bmpChar);
-	iconDC.StretchBlt(0, 0, 16, 12, &sheetDC, p.x, p.y, 8, 6, SRCCOPY);
+	iconDC.StretchBlt(0, 0, 16, 16, &sheetDC, p.x, p.y, 8, 8, SRCCOPY);
 
 	DeleteObject(iconDC);
 	DeleteObject(sheetDC);

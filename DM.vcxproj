@@ -390,6 +390,7 @@
     <Image Include="res\Floor\SquarePressurePad_3F.bmp" />
     <Image Include="res\Floor\SquarePressurePad_3L.bmp" />
     <Image Include="res\Fonts\Font_Black.bmp" />
+    <Image Include="res\Fonts\Font_LightGrey.bmp" />
     <Image Include="res\Fonts\Font_Wall.bmp" />
     <Image Include="res\Fonts\Font_White.bmp" />
     <Image Include="res\InterfaceHeroAlive.bmp" />
