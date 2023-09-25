@@ -306,7 +306,8 @@ void CPictures::NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName)
 		pDC->SetTextColor(HELLBRAUN);
 	pDC->SetBkColor(DUNKELGRAU);
 	int x = (index - 1) * 138;
-	pDC->ExtTextOut(x + 4, -2, ETO_CLIPPED | ETO_OPAQUE, CRect(x, 0, x + 78, 14), strName, NULL);
+	//pDC->ExtTextOut(x + 4, -2, ETO_CLIPPED | ETO_OPAQUE, CRect(x, 0, x + 78, 14), strName, NULL);
+	DrawOrigFontText(pDC, x, 2, strName);
 }
 
 void CPictures::SchadenZeichnen(CDC* pDC, int index, bool bigDmg, int dmg)
@@ -451,13 +452,15 @@ void CPictures::DrawText(CDC* pDC, int x, int y, CString text, int h, COLORREF f
 void CPictures::DrawOrigFontText(CDC* pDC, int x, int y, CString text) {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
+	text = text.MakeUpper();
 
 	for (int textIndex = 0; textIndex < text.GetLength(); textIndex++) {
 		char letter = text.GetAt(textIndex);
 		CBitmap* bmpLetter = GetOrigFontLetter(pDC, letter);
 		tmpdc.SelectObject(bmpLetter);
-		CPoint pos = { x + 8 * textIndex, y };		
-		pDC->TransparentBlt(pos.x, pos.y, 8*2, 6*2, &tmpdc, pos.x, pos.y, 8*2, 6*2, TRANS_GRA);
+		CPoint pos = { x + 14 * textIndex, y };		
+		pDC->TransparentBlt(pos.x, pos.y, 8*2, 6*2, &tmpdc, 0, 0, 16, 12, SRCCOPY);
+		delete bmpLetter;
 	}
 }
 
@@ -469,7 +472,7 @@ CBitmap* CPictures::GetOrigFontLetter(CDC* pDC, char letter) {
 
 	CBitmap* bmpSheet = m_pDMFont->GetWhiteLetter();
 	CBitmap* bmpChar = new CBitmap();
-	bmpChar->CreateCompatibleBitmap(pDC, 8, 6);
+	bmpChar->CreateCompatibleBitmap(pDC, 16, 12);
 
 	CPoint p = m_pDMFont->GetKoordsWhiteChar(letter);
 	sheetDC.SelectObject(bmpSheet);
@@ -491,7 +494,7 @@ void CPictures::DrawActionAreaDamage(CDC* pDC, int dmg) {
 	tmpdc.SelectObject(m_pActionsDamage);
 	BITMAP bmpInfo;
 	m_pActionsDamage->GetBitmap(&bmpInfo);
-	pDC->TransparentBlt(448, 150, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, &tmpdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, SRCCOPY);
+	pDC->TransparentBlt(448, 150, bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, &tmpdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, SCHWARZ);
 	DrawText(pDC, 532, 180, text, 34, HELLBLAU, SCHWARZ);
 
 	DeleteDC(tmpdc);

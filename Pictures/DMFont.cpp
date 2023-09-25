@@ -20,13 +20,13 @@ void CDMFont::InitFonts() {
 }
 
 CPoint CDMFont::GetKoordsBlack(char letter) {
-	int x = (letter - 65) * 6;
+	int x = (letter - 65);
 	int y = 0;
 	return CPoint(x, y);
 }
 CPoint CDMFont::GetKoordsWhiteChar(char letter) {
 	if (letter >= 32) {
-		int x = 260 + 8 * (letter - 32);
+		int x = 258 + 8 * (letter - 32);
 		int y = 0;
 		return CPoint(x, y);
 	}
