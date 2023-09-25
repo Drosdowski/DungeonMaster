@@ -20,18 +20,46 @@ void CDMFont::InitFonts() {
 }
 
 CPoint CDMFont::GetKoordsBlack(char letter) {
-	/*int x = (id % 8) * 32;
-	int y = ((int)(id / 8)) * 29;
-	return CPoint(x, y);*/
+	int x = (letter - 65) * 6;
+	int y = 0;
+	return CPoint(x, y);
 }
-CPoint CDMFont::GetKoordsWhite(char letter){
-	/*int x = (id % 8) * 32;
-	int y = ((int)(id / 8)) * 29;
-	return CPoint(x, y);*/
+CPoint CDMFont::GetKoordsWhiteChar(char letter) {
+	if (letter >= 32) {
+		int x = 260 + 8 * (letter - 32);
+		int y = 0;
+		return CPoint(x, y);
+	}
 }
 
-CPoint CDMFont::GetKoordsWall(char letter)
-	/*int x = (id % 8) * 32;
-	int y = ((int)(id / 8)) * 29;
-	return CPoint(x, y);*/
+CPoint GetKoordsWhiteSpecialLetter(char letter) {
+	if (letter >= 65 && letter < 91) { 
+		int x = 10 + 8 * (letter - 65);
+		int y = 0;
+		return CPoint(x, y);
+	}
+}
+
+CPoint CDMFont::GetKoordsWall(char letter) {
+	int y = 0;
+	int x;
+	if (letter >= 65 && letter < 91) {
+		int x = (letter - 65) * 8;
+	}
+	else if (letter == ' ') {
+		x = 208;
+	}
+	else if (letter == '.') {
+		x = 216;
+	}
+	else if (letter == '?') {
+		x = 224;
+	}
+	return CPoint(x, y);
+}
+
+CPoint CDMFont::GetKoordsWhiteManaSymbol(int sheet, int no) {
+	int x = 770 + 8*no + 24 * sheet;
+	int y = 0;
+	return CPoint(x, y);
 }

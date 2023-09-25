@@ -7,6 +7,7 @@ class CGrpHeld;
 class CItemInfos;
 class CScroll;
 class CContainer;
+class CDMFont;
 class CPictures : CBasePictures
 {
 public:
@@ -54,6 +55,8 @@ private:
 
 	void DrawHand(CDC* pDC, CHeld* pHeld, int index);
 	void DrawText(CDC* pDC, int x, int y, CString text, int h, COLORREF fc, COLORREF bc);
+	void DrawOrigFontText(CDC* pDC, int x, int y, CString text);
+	CBitmap* GetOrigFontLetter(CDC* pDC, char letter);
 
 	CBitmap* m_pBmpRuck;
 	CBitmap* m_pBmpHintergrund;
@@ -71,5 +74,6 @@ private:
 
 	CItemPic* m_pItemPic;
 	char* m_textBuffer;
+	CDMFont* m_pDMFont;
 };
 

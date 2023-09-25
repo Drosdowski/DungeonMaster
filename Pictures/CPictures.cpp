@@ -3,6 +3,7 @@
 #include "DM.h"
 #include "CPictures.h"
 #include "CWallPic.h"
+#include "DMFont.h"
 #include "Items2D/CItemPic.h"
 #include "..\Mobs\Held.h"
 #include "..\Mobs\MobGroups\GrpHeld.h"
@@ -23,6 +24,7 @@ CPictures::CPictures(CDC* pDC) : CBasePictures(pDC)
 	InitBitmaps();
 	m_pItemPic = new CItemPic(pDC);
 	m_textBuffer = new char[10];
+	m_pDMFont = new CDMFont(pDC);
 }
 
 CPictures::~CPictures() 
@@ -46,6 +48,7 @@ CPictures::~CPictures()
 	delete m_pItemPic;
 	delete m_pOpenScroll;
 	delete m_pOpenChest;
+	delete m_pDMFont;
 }
 
 
@@ -444,6 +447,40 @@ void CPictures::DrawText(CDC* pDC, int x, int y, CString text, int h, COLORREF f
 	pDC->TextOut(x, y, text);
 	DeleteObject(hFont);
 }
+
+void CPictures::DrawOrigFontText(CDC* pDC, int x, int y, CString text) {
+	CDC tmpdc;
+	tmpdc.CreateCompatibleDC(pDC);
+
+	for (int textIndex = 0; textIndex < text.GetLength(); textIndex++) {
+		char letter = text.GetAt(textIndex);
+		CBitmap* bmpLetter = GetOrigFontLetter(pDC, letter);
+		tmpdc.SelectObject(bmpLetter);
+		CPoint pos = { x + 8 * textIndex, y };		
+		pDC->TransparentBlt(pos.x, pos.y, 8*2, 6*2, &tmpdc, pos.x, pos.y, 8*2, 6*2, TRANS_GRA);
+	}
+}
+
+CBitmap* CPictures::GetOrigFontLetter(CDC* pDC, char letter) {
+	CDC iconDC;
+	CDC sheetDC;
+	iconDC.CreateCompatibleDC(pDC);
+	sheetDC.CreateCompatibleDC(pDC);
+
+	CBitmap* bmpSheet = m_pDMFont->GetWhiteLetter();
+	CBitmap* bmpChar = new CBitmap();
+	bmpChar->CreateCompatibleBitmap(pDC, 8, 6);
+
+	CPoint p = m_pDMFont->GetKoordsWhiteChar(letter);
+	sheetDC.SelectObject(bmpSheet);
+	iconDC.SelectObject(bmpChar);
+	iconDC.StretchBlt(0, 0, 16, 12, &sheetDC, p.x, p.y, 8, 6, SRCCOPY);
+
+	DeleteObject(iconDC);
+	DeleteObject(sheetDC);
+	return bmpChar;
+}
+
 
 void CPictures::DrawActionAreaDamage(CDC* pDC, int dmg) {
 	CString text = "";

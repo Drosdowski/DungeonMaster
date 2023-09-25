@@ -10,8 +10,10 @@ public:
 	CBitmap* GetWhiteLetter() { return m_pFontWhite; }
 	CBitmap* GetWallLetter() { return m_pFontWall; }
 	CPoint GetKoordsBlack(char letter);
-	CPoint GetKoordsWhite(int id);
-	CPoint GetKoordsWall(int id);
+	CPoint GetKoordsWhiteChar(char letter);
+	CPoint GetKoordsWhiteSpecialLetter(char letter);
+	CPoint GetKoordsWhiteManaSymbol(int sheet, int no);
+	CPoint GetKoordsWall(char letter);
 
 private:
 	void InitFonts();
