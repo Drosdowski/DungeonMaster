@@ -36,7 +36,20 @@ public:
 		Sling = 29,// miss
 		Rock = 30,
 		PoisonDart = 31,// miss
-		ThrowingStar = 32
+		ThrowingStar = 32,
+		Stick = 33, // miss
+		Staff = 34, // miss
+		Wand = 35, // miss
+		Teowand = 36, // miss
+		YewStaff = 37, // miss
+		StaffOfIrra = 38, // miss
+		CrossOfNeta = 39, // miss
+		SerpentStaff = 40, // miss
+		DragonSpit = 41, // miss
+		SceptreOfLyf = 42, // miss
+		HornOfFear = 43, // miss
+		SpeedBow = 44, // miss
+		FireStaffComplete = 45 // miss
 	};
 
 	WeaponType type;

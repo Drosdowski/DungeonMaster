@@ -56,7 +56,9 @@ public:
 		PoleynOfDarc = 50,
 		GreaveOfDarc = 51,
 		ShieldOfDarc = 52,
+		Dexhelm = 53,
 		Flamebain = 54,  // Rüstung
+		Powertowers = 55,
 		BootsOfSpeed = 56,
 		Halter = 57
 	};

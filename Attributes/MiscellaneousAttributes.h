@@ -3,9 +3,14 @@
 class CMiscellaneousAttributes
 {
 public:
+	// http ://dmweb.free.fr/?q=node/266
 	enum MiscItemType {
 		Compass = 0,
 		Water = 1,
+		JewelSymal = 2,
+		Illumulet = 3,
+		Ashes = 4,
+		BonesHeroes = 5,
 		CopperCoin = 6,
 		SilverCoin = 7,
 		GoldCoin = 8,
@@ -32,13 +37,28 @@ public:
 		Bread = 31,
 		Cheese = 32,
 		ScreamerSlice = 33,
-		WormRound = 34,
-		Drumstick = 35,
+		WormRound = 34,// ???
+		Drumstick = 35, // ???
+		Shank = 36, // ???
+		DragonSteak = 37, // ???
+		GemOfAges = 38,  // ???
+		EkkhardCross = 39, // ???
+		Moonstone = 40, // ???
+		// TheHellion = 40,
+		PendantFeral = 41,
 		MagicBoxBlue = 42,
 		MagicBoxGreen = 43,
 		MirrorOfDawn = 44,
+		Rope = 45,
 		RabbitsFoot = 46,
-		Bones = 255
+		Corbum = 47,
+		Choker = 48,
+		LockPicks = 49,
+		Magnifier = 50,
+		ZokathraSpell = 51,
+		Bones = 52,
+		
+
 	};
 
 	MiscItemType type;

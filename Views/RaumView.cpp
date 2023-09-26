@@ -410,7 +410,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 
 				if (isBigContainer) {
 					// icons rein malen!
-					std::deque<CItem*> pile = pField->GetItem((SUBPOS_ABSOLUTE)0);
+					std::deque<CItem*> pile = pField->GetItem((SUBPOS_ABSOLUTE)richtOppo);
 					if (pile.size() > 0) {
 						COMPASS_DIRECTION heroDir = m_pMap->GetHeroes()->GetDirection();
 						DrawPile(pDC, cdc, xxx, ebene, MIDDLE, heroDir, pile, isBigContainer);
