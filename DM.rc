@@ -851,7 +851,7 @@ IDB_MONSTER_GIGGLER_FRONT BITMAP                  "res\\Monster\\Giggler_Front.b
 
 IDB_MONSTER_GIGGLER_RIGHT BITMAP                  "res\\Monster\\Giggler_Right.bmp"
 
-IDB_ITEM3D_BONES        BITMAP                  "res\\Items3D\\Bones.bmp"
+IDB_ITEM3D_BONES        BITMAP                  "res\\Items3D\\Item_3d_Bones.bmp"
 
 IDB_DOOR_IRON_FULL_1    BITMAP                  "res\\Door\\Door_Iron_Full_1.bmp"
 
@@ -936,6 +936,14 @@ IDB_FONT_WALL           BITMAP                  "res\\Fonts\\Font_Wall.bmp"
 IDB_FONT_WHITE          BITMAP                  "res\\Fonts\\Font_White.bmp"
 
 IDB_FONT_LIGHTGREY      BITMAP                  "res\\Fonts\\Font_LightGrey.bmp"
+
+IDB_ITEM3D_IRONBOOTS    BITMAP                  "res\\Items3D\\Item_3d_BootsIron.bmp"
+
+IDB_ITEM3D_IRONHELMET   BITMAP                  "res\\Items3D\\Item_3d_HelmetIron.bmp"
+
+IDB_ITEM3D_IRONLEGPLATE BITMAP                  "res\\Items3D\\Item_3d_LegplateIron.bmp"
+
+IDB_ITEM3D_IRONPLATE    BITMAP                  "res\\Items3D\\Item_3d_PlateIron.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

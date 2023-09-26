@@ -161,6 +161,10 @@
 #define IDB_ITEM3D_GEM_GREEN            443
 #define IDB_ITEM3D_GEM_ORANGE           444
 #define IDB_ITEM3D_BONES                445
+#define IDB_ITEM3D_IRONBOOTS            446
+#define IDB_ITEM3D_IRONHELMET           447
+#define IDB_ITEM3D_IRONLEGPLATE         448
+#define IDB_ITEM3D_IRONPLATE            449
 #define IDB_DMG_REC_SMALL               490
 #define IDB_DMG_REC_BIG                 491
 #define IDB_INTERFACE_DEAD              492
@@ -398,7 +402,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        632
+#define _APS_NEXT_RESOURCE_VALUE        636
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

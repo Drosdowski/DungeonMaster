@@ -47,11 +47,16 @@ int CCloth::GetSheetForGroup() {
 		(m_attribute.type >= CClothAttributes::BezerkerHelm && m_attribute.type <= CClothAttributes::SmallShield) ||
 		(m_attribute.type == CClothAttributes::LargeShield) ||
 		(m_attribute.type == CClothAttributes::ShieldOfLyte) ||
+		(m_attribute.type == CClothAttributes::Armet) ||
+		(m_attribute.type == CClothAttributes::FootPlate) ||
+		(m_attribute.type == CClothAttributes::HelmOfLyte) ||
+		(m_attribute.type == CClothAttributes::HelmOfDarc) ||
 		(m_attribute.type == CClothAttributes::ShieldOfDarc))
 		return 3;
-	else if ((m_attribute.type >= CClothAttributes::ClothType::RobeBody && m_attribute.type <= CClothAttributes::ClothType::ElvenHuke) ||
-			(m_attribute.type >= CClothAttributes::ClothType::LeatherJerkin && m_attribute.type <= CClothAttributes::ClothType::LeatherPants) ||
-			(m_attribute.type >= CClothAttributes::ClothType::BluePants && m_attribute.type <= CClothAttributes::ClothType::GhiTrousers))
+	else if ((m_attribute.type >= CClothAttributes::RobeBody && m_attribute.type <= CClothAttributes::ElvenHuke) ||
+			(m_attribute.type >= CClothAttributes::LeatherJerkin && m_attribute.type <= CClothAttributes::LeatherPants) ||
+			(m_attribute.type >= CClothAttributes::BluePants && m_attribute.type <= CClothAttributes::GhiTrousers) || 
+			(m_attribute.type >= CClothAttributes::TorsoPlate && m_attribute.type <= CClothAttributes::LegPlate))
 		return 2;
 	else
 		return -1;
