@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<dungeon start_x="8" start_y="5" start_z="1" start_facing="East">
+<dungeon start_x="28" start_y="4" start_z="1" start_facing="West">
     <heroes>
         <hero index="1">
+            <item item="1" index="19" type="0" />
             <item item="4" index="63" type="2" />
+            <item item="5" index="55" type="2" />
+            <item item="6" index="61" type="2" />
         </hero>
     </heroes>
     <maps>
@@ -685,7 +688,7 @@
                 <tile index="9" />
                 <tile index="10" />
                 <tile index="11">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="12" />
                 <tile index="13" />
@@ -712,14 +715,10 @@
                 <tile index="22" />
                 <tile index="23" />
                 <tile index="24" />
-                <tile index="25">
-                    <items>
-                        <miscellaneous index="9" position="3" />
-                    </items>
-                </tile>
+                <tile index="25" />
                 <tile index="26" />
                 <tile index="27">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="28" />
                 <tile index="29" />
@@ -762,10 +761,10 @@
                     </actuators>
                 </tile>
                 <tile index="50">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="51">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="52" />
                 <tile index="53" />
@@ -776,6 +775,9 @@
                     <actuators>
                         <actuator index="8" subPos="0" />
                     </actuators>
+                    <items>
+                        <miscellaneous index="9" position="1" />
+                    </items>
                 </tile>
                 <tile index="58" />
                 <tile index="59" />
@@ -928,7 +930,7 @@
                 <tile index="148" />
                 <tile index="149" />
                 <tile index="150">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="151" />
                 <tile index="152" />
@@ -1086,16 +1088,8 @@
                 <tile index="266" />
                 <tile index="267" />
                 <tile index="268" />
-                <tile index="269">
-                    <items>
-                        <weapon index="19" position="3" />
-                    </items>
-                </tile>
-                <tile index="270">
-                    <items>
-                        <cloth index="61" position="3" />
-                    </items>
-                </tile>
+                <tile index="269" />
+                <tile index="270" />
                 <tile index="271">
                     <actuators>
                         <actuator index="203" subPos="3" />
@@ -1141,7 +1135,7 @@
                 <tile index="291" />
                 <tile index="292" />
                 <tile index="293">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="294" />
                 <tile index="295">
@@ -1193,13 +1187,12 @@
                 <tile index="331" />
                 <tile index="332" />
                 <tile index="333" />
-                <tile index="334" />
-                <tile index="335">
+                <tile index="334">
                     <items>
-                        <cloth index="55" position="0" />
-                        <miscellaneous index="16" position="0" />
+                        <miscellaneous index="16" position="2" />
                     </items>
                 </tile>
+                <tile index="335" />
                 <tile index="336" />
                 <tile index="337" />
                 <tile index="338" />
@@ -1296,7 +1289,7 @@
                 <tile index="393" />
                 <tile index="394" />
                 <tile index="395">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="396" />
                 <tile index="397" />
@@ -1322,12 +1315,12 @@
                 <tile index="417" />
                 <tile index="418" />
                 <tile index="419">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="420" />
                 <tile index="421" />
                 <tile index="422">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="423" />
                 <tile index="424" />

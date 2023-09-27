@@ -1077,6 +1077,7 @@ void CRaumView::MoveDoors(VEKTOR heroPos) {
 		if ((pDoor->getState() == CDoor::DoorState::OPENING) ||
 			(pDoor->getState() == CDoor::DoorState::CLOSING))
 		{
+			m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Door.mp3");
 			pDoor->ContinueMoving();
 		}
 	}
@@ -1775,8 +1776,6 @@ void CRaumView::OnTrigger()
 		CDoor* door = feld->HoleDoor();
 		if (door) {
 			door->Toggle();
-			m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Door.mp3");
-
 		}
 	}
 	else
