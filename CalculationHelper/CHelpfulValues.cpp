@@ -176,14 +176,19 @@ CPoint CHelpfulValues::CalcRelSubFloorPosition(BITMAP bmpInfo, CPoint wallMiddle
 			posY = 370;
 		}
 		break;
-	case 1:
+	case 1:		
 		if (vorne) {
 			posX += (int)xFaktor * 75;
 			posY = 360;
 		}
 		else {
 			posX += (int)xFaktor * 60;
-			posY = 310;
+			if (subPos == MITTE) {
+				posY = 290;
+			}
+			else {
+				posY = 310;
+			}
 		}
 		break;
 	case 2:
@@ -193,7 +198,12 @@ CPoint CHelpfulValues::CalcRelSubFloorPosition(BITMAP bmpInfo, CPoint wallMiddle
 		}
 		else {
 			posX += (int)xFaktor * 40;
-			posY = 275;
+			if (subPos == MITTE) {
+				posY = 268;
+			}
+			else {
+				posY = 275;
+			}
 		}
 		break;
 	case 3:
@@ -203,7 +213,12 @@ CPoint CHelpfulValues::CalcRelSubFloorPosition(BITMAP bmpInfo, CPoint wallMiddle
 		}
 		else {
 			posX += (int)xFaktor * 34;
-			posY = 250;
+			if (subPos == MITTE) {
+				posY = 244;
+			}
+			else {
+				posY = 240;
+			}
 		}
 		break;
 	}

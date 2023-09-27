@@ -14,10 +14,10 @@ void CWeapon::reduceCharges() {
 }
 
 int CWeapon::GetOffsetForGroup() {
-	if (m_attribute.type == CWeaponAttributes::WeaponType::Torch) {
+	if (m_attribute.type == CWeaponAttributes::Torch) {
 		return 4 + (int)(m_attribute.charges / 4);
 	}
-	else if (m_attribute.type == CWeaponAttributes::WeaponType::BoltBlade)
+	else if (m_attribute.type == CWeaponAttributes::BoltBlade)
 	{
 		if (m_attribute.charges > 0)
 			return 25;
@@ -40,7 +40,7 @@ int CWeapon::GetSheetForGroup() {
 }
 
 CItem::ItemGroup CWeapon::GetGroup() {
-	if (m_attribute.type >= 30) return ItemGroup::Throwable;
+	if (m_attribute.type >= CWeaponAttributes::Rock && m_attribute.type <= CWeaponAttributes::ThrowingStar) return ItemGroup::Throwable;
 	return ItemGroup::Weapon;
 }
 

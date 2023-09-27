@@ -376,6 +376,7 @@ CBitmap* CItem3DPic::GetWeaponBitmap(int weaponType, bool inAir) {
 	CBitmap* bmp;
 	if (weaponType >= CWeaponAttributes::Falchion &&
 		weaponType <= CWeaponAttributes::DiamondEdge ||
+		weaponType == CWeaponAttributes::BoltBlade ||
 		weaponType == CWeaponAttributes::TheInquisitor)
 		bmp = GetSword(inAir);
 	else if (weaponType == CWeaponAttributes::Axe ||

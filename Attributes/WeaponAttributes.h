@@ -9,7 +9,7 @@ public:
 		Torch = 2,
 		Flamitt = 3,// miss
 		StaffOfClaws = 4,// miss
-		BoltBlade = 5,
+		BoltBlade = 5, // Storm ?
 		Fury = 6,// miss
 		TheFirestaff = 7,// miss
 		Dagger = 8,
