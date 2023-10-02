@@ -254,7 +254,7 @@ CPoint CHelpfulValues::CalcSubPosition(CPoint p, SUBPOS subPos, double &faktor) 
 
 CString CHelpfulValues::SkillGrade(int exp) {
 	int e = int(exp / 500);
-	if (e == 0) return "";
+	if (e == 0) return "XP TODO";
 	else if (e == 1) return "NEOPHYTE";
 	else if (e == 2) return "NOVICE";
 	else if (e <= 4) return "APPRENTICE";

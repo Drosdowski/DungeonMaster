@@ -389,29 +389,32 @@ void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld)
 			strTitel = CHelpfulValues::SkillGrade(sExp[i]);
 			strKlasse = CHelpfulValues::SkillClass(i-1);
 			strZeile.Format("%s %s", strTitel, strKlasse);
-			pDC->TextOut(220, 160 + i * 16, strZeile);
+			// pDC->TextOut(220, 160 + i * 16, strZeile);
+			DrawOrigFontText(pDC, 208, 154 + i * 14, strZeile);
 		}
 	}
 	CString strValues;
 	strValues.Format("%i/ %i", (int)sVitals.str.Max, (int)sVitals.str.Aktuell);
-	ZeichneVitalText(pDC, strValues, 0, 240);
+	ZeichneVitalText(pDC, strValues, 0, 226);
 	strValues.Format("%i/ %i", (int)sVitals.dex.Max, (int)sVitals.dex.Aktuell);
-	ZeichneVitalText(pDC, strValues, 1, 256);
+	ZeichneVitalText(pDC, strValues, 1, 240);
 	strValues.Format("%i/ %i", (int)sVitals.vit.Max, (int)sVitals.vit.Aktuell);
-	ZeichneVitalText(pDC, strValues, 2, 272);
+	ZeichneVitalText(pDC, strValues, 2, 254);
 	strValues.Format("%i/ %i", (int)sVitals.wis.Max, (int)sVitals.wis.Aktuell);
-	ZeichneVitalText(pDC, strValues, 3, 288);
+	ZeichneVitalText(pDC, strValues, 3, 268);
 	strValues.Format("%i/ %i", (int)sVitals.af.Max, (int)sVitals.af.Aktuell);
-	ZeichneVitalText(pDC, strValues, 4, 304);
+	ZeichneVitalText(pDC, strValues, 4, 282);
 	strValues.Format("%i/ %i", (int)sVitals.am.Max, (int)sVitals.am.Aktuell);
-	ZeichneVitalText(pDC, strValues, 5, 320);
+	ZeichneVitalText(pDC, strValues, 5, 296);
 }
 
 void CPictures::ZeichneVitalText(CDC* pDC, CString text, int index, int y) {
 	CString strZeile, strVital;
 	strVital.Format("%s", CHelpfulValues::VitalName(index));
-	pDC->TextOut(220, y, strVital);
-	pDC->TextOut(380, y, text);
+	//pDC->TextOut(220, y, strVital);
+	//pDC->TextOut(380, y, text);
+	DrawOrigFontText(pDC, 208, y, strVital);
+	DrawOrigFontText(pDC, 340, y, text);
 }
 
 
