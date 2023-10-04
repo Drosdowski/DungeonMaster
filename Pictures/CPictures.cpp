@@ -307,7 +307,7 @@ void CPictures::NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName)
 	pDC->SetBkColor(DUNKELGRAU);
 	int x = (index - 1) * 138;
 	//pDC->ExtTextOut(x + 4, -2, ETO_CLIPPED | ETO_OPAQUE, CRect(x, 0, x + 78, 14), strName, NULL);
-	DrawOrigFontText(pDC, x-4, -2, strName);
+	DrawOrigFontText(pDC, x, -2, strName);
 }
 
 void CPictures::SchadenZeichnen(CDC* pDC, int index, bool bigDmg, int dmg)
@@ -359,16 +359,15 @@ void CPictures::ZeichneHungerDurst(CDC* pDC, int i, int j)
 
 void CPictures::ZeichneHpStMa(CDC* pDC, WERTE hp, WERTE st, WERTE ma)
 {
-	pDC->SetTextColor(HELLGRAU);
-	pDC->SetBkColor(GANZDUNKELGRAU);
-
 	CString str;
-	str.Format("%i / %i", (int)hp.Aktuell, (int)hp.Max);
-	pDC->TextOut(120, 282, str);
-	str.Format("%i / %i", (int)st.Aktuell, (int)st.Max);
-	pDC->TextOut(120, 298, str);
-	str.Format("%i / %i", (int)ma.Aktuell, (int)ma.Max);
-	pDC->TextOut(120, 314, str);
+	str.Format("%i/ %i", (int)hp.Aktuell, (int)hp.Max);
+	DrawOrigFontText(pDC, 96, 284, str);
+
+	str.Format("%i/ %i", (int)st.Aktuell, (int)st.Max);
+	DrawOrigFontText(pDC, 96, 300, str);
+
+	str.Format("%i/ %i", (int)ma.Aktuell, (int)ma.Max);
+	DrawOrigFontText(pDC, 96, 316, str);
 }
 
 
@@ -390,7 +389,7 @@ void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld)
 			strKlasse = CHelpfulValues::SkillClass(i-1);
 			strZeile.Format("%s %s", strTitel, strKlasse);
 			// pDC->TextOut(220, 160 + i * 16, strZeile);
-			DrawOrigFontText(pDC, 208, 154 + i * 14, strZeile);
+			DrawOrigFontText(pDC, 210, 156 + i * 14, strZeile);
 		}
 	}
 	CString strValues;
@@ -411,9 +410,7 @@ void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld)
 void CPictures::ZeichneVitalText(CDC* pDC, CString text, int index, int y) {
 	CString strZeile, strVital;
 	strVital.Format("%s", CHelpfulValues::VitalName(index));
-	//pDC->TextOut(220, y, strVital);
-	//pDC->TextOut(380, y, text);
-	DrawOrigFontText(pDC, 208, y, strVital);
+	DrawOrigFontText(pDC, 210, y, strVital);
 	DrawOrigFontText(pDC, 340, y, text);
 }
 
@@ -462,7 +459,7 @@ void CPictures::DrawOrigFontText(CDC* pDC, int x, int y, CString text) {
 		CBitmap* bmpLetter = GetOrigFontLetter(pDC, letter);
 		tmpdc.SelectObject(bmpLetter);
 		CPoint pos = { x + 12 * textIndex, y };		
-		pDC->TransparentBlt(pos.x, pos.y, 8*2, 8*2, &tmpdc, 0, 0, 16, 16, TRANS_GRE);
+		pDC->TransparentBlt(pos.x, pos.y, 8*2, 8*2, &tmpdc, 0, 0, 16, 16, GANZDUNKELGRAU);
 		delete bmpLetter;
 	}
 	DeleteObject(tmpdc);
@@ -563,6 +560,9 @@ void CPictures::GewichtZeichnen(CDC* pDC, CHeld* pHeld) {
 	double dMaxValue = pHeld->MaxLoad();
 
 	CString strZeile;
-	strZeile.Format("LOAD         %1.1f/ %2.1f KG", dCurValue, dMaxValue);
-	pDC->TextOut(208, 314, strZeile);
+	strZeile="LOAD";
+	DrawOrigFontText(pDC, 210, 314, strZeile);
+
+	strZeile.Format("%1.1f/ %2.1f KG", dCurValue, dMaxValue);
+	DrawOrigFontText(pDC, 294, 314, strZeile);
 }

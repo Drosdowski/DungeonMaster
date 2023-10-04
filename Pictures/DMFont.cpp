@@ -35,31 +35,40 @@ CPoint CDMFont::GetKoordsWhiteChar(char letter) {
 }
 
 CPoint CDMFont::GetKoordsLightGreyChar(char letter) {
-	int x = 27;
-	int y = 31;
-	if (letter >= 'A' && letter <= 'K') {
-		return CPoint(x + 10 * (letter - 'A'), y);
-	}
-	else if (letter >= 'L' && letter <= 'U') { 
-		return CPoint(x + 10 * (letter - 'L'), y + 10);
-	}
-	else if (letter >= 'V' && letter <= 'Z') {
-		return CPoint(x + 10 * (letter - 'V'), y + 20);
-	}
-	else if (letter == ',') {
-		return CPoint(x + 50, y + 20);
-	}
-	else if (letter == '.') {
-		return CPoint(x + 60, y + 20);
-	}
-	else if (letter == ';') {
-		return CPoint(x + 70, y + 20);
-	}
-	else if (letter == ':') {
-		return CPoint(x + 80, y + 20);
+	int x = 1;
+	int y = 1;
+	if (letter >= '0' && letter <= '9') {
+		return CPoint(x + 10 * (letter - '0'), y);
 	}
 	else if (letter == ' ') {
-		return CPoint(x + 90, y + 20);
+		return CPoint(x + 100, y);
+	}
+	else if (letter >= 'A' && letter <= 'K') {
+		return CPoint(x + 10 * (letter - 'A'), y + 10);
+	}
+	else if (letter >= 'L' && letter <= 'U') { 
+		return CPoint(x + 10 * (letter - 'L'), y + 20);
+	}
+	else if (letter >= 'V' && letter <= 'Z') {
+		return CPoint(x + 10 * (letter - 'V'), y + 30);
+	}
+	else if (letter == ',') {
+		return CPoint(x + 50, y + 30);
+	}
+	else if (letter == '.') {
+		return CPoint(x + 60, y + 30);
+	}
+	else if (letter == ';') {
+		return CPoint(x + 70, y + 30);
+	}
+	else if (letter == ':') {
+		return CPoint(x + 80, y + 30);
+	}
+	else if (letter == '-') {
+		return CPoint(x + 90, y + 30);
+	}
+	else if (letter == '/') {
+		return CPoint(x + 100, y + 30);
 	}
 	else {
 		return CPoint(0, 0);

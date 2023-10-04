@@ -1568,7 +1568,7 @@ void CRaumView::TriggerDoor(CField* pTargetField, CActuator::ActionTypes type, b
 			}
 			break;
 		case CActuator::Hold:
-			pDoor->Toggle(); // todo prüfen 
+			pDoor->Close(); // todo prüfen (toggle führt zu endlos loop)
 			break;
 		}
 	}
