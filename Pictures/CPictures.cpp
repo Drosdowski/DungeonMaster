@@ -360,13 +360,13 @@ void CPictures::ZeichneHungerDurst(CDC* pDC, int i, int j)
 void CPictures::ZeichneHpStMa(CDC* pDC, WERTE hp, WERTE st, WERTE ma)
 {
 	CString str;
-	str.Format("%i/ %i", (int)hp.Aktuell, (int)hp.Max);
+	str.Format("%3i/%3i", (int)hp.Aktuell, (int)hp.Max);
 	DrawOrigFontText(pDC, 96, 284, str);
 
-	str.Format("%i/ %i", (int)st.Aktuell, (int)st.Max);
+	str.Format("%3i/%3i", (int)st.Aktuell, (int)st.Max);
 	DrawOrigFontText(pDC, 96, 300, str);
 
-	str.Format("%i/ %i", (int)ma.Aktuell, (int)ma.Max);
+	str.Format("%3i/%3i", (int)ma.Aktuell, (int)ma.Max);
 	DrawOrigFontText(pDC, 96, 316, str);
 }
 
@@ -564,5 +564,6 @@ void CPictures::GewichtZeichnen(CDC* pDC, CHeld* pHeld) {
 	DrawOrigFontText(pDC, 210, 314, strZeile);
 
 	strZeile.Format("%1.1f/ %2.1f KG", dCurValue, dMaxValue);
-	DrawOrigFontText(pDC, 294, 314, strZeile);
+	int len = strZeile.GetLength();
+	DrawOrigFontText(pDC, 438 - 12*len, 314, strZeile);
 }
