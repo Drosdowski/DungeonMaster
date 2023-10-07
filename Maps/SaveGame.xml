@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <dungeon start_x="18" start_y="19" start_z="1" start_facing="South">
     <heroes>
-        <hero index="1">
+        <hero index="1" name="" subname="" male="N" STR="11990852" DEX="11990852" VIT="2" WIS="3045239" AM="113485640" AF="11989764" EXP="114748592">
             <item item="1" index="19" type="0" />
             <item item="4" index="63" type="2" />
             <item item="5" index="55" type="2" />

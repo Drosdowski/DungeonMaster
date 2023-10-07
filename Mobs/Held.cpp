@@ -32,7 +32,7 @@ static char THIS_FILE[] = __FILE__;
 CHeld::CHeld(int iIndex, CChampion* champ): CCharacter(true)
 {
 	m_HP.Max = 100; // todo level up: increase http://dmweb.free.fr/?q=node/691
-	m_MA.Max = 100;
+	m_MA.Max = 100; // todo calculate values from VIT & co!
 	m_ST.Max = 100;
 
 	m_iCurrentLuck = 0;
@@ -47,8 +47,10 @@ CHeld::CHeld(int iIndex, CChampion* champ): CCharacter(true)
 	m_iIndex = iIndex;
 	m_iFood = maxFood;
 	m_iWater = maxWater;
-	for (int i = 1; i<5; i++)
+	for (int i = 1; i < 5; i++)
+	{
 		m_sExp[i] = 200;
+	}
 	switch (iIndex)
 	{
 	case 1:
@@ -72,6 +74,7 @@ CHeld::CHeld(int iIndex, CChampion* champ): CCharacter(true)
 	att.fixAttributes = fixAtt;
 
 	m_itemCarrying[30] = new CMiscellaneous(255, att);
+	m_male = champ->IsMale();
 
 	delete champ;
 

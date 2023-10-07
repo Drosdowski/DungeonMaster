@@ -16,6 +16,7 @@
 #include "Items/Container.h"
 #include "SpecialTile/CTeleporter.h"
 #include "SpecialTile/Trickwall.h"
+#include "Mobs/Champion.h"
 #include "CDungeonMap.h"
 
 CDungeonMap::CDungeonMap(CItemInfos* pItemInfos, CMonsterInfos* pMonsterInfos)
@@ -1166,6 +1167,17 @@ void CDungeonMap::SaveHero(TiXmlElement* heroes, int id) {
 	if (held) {
 		TiXmlElement* hero = new TiXmlElement("hero");
 		hero->SetAttribute("index", id);
+		hero->SetAttribute("name", held->getName());
+		hero->SetAttribute("subname", held->getSubname());
+		hero->SetAttribute("male", held->isMale() ? "Y" : "N");
+		VITALS v = held->getVitals();
+		hero->SetAttribute("STR", TwoBytes(v.str));
+		hero->SetAttribute("DEX", TwoBytes(v.dex));
+		hero->SetAttribute("VIT", TwoBytes(v.vit));
+		hero->SetAttribute("WIS", TwoBytes(v.wis));
+		hero->SetAttribute("AM", TwoBytes(v.am));
+		hero->SetAttribute("AF", TwoBytes(v.af));
+		hero->SetAttribute("EXP", (int)held->getExp());
 		for (int itemId = 0; itemId < 30; itemId++) {
 			CItem* item = held->GetItemCarrying(itemId);
 			if (item) {
@@ -1326,8 +1338,29 @@ void CDungeonMap::LoadHeroes(TiXmlElement* heroes) {
 
 void CDungeonMap::LoadHero(TiXmlElement* hero) {
 	int heroId;
+	int S, D, V, W, M, F, XP;
+	WERTE STR, DEX, VIT, WIS, AM, AF;
 	hero->QueryIntAttribute("index", &heroId);
-	m_pGrpHelden->InitHeld(heroId);
+	const char* name = hero->Attribute("name");
+	const char* subname = hero->Attribute("subname");
+	const char* male = hero->Attribute("male");
+	hero->QueryIntAttribute("STR", &S);
+	hero->QueryIntAttribute("DEX", &D);
+	hero->QueryIntAttribute("VIT", &V);
+	hero->QueryIntAttribute("WIS", &W);
+	hero->QueryIntAttribute("AM", &M);
+	hero->QueryIntAttribute("AF", &F);
+	hero->QueryIntAttribute("EXP", &XP);
+	STR = ParseTwoBytes(S);
+	DEX = ParseTwoBytes(D);
+	VIT = ParseTwoBytes(V);
+	WIS = ParseTwoBytes(W);
+	AM = ParseTwoBytes(M);
+	AF = ParseTwoBytes(F);
+	VITALS vitals = { STR, DEX, VIT, WIS, AM, AF };
+	CChampion* newChamp = new CChampion(name, subname, male == "Y", vitals);
+
+	m_pGrpHelden->InitHeld(newChamp, heroId);
 	CHeld* held = m_pGrpHelden->GetActiveHero();
 	TiXmlElement* heroItem = hero->FirstChildElement();
 	while (heroItem) {
@@ -1425,3 +1458,15 @@ void CDungeonMap::LoadTile(TiXmlElement* tile, int mapIndex) {
 	}
 
 }
+
+int CDungeonMap::TwoBytes(WERTE values) {
+	return values.Aktuell * 256 + values.Max;
+}
+
+WERTE CDungeonMap::ParseTwoBytes(int values) {
+	WERTE w;
+	w.Aktuell = (int)(values / 256);
+	w.Max = values % 256;
+	return w;
+}
+

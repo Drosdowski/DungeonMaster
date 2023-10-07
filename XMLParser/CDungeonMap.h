@@ -88,6 +88,8 @@ private:
 	void LoadHeroes(TiXmlElement* heroes);
 	void LoadMaps(TiXmlElement* maps);
 	void LoadTile(TiXmlElement* tile, int index);
+	int TwoBytes(WERTE val1);
+	WERTE ParseTwoBytes(int values);
 
 	CField* ParseDoor(TiXmlElement* rootNode, VEKTOR pos, int etage);
 	CField* ParseStairs(TiXmlElement* rootNode, VEKTOR pos);

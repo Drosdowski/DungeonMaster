@@ -25,6 +25,14 @@ CChampion::CChampion(CString text) {
 	ParseLevelsFromText(saItems.GetAt(5 - sub));
 }
 
+CChampion::CChampion(const char* name, const char* subname, bool isMale, VITALS vitals) {
+	m_name = name;
+	m_subname = subname;
+	m_vitals = vitals;
+	m_gender = (isMale ? male : female);
+}
+
+
 void CChampion::ParseVitalsFromText(CString block2) {
 	// AA = 00 ... AP = 15
 	// BA = 16 ... BP = 31

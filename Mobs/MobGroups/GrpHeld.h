@@ -23,6 +23,7 @@ public:
 // Implementierung
 public:
 	void InitHeld(int nr);
+	void InitHeld(CChampion* champion, const int nr);
 	void RessurectHero(CString text);
 	
 	CHeld* GetHero(int iID) { return (CHeld*)m_pMember[iID]; }

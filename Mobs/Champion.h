@@ -8,16 +8,17 @@ public:
 	};
 
 	CChampion(CString text);
+	CChampion(const char* name, const char* subname, bool male, VITALS vitals);
 	~CChampion() {};
 
 	CString GetName() { return m_name; }
 	VITALS GetVitals() { return m_vitals; }
+	bool IsMale() { return m_gender == GenderType::male; }
 
 private:
 
 	CString m_name;
 	CString m_subname;
-	int m_pictureId;
 	GenderType m_gender;
 	VITALS m_vitals;
 

@@ -66,6 +66,20 @@ CGrpHeld::~CGrpHeld()
 /////////////////////////////////////////////////////////////////////////////
 // Behandlungsroutinen für Nachrichten CGrpHeld 
 
+
+void CGrpHeld::InitHeld(CChampion* champion, const int nr) {
+	if (m_pMember[m_iAktiverHeld])
+		((CHeld*)m_pMember[m_iAktiverHeld])->setInactive();
+	if (m_pMember[nr] == NULL)
+	{
+		NewHero(champion, nr);
+	}
+	else {
+		m_iAktiverHeld = nr;
+		((CHeld*)m_pMember[m_iAktiverHeld])->setActive();
+	}
+}
+
 void CGrpHeld::InitHeld(const int nr)
 {
 	if (m_pMember[m_iAktiverHeld])

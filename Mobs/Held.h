@@ -34,6 +34,8 @@ public:
 	long* getExp() { return m_sExp; }
 	VITALS getVitals() { return m_sVitals;  }
 	CString getName() { return m_strName; }
+	CString getSubname() { return m_strSubname; }
+	bool isMale() { return m_male; }
 
 // Operations
 public:
@@ -86,6 +88,8 @@ private:
 	WERTE m_ST;	// Stamina
 
 	CString m_strName;
+	CString m_strSubname;
+	bool m_male;
 	CItem* m_itemCarrying[31]; // Letztes Item sind die Knochen, sieht man natürlich nicht im Backpack.
 
 	double round1(double value);
@@ -93,7 +97,6 @@ private:
 	void DelItem(CItem* pItem);
 	int ACC_Coeff(int levelDif, int armor);
 	void ReduceWhenOverload(double d6_weapon_weight, double d5_load_coefficient, double &dmg);
-
 };
 
 /////////////////////////////////////////////////////////////////////////////
