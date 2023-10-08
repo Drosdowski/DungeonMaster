@@ -1178,6 +1178,7 @@ void CDungeonMap::SaveHero(TiXmlElement* heroes, int id) {
 		hero->SetAttribute("AM", TwoBytes(v.am));
 		hero->SetAttribute("AF", TwoBytes(v.af));
 		hero->SetAttribute("EXP", (int)held->getExp());
+		
 		for (int itemId = 0; itemId < 30; itemId++) {
 			CItem* item = held->GetItemCarrying(itemId);
 			if (item) {
@@ -1218,6 +1219,7 @@ void CDungeonMap::SaveMap(TiXmlElement* maps, int level) {
 						TiXmlElement* actuator = new TiXmlElement("actuator");
 						actuator->SetAttribute("index", pActuator->GetIndex()); // Reihenfolge speichern reicht?
 						actuator->SetAttribute("subPos", subPos);
+						actuator->SetAttribute("active", pActuator->IsActive());
 						actuators->LinkEndChild(actuator);
 					}
 					tile->LinkEndChild(actuators);
@@ -1441,12 +1443,16 @@ void CDungeonMap::LoadTile(TiXmlElement* tile, int mapIndex) {
 			TiXmlElement* actuator = element->FirstChildElement();
 			while (actuator) {
 				if (strcmp(actuator->Value(), "actuator") == 0) {
-					int actuatorId, subPos;
+					int actuatorId, subPos, active;
 					actuator->QueryIntAttribute("index", &actuatorId);
 					actuator->QueryIntAttribute("subPos", &subPos);
+					actuator->QueryIntAttribute("active", &active);
 					std::deque<CActuator*> pActuators = pField->GetActuator((COMPASS_DIRECTION)subPos);
 					if (pActuators.back()->GetIndex() != actuatorId) {
 						pField->RotateActuators((COMPASS_DIRECTION)subPos);
+					}
+					if (!active) {
+						pActuators.back()->Deactivate();
 					}
 				}
 				actuator = actuator->NextSiblingElement();

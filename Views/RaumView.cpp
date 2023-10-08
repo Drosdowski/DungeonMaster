@@ -416,7 +416,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 						DrawPile(pDC, cdc, xxx, ebene, MIDDLE, heroDir, pile, isBigContainer);
 					}
 				}
-				else if (graphicTypeFront == ChampionMirror) {
+				else if (graphicTypeFront == ChampionMirror && actuatorsFront.back()->IsActive()) {
 					if (ebene == 1 && xx == 0) {
 						// Hero Picture
 						CBitmap* heroPic = m_pChampionPortraits->GetChampions();

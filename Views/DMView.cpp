@@ -464,6 +464,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 				CBitmap* pic = m_pRaumView->GetHeroPic(data);			
 
 				grpHelden->RessurectHero(text);
+				currentActuator->Deactivate();
 			}
 			else {
 				// Alkoven & co
