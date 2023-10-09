@@ -1167,6 +1167,9 @@ void CDungeonMap::SaveHero(TiXmlElement* heroes, int id) {
 	if (held) {
 		TiXmlElement* hero = new TiXmlElement("hero");
 		hero->SetAttribute("index", id);
+		hero->SetAttribute("hp", held->Hp().Aktuell);
+		hero->SetAttribute("st", held->St().Aktuell);
+		hero->SetAttribute("ma", held->Ma().Aktuell);
 		hero->SetAttribute("name", held->getName());
 		hero->SetAttribute("subname", held->getSubname());
 		hero->SetAttribute("male", held->isMale() ? "Y" : "N");
@@ -1177,7 +1180,6 @@ void CDungeonMap::SaveHero(TiXmlElement* heroes, int id) {
 		hero->SetAttribute("WIS", TwoBytes(v.wis));
 		hero->SetAttribute("AM", TwoBytes(v.am));
 		hero->SetAttribute("AF", TwoBytes(v.af));
-		hero->SetAttribute("EXP", (int)held->getExp());
 		
 		for (int itemId = 0; itemId < 30; itemId++) {
 			CItem* item = held->GetItemCarrying(itemId);
@@ -1341,8 +1343,13 @@ void CDungeonMap::LoadHeroes(TiXmlElement* heroes) {
 void CDungeonMap::LoadHero(TiXmlElement* hero) {
 	int heroId;
 	int S, D, V, W, M, F, XP;
+	int hp, st, ma;
 	WERTE STR, DEX, VIT, WIS, AM, AF;
 	hero->QueryIntAttribute("index", &heroId);
+	hero->QueryIntAttribute("hp", &hp);
+	hero->QueryIntAttribute("st", &st);
+	hero->QueryIntAttribute("ma", &ma);
+
 	const char* name = hero->Attribute("name");
 	const char* subname = hero->Attribute("subname");
 	const char* male = hero->Attribute("male");
@@ -1352,7 +1359,6 @@ void CDungeonMap::LoadHero(TiXmlElement* hero) {
 	hero->QueryIntAttribute("WIS", &W);
 	hero->QueryIntAttribute("AM", &M);
 	hero->QueryIntAttribute("AF", &F);
-	hero->QueryIntAttribute("EXP", &XP);
 	STR = ParseTwoBytes(S);
 	DEX = ParseTwoBytes(D);
 	VIT = ParseTwoBytes(V);
@@ -1360,7 +1366,7 @@ void CDungeonMap::LoadHero(TiXmlElement* hero) {
 	AM = ParseTwoBytes(M);
 	AF = ParseTwoBytes(F);
 	VITALS vitals = { STR, DEX, VIT, WIS, AM, AF };
-	CChampion* newChamp = new CChampion(name, subname, male == "Y", vitals);
+	CChampion* newChamp = new CChampion(name, subname, male == "Y", vitals, hp, st, ma);
 
 	m_pGrpHelden->InitHeld(newChamp, heroId);
 	CHeld* held = m_pGrpHelden->GetActiveHero();

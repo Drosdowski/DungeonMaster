@@ -23,13 +23,19 @@ CChampion::CChampion(CString text) {
 	CString block1 = saItems.GetAt(3 - sub);
 	ParseVitalsFromText(saItems.GetAt(4 - sub));
 	ParseLevelsFromText(saItems.GetAt(5 - sub));
+	m_hp = 100;
+	m_st = 100;
+	m_ma = 100;
 }
 
-CChampion::CChampion(const char* name, const char* subname, bool isMale, VITALS vitals) {
+CChampion::CChampion(const char* name, const char* subname, bool isMale, VITALS vitals, int hp, int st, int ma) {
 	m_name = name;
 	m_subname = subname;
 	m_vitals = vitals;
 	m_gender = (isMale ? male : female);
+	m_hp = hp;
+	m_st = st;
+	m_ma = ma;
 }
 
 

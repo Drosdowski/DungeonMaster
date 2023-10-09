@@ -31,17 +31,17 @@ static char THIS_FILE[] = __FILE__;
 
 CHeld::CHeld(int iIndex, CChampion* champ): CCharacter(true)
 {
-	m_HP.Max = 100; // todo level up: increase http://dmweb.free.fr/?q=node/691
-	m_MA.Max = 100; // todo calculate values from VIT & co!
+	m_HP.Max = 100;
 	m_ST.Max = 100;
+	m_MA.Max = 100;
+	m_HP.Aktuell = champ->hp(); // todo level up: increase http://dmweb.free.fr/?q=node/691
+	m_MA.Aktuell = champ->ma(); // todo calculate values from VIT & co!
+	m_ST.Aktuell = champ->st();
 
 	m_iCurrentLuck = 0;
 
 	m_sVitals = champ->GetVitals();
 	
-	m_HP.Aktuell = m_HP.Max;
-	m_ST.Aktuell = m_ST.Max;
-	m_MA.Aktuell = m_MA.Max;
 	m_bAktiv = true;
 	m_strName = champ->GetName();
 	m_iIndex = iIndex;
@@ -157,6 +157,12 @@ bool CHeld::Altern()
 		}
 	}
 	return alive;
+}
+
+void CHeld::WerteSetzen(double hp, double st, double ma) {
+	m_HP.Aktuell = hp;
+	m_ST.Aktuell = st;
+	m_MA.Aktuell = ma;
 }
 
 void CHeld::WerteTemporaerAendern(double hp, double st, double ma)
