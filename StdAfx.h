@@ -129,6 +129,38 @@ struct VITALS
 	WERTE am;
 };
 
+struct FIGHT_SKILLS
+{
+	int Swing;
+	int Thrust;
+	int Club;
+	int Parry;
+};
+
+struct NINJA_SKILLS
+{
+	int Steal;
+	int Fight;
+	int Throw;
+	int Shoot;
+};
+
+struct PRIEST_SKILLS
+{
+	int Identify;
+	int Heal;
+	int Influence;
+	int Defend;
+};
+
+struct WIZARD_SKILLS
+{
+	int Fire;
+	int Air;
+	int Earth;
+	int Water;
+};
+
 enum WallDecorationType
 {
 	None = 0,
