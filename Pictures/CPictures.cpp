@@ -377,15 +377,26 @@ void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld)
 	pDC->SetBkColor(GANZDUNKELGRAU);
 	CString strZeile, strTitel, strKlasse;
 
-	long* sExp = pHeld->getExp();
 	VITALS sVitals = pHeld->getVitals();
 
 	pDC->FillSolidRect(210, 170, 226, 142, GANZDUNKELGRAU);
 	for (int i = 1; i < 5; i++)
 	{
-		if (sExp[i] > 0)
+		int level;
+		switch (i)
 		{
-			strTitel = CHelpfulValues::SkillGrade(sExp[i]);
+		case 1: level = pHeld->fightLevel(); break;
+		case 2: level = pHeld->ninjaLevel(); break;
+		case 3: level = pHeld->priestLevel(); break;
+		case 4: level = pHeld->wizardLevel(); break;
+		default:
+			break;
+		}
+		if (level > 0)
+		{
+			int xp = 500 * exp2(level -1);
+			
+			strTitel = CHelpfulValues::SkillGrade(xp);
 			strKlasse = CHelpfulValues::SkillClass(i-1);
 			strZeile.Format("%s %s", strTitel, strKlasse);
 			// pDC->TextOut(220, 160 + i * 16, strZeile);

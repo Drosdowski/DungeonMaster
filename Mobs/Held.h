@@ -31,7 +31,6 @@ public:
 	bool isActive() { return m_bAktiv; }
 	int getFood() { return m_iFood; }
 	int getWater() { return m_iWater; }
-	long* getExp() { return m_sExp; }
 	VITALS getVitals() { return m_sVitals;  }
 	CString getName() { return m_strName; }
 	CString getSubname() { return m_strSubname; }
@@ -54,7 +53,10 @@ public:
 	double MaxLoad();
 	double CurLoad();
 	int Armour();
-
+	int fightLevel() ;
+	int ninjaLevel() ;
+	int priestLevel();
+	int wizardLevel();
 
 	CRucksack* GetRucksack() { return m_pRucksack; }
 
@@ -76,7 +78,10 @@ public:
 private:
 	CRucksack* m_pRucksack;
 	COLORREF m_Farbe[5];
-	long m_sExp[5];
+	FIGHT_SKILLS m_fightLevel;
+	NINJA_SKILLS m_ninjaLevel;
+	PRIEST_SKILLS m_priestLevel;
+	WIZARD_SKILLS m_wizardLevel;
 	VITALS m_sVitals;
 	int maxFood = 200;
 	int maxWater = 200;

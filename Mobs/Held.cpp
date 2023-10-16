@@ -45,10 +45,10 @@ CHeld::CHeld(int iIndex, CChampion* champ, int hp_akt, int st_akt, int ma_akt): 
 	m_iIndex = iIndex;
 	m_iFood = maxFood;
 	m_iWater = maxWater;
-	for (int i = 1; i < 5; i++)
-	{
-		m_sExp[i] = 200;
-	}
+	m_fightLevel = champ->fightLevel();
+	m_ninjaLevel = champ->ninjaLevel();
+	m_priestLevel = champ->priestLevel();
+	m_wizardLevel = champ->wizardLevel();
 	switch (iIndex)
 	{
 	case 1:
@@ -391,4 +391,17 @@ bool CHeld::UseMana(int mana)
 		return true;
 	}
 	return false;
+}
+
+int CHeld::fightLevel() {
+	return max(m_fightLevel.Club, max(m_fightLevel.Parry, max(m_fightLevel.Swing, m_fightLevel.Thrust)));
+}
+int CHeld::ninjaLevel() {
+	return max(m_ninjaLevel.Fight, max(m_ninjaLevel.Shoot, max(m_ninjaLevel.Steal, m_ninjaLevel.Throw)));
+}
+int CHeld::priestLevel() {
+	return max(m_priestLevel.Defend, max(m_priestLevel.Heal, max(m_priestLevel.Identify, m_priestLevel.Influence)));
+}
+int CHeld::wizardLevel() {
+	return max(m_wizardLevel.Air, max(m_wizardLevel.Earth, max(m_wizardLevel.Fire, m_wizardLevel.Water)));
 }

@@ -17,6 +17,10 @@ public:
 	int hp() { return m_hp; }
 	int st() { return m_st; }
 	int ma() { return m_ma; }
+	FIGHT_SKILLS fightLevel() { return m_fightLevel; };
+	NINJA_SKILLS ninjaLevel() { return m_ninjaLevel; };
+	PRIEST_SKILLS priestLevel() { return m_priestLevel; };
+	WIZARD_SKILLS wizardLevel() { return m_wizardLevel; };
 
 private:
 
@@ -25,9 +29,14 @@ private:
 	GenderType m_gender;
 	VITALS m_vitals;
 	int m_hp, m_st, m_ma;
+	FIGHT_SKILLS m_fightLevel;
+	NINJA_SKILLS m_ninjaLevel;
+	PRIEST_SKILLS m_priestLevel;
+	WIZARD_SKILLS m_wizardLevel;
 
 	void ParseOtherFromText(CString block1);
 	void ParseVitalsFromText(CString block2);
 	void ParseLevelsFromText(CString block3);
 	int TupelToNumber(CString str);
+	int LetterToValue(CString word, int letter);
 };
