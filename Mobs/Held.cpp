@@ -29,17 +29,15 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CHeld
 
-CHeld::CHeld(int iIndex, CChampion* champ): CCharacter(true)
+CHeld::CHeld(int iIndex, CChampion* champ, int hp_akt, int st_akt, int ma_akt): CCharacter(true)
 {
-	m_HP.Max = 100;
-	m_ST.Max = 100;
-	m_MA.Max = 100;
-	m_HP.Aktuell = champ->hp(); // todo level up: increase http://dmweb.free.fr/?q=node/691
-	m_MA.Aktuell = champ->ma(); // todo calculate values from VIT & co!
-	m_ST.Aktuell = champ->st();
-
-	m_iCurrentLuck = 0;
-
+	m_HP.Max = champ->hp();
+	m_ST.Max = champ->st();
+	m_MA.Max = champ->ma();
+	m_HP.Aktuell = hp_akt; // todo level up: increase http://dmweb.free.fr/?q=node/691
+	m_ST.Aktuell = st_akt;
+	m_MA.Aktuell = ma_akt;
+	
 	m_sVitals = champ->GetVitals();
 	
 	m_bAktiv = true;
@@ -282,12 +280,12 @@ bool CHeld::hitSucessful(CAttackConst ac, int levelDif) {
 			if ((rand() % 100) > luckNeeded)
 				return true;
 			else {
-				if ((m_iCurrentLuck > 0) && (rand() % m_iCurrentLuck) > luckNeeded) {
-					m_iCurrentLuck -= 2;
+				if (((int)m_sVitals.luk.Aktuell > 0) && (rand() % (int)m_sVitals.luk.Aktuell) > luckNeeded) {
+					m_sVitals.luk.Aktuell -= 2;
 					return true;
 				}
 				else {
-					m_iCurrentLuck += 2;
+					m_sVitals.luk.Aktuell += 2;
 					return false;
 				}
 			}

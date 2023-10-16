@@ -127,6 +127,7 @@ struct VITALS
 	WERTE wis;
 	WERTE af;
 	WERTE am;
+	WERTE luk;
 };
 
 enum WallDecorationType

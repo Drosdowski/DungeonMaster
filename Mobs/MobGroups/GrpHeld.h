@@ -23,7 +23,7 @@ public:
 // Implementierung
 public:
 	void InitHeld(int nr);
-	void InitHeld(CChampion* champion, const int nr);
+	void InitHeld(CChampion* champion, const int nr, int hp_akt, int st_akt, int ma_akt);
 	void RessurectHero(CString text);
 	
 	CHeld* GetHero(int iID) { return (CHeld*)m_pMember[iID]; }
@@ -63,7 +63,7 @@ public:
 
 private:
 	void CloseCombat();
-	void NewHero(CChampion* champ, int nr);
+	void NewHero(CChampion* champ, int nr, int hp_akt, int st_akt, int ma_akt);
 
 	// Generierte Nachrichtenzuordnungsfunktionen
 protected:

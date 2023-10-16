@@ -1167,13 +1167,17 @@ void CDungeonMap::SaveHero(TiXmlElement* heroes, int id) {
 	if (held) {
 		TiXmlElement* hero = new TiXmlElement("hero");
 		hero->SetAttribute("index", id);
-		hero->SetAttribute("hp", held->Hp().Aktuell);
-		hero->SetAttribute("st", held->St().Aktuell);
-		hero->SetAttribute("ma", held->Ma().Aktuell);
+		hero->SetAttribute("hp_akt", held->Hp().Aktuell);
+		hero->SetAttribute("st_akt", held->St().Aktuell);
+		hero->SetAttribute("ma_akt", held->Ma().Aktuell);
+		hero->SetAttribute("hp_max", held->Hp().Max);
+		hero->SetAttribute("st_max", held->St().Max);
+		hero->SetAttribute("ma_max", held->Ma().Max);
 		hero->SetAttribute("name", held->getName());
 		hero->SetAttribute("subname", held->getSubname());
 		hero->SetAttribute("male", held->isMale() ? "Y" : "N");
 		VITALS v = held->getVitals();
+		hero->SetAttribute("LUK", TwoBytes(v.luk));
 		hero->SetAttribute("STR", TwoBytes(v.str));
 		hero->SetAttribute("DEX", TwoBytes(v.dex));
 		hero->SetAttribute("VIT", TwoBytes(v.vit));
@@ -1342,33 +1346,39 @@ void CDungeonMap::LoadHeroes(TiXmlElement* heroes) {
 
 void CDungeonMap::LoadHero(TiXmlElement* hero) {
 	int heroId;
-	int S, D, V, W, M, F, XP;
-	int hp, st, ma;
-	WERTE STR, DEX, VIT, WIS, AM, AF;
+	int S, D, V, W, M, F, XP, L;
+	int hp_akt, st_akt, ma_akt;
+	int hp_max, st_max, ma_max;
+	WERTE STR, DEX, VIT, WIS, AM, AF, LUK;
 	hero->QueryIntAttribute("index", &heroId);
-	hero->QueryIntAttribute("hp", &hp);
-	hero->QueryIntAttribute("st", &st);
-	hero->QueryIntAttribute("ma", &ma);
+	hero->QueryIntAttribute("hp-akt", &hp_akt);
+	hero->QueryIntAttribute("st-akt", &st_akt);
+	hero->QueryIntAttribute("ma-akt", &ma_akt);
+	hero->QueryIntAttribute("hp-max", &hp_max);
+	hero->QueryIntAttribute("st-max", &st_max);
+	hero->QueryIntAttribute("ma-max", &ma_max);
 
 	const char* name = hero->Attribute("name");
 	const char* subname = hero->Attribute("subname");
 	const char* male = hero->Attribute("male");
+	hero->QueryIntAttribute("LUK", &L);
 	hero->QueryIntAttribute("STR", &S);
 	hero->QueryIntAttribute("DEX", &D);
 	hero->QueryIntAttribute("VIT", &V);
 	hero->QueryIntAttribute("WIS", &W);
 	hero->QueryIntAttribute("AM", &M);
 	hero->QueryIntAttribute("AF", &F);
+	LUK = ParseTwoBytes(L);
 	STR = ParseTwoBytes(S);
 	DEX = ParseTwoBytes(D);
 	VIT = ParseTwoBytes(V);
 	WIS = ParseTwoBytes(W);
 	AM = ParseTwoBytes(M);
 	AF = ParseTwoBytes(F);
-	VITALS vitals = { STR, DEX, VIT, WIS, AM, AF };
-	CChampion* newChamp = new CChampion(name, subname, male == "Y", vitals, hp, st, ma);
+	VITALS vitals = { LUK, STR, DEX, VIT, WIS, AM, AF };
+	CChampion* newChamp = new CChampion(name, subname, male == "Y", vitals, hp_max, st_max, ma_max);
 
-	m_pGrpHelden->InitHeld(newChamp, heroId);
+	m_pGrpHelden->InitHeld(newChamp, heroId, hp_akt, st_akt, ma_akt);
 	CHeld* held = m_pGrpHelden->GetActiveHero();
 	TiXmlElement* heroItem = hero->FirstChildElement();
 	while (heroItem) {

@@ -20,12 +20,10 @@ CChampion::CChampion(CString text) {
 	CString gender = saItems.GetAt(2-sub);
 	m_gender = (gender == "F" ? female : male);
 
-	CString block1 = saItems.GetAt(3 - sub);
+	ParseOtherFromText(saItems.GetAt(3 - sub));
 	ParseVitalsFromText(saItems.GetAt(4 - sub));
 	ParseLevelsFromText(saItems.GetAt(5 - sub));
-	m_hp = 100;
-	m_st = 100;
-	m_ma = 100;
+	
 }
 
 CChampion::CChampion(const char* name, const char* subname, bool isMale, VITALS vitals, int hp, int st, int ma) {
@@ -38,13 +36,25 @@ CChampion::CChampion(const char* name, const char* subname, bool isMale, VITALS 
 	m_ma = ma;
 }
 
+void CChampion::ParseOtherFromText(CString block1) {
+	int hp = TupelToNumber(block1.Mid(2, 2));
+	int st = TupelToNumber(block1.Mid(5, 2));
+	int ma = TupelToNumber(block1.Mid(10, 2));
+	m_hp = hp;
+	m_st = st;
+	m_ma = ma;
+}
+
 
 void CChampion::ParseVitalsFromText(CString block2) {
 	// AA = 00 ... AP = 15
 	// BA = 16 ... BP = 31
 	// CA = 32 ... CP = 47
 	// DA = 48 ... DP = 63  
-	// 
+	// EA = 64 ... EP = 79
+	int luk = TupelToNumber(block2.Mid(0, 2));
+	m_vitals.luk.Aktuell = luk;
+	m_vitals.luk.Max = luk;
 	int str = TupelToNumber(block2.Mid(2, 2));
 	m_vitals.str.Aktuell = str;
 	m_vitals.str.Max = str;
@@ -63,19 +73,19 @@ void CChampion::ParseVitalsFromText(CString block2) {
 	int am = TupelToNumber(block2.Mid(12, 2));
 	m_vitals.am.Aktuell = am;
 	m_vitals.am.Max = am;
-	//																								  xxxxxxxxxxxx                           
-	// Syra: Novice Priest / Apprentice WIzard   38/35/43/45/42/40	=> 53/72/15		AADFACNAAAAP	DHCGCDCLCNCKCI	AAAAAAAAADBBACDD
-	// Chani: Novice Fighter / Apprentice WIzard 37/47/57/37/47/37  => 47/67/17		AACPACJOAABB	DJCFCPDJCFCPCF	BDACAAAAAAAADCDB
-	// Elija: Novice Fighter / Apprentice Priest 42/40/42/36/53/40					AADMACEEAABG	DCCKCICKCEDFCI	BBCAAAAACBECAAAA
-	//																												FIFININIPRPRWIWI  
-	// Gando: Apprentice Ninja / Novice Wizard   39/45/47/33/48/43  => 39/63/26		AACHACHGAABK	DCCHCNCPCBDACL	AAAADACDAAAABCBC
-	// Alex: Apprentice Ninja / Novice Wizard										AADCACDKAAAN	CPCMDHCNCICDCI	AAAADCDCAAAACCBC
-	// Linflas: Appr. Fighter / Novice Wizard    45/47/47/35/50/35  => 65/50/12		AAEBABPEAAAM	CNCNCNCPCDDCCD	ABCEAABAABAAABCC
-	// Nabi: Apprentice Priest / Novice Wizard   41/36/45/45/55/55  => 55/65/13		AADHACIKAAAN	CICJCECNCNDHDH	AAAAAAAABBECBBBB
+	//															   LUCK					  HP	  MA    xxxxxxxxxxxxxx                           
+	// Syra: Novice Priest / Apprentice WIzard   38/35/43/45/42/40\55  => 53/72/15		AADFACNAAAAP	DHCGCDCLCNCKCI	AAAAAAAAADBBACDD
+	// Chani: Novice Fighter / Apprentice WIzard 37/47/57/37/47/37\57  => 47/67/17		AACPACJOAABB	DJCFCPDJCFCPCF	BDACAAAAAAAADCDB
+	// Elija: Novice Fighter / Apprentice Priest 42/40/42/36/53/40\50					AADMACEEAABG	DCCKCICKCEDFCI	BBCAAAAACBECAAAA
+	//																												    FIFININIPRPRWIWI  
+	// Gando: Apprentice Ninja / Novice Wizard   39/45/47/33/48/43\50  => 39/63/26		AACHACHGAABK	DCCHCNCPCBDACL	AAAADACDAAAABCBC
+	// Alex: Apprentice Ninja / Novice Wizard					   47  => 50/57/13		AADCACDKAAAN	CPCMDHCNCICDCI	AAAADCDCAAAACCBC
+	// Linflas: Appr. Fighter / Novice Wizard    45/47/47/35/50/35\45  => 65/50/12		AAEBABPEAAAM	CNCNCNCPCDDCCD	ABCEAABAABAAABCC
+	// Nabi: Apprentice Priest / Novice Wizard   41/36/45/45/55/55\40  => 55/65/13		AADHACIKAAAN	CICJCECNCNDHDH	AAAAAAAABBECBBBB
 
-	// Hissa: Apprentice Fighter / Novice Ninja  58/48/35/35/43/55  => 80/61/5		AAFAACGCAAAF	CIDKDACDCDCLDH	EDAAADBAAAAAAAAA
-	// Halk: Journeyman Figher					 55/43/30/46/38/48  => 90/75/0		AAFKACOOAAAA	CIDHCLBOCOCGDA	EAEAAAAAAAAAAAAA
-	// Gothmog: Journeymay Wizard													AADMACCGAABC	BOCICDDACCDCDL	AAAAAAAAAAAAEDCC
+	// Hissa: Apprentice Fighter / Novice Ninja  58/48/35/35/43/55\40  => 80/61/5		AAFAACGCAAAF	CIDKDACDCDCLDH	EDAAADBAAAAAAAAA
+	// Halk: Journeyman Figher					 55/43/30/46/38/48\40  => 90/75/0		AAFKACOOAAAA	CIDHCLBOCOCGDA	EAEAAAAAAAAAAAAA
+	// Gothmog: Journeymay Wizard														AADMACCGAABC	BOCICDDACCDCDL	AAAAAAAAAAAAEDCC
 }
 
 void CChampion::ParseLevelsFromText(CString block3) {

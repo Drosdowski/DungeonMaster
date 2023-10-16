@@ -67,12 +67,12 @@ CGrpHeld::~CGrpHeld()
 // Behandlungsroutinen für Nachrichten CGrpHeld 
 
 
-void CGrpHeld::InitHeld(CChampion* champion, const int nr) {
+void CGrpHeld::InitHeld(CChampion* champion, const int nr, int hp_akt, int st_akt, int ma_akt) {
 	if (m_pMember[m_iAktiverHeld])
 		((CHeld*)m_pMember[m_iAktiverHeld])->setInactive();
 	if (m_pMember[nr] == NULL)
 	{
-		NewHero(champion, nr);
+		NewHero(champion, nr, hp_akt, st_akt, ma_akt);
 	}
 	else {
 		m_iAktiverHeld = nr;
@@ -90,7 +90,7 @@ void CGrpHeld::InitHeld(const int nr)
 		CString strName;
 		strName.Format("SAMSON\n\nm\nDADADADADADADA\nDADADADADADADA\nDADADADADADADA\n", nr);
 				
-		NewHero(new CChampion(strName), nr);
+		NewHero(new CChampion(strName), nr, 100, 100, 100);
 
 	}
 	else {
@@ -99,8 +99,8 @@ void CGrpHeld::InitHeld(const int nr)
 	}
 }
 
-void CGrpHeld::NewHero(CChampion* champ, int nr) {
-	m_pMember[nr] = new CHeld(nr, champ);
+void CGrpHeld::NewHero(CChampion* champ, int nr, int hp_akt, int st_akt, int ma_akt) {
+	m_pMember[nr] = new CHeld(nr, champ, hp_akt, st_akt, ma_akt);
 	m_iAktiverHeld = nr;
 
 	CHeld* pHeld = (CHeld*)m_pMember[nr];
@@ -120,7 +120,7 @@ void CGrpHeld::RessurectHero(CString text) {
 	}
 	if (nr < 5) {
 		CChampion* champ = new CChampion(text);
-		NewHero(champ, nr);
+		NewHero(champ, nr, champ->hp(), champ->st(), champ->ma());
 	}
 }
 

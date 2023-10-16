@@ -21,7 +21,7 @@ class CGrpMonster;
 class CHeld : public CCharacter
 {
 public:
-	CHeld(int iIndex, CChampion* champ);
+	CHeld(int iIndex, CChampion* champ, int hp_akt, int st_akt, int ma_akt);
 protected:
 	CHeld();           // protected constructor used by dynamic creation
 
@@ -84,7 +84,6 @@ private:
 	int m_iWater;
 	int m_iIndex;
 	bool m_bAktiv;
-	int m_iCurrentLuck;
 	WERTE m_MA;	// Mana
 	WERTE m_ST;	// Stamina
 

@@ -26,6 +26,7 @@ private:
 	VITALS m_vitals;
 	int m_hp, m_st, m_ma;
 
+	void ParseOtherFromText(CString block1);
 	void ParseVitalsFromText(CString block2);
 	void ParseLevelsFromText(CString block3);
 	int TupelToNumber(CString str);
