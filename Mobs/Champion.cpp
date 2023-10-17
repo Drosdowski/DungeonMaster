@@ -38,7 +38,7 @@ CChampion::CChampion(const char* name, const char* subname, bool isMale, VITALS 
 
 void CChampion::ParseOtherFromText(CString block1) {
 	int hp = TupelToNumber(block1.Mid(2, 2));
-	int st = TupelToNumber(block1.Mid(5, 2));
+	int st = TupelToNumber(block1.Mid(4, 2)) * 256 + TupelToNumber(block1.Mid(6, 2)); // Faktor 10
 	int ma = TupelToNumber(block1.Mid(10, 2));
 	m_hp = hp;
 	m_st = st;
@@ -52,6 +52,11 @@ void CChampion::ParseVitalsFromText(CString block2) {
 	// CA = 32 ... CP = 47
 	// DA = 48 ... DP = 63  
 	// EA = 64 ... EP = 79
+	// FA = 80
+	// GA = 96
+	// HA =112
+	// IA =128
+	// JA =144 ... JP =159
 	int luk = TupelToNumber(block2.Mid(0, 2));
 	m_vitals.luk.Aktuell = luk;
 	m_vitals.luk.Max = luk;
@@ -73,8 +78,8 @@ void CChampion::ParseVitalsFromText(CString block2) {
 	int am = TupelToNumber(block2.Mid(12, 2));
 	m_vitals.am.Aktuell = am;
 	m_vitals.am.Max = am;
-	//																								  xxxxxxxxxxxx  FFFFNNNNPPPPWWWW           
-	
+	//																				  HPSTST  MA    xxxxxxxxxxxxxx  FFFFNNNNPPPPWWWW           
+	// AC = 02; JO = 158       2*256 + 158 = 670
 	// Elija: Novice Fighter / Apprentice Priest 42/40/42/36/53/40					AADMACEEAABG	DCCKCICKCEDFCI	BBCAAAAACBECAAAA
 	// Hawk: Novice Fighter / Apprentice Priest	 45/35/38/55/35/35					AAEGADFCAAAK	CICNCDCGDHCDCD	CAACAAAAADADAAAA
 	// Chani: Novice Fighter / Apprentice WIzard 37/47/57/37/47/37  => 47/67/17		AACPACJOAABB	DJCFCPDJCFCPCF	BDACAAAAAAAADCDB

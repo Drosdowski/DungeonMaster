@@ -363,7 +363,7 @@ void CPictures::ZeichneHpStMa(CDC* pDC, WERTE hp, WERTE st, WERTE ma)
 	str.Format("%3i/%3i", (int)hp.Aktuell, (int)hp.Max);
 	DrawOrigFontText(pDC, 96, 284, str);
 
-	str.Format("%3i/%3i", (int)st.Aktuell, (int)st.Max);
+	str.Format("%3i/%3i", (int)(st.Aktuell / 10), (int)(st.Max / 10));
 	DrawOrigFontText(pDC, 96, 300, str);
 
 	str.Format("%3i/%3i", (int)ma.Aktuell, (int)ma.Max);
