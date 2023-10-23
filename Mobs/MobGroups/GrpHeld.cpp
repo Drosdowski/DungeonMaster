@@ -88,7 +88,7 @@ void CGrpHeld::InitHeld(const int nr)
 	if (m_pMember[nr] == NULL)
 	{
 		CString strName;
-		strName.Format("SAMSON\n\nm\nDADADADADADADA\nDADADADADADADA\nDADADADADADADA\n", nr);
+		strName.Format("SAMSON\n\nm\nDADADADADADADA\nDADADADADADADA\nDADADADADADADADA\n", nr);
 				
 		NewHero(new CChampion(strName), nr, 100, 100, 100);
 

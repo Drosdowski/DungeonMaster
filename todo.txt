@@ -12,7 +12,7 @@ http://dmweb.free.fr/?q=node/1395
 
 BUGS
 
-SAVE GAME: Monster, Items on floor
+SAVE GAME: Monster
 
 items hit player
 itemInfo 
@@ -20,7 +20,3 @@ Unterschied throwable / weapon
 Zauberspruch je zauberer speichern
 stamina 0
 
-save game: Item attribute, z.b. potion!
-
-
-Monster Flüchten

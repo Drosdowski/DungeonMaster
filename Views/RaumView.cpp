@@ -1385,7 +1385,6 @@ CField* CRaumView::ChangeFieldWithStairs(CField* pField, CMovingObject* pItem, S
 	CStairs* stair = pField->HoleStairs();
 	if (stair) {
 		// In Treppe: Flug zu Ende
-		pItem->m_flyForce = { 0,0,0 };
 		// Falls Treppe runter: Item fliegt runter!
 		if (stair->GetType() == CStairs::StairType::DOWN) {
 			VEKTOR oben = pField->HolePos();
@@ -1401,11 +1400,14 @@ CField* CRaumView::ChangeFieldWithStairs(CField* pField, CMovingObject* pItem, S
 				for (int t = 0; t < (sourceDir - targetDir); t++)
 					subPos = CHelpfulValues::LeftFrom(subPos);
 			}
-			else if (sourceDir > targetDir) {
+			else if (sourceDir < targetDir) {
 				for (int t = 0; t < (targetDir - sourceDir); t++)
 					subPos = CHelpfulValues::RightFrom(subPos);
 			}
+		} else {
+			subPos = CHelpfulValues::FindNextSubposWithoutFieldChange(subPos, VEKTOR{ -pItem->m_flyForce.x, -pItem->m_flyForce.y, 0 });
 		}
+		pItem->m_flyForce = { 0,0,0 };
 	}
 	return pField;
 }
