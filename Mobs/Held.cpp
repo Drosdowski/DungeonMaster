@@ -175,7 +175,7 @@ int CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, CGrpMonst
 	// todo xp gain  --- Mastery = log2(Experience=469)
 	// https://gamefaqs.gamespot.com/snes/588299-dungeon-master/faqs/33244 => Exo Gain! (5e. Actions)
 	
-	if (!hitSucessful(ac, levelDif))
+	if (!hitSucessful(ac, mc, levelDif))
 	{
 		WerteTemporaerAendern(0, -(2 + (rand() % 1)), 0); // daneben
 		return 0;
@@ -260,7 +260,7 @@ void CHeld::ReduceWhenOverload(double d6_weapon_weight, double d5_load_coefficie
 	}
 }
 
-bool CHeld::hitSucessful(CAttackConst ac, int levelDif) {
+bool CHeld::hitSucessful(CAttackConst ac, CMonsterConst mc, int levelDif) {
 	double d6_hitProbaility = ac.to_hit / 75.0;
 	int d7_baseDamage = ac.damage;
 	int quickness = (int)m_sVitals.dex.Aktuell + (rand() % 8);
@@ -268,8 +268,7 @@ bool CHeld::hitSucessful(CAttackConst ac, int levelDif) {
 	quickness -= loadingEffect;
 	int chanceToHit = min(max((quickness / 2), rand() % 8 + 1), 100 - rand() % 8);
 
-	int enemyDef = 10; // todo enemy def
-	int d1_neededToHit = (enemyDef + rand() % 32 + levelDif) - 16;
+	int d1_neededToHit = (mc.defense + rand() % 32 + levelDif) - 16;
 	bool successfulHit = (chanceToHit > d1_neededToHit);
 	if (!successfulHit) {
 		if (rand() % 3 == 0)

@@ -98,7 +98,7 @@ private:
 	CItem* m_itemCarrying[31]; // Letztes Item sind die Knochen, sieht man natürlich nicht im Backpack.
 
 	double round1(double value);
-	bool hitSucessful(CAttackConst ac, int levelDif);
+	bool hitSucessful(CAttackConst ac, CMonsterConst mc, int levelDif);
 	void DelItem(CItem* pItem);
 	int ACC_Coeff(int levelDif, int armor);
 	void ReduceWhenOverload(double d6_weapon_weight, double d5_load_coefficient, double &dmg);
