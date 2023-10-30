@@ -17,14 +17,16 @@ void CDoor::ContinueMoving() {
 		break;
 	case (OPENING):
 		m_bottomHeight += movingHeight;
-		if (m_bottomHeight == fullHeight) {
+		if (m_bottomHeight >= fullHeight) {
 			m_state = OPEN;
+			m_bottomHeight = fullHeight;
 		}
 		break;
 	case (CLOSING):
 		m_bottomHeight -= movingHeight;
-		if (m_bottomHeight == 0) {
+		if (m_bottomHeight <= 0) {
 			m_state = CLOSED;
+			m_bottomHeight = fullHeight;
 		}
 		break;
 	case (CLOSED):
