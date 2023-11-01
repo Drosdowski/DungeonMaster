@@ -66,6 +66,8 @@ public:
 	CItem* GetItemCarrying(int index) { return m_itemCarrying[index]; }
 	void RemoveItemCarrying(int index) { m_itemCarrying[index] = NULL; }
 	CItem* SwitchItemAt(int index, CItem* item);
+	CString GetSkillsForSaveGame();
+	void SetSkillsFromSaveGame(CString skills);
 
 // Implementation
 public:

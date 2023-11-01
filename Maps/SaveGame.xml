@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<dungeon start_x="4" start_y="15" start_z="0" start_facing="West">
+<dungeon start_x="10" start_y="5" start_z="0" start_facing="South">
     <heroes>
-        <hero index="1" hp_akt="90" st_akt="746" ma_akt="0" hp_max="90" st_max="750" ma_max="0" name="HALK" subname="" male="Y" LUK="10280" STR="14135" DEX="11051" VIT="7710" WIS="11822" AM="12336" AF="9766">
-            <item item="1" index="148" type="1" />
-        </hero>
+        <hero index="1" hp_akt="60" st_akt="600" ma_akt="10" hp_max="60" st_max="600" ma_max="10" name="ZED" subname="" male="Y" LUK="14906" STR="10280" DEX="10280" VIT="10280" WIS="12850" AM="10280" AF="10280" SKILLS="2,1,1,2,2,1,2,1,1,2,1,1,1,1,2,1" />
     </heroes>
     <maps>
         <map index="0">
@@ -187,7 +185,7 @@
                 <tile index="117" />
                 <tile index="118">
                     <actuators>
-                        <actuator index="22" subPos="0" active="1" />
+                        <actuator index="22" subPos="0" active="0" />
                     </actuators>
                     <items>
                         <cloth index="18" position="0" />
@@ -260,7 +258,7 @@
                 <tile index="150" />
                 <tile index="151">
                     <actuators>
-                        <actuator index="15" subPos="2" active="0" />
+                        <actuator index="15" subPos="2" active="1" />
                     </actuators>
                     <items>
                         <cloth index="0" position="2" />
@@ -297,9 +295,13 @@
                         <actuator index="63" subPos="1" active="1" />
                     </actuators>
                 </tile>
-                <tile index="166" />
+                <tile index="166">
+                    <items>
+                        <miscellaneous index="148" position="0" />
+                    </items>
+                </tile>
                 <tile index="167">
-                    <door state="0" />
+                    <door state="4" />
                 </tile>
                 <tile index="168">
                     <actuators>

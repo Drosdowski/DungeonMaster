@@ -1184,6 +1184,8 @@ void CDungeonMap::SaveHero(TiXmlElement* heroes, int id) {
 		hero->SetAttribute("WIS", TwoBytes(v.wis));
 		hero->SetAttribute("AM", TwoBytes(v.am));
 		hero->SetAttribute("AF", TwoBytes(v.af));
+
+		hero->SetAttribute("SKILLS", held->GetSkillsForSaveGame());
 		
 		for (int itemId = 0; itemId < 30; itemId++) {
 			CItem* item = held->GetItemCarrying(itemId);
@@ -1351,12 +1353,12 @@ void CDungeonMap::LoadHero(TiXmlElement* hero) {
 	int hp_max, st_max, ma_max;
 	WERTE STR, DEX, VIT, WIS, AM, AF, LUK;
 	hero->QueryIntAttribute("index", &heroId);
-	hero->QueryIntAttribute("hp-akt", &hp_akt);
-	hero->QueryIntAttribute("st-akt", &st_akt);
-	hero->QueryIntAttribute("ma-akt", &ma_akt);
-	hero->QueryIntAttribute("hp-max", &hp_max);
-	hero->QueryIntAttribute("st-max", &st_max);
-	hero->QueryIntAttribute("ma-max", &ma_max);
+	hero->QueryIntAttribute("hp_akt", &hp_akt);
+	hero->QueryIntAttribute("st_akt", &st_akt);
+	hero->QueryIntAttribute("ma_akt", &ma_akt);
+	hero->QueryIntAttribute("hp_max", &hp_max);
+	hero->QueryIntAttribute("st_max", &st_max);
+	hero->QueryIntAttribute("ma_max", &ma_max);
 
 	const char* name = hero->Attribute("name");
 	const char* subname = hero->Attribute("subname");
@@ -1376,10 +1378,12 @@ void CDungeonMap::LoadHero(TiXmlElement* hero) {
 	AM = ParseTwoBytes(M);
 	AF = ParseTwoBytes(F);
 	VITALS vitals = { LUK, STR, DEX, VIT, WIS, AM, AF };
-	CChampion* newChamp = new CChampion(name, subname, male == "Y", vitals, hp_max, st_max, ma_max);
+	CString skills = hero->Attribute("SKILLS");
+	CChampion* newChamp = new CChampion(name, subname, male[0] == 'Y', vitals, hp_max, st_max, ma_max);
 
 	m_pGrpHelden->InitHeld(newChamp, heroId, hp_akt, st_akt, ma_akt);
 	CHeld* held = m_pGrpHelden->GetActiveHero();
+	held->SetSkillsFromSaveGame(skills);
 	TiXmlElement* heroItem = hero->FirstChildElement();
 	while (heroItem) {
 		int itemId, index, type;

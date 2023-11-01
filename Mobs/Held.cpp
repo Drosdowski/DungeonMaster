@@ -404,3 +404,58 @@ int CHeld::priestLevel() {
 int CHeld::wizardLevel() {
 	return max(m_wizardLevel.Air, max(m_wizardLevel.Earth, max(m_wizardLevel.Fire, m_wizardLevel.Water)));
 }
+
+CString CHeld::GetSkillsForSaveGame() {
+	CString text = "";
+	text.AppendFormat("%i,", m_fightLevel.Club);
+	text.AppendFormat("%i,", m_fightLevel.Parry);
+	text.AppendFormat("%i,", m_fightLevel.Swing);
+	text.AppendFormat("%i,", m_fightLevel.Thrust);
+			    
+	text.AppendFormat("%i,", m_ninjaLevel.Fight);
+	text.AppendFormat("%i,", m_ninjaLevel.Shoot);
+	text.AppendFormat("%i,", m_ninjaLevel.Steal);
+	text.AppendFormat("%i,", m_ninjaLevel.Throw);
+			    
+	text.AppendFormat("%i,", m_priestLevel.Identify);
+	text.AppendFormat("%i,", m_priestLevel.Heal);
+	text.AppendFormat("%i,", m_priestLevel.Influence);
+	text.AppendFormat("%i,", m_priestLevel.Defend);
+			    
+	text.AppendFormat("%i,", m_wizardLevel.Fire);
+	text.AppendFormat("%i,", m_wizardLevel.Air);
+	text.AppendFormat("%i,", m_wizardLevel.Earth);
+	text.AppendFormat("%i",  m_wizardLevel.Water);
+
+	return text;
+}
+
+void CHeld::SetSkillsFromSaveGame(CString skills) {
+	CStringArray saItems;
+	int i = 0;
+	for (CString sItem = skills.Tokenize(",", i); i >= 0; sItem = skills.Tokenize(",", i))
+	{
+		saItems.Add(sItem);
+	}
+
+
+	m_fightLevel.Club = atoi(saItems[0]);
+	m_fightLevel.Parry = atoi(saItems[1]);
+	m_fightLevel.Swing = atoi(saItems[2]);
+	m_fightLevel.Thrust = atoi(saItems[3]);
+
+	m_ninjaLevel.Fight = atoi(saItems[4]);
+	m_ninjaLevel.Shoot = atoi(saItems[5]);
+	m_ninjaLevel.Steal = atoi(saItems[6]);
+	m_ninjaLevel.Throw = atoi(saItems[7]);
+
+	m_priestLevel.Identify = atoi(saItems[8]);
+	m_priestLevel.Heal = atoi(saItems[9]);
+	m_priestLevel.Influence = atoi(saItems[10]);
+	m_priestLevel.Defend = atoi(saItems[11]);
+
+	m_wizardLevel.Fire = atoi(saItems[12]);
+	m_wizardLevel.Air = atoi(saItems[13]);
+	m_wizardLevel.Earth = atoi(saItems[14]);
+	m_wizardLevel.Water = atoi(saItems[15]);
+}
