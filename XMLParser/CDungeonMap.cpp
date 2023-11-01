@@ -1242,18 +1242,18 @@ void CDungeonMap::SaveMap(TiXmlElement* maps, int level) {
 				std::deque<CItem*> pItems = m_pFeld[x][y][level]->GetItem((SUBPOS_ABSOLUTE)subPos);
 				if (!pItems.empty() || pGrpMonsters) {
 					if (pGrpMonsters) {
-						TiXmlElement* creature = new TiXmlElement("creature");
-						creature->SetAttribute("index", pGrpMonsters->GetIndex());
-						creature->SetAttribute("subPos", subPos);
+						CString strHp;
 						for (int i=1; i<5; i++) {
 							CMonster* monster = pGrpMonsters->GetMonster(i);
 							if (monster && monster->HoleSubPosition() == subPos) {
-								CString strHp;
+								TiXmlElement* creature = new TiXmlElement("creature");
+								creature->SetAttribute("index", pGrpMonsters->GetIndex());
+								creature->SetAttribute("subPos", subPos);
 								strHp.Format("hp-%i", i);
 								creature->SetAttribute(strHp, (int)monster->Hp().Aktuell);
+								items->LinkEndChild(creature);
 							}
 						}
-						items->LinkEndChild(creature);
 
 					}
 					for (CItem* pItem : pItems) {
