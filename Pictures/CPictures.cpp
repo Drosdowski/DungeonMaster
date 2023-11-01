@@ -394,7 +394,7 @@ void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld)
 		}
 		if (level > 0)
 		{
-			int xp = 500 * exp2(level -1);
+			int xp = (int)(500 * exp2(level - 1));
 			
 			strTitel = CHelpfulValues::SkillGrade(xp);
 			strKlasse = CHelpfulValues::SkillClass(i-1);

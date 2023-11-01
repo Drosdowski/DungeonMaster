@@ -1167,12 +1167,12 @@ void CDungeonMap::SaveHero(TiXmlElement* heroes, int id) {
 	if (held) {
 		TiXmlElement* hero = new TiXmlElement("hero");
 		hero->SetAttribute("index", id);
-		hero->SetAttribute("hp_akt", held->Hp().Aktuell);
-		hero->SetAttribute("st_akt", held->St().Aktuell);
-		hero->SetAttribute("ma_akt", held->Ma().Aktuell);
-		hero->SetAttribute("hp_max", held->Hp().Max);
-		hero->SetAttribute("st_max", held->St().Max);
-		hero->SetAttribute("ma_max", held->Ma().Max);
+		hero->SetAttribute("hp_akt", (int)held->Hp().Aktuell);
+		hero->SetAttribute("st_akt", (int)held->St().Aktuell);
+		hero->SetAttribute("ma_akt", (int)held->Ma().Aktuell);
+		hero->SetAttribute("hp_max", (int)held->Hp().Max);
+		hero->SetAttribute("st_max", (int)held->St().Max);
+		hero->SetAttribute("ma_max", (int)held->Ma().Max);
 		hero->SetAttribute("name", held->getName());
 		hero->SetAttribute("subname", held->getSubname());
 		hero->SetAttribute("male", held->isMale() ? "Y" : "N");
@@ -1348,7 +1348,7 @@ void CDungeonMap::LoadHeroes(TiXmlElement* heroes) {
 
 void CDungeonMap::LoadHero(TiXmlElement* hero) {
 	int heroId;
-	int S, D, V, W, M, F, XP, L;
+	int S, D, V, W, M, F, L;
 	int hp_akt, st_akt, ma_akt;
 	int hp_max, st_max, ma_max;
 	WERTE STR, DEX, VIT, WIS, AM, AF, LUK;
@@ -1486,7 +1486,7 @@ void CDungeonMap::LoadTile(TiXmlElement* tile, int mapIndex) {
 }
 
 int CDungeonMap::TwoBytes(WERTE values) {
-	return values.Aktuell * 256 + values.Max;
+	return (int)(values.Aktuell * 256 + values.Max);
 }
 
 WERTE CDungeonMap::ParseTwoBytes(int values) {

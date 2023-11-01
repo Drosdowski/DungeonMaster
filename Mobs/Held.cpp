@@ -205,7 +205,7 @@ int CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, CGrpMonst
 		}
 
 		d7_damage_coefficient += (rand() % 32) - d4_AC_coefficient;
-		int d6_damage = d7_damage_coefficient;
+		double d6_damage = d7_damage_coefficient;
 		if (d7_damage_coefficient <= 1) {
 			d7_damage_coefficient = rand() % 3;
 		}
@@ -437,7 +437,6 @@ void CHeld::SetSkillsFromSaveGame(CString skills) {
 	{
 		saItems.Add(sItem);
 	}
-
 
 	m_fightLevel.Club = atoi(saItems[0]);
 	m_fightLevel.Parry = atoi(saItems[1]);
