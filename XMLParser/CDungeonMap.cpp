@@ -240,16 +240,16 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	else if (iFieldType == FeldTyp::TRICKWALL) {
 		m_pFeld[x][y][etage] = ParseTrickWall(rootNode, pos);
 	}
-	else
+	else {
 		m_pFeld[x][y][etage] = new CField(pos, iFieldType); // etage 1 / index 30 => m_levelWidth[1] kaputt!
-	
-	if (hasObjects == 1 || allowDecorations >= 1) {
-		TiXmlElement* parentElement = rootNode->FirstChildElement();
-		if (parentElement)
-		{
-			ParseItems(parentElement, VEKTOR{x ,y, etage}, true);
-		}
 	}
+	//if (hasObjects == 1 || allowDecorations >= 1) {
+		TiXmlElement* childElement = rootNode->FirstChildElement();
+		if (childElement)
+		{
+			ParseItems(childElement, pos, true);
+		}
+	//}
 }
 
 void CDungeonMap::ParseItems(TiXmlElement* rootNode, VEKTOR coords, bool initDungeon) {
@@ -259,40 +259,41 @@ void CDungeonMap::ParseItems(TiXmlElement* rootNode, VEKTOR coords, bool initDun
 			TiXmlElement* item = rootNode->FirstChildElement();
 			while (item)
 			{
+				const char* val = item->Value();
 				if (initDungeon && !saveGameExists || !initDungeon) {
-					if (strcmp(item->Value(), "miscellaneous") == 0) {
+					if (strcmp(val, "miscellaneous") == 0) {
 						ParseMiscellaneous(item, coords);
 					}
-					else if (strcmp(item->Value(), "weapon") == 0) {
+					else if (strcmp(val, "weapon") == 0) {
 						ParseWeapons(item, coords);
 					}
-					else if (strcmp(item->Value(), "cloth") == 0) {
+					else if (strcmp(val, "cloth") == 0) {
 						ParseCloth(item, coords);
 					}
-					else if (strcmp(item->Value(), "potion") == 0) {
+					else if (strcmp(val, "potion") == 0) {
 						ParsePotions(item, coords);
 					}
-					else if (strcmp(item->Value(), "scroll") == 0) {
+					else if (strcmp(val, "scroll") == 0) {
 						ParseScrolls(item, coords);
 					}
-					else if (strcmp(item->Value(), "container") == 0) {
+					else if (strcmp(val, "container") == 0) {
 						ParseContainers(item, coords);
+					}
+					else if (strcmp(val, "creature") == 0 && monsterAktiv) {
+						ParseCreatureGroup(item, coords);
 					}
 				}
 				if (initDungeon) {
-					if (strcmp(item->Value(), "actuator") == 0) {
+					if (strcmp(val, "actuator") == 0) {
 						ParseActuator(item, coords);
 					}
-					else if (strcmp(item->Value(), "random_floor_decoration") == 0) {
+					else if (strcmp(val, "random_floor_decoration") == 0) {
 						ParseFloorDecoration(item, coords);
 					}
-					else if (strcmp(item->Value(), "random_wall_decoration") == 0) {
+					else if (strcmp(val, "random_wall_decoration") == 0) {
 						ParseWallDecoration(item, coords);
 					}
-					else if (strcmp(item->Value(), "creature") == 0 && monsterAktiv) {
-						ParseCreature(item, coords);
-					}
-					else if (strcmp(item->Value(), "text") == 0) {
+					else if (strcmp(val, "text") == 0) {
 						ParseText(item, coords);
 					}
 				}
@@ -411,17 +412,19 @@ void CDungeonMap::ParseText(TiXmlElement* rootNode, VEKTOR coords) {
 }
 
 
-void CDungeonMap::ParseCreature(TiXmlElement* creatureItem, VEKTOR coords) {
+void CDungeonMap::ParseCreatureGroup(TiXmlElement* creatureGroupItem, VEKTOR coords) {
 	int index, position;
-	creatureItem->QueryIntAttribute("index", &index);
-	creatureItem->QueryIntAttribute("position", &position);
+	creatureGroupItem->QueryIntAttribute("index", &index);
+	creatureGroupItem->QueryIntAttribute("position", &position);
 
 	CCreatureAttributes attribute = m_creatureAtt[index];
-	CGrpMonster* pGrpMonster = new CGrpMonster(coords, attribute, index);
+	CGrpMonster* pGrpMonster = m_pFeld[coords.x][coords.y][coords.z]->GetMonsterGroup();
+	if (!pGrpMonster) {
+		pGrpMonster = new CGrpMonster(coords, attribute, index);
+		m_pFeld[coords.x][coords.y][coords.z]->SetMonsterGroup(pGrpMonster);
+	}
 
-	m_pFeld[coords.x][coords.y][coords.z]->SetMonsterGroup(pGrpMonster);
-
-	TiXmlElement* parentElement = creatureItem->FirstChildElement();
+	TiXmlElement* parentElement = creatureGroupItem->FirstChildElement();
 	while (parentElement)
 	{
 		const char* parent = parentElement->Value();

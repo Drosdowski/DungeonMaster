@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<dungeon start_x="5" start_y="0" start_z="1" start_facing="East">
+<dungeon start_x="4" start_y="0" start_z="1" start_facing="East">
     <heroes>
-        <hero index="1" hp_akt="56" st_akt="588" ma_akt="10" hp_max="60" st_max="600" ma_max="10" name="ZED" subname="" male="Y" LUK="12850" STR="10280" DEX="14906" VIT="10280" WIS="10280" AM="10280" AF="10280" SKILLS="2,1,1,2,2,1,2,1,1,2,1,1,1,1,2,1" />
+        <hero index="1" hp_akt="60" st_akt="591" ma_akt="10" hp_max="60" st_max="600" ma_max="10" name="ZED" subname="" male="Y" LUK="10280" STR="12850" DEX="10280" VIT="14906" WIS="10280" AM="10280" AF="10280" SKILLS="2,1,1,2,2,1,2,1,1,2,1,1,1,1,2,1" />
     </heroes>
     <maps>
         <map index="0">
@@ -672,10 +672,13 @@
                 <tile index="2" />
                 <tile index="3" />
                 <tile index="4" />
-                <tile index="5" />
+                <tile index="5">
+                    <items>
+                        <creature index="169" subPos="3" hp-1="20" />
+                    </items>
+                </tile>
                 <tile index="6">
                     <items>
-                        <creature index="169" subPos="0" hp-1="20" />
                         <weapon index="18" position="0" />
                     </items>
                 </tile>

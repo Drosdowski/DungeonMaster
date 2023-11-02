@@ -79,7 +79,7 @@ private:
 	void ParseText(TiXmlElement* rootNode, VEKTOR coords);
 	void ParseFloorDecoration(TiXmlElement* miscItem, VEKTOR coords);
 	void ParseWallDecoration(TiXmlElement* miscItem, VEKTOR coords);
-	void ParseCreature(TiXmlElement* miscItem, VEKTOR coords);
+	void ParseCreatureGroup(TiXmlElement* miscItem, VEKTOR coords);
 	void RestorePosition(TiXmlElement* rootElement, CGrpHeld* pGrpHeroes);	
 	void SaveMap(TiXmlElement* maps, int level);
 	void LoadMap(TiXmlElement* maps);
