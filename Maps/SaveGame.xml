@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <dungeon start_x="3" start_y="0" start_z="1" start_facing="East">
     <heroes>
-        <hero index="1" hp_akt="60" st_akt="585" ma_akt="10" hp_max="60" st_max="600" ma_max="10" name="ZED" subname="" male="Y" LUK="10280" STR="14906" DEX="10280" VIT="10280" WIS="10280" AM="10280" AF="12850" SKILLS="2,1,1,2,2,1,2,1,1,2,1,1,1,1,2,1" />
-        <hero index="2" hp_akt="53" st_akt="710" ma_akt="15" hp_max="53" st_max="720" ma_max="15" name="SYRA" subname="" male="N" LUK="10794" STR="14135" DEX="9766" VIT="8995" WIS="11051" AM="10280" AF="11565" SKILLS="0,0,0,0,0,0,0,0,1,3,1,0,3,0,2,3" />
+        <hero index="1" hp_akt="60" st_akt="588" ma_akt="10" hp_max="60" st_max="600" ma_max="10" name="ZED" subname="" male="Y" LUK="12850" STR="10280" DEX="14906" VIT="10280" WIS="10280" AM="10280" AF="10280" SKILLS="2,1,1,2,2,1,2,1,1,2,1,1,1,1,2,1" />
+        <hero index="2" hp_akt="53" st_akt="713" ma_akt="14" hp_max="53" st_max="720" ma_max="15" name="SYRA" subname="" male="N" LUK="11565" STR="10794" DEX="14135" VIT="9766" WIS="8995" AM="10280" AF="11051" SKILLS="0,0,0,0,0,0,0,0,1,3,1,0,3,0,2,3" />
     </heroes>
     <maps>
         <map index="0">
@@ -672,12 +672,12 @@
                 </tile>
                 <tile index="2" />
                 <tile index="3" />
-                <tile index="4" />
-                <tile index="5">
+                <tile index="4">
                     <items>
                         <creature index="169" position="3" dir="3" hp="20" subIndex="1" />
                     </items>
                 </tile>
+                <tile index="5" />
                 <tile index="6">
                     <items>
                         <weapon index="18" position="0" />

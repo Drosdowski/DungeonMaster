@@ -77,6 +77,10 @@ CHeld::CHeld(int iIndex, CChampion* champ, int hp_akt, int st_akt, int ma_akt): 
 	delete champ;
 
 	m_pRucksack = new CRucksack();
+
+	m_spell = new int[5];
+
+	m_iRuneTable = 1;
 }
 
 
@@ -89,6 +93,8 @@ CHeld::~CHeld()
 		}
 	}
 	delete m_pRucksack;
+
+	if (m_spell != NULL) delete[] m_spell;
 }
 
 void CHeld::DelItem(CItem* pItem) {
@@ -457,4 +463,38 @@ void CHeld::SetSkillsFromSaveGame(CString skills) {
 	m_wizardLevel.Air = atoi(saItems[13]);
 	m_wizardLevel.Earth = atoi(saItems[14]);
 	m_wizardLevel.Water = atoi(saItems[15]);
+}
+
+void CHeld::nextRuneTable()
+{
+	if (m_iRuneTable < 4)
+		m_iRuneTable++;
+	else
+		m_iRuneTable = 1;
+}
+
+void CHeld::resetRuneTable() {
+	m_iRuneTable = 1;
+	if (m_spell != NULL) delete m_spell;
+	m_spell = new int[5];
+}
+
+
+void CHeld::storeRune(int index) {
+	m_spell[m_iRuneTable] = index;
+	if (m_iRuneTable == 1) {
+		for (int i = 2; i < 5; i++)
+			m_spell[i] = 0;
+	}
+	nextRuneTable();
+};
+
+int CHeld::GetPower() {
+	if (m_iRuneTable > 1) {
+		return m_spell[1];
+	}
+	else {
+		return 0;
+	}
+
 }

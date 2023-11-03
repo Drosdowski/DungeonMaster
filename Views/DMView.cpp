@@ -151,13 +151,15 @@ void CDMView::ParseClickMagic(CPoint point) {
 
 
 void CDMView::ParseClickWizardChoice(CPoint point, CGrpHeld* grpHelden) {
-	int newWizard = CScreenCoords::CheckHitActiveWizard(point, grpHelden->GetActiveWizard());
-	if (newWizard > 0)
+	int heroId = grpHelden->GetActiveWizard();
+	int newWizardId = CScreenCoords::CheckHitActiveWizard(point, heroId);
+	if (newWizardId > 0)
 	{
-		if (grpHelden->SetActiveCaster(newWizard))
+		if (grpHelden->SetActiveCaster(newWizardId))
 		{
-			CDC* pDC = GetDC();
-			ZauberReiterZeichnen(pDC, newWizard);
+			CHeld* newWizard = grpHelden->GetHero(newWizardId);
+			CDC* pDC = GetDC(); 
+			ZauberReiterZeichnen(pDC, newWizardId, newWizard->getRuneTableId(), newWizard->getSpell());
 			UpdateGrafik();
 		}
 	}
@@ -169,9 +171,9 @@ void CDMView::ParseClickRunes(CPoint point, CGrpHeld* grpHelden) {
 		const int heroId = grpHelden->GetActiveWizard();
 		CHeld* caster = grpHelden->GetHero(heroId);
 		
-		int manaNeeded = CHelpfulValues::ManaCost(m_pZauberView->getRuneTableId(heroId), runeId, m_pZauberView->GetPower(heroId));
+		int manaNeeded = CHelpfulValues::ManaCost(caster->getRuneTableId(), runeId, caster->GetPower());
 		if (caster->UseMana(manaNeeded)) {
-			m_pZauberView->storeRune(runeId, heroId);
+			caster->storeRune(runeId);
 		}
 	}
 }
@@ -188,7 +190,7 @@ void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
 		CHeld* pHeld = grpHelden->GetHero(heroId);
 		if (!pHeld->isAlive())
 			return;
-		int* spell = m_pZauberView->getSpell(heroId);
+		int* spell = pHeld->getSpell();
 
 		CItem* itemInHand = pHeld->GetItemCarrying(1);
 		bool emptyFlaskInHand = itemInHand && itemInHand->GetType() == CPotionAttributes::PotionType::Empty;
@@ -207,7 +209,7 @@ void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
 		else if (spell[2] == 2 && emptyFlaskInHand) {
 			CastPotion((CPotion*)itemInHand, spell[1], CPotionAttributes::PotionType::Vi);
 		}
-		m_pZauberView->resetRuneTable(heroId);
+		pHeld->resetRuneTable();
 	}
 }
 
@@ -946,9 +948,9 @@ void CDMView::HeldenGrafikZeichnen(CGrpHeld* pGrpHelden, CDC* pDC, CPictures* pP
 	m_pGroupView->GroupZeichnen(pDC, pPictures, m_iModus, pGrpHelden);
 }
 
-void CDMView::ZauberReiterZeichnen(CDC* pDC, int iActiveWizard)
+void CDMView::ZauberReiterZeichnen(CDC* pDC, int iActiveWizard, int runeTableId, int* runeIds)
 {
-	m_pZauberView->Zeichnen(m_pPictures, pDC, iActiveWizard);
+	m_pZauberView->Zeichnen(m_pPictures, pDC, iActiveWizard, runeTableId, runeIds);
 }
 
 void CDMView::ActionAreaZeichnen(CDC* pDC, int weaponIndex) {
@@ -1014,7 +1016,11 @@ void CDMView::FrameZeichnen(CDC* pDC) {
 
 		int iActiveWizard = pGrpHeroes->GetActiveWizard();
 		if (iActiveWizard > 0)
-			ZauberReiterZeichnen(pDC, iActiveWizard);
+		{
+			CHeld* pWizard= pGrpHeroes->GetHero(iActiveWizard);
+
+			ZauberReiterZeichnen(pDC, iActiveWizard, pWizard->getRuneTableId(), pWizard->getSpell());
+		}
 	}
 
 	m_pPictures->PfeilZeichnen(pDC, m_iDir);

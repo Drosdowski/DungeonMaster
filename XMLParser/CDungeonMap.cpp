@@ -1202,6 +1202,7 @@ void CDungeonMap::SaveHero(TiXmlElement* heroes, int id) {
 		hero->SetAttribute("AF", TwoBytes(v.af));
 
 		hero->SetAttribute("SKILLS", held->GetSkillsForSaveGame());
+
 		
 		for (int itemId = 0; itemId < 30; itemId++) {
 			CItem* item = held->GetItemCarrying(itemId);

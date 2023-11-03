@@ -66,7 +66,7 @@ protected:
 
 	void UpdateGrafik();
 	void HeldenGrafikZeichnen(CGrpHeld* pGrpHeld, CDC* pDC, CPictures* pPictures);
-	void ZauberReiterZeichnen(CDC* pDC, int iActiveWizard);
+	void ZauberReiterZeichnen(CDC* pDC, int iActiveWizard, int runeTableId, int* runeIds);
 	void ActionAreaZeichnen(CDC* pDC, int weaponIndex);
 	void ActionDamageZeichnen(CDC* pDC, int dmg);
 	void WaffenZeichnen(CDC* pDC, CGrpHeld* pGrpHeroes);

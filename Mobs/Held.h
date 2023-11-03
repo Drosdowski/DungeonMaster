@@ -77,6 +77,12 @@ public:
 	virtual WERTE Ma() { return m_MA; };
 	bool UseMana(int mana);
 
+	int getRuneTableId() { return m_iRuneTable; }
+	int GetPower();
+	void resetRuneTable();
+	void storeRune(int index);
+	int* getSpell() { return m_spell; }
+
 private:
 	CRucksack* m_pRucksack;
 	COLORREF m_Farbe[5];
@@ -98,12 +104,15 @@ private:
 	CString m_strSubname;
 	bool m_male;
 	CItem* m_itemCarrying[31]; // Letztes Item sind die Knochen, sieht man natürlich nicht im Backpack.
-
 	double round1(double value);
 	bool hitSucessful(CAttackConst ac, CMonsterConst mc, int levelDif);
 	void DelItem(CItem* pItem);
 	int ACC_Coeff(int levelDif, int armor);
 	void ReduceWhenOverload(double d6_weapon_weight, double d5_load_coefficient, double &dmg);
+
+	int* m_spell;
+	int m_iRuneTable;
+	void nextRuneTable();
 };
 
 /////////////////////////////////////////////////////////////////////////////

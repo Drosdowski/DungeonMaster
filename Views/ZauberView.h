@@ -18,20 +18,20 @@ public:
 // Attribute
 public:
 // Operationen
-	int getRuneTableId(int heroId) { return m_iRuneTable[heroId]; }
-	int GetPower(int heroId);
-	void resetRuneTable(int heroId);
-	void storeRune(int index, int heroId);
-	int* getSpell(int heroId) { return m_spell[heroId]; }
+	//int getRuneTableId(int heroId) { return m_iRuneTable[heroId]; }
+	//int GetPower(int heroId);
+	//void resetRuneTable(int heroId);
+	//void storeRune(int index, int heroId);
+	//int* getSpell(int heroId) { return m_spell[heroId]; }
 
 // Implementierung
 public:
-	void Zeichnen(CPictures* pPictures, CDC* pDC, int iActiveWizard);
+	void Zeichnen(CPictures* pPictures, CDC* pDC, int iActiveWizard, int runeTableId, int* runeIds);
 
-private:
-	int* m_spell[5];
-	int m_iRuneTable[5];
-	void nextRuneTable(int heroId);
+//private:
+//	int* m_spell[5];
+//	int m_iRuneTable[5];
+//	void nextRuneTable(int heroId);
 };
 
 /////////////////////////////////////////////////////////////////////////////
