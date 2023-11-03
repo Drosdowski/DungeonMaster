@@ -413,14 +413,27 @@ void CDungeonMap::ParseText(TiXmlElement* rootNode, VEKTOR coords) {
 
 
 void CDungeonMap::ParseCreatureGroup(TiXmlElement* creatureGroupItem, VEKTOR coords) {
-	int index, position;
+	int index, subPos, richt, subIndex, hp;
+	
 	creatureGroupItem->QueryIntAttribute("index", &index);
-	creatureGroupItem->QueryIntAttribute("position", &position);
+	creatureGroupItem->QueryIntAttribute("position", &subPos);
 
 	CCreatureAttributes attribute = m_creatureAtt[index];
+	if (saveGameExists)
+	{
+		creatureGroupItem->QueryIntAttribute("dir", &richt);
+		creatureGroupItem->QueryIntAttribute("subIndex", &subIndex);
+		creatureGroupItem->QueryIntAttribute("hp", &hp);
+		attribute.position[subIndex] = subPos;
+		attribute.hitPoints[subIndex] = hp;
+	}
 	CGrpMonster* pGrpMonster = m_pFeld[coords.x][coords.y][coords.z]->GetMonsterGroup();
 	if (!pGrpMonster) {
 		pGrpMonster = new CGrpMonster(coords, attribute, index);
+		if (saveGameExists)
+		{
+			pGrpMonster->SetDirection((COMPASS_DIRECTION)richt);
+		}
 		m_pFeld[coords.x][coords.y][coords.z]->SetMonsterGroup(pGrpMonster);
 	}
 
@@ -1251,9 +1264,10 @@ void CDungeonMap::SaveMap(TiXmlElement* maps, int level) {
 							if (monster && monster->HoleSubPosition() == subPos) {
 								TiXmlElement* creature = new TiXmlElement("creature");
 								creature->SetAttribute("index", pGrpMonsters->GetIndex());
-								creature->SetAttribute("subPos", subPos);
-								strHp.Format("hp-%i", i);
-								creature->SetAttribute(strHp, (int)monster->Hp().Aktuell);
+								creature->SetAttribute("position", subPos);
+								creature->SetAttribute("dir", pGrpMonsters->GetDirection());
+								creature->SetAttribute("hp", (int)monster->Hp().Aktuell);
+								creature->SetAttribute("subIndex", i);
 								items->LinkEndChild(creature);
 							}
 						}
