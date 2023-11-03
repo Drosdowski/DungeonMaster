@@ -1202,7 +1202,7 @@ void CDungeonMap::SaveHero(TiXmlElement* heroes, int id) {
 		hero->SetAttribute("AF", TwoBytes(v.af));
 
 		hero->SetAttribute("SKILLS", held->GetSkillsForSaveGame());
-
+		hero->SetAttribute("SPELL", held->GetSpellForSaveGame());
 		
 		for (int itemId = 0; itemId < 30; itemId++) {
 			CItem* item = held->GetItemCarrying(itemId);
@@ -1397,11 +1397,13 @@ void CDungeonMap::LoadHero(TiXmlElement* hero) {
 	AF = ParseTwoBytes(F);
 	VITALS vitals = { LUK, STR, DEX, VIT, WIS, AM, AF };
 	CString skills = hero->Attribute("SKILLS");
+	CString spell = hero->Attribute("SPELL");
 	CChampion* newChamp = new CChampion(name, subname, male[0] == 'Y', vitals, hp_max, st_max, ma_max);
 
 	m_pGrpHelden->InitHeld(newChamp, heroId, hp_akt, st_akt, ma_akt);
 	CHeld* held = m_pGrpHelden->GetActiveHero();
 	held->SetSkillsFromSaveGame(skills);
+	held->SetSpellFromSaveGame(spell);
 	TiXmlElement* heroItem = hero->FirstChildElement();
 	while (heroItem) {
 		int itemId, index, type;

@@ -67,7 +67,9 @@ public:
 	void RemoveItemCarrying(int index) { m_itemCarrying[index] = NULL; }
 	CItem* SwitchItemAt(int index, CItem* item);
 	CString GetSkillsForSaveGame();
+	CString GetSpellForSaveGame();
 	void SetSkillsFromSaveGame(CString skills);
+	void SetSpellFromSaveGame(CString spell);
 
 // Implementation
 public:

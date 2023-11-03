@@ -411,6 +411,15 @@ int CHeld::wizardLevel() {
 	return max(m_wizardLevel.Air, max(m_wizardLevel.Earth, max(m_wizardLevel.Fire, m_wizardLevel.Water)));
 }
 
+CString CHeld::GetSpellForSaveGame() { 
+	CString text = "";
+ 	if (m_spell[1] > 0) { text.AppendFormat("%i", m_spell[1]); }
+	if (m_spell[2] > 0) { text.AppendFormat(",%i", m_spell[2]); }
+	if (m_spell[3] > 0) { text.AppendFormat(",%i", m_spell[3]); }
+	if (m_spell[4] > 0) { text.AppendFormat(",%i", m_spell[4]); }
+	return text;
+}
+
 CString CHeld::GetSkillsForSaveGame() {
 	CString text = "";
 	text.AppendFormat("%i,", m_fightLevel.Club);
@@ -434,6 +443,17 @@ CString CHeld::GetSkillsForSaveGame() {
 	text.AppendFormat("%i",  m_wizardLevel.Water);
 
 	return text;
+}
+
+void CHeld::SetSpellFromSaveGame(CString spell) {
+	int i = 0;
+	m_iRuneTable = 1;
+	for (CString sItem = spell.Tokenize(",", i); i >= 0; sItem = spell.Tokenize(",", i))
+	{
+		m_spell[m_iRuneTable] = atoi(sItem);
+		m_iRuneTable += 1;
+	}
+
 }
 
 void CHeld::SetSkillsFromSaveGame(CString skills) {
