@@ -13,8 +13,8 @@ public:
 
 	DoorType type;
 	bool button;
-	bool force; // todo
-	bool fireball; // todo
+	bool force;
+	bool fireball;
 	bool vertical; // todo
 	int ornateId;
 	OpeningDir openingDir; // todo
