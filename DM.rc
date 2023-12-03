@@ -945,6 +945,24 @@ IDB_ITEM3D_IRONLEGPLATE BITMAP                  "res\\Items3D\\Item_3d_LegplateI
 
 IDB_ITEM3D_IRONPLATE    BITMAP                  "res\\Items3D\\Item_3d_PlateIron.bmp"
 
+IDB_ITEM3D_BLUE_PANTS   BITMAP                  "res\\Items3D\\Item_3d_BluePants.bmp"
+
+IDB_IDB_ITEM3D_BOOTS_OF_SPEED BITMAP                  "res\\Items3D\\Item_3d_BootsOfSpeed.bmp"
+
+IDB_ITEM3D_CHOKER       BITMAP                  "res\\Items3D\\Item_3d_Choker.bmp"
+
+IDB_ITEM3D_CROWN        BITMAP                  "res\\Items3D\\Item_3d_CrownOfNerra.bmp"
+
+IDB_ITEM3D_ELVEN_BOOTS  BITMAP                  "res\\Items3D\\Item_3d_ElvenBoots.bmp"
+
+IDB_ITEM3D_HELLION      BITMAP                  "res\\Items3D\\Item_3d_Hellion.bmp"
+
+IDB_ITEM3D_ILLUMUNET    BITMAP                  "res\\Items3D\\Item_3d_Illumulet.bmp"
+
+IDB_ITEM3D_MAIL_AKETON  BITMAP                  "res\\Items3D\\Item_3d_MailAketon.bmp"
+
+IDB_ITEM3D_MOONSTONE    BITMAP                  "res\\Items3D\\Item_3d_Moonstone.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

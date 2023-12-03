@@ -37,6 +37,15 @@ public:
 	CBitmap* GetSuedeBoots() { return m_pSuedeBoots; }
 	CBitmap* GetSandals() { return m_pSandals; }
 	CBitmap* GetBerzerkerHelm() { return  m_pBerzerkerHelm; }
+	CBitmap* GetBluePants() { return m_pBluePants; }
+	CBitmap* GetBootsOfSpeed() { return m_pBootsOfSpeed; }
+	CBitmap* GetChoker() { return m_pChoker; }
+	CBitmap* GetCrown() { return m_pCrown; }
+	CBitmap* GetElvenBoots() { return m_pElvenBoots; }
+	CBitmap* GetHellion() { return m_pHellion; }
+	CBitmap* GetIllumunet() { return m_pIllumunet; }
+	CBitmap* GetMailAketon() { return m_pMailAketon; }
+	CBitmap* GetMoonstone() { return m_pMoonstone; }
 
 	CBitmap* GetClub(bool inAir);
 	CBitmap* GetStoneClub(bool inAir);
@@ -74,6 +83,15 @@ private:
 	CBitmap* m_pGreenCloth;
 	CBitmap* m_pWhiteCloth;
 	CBitmap* m_pBerzerkerHelm;
+	CBitmap* m_pBluePants;
+	CBitmap* m_pBootsOfSpeed;
+	CBitmap* m_pChoker;
+	CBitmap* m_pCrown;
+	CBitmap* m_pElvenBoots;
+	CBitmap* m_pHellion;
+	CBitmap* m_pIllumunet;
+	CBitmap* m_pMailAketon;
+	CBitmap* m_pMoonstone;
 
 	CBitmap* m_pGoldKey;
 	CBitmap* m_pIronKey;

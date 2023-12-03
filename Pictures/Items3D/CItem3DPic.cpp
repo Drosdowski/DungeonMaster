@@ -27,6 +27,15 @@ CItem3DPic ::~CItem3DPic() {
 	delete m_pSuedeBoots;
 	delete m_pSandals;
 	delete m_pBerzerkerHelm;
+	delete m_pBluePants;
+	delete m_pBootsOfSpeed;
+	delete m_pChoker;
+	delete m_pCrown;
+	delete m_pElvenBoots;
+	delete m_pHellion;
+	delete m_pIllumunet;
+	delete m_pMailAketon;
+	delete m_pMoonstone;
 	delete m_pGoldKey;
 	delete m_pIronKey;
 	delete m_pTorch;
@@ -66,28 +75,47 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pCorn, IDB_ITEM3D_CORN);
 	LoadPic(m_pCheese, IDB_ITEM3D_CHEESE);
 	LoadPic(m_pScreamerSlice, IDB_ITEM3D_SCREAMERSLICE);
+	LoadPic(m_pDrumstick, IDB_ITEM3D_DRUMSTICK);
 	LoadPic(m_pWormRound, IDB_ITEM3D_WORMROUND);
+
 	LoadPic(m_pCompass, IDB_ITEM3D_COMPASS);
-	LoadPic(m_pWhiteCloth, IDB_ITEM3D_FINEROBE);
-	LoadPic(m_pGreenCloth, IDB_ITEM3D_ELVENDOUBLET);
+
 	LoadPic(m_pLeatherBoots, IDB_ITEM3D_LEATHERBOOTS);
+	LoadPic(m_pGreenCloth, IDB_ITEM3D_ELVENDOUBLET);
+	LoadPic(m_pWhiteCloth, IDB_ITEM3D_FINEROBE);
 	LoadPic(m_pLeatherCloth, IDB_ITEM3D_LEATHERCLOTH);
 	LoadPic(m_pSuedeBoots, IDB_ITEM3D_SUEDEBOOTS);
 	LoadPic(m_pSandals, IDB_ITEM3D_SANDALS);
 	LoadPic(m_pBerzerkerHelm, IDB_ITEM3D_BERZERKERHELM);
+	LoadPic(m_pBluePants, IDB_ITEM3D_BLUE_PANTS);
+	LoadPic(m_pBootsOfSpeed, IDB_ITEM3D_BOOTS_OF_SPEED);
+	LoadPic(m_pChoker, IDB_ITEM3D_CHOKER);
+	LoadPic(m_pCrown, IDB_ITEM3D_CROWN);
+	LoadPic(m_pElvenBoots, IDB_ITEM3D_ELVEN_BOOTS);
+	LoadPic(m_pHellion, IDB_ITEM3D_HELLION);
+	LoadPic(m_pIllumunet, IDB_ITEM3D_ILLUMUNET);
+	LoadPic(m_pMailAketon, IDB_ITEM3D_MAIL_AKETON);
+	LoadPic(m_pMoonstone, IDB_ITEM3D_MOONSTONE);
+
+
 	LoadPic(m_pGoldKey, IDB_ITEM3D_GOLDKEY);
 	LoadPic(m_pIronKey, IDB_ITEM3D_IRONKEY);
+
 	LoadPic(m_pTorch, IDB_ITEM3D_TORCH);
+
 	LoadPic(m_pMagicBox[0], IDB_ITEM3D_MAGICBOX_B);
 	LoadPic(m_pMagicBox[1], IDB_ITEM3D_MAGICBOX_G);
 	LoadPic(m_pWaterskin[0], IDB_ITEM3D_WATERSKIN_E);
 	LoadPic(m_pWaterskin[1], IDB_ITEM3D_WATERSKIN_F);
+
 	LoadPic(m_pChest[0], IDB_ITEM3D_CHEST);
 	LoadPic(m_pChest[1], IDB_ITEM3D_CHEST_C);
 	LoadPic(m_pFlask[0], IDB_ITEM3D_FLASK_EMPTY);
 	LoadPic(m_pFlask[1], IDB_ITEM3D_FLASK_FULL);
+
 	LoadPic(m_pCoin[0], IDB_ITEM3D_COIN_GOLD);
 	LoadPic(m_pCoin[1], IDB_ITEM3D_COIN_SILVER);
+
 	LoadPic(m_pClub[0], IDB_ITEM3D_CLUB);
 	LoadPic(m_pClub[1], IDB_MISSILE_CLUB_B);
 	LoadPic(m_pClub[2], IDB_MISSILE_CLUB_F);
@@ -125,10 +153,11 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pPoisonDart[1], IDB_MISSILE_POISONDART_B);
 	LoadPic(m_pPoisonDart[2], IDB_MISSILE_POISONDART_F);
 	LoadPic(m_pPoisonDart[3], IDB_MISSILE_POISONDART_S);
+
 	LoadPic(m_pBoulder, IDB_ITEM3D_BOULDER);
 	LoadPic(m_pRock, IDB_ITEM3D_ROCK);
+
 	LoadPic(m_pScroll, IDB_ITEM3D_SCROLL);
-	LoadPic(m_pDrumstick, IDB_ITEM3D_DRUMSTICK);
 	LoadPic(m_pBones, IDB_ITEM3D_BONES);
 }
 
@@ -266,6 +295,10 @@ CBitmap* CItem3DPic::GetClothBitmap(int clothType, bool inAir) {
 		bmp = GetSuedeBoots(); break;
 	case CClothAttributes::LeatherBoots:
 		bmp = GetLeatherBoots(); break;
+	case CClothAttributes::ElvenBoots:
+		bmp = GetElvenBoots(); break;
+	case CClothAttributes::BootsOfSpeed:
+		bmp = GetBootsOfSpeed(); break;
 	case CClothAttributes::LeatherJerkin:
 	case CClothAttributes::LeatherPants:
 		bmp = GetLeatherCloth(); break;
@@ -277,6 +310,19 @@ CBitmap* CItem3DPic::GetClothBitmap(int clothType, bool inAir) {
 	case CClothAttributes::Ghi:
 	case CClothAttributes::GhiTrousers:
 		bmp = GetWhiteCloth(); break;
+	case CClothAttributes::BluePants:
+	case CClothAttributes::Gunna:
+	case CClothAttributes::Kirtle:
+	case CClothAttributes::Tunic:
+		bmp = GetBluePants(); break;
+
+	case CClothAttributes::Flamebain:
+	case CClothAttributes::Hosen:
+	case CClothAttributes::LegMail:
+	case CClothAttributes::MailAketon:
+	case CClothAttributes::MithralAketon:
+	case CClothAttributes::MithralMail:
+		bmp = GetMailAketon(); break;
 
 	case CClothAttributes::BezerkerHelm:
 	case CClothAttributes::Basinet:
@@ -284,6 +330,10 @@ CBitmap* CItem3DPic::GetClothBitmap(int clothType, bool inAir) {
 	case CClothAttributes::HelmOfDarc:
 	case CClothAttributes::Helmet:
 		bmp = GetBerzerkerHelm(); break;
+	case CClothAttributes::Calista:
+	case CClothAttributes::CrownOfNerra:
+		bmp = GetCrown(); break;
+
 	case CClothAttributes::Buckler:
 	case CClothAttributes::SmallShield:
 	case CClothAttributes::HideShield:
@@ -366,6 +416,15 @@ CBitmap* CItem3DPic::GetMiscBitmap(int miscType, int subType) {
 		bmp = GetGemBitmap('G');
 	else if (miscType == CMiscellaneousAttributes::Bones)
 		bmp = GetBones();
+
+	else if (miscType == CMiscellaneousAttributes::Choker)
+		bmp = GetChoker();
+	else if (miscType == CMiscellaneousAttributes::PendantFeral || miscType == CMiscellaneousAttributes::TheHellion)
+		bmp = GetHellion();
+	else if (miscType == CMiscellaneousAttributes::Moonstone)
+		bmp = GetMoonstone();
+	else if (miscType == CMiscellaneousAttributes::EkkhardCross || miscType == CMiscellaneousAttributes::GemOfAges || miscType == CMiscellaneousAttributes::Illumulet || miscType == CMiscellaneousAttributes::JewelSymal)
+		bmp = GetIllumunet();
 	else
 		bmp = NULL;
 
