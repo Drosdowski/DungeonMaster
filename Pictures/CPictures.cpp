@@ -18,6 +18,8 @@
 #include "..\Consts\WeaponConst.h"
 #include <sstream>
 #include <string>
+#include <ft2build.h>
+#include FT_FREETYPE_H
 
 CPictures::CPictures(CDC* pDC) : CBasePictures(pDC)
 {	
@@ -293,6 +295,7 @@ void CPictures::ZeichneScroll(CDC* pDC, CScroll* scroll) {
 	pDC->SetTextColor(SCHWARZ);
 	pDC->SetBkColor(WEISSER);
 	CRect r = CRect(pos.x + 40, 192, pos.x + 210, 290);
+	// todo : replace with similar like WriteOnWall
 	pDC->DrawText(scroll->GetText(), r, ETO_CLIPPED | ETO_OPAQUE | DT_CENTER);
 }
 
@@ -577,4 +580,87 @@ void CPictures::GewichtZeichnen(CDC* pDC, CHeld* pHeld) {
 	strZeile.Format("%1.1f/ %2.1f KG", dCurValue, dMaxValue);
 	int len = strZeile.GetLength();
 	DrawOrigFontText(pDC, 438 - 12*len, 314, strZeile);
+}
+
+
+void CPictures::DrawSpecialFont(CDC* pDC, CPoint pos, CString text, int size) {
+	FT_Library ft;
+	if (FT_Init_FreeType(&ft)) {
+		return;
+	}
+	FT_Face face;
+	if (FT_New_Face(ft, "DALEK___.ttf", 0, &face)) {
+		FT_Done_FreeType(ft);
+		return;
+	}
+
+	FT_Set_Pixel_Sizes(face, 0, size); 
+	HDC hDC = pDC->GetSafeHdc();
+	SetTextColor(hDC, WEISS);
+	int x = pos.x;
+	int y = pos.y;
+	// Breite ermitteln
+	int rowWidth[5];
+	int currentWidth = 0;
+	int maxHeight = 0, allheight = 0;
+	int maxRows = 0;
+	int line = 0;
+	for (size_t i = 0; i < strlen(text); ++i) {
+		if (text[i] == '\n')
+		{
+			rowWidth[line] = currentWidth;
+			allheight += maxHeight;
+			maxHeight = 0;
+			currentWidth = 0;
+			line++;
+			continue;
+		}
+		FT_Load_Char(face, text[i], FT_LOAD_RENDER);
+		currentWidth += (face->glyph->advance.x >> 6);
+		maxHeight = max((int)(face->size->metrics.height >> 6), maxHeight);
+		maxRows = max((int)(face->glyph->bitmap.rows), maxRows);
+	}
+	rowWidth[line] = currentWidth;
+	allheight += maxHeight;
+	line = 0;
+	// Zeichnen
+	for (size_t i = 0; i < strlen(text); i++) {
+		if (text[i] == '\n')
+		{
+			x = pos.x;
+			y += face->size->metrics.height >> 6; // Faktor 64 , da Glyphen ín 1/64 Abständen berechnet werden
+			line++;
+			continue;
+		}
+		FT_Load_Char(face, text[i], FT_LOAD_RENDER);
+
+		FT_Bitmap& bitmap = face->glyph->bitmap;
+
+		int xDelay = x - rowWidth[line] / 2;
+		int yDelay = y - allheight / 2 + allheight / 8;
+		if (maxRows > (int)bitmap.rows)
+			yDelay++; // 1 extra pixel for smaller letter
+		for (unsigned row = 0; row < bitmap.rows; ++row) {
+			for (unsigned col = 0; col < bitmap.width; ++col) {
+				int index = row * bitmap.width + col;
+				BYTE pixelValue = bitmap.buffer[index]; // Wert des Pixels
+
+				// Zeichnen Sie den Pixelwert auf den HDC bei den Koordinaten (x + col, y + row)
+				// Je nach Framework und Zeichnungsfunktionen kann dies unterschiedlich sein
+				if (pixelValue > 0) {
+					int xKoord = xDelay + col;
+					int yKoord = yDelay + row;
+					if (xKoord < MainAreaWidth && yKoord < MainAreaHeight)
+						SetPixel(hDC, xKoord, yKoord, RGB(pixelValue, pixelValue, pixelValue));
+
+				}
+			}
+		}
+
+		x += face->glyph->advance.x >> 6;
+	}
+
+
+	FT_Done_Face(face);
+	FT_Done_FreeType(ft);
 }

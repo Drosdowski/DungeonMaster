@@ -45,8 +45,6 @@
 #include "Mobs\MobGroups\GrpMonster.h"
 #include "Mobs\MobGroups\GrpHeld.h"
 #include <cassert>
-#include <ft2build.h>
-#include FT_FREETYPE_H
 
 
 #ifdef _DEBUG
@@ -482,88 +480,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 }
 
 void CRaumView::WriteOnWall(CDC* pDC, CPoint pos, CText* text, int ebene) {
-	FT_Library ft;
-	if (FT_Init_FreeType(&ft)) {
-		return;
-	}
-	FT_Face face;
-	if (FT_New_Face(ft, "DALEK___.ttf", 0, &face)) {
-		FT_Done_FreeType(ft);
-		return;
-	}
-
-	FT_Set_Pixel_Sizes(face, 0, ebene == 1 ? 20 : 12); // 24 size
-	HDC hDC = pDC->GetSafeHdc();
-	SetTextColor(hDC, WEISS);
-	int x = pos.x;
-	int y = pos.y;
-	CString ausgabe = text->GetText();
-	// Breite ermitteln
-	int rowWidth[5];
-	int currentWidth = 0;
-	int maxHeight =0, allheight = 0;
-	int maxRows = 0;
-	int line = 0;
-	for (size_t i = 0; i < strlen(ausgabe); ++i) {
-		if (ausgabe[i] == '\n')
-		{
-			rowWidth[line] = currentWidth;
-			allheight += maxHeight;
-			maxHeight = 0;
-			currentWidth = 0;
-			line++;
-			continue;
-		}
-		FT_Load_Char(face, ausgabe[i], FT_LOAD_RENDER);
-		currentWidth += (face->glyph->advance.x >> 6);
-		maxHeight = max((int)(face->size->metrics.height >> 6), maxHeight);
-		maxRows = max((int)(face->glyph->bitmap.rows), maxRows);
-	}
-	rowWidth[line] = currentWidth;
-	allheight += maxHeight;
-	line = 0;
-	// Zeichnen
-	for (size_t i = 0; i < strlen(ausgabe); i++) {
-		if (ausgabe[i] == '\n')
-		{
-			x = pos.x;
-			y += face->size->metrics.height >> 6; // Faktor 64 , da Glyphen ín 1/64 Abständen berechnet werden
-			line++;
-			continue;
-		}
-		FT_Load_Char(face, ausgabe[i], FT_LOAD_RENDER);
-
-		FT_Bitmap& bitmap = face->glyph->bitmap;
-
-		int xDelay = x - rowWidth[line] / 2;
-		int yDelay = y - allheight / 2 + allheight / 8;
-		if (maxRows > (int)bitmap.rows)
-			yDelay++; // 1 extra pixel for smaller letter
-		for (unsigned row = 0; row < bitmap.rows; ++row) {
-			for (unsigned col = 0; col < bitmap.width; ++col) {
-				int index = row * bitmap.width + col;
-				BYTE pixelValue = bitmap.buffer[index]; // Wert des Pixels
-
-				// Zeichnen Sie den Pixelwert auf den HDC bei den Koordinaten (x + col, y + row)
-				// Je nach Framework und Zeichnungsfunktionen kann dies unterschiedlich sein
-				if (pixelValue > 0) {
-					int xKoord = xDelay + col;
-					int yKoord = yDelay + row;
-					if (xKoord < MainAreaWidth && yKoord < MainAreaHeight)
-						SetPixel(hDC, xKoord, yKoord, RGB(pixelValue, pixelValue, pixelValue));
-
-				}
-			}
-		}
-
-		x += face->glyph->advance.x >> 6;
-	}
-
-
-	FT_Done_Face(face);
-	FT_Done_FreeType(ft);
-
-	//ReleaseDC(NULL, hDC);
+	m_pPictures->DrawSpecialFont(pDC, pos, text->GetText(), ebene == 1 ? 20 : 12);
 }
 
 
