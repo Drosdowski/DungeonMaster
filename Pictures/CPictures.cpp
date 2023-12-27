@@ -295,8 +295,9 @@ void CPictures::ZeichneScroll(CDC* pDC, CScroll* scroll) {
 	pDC->SetTextColor(SCHWARZ);
 	pDC->SetBkColor(WEISSER);
 	CRect r = CRect(pos.x + 40, 192, pos.x + 210, 290);
-	// todo : replace with similar like WriteOnWall
-	pDC->DrawText(scroll->GetText(), r, ETO_CLIPPED | ETO_OPAQUE | DT_CENTER);
+	DrawFontText(pDC, pos.x + 40, 192, scroll->GetText(), true);
+
+	//pDC->DrawText(scroll->GetText(), r, ETO_CLIPPED | ETO_OPAQUE | DT_CENTER);
 }
 
 
@@ -310,7 +311,7 @@ void CPictures::NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName)
 	pDC->SetBkColor(DUNKELGRAU);
 	int x = (index - 1) * 138;
 	//pDC->ExtTextOut(x + 4, -2, ETO_CLIPPED | ETO_OPAQUE, CRect(x, 0, x + 78, 14), strName, NULL);
-	DrawOrigFontText(pDC, x, -2, strName);
+	DrawFontText(pDC, x, -2, strName, false);
 }
 
 void CPictures::SchadenZeichnen(CDC* pDC, int index, bool bigDmg, int dmg)
@@ -364,13 +365,13 @@ void CPictures::ZeichneHpStMa(CDC* pDC, WERTE hp, WERTE st, WERTE ma)
 {
 	CString str;
 	str.Format("%3i/%3i", (int)hp.Aktuell, (int)hp.Max);
-	DrawOrigFontText(pDC, 96, 284, str);
+	DrawFontText(pDC, 96, 284, str, false);
 
 	str.Format("%3i/%3i", (int)(st.Aktuell / 10), (int)(st.Max / 10));
-	DrawOrigFontText(pDC, 96, 300, str);
+	DrawFontText(pDC, 96, 300, str, false);
 
 	str.Format("%3i/%3i", (int)ma.Aktuell, (int)ma.Max);
-	DrawOrigFontText(pDC, 96, 316, str);
+	DrawFontText(pDC, 96, 316, str, false);
 }
 
 
@@ -403,7 +404,7 @@ void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld)
 			strKlasse = CHelpfulValues::SkillClass(i-1);
 			strZeile.Format("%s %s", strTitel, strKlasse);
 			// pDC->TextOut(220, 160 + i * 16, strZeile);
-			DrawOrigFontText(pDC, 210, 156 + i * 14, strZeile);
+			DrawFontText(pDC, 210, 156 + i * 14, strZeile, false);
 		}
 	}
 	CString strValues;
@@ -424,8 +425,8 @@ void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld)
 void CPictures::ZeichneVitalText(CDC* pDC, CString text, int index, int y) {
 	CString strZeile, strVital;
 	strVital.Format("%s", CHelpfulValues::VitalName(index));
-	DrawOrigFontText(pDC, 210, y, strVital);
-	DrawOrigFontText(pDC, 340, y, text);
+	DrawFontText(pDC, 210, y, strVital, false);
+	DrawFontText(pDC, 340, y, text, false);
 }
 
 
@@ -463,18 +464,28 @@ void CPictures::DrawText(CDC* pDC, int x, int y, CString text, int h, COLORREF f
 	DeleteObject(hFont);
 }
 
-void CPictures::DrawOrigFontText(CDC* pDC, int x, int y, CString text) {
+void CPictures::DrawFontText(CDC* pDC, int x, int y, CString text, bool darkFont) {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 	text = text.MakeUpper();
-
+	const int xz = (darkFont ? 7 : 8) * 2;
+	const int yz = (darkFont ? 5 : 8) * 2;
+	int currentIndex = 0;
 	for (int textIndex = 0; textIndex < text.GetLength(); textIndex++) {
 		char letter = text.GetAt(textIndex);
-		CBitmap* bmpLetter = GetOrigFontLetter(pDC, letter);
-		tmpdc.SelectObject(bmpLetter);
-		CPoint pos = { x + 12 * textIndex, y };		
-		pDC->TransparentBlt(pos.x, pos.y, 8*2, 8*2, &tmpdc, 0, 0, 16, 16, GANZDUNKELGRAU);
-		delete bmpLetter;
+		if (letter == 10) {
+			currentIndex = 0;
+			y += yz + 4;
+		}
+		else {
+			CBitmap* bmpLetter = darkFont ? GetScrollFontLetter(pDC, letter) : GetOrigFontLetter(pDC, letter);
+			tmpdc.SelectObject(bmpLetter);
+			CPoint pos = { x + 12 * currentIndex, y };
+
+			pDC->TransparentBlt(pos.x, pos.y, xz, yz, &tmpdc, 0, 0, xz, yz, GANZDUNKELGRAU);
+			delete bmpLetter;
+			currentIndex++;
+		}
 	}
 	DeleteObject(tmpdc);
 }
@@ -493,6 +504,27 @@ CBitmap* CPictures::GetOrigFontLetter(CDC* pDC, char letter) {
 	sheetDC.SelectObject(bmpSheet);
 	iconDC.SelectObject(bmpChar);
 	iconDC.StretchBlt(0, 0, 16, 16, &sheetDC, p.x, p.y, 8, 8, SRCCOPY);
+
+	DeleteObject(iconDC);
+	DeleteObject(sheetDC);
+	return bmpChar;
+}
+
+CBitmap* CPictures::GetScrollFontLetter(CDC* pDC, char letter) {
+	CDC iconDC;
+	CDC sheetDC;
+	iconDC.CreateCompatibleDC(pDC);
+	sheetDC.CreateCompatibleDC(pDC);
+
+	CBitmap* bmpSheet = m_pDMFont->GetBlackLetters();
+	CBitmap* bmpChar = new CBitmap();
+	bmpChar->CreateCompatibleBitmap(pDC, 14, 10);
+	if (letter == 32) letter = 65 + 26 + 1;
+
+	CPoint p = m_pDMFont->GetKoordsBlack(letter);
+	sheetDC.SelectObject(bmpSheet);
+	iconDC.SelectObject(bmpChar);
+	iconDC.StretchBlt(0, 0, 14, 10, &sheetDC, p.x, p.y, 7, 5, SRCCOPY);
 
 	DeleteObject(iconDC);
 	DeleteObject(sheetDC);
@@ -575,11 +607,11 @@ void CPictures::GewichtZeichnen(CDC* pDC, CHeld* pHeld) {
 
 	CString strZeile;
 	strZeile="LOAD";
-	DrawOrigFontText(pDC, 210, 314, strZeile);
+	DrawFontText(pDC, 210, 314, strZeile, false);
 
 	strZeile.Format("%1.1f/ %2.1f KG", dCurValue, dMaxValue);
 	int len = strZeile.GetLength();
-	DrawOrigFontText(pDC, 438 - 12*len, 314, strZeile);
+	DrawFontText(pDC, 438 - 12*len, 314, strZeile, false);
 }
 
 

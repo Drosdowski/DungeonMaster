@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<dungeon start_x="3" start_y="0" start_z="1" start_facing="East">
+<dungeon start_x="6" start_y="3" start_z="1" start_facing="South">
     <heroes>
-        <hero index="1" hp_akt="17" st_akt="593" ma_akt="10" hp_max="60" st_max="600" ma_max="10" name="ZED" subname="" male="Y" LUK="10280" STR="10280" DEX="10280" VIT="12850" WIS="10280" AM="10280" AF="14906" SKILLS="2,1,1,2,2,1,2,1,1,2,1,1,1,1,2,1" SPELL="1" />
-        <hero index="2" hp_akt="53" st_akt="719" ma_akt="8" hp_max="53" st_max="720" ma_max="15" name="SYRA" subname="" male="N" LUK="9766" STR="8995" DEX="11051" VIT="11565" WIS="10794" AM="10280" AF="14135" SKILLS="0,0,0,0,0,0,0,0,1,3,1,0,3,0,2,3" SPELL="2,4" />
+        <hero index="1" hp_akt="29" st_akt="599" ma_akt="10" hp_max="60" st_max="600" ma_max="10" name="ZED" subname="" male="Y" LUK="14906" STR="10280" DEX="10280" VIT="10280" WIS="12850" AM="10280" AF="10280" SKILLS="2,1,1,2,2,1,2,1,1,2,1,1,1,1,2,1" SPELL="1" />
+        <hero index="2" hp_akt="53" st_akt="720" ma_akt="15" hp_max="53" st_max="720" ma_max="15" name="SYRA" subname="" male="N" LUK="14135" STR="9766" DEX="8995" VIT="11051" WIS="11565" AM="10280" AF="10794" SKILLS="0,0,0,0,0,0,0,0,1,3,1,0,3,0,2,3" SPELL="2,4">
+            <item item="1" index="29" type="4" />
+        </hero>
     </heroes>
     <maps>
         <map index="0">
@@ -856,7 +858,6 @@
                         <miscellaneous index="208" position="2" />
                         <miscellaneous index="250" position="2" />
                         <weapon index="26" position="3" />
-                        <scroll index="29" position="3" />
                     </items>
                 </tile>
                 <tile index="103" />
