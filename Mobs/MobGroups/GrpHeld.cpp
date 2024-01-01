@@ -138,7 +138,8 @@ void CGrpHeld::Aktiviere(int n)
 void CGrpHeld::ChooseHeroForAction(int ID) {
 	if (m_iPhase == CHOOSE_HERO)
 	{
-		if (m_pMember[ID] && m_pMember[ID]->isAlive()) {
+		CHeld* pHeld = (CHeld*)m_pMember[ID];
+		if (pHeld && pHeld->isAlive() && pHeld->isReady()) {
 			m_iPhase = CHOOSE_ACTION;
 			m_iHeroForAction = ID;
 		}

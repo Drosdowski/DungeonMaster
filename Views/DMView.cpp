@@ -234,25 +234,19 @@ void CDMView::ParseClickAction(CPoint point) {
 
 	Phase actionPhase = grpHelden->GetActionPhase();
 	int actionNumber = CScreenCoords::CheckHitAction(point, actionPhase);
-	CHeld* pHero = (CHeld*)grpHelden->GetHeroForAction();
-	if (pHero->isReady()) {
-		if (actionNumber > 0 && actionPhase == CHOOSE_HERO)
-		{
-			grpHelden->ChooseHeroForAction(actionNumber);
-		}
-		else if (actionNumber != 0 && actionPhase == CHOOSE_ACTION) {
-			if (actionNumber == PASS) 
-			{
-				grpHelden->PassAction();
-			}
-			else {
-				// action auch setzen !
-				m_pRaumView->DoActionForChosenHero(grpHelden, actionNumber);
-			}
-			UpdateGrafik();
-		}
+	if (actionNumber > 0 && actionPhase == CHOOSE_HERO)
+	{
+		grpHelden->ChooseHeroForAction(actionNumber);
 	}
-	else {
+	else if (actionNumber != 0 && actionPhase == CHOOSE_ACTION) {
+		if (actionNumber == PASS) 
+		{
+			grpHelden->PassAction();
+		}
+		else {
+			// action auch setzen !
+			m_pRaumView->DoActionForChosenHero(grpHelden, actionNumber);
+		}
 		UpdateGrafik();
 	}
 
@@ -359,6 +353,7 @@ void CDMView::ParseClickAir(CPoint point) {
 					SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(airRegionClicked, grpDir);
 					VEKTOR force = CHelpfulValues::MakeVektor(grpDir, 6);
 					m_pRaumView->GetMap()->GetField(grpHelden->GetVector())->ThrowItem(pItemInHand, itemRegionReal, force);
+					grpHelden->GetActiveHero()->setDelay(4);
 					grpHelden->EmptyHand();
 				}
 			}
