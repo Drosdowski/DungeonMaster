@@ -66,6 +66,7 @@ private:
 	CBitmap* m_pBmpPfeile;
 	CBitmap* m_pRunes[5];
 	CBitmap* m_pWizardTabs[5];
+	CBitmap* m_pActionInactive;
 	CBitmap* m_pActionsArea;
 	CBitmap* m_pActionsDamage;
 	CBitmap* m_pOneHand;

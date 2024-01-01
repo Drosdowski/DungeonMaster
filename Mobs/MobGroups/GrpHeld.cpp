@@ -203,12 +203,15 @@ bool CGrpHeld::Altern(CField* field)
 			}
 		}
 	}
-	if (m_iPhase == SHOW_DAMAGE)
-	{ 
-		if (m_iPhaseDelay <= 0)
+	if (m_iPhaseDelay <= 0)
+	{
+		if (m_iPhase == SHOW_DAMAGE)
+		{
 			m_iPhase = CHOOSE_HERO;
-		else
-			m_iPhaseDelay--;
+		}
+	}
+	else {
+		m_iPhaseDelay--;
 	}
 	return anyoneAlive;
 }

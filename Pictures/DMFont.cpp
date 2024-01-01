@@ -22,7 +22,7 @@ void CDMFont::InitFonts() {
 }
 
 CPoint CDMFont::GetKoordsBlack(char letter) {
-	int x = (letter - 65) * 7;
+	int x = (letter - 65) * 7 + 1;
 	int y = 0;
 	return CPoint(x, y);
 }
@@ -31,6 +31,8 @@ CPoint CDMFont::GetKoordsWhiteChar(char letter) {
 		int x = 258 + 8 * (letter - 32);
 		int y = 0;
 		return CPoint(x, y);
+	} else {
+		return CPoint(0, 0);
 	}
 }
 

@@ -44,6 +44,7 @@ CPictures::~CPictures()
 			delete m_pInterface[i-1];
 		}
 	}
+	delete m_pActionInactive;
 	delete m_pActionsArea;
 	delete m_pActionsDamage;
 	delete m_pOneHand;
@@ -84,6 +85,7 @@ void CPictures::InitBitmaps()
 	LoadPic(m_pWizardTabs[4], IDB_REITER4);
 	LoadPicAndFlip(m_pWizardTabs[1], IDB_REITER4);
 	LoadPicAndFlip(m_pWizardTabs[2], IDB_REITER3);
+	LoadPic(m_pActionInactive, IDB_ACTION_INACTIVE);
 	LoadPic(m_pActionsArea, IDB_ACTIONS_AREA);
 	LoadPic(m_pActionsDamage, IDB_ACTIONS_DAMAGE);
 	LoadPic(m_pOneHand, IDB_ONE_HAND);
@@ -565,6 +567,11 @@ void CPictures::DrawActiveWeapon(CDC* pDC, CHeld* held, int id) {
 		tmpdc.SelectObject(bmp);
 		pDC->TransparentBlt(470 + 44 * (id - 1), 193, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, TRANS_GRA);
 	}
+	if (!held->isReady()) {
+		tmpdc.SelectObject(m_pActionInactive);
+		pDC->TransparentBlt(466 + 44 * (id - 1), 176, 40, 70, &tmpdc, 0, 0, 40, 70, TRANS_BLU);
+	}
+	tmpdc.DeleteDC();
 }
 
 void CPictures::PfeilZeichnen(CDC* pDC, int index)

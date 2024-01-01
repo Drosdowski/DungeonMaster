@@ -1751,6 +1751,7 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 				weapon = new CWeapon(HANDINDEX, att);*/
 				attackType = "N"; // Punch / Kick / Warcry
 			}
+			CAttackConst ac = attackInfos->GetAttack(attackType);
 
 			if (attackType == "throw")
 			{
@@ -1771,7 +1772,6 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 					}
 					else {
 						// Nahkampf!
-						CAttackConst ac = attackInfos->GetAttack(attackType);
 						CMonsterConst mc = monsterInfos->GetMonsterInfo(pVictims->GetType());
 
 						int dmg = pHero->CalcDmg(weapon, ac, mc, pVictims, diff); // todo doof so, besser in CMonster die MOnsterInfo rein
@@ -1809,6 +1809,7 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 					pGrpHero->setPhase(CHOOSE_HERO);
 				}
 			}
+			pHero->setDelay(max(2, ac.fatigue));
 		}
 	}
 

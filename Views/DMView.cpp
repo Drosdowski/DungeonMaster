@@ -234,19 +234,25 @@ void CDMView::ParseClickAction(CPoint point) {
 
 	Phase actionPhase = grpHelden->GetActionPhase();
 	int actionNumber = CScreenCoords::CheckHitAction(point, actionPhase);
-	if (actionNumber > 0 && actionPhase == CHOOSE_HERO)
-	{
-		grpHelden->ChooseHeroForAction(actionNumber);
-	}
-	else if (actionNumber != 0 && actionPhase == CHOOSE_ACTION) {
-		if (actionNumber == PASS) 
+	CHeld* pHero = (CHeld*)grpHelden->GetHeroForAction();
+	if (pHero->isReady()) {
+		if (actionNumber > 0 && actionPhase == CHOOSE_HERO)
 		{
-			grpHelden->PassAction();
+			grpHelden->ChooseHeroForAction(actionNumber);
 		}
-		else {
-			// action auch setzen !
-			m_pRaumView->DoActionForChosenHero(grpHelden, actionNumber);
+		else if (actionNumber != 0 && actionPhase == CHOOSE_ACTION) {
+			if (actionNumber == PASS) 
+			{
+				grpHelden->PassAction();
+			}
+			else {
+				// action auch setzen !
+				m_pRaumView->DoActionForChosenHero(grpHelden, actionNumber);
+			}
+			UpdateGrafik();
 		}
+	}
+	else {
 		UpdateGrafik();
 	}
 

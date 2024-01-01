@@ -1811,6 +1811,9 @@
     <Image Include="res\Items3D\Item_3d_Moonstone.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\action_inactive.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
