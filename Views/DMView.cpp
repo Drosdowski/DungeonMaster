@@ -441,19 +441,25 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 					grpHelden->TakeItemInHand(FeldVorHeld->TakeItem(posActuator));
 					if (!type == CActuator::Inactive) {
 						// Torch Holder => Empty holder = Item gone
-						InvokeRemoteActuator(currentActuator, nextActuator);
+						//InvokeRemoteActuator(currentActuator, nextActuator);
+						FeldVorHeld->RotateActuators(dir);
 					}
 					return false;
 				}
 				else if (currentActuator->GetData() == 0) {
 					FeldVorHeld->PutItem(itemInHand, posActuator);
 					grpHelden->EmptyHand();
+					//if (!type == CActuator::Inactive) {
+					// Torch Holder => Empty holder = Item gone
+					FeldVorHeld->RotateActuators(dir);
+					//}
 					return false;
 				} else if (itemInHand->GetType() == neededItemId) {
-					if (!type == CActuator::Inactive) {
-						// Torch Holder => Empty holder = Item gone
-						InvokeRemoteActuator(currentActuator, nextActuator);					
-					}
+					//if (!type == CActuator::Inactive) {
+					//	// Torch Holder => Empty holder = Item gone
+					//	//InvokeRemoteActuator(currentActuator, nextActuator);					
+					//	FeldVorHeld->RotateActuators(dir);
+					//}
 					FeldVorHeld->PutItem(itemInHand, posActuator);
 					grpHelden->EmptyHand();
 					return false;
@@ -582,6 +588,7 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 					}
 					else {
 						// assert(false);
+						// pTargetField->RotateActuators();
 					}
 				}
 			}

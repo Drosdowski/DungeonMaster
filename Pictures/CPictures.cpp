@@ -296,7 +296,8 @@ void CPictures::ZeichneScroll(CDC* pDC, CScroll* scroll) {
 	pDC->SetBkColor(WEISSER);
 	CRect r = CRect(pos.x + 40, 192, pos.x + 210, 290);
 	// todo : replace with similar like WriteOnWall
-	pDC->DrawText(scroll->GetText(), r, ETO_CLIPPED | ETO_OPAQUE | DT_CENTER);
+	// pDC->DrawText(scroll->GetText(), r, ETO_CLIPPED | ETO_OPAQUE | DT_CENTER);
+	DrawSpecialFont(pDC, CPoint(pos.x + 125, 241), scroll->GetText(), 12);
 }
 
 

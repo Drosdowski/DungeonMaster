@@ -51,7 +51,7 @@ private:
 	void ZeichneItemInfo(CDC* pDC, CItem* item);
 	void ZeichneScroll(CDC* pDC, CScroll* scroll);
 	void ZeichneContainer(CDC* pDC, CContainer* pContainer);
-	void GewichtZeichnen(CDC* pDC, CHeld* pHeld);
+	void GewichtZeichnen(CDC* pDC, CHeld* pHeld);	// todo einheitliche Namen!
 	void ZeichneVitalText(CDC* pDC, CString text, int index, int y);
 
 	void DrawHand(CDC* pDC, CHeld* pHeld, int index);
