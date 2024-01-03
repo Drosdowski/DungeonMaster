@@ -333,6 +333,7 @@
     <Image Include="..\DungeonMaster_\res\Monster\test.bmp" />
     <Image Include="res\ActionsArea.bmp" />
     <Image Include="res\ActionsDamage.bmp" />
+    <Image Include="res\action_inactive.bmp" />
     <Image Include="res\bitmap1.bmp" />
     <Image Include="res\Ceiling\CeilingPit_F0.bmp" />
     <Image Include="res\Ceiling\CeilingPit_F1.bmp" />

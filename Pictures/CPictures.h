@@ -56,8 +56,9 @@ private:
 
 	void DrawHand(CDC* pDC, CHeld* pHeld, int index);
 	void DrawText(CDC* pDC, int x, int y, CString text, int h, COLORREF fc, COLORREF bc);
-	void DrawOrigFontText(CDC* pDC, int x, int y, CString text);
+	void DrawFontText(CDC* pDC, int x, int y, CString text, bool darkFont);
 	CBitmap* GetOrigFontLetter(CDC* pDC, char letter);
+	CBitmap* GetScrollFontLetter(CDC* pDC, char letter);
 
 	CBitmap* m_pBmpRuck;
 	CBitmap* m_pBmpHintergrund;
@@ -65,6 +66,7 @@ private:
 	CBitmap* m_pBmpPfeile;
 	CBitmap* m_pRunes[5];
 	CBitmap* m_pWizardTabs[5];
+	CBitmap* m_pActionInactive;
 	CBitmap* m_pActionsArea;
 	CBitmap* m_pActionsDamage;
 	CBitmap* m_pOneHand;

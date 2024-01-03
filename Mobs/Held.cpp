@@ -81,6 +81,7 @@ CHeld::CHeld(int iIndex, CChampion* champ, int hp_akt, int st_akt, int ma_akt): 
 	m_spell = new int[5];
 
 	m_iRuneTable = 1;
+	m_delay = 0;
 }
 
 
@@ -158,6 +159,9 @@ bool CHeld::Altern()
 		if (m_ST.Aktuell <= 0)
 		{
 			m_HP.Aktuell = 0;	
+		}
+		if (m_delay > 0) {
+			m_delay--;
 		}
 	}
 	return alive;

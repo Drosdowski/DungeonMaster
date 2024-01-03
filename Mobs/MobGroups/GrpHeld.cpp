@@ -138,7 +138,8 @@ void CGrpHeld::Aktiviere(int n)
 void CGrpHeld::ChooseHeroForAction(int ID) {
 	if (m_iPhase == CHOOSE_HERO)
 	{
-		if (m_pMember[ID] && m_pMember[ID]->isAlive()) {
+		CHeld* pHeld = (CHeld*)m_pMember[ID];
+		if (pHeld && pHeld->isAlive() && pHeld->isReady()) {
 			m_iPhase = CHOOSE_ACTION;
 			m_iHeroForAction = ID;
 		}
@@ -203,12 +204,15 @@ bool CGrpHeld::Altern(CField* field)
 			}
 		}
 	}
-	if (m_iPhase == SHOW_DAMAGE)
-	{ 
-		if (m_iPhaseDelay <= 0)
+	if (m_iPhaseDelay <= 0)
+	{
+		if (m_iPhase == SHOW_DAMAGE)
+		{
 			m_iPhase = CHOOSE_HERO;
-		else
-			m_iPhaseDelay--;
+		}
+	}
+	else {
+		m_iPhaseDelay--;
 	}
 	return anyoneAlive;
 }

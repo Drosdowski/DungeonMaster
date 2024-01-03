@@ -62,6 +62,8 @@ public:
 
 	void setActive() { m_bAktiv = true; }
 	void setInactive() { m_bAktiv = false; }
+	void setDelay(int delay) { m_delay += delay; }
+	bool isReady() { return m_delay <= 0; }
 
 	CItem* GetItemCarrying(int index) { return m_itemCarrying[index]; }
 	void RemoveItemCarrying(int index) { m_itemCarrying[index] = NULL; }
@@ -98,6 +100,7 @@ private:
 	int m_iFood;
 	int m_iWater;
 	int m_iIndex;
+	int m_delay;
 	bool m_bAktiv;
 	WERTE m_MA;	// Mana
 	WERTE m_ST;	// Stamina
