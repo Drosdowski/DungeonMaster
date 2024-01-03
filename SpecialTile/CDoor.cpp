@@ -13,7 +13,6 @@ void CDoor::ContinueMoving() {
 	switch (m_state) {
 	case (OPEN):
 		m_state = CLOSING;
-		// m_bottomHeight = fullHeight - movingHeight;
 		break;
 	case (OPENING):
 		m_bottomHeight += movingHeight;
@@ -26,12 +25,11 @@ void CDoor::ContinueMoving() {
 		m_bottomHeight -= movingHeight;
 		if (m_bottomHeight <= 0) {
 			m_state = CLOSED;
-			m_bottomHeight = fullHeight;
+			m_bottomHeight = 0;
 		}
 		break;
 	case (CLOSED):
 		m_state = OPENING;
-		//m_bottomHeight = movingHeight;
 		break;
 	}
 }

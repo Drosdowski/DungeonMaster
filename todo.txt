@@ -16,3 +16,4 @@ Unterschied throwable / weapon
 Zauberspruch je zauberer speichern
 stamina 0
 
+Sounds: Throw, Drink, Fight - monster move art !
