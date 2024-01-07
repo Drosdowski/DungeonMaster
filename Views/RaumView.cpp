@@ -1083,6 +1083,13 @@ void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagic
 					newField->CastMissile(topMissile, newPos);
 				}
 				topMissile->Explode();
+				if (topMissile->GetType() == CMagicMissile::Fireball)
+				{
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingFireball.mp3");
+				}
+				else if (topMissile->GetType() == CMagicMissile::Poison || topMissile->GetType() == CMagicMissile::PoisonBlob || topMissile->GetType() == CMagicMissile::AntiMagic) {
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingSpell.mp3");
+				}
 				topMissile->SetDone();
 				if (pDoor) {
 					if (topMissile->GetType() == CMagicMissile::Fireball && pDoor->destroyedByFireball()) {
@@ -1131,6 +1138,7 @@ void CRaumView::CheckMissileCollisions(VEKTOR heroPos) {
 					CMonster* pHittedMonster = pGroupMonster->GetMonsterByAbsSubPos(posAbs);
 					if (pHittedMonster) {
 						topMissile->Explode();
+						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingFireball.mp3");
 						topMissile->SetDone();
 						pGroupMonster->DoDamage(topMissile->GetStrength() * (rand() % 6 + 1), heroPos, true);
 					}
@@ -1565,7 +1573,24 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 			CMonster* attackingMonster = pGrpMon->AttackHero(monPos, heroPos);
 			if (attackingMonster)
 			{
-				m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
+				switch (pGrpMon->GetType()) {
+				case MonsterTyp::SKELETON:
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
+				case MonsterTyp::SCREAMER:
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Screamer-Oitu).mp3"); break;
+				case MonsterTyp::ROCKPILE:
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Rockpile).mp3"); break;
+				case MonsterTyp::MAGENTA_WORM:
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(MagentaWorm).mp3"); break;
+				case MonsterTyp::MUMMY:
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Mummy-Ghost).mp3"); break;
+				case MonsterTyp::GIGGLER:
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Giggler).mp3"); break;
+				case MonsterTyp::TROLIN:
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Trolin-StoneGolem)-TouchingWall.mp3"); break;
+				}
+
+				
 
 				m_pMap->GetHeroes()->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
 			}
@@ -1600,7 +1625,19 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 					// Kommt näher => Move!
 
 					pGrpMon->Laufen(targetPos, false);
-					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(Skeleton).mp3");
+					switch (pGrpMon->GetType()) {
+					case MonsterTyp::SKELETON:
+						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(Skeleton).mp3"); break;
+					case MonsterTyp::SCREAMER:
+					case MonsterTyp::ROCKPILE:
+					case MonsterTyp::MAGENTA_WORM:
+						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(Screamer-Rockpile-MagentaWorm-PainRat-Ruster-GiantScorpion-Oitu).mp3"); break;
+					case MonsterTyp::MUMMY:
+					case MonsterTyp::GIGGLER:
+					case MonsterTyp::TROLIN:
+						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(Mummy-Trolin-StoneGolem-Giggler-Vexirk-Demon).mp3"); break;
+					}
+					
 
 					return targetPos;
 				}
@@ -1757,9 +1794,11 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 			{
 				SUBPOS_ABSOLUTE abspos = pHero->HoleSubPosition();
 				SUBPOS pos = CHelpfulValues::GetRelativeSubPosPassive(abspos, pGrpHero->GetDirection());
-				pGrpHero->ThrowItemInHeroHand(pHero, field, pos);
-				pGrpHero->setPhaseDelay(2);
-				pGrpHero->setPhase(SHOW_DAMAGE);
+				if (pGrpHero->ThrowItemInHeroHand(pHero, field, pos)) {
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
+					pGrpHero->setPhaseDelay(2);
+					pGrpHero->setPhase(SHOW_DAMAGE);
+				}
 			}
 			else {
 

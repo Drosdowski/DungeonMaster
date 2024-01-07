@@ -266,7 +266,7 @@ void CGrpHeld::PutGetItem(int handOfHeroId, int heroId) {
 	}
 }
 
-void CGrpHeld::ThrowItemInHeroHand(CHeld* pHero, CField* field, SUBPOS seite) {
+bool CGrpHeld::ThrowItemInHeroHand(CHeld* pHero, CField* field, SUBPOS seite) {
 	if (!field->BlockedToWalk()) {
 		CItem* item = pHero->GetItemCarrying(1);
 		if (item) {
@@ -276,8 +276,10 @@ void CGrpHeld::ThrowItemInHeroHand(CHeld* pHero, CField* field, SUBPOS seite) {
 			pHero->RemoveItemCarrying(1);
 			field->ThrowItem(item, itemRegionReal, force);
 			EmptyHand();
+			return true; // for sound
 		}
 	}
+	return false;
 }
 
 

@@ -42,7 +42,7 @@ public:
 	void Laufen(VEKTOR WunschPos, bool teleport);
 
 	void PutGetItem(int handOfHeroId, int heroId);
-	void ThrowItemInHeroHand(CHeld* hero, CField* field, SUBPOS seite);
+	bool ThrowItemInHeroHand(CHeld* hero, CField* field, SUBPOS seite);
 
 	void Aktiviere(int n);
 	void setPhase(Phase p) { m_iPhase = p; }

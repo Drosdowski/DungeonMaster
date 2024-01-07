@@ -13,7 +13,9 @@ BUGS
 items hit player
 itemInfo 
 Unterschied throwable / weapon
-Zauberspruch je zauberer speichern
+
 stamina 0
 
-Sounds: Throw, Drink, Fight - monster move art !
+Sounds: switch (wall, floor) - gegenstand fällt (klein, gross)
+
+CMagicMissile Lightning !
