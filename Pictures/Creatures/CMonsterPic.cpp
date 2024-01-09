@@ -9,6 +9,7 @@
 #include "MagentaWormPic.h"
 #include "TrolinPic.h"
 #include "GigglerPic.h"
+#include "RatPic.h"
 
 CMonsterPic::CMonsterPic(CDC* pDC) : CBasePictures(pDC) {
 	m_pMummyPic = new CMummyPic(pDC);
@@ -18,6 +19,7 @@ CMonsterPic::CMonsterPic(CDC* pDC) : CBasePictures(pDC) {
 	m_pMagentaWormPic = new CMagentaWormPic(pDC);
 	m_pTrolinPic = new CTrolinPic(pDC);
 	m_pGigglerPic = new CGigglerPic(pDC);
+	m_pPainRatPic = new CPainRatPic(pDC);
 }
 
 CMonsterPic::~CMonsterPic() {
@@ -28,6 +30,7 @@ CMonsterPic::~CMonsterPic() {
 	delete m_pMagentaWormPic;
 	delete m_pTrolinPic;
 	delete m_pGigglerPic;
+	delete m_pPainRatPic;
 }
 
 CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
@@ -48,6 +51,8 @@ CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
 		return m_pTrolinPic->GetTrolinPic(iRicht, pMonster->isAttacking());
 	case MonsterTyp::GIGGLER:
 		return m_pGigglerPic->GetGigglerPic(iRicht, pMonster->isAttacking());
+	case MonsterTyp::PAINRAT:
+		return m_pPainRatPic->GetPainRatPic(iRicht, pMonster->isAttacking());
 	default:
 		break;
 	}

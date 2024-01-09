@@ -141,6 +141,7 @@
     <ClCompile Include="Consts\MonsterConst.cpp" />
     <ClCompile Include="Consts\AttackConst.cpp" />
     <ClCompile Include="Attributes\ContainerAttributes.cpp" />
+    <ClCompile Include="Pictures\Creatures\RatPic.cpp" />
     <ClCompile Include="SpecialTile\DelayedTile.cpp" />
     <ClCompile Include="Pictures\Creatures\GigglerPic.cpp" />
     <ClCompile Include="Items\Container.cpp" />
@@ -240,6 +241,7 @@
     <ClInclude Include="Consts\AttackConst.h" />
     <ClInclude Include="Consts\MonsterConst.h" />
     <ClInclude Include="Attributes\ContainerAttributes.h" />
+    <ClInclude Include="Pictures\Creatures\RatPic.h" />
     <ClInclude Include="SpecialTile\DelayedTile.h" />
     <ClInclude Include="Pictures\Creatures\GigglerPic.h" />
     <ClInclude Include="Items\Container.h" />
@@ -492,6 +494,10 @@
     <Image Include="res\Monster\MagentaWorm_Back.bmp" />
     <Image Include="res\Monster\MagentaWorm_Front.bmp" />
     <Image Include="res\Monster\MagentaWorm_Right.bmp" />
+    <Image Include="res\Monster\PainRat_Attack.bmp" />
+    <Image Include="res\Monster\PainRat_Back.bmp" />
+    <Image Include="res\Monster\PainRat_Front.bmp" />
+    <Image Include="res\Monster\PainRat_Right.bmp" />
     <Image Include="res\Monster\RockPile_Attack.bmp" />
     <Image Include="res\Monster\RockPile_Front.bmp" />
     <Image Include="res\Monster\Screamer_Attack.bmp" />
