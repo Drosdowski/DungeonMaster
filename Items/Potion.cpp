@@ -10,7 +10,7 @@ CPotion::CPotion(int index, CPotionAttributes attributes) : CItem(index, PotionI
 CPotion::~CPotion() {
 }
 
-int CPotion::GetOffsetForGroup() {
+int CPotion::GetOffsetForGroup(bool active) {
 	if (m_attribute.type == CPotionAttributes::PotionType::Empty) return 3;
 	if (m_attribute.type <= CPotionAttributes::PotionType::Ful &&
 		m_attribute.type >= CPotionAttributes::PotionType::Ya) return m_attribute.type - 12;

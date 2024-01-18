@@ -13,7 +13,7 @@ public:
 	CPotionAttributes GetAttributes() { return m_attribute; }
 
 	int GetSheetForGroup();
-	int GetOffsetForGroup();
+	int GetOffsetForGroup(bool active);
 	ItemGroup GetGroup();
 
 	void MakePotion(CPotionAttributes attributes);

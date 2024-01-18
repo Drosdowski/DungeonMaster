@@ -45,8 +45,8 @@ void CItemPic::InitItems() {
 	}
 }
 
-CPoint CItemPic::GetSheetKoords(CItem* item) {
-	int pos = item->GetOffsetForGroup();
+CPoint CItemPic::GetSheetKoords(CItem* item, bool active) {
+	int pos = item->GetOffsetForGroup(active);
 	int x = pos % 16;
 	int y = int(pos / 16);
 

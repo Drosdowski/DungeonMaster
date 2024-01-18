@@ -15,4 +15,6 @@ itemInfo
 Unterschied throwable / weapon
 Zauberspruch je zauberer speichern
 stamina 0
+#
+
 

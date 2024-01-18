@@ -1235,6 +1235,18 @@ void CDungeonMap::SaveMap(TiXmlElement* maps, int level) {
 				door->SetAttribute("state", pDoor->getState());
 				tile->LinkEndChild(door);
 			}
+			CPit* pPit = m_pFeld[x][y][level]->HolePit();
+			if (pPit) {
+				TiXmlElement* pit = new TiXmlElement("pit");
+				pit->SetAttribute("state", pPit->GetState());
+				tile->LinkEndChild(pit);
+			}
+			//CTeleporter* pTeleport= m_pFeld[x][y][level]->HoleTeleporter();
+			//if (pPit) {
+			//	TiXmlElement* tele = new TiXmlElement("tele");
+			//	tele->SetAttribute("state", pTeleport->isOpen());
+			//	tile->LinkEndChild(tele);
+			//}
 
 			for (int subPos = 0; subPos < 4; subPos++) {
 				std::deque<CActuator*> pActuators = m_pFeld[x][y][level]->GetActuator((COMPASS_DIRECTION)subPos);
@@ -1477,6 +1489,14 @@ void CDungeonMap::LoadTile(TiXmlElement* tile, int mapIndex) {
 			CDoor* pDoor = pField->HoleDoor();
 			if (pDoor) {
 				pDoor->SetState(state);
+			}
+		}
+		if (strcmp(element->Value(), "pit") == 0) {
+			element->QueryIntAttribute("state", &state);
+
+			CPit* pPit= pField->HolePit();
+			if (pPit) {
+				pPit->SetState(state);
 			}
 		}
 		if (strcmp(element->Value(), "actuators") == 0) {

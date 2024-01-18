@@ -16,8 +16,8 @@ void CScroll::SetOpen(bool value) {
 	m_attribute.open = value;
 }
 
-int CScroll::GetOffsetForGroup() {
-	if (m_attribute.open) {
+int CScroll::GetOffsetForGroup(bool active) {
+	if (m_attribute.open && active) {
 		return 30;
 	}
 	else {
