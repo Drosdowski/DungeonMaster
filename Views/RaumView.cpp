@@ -1085,7 +1085,7 @@ void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagic
 				topMissile->Explode();
 				topMissile->SetDone();
 				if (pDoor) {
-					if (topMissile->GetType() == CMagicMissile::Fireball && pDoor->destroyedByFireball()) {
+					if (topMissile->GetType() == CMagicMissile::Fireball || topMissile->GetType() == CMagicMissile::Lightning  && pDoor->destroyedByFireball()) {
 						pDoor->SetState(CDoor::DESTROYED);
 					}
 					if (topMissile->GetType() == CMagicMissile::OpenDoor && pDoor->hasButton() && pDoor->getState() == CDoor::CLOSED)
@@ -1124,7 +1124,8 @@ void CRaumView::CheckMissileCollisions(VEKTOR heroPos) {
 			if ((!topMissile->IsExploding()) && (
 				topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob || 
 				topMissile->GetType() == CMagicMissile::MagicMissileType::Poison || 
-				topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball)) {
+				topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball || 
+				topMissile->GetType() == CMagicMissile::MagicMissileType::Lightning)) {
 
 				CGrpMonster* pGroupMonster = field->GetMonsterGroup();
 				if (pGroupMonster) {

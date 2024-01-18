@@ -9,7 +9,8 @@ public:
 		PoisonBlob = 2,
 		AntiMagic = 3,
 		Dust = 4,
-		OpenDoor = 5
+		OpenDoor = 5,
+		Lightning = 6
 	};
 	enum SpellSize {
 		Light = 0,
