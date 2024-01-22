@@ -37,8 +37,8 @@ void CContainer::SetOpen(bool value) {
 	m_attribute.open = value;
 }
 
-int CContainer::GetOffsetForGroup() {
-	if (m_attribute.open) {
+int CContainer::GetOffsetForGroup(bool active) {
+	if (m_attribute.open || active) {
 		return 17;
 	}
 	else {

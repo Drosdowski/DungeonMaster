@@ -9,7 +9,7 @@ public:
 	~CContainer();
 
 	int GetSheetForGroup();
-	int GetOffsetForGroup();
+	int GetOffsetForGroup(bool active);
 	ItemGroup GetGroup();
 	bool IsOpen() { return m_attribute.open; }
 	void SetOpen(bool value);
