@@ -196,16 +196,16 @@ void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
 		bool emptyFlaskInHand = itemInHand && itemInHand->GetType() == CPotionAttributes::PotionType::Empty;
 
 		// Magic Missiles
-		if (spell[2, heroId] == 4 && spell[3] == 4 && spell[4] == 0) {
+		if (spell[2] == 4 && spell[3] == 4 && spell[4] <= 0) {
 			CastMagicMissile(CMagicMissile::MagicMissileType::Fireball, spell[1]);
 		}
-		else if (spell[2] == 3 && spell[3] == 1 && spell[4] == 0) {
+		else if (spell[2] == 3 && spell[3] == 1 && spell[4] <= 0) {
 			CastMagicMissile(CMagicMissile::MagicMissileType::Poison, spell[1]);
 		}
 		else if (spell[2] == 3 && spell[3] == 3 && spell[4] == 5) {
 			CastMagicMissile(CMagicMissile::MagicMissileType::Lightning, spell[1]);
 		}
-		else if (spell[2] == 6 && spell[3] == 0) {
+		else if (spell[2] == 6 && spell[3] <= 0) {
 			CastMagicMissile(CMagicMissile::MagicMissileType::OpenDoor, spell[1]);
 		}
 		// Potions
@@ -265,19 +265,20 @@ void CDMView::ParseClickDoorButton(CPoint point, CField* FeldVorHeld) {
 	}
 }
 
-void CDMView::ParseClickFountain(CPoint point, CField* FeldVorHeld, COMPASS_DIRECTION dir) {
+bool CDMView::ParseClickFountain(CPoint point, CField* FeldVorHeld, COMPASS_DIRECTION dir) {
 
 	CWallDecoration* deco = FeldVorHeld->GetWallDeco(dir);
 	if (deco && deco->GetDecoType() == Fountain) {
 		CSize size = m_pRaumView->GetSizeOfFrontDeco(FeldVorHeld, dir);
 		if (CScreenCoords::CheckHitDeco(point, size)) {
 			CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
-			if (grpHelden == NULL) return;
+			if (grpHelden == NULL) return false;
 			CHeld* activeHero = grpHelden->GetActiveHero();
 			CItem* itemInHand = grpHelden->GetItemInHand();
 			if (itemInHand == NULL) {
 				// Hand leer = trinken
 				activeHero->Trinken(50); // todo amount drink?
+				return true; // sound
 			}
 			else {
 				// item in hand füllen
@@ -300,6 +301,7 @@ void CDMView::ParseClickFountain(CPoint point, CField* FeldVorHeld, COMPASS_DIRE
 			}
 		}
 	}
+	return false;
 }
 
 
@@ -341,7 +343,7 @@ bool CDMView::ParseClickPortraitHands(CPoint point, bool backpackMode) {
 void CDMView::ParseClickAir(CPoint point) {
 	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 	CItem* pItemInHand = grpHelden->GetItemInHand();
-
+	CDMDoc* pDoc = GetDocument();
 	if (pItemInHand != NULL) {
 		SUBPOS airRegionClicked = CScreenCoords::CheckHitAir(point);
 		if (airRegionClicked != NONE) {
@@ -356,6 +358,7 @@ void CDMView::ParseClickAir(CPoint point) {
 					SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(airRegionClicked, grpDir);
 					VEKTOR force = CHelpfulValues::MakeVektor(grpDir, 6);
 					m_pRaumView->GetMap()->GetField(grpHelden->GetVector())->ThrowItem(pItemInHand, itemRegionReal, force);
+					pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
 					grpHelden->GetActiveHero()->setDelay(4);
 					grpHelden->EmptyHand();
 				}
@@ -445,19 +448,25 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 					grpHelden->TakeItemInHand(FeldVorHeld->TakeItem(posActuator));
 					if (!type == CActuator::Inactive) {
 						// Torch Holder => Empty holder = Item gone
-						InvokeRemoteActuator(currentActuator, nextActuator);
+						//InvokeRemoteActuator(currentActuator, nextActuator);
+						FeldVorHeld->RotateActuators(dir);
 					}
 					return false;
 				}
 				else if (currentActuator->GetData() == 0) {
 					FeldVorHeld->PutItem(itemInHand, posActuator);
 					grpHelden->EmptyHand();
+					//if (!type == CActuator::Inactive) {
+					// Torch Holder => Empty holder = Item gone
+					FeldVorHeld->RotateActuators(dir);
+					//}
 					return false;
 				} else if (itemInHand->GetType() == neededItemId) {
-					if (!type == CActuator::Inactive) {
-						// Torch Holder => Empty holder = Item gone
-						InvokeRemoteActuator(currentActuator, nextActuator);					
-					}
+					//if (!type == CActuator::Inactive) {
+					//	// Torch Holder => Empty holder = Item gone
+					//	//InvokeRemoteActuator(currentActuator, nextActuator);					
+					//	FeldVorHeld->RotateActuators(dir);
+					//}
 					FeldVorHeld->PutItem(itemInHand, posActuator);
 					grpHelden->EmptyHand();
 					return false;
@@ -586,6 +595,7 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 					}
 					else {
 						// assert(false);
+						// pTargetField->RotateActuators();
 					}
 				}
 			}
@@ -674,7 +684,10 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 						if (ParseClickActuator(point, actuators, dir, size))
 							FeldVorHeld->RotateActuators(dir);
 					}
-					ParseClickFountain(point, FeldVorHeld, dir);
+					if (ParseClickFountain(point, FeldVorHeld, dir))
+					{
+						pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Swallowing.mp3"); 
+					}
 
 				}
 				else {
@@ -703,6 +716,7 @@ void CDMView::ParseClickBackpack(CPoint point) {
 	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 	CHeld* pHeld = grpHelden->GetActiveHero();
 	CItem* itemInMainHand = grpHelden->GetItemInHand();
+	CDMDoc* pDoc = (CDMDoc*)GetDocument();
 	if (CScreenCoords::CheckHitEye(point))
 		pHeld->GetRucksack()->SetzeModusExtend(MOD_EXT_AUGE);
 	else if (itemInMainHand && CScreenCoords::CheckHitMouth(point))
@@ -714,11 +728,13 @@ void CDMView::ParseClickBackpack(CPoint point) {
 				if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Water) {
 					if (misc->GetSubtype() > 0) {
 						pHeld->Trinken(50);
+						pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Swallowing.mp3");
 						misc->SetSubtype(misc->GetSubtype() - 1);
 					}
 				}
 				else {
 					pHeld->Essen(50);
+					pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Swallowing.mp3");
 					grpHelden->EmptyHand();
 					delete itemInMainHand; // destroy permanently!
 				}
@@ -731,15 +747,14 @@ void CDMView::ParseClickBackpack(CPoint point) {
 			if (potion->GetType() == CPotionAttributes::Vi) {
 				pHeld->WerteTemporaerAendern(att.power*10, 0, 0);
 				att.power = 0;
-				att.type = CPotionAttributes::PotionType::Empty;
-				potion->MakePotion(att);
 			}
 			else if (potion->GetType() == CPotionAttributes::Water)
 			{
 				pHeld->Trinken(50);
-				att.type = CPotionAttributes::PotionType::Empty;
-				potion->MakePotion(att);
 			}
+			pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Swallowing.mp3");
+			att.type = CPotionAttributes::PotionType::Empty;
+			potion->MakePotion(att);
 		}
 	}
 	else if (CScreenCoords::CheckHitSleep(point)) {

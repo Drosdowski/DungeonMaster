@@ -965,6 +965,14 @@ IDB_ITEM3D_MOONSTONE    BITMAP                  "res\\Items3D\\Item_3d_Moonstone
 
 IDB_ACTION_INACTIVE     BITMAP                  "res\\action_inactive.bmp"
 
+IDB_MONSTER_PAINRAT_ATTACK BITMAP                  "res\\Monster\\PainRat_Attack.bmp"
+
+IDB_MONSTER_PAINRAT_BACK BITMAP                  "res\\Monster\\PainRat_Back.bmp"
+
+IDB_MONSTER_PAINRAT_FRONT BITMAP                  "res\\Monster\\PainRat_Front.bmp"
+
+IDB_MONSTER_PAINRAT_RIGHT BITMAP                  "res\\Monster\\PainRat_Right.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
