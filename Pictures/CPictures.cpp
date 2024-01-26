@@ -103,7 +103,7 @@ CBitmap* CPictures::GetIconBitmap(CDC* pDC, CItem* pItem) {
 	CBitmap* bmpIcon = new CBitmap();
 	bmpIcon->CreateCompatibleBitmap(pDC, 32, 32);
 
-	CPoint p = m_pItemPic->GetSheetKoords(pItem);
+	CPoint p = m_pItemPic->GetSheetKoords(pItem, false);
 	sheetDC.SelectObject(bmpSheet);
 	iconDC.SelectObject(bmpIcon);
 	iconDC.StretchBlt(0, 0, 32, 32, &sheetDC, p.x, p.y, 16, 16, SRCCOPY);
@@ -163,7 +163,7 @@ void CPictures::DrawHand(CDC* pDC, CHeld* pHeld, int handId) {
 
 	if (itemInThisHand != NULL) {
 		CBitmap* bmp = m_pItemPic->GetBitmapSheet(itemInThisHand);
-		CPoint pos = m_pItemPic->GetSheetKoords(itemInThisHand);
+		CPoint pos = m_pItemPic->GetSheetKoords(itemInThisHand, true);
 		tmpdc.SelectObject(bmp);
 		pDC->StretchBlt((pHeld->getIndex() - 1) * 138 + 7 + 40 * handId, 18, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, SRCCOPY);
 	}
@@ -250,7 +250,7 @@ void CPictures::ZeichneIcons(CDC* pDC, CHeld* pHeld) {
 		if (item) {
 			CPoint posBackpack = CScreenCoords::GetBackPackSlotKoords(iconID);
 			CBitmap* bmp = m_pItemPic->GetBitmapSheet(item);
-			CPoint pos = m_pItemPic->GetSheetKoords(item);
+			CPoint pos = m_pItemPic->GetSheetKoords(item, iconID < 2);
 			tmpdc.SelectObject(bmp);
 			//pDC->TransparentBlt(posBackpack.x, posBackpack.y, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, TRANS_GRA);
 			pDC->StretchBlt(posBackpack.x, posBackpack.y, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, SRCCOPY);
@@ -278,7 +278,7 @@ void CPictures::ZeichneContainer(CDC* pDC, CContainer* pContainer) {
 		if (item) {
 			CPoint posContainer = CScreenCoords::GetContainerSlotKoords(iconID);
 			CBitmap* bmp = m_pItemPic->GetBitmapSheet(item);
-			CPoint pos = m_pItemPic->GetSheetKoords(item);
+			CPoint pos = m_pItemPic->GetSheetKoords(item, false);
 			tmpdc.SelectObject(bmp);
 			pDC->StretchBlt(posContainer.x, posContainer.y, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, SRCCOPY);
 		}
@@ -563,7 +563,7 @@ void CPictures::DrawActiveWeapon(CDC* pDC, CHeld* held, int id) {
 		int x = 466 + 44 * (id - 1);		
 		pDC->FillSolidRect(CRect(x, 176, x + 40, 242), HELLBLAU);
 		CBitmap* bmp = m_pItemPic->GetBitmapSheet(itemInThisHand);
-		CPoint pos = m_pItemPic->GetSheetKoords(itemInThisHand);
+		CPoint pos = m_pItemPic->GetSheetKoords(itemInThisHand, true);
 		tmpdc.SelectObject(bmp);
 		pDC->TransparentBlt(470 + 44 * (id - 1), 193, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, TRANS_GRA);
 	}

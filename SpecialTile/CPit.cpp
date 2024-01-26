@@ -34,3 +34,8 @@ CPit::PitState CPit::GetState() {
 	else
 		return Closed;
 }
+
+void CPit::SetState(int value) {
+	// für LoadMap
+	m_state = (PitState)value;
+}

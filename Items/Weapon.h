@@ -14,7 +14,7 @@ public:
 	double GetWeight();
 
 	int GetSheetForGroup();
-	int GetOffsetForGroup();
+	int GetOffsetForGroup(bool active);
 	ItemGroup GetGroup();
 
 private:

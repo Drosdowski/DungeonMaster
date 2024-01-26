@@ -9,6 +9,7 @@ CMagicMissilePic::CMagicMissilePic(CDC* pDC) : CBasePictures(pDC)
 
 CMagicMissilePic ::~CMagicMissilePic() {
 	delete m_pAntiMaterial;
+	delete m_pLightning;
 	delete m_pFireball;
 	delete m_pPoison;
 	delete m_pPoisonBlob;
@@ -27,6 +28,7 @@ CMagicMissilePic ::~CMagicMissilePic() {
 void CMagicMissilePic::InitBitmap() {
 	LoadPic(m_pAntiMaterial, IDB_MISSILE_ANTIMAT);
 	LoadPic(m_pFireball, IDB_MISSILE_FIREBALL);
+	LoadPic(m_pLightning, IDB_MISSILE_ANTIMAT); // TODO PIC!
 	LoadPic(m_pPoison, IDB_MISSILE_POISON);
 	LoadPic(m_pPoisonBlob, IDB_MISSILE_POISONBLOB);
 
@@ -35,7 +37,6 @@ void CMagicMissilePic::InitBitmap() {
 	LoadPic(m_pExplodePoison, IDB_EXPLODE_POISON);
 	LoadPic(m_pExplodeDust, IDB_EXPLODE_DUST);
 
-	//LoadPic(m_pInsideDust[0], IDB_INS);
 	LoadPic(m_pInsideFire[0], IDB_INSIDE_FIREBALL_LIGHT);
 	LoadPic(m_pInsideFire[1], IDB_INSIDE_FIREBALL_MEDIUM);
 	LoadPic(m_pInsideFire[2], IDB_INSIDE_FIREBALL_STRONG);
@@ -50,6 +51,8 @@ void CMagicMissilePic::InitBitmap() {
 CBitmap* CMagicMissilePic::GetMagicMissileBitmap(CMagicMissile::MagicMissileType type, bool exploding, bool inside, int size) {
 	if (type == CMagicMissile::AntiMagic || type == CMagicMissile::OpenDoor)
 		return GetAntiMaterial(exploding, inside);
+	else if (type == CMagicMissile::Lightning)
+		return GetLightning(exploding, inside, size);
 	else if (type == CMagicMissile::Fireball)
 		return GetFireball(exploding, inside, size);
 	else if (type == CMagicMissile::Poison)

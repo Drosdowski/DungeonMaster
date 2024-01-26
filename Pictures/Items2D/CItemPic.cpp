@@ -45,8 +45,23 @@ void CItemPic::InitItems() {
 	}
 }
 
-CPoint CItemPic::GetSheetKoords(CItem* item) {
-	int pos = item->GetOffsetForGroup();
+CPoint CItemPic::GetSheetKoords(CItem* item, bool active) {
+	int pos;
+	if (item->getItemType() == CItem::ItemType::WeaponItem)
+		pos = ((CWeapon*)item)->GetOffsetForGroup(active);
+	else if (item->getItemType() == CItem::ItemType::ClothItem)
+		pos = ((CCloth*)item)->GetOffsetForGroup();
+	else if (item->getItemType() == CItem::ItemType::MiscItem)
+		pos = ((CMiscellaneous*)item)->GetOffsetForGroup();
+	else if (item->getItemType() == CItem::ItemType::PotionItem)
+		pos = ((CPotion*)item)->GetOffsetForGroup();
+	else if (item->getItemType() == CItem::ItemType::ScrollItem)
+		pos = ((CScroll*)item)->GetOffsetForGroup(active);
+	else if (item->getItemType() == CItem::ItemType::ContainerItem)
+		pos = ((CContainer*)item)->GetOffsetForGroup(active);
+	else
+		pos = item->GetSheetForGroup();
+
 	int x = pos % 16;
 	int y = int(pos / 16);
 

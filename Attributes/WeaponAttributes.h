@@ -35,7 +35,7 @@ public:
 		Slayer = 28,// miss
 		Sling = 29,// miss
 		Rock = 30,
-		PoisonDart = 31,// miss
+		PoisonDart = 31,
 		ThrowingStar = 32,
 		Stick = 33, 
 		Staff = 34, // miss

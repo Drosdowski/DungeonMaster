@@ -19,6 +19,7 @@ public:
 
 	PitType GetType() { return m_type; }
 	PitState GetState(); 
+	void SetState(int value);
 
 	void Open(int delay);
 	void Close(int delay);

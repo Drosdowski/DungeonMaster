@@ -10,7 +10,7 @@ public:
 	~CItemPic();
 
 	CBitmap* GetBitmapSheet(CItem* misc);
-	CPoint GetSheetKoords(CItem* misc);
+	CPoint GetSheetKoords(CItem* misc, bool active);
 	CPoint GetScrollKoord();
 	CPoint GetChestKoord();
 

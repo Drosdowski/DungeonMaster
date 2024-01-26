@@ -13,9 +13,14 @@ void CWeapon::reduceCharges() {
 	m_attribute.charges = max(0, m_attribute.charges - 1);
 }
 
-int CWeapon::GetOffsetForGroup() {
+int CWeapon::GetOffsetForGroup(bool active) {
 	if (m_attribute.type == CWeaponAttributes::Torch) {
-		return 4 + (int)(m_attribute.charges / 4);
+		if (active) {
+			return 4 + (int)(m_attribute.charges / 4);
+		}
+		else {
+			return 4;
+		}
 	}
 	else if (m_attribute.type == CWeaponAttributes::BoltBlade)
 	{
