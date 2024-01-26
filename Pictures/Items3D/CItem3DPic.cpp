@@ -44,6 +44,31 @@ CItem3DPic ::~CItem3DPic() {
 	delete m_pScroll;
 	delete m_pDrumstick;
 	delete m_pBones;
+	delete m_pFirestaff;
+	delete m_pWand;
+	delete m_pRabbitsFoot;
+	delete m_pConduit;
+	delete m_pCorbamite;
+	delete m_pEyeOfTime;
+	delete m_pSceptreOfLyf;
+	delete m_pAshes;
+	delete m_pVorpalBlade;
+	delete m_pStick;
+	delete m_pCrossbow;
+	delete m_pMace;
+	delete m_pDragonspit;
+	delete m_pMorningstar;
+	delete m_pFlamitt;
+	delete m_pPotion;
+	delete m_pBomb;
+	delete m_pRope;
+	delete m_pDragonSteak;
+	delete m_pHornOfFear;
+	delete m_pMirror;
+	delete m_pLockpicks;
+	delete m_pFireStaffComplete;
+	delete m_pMagnifier;
+	delete m_pHalter;
 	for (int w = 0; w < 4; w++)
 	{
 		delete m_pClub[w];
@@ -96,30 +121,35 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pIllumunet, IDB_ITEM3D_ILLUMUNET);
 	LoadPic(m_pMailAketon, IDB_ITEM3D_MAIL_AKETON);
 	LoadPic(m_pMoonstone, IDB_ITEM3D_MOONSTONE);
-
-
 	LoadPic(m_pGoldKey, IDB_ITEM3D_GOLDKEY);
 	LoadPic(m_pIronKey, IDB_ITEM3D_IRONKEY);
-
 	LoadPic(m_pTorch, IDB_ITEM3D_TORCH);
 
-	LoadPic(m_pMagicBox[0], IDB_ITEM3D_MAGICBOX_B);
-	LoadPic(m_pMagicBox[1], IDB_ITEM3D_MAGICBOX_G);
-	LoadPic(m_pWaterskin[0], IDB_ITEM3D_WATERSKIN_E);
-	LoadPic(m_pWaterskin[1], IDB_ITEM3D_WATERSKIN_F);
-
-	LoadPic(m_pChest[0], IDB_ITEM3D_CHEST);
-	LoadPic(m_pChest[1], IDB_ITEM3D_CHEST_C);
-	LoadPic(m_pFlask[0], IDB_ITEM3D_FLASK_EMPTY);
-	LoadPic(m_pFlask[1], IDB_ITEM3D_FLASK_FULL);
-
-	LoadPic(m_pCoin[0], IDB_ITEM3D_COIN_GOLD);
-	LoadPic(m_pCoin[1], IDB_ITEM3D_COIN_SILVER);
-
-	LoadPic(m_pClub[0], IDB_ITEM3D_CLUB);
-	LoadPic(m_pClub[1], IDB_MISSILE_CLUB_B);
-	LoadPic(m_pClub[2], IDB_MISSILE_CLUB_F);
-	LoadPic(m_pClub[3], IDB_MISSILE_CLUB_S);
+	LoadPic(m_pFirestaff, IDB_ITEM3D_FIRESTAFF);
+	LoadPic(m_pWand, IDB_ITEM3D_WAND);
+	LoadPic(m_pRabbitsFoot, IDB_ITEM3D_RABBITS_FOOT);
+	LoadPic(m_pConduit, IDB_ITEM3D_CONDUIT);
+	LoadPic(m_pCorbamite, IDB_ITEM3D_CORBAMITE);
+	LoadPic(m_pEyeOfTime, IDB_ITEM3D_EYE_OF_TIME);
+	LoadPic(m_pSceptreOfLyf, IDB_ITEM3D_SCEPTRE_OF_LYF);
+	LoadPic(m_pAshes, IDB_ITEM3D_ASHES);
+	LoadPic(m_pVorpalBlade, IDB_ITEM3D_VORPAL_BLADE);
+	LoadPic(m_pStick, IDB_ITEM3D_STICK);
+	LoadPic(m_pCrossbow, IDB_ITEM3D_CROSSBOW);
+	LoadPic(m_pMace, IDB_ITEM3D_MACE);
+	LoadPic(m_pDragonspit, IDB_ITEM3D_DRAGONSPIT);
+	LoadPic(m_pMorningstar, IDB_ITEM3D_MORNINGSTAR);
+	LoadPic(m_pFlamitt, IDB_ITEM3D_FLAMITT);
+	LoadPic(m_pPotion, IDB_ITEM3D_POTION);
+	LoadPic(m_pBomb, IDB_ITEM3D_BOMB);
+	LoadPic(m_pRope, IDB_ITEM3D_ROPE);
+	LoadPic(m_pDragonSteak, IDB_ITEM3D_DRAGON_STEAK);
+	LoadPic(m_pHornOfFear, IDB_ITEM3D_HORN_OF_FEAR);
+	LoadPic(m_pMirror, IDB_ITEM3D_MIRROR);
+	LoadPic(m_pLockpicks, IDB_ITEM3D_LOCKPICKS);
+	LoadPic(m_pFireStaffComplete, IDB_ITEM3D_FIRESTAFF_COMPLETE);
+	LoadPic(m_pMagnifier, IDB_ITEM3D_MAGNIFIER);
+	LoadPic(m_pHalter, IDB_ITEM3D_HALTER);
 	LoadPic(m_pStoneClub[0], IDB_ITEM3D_STONECLUB);
 	LoadPic(m_pStoneClub[1], IDB_MISSILE_STONECLUB_B);
 	LoadPic(m_pStoneClub[2], IDB_MISSILE_STONECLUB_F);
@@ -343,6 +373,8 @@ CBitmap* CItem3DPic::GetClothBitmap(int clothType, bool inAir) {
 	case CClothAttributes::ShieldOfDarc:
 	case CClothAttributes::ShieldOfLyte:
 		bmp = GetShield(true); break;
+	case CClothAttributes::Halter:
+		bmp = m_pHalter; break;
 	default:
 		bmp = NULL;
 	}
@@ -416,6 +448,20 @@ CBitmap* CItem3DPic::GetMiscBitmap(int miscType, int subType) {
 		bmp = GetGemBitmap('G');
 	else if (miscType == CMiscellaneousAttributes::Bones)
 		bmp = GetBones();
+	else if (miscType == CMiscellaneousAttributes::Ashes)
+		bmp = m_pAshes;
+	else if (miscType == CMiscellaneousAttributes::MirrorOfDawn)
+		bmp = m_pMirror;
+	else if (miscType == CMiscellaneousAttributes::Magnifier)
+		bmp = m_pMagnifier;
+	else if (miscType == CMiscellaneousAttributes::Corbum || miscType == CMiscellaneousAttributes::ZokathraSpell)
+		bmp = m_pCorbamite;
+	else if (miscType == CMiscellaneousAttributes::RabbitsFoot)
+		bmp = m_pRabbitsFoot;
+	else if (miscType == CMiscellaneousAttributes::Bomb)
+		bmp = m_pBomb;
+	else if (miscType == CMiscellaneousAttributes::Potion)
+		bmp = m_pPotion;
 
 	else if (miscType == CMiscellaneousAttributes::Choker)
 		bmp = GetChoker();
@@ -425,6 +471,7 @@ CBitmap* CItem3DPic::GetMiscBitmap(int miscType, int subType) {
 		bmp = GetMoonstone();
 	else if (miscType == CMiscellaneousAttributes::EkkhardCross || miscType == CMiscellaneousAttributes::GemOfAges || miscType == CMiscellaneousAttributes::Illumulet || miscType == CMiscellaneousAttributes::JewelSymal)
 		bmp = GetIllumunet();
+	
 	else
 		bmp = NULL;
 
@@ -459,6 +506,34 @@ CBitmap* CItem3DPic::GetWeaponBitmap(int weaponType, bool inAir) {
 		bmp = GetTorch();
 	else if (weaponType == CWeaponAttributes::Rock)
 		bmp = GetRock();
+	else if (weaponType == CWeaponAttributes::Conduit)
+		bmp = m_pConduit;
+	else if (weaponType == CWeaponAttributes::TheFirestaff)
+		bmp = m_pFirestaff;
+	else if (weaponType == CWeaponAttributes::FireStaffComplete)
+		bmp = m_pFireStaffComplete;
+	else if (weaponType == CWeaponAttributes::SceptreOfLyf)
+		bmp = m_pSceptreOfLyf;
+	else if (weaponType == CWeaponAttributes::VorpalBlade)
+		bmp = m_pVorpalBlade;
+	else if (weaponType == CWeaponAttributes::Morningstar)
+		bmp = m_pMorningstar;
+	else if (weaponType == CWeaponAttributes::Stick)
+		bmp = m_pStick;
+	else if (weaponType == CWeaponAttributes::Crossbow)
+		bmp = m_pCrossbow;
+	else if (weaponType == CWeaponAttributes::Flamitt)
+		bmp = m_pFlamitt;
+	else if (weaponType == CWeaponAttributes::EyeOfTime)
+		bmp = m_pEyeOfTime;
+	else if (weaponType == CWeaponAttributes::DragonSpit)
+		bmp = m_pDragonspit;
+	else if (weaponType == CWeaponAttributes::HornOfFear)
+		bmp = m_pHornOfFear;
+	else if (weaponType == CWeaponAttributes::Wand || weaponType == CWeaponAttributes::Teowand)
+		bmp = m_pWand;
+	else if (weaponType == CWeaponAttributes::MaceOfOrder || weaponType == CWeaponAttributes::Mace)
+		bmp = m_pMace;
 	else
 		bmp = NULL;
 

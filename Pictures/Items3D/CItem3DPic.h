@@ -75,6 +75,7 @@ private:
 	CBitmap* m_pCheese;
 	CBitmap* m_pScreamerSlice;
 	CBitmap* m_pWormRound;
+	CBitmap* m_pDragonSteak;
 	CBitmap* m_pMagicBox[2];
 	CBitmap* m_pLeatherBoots;
 	CBitmap* m_pLeatherCloth;
@@ -92,6 +93,7 @@ private:
 	CBitmap* m_pIllumunet;
 	CBitmap* m_pMailAketon;
 	CBitmap* m_pMoonstone;
+	CBitmap* m_pEyeOfTime;
 
 	CBitmap* m_pGoldKey;
 	CBitmap* m_pIronKey;
@@ -107,6 +109,17 @@ private:
 	CBitmap* m_pStoneClub[4];
 	CBitmap* m_pAxe[4];
 	CBitmap* m_pSword[4];
+	CBitmap* m_pMorningstar;
+	CBitmap* m_pVorpalBlade;
+	CBitmap* m_pFirestaff;
+	CBitmap* m_pFireStaffComplete;
+	CBitmap* m_pSceptreOfLyf;
+	CBitmap* m_pStick;
+	CBitmap* m_pCrossbow;
+	CBitmap* m_pMace;
+	CBitmap* m_pFlamitt;
+	CBitmap* m_pWand;
+	CBitmap* m_pConduit;
 	CBitmap* m_pDagger[4];
 	CBitmap* m_pArrow[4];
 	CBitmap* m_pSlayer[4];
@@ -121,5 +134,18 @@ private:
 	CBitmap* m_pDrumstick;
 	CBitmap* m_pGem[3];
 	CBitmap* m_pBones;
+
+	CBitmap* m_pRabbitsFoot;
+	CBitmap* m_pCorbamite;
+	CBitmap* m_pAshes;
+	CBitmap* m_pDragonspit;
+	CBitmap* m_pPotion;
+	CBitmap* m_pBomb;
+	CBitmap* m_pRope;
+	CBitmap* m_pHornOfFear;
+	CBitmap* m_pMirror;
+	CBitmap* m_pLockpicks;
+	CBitmap* m_pMagnifier;
+	CBitmap* m_pHalter;
 };
 

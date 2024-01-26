@@ -174,6 +174,31 @@
 #define IDB_ITEM3D_ILLUMUNET            456
 #define IDB_ITEM3D_MAIL_AKETON          457
 #define IDB_ITEM3D_MOONSTONE            458
+#define IDB_ITEM3D_FIRESTAFF            459
+#define IDB_ITEM3D_WAND                 460
+#define IDB_ITEM3D_RABBITS_FOOT         461
+#define IDB_ITEM3D_CONDUIT              462
+#define IDB_ITEM3D_CORBAMITE            463
+#define IDB_ITEM3D_EYE_OF_TIME          464
+#define IDB_ITEM3D_SCEPTRE_OF_LYF       465
+#define IDB_ITEM3D_ASHES                466
+#define IDB_ITEM3D_VORPAL_BLADE         467
+#define IDB_ITEM3D_STICK                468
+#define IDB_ITEM3D_CROSSBOW             469
+#define IDB_ITEM3D_MACE                 470
+#define IDB_ITEM3D_DRAGONSPIT           471
+#define IDB_ITEM3D_MORNINGSTAR          472
+#define IDB_ITEM3D_FLAMITT              473
+#define IDB_ITEM3D_POTION               474
+#define IDB_ITEM3D_BOMB                 475
+#define IDB_ITEM3D_ROPE                 476
+#define IDB_ITEM3D_DRAGON_STEAK         477
+#define IDB_ITEM3D_HORN_OF_FEAR         478
+#define IDB_ITEM3D_MIRROR               479
+#define IDB_ITEM3D_LOCKPICKS            480
+#define IDB_ITEM3D_FIRESTAFF_COMPLETE   481
+#define IDB_ITEM3D_MAGNIFIER            482
+#define IDB_ITEM3D_HALTER               483
 #define IDB_DMG_REC_SMALL               490
 #define IDB_DMG_REC_BIG                 491
 #define IDB_INTERFACE_DEAD              492
@@ -416,7 +441,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        650
+#define _APS_NEXT_RESOURCE_VALUE        675
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101
