@@ -19,6 +19,7 @@ CItem3DPic ::~CItem3DPic() {
 	delete m_pCheese;
 	delete m_pScreamerSlice;
 	delete m_pWormRound;
+	delete m_pDragonSteak;
 	delete m_pCompass;
 	delete m_pWhiteCloth;
 	delete m_pGreenCloth;
@@ -62,7 +63,6 @@ CItem3DPic ::~CItem3DPic() {
 	delete m_pPotion;
 	delete m_pBomb;
 	delete m_pRope;
-	delete m_pDragonSteak;
 	delete m_pHornOfFear;
 	delete m_pMirror;
 	delete m_pLockpicks;
@@ -81,10 +81,10 @@ CItem3DPic ::~CItem3DPic() {
 		delete m_pPoisonDart[w];
 		if (w < 3) {
 			delete m_pThrowingStar[w];
+			delete m_pChest[w];
 			if (w < 2) {
 				delete m_pWaterskin[w];
 				delete m_pFlask[w];
-				delete m_pChest[w];
 				delete m_pCoin[w];
 				delete m_pMagicBox[w];
 				delete m_pShield[w];
@@ -150,6 +150,10 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pFireStaffComplete, IDB_ITEM3D_FIRESTAFF_COMPLETE);
 	LoadPic(m_pMagnifier, IDB_ITEM3D_MAGNIFIER);
 	LoadPic(m_pHalter, IDB_ITEM3D_HALTER);
+	LoadPic(m_pClub[0], IDB_ITEM3D_CLUB);
+	LoadPic(m_pClub[1], IDB_MISSILE_CLUB_B);
+	LoadPic(m_pClub[2], IDB_MISSILE_CLUB_F);
+	LoadPic(m_pClub[3], IDB_MISSILE_CLUB_S);
 	LoadPic(m_pStoneClub[0], IDB_ITEM3D_STONECLUB);
 	LoadPic(m_pStoneClub[1], IDB_MISSILE_STONECLUB_B);
 	LoadPic(m_pStoneClub[2], IDB_MISSILE_STONECLUB_F);
@@ -183,6 +187,18 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pPoisonDart[1], IDB_MISSILE_POISONDART_B);
 	LoadPic(m_pPoisonDart[2], IDB_MISSILE_POISONDART_F);
 	LoadPic(m_pPoisonDart[3], IDB_MISSILE_POISONDART_S);
+
+	LoadPic(m_pWaterskin[0], IDB_ITEM3D_WATERSKIN_E);
+	LoadPic(m_pWaterskin[1], IDB_ITEM3D_WATERSKIN_F);
+	LoadPic(m_pFlask[0], IDB_ITEM3D_FLASK_EMPTY);
+	LoadPic(m_pFlask[1], IDB_ITEM3D_FLASK_FULL);
+	LoadPic(m_pChest[0], IDB_ITEM3D_CHEST_C); // Centered
+	LoadPic(m_pChest[1], IDB_ITEM3D_CHEST); // Side
+	LoadPicAndFlip(m_pChest[2], IDB_ITEM3D_CHEST); // Side
+	LoadPic(m_pCoin[0], IDB_ITEM3D_COIN_GOLD);
+	LoadPic(m_pCoin[1], IDB_ITEM3D_COIN_SILVER);
+	LoadPic(m_pMagicBox[0], IDB_ITEM3D_MAGICBOX_B);
+	LoadPic(m_pMagicBox[1], IDB_ITEM3D_MAGICBOX_G);
 
 	LoadPic(m_pBoulder, IDB_ITEM3D_BOULDER);
 	LoadPic(m_pRock, IDB_ITEM3D_ROCK);

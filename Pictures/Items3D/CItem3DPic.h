@@ -100,7 +100,7 @@ private:
 
 	CBitmap* m_pWaterskin[2];
 	CBitmap* m_pFlask[2];
-	CBitmap* m_pChest[2];
+	CBitmap* m_pChest[3];
 	
 	CBitmap* m_pCoin[2];
 	CBitmap* m_pCompass;

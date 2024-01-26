@@ -21,3 +21,7 @@ stamina 0
 Sounds: switch (wall, floor) - gegenstand fällt (klein, gross)
 
 CMagicMissile Lightning !
+Chest (Center, Left)
+Rope
+Horn of Fear
+Gosts / Vorpal Blade
