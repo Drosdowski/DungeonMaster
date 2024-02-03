@@ -104,10 +104,15 @@ enum COMPASS_DIRECTION
 
 enum DMMode {
 	MOD_LAUFEN = 1,
-	MOD_RUCKSACK = 2,
-	MOD_PAUSE = 3
+	MOD_PAUSE = 2,
+	MOD_LOADSAVE = 3,
+	MOD_GAMEOVER = 4
 };
-
+enum GroupMode {
+	DEFAULT = 0,
+	BACKPACK = 1,
+	ASLEEP = 2
+};
 
 struct VEKTOR
 {
@@ -279,7 +284,6 @@ enum Phase {
 	SHOW_DAMAGE = 3,
 	PASS = -1
 };
-
 
 #define HANDINDEX 46
 #define THROWINDEX 47

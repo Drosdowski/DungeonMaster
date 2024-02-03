@@ -27,6 +27,15 @@ int CMiscellaneous::GetOffsetForGroup() {
 				return 9;
 		else
 			assert(false);
+	case Throwable:
+		if (m_attribute.type == CMiscellaneousAttributes::Boulder) {
+			return 0;
+		}
+		else {
+			assert(false); // todo !!
+		}
+	case Climb:
+		return 8;
 	case Other:
 		switch (m_attribute.type) {
 			case CMiscellaneousAttributes::Compass: return m_attribute.subtype; // N W S E
@@ -40,7 +49,8 @@ int CMiscellaneous::GetOffsetForGroup() {
 			case CMiscellaneousAttributes::BlueGem: return 1;
 			case CMiscellaneousAttributes::OrangeGem: return 2;
 			case CMiscellaneousAttributes::GreenGem: return 3;
-			case CMiscellaneousAttributes::Bones: return 19;
+			case CMiscellaneousAttributes::Bones: return 19;				
+			default: assert(false); // todo !!
 		}
 		
 		assert(false); // todo !!

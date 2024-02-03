@@ -162,22 +162,6 @@ void CDMDoc::SetzeRichtung(int iRichtung)
 {
 	m_iWunschRichtung = iRichtung;
 }
-
-void CDMDoc::InitGruppe(const int nr)
-{
-	CGrpHeld* pGrpHelden = m_pRaumView->GetHeroes();
-	pGrpHelden->InitHeld(nr);
-}
-
-int CDMDoc::HoleGruppenRichtung() 
-{
-	return m_pRaumView->GetHeroes()->GetDirection();
-}
-
-VEKTOR CDMDoc::HoleGruppenPosition()   
-{
-	return m_pRaumView->GetHeroes()->GetVector();
-}
 	
 void CDMDoc::PlayDMSound(std::string file) {
 	// std::string file = "C:\\Source\\C++\\DM\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3";

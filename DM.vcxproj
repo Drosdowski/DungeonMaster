@@ -142,6 +142,7 @@
     <ClCompile Include="Consts\AttackConst.cpp" />
     <ClCompile Include="Attributes\ContainerAttributes.cpp" />
     <ClCompile Include="Pictures\Creatures\RatPic.cpp" />
+    <ClCompile Include="Rucksack.cpp" />
     <ClCompile Include="SpecialTile\DelayedTile.cpp" />
     <ClCompile Include="Pictures\Creatures\GigglerPic.cpp" />
     <ClCompile Include="Items\Container.cpp" />
@@ -214,7 +215,6 @@
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="Mobs\Monster.cpp" />
     <ClCompile Include="Views\RaumView.cpp" />
-    <ClCompile Include="Rucksack.cpp" />
     <ClCompile Include="StdAfx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h</PrecompiledHeaderFile>
@@ -242,6 +242,7 @@
     <ClInclude Include="Consts\MonsterConst.h" />
     <ClInclude Include="Attributes\ContainerAttributes.h" />
     <ClInclude Include="Pictures\Creatures\RatPic.h" />
+    <ClInclude Include="Rucksack.h" />
     <ClInclude Include="SpecialTile\DelayedTile.h" />
     <ClInclude Include="Pictures\Creatures\GigglerPic.h" />
     <ClInclude Include="Items\Container.h" />
@@ -316,7 +317,6 @@
     <ClInclude Include="Mobs\Monster.h" />
     <ClInclude Include="Views\RaumView.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="Rucksack.h" />
     <ClInclude Include="StdAfx.h" />
     <ClInclude Include="TinyXML\tinystr.h" />
     <ClInclude Include="TinyXML\tinyxml.h" />

@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<dungeon start_x="25" start_y="0" start_z="1" start_facing="South">
+<dungeon start_x="14" start_y="29" start_z="1" start_facing="North">
     <heroes>
-        <hero index="1" hp_akt="60" st_akt="339" ma_akt="10" hp_max="60" st_max="600" ma_max="10" name="ZED" subname="" male="Y" LUK="12850" STR="10280" DEX="14906" VIT="10280" WIS="10280" AM="10280" AF="10280" SKILLS="2,1,1,2,2,1,2,1,1,2,1,1,1,1,2,1" SPELL="">
-            <item item="1" index="18" type="0" />
+        <hero index="1" hp_akt="60" st_akt="155" ma_akt="10" hp_max="60" st_max="600" ma_max="10" name="ZED" subname="" male="Y" LUK="10280" STR="10280" DEX="12850" VIT="10280" WIS="14906" AM="10280" AF="10280" SKILLS="2,1,1,2,2,1,2,1,1,2,1,1,1,1,2,1" SPELL="">
+            <item item="1" index="97" type="0" />
             <item item="4" index="63" type="2" />
             <item item="6" index="62" type="2" />
             <item item="14" index="16" type="0" />
         </hero>
-        <hero index="2" hp_akt="53" st_akt="452" ma_akt="15" hp_max="53" st_max="720" ma_max="15" name="SYRA" subname="" male="N" LUK="11565" STR="10794" DEX="14135" VIT="9766" WIS="8995" AM="10280" AF="11051" SKILLS="0,0,0,0,0,0,0,0,1,3,1,0,3,0,2,3" SPELL="2,4">
+        <hero index="2" hp_akt="53" st_akt="243" ma_akt="15" hp_max="53" st_max="720" ma_max="15" name="SYRA" subname="" male="N" LUK="8995" STR="11051" DEX="11565" VIT="10794" WIS="14135" AM="10280" AF="9766" SKILLS="0,0,0,0,0,0,0,0,1,3,1,0,3,0,2,3" SPELL="">
             <item item="1" index="76" type="0" />
             <item item="14" index="20" type="1" />
             <item item="15" index="22" type="0" />
-            <item item="23" index="29" type="4" />
+            <item item="22" index="235" type="1" />
+            <item item="23" index="234" type="1" />
+            <item item="24" index="74" type="0" />
         </hero>
     </heroes>
     <maps>
@@ -717,14 +719,10 @@
                 <tile index="22" />
                 <tile index="23" />
                 <tile index="24" />
-                <tile index="25">
-                    <items>
-                        <miscellaneous index="9" position="2" />
-                    </items>
-                </tile>
+                <tile index="25" />
                 <tile index="26" />
                 <tile index="27">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="28" />
                 <tile index="29" />
@@ -781,6 +779,9 @@
                     <actuators>
                         <actuator index="8" subPos="0" active="1" />
                     </actuators>
+                    <items>
+                        <miscellaneous index="9" position="1" />
+                    </items>
                 </tile>
                 <tile index="58" />
                 <tile index="59" />
@@ -788,7 +789,6 @@
                 <tile index="61" />
                 <tile index="62">
                     <items>
-                        <miscellaneous index="58" position="0" />
                         <miscellaneous index="74" position="3" />
                     </items>
                 </tile>
@@ -832,11 +832,7 @@
                 <tile index="88" />
                 <tile index="89" />
                 <tile index="90" />
-                <tile index="91">
-                    <items>
-                        <creature index="3" position="3" dir="3" hp="11" subIndex="1" />
-                    </items>
-                </tile>
+                <tile index="91" />
                 <tile index="92" />
                 <tile index="93" />
                 <tile index="94" />
@@ -883,6 +879,9 @@
                     <actuators>
                         <actuator index="140" subPos="0" active="1" />
                     </actuators>
+                    <items>
+                        <scroll index="29" position="0" />
+                    </items>
                 </tile>
                 <tile index="122" />
                 <tile index="123" />
@@ -933,7 +932,7 @@
                 <tile index="153" />
                 <tile index="154" />
                 <tile index="155">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="156" />
                 <tile index="157" />
@@ -976,14 +975,14 @@
                     </actuators>
                 </tile>
                 <tile index="184">
-                    <pit state="1" />
+                    <pit state="0" />
                 </tile>
                 <tile index="185" />
                 <tile index="186" />
                 <tile index="187" />
                 <tile index="188">
                     <actuators>
-                        <actuator index="4" subPos="0" active="1" />
+                        <actuator index="4" subPos="0" active="0" />
                     </actuators>
                 </tile>
                 <tile index="189" />
@@ -1020,11 +1019,7 @@
                 <tile index="220" />
                 <tile index="221" />
                 <tile index="222" />
-                <tile index="223">
-                    <items>
-                        <miscellaneous index="21" position="0" />
-                    </items>
-                </tile>
+                <tile index="223" />
                 <tile index="224" />
                 <tile index="225" />
                 <tile index="226" />
@@ -1116,7 +1111,7 @@
                     </actuators>
                 </tile>
                 <tile index="287">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="288" />
                 <tile index="289" />
@@ -1151,11 +1146,7 @@
                 <tile index="316" />
                 <tile index="317" />
                 <tile index="318" />
-                <tile index="319">
-                    <items>
-                        <creature index="4" position="3" dir="3" hp="50" subIndex="1" />
-                    </items>
-                </tile>
+                <tile index="319" />
                 <tile index="320" />
                 <tile index="321" />
                 <tile index="322" />
@@ -1192,11 +1183,7 @@
                 <tile index="348" />
                 <tile index="349" />
                 <tile index="350" />
-                <tile index="351">
-                    <items>
-                        <miscellaneous index="22" position="0" />
-                    </items>
-                </tile>
+                <tile index="351" />
                 <tile index="352" />
                 <tile index="353" />
                 <tile index="354" />
@@ -1214,11 +1201,7 @@
                 <tile index="366" />
                 <tile index="367" />
                 <tile index="368" />
-                <tile index="369">
-                    <items>
-                        <miscellaneous index="106" position="1" />
-                    </items>
-                </tile>
+                <tile index="369" />
                 <tile index="370" />
                 <tile index="371">
                     <items>
@@ -1241,7 +1224,7 @@
                     </actuators>
                 </tile>
                 <tile index="377">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="378" />
                 <tile index="379" />
@@ -1341,11 +1324,7 @@
                 <tile index="437" />
                 <tile index="438" />
                 <tile index="439" />
-                <tile index="440">
-                    <items>
-                        <creature index="5" position="3" dir="3" hp="16" subIndex="1" />
-                    </items>
-                </tile>
+                <tile index="440" />
                 <tile index="441" />
                 <tile index="442" />
                 <tile index="443" />
@@ -1366,16 +1345,14 @@
                 <tile index="458" />
                 <tile index="459" />
                 <tile index="460" />
-                <tile index="461">
-                    <items>
-                        <miscellaneous index="23" position="0" />
-                        <weapon index="74" position="2" />
-                    </items>
-                </tile>
+                <tile index="461" />
                 <tile index="462">
                     <actuators>
                         <actuator index="56" subPos="0" active="1" />
                     </actuators>
+                    <items>
+                        <miscellaneous index="106" position="2" />
+                    </items>
                 </tile>
                 <tile index="463" />
                 <tile index="464" />
@@ -1418,7 +1395,7 @@
                 <tile index="491" />
                 <tile index="492" />
                 <tile index="493">
-                    <pit state="1" />
+                    <pit state="0" />
                 </tile>
                 <tile index="494" />
                 <tile index="495" />
@@ -1454,12 +1431,7 @@
                 <tile index="525" />
                 <tile index="526" />
                 <tile index="527" />
-                <tile index="528">
-                    <items>
-                        <creature index="160" position="0" dir="3" hp="54" subIndex="2" />
-                        <creature index="160" position="3" dir="3" hp="56" subIndex="1" />
-                    </items>
-                </tile>
+                <tile index="528" />
                 <tile index="529" />
                 <tile index="530" />
                 <tile index="531" />
@@ -1541,13 +1513,13 @@
                 <tile index="592" />
                 <tile index="593" />
                 <tile index="594">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="595" />
                 <tile index="596">
                     <actuators>
-                        <actuator index="477" subPos="0" active="1" />
                         <actuator index="51" subPos="0" active="1" />
+                        <actuator index="477" subPos="0" active="1" />
                     </actuators>
                 </tile>
                 <tile index="597" />
@@ -1565,7 +1537,7 @@
                 <tile index="609" />
                 <tile index="610">
                     <items>
-                        <creature index="9" position="0" dir="0" hp="21" subIndex="2" />
+                        <creature index="9" position="0" dir="0" hp="32" subIndex="2" />
                         <creature index="9" position="3" dir="0" hp="21" subIndex="1" />
                     </items>
                 </tile>
@@ -1581,8 +1553,8 @@
                 <tile index="620" />
                 <tile index="621">
                     <actuators>
-                        <actuator index="274" subPos="1" active="1" />
                         <actuator index="53" subPos="1" active="1" />
+                        <actuator index="274" subPos="1" active="1" />
                     </actuators>
                 </tile>
                 <tile index="622" />
@@ -1596,8 +1568,8 @@
                 <tile index="630" />
                 <tile index="631">
                     <actuators>
-                        <actuator index="275" subPos="3" active="1" />
                         <actuator index="54" subPos="3" active="1" />
+                        <actuator index="275" subPos="3" active="1" />
                     </actuators>
                 </tile>
                 <tile index="632" />
@@ -1606,11 +1578,7 @@
                 <tile index="635" />
                 <tile index="636" />
                 <tile index="637" />
-                <tile index="638">
-                    <items>
-                        <miscellaneous index="10" position="0" />
-                    </items>
-                </tile>
+                <tile index="638" />
                 <tile index="639" />
                 <tile index="640" />
                 <tile index="641" />
@@ -1635,7 +1603,7 @@
                     </actuators>
                 </tile>
                 <tile index="658">
-                    <door state="4" />
+                    <door state="1" />
                 </tile>
                 <tile index="659" />
                 <tile index="660" />
@@ -1645,13 +1613,7 @@
                 <tile index="664" />
                 <tile index="665" />
                 <tile index="666" />
-                <tile index="667">
-                    <items>
-                        <creature index="6" position="0" dir="3" hp="34" subIndex="2" />
-                        <creature index="6" position="2" dir="3" hp="34" subIndex="3" />
-                        <creature index="6" position="3" dir="3" hp="14" subIndex="1" />
-                    </items>
-                </tile>
+                <tile index="667" />
                 <tile index="668" />
                 <tile index="669" />
                 <tile index="670" />
@@ -1679,7 +1641,7 @@
                 <tile index="692" />
                 <tile index="693" />
                 <tile index="694">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="695" />
                 <tile index="696" />
@@ -1774,10 +1736,10 @@
                 <tile index="775" />
                 <tile index="776">
                     <items>
-                        <creature index="7" position="0" dir="3" hp="52" subIndex="2" />
-                        <creature index="7" position="1" dir="3" hp="52" subIndex="4" />
-                        <creature index="7" position="2" dir="3" hp="52" subIndex="3" />
-                        <creature index="7" position="3" dir="3" hp="51" subIndex="1" />
+                        <creature index="7" position="0" dir="1" hp="52" subIndex="2" />
+                        <creature index="7" position="1" dir="1" hp="52" subIndex="4" />
+                        <creature index="7" position="2" dir="1" hp="50" subIndex="3" />
+                        <creature index="7" position="3" dir="1" hp="51" subIndex="1" />
                     </items>
                 </tile>
                 <tile index="777" />
@@ -1857,7 +1819,7 @@
                 <tile index="847" />
                 <tile index="848" />
                 <tile index="849">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="850" />
                 <tile index="851" />
@@ -1898,7 +1860,7 @@
                 <tile index="878" />
                 <tile index="879" />
                 <tile index="880">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="881" />
                 <tile index="882" />
@@ -1917,7 +1879,7 @@
                 </tile>
                 <tile index="892" />
                 <tile index="893">
-                    <door state="4" />
+                    <door state="5" />
                 </tile>
                 <tile index="894" />
                 <tile index="895" />
@@ -1935,24 +1897,20 @@
                 <tile index="907" />
                 <tile index="908" />
                 <tile index="909" />
-                <tile index="910">
-                    <items>
-                        <miscellaneous index="234" position="3" />
-                    </items>
-                </tile>
+                <tile index="910" />
                 <tile index="911">
                     <actuators>
-                        <actuator index="518" subPos="1" active="1" />
                         <actuator index="517" subPos="1" active="1" />
+                        <actuator index="518" subPos="1" active="1" />
                     </actuators>
                     <actuators>
-                        <actuator index="513" subPos="3" active="1" />
                         <actuator index="512" subPos="3" active="1" />
+                        <actuator index="513" subPos="3" active="1" />
                     </actuators>
                 </tile>
                 <tile index="912">
                     <items>
-                        <weapon index="97" position="0" />
+                        <weapon index="18" position="3" />
                     </items>
                 </tile>
                 <tile index="913" />
@@ -2002,14 +1960,7 @@
                 <tile index="945" />
                 <tile index="946" />
                 <tile index="947" />
-                <tile index="948">
-                    <items>
-                        <creature index="153" position="0" dir="3" hp="51" subIndex="2" />
-                        <creature index="153" position="1" dir="3" hp="49" subIndex="4" />
-                        <creature index="153" position="2" dir="3" hp="51" subIndex="3" />
-                        <creature index="153" position="3" dir="3" hp="46" subIndex="1" />
-                    </items>
-                </tile>
+                <tile index="948" />
                 <tile index="949" />
                 <tile index="950" />
                 <tile index="951" />
@@ -2084,11 +2035,7 @@
                 <tile index="1004" />
                 <tile index="1005" />
                 <tile index="1006" />
-                <tile index="1007">
-                    <items>
-                        <miscellaneous index="235" position="0" />
-                    </items>
-                </tile>
+                <tile index="1007" />
                 <tile index="1008" />
                 <tile index="1009" />
                 <tile index="1010" />

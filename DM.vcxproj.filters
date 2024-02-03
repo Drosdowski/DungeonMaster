@@ -51,9 +51,6 @@
     <ClCompile Include="Views\RaumView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Rucksack.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="StdAfx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -285,6 +282,9 @@
     <ClCompile Include="Pictures\Creatures\RatPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Rucksack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -329,9 +329,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rucksack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="StdAfx.h">
@@ -563,6 +560,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\Creatures\RatPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rucksack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

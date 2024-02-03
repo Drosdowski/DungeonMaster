@@ -57,7 +57,8 @@ public:
 	CHeld* ClosestHeroTo(CMonster* monster);
 // überschriebene Methoden
 	
-	bool SetzeModus(CDC* pDC, int iModus);	
+	GroupMode GetModus() { return m_Modus; }
+	void SetzeModus(GroupMode modus);
 
 	virtual ~CGrpHeld();
 
@@ -74,7 +75,7 @@ protected:
 	int m_iAktiverHeld = 1;
 	int m_iAnzHelden = 0;
 	CItem* m_pItemInHand = NULL;
-
+	GroupMode m_Modus;
 
 };
 

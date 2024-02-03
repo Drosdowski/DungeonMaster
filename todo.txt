@@ -11,7 +11,7 @@ http://dmweb.free.fr/?q=node/1395
 BUGS
 
 items hit player
-itemInfo 
+itemInfo / Tooltips when carrying
 Unterschied throwable / weapon
 
 stamina 0
@@ -28,4 +28,7 @@ Gosts / Vorpal Blade
 
 Actions for non-weapons!
 
-GATE Bug !
+* GATE Bug !
+* Schrift auftauhen / verstecken
+
+Monster Activity while sleep

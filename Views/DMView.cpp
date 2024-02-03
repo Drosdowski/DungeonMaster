@@ -65,7 +65,6 @@ CDMView::CDMView()
 	m_pRaumView = new CRaumView();
 	m_pZauberView = new CZauberView();
 	m_pGroupView = new CGroupView();
-	m_bSleep = false;
 	m_bPause = false;
 	m_iModus = MOD_LAUFEN;
 	lastModus = MOD_LAUFEN;
@@ -655,13 +654,14 @@ void CDMView::ParseClickFloor(CPoint point) {
 
 void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	if (m_bSleep) {
+	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+	GroupMode gMode = grpHelden->GetModus();
+	if (gMode == ASLEEP) {
 		Awake();
 	} else {
 
 		CDMDoc* pDoc = (CDMDoc*)GetDocument();
-		CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
-		if (m_iModus == MOD_LAUFEN)
+		if (m_iModus == MOD_LAUFEN && gMode == DEFAULT)
 		{
 			ParseClickArrows(point);
 			ParseClickFloor(point);
@@ -696,7 +696,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 			}
 
 		}
-		else if (m_iModus == MOD_RUCKSACK)
+		else if (m_iModus == MOD_LAUFEN && gMode == BACKPACK)
 		{
 			if (CScreenCoords::CheckHitMainScr(point)) {
 				ParseClickBackpack(point);
@@ -758,7 +758,7 @@ void CDMView::ParseClickBackpack(CPoint point) {
 		}
 	}
 	else if (CScreenCoords::CheckHitSleep(point)) {
-		m_bSleep = true;
+		grpHelden->SetzeModus(ASLEEP);
 		SetTimer(7, 20, NULL);
 	}
 	else if (CScreenCoords::CheckHitSave(point)) {
@@ -842,29 +842,29 @@ void CDMView::SwitchContainerItem(CItem* itemInMainHand, int slot, CGrpHeld* grp
 
 void CDMView::OnRButtonDown(UINT nFlags, CPoint point)
 {
-	if (m_bSleep) {
+	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+	GroupMode heroMode = grpHelden->GetModus();
+	if (heroMode == ASLEEP) {
 		Awake();
 	}
 	else {
-		CDMDoc* pDoc = (CDMDoc*)GetDocument();
-		CDC* pDC = GetDC();
-		CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 		if (grpHelden->GetActiveHero() == NULL) return;
 
 		switch (m_iModus)
 		{
 		case MOD_LAUFEN:
-			if (grpHelden->SetzeModus(pDC, RUCKSACK)) {
-				m_iModus = MOD_RUCKSACK;
-			}
-			break;
-			//	}
-		case MOD_RUCKSACK:
-			if (grpHelden->SetzeModus(pDC, LAUFEN))
+			if (heroMode == DEFAULT)
 			{
-				m_iModus = MOD_LAUFEN;
+				grpHelden->SetzeModus(BACKPACK);
+			}
+			else if (heroMode == BACKPACK) {
+				grpHelden->SetzeModus(DEFAULT);
 				UpdateGrafik();
 			}
+			break;
+		case MOD_PAUSE:
+			m_iModus = MOD_LAUFEN;
+			UpdateGrafik();
 			break;
 		}
 	}
@@ -874,7 +874,9 @@ void CDMView::OnRButtonDown(UINT nFlags, CPoint point)
 
 void CDMView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
-	if (m_bSleep) {
+	CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+	GroupMode heroMode = grpHelden->GetModus();
+	if (heroMode == ASLEEP) {
 		Awake();
 	}
 	else {
@@ -924,7 +926,7 @@ void CDMView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			case 50:
 			case 51:
 			case 52:
-				pDoc->InitGruppe(nChar - 48);
+				grpHelden->InitHeld(nChar - 48);
 				break;
 			default:
 			{
@@ -942,10 +944,9 @@ void CDMView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 					UpdateGrafik();
 					pDoc->SetzeRichtung(m_iDir); // noch nicht laufen, nur anmelden
 				}
-			}
-			else if (m_iModus == MOD_RUCKSACK)
-			{
-				UpdateGrafik();
+				else if (grpHelden->GetModus() == BACKPACK) {
+					UpdateGrafik();
+				}
 			}
 		}
 	}
@@ -1071,20 +1072,26 @@ void CDMView::UpdateGrafik()
 	FrameZeichnen(pDC_);
 
 	if (!m_bPause)
-		if (!m_bSleep)
+	{
+		CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
+		if (grpHelden->GetModus() != ASLEEP)
 		{
-			if (m_iModus == MOD_LAUFEN)
-				m_pRaumView->RaumZeichnen(pDC_);
-			else if (m_iModus == MOD_RUCKSACK)
-			{
-				CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
-				m_pPictures->RucksackZeichnen(pDC_, grpHelden);
+			if (m_iModus == MOD_LAUFEN) {
+				if (grpHelden->GetModus() == BACKPACK)
+				{
+					m_pPictures->RucksackZeichnen(pDC_, grpHelden);
+				}
+				else {
+					m_pRaumView->RaumZeichnen(pDC_);
+				}
+			
 			}
 
 		}
 		else
 			// You are asleep
 			;
+	}
 	else
 		// Game frozen
 		;
@@ -1140,9 +1147,13 @@ void CDMView::OnTimer(UINT nIDEvent)
 
 void CDMView::OnLButtonUp(UINT nFlags, CPoint point)
 {
-	if (m_iModus == MOD_RUCKSACK)
+	if (m_iModus == MOD_LAUFEN)
 	{
-		m_pRaumView->GetHeroes()->GetActiveHero()->GetRucksack()->SetzeModusExtend(MOD_EXT_NORMAL);
+		CGrpHeld* held = m_pRaumView->GetHeroes();
+		if (held->GetModus() == BACKPACK)
+		{
+			held->GetActiveHero()->GetRucksack()->SetzeModusExtend(MOD_EXT_NORMAL);
+		}
 	}
 
 	CView::OnLButtonUp(nFlags, point);
@@ -1177,7 +1188,8 @@ void CDMView::ChangeMouseCursor() {
 }
 
 void CDMView::Awake() {
-	m_bSleep = false;
+	CGrpHeld* heroes = m_pRaumView->GetHeroes();
+	heroes->SetzeModus(DEFAULT);
 	m_iModus = MOD_LAUFEN;
 	SetTimer(7, 166, NULL);
 }

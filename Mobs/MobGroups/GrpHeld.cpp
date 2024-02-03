@@ -55,6 +55,7 @@ CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 	//m_posPosition = VEKTOR{ 7, 5, 4 }; // ca 999 Actuators
 	//m_posPosition = VEKTOR{ 19, 4, 2 }; // gold key
 	DrehenAbsolut(richt);
+	m_Modus = DEFAULT;
 }
 
 CGrpHeld::~CGrpHeld()
@@ -170,19 +171,23 @@ CHeld* CGrpHeld::ClosestHeroTo(CMonster* monster) {
 }
 
 
-bool CGrpHeld::SetzeModus(CDC* pDC, int iModus)
+void CGrpHeld::SetzeModus(GroupMode modus)
 {
 	int iIndex = m_iAktiverHeld;
 	if (iIndex > 0)
 	{
-		if (iModus == RUCKSACK)
+		if (modus == RUCKSACK)
+		{
 			if (m_pMember[iIndex] != NULL)
 			{
 				((CHeld*)m_pMember[iIndex])->GetRucksack()->SetzeModusExtend(MOD_EXT_NORMAL);
 			}
-		return true;
+		}
+		m_Modus = modus;
 	}
-	return false;
+	else {
+		m_Modus = DEFAULT;
+	}
 }
 
 
