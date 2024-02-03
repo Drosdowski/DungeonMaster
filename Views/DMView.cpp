@@ -1005,19 +1005,29 @@ void CDMView::FrameZeichnen(CDC* pDC) {
 	if (pGrpHeroes != NULL)
 	{
 		HeldenGrafikZeichnen(pGrpHeroes, pDC, m_pPictures);
-		
 
-		int phase = pGrpHeroes->GetActionPhase();
-		if (phase == 1) {
+		Phase phase = pGrpHeroes->GetActionPhase();
+		if (phase == CHOOSE_HERO) {
 			WaffenZeichnen(pDC, pGrpHeroes);
 		}
-		else if (phase == 2) {
+		else if (phase == CHOOSE_ACTION) {
 			CHeld* pHeld = pGrpHeroes->GetHeroForAction();
 			if (pHeld) {
 				int index;
 				CItem* pItem = pHeld->GetItemCarrying(1);
-				if (pItem && pItem->getItemType() == CItem::ItemType::WeaponItem) {
-					index = pItem->GetType();
+				if (pItem) {
+					if (pItem->GetGroup() == CItem::Weapon) {
+						index = pItem->GetType();
+					}
+					else if (pItem->GetGroup() == CItem::Throwable) {
+						index = THROWINDEX;
+					} 
+					else if (pItem->GetGroup() == CItem::Climb) {
+						index = CLIMBINDEX;
+					} 
+					else {
+						index = 0;
+					}
 				}
 				else {
 					index = HANDINDEX;
@@ -1025,7 +1035,7 @@ void CDMView::FrameZeichnen(CDC* pDC) {
 				ActionAreaZeichnen(pDC, index);
 			}
 		}
-		else if (phase == 3) {
+		else if (phase == SHOW_DAMAGE) {
 			CHeld* pHeld = pGrpHeroes->GetAttackingHero(); 
 			if (pHeld)
 			{

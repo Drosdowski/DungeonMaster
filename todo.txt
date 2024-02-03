@@ -25,3 +25,7 @@ Chest (Center, Left)
 Rope
 Horn of Fear
 Gosts / Vorpal Blade
+
+Actions for non-weapons!
+
+GATE Bug !

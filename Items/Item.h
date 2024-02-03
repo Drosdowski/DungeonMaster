@@ -26,6 +26,7 @@ public:
 		Throwable = 12,
 		Flask = 13,
 		Scroll = 14,
+		Climb = 15,
 
 		Other = 99
 	};
