@@ -59,7 +59,6 @@ protected:
 	int m_dealingDmg; // AKTIV - tatsächlicher aktueller Schaden, zur Anzeige.
 	int m_dealingDmgToDraw;
 	bool m_attacking = false;
-	CDC* m_pDC;
 
 	WERTE m_HP;	// Hitpoints	
 

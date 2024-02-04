@@ -68,7 +68,6 @@ void CGrpMonster::InitMonster(int nr, CCreatureAttributes attributes)
 	if (m_pMember[nr] == NULL)
 	{
 		m_pMember[nr] = new CMonster(attributes, nr - 1);
-		((CMonster*)m_pMember[nr])->setType(attributes.type);
 				
 		m_grpDirection = COMPASS_DIRECTION::NORTH;
 		SetNewCharOnNextFreePos(nr);

@@ -1816,7 +1816,7 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 						// Nahkampf!
 						CMonsterConst mc = monsterInfos->GetMonsterInfo(pVictims->GetType());
 
-						int dmg = pHero->CalcDmg(weapon, ac, mc, pVictims, diff); // todo doof so, besser in CMonster die MOnsterInfo rein
+						int dmg = pHero->CalcDmg(weapon, ac, mc, diff);
 						if (dmg > 0) {
 							pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
 							pHero->AttackModeWithDmg(dmg);

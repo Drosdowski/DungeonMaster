@@ -16,7 +16,6 @@
 #include "..\XMLParser\CDungeonMap.h"
 #include "..\Rucksack.h"
 #include "..\Pictures\CPictures.h"
-#include "..\Pictures/Items3D/CItem3DPic.h"
 #include "..\Mobs\MobGroups\GrpHeld.h"
 #include "..\Mobs\MobGroups\GrpMonster.h"
 #include "..\Mobs\Held.h"
