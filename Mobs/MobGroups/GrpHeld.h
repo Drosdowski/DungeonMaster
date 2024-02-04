@@ -58,6 +58,7 @@ public:
 // überschriebene Methoden
 	
 	GroupMode GetModus() { return m_Modus; }
+	bool AsleepAndAttacked();
 	void SetzeModus(GroupMode modus);
 
 	virtual ~CGrpHeld();

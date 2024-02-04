@@ -190,10 +190,25 @@ void CGrpHeld::SetzeModus(GroupMode modus)
 	}
 }
 
+bool CGrpHeld::AsleepAndAttacked() {
+	if (m_Modus == ASLEEP)
+	{
+		for (int i = 1; i < 5; i++)
+		{
+			CHeld* pHeld = (CHeld*)m_pMember[i];
+			if (pHeld && pHeld->ReceivedDmg() > 0)
+				return true;
+		}
+	}
+	return false;
+}
+
+
 
 bool CGrpHeld::Altern(CField* field)
 {
 	bool anyoneAlive = false;
+
 	for (int i = 1; i < 5; i++)
 	{
 		CHeld* pHeld = (CHeld*)m_pMember[i];

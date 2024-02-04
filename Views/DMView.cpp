@@ -1108,6 +1108,10 @@ void CDMView::OnTimer(UINT nIDEvent)
 	if (!m_bPause) {
 		CGrpHeld* pGrpHeld = m_pRaumView->GetHeroes();
 		CField* pField = m_pRaumView->GetMap()->GetField(pGrpHeld->GetVector());
+		if (pGrpHeld->AsleepAndAttacked())
+		{
+			Awake();
+		}
 		if (!pGrpHeld->Altern(pField)) {
 			// todo: alle tot
 		}
@@ -1126,7 +1130,7 @@ void CDMView::OnTimer(UINT nIDEvent)
 			}
 		}
 
-		if (m_pRaumView->GetHeroes()->GetNumberOfHeroes() > 0) {
+		if (pGrpHeld->GetNumberOfHeroes() > 0) {
 			m_pRaumView->MoveAnythingNearby();
 			m_pRaumView->TriggerActuatorsNearby();
 		}

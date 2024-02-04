@@ -31,4 +31,3 @@ Actions for non-weapons!
 * GATE Bug !
 * Schrift auftauhen / verstecken
 
-Monster Activity while sleep

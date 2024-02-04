@@ -1550,7 +1550,8 @@ void CRaumView::TriggerActuatorsNearby() {
 
 VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	// Prüfen: Held angreifbar? Erstmal nur Nahkampf!
-	VEKTOR heroPos = m_pMap->GetHeroes()->GetVector();
+	CGrpHeld* pGrpHeroes = m_pMap->GetHeroes();
+	VEKTOR heroPos = pGrpHeroes->GetVector();
 	VEKTOR monPos = pGrpMon->GetVector();
 	VEKTOR targetPos;
 	if (pGrpMon->GetVector().z != heroPos.z) return monPos; // Falsche Etage, nix tun!
@@ -1565,7 +1566,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 		// Versuch, in Blickrichtung zu gehen, ggf. Angriff!
 		targetPos = pGrpMon->HoleZielFeld(VORWAERTS);
 		CField* targetField = m_pMap->GetField(targetPos);
-		COMPASS_DIRECTION heroRicht = m_pMap->GetHeroes()->GetDirection();
+		COMPASS_DIRECTION heroRicht = pGrpHeroes->GetDirection();
 
 		int xDist = monPos.x - heroPos.x;
 		int yDist = monPos.y - heroPos.y;
@@ -1592,10 +1593,8 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 				case MonsterTyp::PAINRAT:
 					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(PainRat-RedDragon).mp3"); break;
 				}
+				pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
 
-				
-
-				m_pMap->GetHeroes()->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
 			}
 			return monPos;
 		}
