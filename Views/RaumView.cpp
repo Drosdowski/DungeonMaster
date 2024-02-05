@@ -498,39 +498,40 @@ void CRaumView::DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS
 void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTION richt, CMonster* pMonster) {
 	if (!pMonster) return;
 
-	CBitmap* bmp;
-	BITMAP bmpInfo, bmpInfo2;
+	CBitmap* bmpMonster;
+	BITMAP bmpInfoMonster, bmpInfoWall;
 	double faktor = m_pPictures->getFaktor(ebene);
 	bool inside = (ebene == 0) && (xxx == 4);
 	CPoint p = m_pWallPic->GetWallPos(xxx, ebene);
 	// monster pos an wallpos orientieren
 	CBitmap* bmpWall = m_pWallPic->GetWallPic(xxx, ebene, false);
-	bmpWall->GetBitmap(&bmpInfo2);
-	p.x += bmpInfo2.bmWidth;
-	p.y += bmpInfo2.bmHeight * 2; // = untere Kante des Monsters!
+	bmpWall->GetBitmap(&bmpInfoWall);
+	// P: Unten Mitte der Mauer
+	p.x += bmpInfoWall.bmWidth;
+	p.y += bmpInfoWall.bmHeight * 2; // = untere Kante des Monsters!
 	SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(pMonster->HoleSubPosition(), richt);
 
 	if (pMonster->isAlive())
 	{
-		bmp = m_pMonsterPic->GetBitmap(pMonster, richt);
-		if (bmp == NULL) return; // todo passiert, wenn Monster nicht da sind
+		bmpMonster = m_pMonsterPic->GetBitmap(pMonster, richt);
+		if (bmpMonster == NULL) return; // todo passiert, wenn Monster nicht da sind
 
 	}
 	else {
-		bmp = NULL;
+		bmpMonster = NULL;
 	}
 
-	if (bmp) {
+	if (bmpMonster) {
 		//get original size of bitmap
-		bmp->GetBitmap(&bmpInfo);
+		bmpMonster->GetBitmap(&bmpInfoMonster);
 
-		p.x = p.x - (int)(bmpInfo.bmWidth * faktor);
-		p.y = p.y - (int)(bmpInfo.bmHeight * faktor * 2);
+		p.x = p.x - (int)(bmpInfoMonster.bmWidth * faktor);
+		p.y = p.y - (int)(bmpInfoMonster.bmHeight * faktor * 2);
 
 		CPoint pos = CHelpfulValues::CalcSubPosition(p, subPos, faktor);
 
-		cdc->SelectObject(bmp);
-		DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, pMonster->transCol);
+		cdc->SelectObject(bmpMonster);
+		DrawInArea(pos.x, pos.y, bmpInfoMonster.bmWidth, bmpInfoMonster.bmHeight, faktor, pDC, cdc, pMonster->transCol);
 	}
 }
 
@@ -696,17 +697,18 @@ void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, 
 	int realHeight = int(h * 2 * faktor);
 	int rechterRand = realWidth + x;
 	int reducedWidth = realWidth;
+	int zuvielrechts = 0;
 	if (rechterRand > MainAreaWidth)
 	{
-		int zuvielrechts = rechterRand - MainAreaWidth;
-		reducedWidth -= (int)((zuvielrechts));
+		zuvielrechts = rechterRand - MainAreaWidth;
+		reducedWidth -= (int)(zuvielrechts);
 	}
 
 	if (reducedWidth > 0)
 	{
 		pDC->TransparentBlt(x, y,
 			reducedWidth, realHeight,
-			cdc, 0, 0, w, h, col);
+			cdc, 0, 0, w - zuvielrechts / 2, h, col);
 	}
 }
 
@@ -1792,6 +1794,11 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 				weapon = new CWeapon(HANDINDEX, att);*/
 				attackType = "N"; // Punch / Kick / Warcry
 			}
+			if (attackType == "") 
+			{
+				return;
+			}
+			
 			CAttackConst ac = attackInfos->GetAttack(attackType);
 
 			if (attackType == "throw")
