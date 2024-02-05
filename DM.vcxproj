@@ -142,7 +142,6 @@
     <ClCompile Include="Consts\AttackConst.cpp" />
     <ClCompile Include="Attributes\ContainerAttributes.cpp" />
     <ClCompile Include="Pictures\Creatures\RatPic.cpp" />
-    <ClCompile Include="Rucksack.cpp" />
     <ClCompile Include="SpecialTile\DelayedTile.cpp" />
     <ClCompile Include="Pictures\Creatures\GigglerPic.cpp" />
     <ClCompile Include="Items\Container.cpp" />
@@ -242,7 +241,6 @@
     <ClInclude Include="Consts\MonsterConst.h" />
     <ClInclude Include="Attributes\ContainerAttributes.h" />
     <ClInclude Include="Pictures\Creatures\RatPic.h" />
-    <ClInclude Include="Rucksack.h" />
     <ClInclude Include="SpecialTile\DelayedTile.h" />
     <ClInclude Include="Pictures\Creatures\GigglerPic.h" />
     <ClInclude Include="Items\Container.h" />

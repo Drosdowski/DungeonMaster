@@ -14,7 +14,6 @@
 #include "..\CalculationHelper/CHelpfulValues.h"
 #include "..\CalculationHelper/ZoomBlt.h"
 #include "..\XMLParser\CDungeonMap.h"
-#include "..\Rucksack.h"
 #include "..\Pictures\CPictures.h"
 #include "..\Mobs\MobGroups\GrpHeld.h"
 #include "..\Mobs\Held.h"
@@ -716,7 +715,7 @@ void CDMView::ParseClickBackpack(CPoint point) {
 	CItem* itemInMainHand = grpHelden->GetItemInHand();
 	CDMDoc* pDoc = (CDMDoc*)GetDocument();
 	if (CScreenCoords::CheckHitEye(point))
-		pHeld->GetRucksack()->SetzeModusExtend(MOD_EXT_AUGE);
+		pHeld->SetBackpackLooking(true);
 	else if (itemInMainHand && CScreenCoords::CheckHitMouth(point))
 	{
 		CWeapon* weapon = NULL;
@@ -1154,7 +1153,7 @@ void CDMView::OnLButtonUp(UINT nFlags, CPoint point)
 		CGrpHeld* held = m_pRaumView->GetHeroes();
 		if (held->GetModus() == BACKPACK)
 		{
-			held->GetActiveHero()->GetRucksack()->SetzeModusExtend(MOD_EXT_NORMAL);
+			held->GetActiveHero()->SetBackpackLooking(false);
 		}
 	}
 

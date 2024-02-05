@@ -13,7 +13,6 @@
 /////////////////////////////////////////////////////////////////////////////
 // CHeld view
 
-class CRucksack;
 class CItem;
 class CWeapon;
 class CChampion;
@@ -57,7 +56,8 @@ public:
 	int priestLevel();
 	int wizardLevel();
 
-	CRucksack* GetRucksack() { return m_pRucksack; }
+	void SetBackpackLooking(bool value) { m_bBackpackLooking = value; }
+	bool GetBackpackLooking() { return m_bBackpackLooking; }
 
 	void setActive() { m_bAktiv = true; }
 	void setInactive() { m_bAktiv = false; }
@@ -87,7 +87,7 @@ public:
 	int* getSpell() { return m_spell; }
 
 private:
-	CRucksack* m_pRucksack;
+	bool m_bBackpackLooking;
 	COLORREF m_Farbe;
 	FIGHT_SKILLS m_fightLevel;
 	NINJA_SKILLS m_ninjaLevel;

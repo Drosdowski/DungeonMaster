@@ -2,7 +2,6 @@
 //
 
 #include "stdafx.h"
-#include "Rucksack.h"
 #include "..\CalculationHelper\CHelpfulValues.h"
 #include "..\Items\Item.h"
 #include "..\Items\CMiscellaneous.h"
@@ -75,8 +74,7 @@ CHeld::CHeld(int iIndex, CChampion* champ, int hp_akt, int st_akt, int ma_akt): 
 
 	delete champ;
 
-	m_pRucksack = new CRucksack();
-
+	m_bBackpackLooking = false;
 	m_spell = new int[5];
 
 	m_iRuneTable = 1;
@@ -92,8 +90,6 @@ CHeld::~CHeld()
 			DelItem(m_itemCarrying[i]);
 		}
 	}
-	delete m_pRucksack;
-
 	if (m_spell != NULL) delete[] m_spell;
 }
 

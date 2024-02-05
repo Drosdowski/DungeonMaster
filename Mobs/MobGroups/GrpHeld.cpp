@@ -2,7 +2,6 @@
 //
 
 #include "stdafx.h"
-#include "Rucksack.h"
 #include "..\Held.h"
 #include "..\Champion.h"
 #include "..\..\CalculationHelper\CHelpfulValues.h"
@@ -180,7 +179,7 @@ void CGrpHeld::SetzeModus(GroupMode modus)
 		{
 			if (m_pMember[iIndex] != NULL)
 			{
-				((CHeld*)m_pMember[iIndex])->GetRucksack()->SetzeModusExtend(MOD_EXT_NORMAL);
+				((CHeld*)m_pMember[iIndex])->SetBackpackLooking(false);
 			}
 		}
 		m_Modus = modus;

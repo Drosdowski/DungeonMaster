@@ -61,9 +61,6 @@
 #define TRANS_GRE RGB(112, 112, 112)
 #define TRANS_YEL RGB(240,208,0)
 
-#define MOD_EXT_NORMAL 0
-#define MOD_EXT_AUGE 1
-
 /// <summary>
 /// Relative Position aus Sicht des Feldes
 /// </summary>

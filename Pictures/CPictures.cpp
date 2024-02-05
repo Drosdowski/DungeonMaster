@@ -12,7 +12,6 @@
 #include "..\Items\Scroll.h"
 #include "..\Items\Container.h"
 #include "..\XMLParser\ItemInfos.h"
-#include "..\Rucksack.h"
 #include "..\CalculationHelper\CScreenCoords.h"
 #include "..\CalculationHelper\CHelpfulValues.h"
 #include "..\Consts\WeaponConst.h"
@@ -199,18 +198,17 @@ void CPictures::RucksackZeichnen(CDC* pDC, CGrpHeld* pGrpHelden)
 	CItem* pItem = pGrpHelden->GetItemInHand();
 	CItem* pActiveItem = pHeld->GetItemCarrying(1);
 
-	CRucksack* pRucksack = pHeld->GetRucksack();
-	int iModusExtend = pRucksack->HoleModusExtend();
-	ZeichnenHauptbereichHintergrund(pDC, iModusExtend);
+	bool bLooking = pHeld->GetBackpackLooking();
+	ZeichnenHauptbereichHintergrund(pDC, bLooking);
 	GewichtZeichnen(pDC, pHeld);
-	if (iModusExtend == MOD_EXT_NORMAL)
+	if (!bLooking)
 		if (pActiveItem && pActiveItem->getItemType() == CItem::ScrollItem)
 			ZeichneScroll(pDC, (CScroll*)pActiveItem);
 		else if (pActiveItem && pActiveItem->getItemType() == CItem::ContainerItem)
 			ZeichneContainer(pDC, (CContainer*)pActiveItem);
 		else
 			ZeichneHungerDurst(pDC, pHeld->getFood(), pHeld->getWater());
-	else if (iModusExtend == MOD_EXT_AUGE) {
+	else if (bLooking) {
 		if (pItem) {
 			if (pItem->getItemType() == CItem::ScrollItem)
 				ZeichneScroll(pDC, (CScroll*)pItem);
@@ -228,14 +226,14 @@ void CPictures::RucksackZeichnen(CDC* pDC, CGrpHeld* pGrpHelden)
 	ZeichneIcons(pDC, pHeld);
 }
 
-void CPictures::ZeichnenHauptbereichHintergrund(CDC* pDC, int iModusExtend)
+void CPictures::ZeichnenHauptbereichHintergrund(CDC* pDC, bool bLooking)
 {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 	tmpdc.SelectObject(m_pBmpRuck);
 	pDC->BitBlt(0, 64, 460, 270, &tmpdc, 0, 64, SRCCOPY);
 
-	if (iModusExtend == MOD_EXT_AUGE)
+	if (bLooking)
 		pDC->BitBlt(22, 88, 34, 36, &tmpdc, 0, 338, SRCCOPY);
 
 	tmpdc.DeleteDC();
