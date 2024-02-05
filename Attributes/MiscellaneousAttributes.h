@@ -57,6 +57,8 @@ public:
 		Magnifier = 50,
 		ZokathraSpell = 51,
 		Bones = 52,
+		Potion = 68,
+		Bomb = 69
 		
 
 	};

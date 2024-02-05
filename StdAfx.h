@@ -104,10 +104,15 @@ enum COMPASS_DIRECTION
 
 enum DMMode {
 	MOD_LAUFEN = 1,
-	MOD_RUCKSACK = 2,
-	MOD_PAUSE = 3
+	MOD_PAUSE = 2,
+	MOD_LOADSAVE = 3,
+	MOD_GAMEOVER = 4
 };
-
+enum GroupMode {
+	DEFAULT = 0,
+	BACKPACK = 1,
+	ASLEEP = 2
+};
 
 struct VEKTOR
 {
@@ -280,8 +285,9 @@ enum Phase {
 	PASS = -1
 };
 
-
 #define HANDINDEX 46
+#define THROWINDEX 47
+#define CLIMBINDEX 48
 #define DELAY_FACTOR 1
 
 bool InRect(CPoint p, int x1, int y1, int x2, int y2);

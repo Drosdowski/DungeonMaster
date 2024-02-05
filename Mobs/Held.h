@@ -17,7 +17,6 @@ class CRucksack;
 class CItem;
 class CWeapon;
 class CChampion;
-class CGrpMonster;
 class CHeld : public CCharacter
 {
 public:
@@ -45,11 +44,11 @@ public:
 	//virtual void WertePermanentAendern(int hp, int st, int ma);
 	void ChangeCompass();
 
-	int CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, CGrpMonster* pOpponents, int levelDif);
+	int CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, int levelDif);
 	double LifePart() { return (double)m_HP.Aktuell / (double)m_HP.Max; }
 	double StaminaPart() { return (double)m_ST.Aktuell / (double)m_ST.Max; }
 	double ManaPart() { return (double)m_MA.Aktuell / (double)m_MA.Max; }
-	COLORREF Farbe() { return m_Farbe[m_iIndex]; }
+	COLORREF Farbe() { return m_Farbe; }
 	double MaxLoad();
 	double CurLoad();
 	int Armour();
@@ -89,7 +88,7 @@ public:
 
 private:
 	CRucksack* m_pRucksack;
-	COLORREF m_Farbe[5];
+	COLORREF m_Farbe;
 	FIGHT_SKILLS m_fightLevel;
 	NINJA_SKILLS m_ninjaLevel;
 	PRIEST_SKILLS m_priestLevel;

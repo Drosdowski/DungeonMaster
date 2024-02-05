@@ -3,13 +3,9 @@
 
 #include "stdafx.h"
 #include "DM.h"
-#include <math.h>
 
 #include "Views\Raumview.h"
-#include "XMLParser\CDungeonMap.h"
 #include "DMDoc.h"
-#include "Items\FloorDecoration.h"
-#include "Mobs\Held.h"
 #include "Mobs\MobGroups\GrpHeld.h"
 #include "CalculationHelper\CHelpfulValues.h"
 
@@ -161,22 +157,6 @@ void CDMDoc::Laufen()
 void CDMDoc::SetzeRichtung(int iRichtung)
 {
 	m_iWunschRichtung = iRichtung;
-}
-
-void CDMDoc::InitGruppe(const int nr)
-{
-	CGrpHeld* pGrpHelden = m_pRaumView->GetHeroes();
-	pGrpHelden->InitHeld(nr);
-}
-
-int CDMDoc::HoleGruppenRichtung() 
-{
-	return m_pRaumView->GetHeroes()->GetDirection();
-}
-
-VEKTOR CDMDoc::HoleGruppenPosition()   
-{
-	return m_pRaumView->GetHeroes()->GetVector();
 }
 	
 void CDMDoc::PlayDMSound(std::string file) {

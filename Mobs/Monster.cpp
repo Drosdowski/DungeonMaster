@@ -2,7 +2,6 @@
 //
 
 #include "stdafx.h"
-#include "resource.h"
 #include "Monster.h"
 #include "CalculationHelper/CHelpfulValues.h"
 

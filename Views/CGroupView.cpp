@@ -24,18 +24,19 @@ void CGroupView::GroupZeichnen(CDC* pDC, CPictures* pPictures, DMMode iModus, CG
 				pPictures->KnochenZeichnen(pDC, i);
 			else
 			{
-				switch (iModus)
+				pPictures->WerteZeichnen(pDC, pHeroToDraw);
+				GroupMode gMode = pGrpHeld->GetModus();
+				switch (gMode)
 				{
-				case (MOD_LAUFEN):
+				case (DEFAULT):
+				case (ASLEEP):
 				{
-					pPictures->WerteZeichnen(pDC, pHeroToDraw);
 					pPictures->NameZeichnen(pDC, pHeroToDraw->isActive(), i, pHeroToDraw->getName());
 					pPictures->HaendeZeichnen(pDC, pHeroToDraw);
 					break;
 				}
-				case (MOD_RUCKSACK):
+				case (BACKPACK):
 				{
-					pPictures->WerteZeichnen(pDC, pHeroToDraw);
 					if (pHeroToDraw == pGrpHeld->GetActiveHero())
 					{
 						pPictures->BildZeichnen(pDC, pHeroToDraw->isActive(), i);
@@ -51,7 +52,7 @@ void CGroupView::GroupZeichnen(CDC* pDC, CPictures* pPictures, DMMode iModus, CG
 				SUBPOS relPos = CHelpfulValues::GetRelativeSubPosPassive(pHeroToDraw->HoleSubPosition(), pGrpHeld->GetDirection());
 				pPictures->SymbolZeichnen(pDC, i, relPos);
 				if (pHeroToDraw->ReceivedDmg() > 0) {
-					pPictures->SchadenZeichnen(pDC, i, pHeroToDraw->isActive() && (iModus == MOD_RUCKSACK), pHeroToDraw->ReceivedDmg());
+					pPictures->SchadenZeichnen(pDC, i, pHeroToDraw->isActive() && (pGrpHeld->GetModus() == BACKPACK), pHeroToDraw->ReceivedDmg());
 					//pHeroToDraw->ResetDmg();
 				}
 			}

@@ -30,8 +30,7 @@ public:
 	void AttackDone() { m_iReady = m_attributes.monsterInfo.attack_dur; } 
 	void MoveDone() { m_iReady = m_attributes.monsterInfo.move_dur; } 
 	int getDealingDmg() { return m_dealingDmg; }
-	MonsterTyp getType() { return m_iTyp; }
-	void setType(MonsterTyp typ) { m_iTyp = typ; }
+	MonsterTyp getType() { return m_attributes.type; }
 	bool TurnTo(COMPASS_DIRECTION iDirection);
 	int CalcDmg(int ID);
 
@@ -41,7 +40,6 @@ protected:
 
 	// Generierte Nachrichtenzuordnungsfunktionen
 protected:
-	MonsterTyp m_iTyp;
 	CDC pCdc;
 	int m_iReady;
 	CCreatureAttributes m_attributes;

@@ -973,6 +973,56 @@ IDB_MONSTER_PAINRAT_FRONT BITMAP                  "res\\Monster\\PainRat_Front.b
 
 IDB_MONSTER_PAINRAT_RIGHT BITMAP                  "res\\Monster\\PainRat_Right.bmp"
 
+IDB_ITEM3D_FIRESTAFF    BITMAP                  "res\\Items3D\\Item_3d_TheFirestaff.bmp"
+
+IDB_ITEM3D_WAND         BITMAP                  "res\\Items3D\\Item_3d_Wand.bmp"
+
+IDB_ITEM3D_RABBITS_FOOT BITMAP                  "res\\Items3D\\Item_3d_RabbitsFoot.bmp"
+
+IDB_ITEM3D_CONDUIT      BITMAP                  "res\\Items3D\\Item_3d_TheConduit.bmp"
+
+IDB_ITEM3D_CORBAMITE    BITMAP                  "res\\Items3D\\Item_3d_Corbamite.bmp"
+
+IDB_ITEM3D_EYE_OF_TIME  BITMAP                  "res\\Items3D\\Item_3d_EyeOfTime.bmp"
+
+IDB_ITEM3D_SCEPTRE_OF_LYF BITMAP                  "res\\Items3D\\Item_3d_SceptreOfLyf.bmp"
+
+IDB_ITEM3D_ASHES        BITMAP                  "res\\Items3D\\Item_3d_Ashes.bmp"
+
+IDB_ITEM3D_VORPAL_BLADE BITMAP                  "res\\Items3D\\Item_3d_VorpalBlade.bmp"
+
+IDB_ITEM3D_STICK        BITMAP                  "res\\Items3D\\Item_3d_Stick.bmp"
+
+IDB_ITEM3D_CROSSBOW     BITMAP                  "res\\Items3D\\Item_3d_Crossbow.bmp"
+
+IDB_ITEM3D_MACE         BITMAP                  "res\\Items3D\\Item_3d_Mace.bmp"
+
+IDB_ITEM3D_DRAGONSPIT   BITMAP                  "res\\Items3D\\Item_3d_DragonSpit.bmp"
+
+IDB_ITEM3D_MORNINGSTAR  BITMAP                  "res\\Items3D\\Item_3d_Morningstar.bmp"
+
+IDB_ITEM3D_FLAMITT      BITMAP                  "res\\Items3D\\Item_3d_Flamitt.bmp"
+
+IDB_ITEM3D_POTION       BITMAP                  "res\\Items3D\\Item_3d_Potion.bmp"
+
+IDB_ITEM3D_BOMB         BITMAP                  "res\\Items3D\\Item_3d_Bomb.bmp"
+
+IDB_ITEM3D_ROPE         BITMAP                  "res\\Items3D\\Item_3d_Rope.bmp"
+
+IDB_ITEM3D_DRAGON_STEAK BITMAP                  "res\\Items3D\\Item_3d_DragonSteak.bmp"
+
+IDB_ITEM3D_HORN_OF_FEAR BITMAP                  "res\\Items3D\\Item_3d_HornOfFear.bmp"
+
+IDB_ITEM3D_MIRROR       BITMAP                  "res\\Items3D\\Item_3d_MirrorOfDawn.bmp"
+
+IDB_ITEM3D_LOCKPICKS    BITMAP                  "res\\Items3D\\Item_3d_LockPicks.bmp"
+
+IDB_ITEM3D_FIRESTAFF_COMPLETE BITMAP                  "res\\Items3D\\Item_3d_Firestaff_Complete.bmp"
+
+IDB_ITEM3D_MAGINFIER    BITMAP                  "res\\Items3D\\Item_3d_Magnifier.bmp"
+
+IDB_ITEM3D_HALTER       BITMAP                  "res\\Items3D\\Item_3d_Halter.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

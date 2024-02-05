@@ -16,24 +16,12 @@ static char THIS_FILE[] = __FILE__;
 
 CZauberView::CZauberView()
 {
-	/*for (int i = 1; i < 5; i++) {
-		m_iRuneTable[i] = 1;
-		m_spell[i] = new int[5];
-	}*/
 }
 
 CZauberView::~CZauberView()
 {
-	/*for (int i = 1; i < 5; i++) {
-		if (m_spell[i] != NULL) delete m_spell[i];
-	}*/
 }
 
-//void CZauberView::resetRuneTable(int heroId) {
-//	m_iRuneTable[heroId] = 1;
-//	if (m_spell[heroId] != NULL) delete m_spell[heroId];
-//	m_spell[heroId] = new int[5];
-//}
 
 void CZauberView::Zeichnen(CPictures* pPictures, CDC * pDC, int iActiveWizard, int runeTableId, int* runeIds)
 {
@@ -56,29 +44,4 @@ void CZauberView::Zeichnen(CPictures* pPictures, CDC * pDC, int iActiveWizard, i
 	
 	tmpdc.DeleteDC();
 }
-//
-//void CZauberView::storeRune(int index, int heroId) {
-//	m_spell[heroId][m_iRuneTable[heroId]] = index;
-//	if (m_iRuneTable[heroId] == 1) {
-//		for (int i = 2; i < 5; i++)
-//			m_spell[heroId][i] = 0;
-//	}
-//	nextRuneTable(heroId);
-//};
-//
-//void CZauberView::nextRuneTable(int heroId) {
-//	if (m_iRuneTable[heroId] < 4)
-//		m_iRuneTable[heroId]++;
-//	else
-//		m_iRuneTable[heroId] = 1;
-//}
-//
-//int CZauberView::GetPower(int heroId) {
-//	if (m_iRuneTable[heroId] > 1) {
-//		return m_spell[heroId][1];
-//	}
-//	else {
-//		return 0;
-//	}
-//
-//}
+

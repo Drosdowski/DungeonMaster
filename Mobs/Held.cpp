@@ -12,7 +12,6 @@
 #include "..\Items\Container.h"
 #include "Monster.h"
 #include "Champion.h"
-#include "MobGroups/GrpMonster.h"
 #include <Attributes/ClothAttributes.h>
 #include "..\XMLParser\AttackInfos.h"
 #include "..\XMLParser\MonsterInfos.h"
@@ -52,13 +51,13 @@ CHeld::CHeld(int iIndex, CChampion* champ, int hp_akt, int st_akt, int ma_akt): 
 	switch (iIndex)
 	{
 	case 1:
-		m_Farbe[1] = HELLGRUEN; break;
+		m_Farbe = HELLGRUEN; break;
 	case 2:
-		m_Farbe[2] = GELB; break;
+		m_Farbe = GELB; break;
 	case 3:
-		m_Farbe[3] = ROT; break;
-	case 4:
-		m_Farbe[4] = BLAU; break;
+		m_Farbe = ROT; break;
+	default:
+		m_Farbe = BLAU; break;
 	}
 
 	for (int i = 0; i < 30; i++) {
@@ -180,7 +179,7 @@ void CHeld::WerteTemporaerAendern(double hp, double st, double ma)
 	m_MA.Aktuell = min(max(ma + m_MA.Aktuell, 0), m_MA.Max);
 }
 
-int CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, CGrpMonster* pOpponents, int levelDif) {
+int CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, int levelDif) {
 	// https://www.dungeon-master.com/forum/viewtopic.php?t=31345
 	// todo xp gain  --- Mastery = log2(Experience=469)
 	// https://gamefaqs.gamespot.com/snes/588299-dungeon-master/faqs/33244 => Exo Gain! (5e. Actions)

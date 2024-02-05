@@ -72,7 +72,6 @@ protected:
 	void WaffenZeichnen(CDC* pDC, CGrpHeld* pGrpHeroes);
 	void FrameZeichnen(CDC* pDC);
 	bool m_bPause;
-	bool m_bSleep;
 	DMMode m_iModus;
 	DMMode lastModus;
 	//{{AFX_MSG(CDMView)

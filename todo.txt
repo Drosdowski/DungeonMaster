@@ -11,7 +11,7 @@ http://dmweb.free.fr/?q=node/1395
 BUGS
 
 items hit player
-itemInfo 
+itemInfo / Tooltips when carrying
 Unterschied throwable / weapon
 
 stamina 0
@@ -21,3 +21,13 @@ stamina 0
 Sounds: switch (wall, floor) - gegenstand fällt (klein, gross)
 
 CMagicMissile Lightning !
+Chest (Center, Left)
+Rope
+Horn of Fear
+Gosts / Vorpal Blade
+
+Actions for non-weapons!
+
+* GATE Bug !
+* Schrift auftauhen / verstecken
+

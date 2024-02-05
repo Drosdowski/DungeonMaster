@@ -15,7 +15,7 @@
 #pragma once
 #endif // _MSC_VER >= 1000
 
-class CRaumView;
+class CRaumView; // todo abrüsten
 class CDMDoc : public CDocument
 {
 protected: // create from serialization only
@@ -32,11 +32,8 @@ public:
 // Implementation
 public:
 	void SetRaumView(CRaumView* pRaumView);
-	void InitGruppe(const int nr);
 	void SetzeRichtung(int iRichtung);
 	void Laufen();	
-	int HoleGruppenRichtung();
-	VEKTOR HoleGruppenPosition();
 	void PlayDMSound(std::string file);
 	
 	virtual ~CDMDoc();

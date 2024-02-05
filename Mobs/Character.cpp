@@ -5,7 +5,6 @@
 #include <typeinfo>
 #include "Character.h"
 #include "..\CalculationHelper\CHelpfulValues.h"
-#include "MobGroups/GrpChar.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -20,8 +19,13 @@ CCharacter::CCharacter(bool isHero)
 {
 	m_chrDirection = COMPASS_DIRECTION::NORTH;
 	m_iReceivedDmg = 0;
+	m_dealingDmg = 0;
+	m_dealingDmgToDraw = 0;
 	m_attacking = false;
 	m_isHero = isHero;
+	m_subPosition = SUBPOS_ABSOLUTE::MIDDLE;
+	m_HP.Aktuell = 1;
+	m_HP.Max = 1;
 }
 
 CCharacter::~CCharacter()
