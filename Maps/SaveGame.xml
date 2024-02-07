@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<dungeon start_x="14" start_y="29" start_z="1" start_facing="North">
+<dungeon start_x="12" start_y="29" start_z="1" start_facing="East">
     <heroes>
-        <hero index="1" hp_akt="60" st_akt="155" ma_akt="10" hp_max="60" st_max="600" ma_max="10" name="ZED" subname="" male="Y" LUK="10280" STR="10280" DEX="12850" VIT="10280" WIS="14906" AM="10280" AF="10280" SKILLS="2,1,1,2,2,1,2,1,1,2,1,1,1,1,2,1" SPELL="">
+        <hero index="1" hp_akt="60" st_akt="136" ma_akt="10" hp_max="60" st_max="600" ma_max="10" name="ZED" subname="" male="Y" LUK="10280" STR="10280" DEX="10280" VIT="12850" WIS="10280" AM="10280" AF="14906" SKILLS="2,1,1,2,2,1,2,1,1,2,1,1,1,1,2,1" SPELL="">
             <item item="1" index="97" type="0" />
             <item item="4" index="63" type="2" />
             <item item="6" index="62" type="2" />
             <item item="14" index="16" type="0" />
         </hero>
-        <hero index="2" hp_akt="53" st_akt="243" ma_akt="15" hp_max="53" st_max="720" ma_max="15" name="SYRA" subname="" male="N" LUK="8995" STR="11051" DEX="11565" VIT="10794" WIS="14135" AM="10280" AF="9766" SKILLS="0,0,0,0,0,0,0,0,1,3,1,0,3,0,2,3" SPELL="">
+        <hero index="2" hp_akt="53" st_akt="224" ma_akt="15" hp_max="53" st_max="720" ma_max="15" name="SYRA" subname="" male="N" LUK="9766" STR="8995" DEX="11051" VIT="11565" WIS="10794" AM="10280" AF="14135" SKILLS="0,0,0,0,0,0,0,0,1,3,1,0,3,0,2,3" SPELL="">
             <item item="1" index="76" type="0" />
             <item item="14" index="20" type="1" />
             <item item="15" index="22" type="0" />
@@ -1738,7 +1738,7 @@
                     <items>
                         <creature index="7" position="0" dir="1" hp="52" subIndex="2" />
                         <creature index="7" position="1" dir="1" hp="52" subIndex="4" />
-                        <creature index="7" position="2" dir="1" hp="50" subIndex="3" />
+                        <creature index="7" position="2" dir="1" hp="52" subIndex="3" />
                         <creature index="7" position="3" dir="1" hp="51" subIndex="1" />
                     </items>
                 </tile>
@@ -1900,8 +1900,8 @@
                 <tile index="910" />
                 <tile index="911">
                     <actuators>
-                        <actuator index="517" subPos="1" active="1" />
                         <actuator index="518" subPos="1" active="1" />
+                        <actuator index="517" subPos="1" active="1" />
                     </actuators>
                     <actuators>
                         <actuator index="512" subPos="3" active="1" />
@@ -1954,7 +1954,9 @@
                         <miscellaneous index="125" position="0" />
                     </items>
                 </tile>
-                <tile index="942" />
+                <tile index="942">
+                    <trickwall state="1" />
+                </tile>
                 <tile index="943" />
                 <tile index="944" />
                 <tile index="945" />
@@ -2129,7 +2131,9 @@
                         <miscellaneous index="218" position="1" />
                     </items>
                 </tile>
-                <tile index="59" />
+                <tile index="59">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="60" />
                 <tile index="61" />
                 <tile index="62" />
@@ -2366,7 +2370,9 @@
                 <tile index="232" />
                 <tile index="233" />
                 <tile index="234" />
-                <tile index="235" />
+                <tile index="235">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="236" />
                 <tile index="237" />
                 <tile index="238" />
@@ -2429,14 +2435,18 @@
                 <tile index="285" />
                 <tile index="286" />
                 <tile index="287" />
-                <tile index="288" />
+                <tile index="288">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="289" />
                 <tile index="290" />
                 <tile index="291" />
                 <tile index="292" />
                 <tile index="293" />
                 <tile index="294" />
-                <tile index="295" />
+                <tile index="295">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="296" />
                 <tile index="297" />
                 <tile index="298" />
@@ -2626,7 +2636,9 @@
                         <creature index="158" position="3" dir="2" hp="24" subIndex="1" />
                     </items>
                 </tile>
-                <tile index="417" />
+                <tile index="417">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="418" />
                 <tile index="419">
                     <items>
@@ -2751,7 +2763,9 @@
                         <creature index="15" position="3" dir="2" hp="21" subIndex="1" />
                     </items>
                 </tile>
-                <tile index="482" />
+                <tile index="482">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="483">
                     <items>
                         <miscellaneous index="27" position="2" />
@@ -3127,7 +3141,9 @@
                         <actuator index="134" subPos="2" active="1" />
                     </actuators>
                 </tile>
-                <tile index="743" />
+                <tile index="743">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="744" />
                 <tile index="745" />
                 <tile index="746" />
@@ -3278,7 +3294,9 @@
                         <actuator index="175" subPos="0" active="1" />
                     </actuators>
                 </tile>
-                <tile index="829" />
+                <tile index="829">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="830" />
                 <tile index="831">
                     <door state="4" />
@@ -3476,7 +3494,9 @@
                         <actuator index="101" subPos="2" active="1" />
                     </actuators>
                 </tile>
-                <tile index="938" />
+                <tile index="938">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="939" />
                 <tile index="940" />
                 <tile index="941" />
@@ -3822,7 +3842,9 @@
                 <tile index="163" />
                 <tile index="164" />
                 <tile index="165" />
-                <tile index="166" />
+                <tile index="166">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="167">
                     <actuators>
                         <actuator index="184" subPos="0" active="1" />
@@ -4002,7 +4024,9 @@
                 <tile index="285" />
                 <tile index="286" />
                 <tile index="287" />
-                <tile index="288" />
+                <tile index="288">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="289" />
                 <tile index="290" />
                 <tile index="291" />
@@ -4129,7 +4153,9 @@
                 </tile>
                 <tile index="387" />
                 <tile index="388" />
-                <tile index="389" />
+                <tile index="389">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="390" />
                 <tile index="391" />
                 <tile index="392" />
@@ -4390,7 +4416,9 @@
                         <potion index="22" position="0" />
                     </items>
                 </tile>
-                <tile index="583" />
+                <tile index="583">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="584" />
                 <tile index="585" />
                 <tile index="586" />
@@ -4508,7 +4536,9 @@
                         <miscellaneous index="174" position="1" />
                     </items>
                 </tile>
-                <tile index="685" />
+                <tile index="685">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="686" />
                 <tile index="687" />
                 <tile index="688">
@@ -5337,7 +5367,9 @@
                         <potion index="33" position="2" />
                     </items>
                 </tile>
-                <tile index="250" />
+                <tile index="250">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="251">
                     <items>
                         <miscellaneous index="128" position="3" />
@@ -5392,7 +5424,9 @@
                 <tile index="271" />
                 <tile index="272" />
                 <tile index="273" />
-                <tile index="274" />
+                <tile index="274">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="275">
                     <actuators>
                         <actuator index="543" subPos="0" active="1" />
@@ -5474,7 +5508,9 @@
                         <creature index="122" position="3" dir="3" hp="205" subIndex="1" />
                     </items>
                 </tile>
-                <tile index="309" />
+                <tile index="309">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="310" />
                 <tile index="311" />
                 <tile index="312" />
@@ -5534,7 +5570,9 @@
                 <tile index="349" />
                 <tile index="350" />
                 <tile index="351" />
-                <tile index="352" />
+                <tile index="352">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="353" />
                 <tile index="354" />
                 <tile index="355" />
@@ -6032,7 +6070,9 @@
                 <tile index="772" />
                 <tile index="773" />
                 <tile index="774" />
-                <tile index="775" />
+                <tile index="775">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="776">
                     <actuators>
                         <actuator index="162" subPos="3" active="1" />
@@ -6067,7 +6107,9 @@
                         <actuator index="159" subPos="1" active="1" />
                     </actuators>
                 </tile>
-                <tile index="801" />
+                <tile index="801">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="802" />
                 <tile index="803" />
                 <tile index="804" />
@@ -6120,7 +6162,9 @@
                         <actuator index="161" subPos="1" active="1" />
                     </actuators>
                 </tile>
-                <tile index="831" />
+                <tile index="831">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="832" />
                 <tile index="833" />
                 <tile index="834">
@@ -6128,7 +6172,9 @@
                         <miscellaneous index="60" position="3" />
                     </items>
                 </tile>
-                <tile index="835" />
+                <tile index="835">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="836">
                     <items>
                         <creature index="102" position="3" dir="3" hp="242" subIndex="1" />
@@ -6221,7 +6267,9 @@
                     </actuators>
                 </tile>
                 <tile index="892" />
-                <tile index="893" />
+                <tile index="893">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="894">
                     <actuators>
                         <actuator index="158" subPos="3" active="1" />
@@ -6329,7 +6377,9 @@
                         <potion index="41" position="3" />
                     </items>
                 </tile>
-                <tile index="43" />
+                <tile index="43">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="44" />
                 <tile index="45" />
                 <tile index="46" />
@@ -6342,7 +6392,9 @@
                 <tile index="53" />
                 <tile index="54" />
                 <tile index="55" />
-                <tile index="56" />
+                <tile index="56">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="57" />
                 <tile index="58" />
                 <tile index="59" />
@@ -6414,7 +6466,9 @@
                 <tile index="102" />
                 <tile index="103" />
                 <tile index="104" />
-                <tile index="105" />
+                <tile index="105">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="106" />
                 <tile index="107" />
                 <tile index="108" />
@@ -6453,7 +6507,9 @@
                     </actuators>
                 </tile>
                 <tile index="131" />
-                <tile index="132" />
+                <tile index="132">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="133" />
                 <tile index="134" />
                 <tile index="135">
@@ -6793,7 +6849,9 @@
                     <door state="4" />
                 </tile>
                 <tile index="335" />
-                <tile index="336" />
+                <tile index="336">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="337" />
                 <tile index="338" />
                 <tile index="339" />
@@ -7089,7 +7147,9 @@
                 <tile index="513" />
                 <tile index="514" />
                 <tile index="515" />
-                <tile index="516" />
+                <tile index="516">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="517">
                     <items>
                         <miscellaneous index="47" position="0" />
@@ -7102,7 +7162,9 @@
                 <tile index="522" />
                 <tile index="523" />
                 <tile index="524" />
-                <tile index="525" />
+                <tile index="525">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="526" />
                 <tile index="527" />
                 <tile index="528" />
@@ -7118,7 +7180,9 @@
                         <actuator index="138" subPos="2" active="1" />
                     </actuators>
                 </tile>
-                <tile index="537" />
+                <tile index="537">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="538" />
                 <tile index="539">
                     <actuators>
@@ -7159,7 +7223,9 @@
                 <tile index="560" />
                 <tile index="561" />
                 <tile index="562" />
-                <tile index="563" />
+                <tile index="563">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="564">
                     <items>
                         <creature index="181" position="0" dir="3" hp="100" subIndex="2" />
@@ -7307,7 +7373,9 @@
                 <tile index="668" />
                 <tile index="669" />
                 <tile index="670" />
-                <tile index="671" />
+                <tile index="671">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="672">
                     <items>
                         <miscellaneous index="46" position="0" />
@@ -7328,7 +7396,9 @@
                 <tile index="684" />
                 <tile index="685" />
                 <tile index="686" />
-                <tile index="687" />
+                <tile index="687">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="688">
                     <items>
                         <creature index="180" position="0" dir="3" hp="61" subIndex="2" />
@@ -7419,7 +7489,9 @@
                         <potion index="9" position="3" />
                     </items>
                 </tile>
-                <tile index="736" />
+                <tile index="736">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="737" />
                 <tile index="738" />
                 <tile index="739" />
@@ -7621,7 +7693,9 @@
                 <tile index="863" />
                 <tile index="864" />
                 <tile index="865" />
-                <tile index="866" />
+                <tile index="866">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="867">
                     <actuators>
                         <actuator index="198" subPos="3" active="1" />
@@ -7857,7 +7931,9 @@
                 </tile>
                 <tile index="31" />
                 <tile index="32" />
-                <tile index="33" />
+                <tile index="33">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="34" />
                 <tile index="35" />
                 <tile index="36" />
@@ -7886,7 +7962,9 @@
                 <tile index="57" />
                 <tile index="58" />
                 <tile index="59" />
-                <tile index="60" />
+                <tile index="60">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="61" />
                 <tile index="62" />
                 <tile index="63">
@@ -8121,7 +8199,9 @@
                         <actuator index="331" subPos="0" active="1" />
                     </actuators>
                 </tile>
-                <tile index="178" />
+                <tile index="178">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="179" />
                 <tile index="180" />
                 <tile index="181" />
@@ -8540,7 +8620,9 @@
                         <creature index="131" position="2" dir="2" hp="371" subIndex="1" />
                     </items>
                 </tile>
-                <tile index="524" />
+                <tile index="524">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="525">
                     <items>
                         <creature index="134" position="3" dir="3" hp="378" subIndex="1" />
@@ -9058,7 +9140,9 @@
                         <actuator index="395" subPos="2" active="1" />
                     </actuators>
                 </tile>
-                <tile index="41" />
+                <tile index="41">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="42" />
                 <tile index="43" />
                 <tile index="44" />
@@ -9228,7 +9312,9 @@
                 <tile index="190" />
                 <tile index="191" />
                 <tile index="192" />
-                <tile index="193" />
+                <tile index="193">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="194" />
                 <tile index="195" />
                 <tile index="196" />
@@ -9308,7 +9394,9 @@
                 </tile>
                 <tile index="251" />
                 <tile index="252" />
-                <tile index="253" />
+                <tile index="253">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="254">
                     <items>
                         <creature index="121" position="2" dir="2" hp="200" subIndex="1" />
@@ -9604,7 +9692,9 @@
                 <tile index="483" />
                 <tile index="484" />
                 <tile index="485" />
-                <tile index="486" />
+                <tile index="486">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="487" />
                 <tile index="488" />
                 <tile index="489" />
@@ -9751,7 +9841,9 @@
                 <tile index="583" />
                 <tile index="584" />
                 <tile index="585" />
-                <tile index="586" />
+                <tile index="586">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="587" />
                 <tile index="588">
                     <items>
@@ -9823,7 +9915,9 @@
                 <tile index="634" />
                 <tile index="635" />
                 <tile index="636" />
-                <tile index="637" />
+                <tile index="637">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="638">
                     <items>
                         <creature index="119" position="0" dir="2" hp="50" subIndex="4" />
@@ -9839,7 +9933,9 @@
                 <tile index="643" />
                 <tile index="644" />
                 <tile index="645" />
-                <tile index="646" />
+                <tile index="646">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="647" />
                 <tile index="648" />
                 <tile index="649" />
@@ -9905,7 +10001,9 @@
                     </actuators>
                 </tile>
                 <tile index="679" />
-                <tile index="680" />
+                <tile index="680">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="681" />
                 <tile index="682" />
                 <tile index="683" />
@@ -10037,11 +10135,15 @@
                         <actuator index="397" subPos="2" active="1" />
                     </actuators>
                 </tile>
-                <tile index="779" />
+                <tile index="779">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="780" />
                 <tile index="781" />
                 <tile index="782" />
-                <tile index="783" />
+                <tile index="783">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="784" />
                 <tile index="785">
                     <pit state="1" />
@@ -10149,7 +10251,9 @@
                 <tile index="852" />
                 <tile index="853" />
                 <tile index="854" />
-                <tile index="855" />
+                <tile index="855">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="856" />
                 <tile index="857" />
                 <tile index="858" />
@@ -10255,7 +10359,9 @@
                 <tile index="930" />
                 <tile index="931" />
                 <tile index="932" />
-                <tile index="933" />
+                <tile index="933">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="934" />
                 <tile index="935" />
                 <tile index="936" />
@@ -10408,7 +10514,9 @@
                     </items>
                 </tile>
                 <tile index="32" />
-                <tile index="33" />
+                <tile index="33">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="34">
                     <items>
                         <miscellaneous index="79" position="0" />
@@ -10850,7 +10958,9 @@
                 <tile index="370" />
                 <tile index="371" />
                 <tile index="372" />
-                <tile index="373" />
+                <tile index="373">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="374" />
                 <tile index="375" />
                 <tile index="376" />
@@ -11385,7 +11495,9 @@
                 <tile index="818" />
                 <tile index="819" />
                 <tile index="820" />
-                <tile index="821" />
+                <tile index="821">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="822" />
                 <tile index="823" />
                 <tile index="824" />
@@ -11465,7 +11577,9 @@
                 <tile index="885" />
                 <tile index="886" />
                 <tile index="887" />
-                <tile index="888" />
+                <tile index="888">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="889" />
                 <tile index="890" />
                 <tile index="891" />
@@ -11515,7 +11629,9 @@
                 <tile index="935" />
                 <tile index="936" />
                 <tile index="937" />
-                <tile index="938" />
+                <tile index="938">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="939" />
                 <tile index="940" />
                 <tile index="941" />
@@ -11640,7 +11756,9 @@
                 <tile index="54" />
                 <tile index="55" />
                 <tile index="56" />
-                <tile index="57" />
+                <tile index="57">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="58" />
                 <tile index="59" />
                 <tile index="60" />
@@ -11878,7 +11996,9 @@
                     </actuators>
                 </tile>
                 <tile index="239" />
-                <tile index="240" />
+                <tile index="240">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="241" />
                 <tile index="242" />
                 <tile index="243" />
@@ -12479,7 +12599,9 @@
                 <tile index="679" />
                 <tile index="680" />
                 <tile index="681" />
-                <tile index="682" />
+                <tile index="682">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="683">
                     <actuators>
                         <actuator index="309" subPos="2" active="1" />
@@ -12554,7 +12676,9 @@
                 <tile index="729" />
                 <tile index="730" />
                 <tile index="731" />
-                <tile index="732" />
+                <tile index="732">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="733" />
                 <tile index="734" />
                 <tile index="735" />
@@ -12682,7 +12806,9 @@
                         <actuator index="171" subPos="0" active="1" />
                     </actuators>
                 </tile>
-                <tile index="818" />
+                <tile index="818">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="819" />
                 <tile index="820" />
                 <tile index="821">
@@ -12690,14 +12816,18 @@
                         <cloth index="57" position="3" />
                     </items>
                 </tile>
-                <tile index="822" />
+                <tile index="822">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="823">
                     <items>
                         <potion index="14" position="0" />
                         <cloth index="86" position="3" />
                     </items>
                 </tile>
-                <tile index="824" />
+                <tile index="824">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="825" />
                 <tile index="826" />
                 <tile index="827" />
@@ -12834,7 +12964,9 @@
                 <tile index="919" />
                 <tile index="920" />
                 <tile index="921" />
-                <tile index="922" />
+                <tile index="922">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="923">
                     <actuators>
                         <actuator index="290" subPos="3" active="1" />
@@ -13085,7 +13217,9 @@
                         <actuator index="143" subPos="1" active="1" />
                     </actuators>
                 </tile>
-                <tile index="114" />
+                <tile index="114">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="115" />
                 <tile index="116" />
                 <tile index="117" />
@@ -13121,7 +13255,9 @@
                 <tile index="141" />
                 <tile index="142" />
                 <tile index="143" />
-                <tile index="144" />
+                <tile index="144">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="145">
                     <items>
                         <miscellaneous index="166" position="1" />
@@ -13207,7 +13343,9 @@
                         <container index="4" position="0" />
                     </items>
                 </tile>
-                <tile index="192" />
+                <tile index="192">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="193" />
                 <tile index="194" />
                 <tile index="195" />
@@ -14058,7 +14196,9 @@
                         <actuator index="655" subPos="0" active="1" />
                     </actuators>
                 </tile>
-                <tile index="711" />
+                <tile index="711">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="712">
                     <actuators>
                         <actuator index="656" subPos="0" active="1" />
@@ -14153,7 +14293,9 @@
                 <tile index="766" />
                 <tile index="767" />
                 <tile index="768" />
-                <tile index="769" />
+                <tile index="769">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="770" />
                 <tile index="771" />
                 <tile index="772" />
@@ -14187,7 +14329,9 @@
                 <tile index="800" />
                 <tile index="801" />
                 <tile index="802" />
-                <tile index="803" />
+                <tile index="803">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="804">
                     <items>
                         <cloth index="56" position="0" />
@@ -14241,8 +14385,12 @@
                     <door state="4" />
                 </tile>
                 <tile index="831" />
-                <tile index="832" />
-                <tile index="833" />
+                <tile index="832">
+                    <trickwall state="0" />
+                </tile>
+                <tile index="833">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="834" />
                 <tile index="835">
                     <actuators>
@@ -14403,7 +14551,9 @@
                         <cloth index="102" position="3" />
                     </items>
                 </tile>
-                <tile index="931" />
+                <tile index="931">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="932" />
                 <tile index="933" />
                 <tile index="934" />
@@ -14534,7 +14684,9 @@
                 <tile index="71" />
                 <tile index="72" />
                 <tile index="73" />
-                <tile index="74" />
+                <tile index="74">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="75" />
                 <tile index="76" />
                 <tile index="77" />
@@ -14706,7 +14858,9 @@
                 <tile index="216" />
                 <tile index="217" />
                 <tile index="218" />
-                <tile index="219" />
+                <tile index="219">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="220">
                     <items>
                         <creature index="152" position="3" dir="3" hp="222" subIndex="1" />
@@ -14840,7 +14994,9 @@
                 <tile index="309" />
                 <tile index="310" />
                 <tile index="311" />
-                <tile index="312" />
+                <tile index="312">
+                    <trickwall state="1" />
+                </tile>
                 <tile index="313" />
                 <tile index="314" />
                 <tile index="315" />
@@ -15201,7 +15357,9 @@
                 <tile index="550" />
                 <tile index="551" />
                 <tile index="552" />
-                <tile index="553" />
+                <tile index="553">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="554" />
                 <tile index="555" />
                 <tile index="556" />
@@ -15410,7 +15568,9 @@
                 <tile index="727" />
                 <tile index="728" />
                 <tile index="729" />
-                <tile index="730" />
+                <tile index="730">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="731" />
                 <tile index="732" />
                 <tile index="733" />
@@ -15494,7 +15654,9 @@
                 <tile index="798" />
                 <tile index="799" />
                 <tile index="800" />
-                <tile index="801" />
+                <tile index="801">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="802" />
                 <tile index="803" />
                 <tile index="804" />
@@ -15892,7 +16054,9 @@
                 <tile index="91" />
                 <tile index="92" />
                 <tile index="93" />
-                <tile index="94" />
+                <tile index="94">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="95" />
                 <tile index="96" />
                 <tile index="97" />
@@ -16000,7 +16164,9 @@
                 <tile index="181" />
                 <tile index="182" />
                 <tile index="183" />
-                <tile index="184" />
+                <tile index="184">
+                    <trickwall state="1" />
+                </tile>
                 <tile index="185" />
                 <tile index="186" />
                 <tile index="187" />
@@ -16015,9 +16181,13 @@
                 <tile index="196" />
                 <tile index="197" />
                 <tile index="198" />
-                <tile index="199" />
+                <tile index="199">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="200" />
-                <tile index="201" />
+                <tile index="201">
+                    <trickwall state="1" />
+                </tile>
                 <tile index="202" />
                 <tile index="203">
                     <actuators>
@@ -16564,7 +16734,9 @@
                 <tile index="170" />
                 <tile index="171" />
                 <tile index="172" />
-                <tile index="173" />
+                <tile index="173">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="174" />
                 <tile index="175" />
                 <tile index="176" />
@@ -16681,7 +16853,9 @@
                 <tile index="233" />
                 <tile index="234" />
                 <tile index="235" />
-                <tile index="236" />
+                <tile index="236">
+                    <trickwall state="0" />
+                </tile>
                 <tile index="237" />
                 <tile index="238">
                     <actuators>

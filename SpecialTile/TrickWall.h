@@ -18,6 +18,7 @@ public:
 
 	TrickWallType GetType() { return m_type; }
 	TrickWallState GetState();
+	void SetState(int state) { m_state = (TrickWallState)state; }
 
 	void Open(int delay);
 	void Close(int delay);
