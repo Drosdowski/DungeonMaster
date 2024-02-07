@@ -81,6 +81,10 @@ bool CScreenCoords::CheckHitSpell(CPoint point) {
 	return (InRect(point, 465, 128, 640, 153));
 }
 
+bool CScreenCoords::CheckHitUndoRune(CPoint point) {
+	return (InRect(point, 612, 128, 640, 153));
+}
+
 
 int CScreenCoords::CheckHitActiveWizard(CPoint point, int activeWizardID) {
 	if (InRect(point, 465, 80, 640, 95))

@@ -186,29 +186,35 @@ void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
 		CHeld* pHeld = grpHelden->GetHero(heroId);
 		if (!pHeld->isAlive())
 			return;
-		int* spell = pHeld->getSpell();
+		if (CScreenCoords::CheckHitUndoRune(point)) {
+			pHeld->undoRune();
+		}
+		else {
 
-		CItem* itemInHand = pHeld->GetItemCarrying(1);
-		bool emptyFlaskInHand = itemInHand && itemInHand->GetType() == CPotionAttributes::PotionType::Empty;
+			int* spell = pHeld->getSpell();
 
-		// Magic Missiles
-		if (spell[2] == 4 && spell[3] == 4 && spell[4] <= 0) {
-			CastMagicMissile(CMagicMissile::MagicMissileType::Fireball, spell[1]);
+			CItem* itemInHand = pHeld->GetItemCarrying(1);
+			bool emptyFlaskInHand = itemInHand && itemInHand->GetType() == CPotionAttributes::PotionType::Empty;
+
+			// Magic Missiles
+			if (spell[2] == 4 && spell[3] == 4 && spell[4] <= 0) {
+				CastMagicMissile(CMagicMissile::MagicMissileType::Fireball, spell[1]);
+			}
+			else if (spell[2] == 3 && spell[3] == 1 && spell[4] <= 0) {
+				CastMagicMissile(CMagicMissile::MagicMissileType::Poison, spell[1]);
+			}
+			else if (spell[2] == 3 && spell[3] == 3 && spell[4] == 5) {
+				CastMagicMissile(CMagicMissile::MagicMissileType::Lightning, spell[1]);
+			}
+			else if (spell[2] == 6 && spell[3] <= 0) {
+				CastMagicMissile(CMagicMissile::MagicMissileType::OpenDoor, spell[1]);
+			}
+			// Potions
+			else if (spell[2] == 2 && emptyFlaskInHand) {
+				CastPotion((CPotion*)itemInHand, spell[1], CPotionAttributes::PotionType::Vi);
+			}
+			pHeld->resetRuneTable();
 		}
-		else if (spell[2] == 3 && spell[3] == 1 && spell[4] <= 0) {
-			CastMagicMissile(CMagicMissile::MagicMissileType::Poison, spell[1]);
-		}
-		else if (spell[2] == 3 && spell[3] == 3 && spell[4] == 5) {
-			CastMagicMissile(CMagicMissile::MagicMissileType::Lightning, spell[1]);
-		}
-		else if (spell[2] == 6 && spell[3] <= 0) {
-			CastMagicMissile(CMagicMissile::MagicMissileType::OpenDoor, spell[1]);
-		}
-		// Potions
-		else if (spell[2] == 2 && emptyFlaskInHand) {
-			CastPotion((CPotion*)itemInHand, spell[1], CPotionAttributes::PotionType::Vi);
-		}
-		pHeld->resetRuneTable();
 	}
 }
 

@@ -229,10 +229,11 @@ int CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, int level
 		}
 		d7_damage_coefficient /= 2;
 		int d0 = 0;
-		if (d7_damage_coefficient > 0)
+		if (((int)d7_damage_coefficient) > 0) {
 			d0 = rand() % (int)d7_damage_coefficient;
+			d7_damage_coefficient += rand() % (int)d7_damage_coefficient;
+		}
 		d7_damage_coefficient += rand() % 4 + d0;
-		d7_damage_coefficient += rand() % (int)d7_damage_coefficient;
 		d7_damage_coefficient /= 4;
 		d7_damage_coefficient += rand() % 4 + 1;
 
@@ -498,6 +499,12 @@ void CHeld::resetRuneTable() {
 	m_spell = new int[5];
 }
 
+void CHeld::undoRune() {
+	if (m_iRuneTable > 1) {
+		m_iRuneTable--;
+		m_spell[m_iRuneTable] = 0;
+	}
+}
 
 void CHeld::storeRune(int index) {
 	m_spell[m_iRuneTable] = index;

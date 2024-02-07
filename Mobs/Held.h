@@ -83,6 +83,7 @@ public:
 	int getRuneTableId() { return m_iRuneTable; }
 	int GetPower();
 	void resetRuneTable();
+	void undoRune();
 	void storeRune(int index);
 	int* getSpell() { return m_spell; }
 
