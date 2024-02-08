@@ -5,6 +5,7 @@
 #include "CMummyPic.h"
 #include "CSkeletonPic.h"
 #include "ScreamerPic.h"
+#include "GhostPic.h"
 #include "RockPilePic.h"
 #include "MagentaWormPic.h"
 #include "TrolinPic.h"
@@ -15,6 +16,7 @@ CMonsterPic::CMonsterPic(CDC* pDC) : CBasePictures(pDC) {
 	m_pMummyPic = new CMummyPic(pDC);
 	m_pSkeletonPic = new CSkeletonPic(pDC);
 	m_pScreamerPic = new CScreamerPic(pDC);
+	m_pGhostPic= new CGhostPic(pDC);
 	m_pRockPilePic = new CRockPilePic(pDC);
 	m_pMagentaWormPic = new CMagentaWormPic(pDC);
 	m_pTrolinPic = new CTrolinPic(pDC);
@@ -26,6 +28,7 @@ CMonsterPic::~CMonsterPic() {
 	delete m_pSkeletonPic;
 	delete m_pMummyPic;
 	delete m_pScreamerPic;
+	delete m_pGhostPic;
 	delete m_pRockPilePic;
 	delete m_pMagentaWormPic;
 	delete m_pTrolinPic;
@@ -53,6 +56,8 @@ CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
 		return m_pGigglerPic->GetGigglerPic(iRicht, pMonster->isAttacking());
 	case MonsterTyp::PAINRAT:
 		return m_pPainRatPic->GetPainRatPic(iRicht, pMonster->isAttacking());
+	case MonsterTyp::GHOST:
+		return m_pGhostPic->GetGhostPic(pMonster->isAttacking());
 	default:
 		break;
 	}

@@ -1023,6 +1023,10 @@ IDB_ITEM3D_MAGINFIER    BITMAP                  "res\\Items3D\\Item_3d_Magnifier
 
 IDB_ITEM3D_HALTER       BITMAP                  "res\\Items3D\\Item_3d_Halter.bmp"
 
+IDB_MONSTER_GHOST_ATTACK BITMAP                  "res\\Monster\\Ghost_Attack.bmp"
+
+IDB_MONSTER_GHOST_FRONT BITMAP                  "res\\Monster\\Ghost_Front.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

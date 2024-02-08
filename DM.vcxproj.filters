@@ -282,7 +282,7 @@
     <ClCompile Include="Pictures\Creatures\RatPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Rucksack.cpp">
+    <ClCompile Include="Pictures\Creatures\GhostPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -562,7 +562,7 @@
     <ClInclude Include="Pictures\Creatures\RatPic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Rucksack.h">
+    <ClInclude Include="Pictures\Creatures\GhostPic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1905,6 +1905,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Items3D\Item_3d_Halter.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\Ghost_Attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\Ghost_Front.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

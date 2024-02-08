@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Pictures\Creatures\GhostPic.cpp" />
     <ClCompile Include="Pictures\DMFont.cpp" />
     <ClCompile Include="Mobs\Champion.cpp" />
     <ClCompile Include="Pictures\ChampionPortrait.cpp" />
@@ -234,6 +235,7 @@
     <ResourceCompile Include="DM.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Pictures\Creatures\GhostPic.h" />
     <ClInclude Include="Pictures\DMFont.h" />
     <ClInclude Include="Mobs\Champion.h" />
     <ClInclude Include="Pictures\ChampionPortrait.h" />
@@ -509,6 +511,8 @@
     <Image Include="res\Monster\0494.IMG1 [Creature 15 (Side) - Magenta Worm].png" />
     <Image Include="res\Monster\0495.IMG1 [Creature 15 (Back) - Magenta Worm].png" />
     <Image Include="res\Monster\0496.IMG1 [Creature 15 (Attack) - Magenta Worm].png" />
+    <Image Include="res\Monster\Ghost_Attack.bmp" />
+    <Image Include="res\Monster\Ghost_Front.bmp" />
     <Image Include="res\Monster\Giggler_Attack.bmp" />
     <Image Include="res\Monster\Giggler_Back.bmp" />
     <Image Include="res\Monster\Giggler_Front.bmp" />

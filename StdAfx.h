@@ -269,6 +269,7 @@ enum MonsterTyp {
 	PAINRAT = 4,
 	SCREAMER = 6,
 	ROCKPILE = 7,
+	GHOST = 8,
 	MUMMY = 10,
 	SKELETON = 12,
 	MAGENTA_WORM = 15,

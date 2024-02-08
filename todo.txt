@@ -1,33 +1,32 @@
-Waffen
-Rüstung
-Info Texte
+Features
+=================
+itemInfo / Tooltips when carrying
 Experience / Level
-
-kämpfen besser
+Gift
+Tür erschlägt monster
+Actions for non-weapons: Horn of Fear, Rope
+CMagicMissile Lightning !
+Schrift auftauchen / verstecken
 
 mana usage for spells: 01 02 03 04 05 06 02 03 04 05 06 07 04 05 06 07 07 09 02 02 03 04 06 07
 http://dmweb.free.fr/?q=node/1395
 
 BUGS
-
+=================
 items hit player
-itemInfo / Tooltips when carrying
-Unterschied throwable / weapon
 
 stamina 0
-#
 
 
 Sounds: switch (wall, floor) - gegenstand fällt (klein, gross)
 
-CMagicMissile Lightning !
 Chest (Center, Left)
-Rope
-Horn of Fear
-Gosts / Vorpal Blade
+Ghosts / Vorpal Blade
+Wand Deko Ebene 2 links/rechts
 
-Actions for non-weapons!
+
 
 * GATE Bug !
-* Schrift auftauhen / verstecken
+
+
 

@@ -138,19 +138,19 @@ bool CHeld::Altern()
 			m_iReceivedDmg = 0;
 		}
 
-		WerteTemporaerAendern(0.1, 0.1, 0.1);
+		WerteTemporaerAendern(0.1, 1, 0.1);
 		if (footWaterAktiv) {
 			m_iFood--;
 			m_iWater--;
 		}
 		if (m_iFood < 50)
-			WerteTemporaerAendern(0, -1, 0);
+			WerteTemporaerAendern(0, -2, 0);
 		if (m_iWater < 50)
-			WerteTemporaerAendern(0, -1, 0);
+			WerteTemporaerAendern(0, -2, 0);
 		if (m_iFood < 15)
-			WerteTemporaerAendern(0, -2, 0);
+			WerteTemporaerAendern(0, -4, 0);
 		if (m_iWater < 15)
-			WerteTemporaerAendern(0, -2, 0);
+			WerteTemporaerAendern(0, -4, 0);
 		if (m_ST.Aktuell <= 0)
 		{
 			m_HP.Aktuell = 0;	
