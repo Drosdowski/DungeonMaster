@@ -209,6 +209,9 @@ void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
 			else if (spell[2] == 6 && spell[3] <= 0) {
 				CastMagicMissile(CMagicMissile::MagicMissileType::OpenDoor, spell[1]);
 			}
+			else if (spell[2] == 5 && spell[3] == 2 && spell[4] <= 0) {
+				CastMagicMissile(CMagicMissile::MagicMissileType::AntiMagic, spell[1]);
+			}
 			// Potions
 			else if (spell[2] == 2 && emptyFlaskInHand) {
 				CastPotion((CPotion*)itemInHand, spell[1], CPotionAttributes::PotionType::Vi);

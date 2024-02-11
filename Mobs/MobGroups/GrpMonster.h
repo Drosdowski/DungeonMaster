@@ -53,11 +53,11 @@ public:
 	virtual ~CGrpMonster();
 private:
 	void InitMonster(int nr, CCreatureAttributes attributes);
-	void TryToAdavanceToFirstRow(int index, VEKTOR monPos, VEKTOR heroPos);
+	void TryToAdvanceToFirstRow(int index, VEKTOR monPos, VEKTOR heroPos);
 	bool isSubPosAbsoluteFree(SUBPOS_ABSOLUTE pos);
 	void RandomMove(VEKTOR nextPos, boolean collision);
+	int Count();
 
-	CMonster* GetBySubpos(SUBPOS pos);
 	std::deque<CItem*> carriedItems;
 	SUBPOS_ABSOLUTE m_lastPosition;
 	int m_iScaredCounter;

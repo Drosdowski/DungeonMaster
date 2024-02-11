@@ -80,6 +80,9 @@ bool CCharacter::InFrontOfOpponent(VEKTOR myPos, VEKTOR hisPos, bool emptyNorthR
 		if (westOf(myPos, hisPos)) return true;
 		if (eastOf(myPos, hisPos) && emptyWestRow) return true;
 		if (southOf(myPos, hisPos) && emptyNorthRow) return true;
+		break;
+	case MIDDLE:
+		return true;
 	}
 	return false;
 }

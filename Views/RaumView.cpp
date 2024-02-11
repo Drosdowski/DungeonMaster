@@ -492,6 +492,7 @@ void CRaumView::DrawMonsterGroup(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS
 		DrawMonster(pDC, cdc, xxx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(RECHTSFRONT, richt));
 		DrawMonster(pDC, cdc, xxx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(LINKSBACK, richt));
 		DrawMonster(pDC, cdc, xxx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(RECHTSBACK, richt));
+		DrawMonster(pDC, cdc, xxx, ebene, richt, pGrpMon->GetMonsterByRelSubPos(MITTE, richt));
 	}
 }
 
@@ -1134,16 +1135,29 @@ void CRaumView::CheckMissileCollisions(VEKTOR heroPos) {
 				topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob || 
 				topMissile->GetType() == CMagicMissile::MagicMissileType::Poison || 
 				topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball || 
-				topMissile->GetType() == CMagicMissile::MagicMissileType::Lightning)) {
+				topMissile->GetType() == CMagicMissile::MagicMissileType::Lightning || 
+				topMissile->GetType() == CMagicMissile::MagicMissileType::AntiMagic)) {
 
 				CGrpMonster* pGroupMonster = field->GetMonsterGroup();
 				if (pGroupMonster) {
 					CMonster* pHittedMonster = pGroupMonster->GetMonsterByAbsSubPos(posAbs);
 					if (pHittedMonster) {
-						topMissile->Explode();
-						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingFireball.mp3");
-						topMissile->SetDone();
-						pGroupMonster->DoDamage(topMissile->GetStrength() * (rand() % 6 + 1), heroPos, true);
+						CMonsterInfos* monsterInfos = GetMonsterInfos(); 
+						CMonsterConst mc = monsterInfos->GetMonsterInfo(pGroupMonster->GetType());
+						if (mc.non_material == (topMissile->GetType() == CMagicMissile::MagicMissileType::AntiMagic))
+						{
+							topMissile->Explode();
+							if (topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball ||
+								topMissile->GetType() == CMagicMissile::MagicMissileType::Lightning)
+							{
+								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingFireball.mp3");
+							}
+							else {
+								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingSpell.mp3");
+							}
+							topMissile->SetDone();
+							pGroupMonster->DoDamage(topMissile->GetStrength() * (rand() % 6 + 1), heroPos, true);
+						}
 					}
 					else {
 						// todo kann auch spieler treffen!
@@ -1825,13 +1839,16 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 					else {
 						// Nahkampf!
 						CMonsterConst mc = monsterInfos->GetMonsterInfo(pVictims->GetType());
-
 						int dmg = pHero->CalcDmg(weapon, ac, mc, diff);
 						if (dmg > 0) {
 							pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
 							pHero->AttackModeWithDmg(dmg);
 							pGrpHero->setPhaseDelay(2);
 							pGrpHero->setPhase(SHOW_DAMAGE);
+						}
+						else {
+							pGrpHero->setPhaseDelay(2);
+							pGrpHero->setPhase(CHOOSE_HERO);
 						}
 					}
 					/*

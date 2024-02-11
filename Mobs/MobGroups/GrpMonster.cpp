@@ -161,7 +161,7 @@ CMonster* CGrpMonster::AttackHero(VEKTOR monsterPos, VEKTOR heroPos) {
 					}
 				}
 				else {
-					TryToAdavanceToFirstRow(i, monsterPos, heroPos);
+					TryToAdvanceToFirstRow(i, monsterPos, heroPos);
 				}
 			}
 		}
@@ -181,52 +181,60 @@ bool CGrpMonster::isSubPosAbsoluteFree(SUBPOS_ABSOLUTE pos) {
 	return true;
 }
 
-void CGrpMonster::TryToAdavanceToFirstRow(int index, VEKTOR myPos, VEKTOR hisPos) {
-	CCharacter* monster = m_pMember[index];
-	if (monster) {
-		switch (monster->HoleSubPosition())
-		{
-		case NORTHWEST:
-			if (monster->northOf(myPos, hisPos) && isSubPosAbsoluteFree(SOUTHWEST))
-				monster->SetzeSubPosition(SOUTHWEST);
-
-			if (monster->westOf(myPos, hisPos) && isSubPosAbsoluteFree(NORTHEAST))
-				monster->SetzeSubPosition(NORTHEAST);
-
-		case NORTHEAST:
-			if (monster->northOf(myPos, hisPos) && isSubPosAbsoluteFree(SOUTHWEST))
-				monster->SetzeSubPosition(SOUTHWEST);
-
-			if (monster->eastOf(myPos, hisPos) && isSubPosAbsoluteFree(NORTHWEST))
-				monster->SetzeSubPosition(NORTHWEST);
-
-		case SOUTHWEST:
-			if (monster->southOf(myPos, hisPos) && isSubPosAbsoluteFree(NORTHWEST))
-				monster->SetzeSubPosition(NORTHWEST);
-
-			if (monster->westOf(myPos, hisPos) && isSubPosAbsoluteFree(SOUTHEAST))
-				monster->SetzeSubPosition(SOUTHEAST);
-
-		case SOUTHEAST:
-			if (monster->southOf(myPos, hisPos) && isSubPosAbsoluteFree(NORTHEAST))
-				monster->SetzeSubPosition(NORTHEAST);
-
-			if (monster->eastOf(myPos, hisPos) && isSubPosAbsoluteFree(SOUTHWEST))
-				monster->SetzeSubPosition(SOUTHWEST);
-
-		}
-	}
-
-}
-
-CMonster* CGrpMonster::GetBySubpos(SUBPOS pos) {
+int CGrpMonster::Count() {
+	int count = 0;
 	for (int i = 1; i < 5; i++)
 	{
 		CMonster* pMonster = (CMonster*)m_pMember[i];
-		if (pMonster && pMonster->HoleSubPosition() == pos)
-			return pMonster;
+		if (pMonster && pMonster->isAlive()) {
+			count ++;
+		}
 	}
-	return NULL;
+	return count;
+}
+
+void CGrpMonster::TryToAdvanceToFirstRow(int index, VEKTOR myPos, VEKTOR hisPos) {
+	CCharacter* monster = m_pMember[index];
+	if (Count() > 1)
+	{
+		if (monster) {
+			switch (monster->HoleSubPosition())
+			{
+			case NORTHWEST:
+				if (monster->northOf(myPos, hisPos) && isSubPosAbsoluteFree(SOUTHWEST))
+					monster->SetzeSubPosition(SOUTHWEST);
+
+				if (monster->westOf(myPos, hisPos) && isSubPosAbsoluteFree(NORTHEAST))
+					monster->SetzeSubPosition(NORTHEAST);
+
+			case NORTHEAST:
+				if (monster->northOf(myPos, hisPos) && isSubPosAbsoluteFree(SOUTHWEST))
+					monster->SetzeSubPosition(SOUTHWEST);
+
+				if (monster->eastOf(myPos, hisPos) && isSubPosAbsoluteFree(NORTHWEST))
+					monster->SetzeSubPosition(NORTHWEST);
+
+			case SOUTHWEST:
+				if (monster->southOf(myPos, hisPos) && isSubPosAbsoluteFree(NORTHWEST))
+					monster->SetzeSubPosition(NORTHWEST);
+
+				if (monster->westOf(myPos, hisPos) && isSubPosAbsoluteFree(SOUTHEAST))
+					monster->SetzeSubPosition(SOUTHEAST);
+
+			case SOUTHEAST:
+				if (monster->southOf(myPos, hisPos) && isSubPosAbsoluteFree(NORTHEAST))
+					monster->SetzeSubPosition(NORTHEAST);
+
+				if (monster->eastOf(myPos, hisPos) && isSubPosAbsoluteFree(SOUTHWEST))
+					monster->SetzeSubPosition(SOUTHWEST);
+
+			}
+		}
+	}
+	else {
+		monster->SetzeSubPosition(MIDDLE);
+	}
+
 }
 
 bool CGrpMonster::AnyoneReady() {
@@ -291,7 +299,7 @@ CMonster* CGrpMonster::GetMonsterByAbsSubPos(SUBPOS_ABSOLUTE pos) {
 	{
 		CMonster* pMonster = (CMonster*)m_pMember[i];
 		if (pMonster) {
-			if (pMonster->HoleSubPosition() == pos) 
+			if (pMonster->HoleSubPosition() == pos || pMonster->HoleSubPosition() == SUBPOS_ABSOLUTE::MIDDLE)
 				return pMonster;
 		}
 	}

@@ -41,6 +41,7 @@ public:
 		"fuse",
 		"fluxcage"
 	};
+	
 	class AttackStyle {
 	public:
 		CString type = "";

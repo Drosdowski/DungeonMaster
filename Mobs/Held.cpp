@@ -267,6 +267,9 @@ void CHeld::ReduceWhenOverload(double d6_weapon_weight, double d5_load_coefficie
 }
 
 bool CHeld::hitSucessful(CAttackConst ac, CMonsterConst mc, int levelDif) {
+	if (mc.non_material != (ac.name.MakeUpper() == "DISRUPT")) {
+		return false;
+	}
 	double d6_hitProbaility = ac.to_hit / 75.0;
 	int d7_baseDamage = ac.damage;
 	int quickness = (int)m_sVitals.dex.Aktuell + (rand() % 8);
