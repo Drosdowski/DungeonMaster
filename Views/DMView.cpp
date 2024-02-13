@@ -190,7 +190,6 @@ void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
 			pHeld->undoRune();
 		}
 		else {
-
 			int* spell = pHeld->getSpell();
 
 			CItem* itemInHand = pHeld->GetItemCarrying(1);

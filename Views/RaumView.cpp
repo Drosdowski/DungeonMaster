@@ -1181,8 +1181,13 @@ void CRaumView::CheckFlyingItemCollisions(VEKTOR heroPos) {
 				if (pGroupMonster) {
 					CMonster* pHittedMonster = pGroupMonster->GetMonsterByAbsSubPos(posAbs);
 					if (pHittedMonster) {
-						pGroupMonster->DoDamage((rand() % 6 + 1), heroPos, true);
-						topItem->Stop();
+						CMonsterInfos* monsterInfos = GetMonsterInfos();
+						CMonsterConst mc = monsterInfos->GetMonsterInfo(pGroupMonster->GetType());
+						if (!mc.non_material)
+						{
+							pGroupMonster->DoDamage((rand() % 6 + 1), heroPos, true);
+							topItem->Stop();
+						}
 					}
 					else {
 						// todo kann auch spieler treffen!
