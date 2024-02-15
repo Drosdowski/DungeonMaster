@@ -16,6 +16,7 @@ public:
 	CBitmap* GetScreamerSlice() { return m_pScreamerSlice; }
 	CBitmap* GetWormRound() { return m_pWormRound; }
 	CBitmap* GetDrumstick() { return m_pDrumstick; }
+	CBitmap* GetDragonSteak() { return m_pDragonSteak; }
 	CBitmap* GetGoldKey() { return m_pGoldKey; }
 	CBitmap* GetIronKey() { return m_pIronKey; }
 	CBitmap* GetTorch() { return m_pTorch; }
@@ -46,6 +47,7 @@ public:
 	CBitmap* GetIllumunet() { return m_pIllumunet; }
 	CBitmap* GetMailAketon() { return m_pMailAketon; }
 	CBitmap* GetMoonstone() { return m_pMoonstone; }
+	CBitmap* GetEyeOfTime() { return m_pEyeOfTime; }
 
 	CBitmap* GetClub(bool inAir);
 	CBitmap* GetStoneClub(bool inAir);
@@ -75,6 +77,7 @@ private:
 	CBitmap* m_pCheese;
 	CBitmap* m_pScreamerSlice;
 	CBitmap* m_pWormRound;
+	CBitmap* m_pDrumstick;
 	CBitmap* m_pDragonSteak;
 	CBitmap* m_pMagicBox[2];
 	CBitmap* m_pLeatherBoots;
@@ -131,7 +134,6 @@ private:
 	CBitmap* m_pBoulder;
 	CBitmap* m_pRock;
 	CBitmap* m_pScroll;
-	CBitmap* m_pDrumstick;
 	CBitmap* m_pGem[3];
 	CBitmap* m_pBones;
 

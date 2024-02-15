@@ -446,6 +446,8 @@ CBitmap* CItem3DPic::GetMiscBitmap(int miscType, int subType) {
 		bmp = GetWormRound();
 	else if (miscType == CMiscellaneousAttributes::Drumstick)
 		bmp = GetDrumstick();
+	else if (miscType == CMiscellaneousAttributes::DragonSteak)
+		bmp = GetDragonSteak();
 	else if (miscType == CMiscellaneousAttributes::Boulder)
 		bmp = GetBoulder();
 	else if (miscType == CMiscellaneousAttributes::SilverCoin)
