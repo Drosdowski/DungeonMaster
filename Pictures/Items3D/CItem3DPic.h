@@ -119,6 +119,8 @@ private:
 	CBitmap* m_pSceptreOfLyf;
 	CBitmap* m_pStick;
 	CBitmap* m_pCrossbow;
+	CBitmap* m_pBow;
+	CBitmap* m_pStaff;
 	CBitmap* m_pMace;
 	CBitmap* m_pFlamitt;
 	CBitmap* m_pWand;

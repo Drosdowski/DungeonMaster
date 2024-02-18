@@ -411,6 +411,7 @@
     <Image Include="res\Items3D\Item_3d_BootsOfSpeed.bmp" />
     <Image Include="res\Items3D\Item_3d_BootsSuede.bmp" />
     <Image Include="res\Items3D\Item_3d_Boulder.bmp" />
+    <Image Include="res\Items3D\Item_3d_Bow.bmp" />
     <Image Include="res\Items3D\Item_3d_Cheese.bmp" />
     <Image Include="res\Items3D\Item_3d_Chest.bmp" />
     <Image Include="res\Items3D\Item_3d_ChestCenter.bmp" />
@@ -468,6 +469,7 @@
     <Image Include="res\Items3D\Item_3d_Shield_Small.bmp" />
     <Image Include="res\Items3D\Item_3d_SilverCoin.bmp" />
     <Image Include="res\Items3D\Item_3d_Slayer.bmp" />
+    <Image Include="res\Items3D\Item_3d_Staff.bmp" />
     <Image Include="res\Items3D\Item_3d_Stick.bmp" />
     <Image Include="res\Items3D\Item_3d_StoneClub.bmp" />
     <Image Include="res\Items3D\Item_3d_Sword.bmp" />

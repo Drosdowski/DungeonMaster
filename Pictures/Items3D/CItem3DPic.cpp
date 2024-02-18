@@ -56,7 +56,9 @@ CItem3DPic ::~CItem3DPic() {
 	delete m_pVorpalBlade;
 	delete m_pStick;
 	delete m_pCrossbow;
+	delete m_pBow;
 	delete m_pMace;
+	delete m_pStaff;
 	delete m_pDragonspit;
 	delete m_pMorningstar;
 	delete m_pFlamitt;
@@ -136,7 +138,9 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pVorpalBlade, IDB_ITEM3D_VORPAL_BLADE);
 	LoadPic(m_pStick, IDB_ITEM3D_STICK);
 	LoadPic(m_pCrossbow, IDB_ITEM3D_CROSSBOW);
+	LoadPic(m_pBow, IDB_ITEM3D_BOW);
 	LoadPic(m_pMace, IDB_ITEM3D_MACE);
+	LoadPic(m_pStaff, IDB_ITEM3D_STAFF);
 	LoadPic(m_pDragonspit, IDB_ITEM3D_DRAGONSPIT);
 	LoadPic(m_pMorningstar, IDB_ITEM3D_MORNINGSTAR);
 	LoadPic(m_pFlamitt, IDB_ITEM3D_FLAMITT);
@@ -501,6 +505,7 @@ CBitmap* CItem3DPic::GetWeaponBitmap(int weaponType, bool inAir) {
 	if (weaponType >= CWeaponAttributes::Falchion &&
 		weaponType <= CWeaponAttributes::DiamondEdge ||
 		weaponType == CWeaponAttributes::BoltBlade ||
+		weaponType == CWeaponAttributes::Fury ||
 		weaponType == CWeaponAttributes::TheInquisitor)
 		bmp = GetSword(inAir);
 	else if (weaponType == CWeaponAttributes::Axe ||
@@ -540,9 +545,11 @@ CBitmap* CItem3DPic::GetWeaponBitmap(int weaponType, bool inAir) {
 		bmp = m_pStick;
 	else if (weaponType == CWeaponAttributes::Crossbow)
 		bmp = m_pCrossbow;
+	else if (weaponType == CWeaponAttributes::Bow || weaponType == CWeaponAttributes::SpeedBow)
+		bmp = m_pBow;
 	else if (weaponType == CWeaponAttributes::Flamitt)
 		bmp = m_pFlamitt;
-	else if (weaponType == CWeaponAttributes::EyeOfTime)
+	else if (weaponType == CWeaponAttributes::EyeOfTime || weaponType == CWeaponAttributes::Stormring)
 		bmp = m_pEyeOfTime;
 	else if (weaponType == CWeaponAttributes::DragonSpit)
 		bmp = m_pDragonspit;
@@ -552,6 +559,10 @@ CBitmap* CItem3DPic::GetWeaponBitmap(int weaponType, bool inAir) {
 		bmp = m_pWand;
 	else if (weaponType == CWeaponAttributes::MaceOfOrder || weaponType == CWeaponAttributes::Mace)
 		bmp = m_pMace;
+	else if (weaponType == CWeaponAttributes::StaffOfClaws || weaponType == CWeaponAttributes::YewStaff ||
+			weaponType == CWeaponAttributes::StaffOfIrra || weaponType == CWeaponAttributes::SerpentStaff ||
+			weaponType == CWeaponAttributes::Staff || weaponType == CWeaponAttributes::Sling)
+		bmp = m_pStaff;
 	else
 		bmp = NULL;
 

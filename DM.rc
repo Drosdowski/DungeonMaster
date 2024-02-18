@@ -1027,6 +1027,10 @@ IDB_MONSTER_GHOST_ATTACK BITMAP                  "res\\Monster\\Ghost_Attack.bmp
 
 IDB_MONSTER_GHOST_FRONT BITMAP                  "res\\Monster\\Ghost_Front.bmp"
 
+IDB_ITEM3D_STAFF        BITMAP                  "res\\Items3D\\Item_3d_Staff.bmp"
+
+IDB_ITEM3D_BOW          BITMAP                  "res\\Items3D\\Item_3d_Bow.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

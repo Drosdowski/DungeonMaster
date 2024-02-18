@@ -103,9 +103,9 @@ CRaumView::~CRaumView()
 	delete m_pOrnatePic;
 	delete m_pWallDecoPic;
 	delete m_pMonsterPic;
-	delete m_pItem3DPic;
 	delete m_pMagicMissilePic;
 	delete m_pChampionPortraits;
+	delete m_pItem3DPic;
 	delete m_pMap;
 }
 

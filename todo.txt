@@ -11,6 +11,8 @@ Schrift auftauchen / verstecken
 mana usage for spells: 01 02 03 04 05 06 02 03 04 05 06 07 04 05 06 07 07 09 02 02 03 04 06 07
 http://dmweb.free.fr/?q=node/1395
 
+GetOffsetForGroup vervollständigen
+
 BUGS
 =================
 items hit player

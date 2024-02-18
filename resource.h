@@ -199,6 +199,8 @@
 #define IDB_ITEM3D_FIRESTAFF_COMPLETE   481
 #define IDB_ITEM3D_MAGNIFIER            482
 #define IDB_ITEM3D_HALTER               483
+#define IDB_ITEM3D_STAFF                484
+#define IDB_ITEM3D_BOW                  485
 #define IDB_DMG_REC_SMALL               490
 #define IDB_DMG_REC_BIG                 491
 #define IDB_INTERFACE_DEAD              492
@@ -443,7 +445,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        677
+#define _APS_NEXT_RESOURCE_VALUE        679
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101
