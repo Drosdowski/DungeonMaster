@@ -228,7 +228,7 @@ void CDMView::CastMagicMissile(CMagicMissile::MagicMissileType missileType, int 
 	SUBPOS relPos = CHelpfulValues::GetRelativeSubPosPassive(absPos, grpDir);
 	CMagicMissile* magicMissile = new CMagicMissile(missileType, size);
 	SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(relPos, grpDir);
-	VEKTOR force = CHelpfulValues::MakeVektor(grpDir, size);
+	VEKTOR force = CHelpfulValues::MakeVektor(grpDir, size * 4);
 	magicMissile->m_flyForce = force;
 
 	m_pRaumView->GetMap()->GetField(grpHelden->GetVector())->CastMissile(magicMissile, itemRegionReal);
@@ -1027,7 +1027,7 @@ void CDMView::FrameZeichnen(CDC* pDC) {
 						index = pItem->GetType();
 					}
 					else if (pItem->GetGroup() == CItem::Throwable) {
-						index = THROWINDEX;
+						index = pItem->GetType();
 					} 
 					else if (pItem->GetGroup() == CItem::Climb) {
 						index = CLIMBINDEX;

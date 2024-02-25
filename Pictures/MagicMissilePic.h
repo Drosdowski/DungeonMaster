@@ -36,6 +36,6 @@ private:
 	CBitmap* m_pInsidePoison[3];
 	CBitmap* m_pInsideFire[3];
 
-	int sizeToIndex(int size) { return (int)(size - 1) / 2; }
+	int sizeToIndex(int size) { return (int)(size / 2); }
 };
 
