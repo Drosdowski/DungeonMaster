@@ -76,15 +76,16 @@ int CMiscellaneous::GetSheetForGroup() {
 	case Torso:
 	case Legs:
 		return 2;
+	case Throwable:
+		if (m_attribute.type >= CMiscellaneousAttributes::Boulder)
+			return 4;
 	case Other:
 		if (m_attribute.type == CMiscellaneousAttributes::Compass)
 			return 0;
-		if (m_attribute.type >= CMiscellaneousAttributes::Boulder)
-			return 4;
 		if (m_attribute.type >= CMiscellaneousAttributes::CopperCoin && m_attribute.type <= CMiscellaneousAttributes::GoldCoin)
 			return 3;
-		assert(false); // todo !!
 	}
+	assert(false); // todo !!
 	return -1;
 }
 

@@ -126,8 +126,14 @@ void CPictures::WerteZeichnen(CDC* pDC, CHeld* pHeld)
 	int x = (pHeld->getIndex() - 1) * 138 + 94;
 
 	pDC->FillSolidRect(CRect(x, 52 - int(48 * pHeld->LifePart()), x + 7, 52), pHeld->Farbe());
-	pDC->FillSolidRect(CRect(x + 14, 52 - int(48 * pHeld->StaminaPart()), x + 21, 52), pHeld->Farbe());
-	pDC->FillSolidRect(CRect(x + 28, 52 - int(48 * pHeld->ManaPart()), x + 35, 52), pHeld->Farbe());
+	if (pHeld->StaminaPart() > 0)
+	{
+		pDC->FillSolidRect(CRect(x + 14, 52 - int(48 * pHeld->StaminaPart()), x + 21, 52), pHeld->Farbe());
+	}
+	if (pHeld->ManaPart() > 0)
+	{
+		pDC->FillSolidRect(CRect(x + 28, 52 - int(48 * pHeld->ManaPart()), x + 35, 52), pHeld->Farbe());
+	}
 }
 
 void CPictures::WaffeZeichnen(CDC* pDC)

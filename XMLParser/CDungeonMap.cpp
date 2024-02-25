@@ -248,6 +248,7 @@ void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 		if (childElement)
 		{
 			ParseItems(childElement, pos, true);
+			m_pFeld[x][y][etage]->StoreCurrentWeight(pos);
 		}
 	//}
 }
@@ -1522,11 +1523,14 @@ void CDungeonMap::LoadTile(TiXmlElement* tile, int mapIndex) {
 					actuator->QueryIntAttribute("subPos", &subPos);
 					actuator->QueryIntAttribute("active", &active);
 					std::deque<CActuator*> pActuators = pField->GetActuator((COMPASS_DIRECTION)subPos);
-					if (pActuators.back()->GetIndex() != actuatorId) {
-						pField->RotateActuators((COMPASS_DIRECTION)subPos);
-					}
-					if (!active) {
-						pActuators.back()->Deactivate();
+					if (pActuators.size() > 0)
+					{
+						if (pActuators.back()->GetIndex() != actuatorId) {
+							pField->RotateActuators((COMPASS_DIRECTION)subPos);
+						}
+						if (!active) {
+							pActuators.back()->Deactivate();
+						}
 					}
 				}
 				actuator = actuator->NextSiblingElement();

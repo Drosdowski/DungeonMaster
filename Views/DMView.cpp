@@ -388,9 +388,12 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 	if (actuatorsAtPosition.size() > 0)
 		if (CScreenCoords::CheckHitDeco(point, size))
 		{
-			CActuator::ActuatorType type = actuatorsAtPosition.back()->GetType();
 			CActuator* currentActuator = actuatorsAtPosition.back();
+			if (!currentActuator->IsActive()) return false;
+			
 			CActuator* nextActuator = actuatorsAtPosition.front();
+		
+			CActuator::ActuatorType type = currentActuator->GetType();
 			CActuator::ActionTarget actionTarget = currentActuator->GetActionTarget();
 			CItem* itemInHand = grpHelden->GetItemInHand();
 			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->HoleZielFeld(VORWAERTS));
@@ -398,12 +401,10 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 			std::deque<CItem*> itemsInWall = FeldVorHeld->GetItem(posActuator);
 			int data = currentActuator->GetData();
 
-			if (!currentActuator->IsActive()) return false;
 
 			if (type == CActuator::PressurePadTPCI) {
-				// Schalter 
-				//VEKTOR target;
-				InvokeRemoteActuator(currentActuator, nextActuator);
+				// Schalter, keine Druckplatte, da Klick
+				InvokeRemoteWallActuator(currentActuator, nextActuator);
 				return true; // RotateActuators
 			}
 			else if (type == CActuator::Slot /* || type == 3 */) {
@@ -428,7 +429,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 					if (neededItemId == itemInHand->GetType()) {
 						// Match !
 						if (currentActuator->GetActionTarget() == CActuator::Remote) {
-							InvokeRemoteActuator(currentActuator, nextActuator);
+							InvokeRemoteWallActuator(currentActuator, nextActuator);
 						}
 						else assert(false); // todo ...
 
@@ -501,7 +502,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 	return false;
 }
 
-void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextActuator) {
+void CDMView::InvokeRemoteWallActuator(CActuator* activeActuator, CActuator* nextActuator) {
 	VEKTOR target = activeActuator->GetActionTarget() == CActuator::ActionTarget::Remote ? activeActuator->GetTarget() : nextActuator->GetTarget();
 	CField* pTargetField = m_pRaumView->GetMap()->GetField(target);
 	std::deque<CActuator*> pTargetActuators;
@@ -515,7 +516,7 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 		door = pTargetField->HoleDoor();
 		if (activeActuator->GetActionType() == CActuator::Toggle) door->Toggle();
 		if (activeActuator->GetActionType() == CActuator::Set) door->Open();
-		if (activeActuator->GetActionType() == CActuator::Hold) door->Open();
+		if (activeActuator->GetActionType() == CActuator::Hold) door->Open(); // triggered by Gate
 		if (activeActuator->GetActionType() == CActuator::Clear) door->Close();
 		break;
 	case FeldTyp::PIT:
@@ -524,7 +525,7 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 		if (activeActuator->GetActionType() == CActuator::Set) {
 			pit->Close(0);
 		}
-		if (activeActuator->GetActionType() == CActuator::Hold) pit->Open(0);
+		if (activeActuator->GetActionType() == CActuator::Hold) pit->Open(0); // triggered by Gate
 		if (activeActuator->GetActionType() == CActuator::Clear) {
 			pit->Close(0);
 			if (activeActuator->Action() == -1 && nextActuator->Action() == -1)
@@ -559,7 +560,7 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 				trickwall->Close(nextActuator->GetDelay());
 			}
 		}
-		if (activeActuator->GetActionType() == CActuator::Hold) trickwall->Open(0);
+		if (activeActuator->GetActionType() == CActuator::Hold) trickwall->Open(0); // triggered by Gate
 		if (activeActuator->GetActionType() == CActuator::Clear) {
 			trickwall->Close(0);
 			if (activeActuator->Action() == -1 && nextActuator->Action() == -1)
@@ -579,7 +580,7 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 					if (gateActuator->GetType() == CActuator::Gate) {
 						if (activeActuator->GetActionType() == CActuator::Toggle) gateActuator->IncreaseGate();
 						if (gateActuator->GateFull())
-							InvokeRemoteActuator(gateActuator, NULL);
+							InvokeRemoteWallActuator(gateActuator, NULL);
 					}
 					else {
 						assert(false);
@@ -595,7 +596,7 @@ void CDMView::InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextAct
 					if (gateActuator->GetType() == CActuator::Gate) {
 						if (activeActuator->GetActionType() == CActuator::Set) gateActuator->DecreaseGate();
 						if (gateActuator->GateFull())
-							InvokeRemoteActuator(gateActuator, NULL);
+							InvokeRemoteWallActuator(gateActuator, NULL);
 					}
 					else {
 						// assert(false);

@@ -100,7 +100,7 @@ protected:
 	bool ParseClickFountain(CPoint point, CField* FeldVorHeld, COMPASS_DIRECTION dir);
 	// void ParseClickMirror(CPoint point, CField* FeldVorHeld);
 
-	void InvokeRemoteActuator(CActuator* activeActuator, CActuator* nextActuator);
+	void InvokeRemoteWallActuator(CActuator* activeActuator, CActuator* nextActuator);
 	void ChangeMouseCursor();
 
 	void Awake();
