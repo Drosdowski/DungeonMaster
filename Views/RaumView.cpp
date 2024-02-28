@@ -990,15 +990,30 @@ void CRaumView::MoveMonsters(VEKTOR monsterPos) {
 	}
 }
 
-void CRaumView::MoveDoors(VEKTOR heroPos) {
-	CField* field = m_pMap->GetField(heroPos);
+void CRaumView::MoveDoors(VEKTOR position) {
+	CField* field = m_pMap->GetField(position);
+	CGrpHeld* pGrpHeroes = m_pMap->GetHeroes();
+	CGrpMonster* pGrpMonsters = field->GetMonsterGroup();
+	boolean monsterBelowDoor = pGrpMonsters != NULL;
+	boolean playerBelowDoor = CHelpfulValues::VectorEqual(pGrpHeroes->GetVector(), position);
 	CDoor* pDoor = field->HoleDoor();
 	if (pDoor) {
 		if ((pDoor->getState() == CDoor::DoorState::OPENING) ||
 			(pDoor->getState() == CDoor::DoorState::CLOSING))
 		{
-			m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Door.mp3");
-			pDoor->ContinueMoving();
+			if (pDoor->ContinueMoving(monsterBelowDoor | playerBelowDoor)) {
+				m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-RunningIntoAWall.mp3");
+				if (playerBelowDoor) {
+					pGrpHeroes->FallingDamage();
+				}
+				else if (monsterBelowDoor) {
+					pGrpMonsters->FallingDamage();
+					pGrpMonsters->Scare();
+				}
+			}
+			else {
+				m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Door.mp3");
+			}
 		}
 	}
 }
@@ -1050,7 +1065,7 @@ void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagic
 			}
 			else {
 				CGrpHeld* pGrpHeld = m_pMap->GetHeroes();
-				if (CHelpfulValues::VektorEqual(position, pGrpHeld->GetVector()))
+				if (CHelpfulValues::VectorEqual(position, pGrpHeld->GetVector()))
 				{
 					pGrpHeld->DoDamage(topMissile->GetStrength() * 10, position, true);
 				}
