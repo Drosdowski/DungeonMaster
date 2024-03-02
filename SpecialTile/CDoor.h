@@ -22,7 +22,7 @@ public:
 	DoorDecorationType getOrnate() { if (m_attributes.ornateId > 0) return m_ornate; else return PlainDoor; }
 	bool getDoorFrameEastAndWest() { return m_doorFrameEastAndWest; }
 	void Toggle();
-	void ContinueMoving();
+	bool ContinueMoving(boolean someoneBelowDoor);
 	void Open();
 	void Close();
 

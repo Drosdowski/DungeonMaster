@@ -124,7 +124,7 @@ private:
 	void FallingHeroes(VEKTOR pos);
 	void TeleportAll(VEKTOR heroPos);
 	void MoveMonsters(VEKTOR heroPos);
-	void MoveDoors(VEKTOR heroPos);
+	void MoveDoors(VEKTOR position);
 	void PrepareMoveObjects(VEKTOR heroPos);
 	void MoveItems(VEKTOR heroPos);
 	void MoveMagicMissiles(VEKTOR heroPos, SUBPOS_ABSOLUTE pos);

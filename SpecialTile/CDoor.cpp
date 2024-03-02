@@ -9,7 +9,12 @@ CDoor::CDoor(CDoorAttributes attribute, DoorDecorationType ornate, bool doorFram
 	m_ornate = ornate;
 }
 
-void CDoor::ContinueMoving() {
+/// <summary>
+/// Moves the door if moving in any direction
+/// </summary>
+/// <param name="someoneBelowDoor">Player or MonsterGroup</param>
+/// <returns>anyone hit bit the door?</returns>
+bool CDoor::ContinueMoving(boolean someoneBelowDoor) {
 	switch (m_state) {
 	case (OPEN):
 		m_state = CLOSING;
@@ -22,16 +27,22 @@ void CDoor::ContinueMoving() {
 		}
 		break;
 	case (CLOSING):
-		m_bottomHeight -= movingHeight;
-		if (m_bottomHeight <= 0) {
-			m_state = CLOSED;
-			m_bottomHeight = 0;
+		if (someoneBelowDoor && m_bottomHeight < fullHeight) {
+			m_state = OPENING;
+			return true;
+		} else {
+			m_bottomHeight -= movingHeight;
+			if (m_bottomHeight <= 0) {
+				m_state = CLOSED;
+				m_bottomHeight = 0;
+			}
 		}
 		break;
 	case (CLOSED):
 		m_state = OPENING;
 		break;
 	}
+	return false;
 }
 
 void CDoor::Toggle() {
