@@ -192,8 +192,10 @@ void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
 		else {
 			int* spell = pHeld->getSpell();
 
-			CItem* itemInHand = pHeld->GetItemCarrying(1);
-			bool emptyFlaskInHand = itemInHand && itemInHand->GetType() == CPotionAttributes::PotionType::Empty;
+			CItem* itemInLeftHand = pHeld->GetItemCarrying(0);
+			CItem* itemInRightHand = pHeld->GetItemCarrying(1);
+			bool emptyFlaskInLeftHand = itemInLeftHand && itemInLeftHand->GetType() == CPotionAttributes::PotionType::Empty;
+			bool emptyFlaskInRightHand = itemInRightHand && itemInRightHand->GetType() == CPotionAttributes::PotionType::Empty;
 
 			// Magic Missiles
 			if (spell[2] == 4 && spell[3] == 4 && spell[4] <= 0) {
@@ -212,8 +214,15 @@ void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
 				CastMagicMissile(CMagicMissile::MagicMissileType::AntiMagic, spell[1]);
 			}
 			// Potions
-			else if (spell[2] == 2 && emptyFlaskInHand) {
-				CastPotion((CPotion*)itemInHand, spell[1], CPotionAttributes::PotionType::Vi);
+			else if (spell[2] == 1 || spell[2] == 2)
+			{
+				CPotionAttributes::PotionType potionTyp = ((spell[2] == 1) ? CPotionAttributes::Ma : CPotionAttributes::Vi);
+				if (emptyFlaskInRightHand) {
+					CastPotion((CPotion*)itemInRightHand, spell[1], potionTyp);
+				}
+				else if (emptyFlaskInLeftHand) {
+					CastPotion((CPotion*)itemInLeftHand, spell[1], potionTyp);
+				}
 			}
 			pHeld->resetRuneTable();
 		}
@@ -750,14 +759,22 @@ void CDMView::ParseClickBackpack(CPoint point) {
 			// drink potions
 			CPotion* potion = (CPotion*)itemInMainHand;
 			CPotionAttributes att = potion->GetAttributes();
-			if (potion->GetType() == CPotionAttributes::Vi) {
-				pHeld->WerteTemporaerAendern(att.power*10, 0, 0);
-				att.power = 0;
-			}
-			else if (potion->GetType() == CPotionAttributes::Water)
+			switch (potion->GetType())
 			{
+			case CPotionAttributes::Vi:
+				pHeld->WerteTemporaerAendern(att.power * 10, 0, 0);
+				att.power = 0;
+				break;
+			case CPotionAttributes::Ma:
+				pHeld->WerteTemporaerAendern(0, att.power * 10, 0);
+				att.power = 0;
+				break;
+			case CPotionAttributes::Water:
 				pHeld->Trinken(50);
-			}
+				break;
+			default:
+				break;
+			} 
 			pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Swallowing.mp3");
 			att.type = CPotionAttributes::PotionType::Empty;
 			potion->MakePotion(att);

@@ -9,6 +9,7 @@ public:
 		Ku = 7,
 		Dane = 8,
 		Neta = 9,
+		Ma = 9,
 		Bro = 10,
 		Ya = 12,
 		Vi = 14,
