@@ -28,6 +28,7 @@ public:
 	void DrawActionAreaDamage(CDC* pDC, int dmg);
 	void DrawActiveWeapon(CDC* pDC, CHeld* held, int id);
 	void DrawSpecialFont(CDC* pDC, CPoint pos, CString text, int size);
+	void DrawItemInfoText(CDC* pDC, CItem* item);
 	void KnochenZeichnen(CDC* pDC, int index);
 	void NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName);
 	void RucksackZeichnen(CDC* pDC, CGrpHeld* pGrpHelden);
@@ -57,6 +58,7 @@ private:
 	void DrawHand(CDC* pDC, CHeld* pHeld, int index);
 	void DrawText(CDC* pDC, int x, int y, CString text, int h, COLORREF fc, COLORREF bc);
 	void DrawFontText(CDC* pDC, int x, int y, CString text, bool darkFont);
+	CString GetText(CItem* item);
 	CBitmap* GetOrigFontLetter(CDC* pDC, char letter);
 	CBitmap* GetScrollFontLetter(CDC* pDC, char letter);
 

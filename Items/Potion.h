@@ -10,6 +10,7 @@ public:
 	int GetType() { return m_attribute.type; }
 
 	double GetWeight() { return 0.1; }
+	CString GetName();
 	CPotionAttributes GetAttributes() { return m_attribute; }
 
 	int GetSheetForGroup();

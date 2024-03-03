@@ -1038,15 +1038,15 @@ void CDMView::FrameZeichnen(CDC* pDC) {
 			CHeld* pHeld = pGrpHeroes->GetHeroForAction();
 			if (pHeld) {
 				int index;
-				CItem* pItem = pHeld->GetItemCarrying(1);
-				if (pItem) {
-					if (pItem->GetGroup() == CItem::Weapon) {
-						index = pItem->GetType();
+				CItem* pItemMainHand = pHeld->GetItemCarrying(1);
+				if (pItemMainHand) {
+					if (pItemMainHand->GetGroup() == CItem::Weapon) {
+						index = pItemMainHand->GetType();
 					}
-					else if (pItem->GetGroup() == CItem::Throwable) {
-						index = pItem->GetType();
+					else if (pItemMainHand->GetGroup() == CItem::Throwable) {
+						index = pItemMainHand->GetType();
 					} 
-					else if (pItem->GetGroup() == CItem::Climb) {
+					else if (pItemMainHand->GetGroup() == CItem::Climb) {
 						index = CLIMBINDEX;
 					} 
 					else {
@@ -1074,6 +1074,7 @@ void CDMView::FrameZeichnen(CDC* pDC) {
 
 			ZauberReiterZeichnen(pDC, iActiveWizard, pWizard->getRuneTableId(), pWizard->getSpell());
 		}
+		m_pPictures->DrawItemInfoText(pDC, pGrpHeroes->GetItemInHand());
 	}
 
 	m_pPictures->PfeilZeichnen(pDC, m_iDir);

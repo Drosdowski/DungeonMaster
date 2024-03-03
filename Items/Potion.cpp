@@ -32,3 +32,21 @@ CItem::ItemGroup CPotion::GetGroup() {
 void CPotion::MakePotion(CPotionAttributes attributes) {
 	m_attribute = attributes;
 }
+
+CString CPotion::GetName() {
+	switch (m_attribute.type) {
+	case CPotionAttributes::Des: return "Des";
+	case CPotionAttributes::Ven: return "Ven";
+	case CPotionAttributes::Ros: return "Ros";
+	case CPotionAttributes::Ku: return "Ku";
+	case CPotionAttributes::Dane: return "Dane";
+	case CPotionAttributes::Neta: return "Neta";
+	case CPotionAttributes::Ma: return "Ma";
+	case CPotionAttributes::Bro: return "Bro";
+	case CPotionAttributes::Ya: return "Ya";
+	case CPotionAttributes::Vi: return "Vi";
+	case CPotionAttributes::Water: return "Water";
+	case CPotionAttributes::Ful: return "Ful";
+	case CPotionAttributes::Empty: return "Empty";
+	}
+}

@@ -1,9 +1,7 @@
 Features
 =================
-itemInfo / Tooltips when carrying
 Experience / Level
 Gift
-Tür erschlägt monster
 Actions for non-weapons: Horn of Fear, Rope
 CMagicMissile Lightning !
 Schrift auftauchen / verstecken
@@ -23,12 +21,7 @@ stamina 0
 Sounds: switch (wall, floor) - gegenstand fällt (klein, gross)
 
 Chest (Center, Left)
-Ghosts / Vorpal Blade
+
 Wand Deko Ebene 2 links/rechts
-
-
-
-* GATE Bug !
-
 
 

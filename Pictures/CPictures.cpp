@@ -10,7 +10,11 @@
 #include "..\Items\FloorDecoration.h"
 #include "..\Items\Item.h"
 #include "..\Items\Scroll.h"
+#include "..\Items\Cloth.h"
 #include "..\Items\Container.h"
+#include "..\Items\CMiscellaneous.h"
+#include "..\Items\Weapon.h"
+#include "..\Items\Potion.h"
 #include "..\XMLParser\ItemInfos.h"
 #include "..\CalculationHelper\CScreenCoords.h"
 #include "..\CalculationHelper\CHelpfulValues.h"
@@ -625,6 +629,18 @@ void CPictures::GewichtZeichnen(CDC* pDC, CHeld* pHeld) {
 	DrawFontText(pDC, 438 - 12*len, 314, strZeile, false);
 }
 
+void CPictures::DrawItemInfoText(CDC* pDC, CItem* item) {
+	if (item) {
+		pDC->SetTextColor(HELLGRAU);
+		pDC->SetBkColor(SCHWARZ);
+		CString strInfo = GetText(item); 
+		DrawFontText(pDC, 468, 60, strInfo, false);
+	}
+	else {
+		pDC->FillSolidRect(468, 62, 170, 16, SCHWARZ);
+	}
+}
+
 
 void CPictures::DrawSpecialFont(CDC* pDC, CPoint pos, CString text, int size) {
 	FT_Library ft;
@@ -706,4 +722,26 @@ void CPictures::DrawSpecialFont(CDC* pDC, CPoint pos, CString text, int size) {
 
 	FT_Done_Face(face);
 	FT_Done_FreeType(ft);
+}
+
+CString CPictures::GetText(CItem* item) {
+	CItem::ItemType typ = item->getItemType();
+	if (typ == CItem::ItemType::MiscItem) {
+		return ((CMiscellaneous*)item)->GetName();
+	}
+	else if (typ == CItem::ItemType::WeaponItem) {
+		return ((CWeapon*)item)->GetName();
+	}
+	else if (typ == CItem::ItemType::ClothItem) {
+		return ((CCloth*)item)->GetName();
+	}
+	else if (typ == CItem::ItemType::PotionItem) {
+		return ((CPotion*)item)->GetName();
+	}
+	else if (typ == CItem::ItemType::ScrollItem) {
+		return ((CScroll*)item)->GetName();
+	}
+	else if (typ == CItem::ItemType::ContainerItem) {
+		return ((CContainer*)item)->GetName();
+	}
 }

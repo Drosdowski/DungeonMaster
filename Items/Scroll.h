@@ -16,6 +16,7 @@ public:
 	bool IsOpen() { return m_attribute.open; }
 	void SetOpen(bool value);
 	double GetWeight() { return 0.1; }
+	CString GetName();
 
 private:
 	CScrollAttributes m_attribute;

@@ -16,6 +16,7 @@ public:
 
 	int GetType() { return m_attribute.type; };
 	double GetWeight();
+	CString GetName();
 
 	int GetSubtype() {
 		return m_attribute.subtype;

@@ -44,6 +44,7 @@ public:
 	virtual int GetSheetForGroup() { return -1; }
 	virtual int GetOffsetForGroup(bool active) { return -1; }
 	virtual double GetWeight() { return -1; }
+	virtual CString GetName() { return ""; }
 	virtual int GetArmourClass() { return 0; }
 
 	void ClearSubitems(int index) { m_subItems[index] = NULL; }

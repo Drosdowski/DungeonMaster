@@ -12,6 +12,7 @@ public:
 	CWeaponConst  GetAttributes() { return m_attribute.fixAttributes;  }
 	void reduceCharges();
 	double GetWeight();
+	CString GetName();
 
 	int GetSheetForGroup();
 	int GetOffsetForGroup(bool active);

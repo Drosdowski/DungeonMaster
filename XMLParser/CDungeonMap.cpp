@@ -414,7 +414,7 @@ void CDungeonMap::ParseText(TiXmlElement* rootNode, VEKTOR coords) {
 
 
 void CDungeonMap::ParseCreatureGroup(TiXmlElement* creatureGroupItem, VEKTOR coords) {
-	int index, subPos, richt, subIndex, hp, ready;
+	int index, subPos, richt, subIndex, hp, ready = 0;
 	
 	creatureGroupItem->QueryIntAttribute("index", &index);
 	creatureGroupItem->QueryIntAttribute("position", &subPos);

@@ -103,3 +103,62 @@ CItem::ItemGroup CMiscellaneous::GetGroup() {
 double CMiscellaneous::GetWeight() {
 	return m_attribute.fixAttributes.weight[0];
 }
+
+CString CMiscellaneous::GetName() {
+	switch (m_attribute.type) {
+	case CMiscellaneousAttributes::Compass: return "Compass";
+	case CMiscellaneousAttributes::Water: return "Water";
+	case CMiscellaneousAttributes::JewelSymal: return "Jewel Symal";
+	case CMiscellaneousAttributes::Illumulet: return "Illumulet";
+	case CMiscellaneousAttributes::Ashes: return "Ashes";
+	case CMiscellaneousAttributes::BonesHeroes: return "Bones"; // todo
+	case CMiscellaneousAttributes::CopperCoin: return "Copper Coin";
+	case CMiscellaneousAttributes::SilverCoin: return "Silver Coin";
+	case CMiscellaneousAttributes::GoldCoin: return "Gold Coin";
+	case CMiscellaneousAttributes::IronKey: return "Iron Key";
+	case CMiscellaneousAttributes::KeyOfB: return "Key Of B";
+	case CMiscellaneousAttributes::SolidKey: return "Solid Key";
+	case CMiscellaneousAttributes::SquareKey: return "Square Key";
+	case CMiscellaneousAttributes::TurquoiseKey: return "Turquoise Key";
+	case CMiscellaneousAttributes::CrossKey: return "Cross Key";
+	case CMiscellaneousAttributes::SkeletonKey: return "Skeleton Key";
+	case CMiscellaneousAttributes::GoldKey: return "Gold Key";
+	case CMiscellaneousAttributes::WingedKey: return "Winged Key";
+	case CMiscellaneousAttributes::TopazKey: return "Topaz Key";
+	case CMiscellaneousAttributes::EmeraldKey: return "Emerald Key";
+	case CMiscellaneousAttributes::RubyKey: return "Ruby Key";
+	case CMiscellaneousAttributes::RaKey: return "Ra Key";
+	case CMiscellaneousAttributes::MasterKey: return "Master Key";
+	case CMiscellaneousAttributes::Boulder: return "Boulder";
+	case CMiscellaneousAttributes::BlueGem: return "Blue Gem";
+	case CMiscellaneousAttributes::OrangeGem: return "Orange Gem";
+	case CMiscellaneousAttributes::GreenGem: return "Green Gem";
+	case CMiscellaneousAttributes::Apple: return "Apple";
+	case CMiscellaneousAttributes::Corn: return "Corn";
+	case CMiscellaneousAttributes::Bread: return "Bread";
+	case CMiscellaneousAttributes::Cheese: return "Cheese";
+	case CMiscellaneousAttributes::ScreamerSlice: return "Screamer Slice";
+	case CMiscellaneousAttributes::WormRound: return "Worm Round";
+	case CMiscellaneousAttributes::Drumstick: return "Drumstick";
+	// case CMiscellaneousAttributes::Shank: return "Shank";
+	case CMiscellaneousAttributes::DragonSteak: return "Dragon Steak";
+	case CMiscellaneousAttributes::GemOfAges: return "Gem Of Ages";
+	case CMiscellaneousAttributes::EkkhardCross: return "Ekkhard Cross";
+	case CMiscellaneousAttributes::Moonstone: return "Moonstone";
+	case CMiscellaneousAttributes::TheHellion: return "The Hellion";
+	case CMiscellaneousAttributes::PendantFeral: return "Pendant Feral";
+	case CMiscellaneousAttributes::MagicBoxBlue: return "Magic Box Blue";
+	case CMiscellaneousAttributes::MagicBoxGreen: return "Magic Box Green";
+	case CMiscellaneousAttributes::MirrorOfDawn: return "Mirror Of Dawn";
+	case CMiscellaneousAttributes::Rope: return "Rope";
+	case CMiscellaneousAttributes::RabbitsFoot: return "Rabbits Foot";
+	case CMiscellaneousAttributes::Corbum: return "Corbum";
+	case CMiscellaneousAttributes::Choker: return "Choker";
+	case CMiscellaneousAttributes::LockPicks: return "Lock Picks";
+	case CMiscellaneousAttributes::Magnifier: return "Magnifier";
+	case CMiscellaneousAttributes::ZokathraSpell: return "Zokathra Spell";
+	case CMiscellaneousAttributes::Bones: return "Bones";
+	case CMiscellaneousAttributes::Potion: return "Potion";
+	case CMiscellaneousAttributes::Bomb: return "Bomb";
+	}
+}

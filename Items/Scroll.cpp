@@ -33,3 +33,7 @@ int CScroll::GetSheetForGroup() {
 CItem::ItemGroup CScroll::GetGroup() {
 	return Scroll;
 }
+
+CString CScroll::GetName() {
+	return "Scroll";
+}

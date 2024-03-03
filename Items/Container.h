@@ -14,6 +14,7 @@ public:
 	bool IsOpen() { return m_attribute.open; }
 	void SetOpen(bool value);
 	double GetWeight();
+	CString GetName();
 
 	void SetSubitems(CItem* items, int index) { m_subItems[index] = items; }
 	CItem* GetSubItem(int index) { return m_subItems[index]; }

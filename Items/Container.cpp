@@ -95,3 +95,7 @@ CItem* CContainer::SwitchItemAt(int index, CItem* item)
 
 	return carryingBefore;
 }
+
+CString CContainer::GetName() {
+	return "Chest";
+}
