@@ -9,6 +9,7 @@ public:
 	int count;
 	int position[4];
 	int hitPoints[4];
+	int ready[4];
 	CMonsterConst monsterInfo;
 };
 
