@@ -194,7 +194,6 @@ void CField::SetTypeTrickwall(CTrickWall* trickwall) {
 	m_pTrickwall = trickwall;
 }
 
-
 void CField::ThrowItem(CItem* item, SUBPOS_ABSOLUTE index, VEKTOR force) {
 	item->m_flyForce = force;
 	m_pItem[index].push_back(item);

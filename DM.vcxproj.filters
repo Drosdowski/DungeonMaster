@@ -111,9 +111,6 @@
     <ClCompile Include="SpecialTile\CStairs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SpecialTile\CTile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Items\CMiscellaneous.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -386,9 +383,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SpecialTile\CStairs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SpecialTile\CTile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Items\CMiscellaneous.h">

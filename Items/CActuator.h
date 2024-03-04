@@ -37,6 +37,7 @@ public:
 	int GetGraphic() { return m_graphic; }
 	COMPASS_DIRECTION GetPosition() { return m_position; } 
 	bool IsActive() { return m_active;  }
+	void Activate() { m_active = true; }
 	void Deactivate() { m_active = false; }
 	bool IsOnceOnly() { return m_once_only > 0; }
 	int Action() { return m_action; }

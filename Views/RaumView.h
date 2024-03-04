@@ -138,6 +138,8 @@ private:
 	void TriggerPit(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached);
 	void TriggerTeleport(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached, boolean triggerRotate);
 	void TriggerTrickwall(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached);
+	void TriggerMissileShooter(CField* pTargetField, CActuator* actuator, boolean criticalWeightBreached);
+	void TriggerTarget(CField* pTargetField, CActuator* actuator, boolean criticalWeightBreached);
 	void WriteOnWall(CDC* pDC, CPoint pos, CText* text, int ebene);
 };
 

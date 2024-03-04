@@ -1432,30 +1432,33 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 	case CActuator::PressurePadTPC:
 	case CActuator::PressurePadP:
 		if (criticalWeightBreached || criticalWeightGone) {
-			CActuator::ActionTypes type = actuator->GetActionType();
-			TriggerDoor(pTargetField, type, criticalWeightBreached);
-			TriggerPit(pTargetField, type, criticalWeightBreached);
-			TriggerTrickwall(pTargetField, type, criticalWeightBreached);
-			TriggerTeleport(pTargetField, type, criticalWeightBreached, true);
+			TriggerTarget(pTargetField, actuator, criticalWeightBreached);
 			actuator->resetDelay();
-			if (actuator->GetType() != CActuator::PressurePadP)
-			{ 
-				field->RotateActuators(actuator->GetPosition());
-			}
+			//if (actuator->GetType() != CActuator::PressurePadP) // wtf?
+			//{ 
+			field->RotateActuators(actuator->GetPosition());
+			//}
 		}
 		break;
 	case CActuator::Gate:
-		CActuator::ActionTypes type = actuator->GetActionType();
 		if (field->BlockedToWalk()) { // Wall => Switch, no Pressure Pad
-			if (type == CActuator::Hold) return;
+			if (actuator->GetType()  == CActuator::Hold) return;
 		}
-		TriggerDoor(pTargetField, type, true);
-		TriggerPit(pTargetField, type, true);
-		TriggerTeleport(pTargetField, type, true, true);
+		TriggerTarget(pTargetField, actuator, true);
 		actuator->resetDelay();
 		field->RotateActuators(actuator->GetPosition());
 		break;
 	}
+}
+
+void CRaumView::TriggerTarget(CField* pTargetField, CActuator* actuator, boolean criticalWeightBreached) {
+	CActuator::ActionTypes type = actuator->GetActionType();
+
+	TriggerDoor(pTargetField, type, criticalWeightBreached);
+	TriggerPit(pTargetField, type, criticalWeightBreached);
+	TriggerTrickwall(pTargetField, type, criticalWeightBreached);
+	TriggerTeleport(pTargetField, type, criticalWeightBreached, true);
+	TriggerMissileShooter(pTargetField, actuator, criticalWeightBreached);
 }
 
 void CRaumView::TriggerTrickwall(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached)
@@ -1511,6 +1514,41 @@ void CRaumView::TriggerPit(CField* pTargetField, CActuator::ActionTypes type, bo
 			break;
 		}
 	}
+}
+
+void CRaumView::TriggerMissileShooter(CField* pTargetField, CActuator* actuator, boolean criticalWeightBreached) {
+	if (actuator->GetType() == 8)
+	{
+		CActuator::ActionTypes type = actuator->GetActionType();
+		switch (type)
+		{
+		case CActuator::Set:
+			if (criticalWeightBreached) {
+				actuator->Activate();
+			}
+			break;
+		case CActuator::Toggle:
+			if (criticalWeightBreached) {
+				if (actuator->IsActive())
+				{
+					actuator->Deactivate();
+				}
+				else {
+					actuator->Activate();
+				}
+			}
+			break;
+		case CActuator::Clear:
+			if (criticalWeightBreached) {
+				actuator->Deactivate();
+			}
+			break;
+		case CActuator::Hold:
+			actuator->Activate();
+			break;
+		}
+	}
+	
 }
 
 void CRaumView::TriggerDoor(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached) {

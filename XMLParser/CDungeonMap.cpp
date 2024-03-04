@@ -200,7 +200,6 @@ CField* CDungeonMap::ParseTrickWall(TiXmlElement* rootNode, VEKTOR pos) {
 	return new CField(pos, new CTrickWall(type, state));
 }
 
-
 void CDungeonMap::ParseTile(TiXmlElement* rootNode, int etage) {
 	const char* parent = rootNode->Value();
 	int index;

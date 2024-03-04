@@ -3,7 +3,6 @@ Features
 Experience / Level
 Gift
 Actions for non-weapons: Horn of Fear, Rope
-CMagicMissile Lightning !
 Schrift auftauchen / verstecken
 
 mana usage for spells: 01 02 03 04 05 06 02 03 04 05 06 07 04 05 06 07 07 09 02 02 03 04 06 07
