@@ -516,7 +516,9 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 			< / actuator> <!--North / TopLeft-->
 			< / items> */
 	int index, position, graphic, data, once_only, delay;
+	COMPASS_DIRECTION direction;
 	int action = -1;
+	int power = 0;
 	VEKTOR target = coords;
 	CActuator::ActuatorType actuatorType;
 	CActuator::ActionTypes actionType;
@@ -578,6 +580,13 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 			streamValue << strValue;
 			streamValue >> target.y;
 		}
+		else if (strcmp(actuatorAttributes->Value(), "direction") == 0) {
+			const char* strDir = actuatorAttributes->GetText();
+			if (strcmp(strDir, "North") == 0) direction = NORTH;
+			if (strcmp(strDir, "South") == 0) direction = SOUTH;
+			if (strcmp(strDir, "East") == 0) direction = EAST;
+			if (strcmp(strDir, "West") == 0) direction = WEST;
+		}
 		else if (strcmp(actuatorAttributes->Value(), "once_only") == 0) {
 			const char* strValue = actuatorAttributes->GetText();
 			std::stringstream streamValue;
@@ -590,13 +599,20 @@ void CDungeonMap::ParseActuator(TiXmlElement* actuatorItem, VEKTOR coords) {
 			streamValue << strValue;
 			streamValue >> action;
 		}
+		else if (strcmp(actuatorAttributes->Value(), "power") == 0) {
+			const char* strValue = actuatorAttributes->GetText();
+			std::stringstream streamValue;
+			streamValue << strValue;
+			streamValue >> power;
+		}
+
 
 		actuatorAttributes = actuatorAttributes->NextSiblingElement();
 	}
 
 	//WallDecorationType graphicType = graphic > 0 ? m_wallDecorationTypes[graphic, coords.z] : None;
 	//if (graphicType < 0 || graphicType > 255) graphicType = None; 
-	CActuator* actuator = new CActuator(index, (COMPASS_DIRECTION)position, target, actionType, actionTarget, actuatorType, data, graphic, once_only, delay, action);
+	CActuator* actuator = new CActuator(index, (COMPASS_DIRECTION)position, target, actionType, actionTarget, direction, actuatorType, data, graphic, once_only, delay, action, power);
 	m_pFeld[coords.x][coords.y][coords.z]->PutActuator(actuator, (COMPASS_DIRECTION)position);
 }
 

@@ -22,6 +22,8 @@ public:
 
 	SUBPOS_ABSOLUTE static GetRelativeSubPosActive(SUBPOS opponentPos, COMPASS_DIRECTION heroDir);
 	SUBPOS_ABSOLUTE static GetRelativeSubPosPassive(SUBPOS pos, COMPASS_DIRECTION heroDir);
+	SUBPOS_ABSOLUTE static GetFirstPositionFromDirection(COMPASS_DIRECTION heroDir);
+	SUBPOS_ABSOLUTE static GetSecondPositionFromDirection(COMPASS_DIRECTION heroDir);
 	SUBPOS_ABSOLUTE static RightFrom(SUBPOS_ABSOLUTE pos);
 	SUBPOS_ABSOLUTE static LeftFrom(SUBPOS_ABSOLUTE pos);
 

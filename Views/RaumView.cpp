@@ -1448,6 +1448,32 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 		actuator->resetDelay();
 		field->RotateActuators(actuator->GetPosition());
 		break;
+	case CActuator::MissileShooter:
+	case CActuator::DoubleMissileShooter:
+		if (actuator->IsActive())
+		{
+			if (isWall) {
+				CMagicMissile::MagicMissileType missileType;
+				if (actuator->GetData() == 0)
+				{
+					missileType = CMagicMissile::Fireball;
+				}
+				else if (actuator->GetData() == 7) {
+					missileType = CMagicMissile::Poison;
+				}
+				else {
+					assert(false);
+				}
+				CMagicMissile* firstMissile = new CMagicMissile(missileType, actuator->GetPower());
+				field->CastMissile(firstMissile, CHelpfulValues::GetFirstPositionFromDirection(actuator->GetPosition()));
+				CMagicMissile* secondMissile = new CMagicMissile(missileType, actuator->GetPower());
+				field->CastMissile(secondMissile, CHelpfulValues::GetSecondPositionFromDirection(actuator->GetPosition()));
+			}
+			else {
+				// todo check possession...
+				assert(false);
+			}
+		}
 	}
 }
 
@@ -1458,7 +1484,7 @@ void CRaumView::TriggerTarget(CField* pTargetField, CActuator* actuator, boolean
 	TriggerPit(pTargetField, type, criticalWeightBreached);
 	TriggerTrickwall(pTargetField, type, criticalWeightBreached);
 	TriggerTeleport(pTargetField, type, criticalWeightBreached, true);
-	TriggerMissileShooter(pTargetField, actuator, criticalWeightBreached);
+	TriggerTargetActuator(pTargetField, actuator, criticalWeightBreached); // i.e. Missile Launcher
 }
 
 void CRaumView::TriggerTrickwall(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached)
@@ -1516,35 +1542,37 @@ void CRaumView::TriggerPit(CField* pTargetField, CActuator::ActionTypes type, bo
 	}
 }
 
-void CRaumView::TriggerMissileShooter(CField* pTargetField, CActuator* actuator, boolean criticalWeightBreached) {
-	if (actuator->GetType() == 8)
+void CRaumView::TriggerTargetActuator(CField* pTargetField, CActuator* sourceActuator, boolean criticalWeightBreached) {
+	std::deque<CActuator*> targetActuators = pTargetField->GetActuator(sourceActuator->GetDirection());
+	if (targetActuators.size() > 0)
 	{
-		CActuator::ActionTypes type = actuator->GetActionType();
-		switch (type)
+		CActuator* targetActuator = targetActuators.back();
+		CActuator::ActionTypes targetType = targetActuator->GetActionType();
+		switch (targetType)
 		{
 		case CActuator::Set:
 			if (criticalWeightBreached) {
-				actuator->Activate();
+				targetActuator->Activate();
 			}
 			break;
 		case CActuator::Toggle:
 			if (criticalWeightBreached) {
-				if (actuator->IsActive())
+				if (targetActuator->IsActive())
 				{
-					actuator->Deactivate();
+					targetActuator->Deactivate();
 				}
 				else {
-					actuator->Activate();
+					targetActuator->Activate();
 				}
 			}
 			break;
 		case CActuator::Clear:
 			if (criticalWeightBreached) {
-				actuator->Deactivate();
+				targetActuator->Deactivate();
 			}
 			break;
 		case CActuator::Hold:
-			actuator->Activate();
+			targetActuator->Activate();
 			break;
 		}
 	}

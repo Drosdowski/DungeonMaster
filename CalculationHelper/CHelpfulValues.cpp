@@ -150,6 +150,20 @@ SUBPOS_ABSOLUTE CHelpfulValues::GetRelativeSubPosPassive(SUBPOS pos, COMPASS_DIR
 	return pos_abs;
 }
 
+SUBPOS_ABSOLUTE CHelpfulValues::GetFirstPositionFromDirection(COMPASS_DIRECTION heroDir) {
+	if (heroDir == EAST) return SOUTHEAST;
+	if (heroDir == SOUTH) return SOUTHWEST;
+	if (heroDir == WEST) return NORTHWEST;
+	if (heroDir == NORTH) return NORTHEAST;
+}
+SUBPOS_ABSOLUTE CHelpfulValues::GetSecondPositionFromDirection(COMPASS_DIRECTION heroDir) {
+	if (heroDir == EAST) return NORTHEAST;
+	if (heroDir == SOUTH) return SOUTHEAST;
+	if (heroDir == WEST) return SOUTHWEST;
+	if (heroDir == NORTH) return NORTHWEST;
+}
+
+
 CPoint CHelpfulValues::CalcRelSubFloorPosition(BITMAP bmpInfo, CPoint wallMiddlePos, SUBPOS subPos, double faktor, int xx, int ebene)
 {
 	int posX = wallMiddlePos.x;

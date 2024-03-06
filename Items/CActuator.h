@@ -20,17 +20,26 @@ public:
 		Slot = 4,
 		Gate = 5,
 		CreatureGen = 6,
+		MissileShooter = 8,
+		DoubleWeaponShooter = 9,
+		DoubleMissileShooter = 10,
 		Storage = 13,
 		ChampionMirror = 127
 	};
 
-	CActuator(int index, COMPASS_DIRECTION position, VEKTOR target, ActionTypes actionTypes, ActionTarget actionTarget, ActuatorType type, int data, int graphic, int once_only, int delay, int action);
+	CActuator(
+		int index, COMPASS_DIRECTION position, VEKTOR target,
+		ActionTypes actionTypes, ActionTarget actionTarget, COMPASS_DIRECTION direction, 
+		ActuatorType type, int data, int graphic, 
+		int once_only, int delay, int action, int power);
 	~CActuator();
  
 	ActuatorType GetType() { return m_type; }
 	int GetData() { return m_data; }
 	int GetIndex() { return m_index; }
+	int GetPower() { return m_power; }
 	VEKTOR GetTarget() { return m_target; }
+	COMPASS_DIRECTION GetDirection() { return m_TargetDirection;  }
 	ActionTypes GetActionType() { return m_actionType; }
 	ActionTarget GetActionTarget() { return m_actionTarget; }
 	double GetCriticalWeigth() { return 0.1; } // todo wo steht das?
@@ -65,9 +74,10 @@ private:
 	int m_delay;
 	bool m_active;
 	int m_action;
+	int m_power;
 	VEKTOR m_target;
 	ActionTypes m_actionType;
 	ActionTarget m_actionTarget;
-
+	COMPASS_DIRECTION m_TargetDirection;
 };
 
