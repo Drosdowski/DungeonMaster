@@ -159,6 +159,7 @@
     <ClCompile Include="SpecialTile\TrickWall.cpp" />
     <ClCompile Include="Items\Text.cpp" />
     <ClCompile Include="Attributes\TextAttributes.cpp" />
+    <ClCompile Include="Pictures\Creatures\VexirkPic.cpp" />
     <ClCompile Include="XMLParser\MonsterInfos.cpp" />
     <ClCompile Include="XMLParser\AttackInfos.cpp" />
     <ClCompile Include="Attributes\WeaponAttributes.cpp" />
@@ -258,6 +259,7 @@
     <ClInclude Include="SpecialTile\TrickWall.h" />
     <ClInclude Include="Items\Text.h" />
     <ClInclude Include="Attributes\TextAttributes.h" />
+    <ClInclude Include="Pictures\Creatures\VexirkPic.h" />
     <ClInclude Include="XMLParser\MonsterInfos.h" />
     <ClInclude Include="XMLParser\AttackInfos.h" />
     <ClInclude Include="Attributes\ClothAttributes.h" />
@@ -533,6 +535,10 @@
     <Image Include="res\Monster\Trolin_Back.bmp" />
     <Image Include="res\Monster\Trolin_Front.bmp" />
     <Image Include="res\Monster\Trolin_Right.bmp" />
+    <Image Include="res\Monster\Vexirk_Attack.bmp" />
+    <Image Include="res\Monster\Vexirk_Back.bmp" />
+    <Image Include="res\Monster\Vexirk_Front.bmp" />
+    <Image Include="res\Monster\Vexirk_Right.bmp" />
     <Image Include="res\OpenChest.bmp" />
     <Image Include="res\OpenScroll.bmp" />
     <Image Include="res\P.bmp" />

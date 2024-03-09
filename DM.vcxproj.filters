@@ -282,6 +282,9 @@
     <ClCompile Include="Pictures\Creatures\GhostPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pictures\Creatures\VexirkPic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -557,6 +560,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\Creatures\GhostPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\Creatures\VexirkPic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1911,6 +1917,18 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Items3D\Item_3d_Bow.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\Vexirk_Attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\Vexirk_Back.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\Vexirk_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\Vexirk_Right.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
