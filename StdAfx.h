@@ -59,7 +59,7 @@
 #define TRANS_VIO RGB(255, 0, 255)
 #define TRANS_GRA RGB(80, 80, 80)
 #define TRANS_GRE RGB(112, 112, 112)
-#define TRANS_YEL RGB(240,208,0)
+#define TRANS_YEL RGB(240, 240,0)
 
 /// <summary>
 /// Relative Position aus Sicht des Feldes
@@ -272,6 +272,7 @@ enum MonsterTyp {
 	GHOST = 8,
 	MUMMY = 10,
 	SKELETON = 12,
+	VEXIRK = 14,
 	MAGENTA_WORM = 15,
 	TROLIN = 16
 };

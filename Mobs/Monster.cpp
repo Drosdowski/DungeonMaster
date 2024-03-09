@@ -19,7 +19,7 @@ CMonster::CMonster(CCreatureAttributes attributes, int subId): CCharacter(false)
 	m_iReady = attributes.ready[subId];
 	m_attributes = attributes;
 	m_HP.Max = m_HP.Aktuell = attributes.hitPoints[subId];
-	transCol = TRANS_BLU;
+	transCol = attributes.transCol;
 }
 
 
