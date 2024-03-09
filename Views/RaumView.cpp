@@ -758,7 +758,10 @@ void CRaumView::RaumZeichnen(CDC* pDC)
 				int fieldType = pField->HoleTyp();
 
 				if (z > 0) {
-					CField* pFieldAbove = m_pMap->GetField(addx, addy, z - 1);
+					int xSub = m_pMap->GetOffset(z - 1).x - m_pMap->GetOffset(z).x;
+					int ySub = m_pMap->GetOffset(z - 1).y - m_pMap->GetOffset(z).y;
+
+					CField* pFieldAbove = m_pMap->GetField(addx - xSub, addy - ySub, z - 1);
 					int fieldTypeAbove = pFieldAbove->HoleTyp();
 
 					if (fieldTypeAbove == FeldTyp::PIT) {
