@@ -1048,6 +1048,9 @@ void CRaumView::MoveMagicMissiles(VEKTOR position, SUBPOS_ABSOLUTE posAbs) {
 void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagicMissile* topMissile) {
 	// todo refaktorieren mit moveItems
 	CField* field = m_pMap->GetField(position);
+	CGrpHeld* pGrpHeld = m_pMap->GetHeroes();
+	boolean hitsPlayer = CHelpfulValues::VectorEqual(position, pGrpHeld->GetVector());
+
 	if (!topMissile->HasMovedThisTick()) {
 
 		SUBPOS_ABSOLUTE newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, topMissile->m_flyForce);
@@ -1064,8 +1067,7 @@ void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagic
 				}
 			}
 			else {
-				CGrpHeld* pGrpHeld = m_pMap->GetHeroes();
-				if (CHelpfulValues::VectorEqual(position, pGrpHeld->GetVector()))
+				if (hitsPlayer)
 				{
 					pGrpHeld->DoDamage(topMissile->GetStrength() * 10, position, true);
 				}
@@ -1078,7 +1080,7 @@ void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagic
 			CField* newField = m_pMap->GetField(position.x + sign(topMissile->m_flyForce.x), position.y + sign(topMissile->m_flyForce.y), position.z);
 			COMPASS_DIRECTION direction = topMissile->GetDirection();
 
-			if (!newField->BlockedToWalk()) {
+			if (!newField->BlockedToWalk() && !hitsPlayer) {
 				// todo prüfen topMissile = field->TakeMissile(posAbs);
 				field->TakeMissile(posAbs, topMissile);
 				newField = ChangeFieldWithTeleporter(newField, posAbs, direction);
@@ -1464,10 +1466,18 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 				else {
 					assert(false);
 				}
-				CMagicMissile* firstMissile = new CMagicMissile(missileType, actuator->GetPower());
-				field->CastMissile(firstMissile, CHelpfulValues::GetFirstPositionFromDirection(actuator->GetPosition()));
-				CMagicMissile* secondMissile = new CMagicMissile(missileType, actuator->GetPower());
-				field->CastMissile(secondMissile, CHelpfulValues::GetSecondPositionFromDirection(actuator->GetPosition()));
+				COMPASS_DIRECTION dir = actuator->GetPosition();
+				int power = actuator->GetPower();
+				CMagicMissile* firstMissile = new CMagicMissile(missileType, power);
+				VEKTOR force = CHelpfulValues::MakeVektor(dir, power * 4);
+				firstMissile->m_flyForce = force;
+				field->CastMissile(firstMissile, CHelpfulValues::GetFirstPositionFromDirection(dir));
+				
+				CMagicMissile* secondMissile = new CMagicMissile(missileType, power);
+				secondMissile->m_flyForce = force;
+				field->CastMissile(secondMissile, CHelpfulValues::GetSecondPositionFromDirection(dir));
+				actuator->resetDelay();
+				actuator->Deactivate();
 			}
 			else {
 				// todo check possession...
