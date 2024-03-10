@@ -10,6 +10,7 @@ class CRockPilePic;
 class CTrolinPic;
 class CGigglerPic;
 class CPainRatPic;
+class CVexirkPic;
 class CMonsterPic : public CBasePictures
 {
 public:
@@ -28,5 +29,6 @@ private:
 	CTrolinPic* m_pTrolinPic;
 	CGigglerPic* m_pGigglerPic;
 	CPainRatPic* m_pPainRatPic;
+	CVexirkPic* m_pVexirkPic;
 };
 

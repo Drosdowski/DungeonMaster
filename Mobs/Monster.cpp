@@ -81,5 +81,30 @@ int CMonster::CalcDmg(int ID) {
 }
 
 
+bool CMonster::IsLeftForPlayer(VEKTOR monPos, VEKTOR heroPos) {
+	bool horizontalCheck = monPos.y == heroPos.y;
+	bool verticalCheck = monPos.x == heroPos.x;
+	if (horizontalCheck) {
+		if (monPos.x < heroPos.x) {
+			return (m_subPosition == SOUTHEAST || m_subPosition == SOUTHWEST);
+		}
+		else {
+			return (m_subPosition == NORTHEAST || m_subPosition == NORTHWEST);
+		}
+	}
+	else if (verticalCheck) {
+		if (monPos.y < heroPos.y) {
+			return (m_subPosition == NORTHWEST || m_subPosition == SOUTHWEST);
+		}
+		else {
+			return (m_subPosition == NORTHEAST || m_subPosition == SOUTHEAST);
+		}
+	}
+	else {
+		return false;
+	}
+}
+
+
 
 

@@ -75,12 +75,13 @@
 #define IDB_ITEMS_46                    262
 #define IDB_ITEMS_47                    263
 #define IDB_ITEMS_48                    264
-#define IDB_PRESSURE_PAD_1F             265
-#define IDB_PRESSURE_PAD_1L             266
-#define IDB_PRESSURE_PAD_2F             267
-#define IDB_PRESSURE_PAD_2L             268
-#define IDB_PRESSURE_PAD_3F             269
-#define IDB_PRESSURE_PAD_3L             270
+#define IDB_FLOOR_SQUARE_PRESSURE_PAD_F1 265
+#define IDB_FLOOR_SQUARE_PRESSURE_PAD_L1 266
+#define IDB_FLOOR_SQUARE_PRESSURE_PAD_F2 267
+#define IDB_FLOOR_SQUARE_PRESSURE_PAD_L2 268
+#define IDB_FLOOR_SQUARE_PRESSURE_PAD_3F 269
+#define IDB_FLOOR_SQUARE_PRESSURE_PAD_F3 269
+#define IDB_FLOOR_SQUARE_PRESSURE_PAD_L3 270
 #define IDB_FLOOR_PUDDLE_F1             271
 #define IDB_FLOOR_PUDDLE_L1             272
 #define IDB_FLOOR_PUDDLE_F2             273
@@ -113,6 +114,12 @@
 #define IDB_FLOOR_PIT_L2                302
 #define IDB_FLOOR_PIT_F3                303
 #define IDB_FLOOR_PIT_L3                304
+#define IDB_FLOOR_ROUND_PRESSURE_PAD_F1 305
+#define IDB_FLOOR_ROUND_PRESSURE_PAD_F2 306
+#define IDB_FLOOR_ROUND_PRESSURE_PAD_F3 307
+#define IDB_FLOOR_ROUND_PRESSURE_PAD_L1 308
+#define IDB_FLOOR_ROUND_PRESSURE_PAD_L2 309
+#define IDB_FLOOR_ROUND_PRESSURE_PAD_L3 310
 #define IDB_TELEPORTER                  320
 #define IDB_BITMAP_P                    391
 #define IDB_ITEM3D_GOLDKEY              400
@@ -201,6 +208,7 @@
 #define IDB_ITEM3D_HALTER               483
 #define IDB_ITEM3D_STAFF                484
 #define IDB_ITEM3D_BOW                  485
+#define IDB_ITEM3D_MAGINFIER            486
 #define IDB_DMG_REC_SMALL               490
 #define IDB_DMG_REC_BIG                 491
 #define IDB_INTERFACE_DEAD              492
@@ -449,7 +457,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        683
+#define _APS_NEXT_RESOURCE_VALUE        690
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

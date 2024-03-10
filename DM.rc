@@ -373,17 +373,17 @@ IDB_ITEM3D_APPLE        BITMAP                  "res\\Items3D\\Item_3d_Apple.bmp
 
 IDB_ITEM3D_BREAD        BITMAP                  "res\\Items3D\\Item_3d_Bread.bmp"
 
-IDB_PRESSURE_PAD_1F     BITMAP                  "res\\Floor\\SquarePressurePad_1F.bmp"
+IDB_FLOOR_SQUARE_PRESSURE_PAD_F1 BITMAP                  "res\\Floor\\SquarePressurePad_F1.bmp"
 
-IDB_PRESSURE_PAD_1L     BITMAP                  "res\\Floor\\SquarePressurePad_1L.bmp"
+IDB_FLOOR_SQUARE_PRESSURE_PAD_L1 BITMAP                  "res\\Floor\\SquarePressurePad_L1.bmp"
 
-IDB_PRESSURE_PAD_2F     BITMAP                  "res\\Floor\\SquarePressurePad_2F.bmp"
+IDB_FLOOR_SQUARE_PRESSURE_PAD_F2 BITMAP                  "res\\Floor\\SquarePressurePad_F2.bmp"
 
-IDB_PRESSURE_PAD_2L     BITMAP                  "res\\Floor\\SquarePressurePad_2L.bmp"
+IDB_FLOOR_SQUARE_PRESSURE_PAD_L2 BITMAP                  "res\\Floor\\SquarePressurePad_L2.bmp"
 
-IDB_PRESSURE_PAD_3F     BITMAP                  "res\\Floor\\SquarePressurePad_3F.bmp"
+IDB_FLOOR_SQUARE_PRESSURE_PAD_F3 BITMAP                  "res\\Floor\\SquarePressurePad_F3.bmp"
 
-IDB_PRESSURE_PAD_3L     BITMAP                  "res\\Floor\\SquarePressurePad_3L.bmp"
+IDB_FLOOR_SQUARE_PRESSURE_PAD_L3 BITMAP                  "res\\Floor\\SquarePressurePad_L3.bmp"
 
 IDB_FLOOR_PUDDLE_F1     BITMAP                  "res\\Floor\\FloorPuddle_F1.bmp"
 
@@ -1038,6 +1038,18 @@ IDB_MONSTER_VEXIRK_BACK BITMAP                  "res\\Monster\\Vexirk_Back.bmp"
 IDB_MONSTER_VEXIRK_FRONT BITMAP                  "res\\Monster\\Vexirk_Front.bmp"
 
 IDB_MONSTER_VEXIRK_RIGHT BITMAP                  "res\\Monster\\Vexirk_Right.bmp"
+
+IDB_FLOOR_ROUND_PRESSURE_PAD_F1 BITMAP                  "res\\Floor\\RoundPressurePad_F1.bmp"
+
+IDB_FLOOR_ROUND_PRESSURE_PAD_F2 BITMAP                  "res\\Floor\\RoundPressurePad_F2.bmp"
+
+IDB_FLOOR_ROUND_PRESSURE_PAD_F3 BITMAP                  "res\\Floor\\RoundPressurePad_F3.bmp"
+
+IDB_FLOOR_ROUND_PRESSURE_PAD_L1 BITMAP                  "res\\Floor\\RoundPressurePad_L1.bmp"
+
+IDB_FLOOR_ROUND_PRESSURE_PAD_L2 BITMAP                  "res\\Floor\\RoundPressurePad_L2.bmp"
+
+IDB_FLOOR_ROUND_PRESSURE_PAD_L3 BITMAP                  "res\\Floor\\RoundPressurePad_L3.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

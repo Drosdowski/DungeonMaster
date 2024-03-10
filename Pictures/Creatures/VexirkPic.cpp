@@ -38,3 +38,5 @@ CBitmap* CVexirkPic::GetVexirkPic(int index, bool attacking) {
 	if (index == 2) return m_pVexirkBack;
 	if (index == 3) return m_pVexirkLeft;
 
+	return NULL;
+}

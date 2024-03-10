@@ -20,6 +20,7 @@ public:
 	bool IstBereit() { return m_iReady == 0; };
 	int transCol;
 	int GetReady() { return m_iReady; }
+	bool IsLeftForPlayer(VEKTOR monPos, VEKTOR heroPos);
 
 // Operationen
 
@@ -32,6 +33,7 @@ public:
 	void MoveDone() { m_iReady = m_attributes.monsterInfo.move_dur; } 
 	int getDealingDmg() { return m_dealingDmg; }
 	MonsterTyp getType() { return m_attributes.type; }
+	CMonsterConst getInfo() { return m_attributes.monsterInfo;  }
 	bool TurnTo(COMPASS_DIRECTION iDirection);
 	int CalcDmg(int ID);
 

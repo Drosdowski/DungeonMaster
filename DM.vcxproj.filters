@@ -1931,6 +1931,24 @@
     <Image Include="res\Monster\Vexirk_Right.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Floor\RoundPressurePad_F1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\RoundPressurePad_F2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\RoundPressurePad_F3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\RoundPressurePad_L1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\RoundPressurePad_L2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\RoundPressurePad_L3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

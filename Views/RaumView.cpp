@@ -129,9 +129,9 @@ void CRaumView::DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene) {
 	
 }
 
-void CRaumView::DrawSquarePressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene) {
+void CRaumView::DrawPressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene, boolean isRound) {
 	BITMAP bmpInfo;
-	CBitmap* bmp = m_pPressurePadPic->GetPressurePadPic(xxx, ebene);
+	CBitmap* bmp = m_pPressurePadPic->GetPressurePadPic(xxx, ebene, isRound);
 	if (bmp) {
 		CPoint floorMiddlePos = m_pPressurePadPic->GetPos(xxx, ebene);
 		if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) {
@@ -546,8 +546,12 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 
 	std::deque<CActuator*> actuators = pField->GetActuator((COMPASS_DIRECTION)0);  // Boden hat immer POsition 0.
 	for (CActuator* actuator : actuators) {
-		if (actuator->GetGraphic() == 3 || actuator->GetGraphic() == 1 || actuator->GetGraphic() == 4) {
-			DrawSquarePressurePad(pDC, cdc, xxx, ebene);
+		if (actuator->GetGraphic() == 3 || actuator->GetGraphic() == 1) {
+			// 1 = square, 4 = round, 7 = tiny
+			DrawPressurePad(pDC, cdc, xxx, ebene, false);
+		}
+		else if (actuator->GetGraphic() == 4) {
+			DrawPressurePad(pDC, cdc, xxx, ebene, true);
 		}
 	}
 
@@ -1695,23 +1699,49 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 				switch (pGrpMon->GetType()) {
 				case MonsterTyp::SKELETON:
 					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
+					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
 				case MonsterTyp::SCREAMER:
 					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Screamer-Oitu).mp3"); break;
+					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
 				case MonsterTyp::ROCKPILE:
+					// todo poison
 					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Rockpile).mp3"); break;
+					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
 				case MonsterTyp::MAGENTA_WORM:
 					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(MagentaWorm).mp3"); break;
+					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
 				case MonsterTyp::MUMMY:
 				case MonsterTyp::GHOST:
 					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Mummy-Ghost).mp3"); break;
+					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
 				case MonsterTyp::GIGGLER:
 					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Giggler).mp3"); break;
+					// todo stealing !
 				case MonsterTyp::TROLIN:
 					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Trolin-StoneGolem)-TouchingWall.mp3"); break;
+					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
 				case MonsterTyp::PAINRAT:
 					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(PainRat-RedDragon).mp3"); break;
+					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
+				case MonsterTyp::VEXIRK:
+					CField* field = m_pMap->GetField(pGrpMon->HoleZielFeld(LINKS_DREHEN)); // get field where monster actuall is
+					COMPASS_DIRECTION dir = pGrpMon->GetDirection();
+					int power = attackingMonster->getInfo().attack_power;
+					CMagicMissile* missile = new CMagicMissile(CMagicMissile::Fireball, power);
+					VEKTOR force = CHelpfulValues::MakeVektor(dir, power * 4);
+					missile->m_flyForce = force;
+					if (attackingMonster->IsLeftForPlayer(monPos, heroPos))
+					{
+						field->CastMissile(missile, CHelpfulValues::GetFirstPositionFromDirection(dir));
+					}
+					else {
+						field->CastMissile(missile, CHelpfulValues::GetSecondPositionFromDirection(dir));
+					}
+
+					// todo monster infos https://gamefaqs.gamespot.com/snes/588299-dungeon-master/faqs/33244
+					break;
 				}
-				pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
+
 
 			}
 			return monPos;
@@ -1756,6 +1786,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 					case MonsterTyp::MUMMY:
 					case MonsterTyp::GIGGLER:
 					case MonsterTyp::TROLIN:
+					case MonsterTyp::VEXIRK:
 						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(Mummy-Trolin-StoneGolem-Giggler-Vexirk-Demon).mp3"); break;
 					case MonsterTyp::GHOST:
 						break;

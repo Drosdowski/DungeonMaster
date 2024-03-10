@@ -10,31 +10,47 @@ CPressurePadPic::CPressurePadPic(CDC* pDC) : CBasePictures(pDC)
 CPressurePadPic::~CPressurePadPic()
 {
 	for (int erbse = 1; erbse < 4; erbse++) {
-		delete m_pPressurePadFront[erbse];
-		delete m_pPressurePadLeft[erbse];
-		delete m_pPressurePadRight[erbse];
+		delete m_pSquarePressurePadFront[erbse];
+		delete m_pSquarePressurePadLeft[erbse];
+		delete m_pSquarePressurePadRight[erbse];
+
+		delete m_pRoundPressurePadFront[erbse];
+		delete m_pRoundPressurePadLeft[erbse];
+		delete m_pRoundPressurePadRight[erbse];
 	}
 }
 
 void CPressurePadPic::InitPressurePads() {
-	LoadPic(m_pPressurePadFront[1], IDB_PRESSURE_PAD_1F); 
-	LoadPic(m_pPressurePadLeft[1], IDB_PRESSURE_PAD_1L);
-	LoadPicAndFlip(m_pPressurePadRight[1], IDB_PRESSURE_PAD_1L);
+	LoadPic(m_pSquarePressurePadFront[1], IDB_FLOOR_SQUARE_PRESSURE_PAD_F1); 
+	LoadPic(m_pSquarePressurePadLeft[1], IDB_FLOOR_SQUARE_PRESSURE_PAD_L1);
+	LoadPicAndFlip(m_pSquarePressurePadRight[1], IDB_FLOOR_SQUARE_PRESSURE_PAD_L1);
 
-	LoadPic(m_pPressurePadFront[2], IDB_PRESSURE_PAD_2F);
-	LoadPic(m_pPressurePadLeft[2], IDB_PRESSURE_PAD_2L);
-	LoadPicAndFlip(m_pPressurePadRight[2], IDB_PRESSURE_PAD_2L);
+	LoadPic(m_pSquarePressurePadFront[2], IDB_FLOOR_SQUARE_PRESSURE_PAD_F2);
+	LoadPic(m_pSquarePressurePadLeft[2], IDB_FLOOR_SQUARE_PRESSURE_PAD_L2);
+	LoadPicAndFlip(m_pSquarePressurePadRight[2], IDB_FLOOR_SQUARE_PRESSURE_PAD_L2);
 
-	LoadPic(m_pPressurePadFront[3], IDB_PRESSURE_PAD_3F);
-	LoadPic(m_pPressurePadLeft[3], IDB_PRESSURE_PAD_3L);
-	LoadPicAndFlip(m_pPressurePadRight[3], IDB_PRESSURE_PAD_3L);
+	LoadPic(m_pSquarePressurePadFront[3], IDB_FLOOR_SQUARE_PRESSURE_PAD_F3);
+	LoadPic(m_pSquarePressurePadLeft[3], IDB_FLOOR_SQUARE_PRESSURE_PAD_L3);
+	LoadPicAndFlip(m_pSquarePressurePadRight[3], IDB_FLOOR_SQUARE_PRESSURE_PAD_L3);
+
+	LoadPic(m_pRoundPressurePadFront[1], IDB_FLOOR_ROUND_PRESSURE_PAD_F1);
+	LoadPic(m_pRoundPressurePadLeft[1], IDB_FLOOR_ROUND_PRESSURE_PAD_L1);
+	LoadPicAndFlip(m_pRoundPressurePadRight[1], IDB_FLOOR_ROUND_PRESSURE_PAD_F1);
+
+	LoadPic(m_pRoundPressurePadFront[2], IDB_FLOOR_ROUND_PRESSURE_PAD_F2);
+	LoadPic(m_pRoundPressurePadLeft[2], IDB_FLOOR_ROUND_PRESSURE_PAD_L2);
+	LoadPicAndFlip(m_pRoundPressurePadRight[2], IDB_FLOOR_ROUND_PRESSURE_PAD_L2);
+
+	LoadPic(m_pRoundPressurePadFront[3], IDB_FLOOR_ROUND_PRESSURE_PAD_F3);
+	LoadPic(m_pRoundPressurePadLeft[3], IDB_FLOOR_ROUND_PRESSURE_PAD_L3);
+	LoadPicAndFlip(m_pRoundPressurePadRight[3], IDB_FLOOR_ROUND_PRESSURE_PAD_L3);
 }
 
-CBitmap* CPressurePadPic::GetPressurePadPic(int xxx, int ebene) {
+CBitmap* CPressurePadPic::GetPressurePadPic(int xxx, int ebene, boolean isRound) {
 	if (ebene > 0) {
-		if (xxx == 2) return m_pPressurePadLeft[ebene];
-		if (xxx == 3) return m_pPressurePadRight[ebene];
-		if (xxx == 4) return m_pPressurePadFront[ebene];
+		if (xxx == 2) return isRound ? m_pRoundPressurePadLeft[ebene] : m_pSquarePressurePadLeft[ebene];
+		if (xxx == 3) return isRound ? m_pRoundPressurePadRight[ebene] : m_pSquarePressurePadRight[ebene];
+		if (xxx == 4) return isRound ? m_pRoundPressurePadFront[ebene] : m_pSquarePressurePadFront[ebene];
 	}
 	return NULL;
 }

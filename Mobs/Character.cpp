@@ -52,7 +52,6 @@ void CCharacter::AddDmg(int value) {
 	m_iReceivedDmg += value;
 }
 
-
 bool CCharacter::InFrontOfOpponent(VEKTOR myPos, VEKTOR hisPos, bool emptyNorthRow, bool emptyEastRow, bool emptySouthRow, bool emptyWestRow) {
 	if (myPos.z != hisPos.z) return false;
 		

@@ -2,6 +2,7 @@
 #include "..\CBasePictures.h"
 class CVexirkPic : public CBasePictures
 {
+public:
 	CVexirkPic(CDC* pDC);
 	~CVexirkPic();
 
