@@ -398,6 +398,12 @@
     <Image Include="res\Floor\SquarePressurePad_2L.bmp" />
     <Image Include="res\Floor\SquarePressurePad_3F.bmp" />
     <Image Include="res\Floor\SquarePressurePad_3L.bmp" />
+    <Image Include="res\Floor\SquarePressurePad_F1.bmp" />
+    <Image Include="res\Floor\SquarePressurePad_F2.bmp" />
+    <Image Include="res\Floor\SquarePressurePad_F3.bmp" />
+    <Image Include="res\Floor\SquarePressurePad_L1.bmp" />
+    <Image Include="res\Floor\SquarePressurePad_L2.bmp" />
+    <Image Include="res\Floor\SquarePressurePad_L3.bmp" />
     <Image Include="res\Fonts\Font_Black.bmp" />
     <Image Include="res\Fonts\Font_LightGrey.bmp" />
     <Image Include="res\Fonts\Font_Wall.bmp" />
@@ -535,6 +541,9 @@
     <Image Include="res\Monster\PainRat_Right.bmp" />
     <Image Include="res\Monster\RockPile_Attack.bmp" />
     <Image Include="res\Monster\RockPile_Front.bmp" />
+    <Image Include="res\Monster\Ruster_Back.bmp" />
+    <Image Include="res\Monster\Ruster_Front.bmp" />
+    <Image Include="res\Monster\Ruster_Right.bmp" />
     <Image Include="res\Monster\Screamer_Attack.bmp" />
     <Image Include="res\Monster\Screamer_Front.bmp" />
     <Image Include="res\Monster\Trolin_Attack.bmp" />

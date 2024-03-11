@@ -1949,6 +1949,33 @@
     <Image Include="res\Floor\RoundPressurePad_L3.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Monster\Ruster_Back.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\Ruster_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\Ruster_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\SquarePressurePad_F1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\SquarePressurePad_L1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\SquarePressurePad_F2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\SquarePressurePad_L2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\SquarePressurePad_F3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\SquarePressurePad_L3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

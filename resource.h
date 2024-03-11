@@ -267,6 +267,9 @@
 #define IDB_MONSTER_VEXIRK_BACK         627
 #define IDB_MONSTER_VEXIRK_FRONT        628
 #define IDB_MONSTER_VEXIRK_RIGHT        629
+#define IDB_MONSTER_RUSTER_BACK         630
+#define IDB_MONSTER_RUSTER_FRONT        631
+#define IDB_MONSTER_RUSTER_RIGHT        632
 #define IDB_MISSILE_CLUB_B              740
 #define IDB_MISSILE_CLUB_F              741
 #define IDB_MISSILE_CLUB_S              742
@@ -457,7 +460,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        690
+#define _APS_NEXT_RESOURCE_VALUE        693
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

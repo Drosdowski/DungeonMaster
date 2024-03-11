@@ -1051,6 +1051,12 @@ IDB_FLOOR_ROUND_PRESSURE_PAD_L2 BITMAP                  "res\\Floor\\RoundPressu
 
 IDB_FLOOR_ROUND_PRESSURE_PAD_L3 BITMAP                  "res\\Floor\\RoundPressurePad_L3.bmp"
 
+IDB_MONSTER_RUSTER_BACK BITMAP                  "res\\Monster\\Ruster_Back.bmp"
+
+IDB_MONSTER_RUSTER_FRONT BITMAP                  "res\\Monster\\Ruster_Front.bmp"
+
+IDB_MONSTER_RUSTER_RIGHT BITMAP                  "res\\Monster\\Ruster_Right.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
