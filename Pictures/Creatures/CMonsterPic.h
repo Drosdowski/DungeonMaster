@@ -11,6 +11,7 @@ class CTrolinPic;
 class CGigglerPic;
 class CPainRatPic;
 class CVexirkPic;
+class CRusterPic;
 class CMonsterPic : public CBasePictures
 {
 public:
@@ -30,5 +31,6 @@ private:
 	CGigglerPic* m_pGigglerPic;
 	CPainRatPic* m_pPainRatPic;
 	CVexirkPic* m_pVexirkPic;
+	CRusterPic* m_pRusterPic;
 };
 

@@ -932,6 +932,9 @@ void CDungeonMap::ParseCreatureObjects(TiXmlElement* rootNode) {
 			if (attribute.type == GIGGLER) {
 				attribute.transCol = TRANS_YEL;
 			}
+			else if (attribute.type == RUSTER) {
+				attribute.transCol = TRANS_RED;
+			}
 			else {
 				attribute.transCol = TRANS_BLU;
 			}

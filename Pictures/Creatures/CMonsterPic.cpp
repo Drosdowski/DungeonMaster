@@ -12,6 +12,7 @@
 #include "GigglerPic.h"
 #include "RatPic.h"
 #include "VexirkPic.h"
+#include "RusterPic.h"
 
 CMonsterPic::CMonsterPic(CDC* pDC) : CBasePictures(pDC) {
 	m_pMummyPic = new CMummyPic(pDC);
@@ -24,6 +25,7 @@ CMonsterPic::CMonsterPic(CDC* pDC) : CBasePictures(pDC) {
 	m_pGigglerPic = new CGigglerPic(pDC);
 	m_pPainRatPic = new CPainRatPic(pDC);
 	m_pVexirkPic = new CVexirkPic(pDC);
+	m_pRusterPic = new CRusterPic(pDC);
 }
 
 CMonsterPic::~CMonsterPic() {
@@ -37,6 +39,7 @@ CMonsterPic::~CMonsterPic() {
 	delete m_pGigglerPic;
 	delete m_pPainRatPic;
 	delete m_pVexirkPic;
+	delete m_pRusterPic;
 }
 
 CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
@@ -63,6 +66,8 @@ CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
 		return m_pGhostPic->GetGhostPic(pMonster->isAttacking());
 	case MonsterTyp::VEXIRK:
 		return m_pVexirkPic->GetVexirkPic(iRicht, pMonster->isAttacking());
+	case MonsterTyp::RUSTER:
+		return m_pRusterPic->GetRusterPic(iRicht);
 	default:
 		break;
 	}

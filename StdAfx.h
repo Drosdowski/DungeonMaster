@@ -59,7 +59,8 @@
 #define TRANS_VIO RGB(255, 0, 255)
 #define TRANS_GRA RGB(80, 80, 80)
 #define TRANS_GRE RGB(112, 112, 112)
-#define TRANS_YEL RGB(240, 240,0)
+#define TRANS_YEL RGB(240, 240, 0)
+#define TRANS_RED RGB(240, 0, 0)
 
 /// <summary>
 /// Relative Position aus Sicht des Feldes
@@ -267,6 +268,7 @@ enum FeldTyp {
 enum MonsterTyp {
 	GIGGLER = 2,
 	PAINRAT = 4,
+	RUSTER = 5,
 	SCREAMER = 6,
 	ROCKPILE = 7,
 	GHOST = 8,

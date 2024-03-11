@@ -1782,6 +1782,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 					case MonsterTyp::ROCKPILE:
 					case MonsterTyp::MAGENTA_WORM:
 					case MonsterTyp::PAINRAT:
+					case MonsterTyp::RUSTER:
 						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(Screamer-Rockpile-MagentaWorm-PainRat-Ruster-GiantScorpion-Oitu).mp3"); break;
 					case MonsterTyp::MUMMY:
 					case MonsterTyp::GIGGLER:
