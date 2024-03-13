@@ -80,6 +80,11 @@ int CMonster::CalcDmg(int ID) {
 	return rand() % m_attributes.monsterInfo.attack_power;
 }
 
+void CMonster::RestoreFromSaveGame(SUBPOS_ABSOLUTE subPos, int hp, int ready) {
+	m_HP.Aktuell = hp;
+	m_iReady = ready;
+	m_subPosition = subPos;
+}
 
 bool CMonster::IsLeftForPlayer(VEKTOR monPos, VEKTOR heroPos) {
 	bool horizontalCheck = monPos.y == heroPos.y;

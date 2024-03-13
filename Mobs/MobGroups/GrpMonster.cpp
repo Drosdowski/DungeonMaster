@@ -33,9 +33,7 @@ CGrpMonster::CGrpMonster(VEKTOR pos, CCreatureAttributes attributes, int index) 
 	
 	for (int i = 1; i <= attributes.count; i++)
 	{
-		if (i <= attributes.count) {
-			InitMonster(i, attributes);
-		}
+		InitMonster(i, attributes);
 	}
 	m_posPosition = pos;
 	m_index = index;

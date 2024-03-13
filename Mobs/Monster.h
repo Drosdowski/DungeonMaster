@@ -21,6 +21,7 @@ public:
 	int transCol;
 	int GetReady() { return m_iReady; }
 	bool IsLeftForPlayer(VEKTOR monPos, VEKTOR heroPos);
+	void RestoreFromSaveGame(SUBPOS_ABSOLUTE subPos, int hp, int ready);
 
 // Operationen
 

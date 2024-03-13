@@ -425,9 +425,6 @@ void CDungeonMap::ParseCreatureGroup(TiXmlElement* creatureGroupItem, VEKTOR coo
 		creatureGroupItem->QueryIntAttribute("subIndex", &subIndex);
 		creatureGroupItem->QueryIntAttribute("hp", &hp);
 		creatureGroupItem->QueryIntAttribute("ready", &ready);
-		attribute.position[subIndex] = subPos;
-		attribute.hitPoints[subIndex] = hp;
-		attribute.ready[subIndex] = ready;
 	}
 	CGrpMonster* pGrpMonster = m_pFeld[coords.x][coords.y][coords.z]->GetMonsterGroup();
 	if (!pGrpMonster) {
@@ -437,7 +434,10 @@ void CDungeonMap::ParseCreatureGroup(TiXmlElement* creatureGroupItem, VEKTOR coo
 			pGrpMonster->SetDirection((COMPASS_DIRECTION)richt);
 		}
 		m_pFeld[coords.x][coords.y][coords.z]->SetMonsterGroup(pGrpMonster);
-		// todo restore ready counter
+	}
+	if (saveGameExists)
+	{
+		pGrpMonster->GetMonster(subIndex)->RestoreFromSaveGame((SUBPOS_ABSOLUTE)subPos, hp, ready);
 	}
 
 	TiXmlElement* parentElement = creatureGroupItem->FirstChildElement();
