@@ -129,9 +129,9 @@ void CRaumView::DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene) {
 	
 }
 
-void CRaumView::DrawPressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene, boolean isRound) {
+void CRaumView::DrawPressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene, boolean isRound, bool isTiny) {
 	BITMAP bmpInfo;
-	CBitmap* bmp = m_pPressurePadPic->GetPressurePadPic(xxx, ebene, isRound);
+	CBitmap* bmp = m_pPressurePadPic->GetPressurePadPic(xxx, ebene, isRound, isTiny);
 	if (bmp) {
 		CPoint floorMiddlePos = m_pPressurePadPic->GetPos(xxx, ebene);
 		if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) {
@@ -547,11 +547,16 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 	std::deque<CActuator*> actuators = pField->GetActuator((COMPASS_DIRECTION)0);  // Boden hat immer POsition 0.
 	for (CActuator* actuator : actuators) {
 		if (actuator->GetGraphic() == 3 || actuator->GetGraphic() == 1) {
-			// 1 = square, 4 = round, 7 = tiny
-			DrawPressurePad(pDC, cdc, xxx, ebene, false);
+			// 1 = square
+			DrawPressurePad(pDC, cdc, xxx, ebene, false, false);
 		}
 		else if (actuator->GetGraphic() == 4) {
-			DrawPressurePad(pDC, cdc, xxx, ebene, true);
+			// 4 = round
+			DrawPressurePad(pDC, cdc, xxx, ebene, true, false);
+		}
+		else if (actuator->GetGraphic() == 7) {
+			// 7 = tiny
+			DrawPressurePad(pDC, cdc, xxx, ebene, false, true);
 		}
 	}
 

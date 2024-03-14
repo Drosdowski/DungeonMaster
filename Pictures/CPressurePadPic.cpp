@@ -17,6 +17,10 @@ CPressurePadPic::~CPressurePadPic()
 		delete m_pRoundPressurePadFront[erbse];
 		delete m_pRoundPressurePadLeft[erbse];
 		delete m_pRoundPressurePadRight[erbse];
+
+		delete m_pTinyPressurePadFront[erbse];
+		delete m_pTinyPressurePadLeft[erbse];
+		delete m_pTinyPressurePadRight[erbse];
 	}
 }
 
@@ -44,13 +48,25 @@ void CPressurePadPic::InitPressurePads() {
 	LoadPic(m_pRoundPressurePadFront[3], IDB_FLOOR_ROUND_PRESSURE_PAD_F3);
 	LoadPic(m_pRoundPressurePadLeft[3], IDB_FLOOR_ROUND_PRESSURE_PAD_L3);
 	LoadPicAndFlip(m_pRoundPressurePadRight[3], IDB_FLOOR_ROUND_PRESSURE_PAD_L3);
+
+	LoadPic(m_pTinyPressurePadFront[1], IDB_FLOOR_TINY_PRESSURE_PAD_F1);
+	LoadPic(m_pTinyPressurePadLeft[1], IDB_FLOOR_TINY_PRESSURE_PAD_L1);
+	LoadPicAndFlip(m_pTinyPressurePadRight[1], IDB_FLOOR_TINY_PRESSURE_PAD_F1);
+
+	LoadPic(m_pTinyPressurePadFront[2], IDB_FLOOR_TINY_PRESSURE_PAD_F2);
+	LoadPic(m_pTinyPressurePadLeft[2], IDB_FLOOR_TINY_PRESSURE_PAD_L2);
+	LoadPicAndFlip(m_pTinyPressurePadRight[2], IDB_FLOOR_TINY_PRESSURE_PAD_L2);
+
+	LoadPic(m_pTinyPressurePadFront[3], IDB_FLOOR_TINY_PRESSURE_PAD_F3);
+	LoadPic(m_pTinyPressurePadLeft[3], IDB_FLOOR_TINY_PRESSURE_PAD_L3);
+	LoadPicAndFlip(m_pTinyPressurePadRight[3], IDB_FLOOR_TINY_PRESSURE_PAD_L3);
 }
 
-CBitmap* CPressurePadPic::GetPressurePadPic(int xxx, int ebene, boolean isRound) {
+CBitmap* CPressurePadPic::GetPressurePadPic(int xxx, int ebene, boolean isRound, boolean isTiny) {
 	if (ebene > 0) {
-		if (xxx == 2) return isRound ? m_pRoundPressurePadLeft[ebene] : m_pSquarePressurePadLeft[ebene];
-		if (xxx == 3) return isRound ? m_pRoundPressurePadRight[ebene] : m_pSquarePressurePadRight[ebene];
-		if (xxx == 4) return isRound ? m_pRoundPressurePadFront[ebene] : m_pSquarePressurePadFront[ebene];
+		if (xxx == 2) return isTiny ? m_pTinyPressurePadLeft[ebene] : isRound ? m_pRoundPressurePadLeft[ebene] : m_pSquarePressurePadLeft[ebene];
+		if (xxx == 3) return isTiny ? m_pTinyPressurePadRight[ebene] : isRound ? m_pRoundPressurePadRight[ebene] : m_pSquarePressurePadRight[ebene];
+		if (xxx == 4) return isTiny ? m_pTinyPressurePadFront[ebene] : isRound ? m_pRoundPressurePadFront[ebene] : m_pSquarePressurePadFront[ebene];
 	}
 	return NULL;
 }

@@ -406,6 +406,12 @@
     <Image Include="res\Floor\SquarePressurePad_L1.bmp" />
     <Image Include="res\Floor\SquarePressurePad_L2.bmp" />
     <Image Include="res\Floor\SquarePressurePad_L3.bmp" />
+    <Image Include="res\Floor\TinyPressurePad_F1.bmp" />
+    <Image Include="res\Floor\TinyPressurePad_F2.bmp" />
+    <Image Include="res\Floor\TinyPressurePad_F3.bmp" />
+    <Image Include="res\Floor\TinyPressurePad_L1.bmp" />
+    <Image Include="res\Floor\TinyPressurePad_L2.bmp" />
+    <Image Include="res\Floor\TinyPressurePad_L3.bmp" />
     <Image Include="res\Fonts\Font_Black.bmp" />
     <Image Include="res\Fonts\Font_LightGrey.bmp" />
     <Image Include="res\Fonts\Font_Wall.bmp" />

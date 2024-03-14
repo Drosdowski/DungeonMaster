@@ -1057,6 +1057,18 @@ IDB_MONSTER_RUSTER_FRONT BITMAP                  "res\\Monster\\Ruster_Front.bmp
 
 IDB_MONSTER_RUSTER_RIGHT BITMAP                  "res\\Monster\\Ruster_Right.bmp"
 
+IDB_FLOOR_TINY_PRESSURE_PAD_F1 BITMAP                  "res\\Floor\\TinyPressurePad_F1.bmp"
+
+IDB_FLOOR_TINY_PRESSURE_PAD_F2 BITMAP                  "res\\Floor\\TinyPressurePad_F2.bmp"
+
+IDB_FLOOR_TINY_PRESSURE_PAD_F3 BITMAP                  "res\\Floor\\TinyPressurePad_F3.bmp"
+
+IDB_FLOOR_TINY_PRESSURE_PAD_L1 BITMAP                  "res\\Floor\\TinyPressurePad_L1.bmp"
+
+IDB_FLOOR_TINY_PRESSURE_PAD_L2 BITMAP                  "res\\Floor\\TinyPressurePad_L2.bmp"
+
+IDB_FLOOR_TINY_PRESSURE_PAD_L3 BITMAP                  "res\\Floor\\TinyPressurePad_L3.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

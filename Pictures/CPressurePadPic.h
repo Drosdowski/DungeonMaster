@@ -6,7 +6,7 @@ public:
 	CPressurePadPic(CDC* pDC);
 	~CPressurePadPic();
 
-	CBitmap* GetPressurePadPic(int ebene, int xx, boolean isRound);
+	CBitmap* GetPressurePadPic(int ebene, int xx, boolean isRound, boolean isTiny);
 	CPoint GetPos(int x, int ebene);
 	CPoint GetCeilingPos(int x, int ebene);
 
@@ -21,4 +21,7 @@ private:
 	CBitmap* m_pRoundPressurePadRight[4];
 	CBitmap* m_pRoundPressurePadFront[4];
 
+	CBitmap* m_pTinyPressurePadLeft[4];
+	CBitmap* m_pTinyPressurePadRight[4];
+	CBitmap* m_pTinyPressurePadFront[4];
 };
