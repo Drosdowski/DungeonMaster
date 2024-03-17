@@ -13,6 +13,7 @@
 #include "RatPic.h"
 #include "VexirkPic.h"
 #include "RusterPic.h"
+#include "WaterElementalPic.h"
 
 CMonsterPic::CMonsterPic(CDC* pDC) : CBasePictures(pDC) {
 	m_pMummyPic = new CMummyPic(pDC);
@@ -26,6 +27,7 @@ CMonsterPic::CMonsterPic(CDC* pDC) : CBasePictures(pDC) {
 	m_pPainRatPic = new CPainRatPic(pDC);
 	m_pVexirkPic = new CVexirkPic(pDC);
 	m_pRusterPic = new CRusterPic(pDC);
+	m_pWaterElementalPic = new CWaterElementalPic(pDC);
 }
 
 CMonsterPic::~CMonsterPic() {
@@ -40,6 +42,7 @@ CMonsterPic::~CMonsterPic() {
 	delete m_pPainRatPic;
 	delete m_pVexirkPic;
 	delete m_pRusterPic;
+	delete m_pWaterElementalPic;
 }
 
 CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
@@ -68,6 +71,8 @@ CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
 		return m_pVexirkPic->GetVexirkPic(iRicht, pMonster->isAttacking());
 	case MonsterTyp::RUSTER:
 		return m_pRusterPic->GetRusterPic(iRicht);
+	case MonsterTyp::WATER_ELEMENTAL:
+		return m_pWaterElementalPic->GetWaterElementalPic(pMonster->isAttacking());
 	default:
 		break;
 	}

@@ -276,7 +276,8 @@ enum MonsterTyp {
 	SKELETON = 12,
 	VEXIRK = 14,
 	MAGENTA_WORM = 15,
-	TROLIN = 16
+	TROLIN = 16,
+	WATER_ELEMENTAL = 20
 };
 
 enum Phase {

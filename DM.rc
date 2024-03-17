@@ -1069,6 +1069,10 @@ IDB_FLOOR_TINY_PRESSURE_PAD_L2 BITMAP                  "res\\Floor\\TinyPressure
 
 IDB_FLOOR_TINY_PRESSURE_PAD_L3 BITMAP                  "res\\Floor\\TinyPressurePad_L3.bmp"
 
+IDB_MONSTER_WATERELEMENTAL_ATTACK BITMAP                  "res\\Monster\\WaterElemental_Attack.bmp"
+
+IDB_MONSTER_WATERELEMENTAL_FRONT BITMAP                  "res\\Monster\\WaterElemental_Front.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

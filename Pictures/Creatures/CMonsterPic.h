@@ -12,6 +12,7 @@ class CGigglerPic;
 class CPainRatPic;
 class CVexirkPic;
 class CRusterPic;
+class CWaterElementalPic;
 class CMonsterPic : public CBasePictures
 {
 public:
@@ -32,5 +33,6 @@ private:
 	CPainRatPic* m_pPainRatPic;
 	CVexirkPic* m_pVexirkPic;
 	CRusterPic* m_pRusterPic;
+	CWaterElementalPic* m_pWaterElementalPic;
 };
 
