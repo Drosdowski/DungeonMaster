@@ -206,21 +206,13 @@ bool CGrpHeld::AsleepAndAttacked() {
 
 bool CGrpHeld::Altern(CField* field)
 {
-	bool anyoneAlive = false;
-
+	bool didHurt = false;
 	for (int i = 1; i < 5; i++)
 	{
 		CHeld* pHeld = (CHeld*)m_pMember[i];
 		if (pHeld)
 		{
-			bool heroAlive = pHeld->Altern();
-			if (!heroAlive) {
-				// nicht löschen - wiederbeleben möglich!
-
-			}
-			else {
-				anyoneAlive = true;
-			}
+			didHurt = didHurt || pHeld->Altern();
 		}
 	}
 	if (m_iPhaseDelay <= 0)
@@ -233,7 +225,7 @@ bool CGrpHeld::Altern(CField* field)
 	else {
 		m_iPhaseDelay--;
 	}
-	return anyoneAlive;
+	return didHurt;
 }
 
 CHeld* CGrpHeld::GetAttackingHero() {
@@ -312,6 +304,17 @@ bool CGrpHeld::Laufbereit()
 		}
 
 	return bLaufbereit;
+}
+
+bool CGrpHeld::isAlive() {
+	for (int i = 1; i < 5; i++)
+	{
+		if (m_pMember[i] && m_pMember[i]->isAlive()) {
+			return true;
+		}
+
+	}
+	return false;
 }
 
 void CGrpHeld::Laufen(VEKTOR WunschPos, bool teleport) {

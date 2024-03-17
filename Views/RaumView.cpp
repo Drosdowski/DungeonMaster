@@ -966,7 +966,8 @@ void CRaumView::MoveMonsters(VEKTOR monsterPos) {
 	CGrpMonster* pGrpMon = field->GetMonsterGroup();
 	if (pGrpMon)
 	{
-		if (!pGrpMon->Altern(field)) {
+		pGrpMon->Altern(field);
+		if (!pGrpMon->isAlive()) {
 			// Gruppe ausgestorben!
 			std::deque<CItem*> inventory = pGrpMon->DropInventory();
 			if (!inventory.empty()) {
@@ -1731,6 +1732,9 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 				case MonsterTyp::WATER_ELEMENTAL:
 					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
 					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB - SoundEffect - Attack(WaterElemental).mp3"); break;
+				case MonsterTyp::RUSTER:
+					// silent attack
+					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false); break;
 				case MonsterTyp::VEXIRK:
 					CField* field = m_pMap->GetField(pGrpMon->HoleZielFeld(LINKS_DREHEN)); // get field where monster actuall is
 					COMPASS_DIRECTION dir = pGrpMon->GetDirection();

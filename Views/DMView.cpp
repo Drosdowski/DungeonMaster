@@ -1131,13 +1131,18 @@ void CDMView::OnTimer(UINT nIDEvent)
 
 	if (!m_bPause) {
 		CGrpHeld* pGrpHeld = m_pRaumView->GetHeroes();
+		if (!pGrpHeld->isAlive()) {
+			// todo alle tot.
+		}
 		CField* pField = m_pRaumView->GetMap()->GetField(pGrpHeld->GetVector());
 		if (pGrpHeld->AsleepAndAttacked())
 		{
 			Awake();
 		}
-		if (!pGrpHeld->Altern(pField)) {
-			// todo: alle tot
+		if (pGrpHeld->Altern(pField)) {
+			std::string fileName = "C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ChampionWounded";
+			fileName.push_back(49 + (rand() % 4));
+			pDoc->PlayDMSound(fileName + ".mp3");
 		}
 		for (int i = 1; i < 5; i++)
 		{

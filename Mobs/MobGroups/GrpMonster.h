@@ -34,6 +34,7 @@ public:
 	bool IsScared() { return m_iScaredCounter > 0;}
 	bool AnyoneReady();
 	bool EveryoneReady();
+	bool isAlive();
 	CMonster* GetMonsterByRelSubPos(SUBPOS posIndex, COMPASS_DIRECTION richt);
 	CMonster* GetMonsterByAbsSubPos(SUBPOS_ABSOLUTE pos);
 	MonsterTyp GetType();

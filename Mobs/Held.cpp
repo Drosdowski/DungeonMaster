@@ -121,20 +121,20 @@ void CHeld::DelItem(CItem* pItem) {
 
 bool CHeld::Altern()
 {
-	bool alive = CCharacter::Altern();
+	CCharacter::Altern();
 	if (m_dealingDmg > 0)
 	{
 		m_dealingDmg = 0;
 		// phase
 	}
-
+	bool didHurt = false;
 	// erstmal konstant, später hp & st abhängig 
 	// von VIT, ma von WIS sowie von FOOD & WATER
-	if (alive)
+	if (isAlive())
 	{
 		if (m_iReceivedDmg > 0) {
 			// damage
-			alive = ReceiveDamage(m_iReceivedDmg);
+			didHurt = ReceiveDamage(m_iReceivedDmg);
 			m_iReceivedDmg = 0;
 		}
 
@@ -159,7 +159,7 @@ bool CHeld::Altern()
 			m_delay--;
 		}
 	}
-	return alive;
+	return didHurt;
 }
 
 void CHeld::WerteSetzen(double hp, double st, double ma) {

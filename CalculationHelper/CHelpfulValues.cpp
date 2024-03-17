@@ -246,7 +246,7 @@ CPoint CHelpfulValues::CalcRelSubFloorPosition(BITMAP bmpInfo, CPoint wallMiddle
 	return CPoint(posX, posY);
 }
 
-CPoint CHelpfulValues::CalcSubPosition(CPoint p, SUBPOS subPos, double &faktor) {
+CPoint CHelpfulValues::CalcSubPosition(CPoint p, SUBPOS subPos, double faktor) {
 	int posX = p.x;
 	int posY = p.y;
 	if (subPos == LINKSBACK) {

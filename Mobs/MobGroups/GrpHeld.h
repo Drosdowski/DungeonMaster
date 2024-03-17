@@ -39,6 +39,7 @@ public:
 	void EmptyHand();
 
 	virtual bool Laufbereit();
+	bool isAlive();
 	void Laufen(VEKTOR WunschPos, bool teleport);
 
 	void PutGetItem(int handOfHeroId, int heroId);

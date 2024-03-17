@@ -102,13 +102,13 @@ void CGrpMonster::Scare() {
 
 bool CGrpMonster::Altern(CField* field)
 {
-	bool anyoneAlive = false;
+	bool didHurt = false;
 	for (int i=1; i<5; i++)
 	{
 		CMonster* pMonster= (CMonster*) m_pMember[i];
 		if (pMonster) {
-			bool monsterAlive = pMonster->Altern();
-			if (!monsterAlive)
+			didHurt = didHurt || pMonster->Altern();
+			if (!pMonster->isAlive())
 			{
 				CMagicMissile* dust = new CMagicMissile(CMagicMissile::MagicMissileType::Dust, pMonster->GetSize());
 				dust->Explode();
@@ -118,12 +118,9 @@ bool CGrpMonster::Altern(CField* field)
 				delete m_pMember[i];
 				m_pMember[i] = NULL;
 			}
-			else {
-				anyoneAlive = true;
-			}
 		}
 	}
-	return anyoneAlive;
+	return didHurt;
 }
 
 
@@ -257,6 +254,18 @@ bool CGrpMonster::EveryoneReady() {
 		}
 	}
 	return true;
+}
+
+bool CGrpMonster:: isAlive() {
+	for (int i = 1; i < 5; i++)
+	{
+		CMonster* pMonster = (CMonster*)m_pMember[i];
+		if (pMonster) {
+			if (pMonster->isAlive())
+				return true;
+		}
+	}
+	return false;
 }
 
 void CGrpMonster::MoveDone() {
