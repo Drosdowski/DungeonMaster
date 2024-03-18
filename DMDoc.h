@@ -15,7 +15,6 @@
 #pragma once
 #endif // _MSC_VER >= 1000
 
-class CRaumView; // todo abrüsten
 class CDMDoc : public CDocument
 {
 protected: // create from serialization only
@@ -31,9 +30,6 @@ public:
 
 // Implementation
 public:
-	void SetRaumView(CRaumView* pRaumView);
-	void SetzeRichtung(int iRichtung);
-	void Laufen();	
 	void PlayDMSound(std::string file);
 	
 	virtual ~CDMDoc();
@@ -44,16 +40,13 @@ public:
 
 	// Generated message map functions
 protected:
-	CDC* m_pDC;
 	//{{AFX_MSG(CDMDoc)
 		// NOTE - the ClassWizard will add and remove member functions here.
 		//    DO NOT EDIT what you see in these blocks of generated code !
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-private:
-	int m_iWunschRichtung;
 
-	CRaumView* m_pRaumView;
+
 };
 
 /////////////////////////////////////////////////////////////////////////////

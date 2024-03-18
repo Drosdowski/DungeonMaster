@@ -49,6 +49,9 @@ public:
 // Implementation
 public:
 	void InitDungeon(CDMDoc* pDoc);
+	void SetzeRichtung(int iRichtung);
+	void Laufen();
+
 	virtual ~CDMView();
 
 #ifdef _DEBUG
@@ -74,6 +77,8 @@ protected:
 	bool m_bPause;
 	DMMode m_iModus;
 	DMMode lastModus;
+	int m_iWunschRichtung;
+
 	//{{AFX_MSG(CDMView)
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);

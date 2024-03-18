@@ -65,6 +65,7 @@ CDMView::CDMView()
 	m_bPause = false;
 	m_iModus = MOD_LAUFEN;
 	lastModus = MOD_LAUFEN;
+	m_iWunschRichtung = 0;
 	m_iDir = 0;
 	((CDMApp*)AfxGetApp())->SetView(this);
 
@@ -126,14 +127,13 @@ CDMDoc* CDMView::GetDocument() // non-debug version is inline
 // CDMView message handlers
 
 void CDMView::ParseClickArrows(CPoint point) {
-	CDMDoc* pDoc = (CDMDoc*)GetDocument();
 	int newDir = CScreenCoords::CheckHitArrows(point);
 	if (newDir > 0) {
 		m_iDir = newDir;
 		if ((m_iModus == MOD_LAUFEN) && (m_iDir > 0))
 		{
 			UpdateGrafik();
-			pDoc->SetzeRichtung(m_iDir);
+			SetzeRichtung(m_iDir);
 		}
 	}
 }
@@ -965,7 +965,7 @@ void CDMView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				if (m_iDir > 0)
 				{
 					UpdateGrafik();
-					pDoc->SetzeRichtung(m_iDir); // noch nicht laufen, nur anmelden
+					SetzeRichtung(m_iDir); // noch nicht laufen, nur anmelden
 				}
 				else if (grpHelden->GetModus() == BACKPACK) {
 					UpdateGrafik();
@@ -1166,7 +1166,7 @@ void CDMView::OnTimer(UINT nIDEvent)
 
 		if (m_iDir > 0)
 		{
-			pDoc->Laufen();
+			Laufen();
 			m_iDir = 0;
 		}
 		UpdateGrafik();
@@ -1197,7 +1197,6 @@ void CDMView::InitDungeon(CDMDoc* pDoc)
 	CDC* pDC = GetDC();
 	m_pPictures = new CPictures(pDC);
 	m_pRaumView->InitDungeon(pDoc, pDC, m_pPictures);
-	pDoc->SetRaumView(m_pRaumView);
 }
 
 void CDMView::ChangeMouseCursor() {
@@ -1225,4 +1224,73 @@ void CDMView::Awake() {
 	heroes->SetzeModus(DEFAULT);
 	m_iModus = MOD_LAUFEN;
 	SetTimer(7, 166, NULL);
+}
+
+
+void CDMView::Laufen()
+{
+	VEKTOR posTarget, posFrom, posFinal;
+	CGrpHeld* pGrpHeroes = m_pRaumView->GetHeroes();
+	CDMDoc* pDoc = (CDMDoc*)GetDocument();
+	boolean collision = false;
+	posFrom = pGrpHeroes->GetVector();
+	bool bLaufbereit = m_pRaumView->GetHeroes()->Laufbereit();
+
+	switch (m_iWunschRichtung)
+	{
+	case LINKS_DREHEN:
+	case RECHTS_DREHEN:
+		if (bLaufbereit)
+		{
+			m_pRaumView->TriggerMoveAnimation();
+			if (m_pRaumView->OnStairs()) {
+				// auf Treppe drehen = Treppe nutzen!
+				posFinal = m_pRaumView->Betrete(posFrom, collision);
+				pGrpHeroes->Laufen(posFinal, false);
+			}
+			else {
+				if (m_iWunschRichtung == LINKS_DREHEN)
+					pGrpHeroes->DrehenRelativ(LINKS);
+				else
+					pGrpHeroes->DrehenRelativ(RECHTS);
+			}
+		}
+		break;
+	case LINKS_STRAFE:
+	case RUECKWAERTS:
+	case RECHTS_STRAFE:
+	case VORWAERTS:
+		if (bLaufbereit)
+		{
+			if (m_pRaumView->OnStairs() && m_iWunschRichtung == RUECKWAERTS) {
+				// Sonderregel: Treppe rückwärts läuft nicht gegen die Wand hinter der Gruppe, sondern rauf/runter
+				posFinal = m_pRaumView->Betrete(posFrom, collision);
+				m_pRaumView->TriggerMoveAnimation();
+				pGrpHeroes->Laufen(posFinal, false);
+			}
+			else {
+
+				posTarget = pGrpHeroes->HoleZielFeld(m_iWunschRichtung);
+				posFinal = m_pRaumView->Betrete(posTarget, collision);
+				if (collision)
+				{
+					pGrpHeroes->Kollision(m_iWunschRichtung);
+					pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-RunningIntoAWall.mp3");
+				}
+				else if (posFinal.x != posFrom.x || posFinal.y != posFrom.y || posFinal.z != posFrom.z)
+				{
+					m_pRaumView->TriggerMoveAnimation();
+					pGrpHeroes->Laufen(posFinal, false);
+				}
+			}
+		}
+		break;
+	}
+	m_iWunschRichtung = 0;
+}
+
+
+void CDMView::SetzeRichtung(int iRichtung)
+{
+	m_iWunschRichtung = iRichtung;
 }
