@@ -218,7 +218,7 @@ void CPictures::RucksackZeichnen(CDC* pDC, CGrpHeld* pGrpHelden)
 			ZeichneContainer(pDC, (CContainer*)pActiveItem);
 		else
 			ZeichneHungerDurst(pDC, pHeld->getFood(), pHeld->getWater());
-	else if (bLooking) {
+	else {
 		if (pItem) {
 			if (pItem->getItemType() == CItem::ScrollItem)
 				ZeichneScroll(pDC, (CScroll*)pItem);
@@ -269,6 +269,8 @@ void CPictures::ZeichneIcons(CDC* pDC, CHeld* pHeld) {
 }
 
 void CPictures::ZeichneItemInfo(CDC* pDC, CItem* item) {
+	pDC->FillSolidRect(CRect(220, 170, 380, 300), GANZDUNKELGRAU);
+
 	// todo
 }
 
