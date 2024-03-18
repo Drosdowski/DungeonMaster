@@ -204,7 +204,7 @@ bool CGrpHeld::AsleepAndAttacked() {
 
 
 
-bool CGrpHeld::Altern(CField* field)
+bool CGrpHeld::Altern()
 {
 	bool didHurt = false;
 	for (int i = 1; i < 5; i++)
@@ -276,23 +276,6 @@ void CGrpHeld::PutGetItem(int handOfHeroId, int heroId) {
 			GetHero(heroId)->RemoveItemCarrying(handOfHeroId);
 	}
 }
-
-bool CGrpHeld::ThrowItemInHeroHand(CHeld* pHero, CField* field, SUBPOS seite) {
-	if (!field->BlockedToWalk()) {
-		CItem* item = pHero->GetItemCarrying(1);
-		if (item) {
-			COMPASS_DIRECTION grpDir = GetDirection();
-			SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(seite, grpDir);
-			VEKTOR force = CHelpfulValues::MakeVektor(grpDir, 6);
-			pHero->RemoveItemCarrying(1);
-			field->ThrowItem(item, itemRegionReal, force);
-			EmptyHand();
-			return true; // for sound
-		}
-	}
-	return false;
-}
-
 
 bool CGrpHeld::Laufbereit()
 {

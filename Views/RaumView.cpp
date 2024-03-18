@@ -1968,11 +1968,22 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 			{
 				SUBPOS_ABSOLUTE abspos = pHero->HoleSubPosition();
 				SUBPOS pos = CHelpfulValues::GetRelativeSubPosPassive(abspos, pGrpHero->GetDirection());
-				if (pGrpHero->ThrowItemInHeroHand(pHero, field, pos)) {
-					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
-					pGrpHero->setPhaseDelay(2);
-					pGrpHero->setPhase(SHOW_DAMAGE);
+
+				if (!field->BlockedToWalk()) {
+					CItem* item = pHero->GetItemCarrying(1);
+					if (item) {
+						COMPASS_DIRECTION grpDir = pGrpHero->GetDirection();
+						SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(pos, grpDir);
+						VEKTOR force = CHelpfulValues::MakeVektor(grpDir, 6);
+						pHero->RemoveItemCarrying(1);
+						field->ThrowItem(item, itemRegionReal, force);
+						pGrpHero->EmptyHand();
+						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
+						pGrpHero->setPhaseDelay(2);
+						pGrpHero->setPhase(SHOW_DAMAGE);
+					}
 				}
+
 			}
 			else {
 

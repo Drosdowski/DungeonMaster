@@ -13,7 +13,6 @@ class CItem;
 class CAttackInfos;
 class CMonsterInfos;
 class CChampion;
-class CField; // todo refactor
 class CGrpHeld: public CGrpChar
 {
 public:
@@ -43,7 +42,6 @@ public:
 	void Laufen(VEKTOR WunschPos, bool teleport);
 
 	void PutGetItem(int handOfHeroId, int heroId);
-	bool ThrowItemInHeroHand(CHeld* hero, CField* field, SUBPOS seite);
 
 	void Aktiviere(int n);
 	void setPhase(Phase p) { m_iPhase = p; }
@@ -52,7 +50,7 @@ public:
 	void ChooseHeroForAction(int ID);
 	bool SetActiveCaster(int ID);
 	
-	bool Altern(CField* field);
+	bool Altern();
 
 	CHeld* GetHeroForAction() { return GetHero(m_iHeroForAction); }
 	CHeld* ClosestHeroTo(CMonster* monster);

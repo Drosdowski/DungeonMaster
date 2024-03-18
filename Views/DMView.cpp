@@ -1139,7 +1139,7 @@ void CDMView::OnTimer(UINT nIDEvent)
 		{
 			Awake();
 		}
-		if (pGrpHeld->Altern(pField)) {
+		if (pGrpHeld->Altern()) {
 			std::string fileName = "C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ChampionWounded";
 			fileName.push_back(49 + (rand() % 4));
 			pDoc->PlayDMSound(fileName + ".mp3");
