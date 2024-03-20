@@ -76,6 +76,7 @@ private:
 	CBitmap* m_pDamageReceived[2];
 	CBitmap* m_pOpenScroll;
 	CBitmap* m_pOpenChest;
+	CBitmap* m_pItemCircle;
 
 	CItemPic* m_pItemPic;
 	char* m_textBuffer;

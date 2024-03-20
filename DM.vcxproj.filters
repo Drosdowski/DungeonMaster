@@ -2012,6 +2012,9 @@
     <Image Include="res\Monster\WaterElemental_Front.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\CircleItem.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

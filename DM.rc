@@ -1073,6 +1073,8 @@ IDB_MONSTER_WATERELEMENTAL_ATTACK BITMAP                  "res\\Monster\\WaterEl
 
 IDB_MONSTER_WATERELEMENTAL_FRONT BITMAP                  "res\\Monster\\WaterElemental_Front.bmp"
 
+IDB_CIRCLE              BITMAP                  "res\\CircleItem.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

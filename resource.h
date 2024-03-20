@@ -5,6 +5,7 @@
 #define IDD_ABOUTBOX                    100
 #define IDR_MAINFRAME                   128
 #define IDR_DMTYPE                      129
+#define IDB_CIRCLE                      130
 #define IDB_BITMAP_E                    133
 #define IDB_BITMAP_ICONS                138
 #define IDB_BITMAP_ICONS3D              139
@@ -468,7 +469,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        701
+#define _APS_NEXT_RESOURCE_VALUE        702
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

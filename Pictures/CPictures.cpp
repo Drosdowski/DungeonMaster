@@ -55,6 +55,7 @@ CPictures::~CPictures()
 	delete m_pOpenScroll;
 	delete m_pOpenChest;
 	delete m_pDMFont;
+	delete m_pItemCircle;
 }
 
 
@@ -69,8 +70,6 @@ double CPictures::getFaktor(int iEntfernung) {
 
 void CPictures::InitBitmaps()
 {
-	// raus hier -> zu Init Dungeon
-
 	LoadPic(m_pBmpHintergrund, IDB_BITMAP_E);
 	LoadPic(m_pBmpInversePfeile, IDB_BITMAP_PINV);
 	LoadPic(m_pBmpPfeile, IDB_BITMAP_P);
@@ -78,6 +77,7 @@ void CPictures::InitBitmaps()
 	LoadPic(m_pDamageReceived[1], IDB_DMG_REC_BIG);
 	LoadPic(m_pInterface[0], IDB_INTERFACE_ALIVE);
 	LoadPic(m_pInterface[1], IDB_INTERFACE_DEAD);
+	LoadPic(m_pItemCircle, IDB_CIRCLE);
 
 	LoadPic(m_pBmpRuck, IDB_BITMAP_RUCK);
 	LoadPic(m_pRunes[1], IDB_RUNES1);
@@ -261,7 +261,8 @@ void CPictures::ZeichneIcons(CDC* pDC, CHeld* pHeld) {
 			CPoint pos = m_pItemPic->GetSheetKoords(item, iconID < 2);
 			tmpdc.SelectObject(bmp);
 			//pDC->TransparentBlt(posBackpack.x, posBackpack.y, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, TRANS_GRA);
-			pDC->StretchBlt(posBackpack.x, posBackpack.y, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, SRCCOPY);
+			pDC->FillSolidRect(CRect(posBackpack.x, posBackpack.y, posBackpack.x + 32, posBackpack.y + 32), GANZDUNKELGRAU);
+			pDC->TransparentBlt(posBackpack.x, posBackpack.y, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, TRANS_GRA);
 		}
 	}
 
@@ -269,9 +270,19 @@ void CPictures::ZeichneIcons(CDC* pDC, CHeld* pHeld) {
 }
 
 void CPictures::ZeichneItemInfo(CDC* pDC, CItem* item) {
-	pDC->FillSolidRect(CRect(220, 170, 380, 300), GANZDUNKELGRAU);
+	CDC tmpdc;
+	tmpdc.CreateCompatibleDC(pDC);
 
+	pDC->FillSolidRect(CRect(220, 170, 380, 300), GANZDUNKELGRAU);
+	tmpdc.SelectObject(m_pItemCircle);
+	pDC->TransparentBlt(210, 170, 64, 54, &tmpdc, 0, 0, 32, 27, TRANS_GRA);
 	// todo
+	CBitmap* bmp = m_pItemPic->GetBitmapSheet(item);
+	CPoint pos = m_pItemPic->GetSheetKoords(item, true); 
+	tmpdc.SelectObject(bmp);
+	pDC->TransparentBlt(222, 182, 32, 32 , &tmpdc, pos.x, pos.y, 16, 16, TRANS_GRA);
+
+	tmpdc.DeleteDC();
 }
 
 void CPictures::ZeichneContainer(CDC* pDC, CContainer* pContainer) {

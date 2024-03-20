@@ -347,6 +347,7 @@
     <Image Include="res\Ceiling\CeilingPit_L0.bmp" />
     <Image Include="res\Ceiling\CeilingPit_L1.bmp" />
     <Image Include="res\Ceiling\CeilingPit_L2.bmp" />
+    <Image Include="res\CircleItem.bmp" />
     <Image Include="res\DamageReceivedBig.bmp" />
     <Image Include="res\DamageReceivedSmall.bmp" />
     <Image Include="res\DM.ico" />
