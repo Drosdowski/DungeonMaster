@@ -138,6 +138,8 @@ void CPictures::WerteZeichnen(CDC* pDC, CHeld* pHeld)
 	{
 		pDC->FillSolidRect(CRect(x + 28, 52 - int(48 * pHeld->ManaPart()), x + 35, 52), pHeld->Farbe());
 	}
+
+	tmpdc.DeleteDC();
 }
 
 void CPictures::WaffeZeichnen(CDC* pDC)
@@ -289,7 +291,6 @@ void CPictures::ZeichneItemInfo(CDC* pDC, CItem* item) {
 	strWeight.Format("WEIGHS %1.1f KG.", item->GetWeight());
 	DrawFontText(pDC, 212, 226, strWeight, false);
 
-
 	tmpdc.DeleteDC();
 }
 
@@ -312,6 +313,7 @@ void CPictures::ZeichneContainer(CDC* pDC, CContainer* pContainer) {
 			pDC->StretchBlt(posContainer.x, posContainer.y, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, SRCCOPY);
 		}
 	}
+	tmpdc.DeleteDC();
 }
 
 void CPictures::ZeichneScroll(CDC* pDC, CScroll* scroll) {
@@ -329,8 +331,8 @@ void CPictures::ZeichneScroll(CDC* pDC, CScroll* scroll) {
 	DrawFontText(pDC, pos.x + 40, 192, scroll->GetText(), true);
 	//DrawSpecialFont(pDC, CPoint(pos.x + 125, 241), scroll->GetText(), 12);
 	//pDC->DrawText(scroll->GetText(), r, ETO_CLIPPED | ETO_OPAQUE | DT_CENTER);
+	tmpdc.DeleteDC();
 }
-
 
 
 void CPictures::NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName)
@@ -459,7 +461,6 @@ void CPictures::ZeichneVitalText(CDC* pDC, CString text, int index, int y) {
 	DrawFontText(pDC, 210, y, strVital, false);
 	DrawFontText(pDC, 340, y, text, false);
 }
-
 
 
 void CPictures::DrawActionAreaChoice(CDC* pDC, CItemInfos* m_pItemInfos, int weaponIndex) {
