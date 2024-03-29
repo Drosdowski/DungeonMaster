@@ -47,6 +47,6 @@ CString CPotion::GetName() {
 	case CPotionAttributes::Vi: return "Vi";
 	case CPotionAttributes::Water: return "Water";
 	case CPotionAttributes::Ful: return "Ful";
-	case CPotionAttributes::Empty: return "Empty";
+	case CPotionAttributes::Empty: return "Empty Flask";
 	}
 }

@@ -244,7 +244,7 @@ void CPictures::ZeichnenHauptbereichHintergrund(CDC* pDC, bool bLooking)
 	pDC->BitBlt(0, 64, 460, 270, &tmpdc, 0, 64, SRCCOPY);
 
 	if (bLooking)
-		pDC->BitBlt(22, 88, 34, 36, &tmpdc, 0, 338, SRCCOPY);
+		pDC->BitBlt(22, 88, 34, 34, &tmpdc, 0, 338, SRCCOPY);
 
 	tmpdc.DeleteDC();
 }
@@ -276,11 +276,19 @@ void CPictures::ZeichneItemInfo(CDC* pDC, CItem* item) {
 	pDC->FillSolidRect(CRect(220, 170, 380, 300), GANZDUNKELGRAU);
 	tmpdc.SelectObject(m_pItemCircle);
 	pDC->TransparentBlt(210, 170, 64, 54, &tmpdc, 0, 0, 32, 27, TRANS_GRA);
-	// todo
 	CBitmap* bmp = m_pItemPic->GetBitmapSheet(item);
 	CPoint pos = m_pItemPic->GetSheetKoords(item, true); 
 	tmpdc.SelectObject(bmp);
 	pDC->TransparentBlt(222, 182, 32, 32 , &tmpdc, pos.x, pos.y, 16, 16, TRANS_GRA);
+
+	// todo Text for item : strength
+	pDC->SetTextColor(SCHWARZ);
+	pDC->SetBkColor(WEISSER);
+	DrawFontText(pDC, 278, 190, item->GetName(), false);
+	CString strWeight;
+	strWeight.Format("WEIGHS %1.1f KG.", item->GetWeight());
+	DrawFontText(pDC, 212, 226, strWeight, false);
+
 
 	tmpdc.DeleteDC();
 }
@@ -317,7 +325,7 @@ void CPictures::ZeichneScroll(CDC* pDC, CScroll* scroll) {
 
 	pDC->SetTextColor(SCHWARZ);
 	pDC->SetBkColor(WEISSER);
-	CRect r = CRect(pos.x + 40, 192, pos.x + 210, 290);
+	// CRect r = CRect(pos.x + 40, 192, pos.x + 210, 290);
 	DrawFontText(pDC, pos.x + 40, 192, scroll->GetText(), true);
 	//DrawSpecialFont(pDC, CPoint(pos.x + 125, 241), scroll->GetText(), 12);
 	//pDC->DrawText(scroll->GetText(), r, ETO_CLIPPED | ETO_OPAQUE | DT_CENTER);
