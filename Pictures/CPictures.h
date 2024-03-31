@@ -44,7 +44,7 @@ private:
 	void InitBitmaps();
 	int m_iWunschRichtung;
 
-	void ZeichnenHauptbereichHintergrund(CDC* pDC, bool bLooking);
+	void ZeichnenHauptbereichHintergrund(CDC* pDC, bool bLooking, bool bEating);
 	void ZeichneSkills(CDC* pDC, CHeld* pHeld);
 	void ZeichneHpStMa(CDC* pDC, WERTE hp, WERTE st, WERTE ma);
 	void ZeichneHungerDurst(CDC* pDC, int i, int j);

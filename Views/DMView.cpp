@@ -77,10 +77,10 @@ CDMView::CDMView()
 
 CDMView::~CDMView()
 {
+	delete m_pPictures;
 	delete m_pRaumView;
 	delete m_pZauberView;
 	delete m_pGroupView;
-	delete m_pPictures;
 	//	KillTimer(this, idTimer ); 
 	((CDMApp*)AfxGetApp())->SetView(NULL);
 }

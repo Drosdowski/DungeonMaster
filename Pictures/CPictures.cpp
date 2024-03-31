@@ -211,7 +211,8 @@ void CPictures::RucksackZeichnen(CDC* pDC, CGrpHeld* pGrpHelden)
 	CItem* pActiveItem = pHeld->GetItemCarrying(1);
 
 	bool bLooking = pHeld->GetBackpackLooking();
-	ZeichnenHauptbereichHintergrund(pDC, bLooking);
+	bool bEating = pHeld->GetMouthEating();
+	ZeichnenHauptbereichHintergrund(pDC, bLooking, bEating);
 	GewichtZeichnen(pDC, pHeld);
 	if (!bLooking)
 		if (pActiveItem && pActiveItem->getItemType() == CItem::ScrollItem)
@@ -238,7 +239,7 @@ void CPictures::RucksackZeichnen(CDC* pDC, CGrpHeld* pGrpHelden)
 	ZeichneIcons(pDC, pHeld);
 }
 
-void CPictures::ZeichnenHauptbereichHintergrund(CDC* pDC, bool bLooking)
+void CPictures::ZeichnenHauptbereichHintergrund(CDC* pDC, bool bLooking, bool bEating)
 {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
@@ -247,6 +248,8 @@ void CPictures::ZeichnenHauptbereichHintergrund(CDC* pDC, bool bLooking)
 
 	if (bLooking)
 		pDC->BitBlt(22, 88, 34, 34, &tmpdc, 0, 338, SRCCOPY);
+	if (bEating)
+		pDC->BitBlt(110, 88, 34, 34, &tmpdc, 34, 338, SRCCOPY);
 
 	tmpdc.DeleteDC();
 }

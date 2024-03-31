@@ -58,6 +58,7 @@ public:
 
 	void SetBackpackLooking(bool value) { m_bBackpackLooking = value; }
 	bool GetBackpackLooking() { return m_bBackpackLooking; }
+	bool GetMouthEating() { return m_iEating % 2 == 1; }
 
 	void setActive() { m_bAktiv = true; }
 	void setInactive() { m_bAktiv = false; }
@@ -89,6 +90,7 @@ public:
 
 private:
 	bool m_bBackpackLooking;
+	int m_iEating;
 	COLORREF m_Farbe;
 	FIGHT_SKILLS m_fightLevel;
 	NINJA_SKILLS m_ninjaLevel;

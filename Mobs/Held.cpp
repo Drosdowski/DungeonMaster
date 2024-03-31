@@ -75,6 +75,7 @@ CHeld::CHeld(int iIndex, CChampion* champ, int hp_akt, int st_akt, int ma_akt): 
 	delete champ;
 
 	m_bBackpackLooking = false;
+	m_iEating = 0;
 	m_spell = new int[5];
 
 	m_iRuneTable = 1;
@@ -157,6 +158,9 @@ bool CHeld::Altern()
 		}
 		if (m_delay > 0) {
 			m_delay--;
+		}
+		if (m_iEating > 0) {
+			m_iEating--;
 		}
 	}
 	return didHurt;
@@ -304,6 +308,7 @@ bool CHeld::hitSucessful(CAttackConst ac, CMonsterConst mc, int levelDif) {
 
 void CHeld::Essen(int amount) {
 	m_iFood = min(maxFood, m_iFood + amount);
+	m_iEating = 4;
 }
 
 void CHeld::Trinken(int amount) {
