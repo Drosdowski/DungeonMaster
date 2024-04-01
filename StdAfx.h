@@ -227,7 +227,7 @@ enum WallDecorationType
 enum FloorDecorationType
 {
 	FootPrints = 0,
-	Square = 1,
+	SquareGrate = 1,
 	SquarePressurePad = 2,
 	FloorMoss = 3,
 	RoundGrate = 4,

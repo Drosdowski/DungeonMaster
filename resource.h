@@ -127,7 +127,19 @@
 #define IDB_FLOOR_TINY_PRESSURE_PAD_L1  314
 #define IDB_FLOOR_TINY_PRESSURE_PAD_L2  315
 #define IDB_FLOOR_TINY_PRESSURE_PAD_L3  316
-#define IDB_TELEPORTER                  320
+#define IDB_FLOOR_ROUND_GRATE_F1        317
+#define IDB_FLOOR_ROUND_GRATE_F2        318
+#define IDB_FLOOR_ROUND_GRATE_F3        319
+#define IDB_FLOOR_ROUND_GRATE_L1        320
+#define IDB_FLOOR_ROUND_GRATE_L2        321
+#define IDB_FLOOR_ROUND_GRATE_L3        322
+#define IDB_FLOOR_SQUARE_GRATE_F1       323
+#define IDB_FLOOR_SQUARE_GRATE_F2       324
+#define IDB_FLOOR_SQUARE_GRATE_F3       325
+#define IDB_FLOOR_SQUARE_GRATE_L1       326
+#define IDB_FLOOR_SQUARE_GRATE_L2       327
+#define IDB_FLOOR_SQUARE_GRATE_L3       328
+#define IDB_TELEPORTER                  380
 #define IDB_BITMAP_P                    391
 #define IDB_ITEM3D_GOLDKEY              400
 #define IDB_ITEM3D_IRONKEY              401
@@ -469,7 +481,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        702
+#define _APS_NEXT_RESOURCE_VALUE        714
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

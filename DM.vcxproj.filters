@@ -2015,6 +2015,42 @@
     <Image Include="res\CircleItem.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Floor\RoundGrate_F1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\RoundGrate_F2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\RoundGrate_F3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\RoundGrate_L1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\RoundGrate_L2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\RoundGrate_L3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\SquareGrate_F1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\SquareGrate_F2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\SquareGrate_F3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\SquareGrate_L1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\SquareGrate_L2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\SquareGrate_L3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

@@ -570,6 +570,12 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 		else if (floorDeco->GetDecoType() == FloorPuddle) {
 			decoBmp = m_pOrnatePic->GetPuddlePic(ebene, xxx);
 		}
+		else if (floorDeco->GetDecoType() == RoundGrate) {
+			decoBmp = m_pOrnatePic->GetRoundGratePic(ebene, xxx);
+		}
+		else if (floorDeco->GetDecoType() == SquareGrate) {
+			decoBmp = m_pOrnatePic->GetSquareGratePic(ebene, xxx);
+		}
 		if (decoBmp)
 		{
 			CPoint center = m_pPressurePadPic->GetPos(xxx, ebene);
