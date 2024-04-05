@@ -3,6 +3,7 @@ class CMonsterConst
 {
 public:
 	int size;
+	bool side_attack;
 	bool levitate;
 	bool non_material;
 	int height;

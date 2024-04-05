@@ -23,4 +23,10 @@ Chest (Center, Left)
 
 Wand Deko Ebene 2 links/rechts
 
+Monster 
+* Size => Door
+* side attack
+* Poison
+* resi
+
 

@@ -972,6 +972,9 @@ void CRaumView::MoveMonsters(VEKTOR monsterPos) {
 	CGrpMonster* pGrpMon = field->GetMonsterGroup();
 	if (pGrpMon)
 	{
+		CMonsterInfos* monsterInfos = GetMonsterInfos();
+		CMonsterConst mc = monsterInfos->GetMonsterInfo(pGrpMon->GetType());
+
 		pGrpMon->Altern(field);
 		if (!pGrpMon->isAlive()) {
 			// Gruppe ausgestorben!
@@ -987,7 +990,8 @@ void CRaumView::MoveMonsters(VEKTOR monsterPos) {
 		else {
 			CPit* pit = field->HolePit();
 			if (pit) {
-				if (pit->GetState() == CPit::Opened) {
+
+				if (pit->GetState() == CPit::Opened && !mc.levitate) {
 					monsterPos.x += (m_pMap->GetOffset(monsterPos.z).x - m_pMap->GetOffset(monsterPos.z + 1).x);
 					monsterPos.y += (m_pMap->GetOffset(monsterPos.z).y - m_pMap->GetOffset(monsterPos.z + 1).y);
 					monsterPos.z++;
@@ -1687,6 +1691,9 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	VEKTOR heroPos = pGrpHeroes->GetVector();
 	VEKTOR monPos = pGrpMon->GetVector();
 	VEKTOR targetPos;
+	CMonsterInfos* monsterInfos = GetMonsterInfos();
+	CMonsterConst mc = monsterInfos->GetMonsterInfo(pGrpMon->GetType());
+
 	if (pGrpMon->GetVector().z != heroPos.z) return monPos; // Falsche Etage, nix tun!
 
 	if (pGrpMon->IsScared()) {
@@ -1700,11 +1707,16 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 		targetPos = pGrpMon->HoleZielFeld(VORWAERTS);
 		CField* targetField = m_pMap->GetField(targetPos);
 		COMPASS_DIRECTION heroRicht = pGrpHeroes->GetDirection();
-
 		int xDist = monPos.x - heroPos.x;
 		int yDist = monPos.y - heroPos.y;
 		int absDist = abs(xDist) + abs(yDist);
-		if (targetPos.x == heroPos.x && targetPos.y == heroPos.y) {
+
+		bool side_attack = false;
+		if (mc.side_attack && absDist ==1) {
+			side_attack = true;
+		}
+
+		if ((targetPos.x == heroPos.x && targetPos.y == heroPos.y) || side_attack) {
 			CMonster* attackingMonster = pGrpMon->AttackHero(monPos, heroPos);
 			if (attackingMonster)
 			{
@@ -1742,7 +1754,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 					// silent attack
 					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false); break;
 				case MonsterTyp::VEXIRK:
-					CField* field = m_pMap->GetField(pGrpMon->HoleZielFeld(LINKS_DREHEN)); // get field where monster actuall is
+					CField* field = m_pMap->GetField(pGrpMon->HoleZielFeld(LINKS_DREHEN)); // get field where monster actual is
 					COMPASS_DIRECTION dir = pGrpMon->GetDirection();
 					int power = attackingMonster->getInfo().attack_power;
 					CMagicMissile* missile = new CMagicMissile(CMagicMissile::Fireball, power);
@@ -1768,7 +1780,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 			pGrpMon->EndAttack(); // Attacke ggf. beenden
 		}
 		if (pGrpMon->EveryoneReady()) {
-			if (absDist == 1) {
+			if (absDist == 1 ) {
 				// Steht neben Held, falsch gedreht -> drehen!
 				pGrpMon->TurnToHero(heroPos);
 				return monPos;

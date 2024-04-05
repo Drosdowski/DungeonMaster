@@ -45,6 +45,8 @@ void CMonsterInfos::ParseMonster(TiXmlElement* element) {
 	CMonsterConst attribute;
 	element->QueryIntAttribute("type", &type);
 	element->QueryIntAttribute("size", &attribute.size);
+	element->QueryIntAttribute("side_attack", &help);
+	attribute.side_attack = (help == 1);
 	element->QueryIntAttribute("levitate", &help);
 	attribute.levitate = (help == 1);
 	element->QueryIntAttribute("non_material", &help);
