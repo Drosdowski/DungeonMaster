@@ -14,7 +14,7 @@ CDoor::CDoor(CDoorAttributes attribute, DoorDecorationType ornate, bool doorFram
 /// </summary>
 /// <param name="someoneBelowDoor">Player or MonsterGroup</param>
 /// <returns>anyone hit bit the door?</returns>
-bool CDoor::ContinueMoving(boolean someoneBelowDoor) {
+bool CDoor::ContinueMoving(int heightOfSomeoneBelowDoor) {
 	switch (m_state) {
 	case (OPEN):
 		m_state = CLOSING;
@@ -27,7 +27,8 @@ bool CDoor::ContinueMoving(boolean someoneBelowDoor) {
 		}
 		break;
 	case (CLOSING):
-		if (someoneBelowDoor && m_bottomHeight < fullHeight) {
+		if (heightOfSomeoneBelowDoor * movingHeight >= m_bottomHeight && m_bottomHeight < fullHeight) {
+			// collision!
 			m_state = OPENING;
 			return true;
 		} else {

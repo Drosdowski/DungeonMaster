@@ -1017,21 +1017,28 @@ void CRaumView::MoveDoors(VEKTOR position) {
 	CField* field = m_pMap->GetField(position);
 	CGrpHeld* pGrpHeroes = m_pMap->GetHeroes();
 	CGrpMonster* pGrpMonsters = field->GetMonsterGroup();
-	boolean monsterBelowDoor = pGrpMonsters != NULL;
-	boolean playerBelowDoor = CHelpfulValues::VectorEqual(pGrpHeroes->GetVector(), position);
+	int heightOfSomeoneBelowDoor = 0;
+	if (pGrpMonsters)
+	{
+		CMonsterInfos* monsterInfos = GetMonsterInfos();
+		CMonsterConst mc = monsterInfos->GetMonsterInfo(pGrpMonsters->GetType());
+		heightOfSomeoneBelowDoor = mc.height;
+	}
+	if (CHelpfulValues::VectorEqual(pGrpHeroes->GetVector(), position)) {
+		heightOfSomeoneBelowDoor = 3;
+	}
 	CDoor* pDoor = field->HoleDoor();
 	if (pDoor) {
 		if ((pDoor->getState() == CDoor::DoorState::OPENING) ||
 			(pDoor->getState() == CDoor::DoorState::CLOSING))
 		{
-			if (pDoor->ContinueMoving(monsterBelowDoor | playerBelowDoor)) {
+			if (pDoor->ContinueMoving(heightOfSomeoneBelowDoor)) {
 				m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-RunningIntoAWall.mp3");
-				if (playerBelowDoor) {
-					pGrpHeroes->FallingDamage();
-				}
-				else if (monsterBelowDoor) {
+				if (pGrpMonsters) {
 					pGrpMonsters->FallingDamage();
 					pGrpMonsters->Scare();
+				} else if (heightOfSomeoneBelowDoor > 0) {
+					pGrpHeroes->FallingDamage();
 				}
 			}
 			else {
