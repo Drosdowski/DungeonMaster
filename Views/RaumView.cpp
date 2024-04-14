@@ -1079,7 +1079,8 @@ void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagic
 	// todo refaktorieren mit moveItems
 	CField* field = m_pMap->GetField(position);
 	CGrpHeld* pGrpHeld = m_pMap->GetHeroes();
-	boolean hitsPlayer = CHelpfulValues::VectorEqual(position, pGrpHeld->GetVector());
+	VEKTOR pos = pGrpHeld->GetVector();
+	boolean hitsPlayer = CHelpfulValues::VectorEqual(position, pos) && (!CHelpfulValues::VectorEqual(topMissile->GetOrigin(), pos));
 
 	if (!topMissile->HasMovedThisTick()) {
 
@@ -1452,8 +1453,8 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 		actuator->decreaseDelay();
 		return;
 	}
-
-	VEKTOR target = actuator->GetActionTarget() == CActuator::ActionTarget::Remote ? actuator->GetTarget() : field->HolePos();
+	VEKTOR source = field->HolePos();
+	VEKTOR target = actuator->GetActionTarget() == CActuator::ActionTarget::Remote ? actuator->GetTarget() : source;
 	CField* pTargetField = m_pMap->GetField(target);
 	double critWeight = actuator->GetCriticalWeigth();
 	bool isWall = field->HoleTyp() == FeldTyp::WALL;
@@ -1498,12 +1499,12 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 				}
 				COMPASS_DIRECTION dir = actuator->GetPosition();
 				int power = actuator->GetPower();
-				CMagicMissile* firstMissile = new CMagicMissile(missileType, power);
+				CMagicMissile* firstMissile = new CMagicMissile(missileType, power, source);
 				VEKTOR force = CHelpfulValues::MakeVektor(dir, power * 4);
 				firstMissile->m_flyForce = force;
 				field->CastMissile(firstMissile, CHelpfulValues::GetFirstPositionFromDirection(dir));
 				
-				CMagicMissile* secondMissile = new CMagicMissile(missileType, power);
+				CMagicMissile* secondMissile = new CMagicMissile(missileType, power, source);
 				secondMissile->m_flyForce = force;
 				field->CastMissile(secondMissile, CHelpfulValues::GetSecondPositionFromDirection(dir));
 				actuator->resetDelay();
@@ -1761,10 +1762,11 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 					// silent attack
 					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false); break;
 				case MonsterTyp::VEXIRK:
-					CField* field = m_pMap->GetField(pGrpMon->HoleZielFeld(LINKS_DREHEN)); // get field where monster actual is
+					VEKTOR pos = pGrpMon->HoleZielFeld(LINKS_DREHEN);
+					CField* field = m_pMap->GetField(pos); // get field where monster actual is
 					COMPASS_DIRECTION dir = pGrpMon->GetDirection();
 					int power = attackingMonster->getInfo().attack_power;
-					CMagicMissile* missile = new CMagicMissile(CMagicMissile::Fireball, power);
+					CMagicMissile* missile = new CMagicMissile(CMagicMissile::Fireball, power, pos);
 					VEKTOR force = CHelpfulValues::MakeVektor(dir, power * 4);
 					missile->m_flyForce = force;
 					if (attackingMonster->IsLeftForPlayer(monPos, heroPos))

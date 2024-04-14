@@ -110,7 +110,7 @@ bool CGrpMonster::Altern(CField* field)
 			didHurt = didHurt || pMonster->Altern();
 			if (!pMonster->isAlive())
 			{
-				CMagicMissile* dust = new CMagicMissile(CMagicMissile::MagicMissileType::Dust, pMonster->GetSize());
+				CMagicMissile* dust = new CMagicMissile(CMagicMissile::MagicMissileType::Dust, pMonster->GetSize(), field->HolePos());
 				dust->Explode();
 
 				m_lastPosition = pMonster->HoleSubPosition();

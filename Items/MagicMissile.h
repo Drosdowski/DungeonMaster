@@ -18,7 +18,7 @@ public:
 		Strong = 2
 	};
 
-	CMagicMissile(MagicMissileType type, int level) { m_type = type; m_isExloding = false; m_strength = CastingFactor(level); }; // 8 - 28
+	CMagicMissile(MagicMissileType type, int level, VEKTOR origin) { m_type = type; m_isExloding = false; m_strength = CastingFactor(level); m_startingCoord = origin;  } // 8 - 28
 
 	MagicMissileType GetType() { return m_type; }
 	SpellSize GetSize() { return (SpellSize)(int)((m_strength - 8) / 7); }
@@ -27,12 +27,13 @@ public:
 	void SetStrengh(int strength) { m_strength = strength; }
 	void DecreaseStrength() { m_strength--; }
 	void Explode() { m_flyForce = VEKTOR{ 0,0,0 }; m_isExloding = true; }
-
+	VEKTOR GetOrigin() { return m_startingCoord; }
 
 private:
 	MagicMissileType m_type;
 	int m_strength;
 	bool m_isExloding;
+	VEKTOR m_startingCoord;
 	
 	int CastingFactor(int level) { return 4 + (level * 4); }
 

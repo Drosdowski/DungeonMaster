@@ -235,12 +235,13 @@ void CDMView::CastMagicMissile(CMagicMissile::MagicMissileType missileType, int 
 	COMPASS_DIRECTION grpDir = grpHelden->GetDirection();
 	SUBPOS_ABSOLUTE absPos = grpHelden->GetHero(grpHelden->GetActiveWizard())->HoleSubPosition();
 	SUBPOS relPos = CHelpfulValues::GetRelativeSubPosPassive(absPos, grpDir);
-	CMagicMissile* magicMissile = new CMagicMissile(missileType, size);
+	VEKTOR pos = grpHelden->GetVector();
+	CMagicMissile* magicMissile = new CMagicMissile(missileType, size, pos);
 	SUBPOS_ABSOLUTE itemRegionReal = CHelpfulValues::GetRelativeSubPosActive(relPos, grpDir);
 	VEKTOR force = CHelpfulValues::MakeVektor(grpDir, size * 4);
 	magicMissile->m_flyForce = force;
 
-	m_pRaumView->GetMap()->GetField(grpHelden->GetVector())->CastMissile(magicMissile, itemRegionReal);
+	m_pRaumView->GetMap()->GetField(pos)->CastMissile(magicMissile, itemRegionReal);
 	// todo: EXP =rand(7)+((spell difficulty+spell power)*16)+(8*((spell power - 1)*spell difficulty))+((spell difficulty+spell power)*(spell difficulty + spell power))
 }
 
