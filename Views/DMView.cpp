@@ -722,6 +722,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 				if (!ParseClickPortraitHands(point, true))
 					ParseClickPortrait(point);
 				ParseClickMagic(point);
+				ParseClickAction(point);
 			}
 		}
 	}
