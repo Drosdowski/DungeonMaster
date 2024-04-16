@@ -259,7 +259,7 @@ CPoint CHelpfulValues::CalcSubPosition(CPoint p, SUBPOS subPos, double faktor) {
 		posX -= (int)(40 * faktor);
 		posY -= (int)(30 * faktor);
 	}
-	else if (RECHTSFRONT) {
+	else if (subPos == RECHTSFRONT) {
 		posX += (int)(40 * faktor);
 		posY -= (int)(30 * faktor);
 	}
