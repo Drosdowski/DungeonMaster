@@ -140,7 +140,7 @@ VEKTOR CGrpChar::HoleZielFeld(int iRichtung)
 	int sx = m_values->m_stx[m_grpDirection];
 	int sy = m_values->m_sty[m_grpDirection];
 
-	VEKTOR WunschPos = { 0,0,m_posPosition.z };
+	VEKTOR WunschPos = m_posPosition;
 
 	switch (iRichtung)
 	{
