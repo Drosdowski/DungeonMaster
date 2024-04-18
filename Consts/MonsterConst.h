@@ -15,6 +15,7 @@ public:
 	int attack_power;
 	int poison;
 	int defense;
+	int spell_casting_range;
 	int fire_res;
 	int poison_res;
 };

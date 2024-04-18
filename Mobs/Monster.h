@@ -17,7 +17,7 @@ public:
 // Attribute
 public:
 	int GetSize() { return m_attributes.monsterInfo.size; }
-	bool IstBereit() { return m_iReady == 0; };
+	bool IsReady() { return m_iReady == 0; };
 	int transCol;
 	int GetReady() { return m_iReady; }
 	bool IsLeftForPlayer(VEKTOR monPos, VEKTOR heroPos);

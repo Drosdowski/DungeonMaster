@@ -140,7 +140,7 @@ CMonster* CGrpMonster::AttackHero(VEKTOR monsterPos, VEKTOR heroPos) {
 		for (int i = 1; i < 5; i++)
 		{
 			CMonster* pMonster = (CMonster*)m_pMember[i];
-			if (pMonster && pMonster->IstBereit()) {
+			if (pMonster && pMonster->IsReady()) {
 				//CHeld* held = (CHeld*)NearestTarget(hisPos);
 
 				if (pMonster->InFrontOfOpponent(monsterPos, heroPos, emptyNorthRow(), emptyEastRow(), emptySouthRow(), emptyWestRow())) {
@@ -237,7 +237,7 @@ bool CGrpMonster::AnyoneReady() {
 	{
 		CMonster* pMonster = (CMonster*)m_pMember[i];
 		if (pMonster) {
-			if (pMonster->IstBereit())
+			if (pMonster->IsReady())
 				return true;
 		}
 	}
@@ -249,7 +249,7 @@ bool CGrpMonster::EveryoneReady() {
 	{
 		CMonster* pMonster = (CMonster*)m_pMember[i];
 		if (pMonster) {
-			if (!pMonster->IstBereit())
+			if (!pMonster->IsReady())
 				return false;
 		}
 	}
