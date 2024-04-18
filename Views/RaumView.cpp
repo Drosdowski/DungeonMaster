@@ -1706,16 +1706,15 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	if (pGrpMon->GetVector().z != heroPos.z) return monPos; // Falsche Etage, nix tun!
 
 	if (pGrpMon->IsScared()) {
-		targetPos = pGrpMon->HoleZielFeld(RUECKWAERTS);
+		targetPos = pGrpMon->GetNextFieldKoord(RUECKWAERTS);
 		boolean collision = false;
-		Betrete(targetPos, collision);
+		targetPos = Betrete(targetPos, collision);
 		pGrpMon->ScaredAction(targetPos, collision);
 	}
 	else {
 		// Versuch, in Blickrichtung zu gehen, ggf. Angriff!
-		targetPos = pGrpMon->HoleZielFeld(VORWAERTS);
-		CField* targetField = m_pMap->GetField(targetPos);
-		COMPASS_DIRECTION heroRicht = pGrpHeroes->GetDirection();
+		targetPos = pGrpMon->GetNextFieldKoord(VORWAERTS);
+		CField* targetField = m_pMap->GetField(targetPos);	
 		int xDist = monPos.x - heroPos.x;
 		int yDist = monPos.y - heroPos.y;
 		int absDist = abs(xDist) + abs(yDist);
@@ -1763,7 +1762,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 					// silent attack
 					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false); break;
 				case MonsterTyp::VEXIRK:
-					VEKTOR pos = pGrpMon->HoleZielFeld(LINKS_DREHEN);
+					VEKTOR pos = pGrpMon->GetNextFieldKoord(LINKS_DREHEN);
 					CField* field = m_pMap->GetField(pos); // get field where monster actual is
 					COMPASS_DIRECTION dir = pGrpMon->GetDirection();
 					int power = attackingMonster->getInfo().attack_power;
@@ -1840,13 +1839,13 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 				}
 				else {
 					if (absDist < targetDist)
-						pGrpMon->DrehenAbsolut(CHelpfulValues::OppositeDirection(heroRicht));
+						pGrpMon->TurnToHero(heroPos);
 					// neues Ziel weiter weg -> drehen!
 				}
 			}
 			else {
 				if (absDist < targetDist)
-					pGrpMon->DrehenAbsolut(CHelpfulValues::OppositeDirection(heroRicht));
+					pGrpMon->TurnToHero(heroPos);
 				// neues Ziel weiter weg -> drehen!
 
 			}
@@ -1962,7 +1961,7 @@ CSize CRaumView::GetSizeOfFrontDeco(CField* pField, COMPASS_DIRECTION dir)
 }
 
 void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
-	VEKTOR monPos = pGrpHero->HoleZielFeld(VORWAERTS);
+	VEKTOR monPos = pGrpHero->GetNextFieldKoord(VORWAERTS);
 	CHeld* pHero = (CHeld*)pGrpHero->GetHeroForAction();
 	CGrpMonster* pVictims = GetMonsterGroup(monPos);
 	CAttackInfos* attackInfos = GetAttackInfos();

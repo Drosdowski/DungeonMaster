@@ -45,7 +45,7 @@ public:
 
 	CCharacter* GetChar(int ID) { return m_pMember[ID]; }
 
-	VEKTOR HoleZielFeld(int iRichtung); // VORWAERTS, etc
+	VEKTOR GetNextFieldKoord(int iRichtung); // VORWAERTS, etc
 	void Kollision(int wunschRichtung);
 	void FallingDamage();
 	void DamageFrom(CCharacter* pMon, VEKTOR hisPos, bool DamageFrom);
