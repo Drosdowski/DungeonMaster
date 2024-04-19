@@ -361,7 +361,7 @@ void CDMView::ParseClickAir(CPoint point) {
 	if (pItemInHand != NULL) {
 		SUBPOS airRegionClicked = CScreenCoords::CheckHitAir(point);
 		if (airRegionClicked != NONE) {
-			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->GetNextFieldKoord(VORWAERTS));
+			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->GetNextFieldKoord(VORWAERTS, 1));
 			if (FeldVorHeld) {
 				if (FeldVorHeld->BlockedToWalk()) {
 					// skip, nix.
@@ -406,7 +406,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 			CActuator::ActuatorType type = currentActuator->GetType();
 			CActuator::ActionTarget actionTarget = currentActuator->GetActionTarget();
 			CItem* itemInHand = grpHelden->GetItemInHand();
-			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->GetNextFieldKoord(VORWAERTS));
+			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->GetNextFieldKoord(VORWAERTS, 1));
 			SUBPOS_ABSOLUTE posActuator = (SUBPOS_ABSOLUTE)dir;
 			std::deque<CItem*> itemsInWall = FeldVorHeld->GetItem(posActuator);
 			int data = currentActuator->GetData();
@@ -632,7 +632,7 @@ void CDMView::ParseClickFloor(CPoint point) {
 	CItem* topItem = NULL;
 	if (itemRegionClicked == LINKSBACK || itemRegionClicked == RECHTSBACK)
 	{
-		CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->GetNextFieldKoord(VORWAERTS));
+		CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->GetNextFieldKoord(VORWAERTS, 1));
 		if (FeldVorHeld && !FeldVorHeld->BlockedToPut())
 		{
 			if (pItemInHand == NULL)
@@ -688,7 +688,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 
 
 			// Unterscheiden: Anklicken oder werfen?
-			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->GetNextFieldKoord(VORWAERTS));
+			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->GetNextFieldKoord(VORWAERTS, 1));
 			if (FeldVorHeld) {
 				ParseClickDoorButton(point, FeldVorHeld);
 				if (FeldVorHeld->BlockedToPut()) {
@@ -1272,7 +1272,7 @@ void CDMView::Laufen()
 			}
 			else {
 
-				posTarget = pGrpHeroes->GetNextFieldKoord(m_iWunschRichtung);
+				posTarget = pGrpHeroes->GetNextFieldKoord(m_iWunschRichtung, 1);
 				posFinal = m_pRaumView->Betrete(posTarget, collision);
 				if (collision)
 				{

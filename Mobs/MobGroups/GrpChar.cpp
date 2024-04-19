@@ -135,10 +135,10 @@ void CGrpChar::DamageFrom(CCharacter* pEnemy, VEKTOR hisPos, bool areaDmg) {
 }
 
 
-VEKTOR CGrpChar::GetNextFieldKoord(int iRichtung)
+VEKTOR CGrpChar::GetNextFieldKoord(int iRichtung, int range)
 {
-	int sx = m_values->m_stx[m_grpDirection];
-	int sy = m_values->m_sty[m_grpDirection];
+	int sx = m_values->m_stx[m_grpDirection] * range;
+	int sy = m_values->m_sty[m_grpDirection] * range;
 
 	VEKTOR WunschPos = m_posPosition;
 

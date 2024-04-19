@@ -8,7 +8,7 @@ public:
 	CMonsterInfos();
 	~CMonsterInfos();
 
-	CMonsterConst GetMonsterInfo(int index) { return monsterInfos[index]; };
+	CMonsterConst GetMonsterInfo(int index) { return m_pMonsterInfos[index]; };
 
 
 private:
@@ -16,7 +16,7 @@ private:
 	void ParseMonsterInfos(TiXmlElement* element);
 	void ParseMonster(TiXmlElement* element);
 
-	CMonsterConst monsterInfos[29];
+	CMonsterConst m_pMonsterInfos[29];
 
 };
 

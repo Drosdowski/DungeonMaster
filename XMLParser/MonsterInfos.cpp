@@ -64,6 +64,6 @@ void CMonsterInfos::ParseMonster(TiXmlElement* element) {
 	element->QueryIntAttribute("spell_casting_range", &attribute.spell_casting_range);
 	element->QueryIntAttribute("fire_res", &attribute.fire_res);
 	element->QueryIntAttribute("poison_res", &attribute.poison_res);
-	monsterInfos[type] = attribute;
+	m_pMonsterInfos[type] = attribute;
 
 }
