@@ -1695,7 +1695,7 @@ void CRaumView::TriggerActuatorsNearby() {
 }
 
 VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
-	// Prüfen: Held angreifbar? Erstmal nur Nahkampf!
+	// Prüfen: Held angreifbar? 
 	CGrpHeld* pGrpHeroes = m_pMap->GetHeroes();
 	VEKTOR heroPos = pGrpHeroes->GetVector();
 	VEKTOR monPos = pGrpMon->GetVector();
@@ -1814,7 +1814,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 			// todo: schlauer bewegungsalgorithmus!
 
 			int targetDist = (abs(targetPos.x - heroPos.x) + abs(targetPos.y - heroPos.y));
-			if ((targetPos.x != monPos.x || targetPos.y != monPos.y) && targetField->BlockedToWalk()) { 
+			if ((targetPos.x != monPos.x || targetPos.y != monPos.y) && !targetField->BlockedToWalk()) { 
 
 				if (absDist > targetDist)
 				{
