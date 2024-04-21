@@ -1099,6 +1099,10 @@ IDB_FLOOR_SQUARE_GRATE_L2 BITMAP                  "res\\Floor\\SquareGrate_L2.bm
 
 IDB_FLOOR_SQUARE_GRATE_L3 BITMAP                  "res\\Floor\\SquareGrate_L3.bmp"
 
+IDB_MONSTER_WIZARDEYE_ATTACK BITMAP                  "res\\Monster\\WizardEye_Attack.bmp"
+
+IDB_MONSTER_WIZARDEYE_FRONT BITMAP                  "res\\Monster\\WizardEye_Front.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

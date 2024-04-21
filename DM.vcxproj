@@ -145,6 +145,7 @@
     <ClCompile Include="Pictures\Creatures\RatPic.cpp" />
     <ClCompile Include="Pictures\Creatures\RusterPic.cpp" />
     <ClCompile Include="Pictures\Creatures\WaterElementalPic..cpp" />
+    <ClCompile Include="Pictures\Creatures\WizardEyePic.cpp" />
     <ClCompile Include="SpecialTile\DelayedTile.cpp" />
     <ClCompile Include="Pictures\Creatures\GigglerPic.cpp" />
     <ClCompile Include="Items\Container.cpp" />
@@ -247,6 +248,7 @@
     <ClInclude Include="Pictures\Creatures\RatPic.h" />
     <ClInclude Include="Pictures\Creatures\RusterPic.h" />
     <ClInclude Include="Pictures\Creatures\WaterElementalPic.h" />
+    <ClInclude Include="Pictures\Creatures\WizardEyePic.h" />
     <ClInclude Include="SpecialTile\DelayedTile.h" />
     <ClInclude Include="Pictures\Creatures\GigglerPic.h" />
     <ClInclude Include="Items\Container.h" />
@@ -579,6 +581,8 @@
     <Image Include="res\Monster\Vexirk_Right.bmp" />
     <Image Include="res\Monster\WaterElemental_Attack.bmp" />
     <Image Include="res\Monster\WaterElemental_Front.bmp" />
+    <Image Include="res\Monster\WizardEye_Attack.bmp" />
+    <Image Include="res\Monster\WizardEye_Front.bmp" />
     <Image Include="res\OpenChest.bmp" />
     <Image Include="res\OpenScroll.bmp" />
     <Image Include="res\P.bmp" />

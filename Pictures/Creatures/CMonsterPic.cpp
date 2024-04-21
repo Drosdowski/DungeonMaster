@@ -6,6 +6,7 @@
 #include "CSkeletonPic.h"
 #include "ScreamerPic.h"
 #include "GhostPic.h"
+#include "WizardEyePic.h"
 #include "RockPilePic.h"
 #include "MagentaWormPic.h"
 #include "TrolinPic.h"
@@ -20,6 +21,7 @@ CMonsterPic::CMonsterPic(CDC* pDC) : CBasePictures(pDC) {
 	m_pSkeletonPic = new CSkeletonPic(pDC);
 	m_pScreamerPic = new CScreamerPic(pDC);
 	m_pGhostPic= new CGhostPic(pDC);
+	m_pWIzardEyePic = new CWizardEyePic(pDC);
 	m_pRockPilePic = new CRockPilePic(pDC);
 	m_pMagentaWormPic = new CMagentaWormPic(pDC);
 	m_pTrolinPic = new CTrolinPic(pDC);
@@ -35,6 +37,7 @@ CMonsterPic::~CMonsterPic() {
 	delete m_pMummyPic;
 	delete m_pScreamerPic;
 	delete m_pGhostPic;
+	delete m_pWIzardEyePic;
 	delete m_pRockPilePic;
 	delete m_pMagentaWormPic;
 	delete m_pTrolinPic;
@@ -53,6 +56,8 @@ CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
 		return m_pMummyPic->GetMummyPic(iRicht, pMonster->isAttacking());
 	case MonsterTyp::SKELETON:
 		return m_pSkeletonPic->GetSkeletonPic(iRicht, pMonster->isAttacking());
+	case MonsterTyp::WIZARDS_EYE:
+		return m_pWIzardEyePic->GetWizardEyePic(pMonster->isAttacking());
 	case MonsterTyp::SCREAMER:
 		return m_pScreamerPic->GetScreamerPic(pMonster->isAttacking());
 	case MonsterTyp::ROCKPILE:

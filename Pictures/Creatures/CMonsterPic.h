@@ -5,6 +5,7 @@ class CMummyPic;
 class CSkeletonPic;
 class CScreamerPic;
 class CGhostPic;
+class CWizardEyePic;
 class CMagentaWormPic;
 class CRockPilePic;
 class CTrolinPic;
@@ -25,6 +26,7 @@ private:
 	CSkeletonPic* m_pSkeletonPic;
 	CMummyPic* m_pMummyPic;
 	CGhostPic* m_pGhostPic;
+	CWizardEyePic* m_pWIzardEyePic;
 	CScreamerPic* m_pScreamerPic;
 	CRockPilePic* m_pRockPilePic;
 	CMagentaWormPic* m_pMagentaWormPic;

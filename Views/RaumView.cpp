@@ -1702,8 +1702,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	VEKTOR targetPos;
 	CField* targetField;
 	CMonsterInfos* monsterInfos = GetMonsterInfos();
-	int index = pGrpMon->GetType();
-	CMonsterConst mc = monsterInfos->GetMonsterInfo(index);
+	CMonsterConst mc = monsterInfos->GetMonsterInfo(pGrpMon->GetType());
 	int absDist, xDist, yDist;
 
 	if (pGrpMon->GetVector().z != heroPos.z) return monPos; // Falsche Etage, nix tun!

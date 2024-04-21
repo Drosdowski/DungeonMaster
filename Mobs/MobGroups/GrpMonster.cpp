@@ -7,6 +7,7 @@
 #include "..\Monster.h"
 #include "..\MobGroups\GrpHeld.h"
 #include "..\..\CalculationHelper\CHelpfulValues.h"
+#include "..\..\XMLParser\MonsterInfos.h"
 #include "..\..\Items\CMiscellaneous.h"
 #include "..\..\Items\Weapon.h"
 #include "..\..\Items\Potion.h"
@@ -140,20 +141,14 @@ CMonster* CGrpMonster::AttackHero(VEKTOR monsterPos, VEKTOR heroPos) {
 		for (int i = 1; i < 5; i++)
 		{
 			CMonster* pMonster = (CMonster*)m_pMember[i];
-			if (pMonster && pMonster->IsReady()) {
-				//CHeld* held = (CHeld*)NearestTarget(hisPos);
+			if (pMonster && pMonster->IsReady()) {				
+				CMonsterConst mc = pMonster->getInfo();
 
-				if (pMonster->InFrontOfOpponent(monsterPos, heroPos, emptyNorthRow(), emptyEastRow(), emptySouthRow(), emptyWestRow())) {
-					if (pMonster->GetDirection() == m_grpDirection)
-					{
-						int dmg = pMonster->CalcDmg(1); // todo monster attacke random
-						pMonster->AttackModeWithDmg(dmg);
-						pMonster->AttackDone();
-						return pMonster; // pro Tick nur ein Angriff / Gruppe
-					}
-					else {
-						pMonster->SetDirection(m_grpDirection); // Einzeldrehung zur Attacke
-					}
+				if (mc.attack_anyone || pMonster->InFrontOfOpponent(monsterPos, heroPos, emptyNorthRow(), emptyEastRow(), emptySouthRow(), emptyWestRow())) {
+					int dmg = pMonster->CalcDmg(1); // todo monster attacke random
+					pMonster->AttackModeWithDmg(dmg);
+					pMonster->AttackDone();
+					return pMonster; // pro Tick nur ein Angriff / Gruppe
 				}
 				else {
 					TryToAdvanceToFirstRow(i, monsterPos, heroPos);

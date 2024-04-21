@@ -267,6 +267,7 @@ enum FeldTyp {
 
 enum MonsterTyp {
 	GIGGLER = 2,
+	WIZARDS_EYE = 3,
 	PAINRAT = 4,
 	RUSTER = 5,
 	SCREAMER = 6,

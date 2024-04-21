@@ -291,6 +291,9 @@
     <ClCompile Include="Pictures\Creatures\WaterElementalPic..cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pictures\Creatures\WizardEyePic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -575,6 +578,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\Creatures\WaterElementalPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\Creatures\WizardEyePic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -2049,6 +2055,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Floor\SquareGrate_L3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\WizardEye_Attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\WizardEye_Front.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

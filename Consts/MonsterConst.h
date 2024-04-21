@@ -4,6 +4,7 @@ class CMonsterConst
 public:
 	int size;
 	bool side_attack;
+	bool attack_anyone;
 	bool levitate;
 	bool non_material;
 	int height;
