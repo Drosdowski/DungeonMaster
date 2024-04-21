@@ -1099,8 +1099,9 @@ void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagic
 				}
 			}
 			else {
-				if (hitsPlayer)
+				if (hitsPlayer && (topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob || topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball))
 				{
+					// Aufprallschaden, todo Unterscheiden!
 					pGrpHeld->DoDamage(topMissile->GetStrength() * 10, position, true);
 				}
 				field->TakeMissile(posAbs, topMissile);
@@ -1139,7 +1140,7 @@ void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagic
 				{
 					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingFireball.mp3");
 				}
-				else if (topMissile->GetType() == CMagicMissile::Poison || topMissile->GetType() == CMagicMissile::PoisonBlob || topMissile->GetType() == CMagicMissile::AntiMagic) {
+				else if (topMissile->GetType() == CMagicMissile::Poison || topMissile->GetType() == CMagicMissile::PoisonBlob || topMissile->GetType() == CMagicMissile::AntiMagic || topMissile->GetType() == CMagicMissile::OpenDoor) {
 					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingSpell.mp3");
 				}
 				topMissile->SetDone();
@@ -1151,7 +1152,6 @@ void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagic
 					{
 						pDoor->Toggle();
 					}
-
 				}
 			}
 		}
@@ -1716,6 +1716,10 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	else {
 		if (pGrpMon->EveryoneReady()) {
 			pGrpMon->EndAttack(); // Attacke ggf. beenden
+			CField* monsterField = m_pMap->GetField(monPos); // get field where monster actual is
+			COMPASS_DIRECTION dir = pGrpMon->GetDirection();
+			int power = mc.attack_power;
+
 			bool side_attack = false;
 			if (mc.side_attack && absDist == 1) {
 				side_attack = true;
@@ -1779,19 +1783,22 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 								// silent attack
 								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false); break;
 							case MonsterTyp::VEXIRK:
-								VEKTOR pos = pGrpMon->GetNextFieldKoord(LINKS_DREHEN, 1);
-								CField* field = m_pMap->GetField(pos); // get field where monster actual is
-								COMPASS_DIRECTION dir = pGrpMon->GetDirection();
-								int power = attackingMonster->getInfo().attack_power;
-								CMagicMissile* missile = new CMagicMissile(CMagicMissile::Fireball, power, pos);
+							case MonsterTyp::WIZARDS_EYE:
+								CMagicMissile::MagicMissileType type;
+								switch (pGrpMon->GetType())
+								{
+								case MonsterTyp::VEXIRK: type = static_cast<CMagicMissile::MagicMissileType>(rand() % 4); break;
+								case MonsterTyp::WIZARDS_EYE: type = CMagicMissile::Lightning; break;
+								}
+								CMagicMissile* missile = new CMagicMissile(type, power, monPos);
 								VEKTOR force = CHelpfulValues::MakeVektor(dir, power * 4);
 								missile->m_flyForce = force;
 								if (attackingMonster->IsLeftForPlayer(monPos, heroPos))
 								{
-									field->CastMissile(missile, CHelpfulValues::GetFirstPositionFromDirection(dir));
+									monsterField->CastMissile(missile, CHelpfulValues::GetFirstPositionFromDirection(dir));
 								}
 								else {
-									field->CastMissile(missile, CHelpfulValues::GetSecondPositionFromDirection(dir));
+									monsterField->CastMissile(missile, CHelpfulValues::GetSecondPositionFromDirection(dir));
 								}
 
 								// todo monster infos https://gamefaqs.gamespot.com/snes/588299-dungeon-master/faqs/33244

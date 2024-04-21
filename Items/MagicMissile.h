@@ -4,13 +4,13 @@ class CMagicMissile : public CMovingObject
 {
 public:
 	enum MagicMissileType {
-		Fireball = 0,
-		Poison = 1,
-		PoisonBlob = 2,
-		AntiMagic = 3,
-		Dust = 4,
-		OpenDoor = 5,
-		Lightning = 6
+		OpenDoor = 0,
+		Lightning = 1,
+		Fireball = 2,
+		Poison = 3,
+		PoisonBlob = 4,
+		AntiMagic = 5,
+		Dust = 6
 	};
 	enum SpellSize {
 		Light = 0,
