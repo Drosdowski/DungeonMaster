@@ -929,7 +929,7 @@ void CDungeonMap::ParseCreatureObjects(TiXmlElement* rootNode) {
 			if (strcmp(facing, "West")) attribute.direction = WEST;
 
 			attribute.monsterInfo = m_pMonsterInfos->GetMonsterInfo(type);
-			if (attribute.type == GIGGLER) {
+			if (attribute.type == GIGGLER || attribute.type == SWAMP_SLIME) {
 				attribute.transCol = TRANS_YEL;
 			}
 			else if (attribute.type == RUSTER) {

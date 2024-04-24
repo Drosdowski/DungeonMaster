@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Pictures\Creatures\BlackFlamePic.cpp" />
     <ClCompile Include="Pictures\Creatures\GhostPic.cpp" />
     <ClCompile Include="Pictures\DMFont.cpp" />
     <ClCompile Include="Mobs\Champion.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="Items\Text.cpp" />
     <ClCompile Include="Attributes\TextAttributes.cpp" />
     <ClCompile Include="Pictures\Creatures\VexirkPic.cpp" />
+    <ClCompile Include="Pictures\Creatures\SwampSlimePic.cpp" />
     <ClCompile Include="XMLParser\MonsterInfos.cpp" />
     <ClCompile Include="XMLParser\AttackInfos.cpp" />
     <ClCompile Include="Attributes\WeaponAttributes.cpp" />
@@ -195,10 +197,10 @@
     <ClCompile Include="Items\CMiscellaneous.cpp" />
     <ClCompile Include="SpecialTile\CStairs.cpp" />
     <ClCompile Include="Pictures\CStairsPic.cpp" />
-    <ClCompile Include="Pictures\Creatures\CMonsterPic.cpp" />
-    <ClCompile Include="Pictures\Creatures\CMummyPic.cpp" />
+    <ClCompile Include="Pictures\Creatures\MonsterPic.cpp" />
+    <ClCompile Include="Pictures\Creatures\MummyPic.cpp" />
     <ClCompile Include="CalculationHelper\CScreenCoords.cpp" />
-    <ClCompile Include="Pictures\Creatures\CSkeletonPic.cpp" />
+    <ClCompile Include="Pictures\Creatures\SkeletonPic.cpp" />
     <ClCompile Include="Pictures\CWallPic.cpp" />
     <ClCompile Include="Pictures\CBasePictures.cpp" />
     <ClCompile Include="SpecialTile\CDoor.cpp" />
@@ -238,6 +240,7 @@
     <ResourceCompile Include="DM.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Pictures\Creatures\BlackFlamePic.h" />
     <ClInclude Include="Pictures\Creatures\GhostPic.h" />
     <ClInclude Include="Pictures\DMFont.h" />
     <ClInclude Include="Mobs\Champion.h" />
@@ -266,6 +269,7 @@
     <ClInclude Include="Items\Text.h" />
     <ClInclude Include="Attributes\TextAttributes.h" />
     <ClInclude Include="Pictures\Creatures\VexirkPic.h" />
+    <ClInclude Include="Pictures\Creatures\SwampSlimePic.h" />
     <ClInclude Include="XMLParser\MonsterInfos.h" />
     <ClInclude Include="XMLParser\AttackInfos.h" />
     <ClInclude Include="Attributes\ClothAttributes.h" />
@@ -298,11 +302,11 @@
     <ClInclude Include="Items\CMiscellaneous.h" />
     <ClInclude Include="SpecialTile\CStairs.h" />
     <ClInclude Include="Pictures\CStairsPic.h" />
-    <ClInclude Include="Pictures\Creatures\CMonsterPic.h" />
-    <ClInclude Include="Pictures\Creatures\CMummyPic.h" />
+    <ClInclude Include="Pictures\Creatures\MonsterPic.h" />
+    <ClInclude Include="Pictures\Creatures\MummyPic.h" />
     <ClInclude Include="CalculationHelper\CScreenCoords.h" />
     <ClInclude Include="Pictures\CFountainPic.h" />
-    <ClInclude Include="Pictures\Creatures\CSkeletonPic.h" />
+    <ClInclude Include="Pictures\Creatures\SkeletonPic.h" />
     <ClInclude Include="Pictures\CWallPic.h" />
     <ClInclude Include="Pictures\CBasePictures.h" />
     <ClInclude Include="SpecialTile\CDoor.h" />
@@ -550,6 +554,8 @@
     <Image Include="res\Monster\0494.IMG1 [Creature 15 (Side) - Magenta Worm].png" />
     <Image Include="res\Monster\0495.IMG1 [Creature 15 (Back) - Magenta Worm].png" />
     <Image Include="res\Monster\0496.IMG1 [Creature 15 (Attack) - Magenta Worm].png" />
+    <Image Include="res\Monster\BlackFlame_Attack.bmp" />
+    <Image Include="res\Monster\BlackFlame_Front.bmp" />
     <Image Include="res\Monster\Ghost_Attack.bmp" />
     <Image Include="res\Monster\Ghost_Front.bmp" />
     <Image Include="res\Monster\Giggler_Attack.bmp" />
@@ -571,6 +577,8 @@
     <Image Include="res\Monster\Ruster_Right.bmp" />
     <Image Include="res\Monster\Screamer_Attack.bmp" />
     <Image Include="res\Monster\Screamer_Front.bmp" />
+    <Image Include="res\Monster\SwampSlime_Attack.bmp" />
+    <Image Include="res\Monster\SwampSlime_Front.bmp" />
     <Image Include="res\Monster\Trolin_Attack.bmp" />
     <Image Include="res\Monster\Trolin_Back.bmp" />
     <Image Include="res\Monster\Trolin_Front.bmp" />

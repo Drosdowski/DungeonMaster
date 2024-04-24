@@ -96,13 +96,13 @@
     <ClCompile Include="TinyXML\tinyxmlparser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Pictures\Creatures\CSkeletonPic.cpp">
+    <ClCompile Include="Pictures\Creatures\SkeletonPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Pictures\Creatures\CMummyPic.cpp">
+    <ClCompile Include="Pictures\Creatures\MummyPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Pictures\Creatures\CMonsterPic.cpp">
+    <ClCompile Include="Pictures\Creatures\MonsterPic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Pictures\CStairsPic.cpp">
@@ -294,6 +294,12 @@
     <ClCompile Include="Pictures\Creatures\WizardEyePic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pictures\Creatures\SwampSlimePic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pictures\Creatures\BlackFlamePic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -382,13 +388,13 @@
     <ClInclude Include="TinyXML\tinyxml.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Pictures\Creatures\CSkeletonPic.h">
+    <ClInclude Include="Pictures\Creatures\SkeletonPic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Pictures\Creatures\CMummyPic.h">
+    <ClInclude Include="Pictures\Creatures\MummyPic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Pictures\Creatures\CMonsterPic.h">
+    <ClInclude Include="Pictures\Creatures\MonsterPic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\CStairsPic.h">
@@ -581,6 +587,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\Creatures\WizardEyePic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\Creatures\SwampSlimePic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\Creatures\BlackFlamePic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -2061,6 +2073,18 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Monster\WizardEye_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\SwampSlime_Attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\SwampSlime_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\BlackFlame_Attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\BlackFlame_Front.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

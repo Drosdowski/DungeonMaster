@@ -266,6 +266,7 @@ enum FeldTyp {
 };
 
 enum MonsterTyp {
+	SWAMP_SLIME = 1,
 	GIGGLER = 2,
 	WIZARDS_EYE = 3,
 	PAINRAT = 4,
@@ -274,6 +275,7 @@ enum MonsterTyp {
 	ROCKPILE = 7,
 	GHOST = 8,
 	MUMMY = 10,
+	BLACK_FLAME = 11,
 	SKELETON = 12,
 	VEXIRK = 14,
 	MAGENTA_WORM = 15,

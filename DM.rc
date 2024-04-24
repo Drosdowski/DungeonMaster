@@ -1103,6 +1103,14 @@ IDB_MONSTER_WIZARDEYE_ATTACK BITMAP                  "res\\Monster\\WizardEye_At
 
 IDB_MONSTER_WIZARDEYE_FRONT BITMAP                  "res\\Monster\\WizardEye_Front.bmp"
 
+IDB_MONSTER_SWAMPSLIME_ATTACK BITMAP                  "res\\Monster\\SwampSlime_Attack.bmp"
+
+IDB_MONSTER_SWAMPSLIME_FRONT BITMAP                  "res\\Monster\\SwampSlime_Front.bmp"
+
+IDB_MONSTER_BLACKFLAME_ATTACK BITMAP                  "res\\Monster\\BlackFlame_Attack.bmp"
+
+IDB_MONSTER_BLACKFLAME_FRONT BITMAP                  "res\\Monster\\BlackFlame_Front.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
