@@ -1763,47 +1763,69 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 						{
 							switch (pGrpMon->GetType()) {
 							case SKELETON:
+							case ANIMATED_ARMOUR:
 								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
 								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
+								break;
 							case SCREAMER:
+							case OITU:
 								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
 								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Screamer-Oitu).mp3"); break;
+								break;
 							case ROCKPILE:
 								// todo poison
 								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
 								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Rockpile).mp3"); break;
+								break;
 							case MAGENTA_WORM:
 								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
 								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(MagentaWorm).mp3"); break;
+								break;
 							case MUMMY:
 							case GHOST:
 								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
 								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Mummy-Ghost).mp3"); break;
+								break;
 							case GIGGLER:
 								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Giggler).mp3"); break;
 								// todo stealing !
+								break;
 							case TROLIN:
+							case STONE_GOLEN:
 								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
 								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Trolin-StoneGolem)-TouchingWall.mp3"); break;
+								break;
 							case PAINRAT:
 								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
 								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(PainRat-RedDragon).mp3"); break;
+								break;
 							case WATER_ELEMENTAL:
 								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
 								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB - SoundEffect - Attack(WaterElemental).mp3"); break;
+								break;
 							case RUSTER:
 							case BLACK_FLAME:
 								// silent attack
 								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false); break;
-							case VEXIRK:
-							case WIZARDS_EYE:
+								break;
 							case SWAMP_SLIME:
+							case WIZARDS_EYE:
+							case VEXIRK:
+							case MATERIALIZER:
+							case DEMON:
+							case RED_DRAGON:
 								CMagicMissile::MagicMissileType type;
 								switch (pGrpMon->GetType())
 								{
 								case VEXIRK: type = static_cast<CMagicMissile::MagicMissileType>(rand() % 4); break;
+								case MATERIALIZER: type = static_cast<CMagicMissile::MagicMissileType>(2 + rand() % 2); break;
 								case WIZARDS_EYE: type = CMagicMissile::Lightning; break;
 								case SWAMP_SLIME: type = CMagicMissile::PoisonBlob; break;
+								case DEMON: type = CMagicMissile::Fireball; break;
+								case RED_DRAGON: 
+									m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(PainRat-RedDragon).mp3"); break;
+									type = CMagicMissile::Fireball; 
+									break;
 								}
 								CMagicMissile* missile = new CMagicMissile(type, power, monPos);
 								VEKTOR force = CHelpfulValues::MakeVektor(dir, power * 4);
@@ -1850,17 +1872,25 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 					case MAGENTA_WORM:
 					case PAINRAT:
 					case RUSTER:
+					case OITU:
 						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(Screamer-Rockpile-MagentaWorm-PainRat-Ruster-GiantScorpion-Oitu).mp3"); break;
 					case MUMMY:
 					case GIGGLER:
 					case TROLIN:
 					case VEXIRK:
+					case DEMON:
+					case STONE_GOLEN:
 						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(Mummy-Trolin-StoneGolem-Giggler-Vexirk-Demon).mp3"); break;
 					case GHOST:
 						break;
 					case WATER_ELEMENTAL:
 					case SWAMP_SLIME:
-						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB - SoundEffect - Move(SwampSlime - WaterElemental"); break;
+						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(SwampSlime-WaterElemental"); break;
+					case CUATL:
+					case GIANT_WASP:
+						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(GiantWasp-Couatl)"); break;
+					case RED_DRAGON:
+						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(RedDragon)"); break;
 					}
 
 					return targetPos;
