@@ -16,6 +16,7 @@ public:
 	virtual WERTE Hp() { return m_HP; }
 	
 	int ReceivedDmg() { return m_iReceivedDmg;}
+	int ReceivedPoison() { return m_iReceivedPoison; }
 	COMPASS_DIRECTION GetDirection() { return m_chrDirection; }
 	bool isAttacking() { return m_attacking; }
 	bool IsHero() {	return m_isHero; }
@@ -26,7 +27,8 @@ public:
 	void SetzeSubPosition(SUBPOS_ABSOLUTE pos) { m_subPosition = pos; }
 	void SetDirection(COMPASS_DIRECTION direction) { m_chrDirection = direction; }
 	void AddDmg(int value);
-	void ResetDmg() { m_iReceivedDmg = 0; }
+	void AddPoison(int value);
+	void ResetDmg() { m_iReceivedDmg = 0; m_iReceivedPoison = 0; }
 	
 
 // Implementierung
@@ -37,10 +39,11 @@ public:
 	bool InFrontOfOpponent(VEKTOR myPos, VEKTOR hisPos, bool emptyNorthRow, bool emptyEastRow, bool emptySouthRow, bool emptyWestRow);
 	virtual ~CCharacter();
 
-	void AttackModeWithDmg(int damage);
+	void AttackModeWithDmg(int damage, int poison);
 	void EndAttack();
 
 	int GetDealingDamage() { return m_dealingDmgToDraw; }
+	int GetDealingPoison() { return m_dealingPoison; }
 
 	bool westOf(VEKTOR myPos, VEKTOR hisPos);
 	bool eastOf(VEKTOR myPos, VEKTOR hisPos);
@@ -53,11 +56,13 @@ public:
 
 protected:
 	int m_iReceivedDmg; // PASSIV- Erhaltener Schaden, zur Anzeige.
+	int m_iReceivedPoison;
 	COMPASS_DIRECTION m_chrDirection;	// initial und bei Grp.-Bewegung gleich der Gruppenvariable; ändert sich nur bei angriffen
 // TODO	int m_ApproxDmg; // AKTIV - Durchschnittlicher Schaden plus minus random
 // TODO	int m_SpeedDelay; // 0 = Schnellstes (Zyklen bis zur Aktion)
 	int m_dealingDmg; // AKTIV - tatsächlicher aktueller Schaden, zur Anzeige.
 	int m_dealingDmgToDraw;
+	int m_dealingPoison;
 	bool m_attacking = false;
 
 	WERTE m_HP;	// Hitpoints	

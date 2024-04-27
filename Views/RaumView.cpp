@@ -1102,7 +1102,7 @@ void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagic
 				if (hitsPlayer && (topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob || topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball))
 				{
 					// Aufprallschaden, todo Unterscheiden!
-					pGrpHeld->DoDamage(topMissile->GetStrength() * 10, position, true);
+					pGrpHeld->DoDamage(topMissile->GetStrength() * 10, 0, position, true);
 				}
 				field->TakeMissile(posAbs, topMissile);
 				delete topMissile;
@@ -1203,7 +1203,7 @@ void CRaumView::CheckMissileCollisions(VEKTOR pos) {
 							m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingSpell.mp3");
 						}
 						topMissile->SetDone();
-						pGroupMonster->DoDamage(topMissile->GetStrength() * (rand() % 6 + 1), pos, true);
+						pGroupMonster->DoDamage(topMissile->GetStrength() * (rand() % 6 + 1), 0, pos, true);
 					}
 				}
 				else {
@@ -1215,13 +1215,19 @@ void CRaumView::CheckMissileCollisions(VEKTOR pos) {
 				VEKTOR posHero = pGrpHeld->GetVector();
 				if (CHelpfulValues::VectorEqual(posHero, pos))
 				{
-					pGrpHeld->DoDamage(topMissile->GetStrength() / 4, pos, true); // todo correct formula
+					if (topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob) // todo: klären: stimmt das??
+					{
+						pGrpHeld->DoDamage(0, topMissile->GetStrength() / 4, pos, true); // todo correct formula
+					}
+					else {
+						pGrpHeld->DoDamage(topMissile->GetStrength() / 4, 0, pos, true); // todo correct formula
+					}
 				}
 				if (bMonsterHit) {
 					double faktor = (pHittedMonster->getInfo().non_material &&
 									 (topMissile->GetType() == CMagicMissile::MagicMissileType::AntiMagic))
 						 ? 0.3 : 1; // ghosts get less damage from area sources
-					pGroupMonster->DoDamage((int)(topMissile->GetStrength() * faktor / 4), pos, true); // todo correct formula
+					pGroupMonster->DoDamage((int)(topMissile->GetStrength() * faktor / 4), 0, pos, true); // todo correct formula
 
 				}
 			}
@@ -1246,7 +1252,7 @@ void CRaumView::CheckFlyingItemCollisions(VEKTOR heroPos) {
 						CMonsterConst mc = monsterInfos->GetMonsterInfo(pGroupMonster->GetType());
 						if (!mc.non_material)
 						{
-							pGroupMonster->DoDamage((rand() % 6 + 1), heroPos, true);
+							pGroupMonster->DoDamage((rand() % 6 + 1), 0, heroPos, true);
 							topItem->Stop();
 						}
 					}
@@ -1808,6 +1814,10 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 								// silent attack
 								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false); break;
 								break;
+							case GIANT_SCORPION:
+								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
+								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(GiantScorpion)"); break;
+								break;
 							case SWAMP_SLIME:
 							case WIZARDS_EYE:
 							case VEXIRK:
@@ -1867,6 +1877,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 					switch (pGrpMon->GetType()) {
 					case SKELETON:
 						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(Skeleton).mp3"); break;
+					case GIANT_SCORPION:
 					case SCREAMER:
 					case ROCKPILE:
 					case MAGENTA_WORM:
@@ -2085,8 +2096,8 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 						CMonsterConst mc = monsterInfos->GetMonsterInfo(pVictims->GetType());
 						int dmg = pHero->CalcDmg(weapon, ac, mc, diff);
 						if (dmg > 0) {
-							pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
-							pHero->AttackModeWithDmg(dmg);
+							pVictims->DoDamage(dmg, 0, myPos, false); // true = Schaden an alle
+							pHero->AttackModeWithDmg(dmg, 0);
 							pGrpHero->setPhaseDelay(2);
 							pGrpHero->setPhase(SHOW_DAMAGE);
 						}

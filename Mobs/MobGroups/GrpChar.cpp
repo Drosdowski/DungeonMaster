@@ -91,13 +91,14 @@ void CGrpChar::FallingDamage() {
 			m_pMember[i]->AddDmg(25);
 }
 
-void CGrpChar::DoDamage(int dmg, VEKTOR hisPos, bool areaDmg) {
+void CGrpChar::DoDamage(int dmg, int poison, VEKTOR hisPos, bool areaDmg) {
 	CCharacter* victim = NULL;
 	if (areaDmg) {
 		for (int dmgTgt = 1; dmgTgt <= 4; dmgTgt++) {
 			victim = m_pMember[dmgTgt];
 			if (victim && (victim->isAlive())) {
 				victim->AddDmg(dmg); // Schaden aufsummieren, Abrechnung folgt im Altern.
+				victim->AddPoison(poison);
 			}
 		}
 	}
@@ -105,6 +106,7 @@ void CGrpChar::DoDamage(int dmg, VEKTOR hisPos, bool areaDmg) {
 		victim = NearestTarget(hisPos);
 		if (victim && (victim->isAlive())) {
 			victim->AddDmg(dmg);
+			victim->AddPoison(poison);
 		}
 	}
 
@@ -129,7 +131,8 @@ CCharacter* CGrpChar::NearestTarget(VEKTOR hisPos) {
 void CGrpChar::DamageFrom(CCharacter* pEnemy, VEKTOR hisPos, bool areaDmg) {
 	if (pEnemy && pEnemy->isAttacking()) {
 		int dmg = pEnemy->GetDealingDamage();
-		DoDamage(dmg, hisPos, areaDmg);
+		int poison = pEnemy->GetDealingPoison();
+		DoDamage(dmg, poison, hisPos, areaDmg);
 		return;
 	}
 }

@@ -102,6 +102,7 @@ private:
 	int m_iFood;
 	int m_iWater;
 	int m_iIndex;
+	int m_iPoison;
 	int m_delay;
 	bool m_bAktiv;
 	WERTE m_MA;	// Mana

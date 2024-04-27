@@ -195,7 +195,7 @@ bool CGrpHeld::AsleepAndAttacked() {
 		for (int i = 1; i < 5; i++)
 		{
 			CHeld* pHeld = (CHeld*)m_pMember[i];
-			if (pHeld && pHeld->ReceivedDmg() > 0)
+			if (pHeld && pHeld->ReceivedDmg() > 0) // poison doesn't wake up
 				return true;
 		}
 	}

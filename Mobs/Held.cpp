@@ -35,6 +35,7 @@ CHeld::CHeld(int iIndex, CChampion* champ, int hp_akt, int st_akt, int ma_akt): 
 	m_HP.Aktuell = hp_akt; // todo level up: increase http://dmweb.free.fr/?q=node/691
 	m_ST.Aktuell = st_akt;
 	m_MA.Aktuell = ma_akt;
+	m_iPoison = 0;
 	
 	m_sVitals = champ->GetVitals();
 	
@@ -133,6 +134,15 @@ bool CHeld::Altern()
 	// von VIT, ma von WIS sowie von FOOD & WATER
 	if (isAlive())
 	{
+		if (m_iReceivedPoison > 0) {
+			// poisoned
+			m_iPoison = min(240, m_iPoison + m_iReceivedPoison);
+			m_iReceivedPoison = 0;
+		}
+		if (m_iPoison > 0) {
+			m_iPoison--;
+			m_iReceivedDmg += 1 + (int)(m_iPoison / 60); 
+		}
 		if (m_iReceivedDmg > 0) {
 			// damage
 			didHurt = ReceiveDamage(m_iReceivedDmg);
@@ -176,7 +186,7 @@ void CHeld::WerteTemporaerAendern(double hp, double st, double ma)
 {
 	m_HP.Aktuell = min(max(hp + m_HP.Aktuell, 0), m_HP.Max);
 	m_ST.Aktuell = min(max(st + m_ST.Aktuell, 0), m_ST.Max);
-	m_MA.Aktuell = min(max(ma + m_MA.Aktuell, 0), m_MA.Max);
+	m_MA.Aktuell = min(max(ma + m_MA.Aktuell, 0), m_MA.Max);	
 }
 
 int CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, int levelDif) {
