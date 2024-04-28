@@ -2087,6 +2087,81 @@
     <Image Include="res\Monster\BlackFlame_Front.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\Monster\GiantScorpion_Attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\GiantScorpion_Back.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\GiantScorpion_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\GiantScorpion_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\Oitu_Attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\Oitu_Back.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\Oitu_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\Oitu_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\StoneGolem_Attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\StoneGolem_Back.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\StoneGolem_Front-bmp.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\StoneGolem_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\StoneGolem_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\Couatl_Attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\Couatl_Back.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\Couatl_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\Couatl_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\GiantWasp_Attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\GiantWasp_Back.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\GiantWasp_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\GiantWasp_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\AnimatedArmour_Attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\AnimatedArmour_Back.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\AnimatedArmour_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\AnimatedArmour_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

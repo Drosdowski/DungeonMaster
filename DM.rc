@@ -1111,6 +1111,54 @@ IDB_MONSTER_BLACKFLAME_ATTACK BITMAP                  "res\\Monster\\BlackFlame_
 
 IDB_MONSTER_BLACKFLAME_FRONT BITMAP                  "res\\Monster\\BlackFlame_Front.bmp"
 
+IDB_MONSTER_GIANTSCORPION_ATTACK BITMAP                  "res\\Monster\\GiantScorpion_Attack.bmp"
+
+IDB_MONSTER_GIANTSCORPION_BACK BITMAP                  "res\\Monster\\GiantScorpion_Back.bmp"
+
+IDB_MONSTER_GIANTSCORPION_FRONT BITMAP                  "res\\Monster\\GiantScorpion_Front.bmp"
+
+IDB_MONSTER_GIANTSCORPION_RIGHT BITMAP                  "res\\Monster\\GiantScorpion_Right.bmp"
+
+IDB_MONSTER_OITU_ATTACK BITMAP                  "res\\Monster\\Oitu_Attack.bmp"
+
+IDB_MONSTER_OITU_BACK   BITMAP                  "res\\Monster\\Oitu_Back.bmp"
+
+IDB_MONSTER_OITU_FRONT  BITMAP                  "res\\Monster\\Oitu_Front.bmp"
+
+IDB_MONSTER_OITU_RIGHT  BITMAP                  "res\\Monster\\Oitu_Right.bmp"
+
+IDB_MONSTER_STONEGOLEM_ATTACK BITMAP                  "res\\Monster\\StoneGolem_Attack.bmp"
+
+IDB_MONSTER_STONEGOLEM_BACK BITMAP                  "res\\Monster\\StoneGolem_Back.bmp"
+
+IDB_MONSTER_STONEGOLEM_FRONT BITMAP                  "res\\Monster\\StoneGolem_Front.bmp"
+
+IDB_MONSTER_STONEGOLEM_RIGHT BITMAP                  "res\\Monster\\StoneGolem_Right.bmp"
+
+IDB_MONSTER_COUATL_ATTACK BITMAP                  "res\\Monster\\Couatl_Attack.bmp"
+
+IDB_MONSTER_COUATL_BACK BITMAP                  "res\\Monster\\Couatl_Back.bmp"
+
+IDB_MONSTER_COUATL_FRONT BITMAP                  "res\\Monster\\Couatl_Front.bmp"
+
+IDB_MONSTER_COUATL_RIGHT BITMAP                  "res\\Monster\\Couatl_Right.bmp"
+
+IDB_MONSTER_GIANTWASP_ATTACK BITMAP                  "res\\Monster\\GiantWasp_Attack.bmp"
+
+IDB_MONSTER_GIANTWASP_BACK BITMAP                  "res\\Monster\\GiantWasp_Back.bmp"
+
+IDB_MONSTER_GIANTWASP_FRONT BITMAP                  "res\\Monster\\GiantWasp_Front.bmp"
+
+IDB_MONSTER_GIANTWASP_RIGHT BITMAP                  "res\\Monster\\GiantWasp_Right.bmp"
+
+IDB_MONSTER_ANIMATEDARMOUR_ATTACK BITMAP                  "res\\Monster\\AnimatedArmour_Attack.bmp"
+
+IDB_MONSTER_ANIMATEDARMOUR_BACK BITMAP                  "res\\Monster\\AnimatedArmour_Back.bmp"
+
+IDB_MONSTER_ANIMATEDARMOUR_FRONT BITMAP                  "res\\Monster\\AnimatedArmour_Front.bmp"
+
+IDB_MONSTER_ANIMATEDARMOUR_RIGHT BITMAP                  "res\\Monster\\AnimatedArmour_Right.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
