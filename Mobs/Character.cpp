@@ -19,8 +19,10 @@ CCharacter::CCharacter(bool isHero)
 {
 	m_chrDirection = COMPASS_DIRECTION::NORTH;
 	m_iReceivedDmg = 0;
+	m_iReceivedPoison = 0;
 	m_dealingDmg = 0;
 	m_dealingDmgToDraw = 0;
+	m_dealingPoison = 0;
 	m_attacking = false;
 	m_isHero = isHero;
 	m_subPosition = SUBPOS_ABSOLUTE::MIDDLE;
@@ -37,10 +39,11 @@ CCharacter::~CCharacter()
 // Behandlungsroutinen für Nachrichten CCharacter 
 
 
-void CCharacter::AttackModeWithDmg(int damage) {
+void CCharacter::AttackModeWithDmg(int damage, int poison) {
 	m_attacking = true; 
 	m_dealingDmg = damage;
 	m_dealingDmgToDraw = damage;
+	m_dealingPoison = poison;
 }
 
 void CCharacter::EndAttack() {
@@ -50,6 +53,10 @@ void CCharacter::EndAttack() {
 
 void CCharacter::AddDmg(int value) {
 	m_iReceivedDmg += value;
+}
+
+void CCharacter::AddPoison(int value) {
+	m_iReceivedPoison = min(240, m_iReceivedPoison + value);
 }
 
 bool CCharacter::InFrontOfOpponent(VEKTOR myPos, VEKTOR hisPos, bool emptyNorthRow, bool emptyEastRow, bool emptySouthRow, bool emptyWestRow) {

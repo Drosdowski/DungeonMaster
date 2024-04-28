@@ -146,7 +146,8 @@ CMonster* CGrpMonster::AttackHero(VEKTOR monsterPos, VEKTOR heroPos) {
 
 				if (mc.attack_anyone || pMonster->InFrontOfOpponent(monsterPos, heroPos, emptyNorthRow(), emptyEastRow(), emptySouthRow(), emptyWestRow())) {
 					int dmg = pMonster->CalcDmg(1); // todo monster attacke random
-					pMonster->AttackModeWithDmg(dmg);
+					int poison = mc.poison;
+					pMonster->AttackModeWithDmg(dmg, poison);
 					pMonster->AttackDone();
 					return pMonster; // pro Tick nur ein Angriff / Gruppe
 				}

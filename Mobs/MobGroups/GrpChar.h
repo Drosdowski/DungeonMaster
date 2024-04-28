@@ -49,7 +49,7 @@ public:
 	void Kollision(int wunschRichtung);
 	void FallingDamage();
 	void DamageFrom(CCharacter* pMon, VEKTOR hisPos, bool DamageFrom);
-	void DoDamage(int dmg, VEKTOR hisPos, bool DamageFrom);
+	void DoDamage(int dmg, int poison, VEKTOR hisPos, bool DamageFrom);
 
 	void DrehenRelativ(int iRelRichtung);
 	void DrehenAbsolut(COMPASS_DIRECTION iRichtung);

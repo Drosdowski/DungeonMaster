@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
+    <?xml version="1.0" encoding="ISO-8859-1" ?>
 <dungeon start_x="19" start_y="31" start_z="8" start_facing="West">
     <heroes>
         <hero index="1" hp_akt="60" st_akt="600" ma_akt="10" hp_max="60" st_max="600" ma_max="10" name="ZED" subname="" male="Y" LUK="10792" STR="12850" DEX="10280" VIT="14906" WIS="10280" AM="10280" AF="10280" SKILLS="2,1,1,2,2,1,2,1,1,2,1,1,1,1,2,1" SPELL="">
