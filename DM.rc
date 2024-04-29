@@ -1159,6 +1159,14 @@ IDB_MONSTER_ANIMATEDARMOUR_FRONT BITMAP                  "res\\Monster\\Animated
 
 IDB_MONSTER_ANIMATEDARMOUR_RIGHT BITMAP                  "res\\Monster\\AnimatedArmour_Right.bmp"
 
+IDB_MONSTER_REDDRAGON_ATTACK BITMAP                  "res\\Monster\\RedDragon_Attack.bmp"
+
+IDB_MONSTER_REDDRAGON_BACK BITMAP                  "res\\Monster\\RedDragon_Back.bmp"
+
+IDB_MONSTER_REDDRAGON_FRONT BITMAP                  "res\\Monster\\RedDragon_Front.bmp"
+
+IDB_MONSTER_REDDRAGON_RIGHT BITMAP                  "res\\Monster\\RedDragon_Right.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

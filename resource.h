@@ -333,6 +333,11 @@
 #define IDB_MISSILE_ARROW_B             753
 #define IDB_MISSILE_ARROW_F             754
 #define IDB_MISSILE_ARROW_S             755
+#define IDB_MONSTER_REDDRAGON_ATTACK    756
+#define IDB_MONSTER_REDDRAGON_BACK      757
+#define IDB_MONSTER_REDDRAGON_FRONT     758
+#define IDB_BITMAP4                     759
+#define IDB_MONSTER_REDDRAGON_RIGHT     759
 #define IDB_MISSILE_THROWINGSTAR_S      765
 #define IDB_MISSILE_THROWINGSTAR_F      766
 #define IDB_MISSILE_POISONDART_B        767
@@ -511,7 +516,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        750
+#define _APS_NEXT_RESOURCE_VALUE        760
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

@@ -16,6 +16,13 @@ class CRusterPic;
 class CSwampSlimePic;
 class CWaterElementalPic;
 class CBlackFlamePic;
+class CRedDragonPic;
+class CGiantWaspPic;
+class CGiantScorpionPic;
+class CAnimatedArmourPic;
+class CCouatlPic;
+class COituPic;
+class CStoneGolemPic;
 class CMonsterPic : public CBasePictures
 {
 public:
@@ -40,5 +47,12 @@ private:
 	CWaterElementalPic* m_pWaterElementalPic;
 	CSwampSlimePic* m_pSwampSlimePic;
 	CBlackFlamePic* m_pBlackFlamePic;
+	CRedDragonPic* m_pRedDragonPic;
+	CGiantWaspPic* m_pGiantWaspPic;
+	CGiantScorpionPic* m_pGiantScorpionPic;
+	CAnimatedArmourPic* m_pAnimatedArmourPic;
+	CCouatlPic* m_pCouatlPic;
+	COituPic* m_pOituPic;
+	CStoneGolemPic* m_pStoneGolemPic;
 };
 

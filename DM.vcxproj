@@ -135,6 +135,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Pictures\Creatures\AnimatedArmourPic.cpp" />
+    <ClCompile Include="Pictures\Creatures\CouatlPic.cpp" />
+    <ClCompile Include="Pictures\Creatures\GiantScorpionPic.cpp" />
+    <ClCompile Include="Pictures\Creatures\GiantWaspPic.cpp" />
+    <ClCompile Include="Pictures\Creatures\OituPic.cpp" />
+    <ClCompile Include="Pictures\Creatures\RedDragonPic.cpp" />
     <ClCompile Include="Pictures\Creatures\BlackFlamePic.cpp" />
     <ClCompile Include="Pictures\Creatures\GhostPic.cpp" />
     <ClCompile Include="Pictures\DMFont.cpp" />
@@ -165,6 +171,7 @@
     <ClCompile Include="Attributes\TextAttributes.cpp" />
     <ClCompile Include="Pictures\Creatures\VexirkPic.cpp" />
     <ClCompile Include="Pictures\Creatures\SwampSlimePic.cpp" />
+    <ClCompile Include="Pictures\Creatures\StoneGolemPic.cpp" />
     <ClCompile Include="XMLParser\MonsterInfos.cpp" />
     <ClCompile Include="XMLParser\AttackInfos.cpp" />
     <ClCompile Include="Attributes\WeaponAttributes.cpp" />
@@ -240,6 +247,12 @@
     <ResourceCompile Include="DM.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Pictures\Creatures\AnimatedArmourPic.h" />
+    <ClInclude Include="Pictures\Creatures\CouatlPic.h" />
+    <ClInclude Include="Pictures\Creatures\GiantScorpionPic.h" />
+    <ClInclude Include="Pictures\Creatures\GiantWaspPic.h" />
+    <ClInclude Include="Pictures\Creatures\OituPic.h" />
+    <ClInclude Include="Pictures\Creatures\RedDragonPic.h" />
     <ClInclude Include="Pictures\Creatures\BlackFlamePic.h" />
     <ClInclude Include="Pictures\Creatures\GhostPic.h" />
     <ClInclude Include="Pictures\DMFont.h" />
@@ -270,6 +283,7 @@
     <ClInclude Include="Attributes\TextAttributes.h" />
     <ClInclude Include="Pictures\Creatures\VexirkPic.h" />
     <ClInclude Include="Pictures\Creatures\SwampSlimePic.h" />
+    <ClInclude Include="Pictures\Creatures\StoneGolemPic.h" />
     <ClInclude Include="XMLParser\MonsterInfos.h" />
     <ClInclude Include="XMLParser\AttackInfos.h" />
     <ClInclude Include="Attributes\ClothAttributes.h" />
@@ -590,6 +604,10 @@
     <Image Include="res\Monster\PainRat_Back.bmp" />
     <Image Include="res\Monster\PainRat_Front.bmp" />
     <Image Include="res\Monster\PainRat_Right.bmp" />
+    <Image Include="res\Monster\RedDragon_Attack.bmp" />
+    <Image Include="res\Monster\RedDragon_Back.bmp" />
+    <Image Include="res\Monster\RedDragon_Front.bmp" />
+    <Image Include="res\Monster\RedDragon_Right.bmp" />
     <Image Include="res\Monster\RockPile_Attack.bmp" />
     <Image Include="res\Monster\RockPile_Front.bmp" />
     <Image Include="res\Monster\Ruster_Back.bmp" />

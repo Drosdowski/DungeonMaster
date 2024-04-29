@@ -279,7 +279,7 @@ enum MonsterTyp {
 	MUMMY = 10,
 	BLACK_FLAME = 11,
 	SKELETON = 12,
-	CUATL = 13, // todo
+	COUATL = 13, // todo
 	VEXIRK = 14,
 	MAGENTA_WORM = 15,
 	TROLIN = 16,

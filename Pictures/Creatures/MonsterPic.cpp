@@ -17,6 +17,13 @@
 #include "WaterElementalPic.h"
 #include "SwampSlimePic.h"
 #include "BlackFlamePic.h"
+#include "RedDragonPic.h"
+#include "GiantWaspPic.h"
+#include "GiantScorpionPic.h"
+#include "AnimatedArmourPic.h"
+#include "CouatlPic.h"
+#include "OituPic.h"
+#include "StoneGolemPic.h"
 
 CMonsterPic::CMonsterPic(CDC* pDC) : CBasePictures(pDC) {
 	m_pMummyPic = new CMummyPic(pDC);
@@ -34,6 +41,13 @@ CMonsterPic::CMonsterPic(CDC* pDC) : CBasePictures(pDC) {
 	m_pWaterElementalPic = new CWaterElementalPic(pDC);
 	m_pSwampSlimePic = new CSwampSlimePic(pDC);
 	m_pBlackFlamePic = new CBlackFlamePic(pDC);
+	m_pRedDragonPic = new CRedDragonPic(pDC);
+	m_pGiantWaspPic = new CGiantWaspPic(pDC);
+	m_pGiantScorpionPic = new CGiantScorpionPic(pDC);
+	m_pAnimatedArmourPic = new CAnimatedArmourPic(pDC);
+	m_pCouatlPic = new CCouatlPic(pDC);
+	m_pOituPic = new COituPic(pDC);
+	m_pStoneGolemPic = new CStoneGolemPic(pDC);
 }
 
 CMonsterPic::~CMonsterPic() {
@@ -52,6 +66,13 @@ CMonsterPic::~CMonsterPic() {
 	delete m_pWaterElementalPic;
 	delete m_pSwampSlimePic;
 	delete m_pBlackFlamePic;
+	delete m_pRedDragonPic;
+	delete m_pGiantWaspPic;
+	delete m_pGiantScorpionPic;
+	delete m_pAnimatedArmourPic;
+	delete m_pCouatlPic;
+	delete m_pOituPic;
+	delete m_pStoneGolemPic;
 }
 
 CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
@@ -88,6 +109,20 @@ CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
 		return m_pSwampSlimePic->GetSwampSlimePic(pMonster->isAttacking());
 	case BLACK_FLAME:
 		return m_pBlackFlamePic->GetBlackFlamePic(pMonster->isAttacking());
+	case RED_DRAGON:
+		return m_pRedDragonPic->GetRedDragonPic(iRicht, pMonster->isAttacking());
+	case GIANT_WASP:
+		return m_pGiantWaspPic->GetGiantWaspPic(iRicht, pMonster->isAttacking());
+	case GIANT_SCORPION:
+		return m_pGiantScorpionPic->GetGiantScorpionPic(iRicht, pMonster->isAttacking());
+	case ANIMATED_ARMOUR:
+		return m_pAnimatedArmourPic->GetAnimatedArmourPic(iRicht, pMonster->isAttacking());
+	case COUATL:
+		return m_pCouatlPic->GetCouatlPic(iRicht, pMonster->isAttacking());
+	case OITU:
+		return m_pOituPic->GetOituPic(iRicht, pMonster->isAttacking());
+	case STONE_GOLEN:
+		return m_pStoneGolemPic->GetStoneGolemPic(iRicht, pMonster->isAttacking());
 
 	default:
 		break;

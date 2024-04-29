@@ -1897,7 +1897,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 					case WATER_ELEMENTAL:
 					case SWAMP_SLIME:
 						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(SwampSlime-WaterElemental"); break;
-					case CUATL:
+					case COUATL:
 					case GIANT_WASP:
 						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(GiantWasp-Couatl)"); break;
 					case RED_DRAGON:
