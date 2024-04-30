@@ -2076,7 +2076,8 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 						field->ThrowItem(item, itemRegionReal, force);
 						pGrpHero->EmptyHand();
 						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
-						pGrpHero->setPhaseDelay(2);
+						pHero->ReduceStamina(ac.stamina);
+						pGrpHero->setPhaseDelay(ac.fatigue);
 						pGrpHero->setPhase(SHOW_DAMAGE);
 					}
 				}
@@ -2088,20 +2089,23 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 					if ((attackType == "N") && (ActionId == 3)) {
 						// Warcry
 						pVictims->Scare();
-						pGrpHero->setPhaseDelay(2);
+						pHero->ReduceStamina(ac.stamina);
+						pGrpHero->setPhaseDelay(ac.fatigue);
 						pGrpHero->setPhase(SHOW_DAMAGE);
 					}
 					else {
 						// Nahkampf!
 						CMonsterConst mc = monsterInfos->GetMonsterInfo(pVictims->GetType());
 						int dmg = pHero->CalcDmg(weapon, ac, mc, diff);
-						if (dmg > 0) {
+						if (dmg > 0 && pHero->St().Aktuell > 10 * ac.stamina) {
 							pVictims->DoDamage(dmg, 0, myPos, false); // true = Schaden an alle
 							pHero->AttackModeWithDmg(dmg, 0);
-							pGrpHero->setPhaseDelay(2);
+							pHero->ReduceStamina(ac.stamina);
+							pGrpHero->setPhaseDelay(ac.fatigue);
 							pGrpHero->setPhase(SHOW_DAMAGE);
 						}
 						else {
+							pHero->ReduceStamina(2);
 							pGrpHero->setPhaseDelay(2);
 							pGrpHero->setPhase(CHOOSE_HERO);
 						}

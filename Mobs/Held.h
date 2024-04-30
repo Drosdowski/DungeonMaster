@@ -40,6 +40,7 @@ public:
 	void Essen(int amount);
 	void WerteTemporaerAendern(double hp, double st, double ma);
 	void WerteSetzen(double hp, double st, double ma);
+	void ReduceStamina(int st) { m_ST.Aktuell = max(0, m_ST.Aktuell - 10 * (st + (rand() % 1))); }
 	//virtual void WertePermanentAendern(int hp, int st, int ma);
 	void ChangeCompass();
 

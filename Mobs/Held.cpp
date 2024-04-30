@@ -196,12 +196,9 @@ int CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, int level
 	
 	if (!hitSucessful(ac, mc, levelDif))
 	{
-		WerteTemporaerAendern(0, -(2 + (rand() % 1)), 0); // daneben
 		return 0;
 	}
 	else {
-		WerteTemporaerAendern(0, -ac.stamina + (rand() % 1), 0); // treffer!
-
 		// damage berechnen!
 		CWeapon* weapon = (CWeapon*)m_itemCarrying[1];
 		double d3_strength = m_sVitals.str.Aktuell;
