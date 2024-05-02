@@ -23,22 +23,20 @@ public:
 	CBitmap* GetWizardTabs(int i) { return m_pWizardTabs[i]; }
 	CBitmap* GetOneHand() { return m_pOneHand; }
 	CBitmap* GetIconBitmap(CDC* pDC, CItem* pMisc);
+	CBitmap* GetInterface(int index) { return m_pInterface[index]; }
+	CBitmap* GetDamageReceived(int index) { return m_pDamageReceived[index]; }
 	
 	void DrawActionAreaChoice(CDC* pDC, CItemInfos* m_pItemInfos, int weaponIndex);
 	void DrawActionAreaDamage(CDC* pDC, int dmg);
 	void DrawActiveWeapon(CDC* pDC, CHeld* held, int id);
 	void DrawSpecialFont(CDC* pDC, CPoint pos, CString text, int size);
 	void DrawItemInfoText(CDC* pDC, CItem* item);
-	void KnochenZeichnen(CDC* pDC, int index);
-	void NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName);
 	void RucksackZeichnen(CDC* pDC, CGrpHeld* pGrpHelden);
-	void HaendeZeichnen(CDC* pDC, CHeld* pHeld);
 	void SymbolZeichnen(CDC* pDC, int heldIndex, SUBPOS relPos);
-	void WaffeZeichnen(CDC* pDC);
-	void WerteZeichnen(CDC* pDC, CHeld* pHeld);
-	void BildZeichnen(CDC* pDC, bool aktiv, int index);
-	void SchadenZeichnen(CDC* pDC, int index, bool bigDmg, int dmg);
+	// void WaffeZeichnen(CDC* pDC);
 	void PfeilZeichnen(CDC* pDC, int index);
+	void DrawFontText(CDC* pDC, int x, int y, CString text, bool darkFont);
+	void DrawHand(CDC* pDC, CHeld* pHeld, int index);
 
 private:
 	void InitBitmaps();
@@ -55,9 +53,7 @@ private:
 	void GewichtZeichnen(CDC* pDC, CHeld* pHeld);	// todo einheitliche Namen!
 	void ZeichneVitalText(CDC* pDC, CString text, int index, int y);
 
-	void DrawHand(CDC* pDC, CHeld* pHeld, int index);
 	void DrawText(CDC* pDC, int x, int y, CString text, int h, COLORREF fc, COLORREF bc);
-	void DrawFontText(CDC* pDC, int x, int y, CString text, bool darkFont);
 	CString GetText(CItem* item);
 	CBitmap* GetOrigFontLetter(CDC* pDC, char letter);
 	CBitmap* GetScrollFontLetter(CDC* pDC, char letter);
@@ -79,7 +75,6 @@ private:
 	CBitmap* m_pItemCircle;
 
 	CItemPic* m_pItemPic;
-	char* m_textBuffer;
 	CDMFont* m_pDMFont;
 };
 

@@ -61,7 +61,7 @@ CDMView::CDMView()
 	m_pPictures = NULL;
 	m_pRaumView = new CRaumView();
 	m_pZauberView = new CZauberView();
-	m_pGroupView = new CGroupView();
+	m_pGroupView = NULL;
 	m_bPause = false;
 	m_iModus = MOD_LAUFEN;
 	lastModus = MOD_LAUFEN;
@@ -990,7 +990,7 @@ void CDMView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CDMView::HeldenGrafikZeichnen(CGrpHeld* pGrpHelden, CDC* pDC, CPictures* pPictures)
 {
-	m_pGroupView->GroupZeichnen(pDC, pPictures, m_iModus, pGrpHelden);
+	m_pGroupView->GroupZeichnen(pDC, m_iModus, pGrpHelden);
 }
 
 void CDMView::ZauberReiterZeichnen(CDC* pDC, int iActiveWizard, int runeTableId, int* runeIds)
@@ -1199,6 +1199,8 @@ void CDMView::InitDungeon(CDMDoc* pDoc)
 	CDC* pDC = GetDC();
 	m_pPictures = new CPictures(pDC);
 	m_pRaumView->InitDungeon(pDoc, pDC, m_pPictures);
+	m_pGroupView = new CGroupView(m_pPictures);
+
 }
 
 void CDMView::ChangeMouseCursor() {

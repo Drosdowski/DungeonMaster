@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "stdafx.h"
 #include "DM.h"
 #include "CPictures.h"
 #include "CWallPic.h"
@@ -28,13 +27,11 @@ CPictures::CPictures(CDC* pDC) : CBasePictures(pDC)
 {	
 	InitBitmaps();
 	m_pItemPic = new CItemPic(pDC);
-	m_textBuffer = new char[10];
 	m_pDMFont = new CDMFont(pDC);
 }
 
 CPictures::~CPictures() 
 {
-	delete m_textBuffer;
 	delete m_pBmpHintergrund;
 	delete m_pBmpInversePfeile;
 	delete m_pBmpPfeile;
@@ -117,35 +114,10 @@ CBitmap* CPictures::GetIconBitmap(CDC* pDC, CItem* pItem) {
 }
 
 
-void CPictures::WerteZeichnen(CDC* pDC, CHeld* pHeld)
-{
-	int index = pHeld->getIndex();
-
-	CDC tmpdc;
-	tmpdc.CreateCompatibleDC(pDC);	
-	tmpdc.SelectObject(m_pInterface[0]);
-	pDC->StretchBlt((index - 1) * 138, 0, 138, 56, &tmpdc, 0, 0, 80, 29, SRCCOPY);
-
-	// Hp, St, Ma - Balken
-	int x = (pHeld->getIndex() - 1) * 138 + 94;
-
-	pDC->FillSolidRect(CRect(x, 52 - int(48 * pHeld->LifePart()), x + 7, 52), pHeld->Farbe());
-	if (pHeld->StaminaPart() > 0)
-	{
-		pDC->FillSolidRect(CRect(x + 14, 52 - int(48 * pHeld->StaminaPart()), x + 21, 52), pHeld->Farbe());
-	}
-	if (pHeld->ManaPart() > 0)
-	{
-		pDC->FillSolidRect(CRect(x + 28, 52 - int(48 * pHeld->ManaPart()), x + 35, 52), pHeld->Farbe());
-	}
-
-	tmpdc.DeleteDC();
-}
-
-void CPictures::WaffeZeichnen(CDC* pDC)
-{
+//void CPictures::WaffeZeichnen(CDC* pDC)
+//{
 	// ggf. die Hand (zweimal!)
-}
+//}
 
 void CPictures::SymbolZeichnen(CDC* pDC, int heldIndex, SUBPOS relPos)
 {
@@ -182,27 +154,6 @@ void CPictures::DrawHand(CDC* pDC, CHeld* pHeld, int handId) {
 
 }
 
-void CPictures::HaendeZeichnen(CDC* pDC, CHeld* pHeld)
-{
-	DrawHand(pDC, pHeld, 0);
-	DrawHand(pDC, pHeld, 1);
-
-}
-
-void CPictures::KnochenZeichnen(CDC* pDC, int index)
-{
-	CDC tmpdc;
-	tmpdc.CreateCompatibleDC(pDC);
-	tmpdc.SelectObject(m_pInterface[1]);
-	pDC->StretchBlt((index - 1) * 138, 0, 138, 56, &tmpdc, 0, 0, 80, 29, SRCCOPY);
-
-	tmpdc.DeleteDC();
-}
-
-void CPictures::BildZeichnen(CDC* pDC, bool aktiv, int index)
-{
-	// todo hero pic
-}
 
 void CPictures::RucksackZeichnen(CDC* pDC, CGrpHeld* pGrpHelden)
 {
@@ -337,42 +288,6 @@ void CPictures::ZeichneScroll(CDC* pDC, CScroll* scroll) {
 	tmpdc.DeleteDC();
 }
 
-
-void CPictures::NameZeichnen(CDC* pDC, bool aktiv, int index, CString strName)
-{
-	if (aktiv)
-		pDC->SetTextColor(GELB);
-	else
-		pDC->SetTextColor(HELLBRAUN);
-	pDC->SetBkColor(DUNKELGRAU);
-	int x = (index - 1) * 138;
-	//pDC->ExtTextOut(x + 4, -2, ETO_CLIPPED | ETO_OPAQUE, CRect(x, 0, x + 78, 14), strName, NULL);
-	DrawFontText(pDC, x, -2, strName, false);
-}
-
-void CPictures::SchadenZeichnen(CDC* pDC, int index, bool bigDmg, int dmg)
-{
-	CDC tmpdc;
-	tmpdc.CreateCompatibleDC(pDC);
-	int l = (int)log10(dmg);
-	sprintf(m_textBuffer, "%d", dmg);
-	pDC->SetTextColor(WEISS);
-	pDC->SetBkColor(PURROT);
-	if (bigDmg) {
-		tmpdc.SelectObject(m_pDamageReceived[1]);
-		pDC->TransparentBlt((index - 1) * 138, 0, 64, 58, &tmpdc, 0, 0, 32, 29, TRANS_ORA);
-		int x = (index - 1) * 138 + 30 - 4 * l;
-		pDC->ExtTextOut(x, 20, ETO_CLIPPED | ETO_OPAQUE, CRect(x, 20, x + 24, 34), m_textBuffer, NULL);
-	}
-	else {
-		tmpdc.SelectObject(m_pDamageReceived[0]);
-		pDC->TransparentBlt((index - 1) * 138, 0, 96, 14, &tmpdc, 0, 0, 48, 7, TRANS_ORA); 
-		int x = (index - 1) * 138 + 40 - 4*l;
-		pDC->ExtTextOut(x, -1, ETO_CLIPPED | ETO_OPAQUE, CRect(x, 0, x + 24, 14), m_textBuffer, NULL);
-	}
-
-	tmpdc.DeleteDC();
-}
 
 void CPictures::ZeichneHungerDurst(CDC* pDC, int i, int j)
 {
