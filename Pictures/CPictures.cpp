@@ -18,6 +18,7 @@
 #include "..\CalculationHelper\CScreenCoords.h"
 #include "..\CalculationHelper\CHelpfulValues.h"
 #include "..\Consts\WeaponConst.h"
+#include "ChampionPortrait.h"
 #include <sstream>
 #include <string>
 #include <ft2build.h>
@@ -28,6 +29,7 @@ CPictures::CPictures(CDC* pDC) : CBasePictures(pDC)
 	InitBitmaps();
 	m_pItemPic = new CItemPic(pDC);
 	m_pDMFont = new CDMFont(pDC);
+	m_pChampionPortraits = new CChampionPortrait(pDC);
 }
 
 CPictures::~CPictures() 
@@ -53,6 +55,7 @@ CPictures::~CPictures()
 	delete m_pOpenChest;
 	delete m_pDMFont;
 	delete m_pItemCircle;
+	delete m_pChampionPortraits;
 }
 
 
@@ -690,4 +693,13 @@ CString CPictures::GetText(CItem* item) {
 	else if (typ == CItem::ItemType::ContainerItem) {
 		return ((CContainer*)item)->GetName();
 	}
+}
+
+
+CBitmap* CPictures::GetChampions() { 
+	return m_pChampionPortraits->GetChampions(); 
+}
+
+CPoint CPictures::GetKoords(int heroId) { 
+	return m_pChampionPortraits->GetKoords(heroId); 
 }

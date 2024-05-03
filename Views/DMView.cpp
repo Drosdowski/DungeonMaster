@@ -491,7 +491,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 			else if (type == CActuator::ChampionMirror) {
 				CField* field = m_pRaumView->GetMap()->GetField(grpHelden->GetVector());
 				CString text = field->GetFirstText(0)->GetText();
-				CBitmap* pic = m_pRaumView->GetHeroPic(data);			
+				// CBitmap* pic = m_pPictures->DrawHeroPic(data);			
 
 				grpHelden->RessurectHero(text);
 				currentActuator->Deactivate();

@@ -62,7 +62,6 @@ public:
 	CItemInfos* GetItemInfos() { return m_pItemInfos; }
 	CAttackInfos* GetAttackInfos() { return m_pAttackInfos; }
 	CMonsterInfos* GetMonsterInfos() { return m_pMonsterInfos; }
-	CBitmap* GetHeroPic(int data);
 	void TriggerMoveAnimation();
 	void RaumZeichnen(CDC* pDC);
 	void DrawActionAreaChoice(CDC* pDC, int weaponIndex);
@@ -91,7 +90,6 @@ protected:
 	CMonsterPic* m_pMonsterPic;
 	CItem3DPic* m_pItem3DPic;
 	CMagicMissilePic* m_pMagicMissilePic;
-	CChampionPortrait* m_pChampionPortraits;
 
 	VEKTOR MonsterMoveOrAttack(CGrpMonster* pGrpMon);
 	void DrawPile(CDC* pDC, CDC* cdc, int xx, int ebene, SUBPOS_ABSOLUTE SubPos, COMPASS_DIRECTION heroDir, std::deque<CItem*> pile, bool center);

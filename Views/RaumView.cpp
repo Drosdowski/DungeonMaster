@@ -40,7 +40,6 @@
 #include "Pictures\Creatures\MonsterPic.h"
 #include "Pictures\Items3D\CItem3DPic.h"
 #include "Pictures\MagicMissilePic.h"
-#include "Pictures\ChampionPortrait.h"
 #include "Mobs\Monster.h"
 #include "Mobs\MobGroups\GrpMonster.h"
 #include "Mobs\MobGroups\GrpHeld.h"
@@ -85,7 +84,6 @@ CRaumView::CRaumView()
 	m_pMonsterPic = NULL;
 	m_pItem3DPic = NULL;
 	m_pMagicMissilePic = NULL;
-	m_pChampionPortraits = NULL;
 }
 
 CRaumView::~CRaumView()
@@ -104,7 +102,6 @@ CRaumView::~CRaumView()
 	delete m_pWallDecoPic;
 	delete m_pMonsterPic;
 	delete m_pMagicMissilePic;
-	delete m_pChampionPortraits;
 	delete m_pItem3DPic;
 	delete m_pMap;
 }
@@ -417,9 +414,9 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 				else if (graphicTypeFront == ChampionMirror && actuatorsFront.back()->IsActive()) {
 					if (ebene == 1 && xx == 0) {
 						// Hero Picture
-						CBitmap* heroPic = m_pChampionPortraits->GetChampions();
+						CBitmap* heroPic = m_pPictures->GetChampions();
 						int heroId = actuatorsFront.back()->GetData();
-						CPoint koord = m_pChampionPortraits->GetKoords(heroId);
+						CPoint koord = m_pPictures->GetKoords(heroId);
 
 						CDC tmpdc;
 						tmpdc.CreateCompatibleDC(pDC);
@@ -1956,7 +1953,6 @@ void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
 	m_pMonsterPic = new CMonsterPic(pDC);
 	m_pItem3DPic = new CItem3DPic(pDC);
 	m_pMagicMissilePic = new CMagicMissilePic(pDC);
-	m_pChampionPortraits = new CChampionPortrait(pDC);
 
 	
 	m_pItemInfos = new CItemInfos();
@@ -2141,19 +2137,4 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 		}
 	}
 
-}
-
-CBitmap* CRaumView::GetHeroPic(int heroId) {
-	CBitmap* heroPic = m_pChampionPortraits->GetChampions();
-	CPoint koord = m_pChampionPortraits->GetKoords(heroId);
-
-	/*CDC* pDC = GetDC();
-	CDC tmpdc;
-	tmpdc.CreateCompatibleDC(pDC);
-	tmpdc.SelectObject(heroPic);
-
-	pDC->TransparentBlt(0, 0, 32 * 2, 29 * 2, &tmpdc, koord.x, koord.y, 32, 29, TRANS_GRE);
-	tmpdc.DeleteDC();*/
-
-	return heroPic;
 }

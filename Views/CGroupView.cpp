@@ -8,7 +8,7 @@
 CGroupView::CGroupView(CPictures* pPictures)
 {
 	m_pPictures = pPictures;
-	m_textBuffer = new char[10];
+	m_textBuffer = new char[10];	
 }
 
 CGroupView::~CGroupView()
@@ -120,12 +120,17 @@ void CGroupView::HaendeZeichnen(CHeld* pHeld)
 	m_pPictures->DrawHand(m_pDC, pHeld, 1);
 }
 
-void CGroupView::BildZeichnen(bool aktiv, int index)
+void CGroupView::BildZeichnen(bool aktiv, int heroId)
 {
-	// todo hero pic
-	// CBitmap* heroPic = m_pChampionPortraits->GetChampions();
-	//  CPoint koord = m_pChampionPortraits->GetKoords(heroId);
+	CBitmap* heroPic = m_pPictures->GetChampions();
+	CPoint koord = m_pPictures->GetKoords(heroId);
+	
+	CDC tmpdc;
+	tmpdc.CreateCompatibleDC(m_pDC);
+	tmpdc.SelectObject(heroPic);
+	m_pDC->StretchBlt((heroId - 1) * 138, 0, 32 * 2, 29 * 2, &tmpdc, koord.x, koord.y, 32, 29, SRCCOPY);
 
+	tmpdc.DeleteDC();
 }
 
 void CGroupView::SchadenZeichnen(int index, bool bigDmg, int dmg)

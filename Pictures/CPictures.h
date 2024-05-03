@@ -8,6 +8,7 @@ class CItemInfos;
 class CScroll;
 class CContainer;
 class CDMFont;
+class CChampionPortrait;
 class CPictures : CBasePictures
 {
 public:
@@ -25,6 +26,8 @@ public:
 	CBitmap* GetIconBitmap(CDC* pDC, CItem* pMisc);
 	CBitmap* GetInterface(int index) { return m_pInterface[index]; }
 	CBitmap* GetDamageReceived(int index) { return m_pDamageReceived[index]; }
+	CBitmap* GetChampions();
+	CPoint GetKoords(int heroId);
 	
 	void DrawActionAreaChoice(CDC* pDC, CItemInfos* m_pItemInfos, int weaponIndex);
 	void DrawActionAreaDamage(CDC* pDC, int dmg);
@@ -54,6 +57,9 @@ private:
 	void ZeichneVitalText(CDC* pDC, CString text, int index, int y);
 
 	void DrawText(CDC* pDC, int x, int y, CString text, int h, COLORREF fc, COLORREF bc);
+
+	CChampionPortrait* m_pChampionPortraits;
+
 	CString GetText(CItem* item);
 	CBitmap* GetOrigFontLetter(CDC* pDC, char letter);
 	CBitmap* GetScrollFontLetter(CDC* pDC, char letter);
