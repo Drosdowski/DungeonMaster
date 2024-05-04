@@ -44,7 +44,7 @@ void CGroupView::GroupZeichnen(CDC* pDC, DMMode iModus, CGrpHeld* pGrpHeld)
 				{
 					if (pHeroToDraw == pGrpHeld->GetActiveHero())
 					{
-						BildZeichnen(pHeroToDraw->isActive(), i);
+						BildZeichnen(pHeroToDraw->isActive(), i, pHeroToDraw->getHeroId());
 					}
 					else {
 						HaendeZeichnen(pHeroToDraw);
@@ -120,7 +120,7 @@ void CGroupView::HaendeZeichnen(CHeld* pHeld)
 	m_pPictures->DrawHand(m_pDC, pHeld, 1);
 }
 
-void CGroupView::BildZeichnen(bool aktiv, int heroId)
+void CGroupView::BildZeichnen(bool aktiv, int index, int heroId)
 {
 	CBitmap* heroPic = m_pPictures->GetChampions();
 	CPoint koord = m_pPictures->GetKoords(heroId);
@@ -128,7 +128,7 @@ void CGroupView::BildZeichnen(bool aktiv, int heroId)
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(m_pDC);
 	tmpdc.SelectObject(heroPic);
-	m_pDC->StretchBlt((heroId - 1) * 138, 0, 32 * 2, 29 * 2, &tmpdc, koord.x, koord.y, 32, 29, SRCCOPY);
+	m_pDC->StretchBlt((index - 1) * 138, 0, 32 * 2, 29 * 2, &tmpdc, koord.x, koord.y, 32, 29, SRCCOPY);
 
 	tmpdc.DeleteDC();
 }

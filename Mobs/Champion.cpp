@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Champion.h"
 
-CChampion::CChampion(CString text) {
+CChampion::CChampion(CString text, int heroId) {
 	int i = 0;
 	CStringArray saItems;
 	for (CString sItem = text.Tokenize("\n", i); i >= 0; sItem = text.Tokenize("\n", i))
@@ -19,14 +19,14 @@ CChampion::CChampion(CString text) {
 	}
 	CString gender = saItems.GetAt(2-sub);
 	m_gender = (gender == "F" ? female : male);
-
+	m_heroId = heroId;
 	ParseOtherFromText(saItems.GetAt(3 - sub));
 	ParseVitalsFromText(saItems.GetAt(4 - sub));
 	ParseLevelsFromText(saItems.GetAt(5 - sub));
 	
 }
 
-CChampion::CChampion(const char* name, const char* subname, bool isMale, VITALS vitals, int hp, int st, int ma) {
+CChampion::CChampion(const char* name, const char* subname, bool isMale, int heroId, VITALS vitals, int hp, int st, int ma) {
 	m_name = name;
 	m_subname = subname;
 	m_vitals = vitals;

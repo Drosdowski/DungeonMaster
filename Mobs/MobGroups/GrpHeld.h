@@ -23,7 +23,7 @@ public:
 public:
 	void InitHeld(int nr);
 	void InitHeld(CChampion* champion, const int nr, int hp_akt, int st_akt, int ma_akt);
-	void RessurectHero(CString text);
+	void RessurectHero(CString text, int heroId);
 	
 	CHeld* GetHero(int iID) { return (CHeld*)m_pMember[iID]; }
 	CHeld* GetActiveHero() { return (CHeld*)m_pMember[m_iAktiverHeld]; }

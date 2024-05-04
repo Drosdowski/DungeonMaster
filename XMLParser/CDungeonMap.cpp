@@ -1211,6 +1211,7 @@ void CDungeonMap::SaveHero(TiXmlElement* heroes, int id) {
 	if (held) {
 		TiXmlElement* hero = new TiXmlElement("hero");
 		hero->SetAttribute("index", id);
+		hero->SetAttribute("heroId", held->getHeroId());
 		hero->SetAttribute("hp_akt", (int)held->Hp().Aktuell);
 		hero->SetAttribute("st_akt", (int)held->St().Aktuell);
 		hero->SetAttribute("ma_akt", (int)held->Ma().Aktuell);
@@ -1412,12 +1413,13 @@ void CDungeonMap::LoadHeroes(TiXmlElement* heroes) {
 }
 
 void CDungeonMap::LoadHero(TiXmlElement* hero) {
-	int heroId;
+	int heroId, heroIndex;
 	int S, D, V, W, M, F, L;
 	int hp_akt, st_akt, ma_akt;
 	int hp_max, st_max, ma_max;
 	WERTE STR, DEX, VIT, WIS, AM, AF, LUK;
-	hero->QueryIntAttribute("index", &heroId);
+	hero->QueryIntAttribute("index", &heroIndex);
+	hero->QueryIntAttribute("heroId", &heroId);
 	hero->QueryIntAttribute("hp_akt", &hp_akt);
 	hero->QueryIntAttribute("st_akt", &st_akt);
 	hero->QueryIntAttribute("ma_akt", &ma_akt);
@@ -1445,9 +1447,9 @@ void CDungeonMap::LoadHero(TiXmlElement* hero) {
 	VITALS vitals = { LUK, STR, DEX, VIT, WIS, AM, AF };
 	CString skills = hero->Attribute("SKILLS");
 	CString spell = hero->Attribute("SPELL");
-	CChampion* newChamp = new CChampion(name, subname, male[0] == 'Y', vitals, hp_max, st_max, ma_max);
+	CChampion* newChamp = new CChampion(name, subname, male[0] == 'Y', heroId, vitals, hp_max, st_max, ma_max);
 
-	m_pGrpHelden->InitHeld(newChamp, heroId, hp_akt, st_akt, ma_akt);
+	m_pGrpHelden->InitHeld(newChamp, heroIndex, hp_akt, st_akt, ma_akt);
 	CHeld* held = m_pGrpHelden->GetActiveHero();
 	held->SetSkillsFromSaveGame(skills);
 	held->SetSpellFromSaveGame(spell);

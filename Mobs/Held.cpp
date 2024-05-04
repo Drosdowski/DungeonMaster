@@ -41,6 +41,7 @@ CHeld::CHeld(int iIndex, CChampion* champ, int hp_akt, int st_akt, int ma_akt): 
 	
 	m_bAktiv = true;
 	m_strName = champ->GetName();
+	m_heroId = champ->GetHeroId();
 	m_iIndex = iIndex;
 	m_iFood = maxFood;
 	m_iWater = maxWater;

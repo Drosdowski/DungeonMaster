@@ -15,7 +15,7 @@ private:
 	void WerteZeichnen(CHeld* pHeld);
 	void NameZeichnen(bool aktiv, int index, CString strName);
 	void HaendeZeichnen(CHeld* pHeld);
-	void BildZeichnen(bool aktiv, int heroId);
+	void BildZeichnen(bool aktiv, int index, int heroId);
 	void SchadenZeichnen(int index, bool bigDmg, int dmg);
 
 	CDC* m_pDC;
