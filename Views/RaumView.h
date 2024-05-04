@@ -40,10 +40,10 @@ class CRaumView
 {
 public:
 	CRaumView();
+	virtual ~CRaumView();
 protected:
 
 // Attributes
-public:
 	CDMDoc* m_pDoc;
 
 // Operations
@@ -55,7 +55,7 @@ public:
 	void TriggerActuatorsNearby();
 
 	void InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures); // TODO: pDOC & pDC private merken
-	VEKTOR Betrete(VEKTOR to, boolean &collision);
+	VEKTOR WalkTo(VEKTOR to, boolean &collision);
 	CGrpMonster* GetMonsterGroup(VEKTOR pos);
 	CDungeonMap* GetMap() { return m_pMap; }
 	CGrpHeld* GetHeroes() { return m_pMap->GetHeroes(); }
@@ -63,15 +63,13 @@ public:
 	CAttackInfos* GetAttackInfos() { return m_pAttackInfos; }
 	CMonsterInfos* GetMonsterInfos() { return m_pMonsterInfos; }
 	void TriggerMoveAnimation();
-	void RaumZeichnen(CDC* pDC);
+	void DrawRoom(CDC* pDC);
 	void DrawActionAreaChoice(CDC* pDC, int weaponIndex);
 	void DrawActionAreaDamage(CDC* pDC, int dmg);
 	void DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId);
 
 	bool OnStairs();
 	CSize GetSizeOfFrontDeco(CField* pfield, COMPASS_DIRECTION dir);
-
-	virtual ~CRaumView();
 
 	CField* ChangeFieldWithTeleporter(CField* &pField, SUBPOS_ABSOLUTE &subPos, COMPASS_DIRECTION &direction);
 	CField* ChangeFieldWithStairs(CField* pField, CMovingObject* pItem, SUBPOS_ABSOLUTE& subPos);

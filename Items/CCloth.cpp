@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Cloth.h"
+#include <cassert>
 
 CCloth::CCloth(int index, CClothAttributes attribute) : CItem(index, ClothItem) {
 	m_attribute = attribute;
@@ -80,6 +81,7 @@ CItem::ItemGroup CCloth::GetGroup() {
 	case 28: case 29: case 30: case 31: case 42: case 47: case 52:
 		return ItemGroup::Shield;
 	}
+	assert(false);
 	return ItemGroup::Other; // todo ergänzen
 }
 

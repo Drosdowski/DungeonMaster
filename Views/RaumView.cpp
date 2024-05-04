@@ -735,7 +735,7 @@ void CRaumView::DrawActionAreaDamage(CDC* pDC, int dmg) {
 }
 
 
-void CRaumView::RaumZeichnen(CDC* pDC)
+void CRaumView::DrawRoom(CDC* pDC)
 {
 	CDC compCdc;
 	compCdc.CreateCompatibleDC(pDC);
@@ -868,7 +868,7 @@ CGrpMonster* CRaumView::GetMonsterGroup(VEKTOR pos) {
 	return pField->GetMonsterGroup();
 }
 
-VEKTOR CRaumView::Betrete(VEKTOR toPos, boolean &collision)
+VEKTOR CRaumView::WalkTo(VEKTOR toPos, boolean &collision)
 {
 	CField* pField = m_pMap->GetField(toPos);
 	FeldTyp iTyp = pField->HoleTyp();
@@ -1725,7 +1725,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	if (pGrpMon->IsScared()) {
 		targetPos = pGrpMon->GetNextFieldKoord(RUECKWAERTS, 1);
 		boolean collision = false;
-		targetPos = Betrete(targetPos, collision);
+		targetPos = WalkTo(targetPos, collision);
 		pGrpMon->ScaredAction(targetPos, collision);
 	}
 	else {

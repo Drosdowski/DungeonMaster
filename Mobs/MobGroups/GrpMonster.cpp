@@ -361,7 +361,6 @@ void CGrpMonster::Laufen(VEKTOR WunschPos, boolean teleport) {
 	for (int i = 1; i <= 4; i++)
 		if ((m_pMember[i]) && (m_pMember[i]->isAlive()))
 		{
-			// todo monster werden müde?
 			m_pMember[i]->MoveDone();
 		}
 	m_posPosition = WunschPos;
