@@ -139,6 +139,18 @@
 #define IDB_FLOOR_SQUARE_GRATE_L1       326
 #define IDB_FLOOR_SQUARE_GRATE_L2       327
 #define IDB_FLOOR_SQUARE_GRATE_L3       328
+#define IDB_FLOOR_BLACKFLAME_F1         329
+#define IDB_FLOOR_BLACKFLAME_F2         330
+#define IDB_FLOOR_BLACKFLAME_F3         331
+#define IDB_FLOOR_BLACKFLAME_L1         332
+#define IDB_FLOOR_BLACKFLAME_L2         333
+#define IDB_FLOOR_BLACKFLAME_L3         334
+#define IDB_FLOOR_CRACK_F1              335
+#define IDB_FLOOR_CRACK_F2              336
+#define IDB_FLOOR_CRACK_F3              337
+#define IDB_FLOOR_CRACK_L1              338
+#define IDB_FLOOR_CRACK_L2              339
+#define IDB_FLOOR_CRACK_L3              340
 #define IDB_TELEPORTER                  380
 #define IDB_BITMAP_P                    391
 #define IDB_ITEM3D_GOLDKEY              400
@@ -516,7 +528,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        760
+#define _APS_NEXT_RESOURCE_VALUE        790
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           101

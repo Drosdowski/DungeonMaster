@@ -300,6 +300,27 @@
     <ClCompile Include="Pictures\Creatures\BlackFlamePic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pictures\Creatures\AnimatedArmourPic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pictures\Creatures\CouatlPic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pictures\Creatures\GiantScorpionPic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pictures\Creatures\GiantWaspPic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pictures\Creatures\OituPic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pictures\Creatures\RedDragonPic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pictures\Creatures\StoneGolemPic.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DM.rc">
@@ -593,6 +614,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Pictures\Creatures\BlackFlamePic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\Creatures\AnimatedArmourPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\Creatures\CouatlPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\Creatures\GiantScorpionPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\Creatures\GiantWaspPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\Creatures\OituPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\Creatures\RedDragonPic.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pictures\Creatures\StoneGolemPic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -2160,6 +2202,54 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Monster\AnimatedArmour_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\RedDragon_Attack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\RedDragon_Back.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\RedDragon_Front.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Monster\RedDragon_Right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\BlackFlamePit_F1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\BlackFlamePit_F2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\BlackFlamePit_F3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\BlackFlamePit_L1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\BlackFlamePit_L2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\BlackFlamePit_L3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\Crack_F1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\Crack_F2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\Crack_F3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\Crack_L1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\Crack_L2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Floor\Crack_L3.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
