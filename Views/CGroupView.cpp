@@ -16,7 +16,7 @@ CGroupView::~CGroupView()
 	delete m_textBuffer;
 }
 
-void CGroupView::GroupZeichnen(CDC* pDC, DMMode iModus, CGrpHeld* pGrpHeld)
+void CGroupView::DrawGroup(CDC* pDC, DMMode iModus, CGrpHeld* pGrpHeld)
 {
 	m_pDC = pDC;
 	for (int i = 1; i <= 4; i++)
@@ -26,29 +26,29 @@ void CGroupView::GroupZeichnen(CDC* pDC, DMMode iModus, CGrpHeld* pGrpHeld)
 		if (pHeroToDraw != NULL)
 		{
 			if (!pHeroToDraw->isAlive())
-				KnochenZeichnen(i);
+				DrawBones(i);
 			else
 			{
-				WerteZeichnen(pHeroToDraw);
+				DrawValues(pHeroToDraw);
 				GroupMode gMode = pGrpHeld->GetModus();
 				switch (gMode)
 				{
 				case (DEFAULT):
 				case (ASLEEP):
 				{
-					NameZeichnen(pHeroToDraw->isActive(), i, pHeroToDraw->getName());
-					HaendeZeichnen(pHeroToDraw);
+					DrawName(pHeroToDraw->isActive(), i, pHeroToDraw->getName());
+					DrawHands(pHeroToDraw);
 					break;
 				}
 				case (BACKPACK):
 				{
 					if (pHeroToDraw == pGrpHeld->GetActiveHero())
 					{
-						BildZeichnen(pHeroToDraw->isActive(), i);
+						DrawPicture(pHeroToDraw->isActive(), i, pHeroToDraw->getHeroId());
 					}
 					else {
-						HaendeZeichnen(pHeroToDraw);
-						NameZeichnen(pHeroToDraw->isActive(), i, pHeroToDraw->getName());
+						DrawHands(pHeroToDraw);
+						DrawName(pHeroToDraw->isActive(), i, pHeroToDraw->getName());
 					}
 					break;
 				}
@@ -57,7 +57,7 @@ void CGroupView::GroupZeichnen(CDC* pDC, DMMode iModus, CGrpHeld* pGrpHeld)
 				m_pPictures->SymbolZeichnen(pDC, i, relPos);
 				int allDamage = pHeroToDraw->ReceivedDmg() + pHeroToDraw->ReceivedPoison();
 				if (allDamage > 0) {
-					SchadenZeichnen(i, pHeroToDraw->isActive() && (pGrpHeld->GetModus() == BACKPACK), allDamage);
+					DrawDamage(i, pHeroToDraw->isActive() && (pGrpHeld->GetModus() == BACKPACK), allDamage);
 					//pHeroToDraw->ResetDmg();
 				}
 			}
@@ -67,7 +67,7 @@ void CGroupView::GroupZeichnen(CDC* pDC, DMMode iModus, CGrpHeld* pGrpHeld)
 	
 }
 
-void CGroupView::KnochenZeichnen(int index)
+void CGroupView::DrawBones(int index)
 {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(m_pDC);
@@ -77,7 +77,7 @@ void CGroupView::KnochenZeichnen(int index)
 	tmpdc.DeleteDC();
 }
 
-void CGroupView::WerteZeichnen(CHeld* pHeld)
+void CGroupView::DrawValues(CHeld* pHeld)
 {
 	int index = pHeld->getIndex();
 
@@ -102,7 +102,7 @@ void CGroupView::WerteZeichnen(CHeld* pHeld)
 	tmpdc.DeleteDC();
 }
 
-void CGroupView::NameZeichnen(bool aktiv, int index, CString strName)
+void CGroupView::DrawName(bool aktiv, int index, CString strName)
 {
 	if (aktiv)
 		m_pDC->SetTextColor(GELB);
@@ -114,13 +114,13 @@ void CGroupView::NameZeichnen(bool aktiv, int index, CString strName)
 	m_pPictures->DrawFontText(m_pDC, x, -2, strName, false);
 }
 
-void CGroupView::HaendeZeichnen(CHeld* pHeld)
+void CGroupView::DrawHands(CHeld* pHeld)
 {
 	m_pPictures->DrawHand(m_pDC, pHeld, 0);
 	m_pPictures->DrawHand(m_pDC, pHeld, 1);
 }
 
-void CGroupView::BildZeichnen(bool aktiv, int heroId)
+void CGroupView::DrawPicture(bool aktiv, int index, int heroId)
 {
 	CBitmap* heroPic = m_pPictures->GetChampions();
 	CPoint koord = m_pPictures->GetKoords(heroId);
@@ -128,12 +128,12 @@ void CGroupView::BildZeichnen(bool aktiv, int heroId)
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(m_pDC);
 	tmpdc.SelectObject(heroPic);
-	m_pDC->StretchBlt((heroId - 1) * 138, 0, 32 * 2, 29 * 2, &tmpdc, koord.x, koord.y, 32, 29, SRCCOPY);
+	m_pDC->StretchBlt((index - 1) * 138, 0, 32 * 2, 29 * 2, &tmpdc, koord.x, koord.y, 32, 29, SRCCOPY);
 
 	tmpdc.DeleteDC();
 }
 
-void CGroupView::SchadenZeichnen(int index, bool bigDmg, int dmg)
+void CGroupView::DrawDamage(int index, bool bigDmg, int dmg)
 {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(m_pDC);

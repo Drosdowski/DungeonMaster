@@ -26,6 +26,7 @@ protected:
 // Attributes
 public:
 	int getIndex() { return m_iIndex; }
+	int getHeroId() { return m_heroId; }
 	bool isActive() { return m_bAktiv; }
 	int getFood() { return m_iFood; }
 	int getWater() { return m_iWater; }
@@ -103,6 +104,7 @@ private:
 	int m_iFood;
 	int m_iWater;
 	int m_iIndex;
+	int m_heroId;
 	int m_iPoison;
 	int m_delay;
 	bool m_bAktiv;

@@ -9,14 +9,14 @@ public:
 	CGroupView(CPictures* pPictures);
 	virtual ~CGroupView();
 
-	void GroupZeichnen(CDC* pDC, DMMode iModus, CGrpHeld* pGrpHeld);
+	void DrawGroup(CDC* pDC, DMMode iModus, CGrpHeld* pGrpHeld);
 private:
-	void KnochenZeichnen(int index);
-	void WerteZeichnen(CHeld* pHeld);
-	void NameZeichnen(bool aktiv, int index, CString strName);
-	void HaendeZeichnen(CHeld* pHeld);
-	void BildZeichnen(bool aktiv, int heroId);
-	void SchadenZeichnen(int index, bool bigDmg, int dmg);
+	void DrawBones(int index);
+	void DrawValues(CHeld* pHeld);
+	void DrawName(bool aktiv, int index, CString strName);
+	void DrawHands(CHeld* pHeld);
+	void DrawPicture(bool aktiv, int index, int heroId);
+	void DrawDamage(int index, bool bigDmg, int dmg);
 
 	CDC* m_pDC;
 	CPictures* m_pPictures;

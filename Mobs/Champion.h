@@ -7,12 +7,13 @@ public:
 		female
 	};
 
-	CChampion(CString text);
-	CChampion(const char* name, const char* subname, bool male, VITALS vitals, int hp, int st, int ma);
+	CChampion(CString text, int heroId);
+	CChampion(const char* name, const char* subname, bool isMale, int heroId, VITALS vitals, int hp, int st, int ma);
 	~CChampion() {};
 
 	CString GetName() { return m_name; }
 	VITALS GetVitals() { return m_vitals; }
+	int GetHeroId() { return m_heroId; }
 	bool IsMale() { return m_gender == GenderType::male; }
 	int hp() { return m_hp; }
 	int st() { return m_st; }
@@ -29,6 +30,7 @@ private:
 	GenderType m_gender;
 	VITALS m_vitals;
 	int m_hp, m_st, m_ma;
+	int m_heroId;
 	FIGHT_SKILLS m_fightLevel;
 	NINJA_SKILLS m_ninjaLevel;
 	PRIEST_SKILLS m_priestLevel;

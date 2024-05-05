@@ -133,7 +133,7 @@ void CDMView::ParseClickArrows(CPoint point) {
 		if ((m_iModus == MOD_LAUFEN) && (m_iDir > 0))
 		{
 			UpdateGrafik();
-			SetzeRichtung(m_iDir);
+			SetDirection(m_iDir);
 		}
 	}
 }
@@ -489,11 +489,13 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 
 			}
 			else if (type == CActuator::ChampionMirror) {
+				int heroId = currentActuator->GetData();
+
 				CField* field = m_pRaumView->GetMap()->GetField(grpHelden->GetVector());
 				CString text = field->GetFirstText(0)->GetText();
 				// CBitmap* pic = m_pPictures->DrawHeroPic(data);			
 
-				grpHelden->RessurectHero(text);
+				grpHelden->RessurectHero(text, heroId);
 				currentActuator->Deactivate();
 			}
 			else {
@@ -967,7 +969,7 @@ void CDMView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 				if (m_iDir > 0)
 				{
 					UpdateGrafik();
-					SetzeRichtung(m_iDir); // noch nicht laufen, nur anmelden
+					SetDirection(m_iDir); // noch nicht laufen, nur anmelden
 				}
 				else if (grpHelden->GetModus() == BACKPACK) {
 					UpdateGrafik();
@@ -990,7 +992,7 @@ void CDMView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CDMView::HeldenGrafikZeichnen(CGrpHeld* pGrpHelden, CDC* pDC, CPictures* pPictures)
 {
-	m_pGroupView->GroupZeichnen(pDC, m_iModus, pGrpHelden);
+	m_pGroupView->DrawGroup(pDC, m_iModus, pGrpHelden);
 }
 
 void CDMView::ZauberReiterZeichnen(CDC* pDC, int iActiveWizard, int runeTableId, int* runeIds)
@@ -1108,7 +1110,7 @@ void CDMView::UpdateGrafik()
 					m_pPictures->RucksackZeichnen(pDC_, grpHelden);
 				}
 				else {
-					m_pRaumView->RaumZeichnen(pDC_);
+					m_pRaumView->DrawRoom(pDC_);
 				}
 			
 			}
@@ -1168,7 +1170,7 @@ void CDMView::OnTimer(UINT nIDEvent)
 
 		if (m_iDir > 0)
 		{
-			Laufen();
+			Walk();
 			m_iDir = 0;
 		}
 		UpdateGrafik();
@@ -1231,7 +1233,7 @@ void CDMView::Awake() {
 }
 
 
-void CDMView::Laufen()
+void CDMView::Walk()
 {
 	VEKTOR posTarget, posFrom, posFinal;
 	CGrpHeld* pGrpHeroes = m_pRaumView->GetHeroes();
@@ -1249,7 +1251,7 @@ void CDMView::Laufen()
 			m_pRaumView->TriggerMoveAnimation();
 			if (m_pRaumView->OnStairs()) {
 				// auf Treppe drehen = Treppe nutzen!
-				posFinal = m_pRaumView->Betrete(posFrom, collision);
+				posFinal = m_pRaumView->WalkTo(posFrom, collision);
 				pGrpHeroes->Laufen(posFinal, false);
 			}
 			else {
@@ -1268,14 +1270,14 @@ void CDMView::Laufen()
 		{
 			if (m_pRaumView->OnStairs() && m_iWunschRichtung == RUECKWAERTS) {
 				// Sonderregel: Treppe rückwärts läuft nicht gegen die Wand hinter der Gruppe, sondern rauf/runter
-				posFinal = m_pRaumView->Betrete(posFrom, collision);
+				posFinal = m_pRaumView->WalkTo(posFrom, collision);
 				m_pRaumView->TriggerMoveAnimation();
 				pGrpHeroes->Laufen(posFinal, false);
 			}
 			else {
 
 				posTarget = pGrpHeroes->GetNextFieldKoord(m_iWunschRichtung, 1);
-				posFinal = m_pRaumView->Betrete(posTarget, collision);
+				posFinal = m_pRaumView->WalkTo(posTarget, collision);
 				if (collision)
 				{
 					pGrpHeroes->Kollision(m_iWunschRichtung);
@@ -1294,7 +1296,7 @@ void CDMView::Laufen()
 }
 
 
-void CDMView::SetzeRichtung(int iRichtung)
+void CDMView::SetDirection(int iRichtung)
 {
 	m_iWunschRichtung = iRichtung;
 }

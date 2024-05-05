@@ -90,7 +90,7 @@ void CGrpHeld::InitHeld(const int nr)
 		CString strName;
 		strName.Format("SAMSON\n\nm\nDADADADADADADA\nDADADADADADADA\nDADADADADADADADA\n", nr);
 				
-		NewHero(new CChampion(strName), nr, 100, 100, 100);
+		NewHero(new CChampion(strName, 1), nr, 100, 100, 100);
 
 	}
 	else {
@@ -113,13 +113,13 @@ void CGrpHeld::NewHero(CChampion* champ, int nr, int hp_akt, int st_akt, int ma_
 		m_iAktiverZauberer = nr;
 }
 
-void CGrpHeld::RessurectHero(CString text) {
+void CGrpHeld::RessurectHero(CString text, int heroId) {
 	int nr = 1;
 	while (m_pMember[nr] != NULL && nr < 5) {
 		nr++;
 	}
 	if (nr < 5) {
-		CChampion* champ = new CChampion(text);
+		CChampion* champ = new CChampion(text, heroId);
 		NewHero(champ, nr, champ->hp(), champ->st(), champ->ma());
 	}
 }

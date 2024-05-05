@@ -49,8 +49,8 @@ public:
 // Implementation
 public:
 	void InitDungeon(CDMDoc* pDoc);
-	void SetzeRichtung(int iRichtung);
-	void Laufen();
+	void SetDirection(int iRichtung);
+	void Walk();
 
 	virtual ~CDMView();
 
