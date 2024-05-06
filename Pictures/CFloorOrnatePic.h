@@ -10,6 +10,8 @@ public:
 	CBitmap* GetMossPic(int ebene, int xx);
 	CBitmap* GetRoundGratePic(int ebene, int xx);
 	CBitmap* GetSquareGratePic(int ebene, int xx);
+	CBitmap* GetBlackFlamePitPic(int ebene, int xx);
+	CBitmap* GetCrackPic(int ebene, int xx);
 
 private:
 	void InitOrnatePics();
@@ -30,5 +32,12 @@ private:
 	CBitmap* m_pSquareGrateRight[4];
 	CBitmap* m_pSquareGrateFront[4];
 
+	CBitmap* m_pBlackFlamePitLeft[4];
+	CBitmap* m_pBlackFlamePitRight[4];
+	CBitmap* m_pBlackFlamePitFront[4];
+
+	CBitmap* m_pCrackLeft[4];
+	CBitmap* m_pCrackRight[4];
+	CBitmap* m_pCrackFront[4];
 
 };

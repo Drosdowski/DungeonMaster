@@ -1167,17 +1167,17 @@ IDB_MONSTER_REDDRAGON_FRONT BITMAP                  "res\\Monster\\RedDragon_Fro
 
 IDB_MONSTER_REDDRAGON_RIGHT BITMAP                  "res\\Monster\\RedDragon_Right.bmp"
 
-IDB_FLOOR_BLACKFLAME_F1 BITMAP                  "res\\Floor\\BlackFlamePit_F1.bmp"
+IDB_FLOOR_BLACKFLAME_PIT_F1 BITMAP                  "res\\Floor\\BlackFlamePit_F1.bmp"
 
-IDB_FLOOR_BLACKFLAME_F2 BITMAP                  "res\\Floor\\BlackFlamePit_F2.bmp"
+IDB_FLOOR_BLACKFLAME_PIT_F2 BITMAP                  "res\\Floor\\BlackFlamePit_F2.bmp"
 
-IDB_FLOOR_BLACKFLAME_F3 BITMAP                  "res\\Floor\\BlackFlamePit_F3.bmp"
+IDB_FLOOR_BLACKFLAME_PIT_F3 BITMAP                  "res\\Floor\\BlackFlamePit_F3.bmp"
 
-IDB_FLOOR_BLACKFLAME_L1 BITMAP                  "res\\Floor\\BlackFlamePit_L1.bmp"
+IDB_FLOOR_BLACKFLAME_PIT_L1 BITMAP                  "res\\Floor\\BlackFlamePit_L1.bmp"
 
-IDB_FLOOR_BLACKFLAME_L2 BITMAP                  "res\\Floor\\BlackFlamePit_L2.bmp"
+IDB_FLOOR_BLACKFLAME_PIT_L2 BITMAP                  "res\\Floor\\BlackFlamePit_L2.bmp"
 
-IDB_FLOOR_BLACKFLAME_L3 BITMAP                  "res\\Floor\\BlackFlamePit_L3.bmp"
+IDB_FLOOR_BLACKFLAME_PIT_L3 BITMAP                  "res\\Floor\\BlackFlamePit_L3.bmp"
 
 IDB_FLOOR_CRACK_F1      BITMAP                  "res\\Floor\\Crack_F1.bmp"
 

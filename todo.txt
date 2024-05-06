@@ -31,5 +31,3 @@ Monster
 * side attack
 * Poison
 * resi
-
-Black Flame & Floor Crack

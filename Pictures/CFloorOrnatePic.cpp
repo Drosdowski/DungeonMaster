@@ -25,6 +25,14 @@ CFloorOrnatePic::~CFloorOrnatePic()
 		delete m_pSquareGrateLeft[gurke];
 		delete m_pSquareGrateRight[gurke];
 		delete m_pSquareGrateFront[gurke];
+
+		delete m_pBlackFlamePitLeft[gurke];
+		delete m_pBlackFlamePitRight[gurke];
+		delete m_pBlackFlamePitFront[gurke];
+
+		delete m_pCrackLeft[gurke];
+		delete m_pCrackRight[gurke];
+		delete m_pCrackFront[gurke];
 	}
 }
 
@@ -58,6 +66,22 @@ CBitmap* CFloorOrnatePic::GetSquareGratePic(int ebene, int xxx) {
 		if (xxx == 2) return m_pSquareGrateLeft[ebene];
 		if (xxx == 3) return m_pSquareGrateRight[ebene];
 		if (xxx == 4) return m_pSquareGrateFront[ebene];
+	}
+	return NULL;
+}
+CBitmap* CFloorOrnatePic::GetBlackFlamePitPic(int ebene, int xxx) {
+	if (ebene > 0) {
+		if (xxx == 2) return m_pBlackFlamePitLeft[ebene];
+		if (xxx == 3) return m_pBlackFlamePitRight[ebene];
+		if (xxx == 4) return m_pBlackFlamePitFront[ebene];
+	}
+	return NULL;
+}
+CBitmap* CFloorOrnatePic::GetCrackPic(int ebene, int xxx) {
+	if (ebene > 0) {
+		if (xxx == 2) return m_pCrackLeft[ebene];
+		if (xxx == 3) return m_pCrackRight[ebene];
+		if (xxx == 4) return m_pCrackFront[ebene];
 	}
 	return NULL;
 }
@@ -113,4 +137,30 @@ void CFloorOrnatePic::InitOrnatePics() {
 	LoadPic(m_pSquareGrateFront[3], IDB_FLOOR_SQUARE_GRATE_F3);
 	LoadPic(m_pSquareGrateLeft[3], IDB_FLOOR_SQUARE_GRATE_L3);
 	LoadPicAndFlip(m_pSquareGrateRight[3], IDB_FLOOR_SQUARE_GRATE_L3);
+
+
+	LoadPic(m_pBlackFlamePitFront[1], IDB_FLOOR_BLACKFLAME_PIT_F1);
+	LoadPic(m_pBlackFlamePitLeft[1], IDB_FLOOR_BLACKFLAME_PIT_L1);
+	LoadPicAndFlip(m_pBlackFlamePitRight[1], IDB_FLOOR_BLACKFLAME_PIT_L1);
+
+	LoadPic(m_pBlackFlamePitFront[2], IDB_FLOOR_BLACKFLAME_PIT_F2);
+	LoadPic(m_pBlackFlamePitLeft[2], IDB_FLOOR_BLACKFLAME_PIT_L2);
+	LoadPicAndFlip(m_pBlackFlamePitRight[2], IDB_FLOOR_BLACKFLAME_PIT_L2);
+
+	LoadPic(m_pBlackFlamePitFront[3], IDB_FLOOR_BLACKFLAME_PIT_F3);
+	LoadPic(m_pBlackFlamePitLeft[3], IDB_FLOOR_BLACKFLAME_PIT_L3);
+	LoadPicAndFlip(m_pBlackFlamePitRight[3], IDB_FLOOR_BLACKFLAME_PIT_L3);
+
+
+	LoadPic(m_pCrackFront[1], IDB_FLOOR_CRACK_F1);
+	LoadPic(m_pCrackLeft[1], IDB_FLOOR_CRACK_L1);
+	LoadPicAndFlip(m_pCrackRight[1], IDB_FLOOR_CRACK_L1);
+
+	LoadPic(m_pCrackFront[2], IDB_FLOOR_CRACK_F2);
+	LoadPic(m_pCrackLeft[2], IDB_FLOOR_CRACK_L2);
+	LoadPicAndFlip(m_pCrackRight[2], IDB_FLOOR_CRACK_L2);
+
+	LoadPic(m_pCrackFront[3], IDB_FLOOR_CRACK_F3);
+	LoadPic(m_pCrackLeft[3], IDB_FLOOR_CRACK_L3);
+	LoadPicAndFlip(m_pCrackRight[3], IDB_FLOOR_CRACK_L3);
 }
