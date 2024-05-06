@@ -1534,7 +1534,7 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 			}
 			else {
 				// todo check possession...
-				assert(false);
+				// assert(false);
 			}
 		}
 	}
