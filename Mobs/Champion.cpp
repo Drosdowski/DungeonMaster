@@ -34,6 +34,7 @@ CChampion::CChampion(const char* name, const char* subname, bool isMale, int her
 	m_hp = hp;
 	m_st = st;
 	m_ma = ma;
+	m_heroId = heroId;
 }
 
 void CChampion::ParseOtherFromText(CString block1) {

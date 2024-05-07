@@ -461,7 +461,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 				int neededItemId = currentActuator->GetData() + 2; // todo formel verstehen.
 				if (itemInHand == NULL) {
 					grpHelden->TakeItemInHand(FeldVorHeld->TakeItem(posActuator));
-					if (!type == CActuator::Inactive) {
+					if (!nextActuator->IsOnceOnly()) {
 						// Torch Holder => Empty holder = Item gone
 						//InvokeRemoteActuator(currentActuator, nextActuator);
 						FeldVorHeld->RotateActuators(dir);
@@ -471,10 +471,10 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 				else if (currentActuator->GetData() == 0) {
 					FeldVorHeld->PutItem(itemInHand, posActuator);
 					grpHelden->EmptyHand();
-					//if (!type == CActuator::Inactive) {
-					// Torch Holder => Empty holder = Item gone
-					FeldVorHeld->RotateActuators(dir);
-					//}
+					if (!nextActuator->IsOnceOnly()) {
+						// Torch Holder => Empty holder = Item gone
+						FeldVorHeld->RotateActuators(dir);
+					}
 					return false;
 				} else if (itemInHand->GetType() == neededItemId) {
 					//if (!type == CActuator::Inactive) {
