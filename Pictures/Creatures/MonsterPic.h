@@ -23,6 +23,8 @@ class CAnimatedArmourPic;
 class CCouatlPic;
 class COituPic;
 class CStoneGolemPic;
+class CDemonPic;
+class CMaterializerPic;
 class CMonsterPic : public CBasePictures
 {
 public:
@@ -54,5 +56,7 @@ private:
 	CCouatlPic* m_pCouatlPic;
 	COituPic* m_pOituPic;
 	CStoneGolemPic* m_pStoneGolemPic;
+	CDemonPic* m_pDemonPic;
+	CMaterializerPic* m_pMaterializerPic;
 };
 

@@ -266,7 +266,7 @@ enum FeldTyp {
 };
 
 enum MonsterTyp {
-	GIANT_SCORPION = 0, // todo 
+	GIANT_SCORPION = 0, 
 	SWAMP_SLIME = 1,
 	GIGGLER = 2,
 	WIZARDS_EYE = 3,
@@ -275,22 +275,22 @@ enum MonsterTyp {
 	SCREAMER = 6,
 	ROCKPILE = 7,
 	GHOST = 8,
-	STONE_GOLEN = 9, // todo 
+	STONE_GOLEN = 9, 
 	MUMMY = 10,
 	BLACK_FLAME = 11,
 	SKELETON = 12,
-	COUATL = 13, // todo
+	COUATL = 13, 
 	VEXIRK = 14,
 	MAGENTA_WORM = 15,
 	TROLIN = 16,
-	GIANT_WASP = 17, // todo
-	ANIMATED_ARMOUR = 18, // todo
-	MATERIALIZER = 19, // todo
+	GIANT_WASP = 17, 
+	ANIMATED_ARMOUR = 18, 
+	MATERIALIZER = 19, 
 	WATER_ELEMENTAL = 20,
-	OITU = 21, // todo
-	DEMON = 22, // todo
+	OITU = 21, 
+	DEMON = 22, 
 	LORD_CHAOS = 23, // todo
-	RED_DRAGON = 24 // todo
+	RED_DRAGON = 24 
 };
 
 enum Phase {

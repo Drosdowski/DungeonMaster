@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Pictures\Creatures\DemonPic.cpp" />
     <ClCompile Include="Pictures\Creatures\AnimatedArmourPic.cpp" />
     <ClCompile Include="Pictures\Creatures\CouatlPic.cpp" />
     <ClCompile Include="Pictures\Creatures\GiantScorpionPic.cpp" />
@@ -153,6 +154,7 @@
     <ClCompile Include="Pictures\Creatures\RusterPic.cpp" />
     <ClCompile Include="Pictures\Creatures\WaterElementalPic..cpp" />
     <ClCompile Include="Pictures\Creatures\WizardEyePic.cpp" />
+    <ClCompile Include="Pictures\Creatures\MaterializerPic.cpp" />
     <ClCompile Include="SpecialTile\DelayedTile.cpp" />
     <ClCompile Include="Pictures\Creatures\GigglerPic.cpp" />
     <ClCompile Include="Items\Container.cpp" />
@@ -247,6 +249,7 @@
     <ResourceCompile Include="DM.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Pictures\Creatures\DemonPic.h" />
     <ClInclude Include="Pictures\Creatures\AnimatedArmourPic.h" />
     <ClInclude Include="Pictures\Creatures\CouatlPic.h" />
     <ClInclude Include="Pictures\Creatures\GiantScorpionPic.h" />
@@ -265,6 +268,7 @@
     <ClInclude Include="Pictures\Creatures\RusterPic.h" />
     <ClInclude Include="Pictures\Creatures\WaterElementalPic.h" />
     <ClInclude Include="Pictures\Creatures\WizardEyePic.h" />
+    <ClInclude Include="Pictures\Creatures\MaterializerPic.h" />
     <ClInclude Include="SpecialTile\DelayedTile.h" />
     <ClInclude Include="Pictures\Creatures\GigglerPic.h" />
     <ClInclude Include="Items\Container.h" />
@@ -590,6 +594,10 @@
     <Image Include="res\Monster\Couatl_Back.bmp" />
     <Image Include="res\Monster\Couatl_Front.bmp" />
     <Image Include="res\Monster\Couatl_Right.bmp" />
+    <Image Include="res\Monster\Demon_Attack.bmp" />
+    <Image Include="res\Monster\Demon_Back.bmp" />
+    <Image Include="res\Monster\Demon_Front.bmp" />
+    <Image Include="res\Monster\Demon_Right.bmp" />
     <Image Include="res\Monster\Ghost_Attack.bmp" />
     <Image Include="res\Monster\Ghost_Front.bmp" />
     <Image Include="res\Monster\GiantScorpion_Attack.bmp" />
@@ -608,6 +616,10 @@
     <Image Include="res\Monster\MagentaWorm_Back.bmp" />
     <Image Include="res\Monster\MagentaWorm_Front.bmp" />
     <Image Include="res\Monster\MagentaWorm_Right.bmp" />
+    <Image Include="res\Monster\Materializer_Attack.bmp" />
+    <Image Include="res\Monster\Materializer_Front.bmp" />
+    <Image Include="res\Monster\Materializer_Front2.bmp" />
+    <Image Include="res\Monster\Materializer_Front3.bmp" />
     <Image Include="res\Monster\Oitu_Attack.bmp" />
     <Image Include="res\Monster\Oitu_Back.bmp" />
     <Image Include="res\Monster\Oitu_Front.bmp" />
