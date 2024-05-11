@@ -27,6 +27,11 @@ public:
 	SUBPOS_ABSOLUTE static RightFrom(SUBPOS_ABSOLUTE pos);
 	SUBPOS_ABSOLUTE static LeftFrom(SUBPOS_ABSOLUTE pos);
 
+	bool static westOf(VEKTOR myPos, VEKTOR hisPos);
+	bool static eastOf(VEKTOR myPos, VEKTOR hisPos);
+	bool static northOf(VEKTOR myPos, VEKTOR hisPos);
+	bool static southOf(VEKTOR myPos, VEKTOR hisPos);
+
 	CString static SkillGrade(int exp);
 	CString static SkillClass(int nr);
 	CString static VitalName(int nr);

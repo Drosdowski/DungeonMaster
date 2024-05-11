@@ -45,11 +45,6 @@ public:
 	int GetDealingDamage() { return m_dealingDmgToDraw; }
 	int GetDealingPoison() { return m_dealingPoison; }
 
-	bool westOf(VEKTOR myPos, VEKTOR hisPos);
-	bool eastOf(VEKTOR myPos, VEKTOR hisPos);
-	bool northOf(VEKTOR myPos, VEKTOR hisPos);
-	bool southOf(VEKTOR myPos, VEKTOR hisPos);
-
 	bool ReceiveDamage(int dmg);
 
 	// Generierte Nachrichtenzuordnungsfunktionen

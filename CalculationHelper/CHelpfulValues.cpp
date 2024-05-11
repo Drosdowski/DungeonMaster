@@ -116,6 +116,24 @@ SUBPOS_ABSOLUTE CHelpfulValues::LeftFrom(SUBPOS_ABSOLUTE pos) {
 	return MIDDLE;
 }
 
+bool CHelpfulValues::westOf(VEKTOR myPos, VEKTOR hisPos) {
+	return (myPos.y == myPos.y) && ((myPos.x - hisPos.x) == 1);
+}
+
+bool CHelpfulValues::eastOf(VEKTOR myPos, VEKTOR hisPos) {
+	return (myPos.y == myPos.y) && ((hisPos.x - myPos.x) == 1);
+}
+
+// his is north of my
+bool CHelpfulValues::northOf(VEKTOR myPos, VEKTOR hisPos) {
+	return (myPos.x == hisPos.x) && ((myPos.y - hisPos.y) == 1);
+}
+
+bool CHelpfulValues::southOf(VEKTOR myPos, VEKTOR hisPos) {
+	return (myPos.x == hisPos.x) && ((hisPos.y - myPos.y) == 1);
+}
+
+
 SUBPOS CHelpfulValues::GetRelativeSubPosPassive(SUBPOS_ABSOLUTE pos_abs, COMPASS_DIRECTION heroDir) {
 	for (int turns = 0; turns < heroDir; turns++)
 	{

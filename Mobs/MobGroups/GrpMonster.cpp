@@ -212,26 +212,26 @@ void CGrpMonster::TryToAdvanceToFirstRow(int index, VEKTOR monPos, VEKTOR heroPo
 			switch (monster->HoleSubPosition())
 			{
 			case NORTHWEST:
-				if (monster->southOf(monPos, heroPos))
+				if (CHelpfulValues::southOf(monPos, heroPos))
 				{
 					if (!TrySetToSubPos(monster, SOUTHWEST)) {
 						TrySetToSubPos(monster, SOUTHEAST);
 					}
 				}
-				if (monster->eastOf(monPos, heroPos)) {
+				if (CHelpfulValues::eastOf(monPos, heroPos)) {
 					if (!TrySetToSubPos(monster, NORTHEAST)) {
 						TrySetToSubPos(monster, SOUTHEAST);
 					}
 				}
 				break;
 			case NORTHEAST:
-				if (monster->southOf(monPos, heroPos))
+				if (CHelpfulValues::southOf(monPos, heroPos))
 				{
 					if (!TrySetToSubPos(monster, SOUTHWEST)) {
 						TrySetToSubPos(monster, SOUTHEAST);
 					}
 				}
-				if (monster->westOf(monPos, heroPos))
+				if (CHelpfulValues::westOf(monPos, heroPos))
 				{
 					if (!TrySetToSubPos(monster, NORTHWEST)) {
 						TrySetToSubPos(monster, SOUTHWEST);
@@ -239,24 +239,24 @@ void CGrpMonster::TryToAdvanceToFirstRow(int index, VEKTOR monPos, VEKTOR heroPo
 				}
 				break;
 			case SOUTHWEST:
-				if (monster->northOf(monPos, heroPos)) {
+				if (CHelpfulValues::northOf(monPos, heroPos)) {
 					if (!TrySetToSubPos(monster, NORTHWEST)) {
 						TrySetToSubPos(monster, NORTHEAST);
 					}
 				}
-				if (monster->eastOf(monPos, heroPos) ) {
+				if (CHelpfulValues::eastOf(monPos, heroPos) ) {
 					if (!TrySetToSubPos(monster, SOUTHEAST)) {
 						TrySetToSubPos(monster, NORTHEAST);
 					}
 				}
 				break;
 			case SOUTHEAST:
-				if (monster->northOf(monPos, heroPos) && isSubPosAbsoluteFree(NORTHEAST)) {
+				if (CHelpfulValues::northOf(monPos, heroPos) && isSubPosAbsoluteFree(NORTHEAST)) {
 					if (!TrySetToSubPos(monster, NORTHEAST)) {
 						TrySetToSubPos(monster, NORTHWEST);
 					}
 				}
-				if (monster->westOf(monPos, heroPos) && isSubPosAbsoluteFree(SOUTHWEST))
+				if (CHelpfulValues::westOf(monPos, heroPos) && isSubPosAbsoluteFree(SOUTHWEST))
 				{
 					if (!TrySetToSubPos(monster, SOUTHWEST)) {
 						TrySetToSubPos(monster, NORTHWEST);

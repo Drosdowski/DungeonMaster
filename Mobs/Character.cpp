@@ -65,50 +65,33 @@ bool CCharacter::InFrontOfOpponent(VEKTOR myPos, VEKTOR hisPos, bool emptyNorthR
 		
 	switch (m_subPosition) {
 	case SOUTHEAST: // nw nach n oder w könnte "front" sein.
-		if (southOf(myPos, hisPos)) return true;
-		if (eastOf(myPos, hisPos)) return true;
-		if (westOf(myPos, hisPos) && emptyEastRow) return true;
-		if (northOf(myPos, hisPos) && emptySouthRow) return true;
+		if (CHelpfulValues::southOf(myPos, hisPos)) return true;
+		if (CHelpfulValues::eastOf(myPos, hisPos)) return true;
+		if (CHelpfulValues::westOf(myPos, hisPos) && emptyEastRow) return true;
+		if (CHelpfulValues::northOf(myPos, hisPos) && emptySouthRow) return true;
 		break;
 	case SOUTHWEST:
-		if (southOf(myPos, hisPos)) return true;
-		if (westOf(myPos, hisPos)) return true;
-		if (eastOf(myPos, hisPos) && emptyWestRow) return true;
-		if (northOf(myPos, hisPos) && emptySouthRow) return true;
+		if (CHelpfulValues::southOf(myPos, hisPos)) return true;
+		if (CHelpfulValues::westOf(myPos, hisPos)) return true;
+		if (CHelpfulValues::eastOf(myPos, hisPos) && emptyWestRow) return true;
+		if (CHelpfulValues::northOf(myPos, hisPos) && emptySouthRow) return true;
 		break;
 	case NORTHEAST:
-		if (northOf(myPos, hisPos)) return true;
-		if (eastOf(myPos, hisPos)) return true;
-		if (westOf(myPos, hisPos) && emptyEastRow) return true;
-		if (southOf(myPos, hisPos) && emptyNorthRow) return true;
+		if (CHelpfulValues::northOf(myPos, hisPos)) return true;
+		if (CHelpfulValues::eastOf(myPos, hisPos)) return true;
+		if (CHelpfulValues::westOf(myPos, hisPos) && emptyEastRow) return true;
+		if (CHelpfulValues::southOf(myPos, hisPos) && emptyNorthRow) return true;
 		break;
 	case NORTHWEST:
-		if (northOf(myPos, hisPos)) return true;
-		if (westOf(myPos, hisPos)) return true;
-		if (eastOf(myPos, hisPos) && emptyWestRow) return true;
-		if (southOf(myPos, hisPos) && emptyNorthRow) return true;
+		if (CHelpfulValues::northOf(myPos, hisPos)) return true;
+		if (CHelpfulValues::westOf(myPos, hisPos)) return true;
+		if (CHelpfulValues::eastOf(myPos, hisPos) && emptyWestRow) return true;
+		if (CHelpfulValues::southOf(myPos, hisPos) && emptyNorthRow) return true;
 		break;
 	case MIDDLE:
 		return true;
 	}
 	return false;
-}
-
-bool CCharacter::westOf(VEKTOR myPos, VEKTOR hisPos) {
-	return (myPos.y == myPos.y) && ((myPos.x - hisPos.x) == 1);
-}
-
-bool CCharacter::eastOf(VEKTOR myPos, VEKTOR hisPos) {
-	return (myPos.y == myPos.y) && ((hisPos.x - myPos.x) == 1);
-}
-
-// his is north of my
-bool CCharacter::northOf(VEKTOR myPos, VEKTOR hisPos) {
-	return (myPos.x == hisPos.x) && ((myPos.y - hisPos.y) == 1);
-}
-
-bool CCharacter::southOf(VEKTOR myPos, VEKTOR hisPos) {
-	return (myPos.x == hisPos.x) && ((hisPos.y - myPos.y) == 1);
 }
 
 bool CCharacter::ReceiveDamage(int dmg) {
