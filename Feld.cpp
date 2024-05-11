@@ -161,7 +161,6 @@ bool CField::BlockedToPut() {
 
 
 void CField::SetMonsterGroup(CGrpMonster* pGrpMonster) {
-	if (m_pGrpMonster && pGrpMonster) ASSERT(false);
 	m_pGrpMonster = pGrpMonster;
 }
 

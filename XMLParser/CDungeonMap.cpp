@@ -413,7 +413,7 @@ void CDungeonMap::ParseText(TiXmlElement* rootNode, VEKTOR coords) {
 
 
 void CDungeonMap::ParseCreatureGroup(TiXmlElement* creatureGroupItem, VEKTOR coords) {
-	int index, subPos, richt, subIndex, hp, ready = 0;
+	int index, subPos, richt, subIndex, hp, readyToAttack, readyToMove = 0;
 	
 	creatureGroupItem->QueryIntAttribute("index", &index);
 	creatureGroupItem->QueryIntAttribute("position", &subPos);
@@ -424,7 +424,8 @@ void CDungeonMap::ParseCreatureGroup(TiXmlElement* creatureGroupItem, VEKTOR coo
 		creatureGroupItem->QueryIntAttribute("dir", &richt);
 		creatureGroupItem->QueryIntAttribute("subIndex", &subIndex);
 		creatureGroupItem->QueryIntAttribute("hp", &hp);
-		creatureGroupItem->QueryIntAttribute("ready", &ready);
+		creatureGroupItem->QueryIntAttribute("readyToAttack", &readyToAttack);
+		creatureGroupItem->QueryIntAttribute("readyToMove", &readyToMove);
 	}
 	CGrpMonster* pGrpMonster = m_pFeld[coords.x][coords.y][coords.z]->GetMonsterGroup();
 	if (!pGrpMonster) {
@@ -437,7 +438,7 @@ void CDungeonMap::ParseCreatureGroup(TiXmlElement* creatureGroupItem, VEKTOR coo
 	}
 	if (saveGameExists)
 	{
-		pGrpMonster->GetMonster(subIndex)->RestoreFromSaveGame((SUBPOS_ABSOLUTE)subPos, hp, ready);
+		pGrpMonster->GetMonster(subIndex)->RestoreFromSaveGame((SUBPOS_ABSOLUTE)subPos, hp, readyToAttack, readyToMove);
 	}
 
 	TiXmlElement* parentElement = creatureGroupItem->FirstChildElement();
@@ -1316,7 +1317,8 @@ void CDungeonMap::SaveMap(TiXmlElement* maps, int level) {
 								creature->SetAttribute("dir", pGrpMonsters->GetDirection());
 								creature->SetAttribute("hp", (int)monster->Hp().Aktuell);
 								creature->SetAttribute("subIndex", i);
-								creature->SetAttribute("ready", monster->GetReady());
+								creature->SetAttribute("readyToAttack", monster->ReadyToAttack());
+								creature->SetAttribute("readyToMove", monster->ReadyToMove());
 								items->LinkEndChild(creature);
 							}
 						}

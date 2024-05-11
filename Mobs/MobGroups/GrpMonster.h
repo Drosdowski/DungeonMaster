@@ -32,8 +32,10 @@ public:
 	void MoveDone();
 	void ScaredAction(VEKTOR nextPos, boolean collision);
 	bool IsScared() { return m_iScaredCounter > 0;}
-	bool AnyoneReady();
-	bool EveryoneReady();
+	bool AnyoneReadyToAttack();
+	bool AnyoneReadyToMove();
+	bool EveryoneReadyToAttack();
+	bool EveryoneReadyToMove();
 	bool isAlive();
 	CMonster* GetMonsterByRelSubPos(SUBPOS posIndex, COMPASS_DIRECTION richt);
 	CMonster* GetMonsterByAbsSubPos(SUBPOS_ABSOLUTE pos);
@@ -52,9 +54,12 @@ public:
 	SUBPOS_ABSOLUTE GetLastPos() { return m_lastPosition; }
 	int GetIndex() { return m_index; }
 	virtual ~CGrpMonster();
-private:
-	void InitMonster(int nr, CCreatureAttributes attributes);
+	void TryToAdvanceToFirstRow(VEKTOR heroPos);
 	void TryToAdvanceToFirstRow(int index, VEKTOR monPos, VEKTOR heroPos);
+private:
+	bool TrySetToSubPos(CMonster* monster, SUBPOS_ABSOLUTE subPos);
+
+	void InitMonster(int nr, CCreatureAttributes attributes);
 	bool isSubPosAbsoluteFree(SUBPOS_ABSOLUTE pos);
 	void RandomMove(VEKTOR nextPos, boolean collision);
 	int Count();

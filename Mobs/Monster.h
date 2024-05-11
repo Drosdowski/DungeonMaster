@@ -17,11 +17,11 @@ public:
 // Attribute
 public:
 	int GetSize() { return m_attributes.monsterInfo.size; }
-	bool IsReady() { return m_iReady == 0; };
+	int ReadyToAttack() { return m_iReadyToAttack; };
+	int ReadyToMove() { return m_iReadyToMove; };
 	int transCol;
-	int GetReady() { return m_iReady; }
 	bool IsLeftForPlayer(VEKTOR monPos, VEKTOR heroPos);
-	void RestoreFromSaveGame(SUBPOS_ABSOLUTE subPos, int hp, int ready);
+	void RestoreFromSaveGame(SUBPOS_ABSOLUTE subPos, int hp, int readyToAttack, int readyToMove);
 
 // Operationen
 
@@ -30,8 +30,8 @@ public:
 public:
 	virtual bool Altern();
 	virtual int GetIDB(int index);
-	void AttackDone() { m_iReady = m_attributes.monsterInfo.attack_dur; } 
-	void MoveDone() { m_iReady = m_attributes.monsterInfo.move_dur; } 
+	void AttackDone() { m_iReadyToAttack = m_attributes.monsterInfo.attack_dur; } 
+	void MoveDone() { m_iReadyToMove = m_attributes.monsterInfo.move_dur; } 
 	int getDealingDmg() { return m_dealingDmg; }
 	MonsterTyp getType() { return m_attributes.type; }
 	CMonsterConst getInfo() { return m_attributes.monsterInfo;  }
@@ -45,7 +45,8 @@ protected:
 	// Generierte Nachrichtenzuordnungsfunktionen
 protected:
 	CDC pCdc;
-	int m_iReady;
+	int m_iReadyToMove;
+	int m_iReadyToAttack;
 	CCreatureAttributes m_attributes;
 };
 

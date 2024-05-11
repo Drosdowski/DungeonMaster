@@ -16,7 +16,8 @@ static char THIS_FILE[] = __FILE__;
 
 CMonster::CMonster(CCreatureAttributes attributes, int subId): CCharacter(false)
 {
-	m_iReady = attributes.ready[subId];
+	m_iReadyToAttack = attributes.readyAttack[subId];
+	m_iReadyToMove = attributes.readyMove[subId];
 	m_attributes = attributes;
 	m_HP.Max = m_HP.Aktuell = attributes.hitPoints[subId];
 	transCol = attributes.transCol;
@@ -34,8 +35,11 @@ CMonster::~CMonster()
 
 bool CMonster::Altern()
 {
-	if (m_iReady > 0) {
-		m_iReady--;
+	if (m_iReadyToAttack > 0) {
+		m_iReadyToAttack--;
+	}
+	if (m_iReadyToMove> 0) {
+		m_iReadyToMove--;
 	}
 	bool didHurt = false;
 	// erstmal konstant, später abhängig 
@@ -78,9 +82,10 @@ int CMonster::CalcDmg(int ID) {
 	return rand() % m_attributes.monsterInfo.attack_power;
 }
 
-void CMonster::RestoreFromSaveGame(SUBPOS_ABSOLUTE subPos, int hp, int ready) {
+void CMonster::RestoreFromSaveGame(SUBPOS_ABSOLUTE subPos, int hp, int readyToAttack, int readyToMove) {
 	m_HP.Aktuell = hp;
-	m_iReady = ready;
+	m_iReadyToAttack = readyToAttack;
+	m_iReadyToMove = readyToMove;
 	m_subPosition = subPos;
 }
 

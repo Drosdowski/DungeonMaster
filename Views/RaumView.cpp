@@ -1001,7 +1001,7 @@ void CRaumView::MoveMonsters(VEKTOR monsterPos) {
 					pGrpMon->FallingDamage();
 				}
 			}
-			if (pGrpMon->AnyoneReady())
+			if (pGrpMon->AnyoneReadyToMove() || pGrpMon->AnyoneReadyToAttack())
 			{
 				VEKTOR target = MonsterMoveOrAttack(pGrpMon);
 				if (target.x != monsterPos.x || target.y != monsterPos.y) {
@@ -1735,16 +1735,12 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 		pGrpMon->ScaredAction(targetPos, collision);
 	}
 	else {
-		if (pGrpMon->EveryoneReady()) {
-			pGrpMon->EndAttack(); // Attacke ggf. beenden
+		if (pGrpMon->AnyoneReadyToAttack()) {
+			// pGrpMon->EndAttack(); // Attacke ggf. beenden
 			CField* monsterField = m_pMap->GetField(monPos); // get field where monster actual is
 			COMPASS_DIRECTION dir = pGrpMon->GetDirection();
 			int power = mc.attack_power;
 
-			bool side_attack = false;
-			if (mc.side_attack && absDist == 1) {
-				side_attack = true;
-			}
 			for (int range = mc.spell_casting_range; range >= 1; range--) {
 				// Versuch, in Blickrichtung zu gehen, ggf. Angriff!
 				targetPos = pGrpMon->GetNextFieldKoord(VORWAERTS, range);
@@ -1753,10 +1749,10 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 				yDist = monPos.y - heroPos.y;
 				absDist = abs(xDist) + abs(yDist);
 
-				if ((targetPos.x == heroPos.x && targetPos.y == heroPos.y) || (side_attack && range ==1)) {
+				if ((targetPos.x == heroPos.x && targetPos.y == heroPos.y) || (mc.side_attack && range == 1)) {
 					bool anyObstacle = false;
 					if (range > 1) {
-						for (int checkRange = range -1 ; range >= 1; range--) {
+						for (int checkRange = range - 1; range >= 1; range--) {
 							VEKTOR checkPos = pGrpMon->GetNextFieldKoord(VORWAERTS, checkRange);
 							CField* checkField = m_pMap->GetField(checkPos);
 							if (checkField->BlockedToWalk()) {
@@ -1835,9 +1831,9 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 								case WIZARDS_EYE: type = CMagicMissile::Lightning; break;
 								case SWAMP_SLIME: type = CMagicMissile::PoisonBlob; break;
 								case DEMON: type = CMagicMissile::Fireball; break;
-								case RED_DRAGON: 
+								case RED_DRAGON:
 									m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(PainRat-RedDragon).mp3"); break;
-									type = CMagicMissile::Fireball; 
+									type = CMagicMissile::Fireball;
 									break;
 								}
 								CMagicMissile* missile = new CMagicMissile(type, power, monPos);
@@ -1854,16 +1850,19 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 								// todo monster infos https://gamefaqs.gamespot.com/snes/588299-dungeon-master/faqs/33244
 								break;
 							}
-
-
+							attackingMonster->AttackDone();
+							return monPos;
 						}
-						return monPos;
 					}
-				}				
+				}
 			}
+		}
+		if (pGrpMon->AnyoneReadyToMove())
+		{
 			if (absDist == 1) {
 				// Steht neben Held, falsch gedreht -> drehen!
 				pGrpMon->TurnToHero(heroPos);
+				pGrpMon->TryToAdvanceToFirstRow(heroPos);
 				return monPos;
 			}
 			// Nein: Bewege näher / drehe hin

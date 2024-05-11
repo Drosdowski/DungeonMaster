@@ -136,12 +136,12 @@ void CGrpMonster::EndAttack() {
 }
 
 CMonster* CGrpMonster::AttackHero(VEKTOR monsterPos, VEKTOR heroPos) {
-	if (AnyoneReady())
+	if (AnyoneReadyToAttack())
 	{
 		for (int i = 1; i < 5; i++)
 		{
 			CMonster* pMonster = (CMonster*)m_pMember[i];
-			if (pMonster && pMonster->IsReady()) {				
+			if (pMonster && pMonster->ReadyToAttack() == 0) {				
 				CMonsterConst mc = pMonster->getInfo();
 
 				if (mc.attack_anyone || pMonster->InFrontOfOpponent(monsterPos, heroPos, emptyNorthRow(), emptyEastRow(), emptySouthRow(), emptyWestRow())) {
@@ -184,41 +184,85 @@ int CGrpMonster::Count() {
 	return count;
 }
 
+void CGrpMonster::TryToAdvanceToFirstRow(VEKTOR myPos) {
+	for (int i = 1; i < 5; i++)
+	{
+		CMonster* pMonster = (CMonster*)m_pMember[i];
+		if (pMonster && pMonster->isAlive() && pMonster->ReadyToMove() == 0) {
+			TryToAdvanceToFirstRow(i, m_posPosition, myPos);
+		}
+	}
+
+}
+
+bool CGrpMonster::TrySetToSubPos(CMonster* monster, SUBPOS_ABSOLUTE subPos) {
+	if (isSubPosAbsoluteFree(subPos)) {
+		monster->SetzeSubPosition(subPos);
+		monster->MoveDone();
+		return true;
+	}
+	return false;
+}
+
 void CGrpMonster::TryToAdvanceToFirstRow(int index, VEKTOR myPos, VEKTOR hisPos) {
-	CCharacter* monster = m_pMember[index];
+	CMonster* monster = (CMonster*)m_pMember[index];
 	if (Count() > 1)
 	{
 		if (monster) {
 			switch (monster->HoleSubPosition())
 			{
 			case NORTHWEST:
-				if (monster->northOf(myPos, hisPos) && isSubPosAbsoluteFree(SOUTHWEST))
-					monster->SetzeSubPosition(SOUTHWEST);
-
-				if (monster->westOf(myPos, hisPos) && isSubPosAbsoluteFree(NORTHEAST))
-					monster->SetzeSubPosition(NORTHEAST);
-
+				if (monster->northOf(myPos, hisPos))
+				{
+					if (!TrySetToSubPos(monster, SOUTHWEST)) {
+						TrySetToSubPos(monster, SOUTHEAST);
+					}
+				}
+				if (monster->westOf(myPos, hisPos)) {
+					if (!TrySetToSubPos(monster, NORTHEAST)) {
+						TrySetToSubPos(monster, SOUTHEAST);
+					}
+				}
+				break;
 			case NORTHEAST:
-				if (monster->northOf(myPos, hisPos) && isSubPosAbsoluteFree(SOUTHWEST))
-					monster->SetzeSubPosition(SOUTHWEST);
-
-				if (monster->eastOf(myPos, hisPos) && isSubPosAbsoluteFree(NORTHWEST))
-					monster->SetzeSubPosition(NORTHWEST);
-
+				if (monster->northOf(myPos, hisPos))
+				{
+					if (!TrySetToSubPos(monster, SOUTHWEST)) {
+						TrySetToSubPos(monster, SOUTHEAST);
+					}
+				}
+				if (monster->eastOf(myPos, hisPos))
+				{
+					if (!TrySetToSubPos(monster, NORTHWEST)) {
+						TrySetToSubPos(monster, SOUTHWEST);
+					}
+				}
+				break;
 			case SOUTHWEST:
-				if (monster->southOf(myPos, hisPos) && isSubPosAbsoluteFree(NORTHWEST))
-					monster->SetzeSubPosition(NORTHWEST);
-
-				if (monster->westOf(myPos, hisPos) && isSubPosAbsoluteFree(SOUTHEAST))
-					monster->SetzeSubPosition(SOUTHEAST);
-
+				if (monster->southOf(myPos, hisPos)) {
+					if (!TrySetToSubPos(monster, NORTHWEST)) {
+						TrySetToSubPos(monster, NORTHEAST);
+					}
+				}
+				if (monster->westOf(myPos, hisPos) ) {
+					if (!TrySetToSubPos(monster, SOUTHEAST)) {
+						TrySetToSubPos(monster, NORTHEAST);
+					}
+				}
+				break;
 			case SOUTHEAST:
-				if (monster->southOf(myPos, hisPos) && isSubPosAbsoluteFree(NORTHEAST))
-					monster->SetzeSubPosition(NORTHEAST);
-
+				if (monster->southOf(myPos, hisPos) && isSubPosAbsoluteFree(NORTHEAST)) {
+					if (!TrySetToSubPos(monster, NORTHEAST)) {
+						TrySetToSubPos(monster, NORTHWEST);
+					}
+				}
 				if (monster->eastOf(myPos, hisPos) && isSubPosAbsoluteFree(SOUTHWEST))
-					monster->SetzeSubPosition(SOUTHWEST);
-
+				{
+					if (!TrySetToSubPos(monster, SOUTHWEST)) {
+						TrySetToSubPos(monster, NORTHWEST);
+					}
+				}
+				break;
 			}
 		}
 	}
@@ -228,29 +272,54 @@ void CGrpMonster::TryToAdvanceToFirstRow(int index, VEKTOR myPos, VEKTOR hisPos)
 
 }
 
-bool CGrpMonster::AnyoneReady() {
+bool CGrpMonster::AnyoneReadyToAttack() {
 	for (int i = 1; i < 5; i++)
 	{
 		CMonster* pMonster = (CMonster*)m_pMember[i];
 		if (pMonster) {
-			if (pMonster->IsReady())
+			if (pMonster->ReadyToAttack() == 0)
 				return true;
 		}
 	}
 	return false;
 }
 
-bool CGrpMonster::EveryoneReady() {
+bool CGrpMonster::AnyoneReadyToMove() {
 	for (int i = 1; i < 5; i++)
 	{
 		CMonster* pMonster = (CMonster*)m_pMember[i];
 		if (pMonster) {
-			if (!pMonster->IsReady())
+			if (pMonster->ReadyToMove() == 0)
+				return true;
+		}
+	}
+	return false;
+}
+
+bool CGrpMonster::EveryoneReadyToAttack() {
+	for (int i = 1; i < 5; i++)
+	{
+		CMonster* pMonster = (CMonster*)m_pMember[i];
+		if (pMonster) {
+			if (pMonster->ReadyToAttack() > 0)
 				return false;
 		}
 	}
 	return true;
 }
+
+bool CGrpMonster::EveryoneReadyToMove() {
+	for (int i = 1; i < 5; i++)
+	{
+		CMonster* pMonster = (CMonster*)m_pMember[i];
+		if (pMonster) {
+			if (pMonster->ReadyToMove() > 0)
+				return false;
+		}
+	}
+	return true;
+}
+
 
 bool CGrpMonster:: isAlive() {
 	for (int i = 1; i < 5; i++)
