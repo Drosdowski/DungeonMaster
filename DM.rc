@@ -1191,6 +1191,22 @@ IDB_FLOOR_CRACK_L2      BITMAP                  "res\\Floor\\Crack_L2.bmp"
 
 IDB_FLOOR_CRACK_L3      BITMAP                  "res\\Floor\\Crack_L3.bmp"
 
+IDB_MONSTER_DEMON_ATTACK BITMAP                  "res\\Monster\\Demon_Attack.bmp"
+
+IDB_MONSTER_DEMON_BACK  BITMAP                  "res\\Monster\\Demon_Back.bmp"
+
+IDB_MONSTER_DEMON_FRONT BITMAP                  "res\\Monster\\Demon_Front.bmp"
+
+IDB_MONSTER_DEMON_RIGHT BITMAP                  "res\\Monster\\Demon_Right.bmp"
+
+IDB_MONSTER_MATERIALIZER_ATTACK BITMAP                  "res\\Monster\\Materializer_Attack.bmp"
+
+IDB_MONSTER_MATERIALIZER_FRONT1 BITMAP                  "res\\Monster\\Materializer_Front.bmp"
+
+IDB_MONSTER_MATERIALIZER_FRONT2 BITMAP                  "res\\Monster\\Materializer_Front2.bmp"
+
+IDB_MONSTER_MATERIALIZER_FRONT3 BITMAP                  "res\\Monster\\Materializer_Front3.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

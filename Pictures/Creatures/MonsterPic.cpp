@@ -24,6 +24,8 @@
 #include "CouatlPic.h"
 #include "OituPic.h"
 #include "StoneGolemPic.h"
+#include "DemonPic.h"
+#include "MaterializerPic.h"
 
 CMonsterPic::CMonsterPic(CDC* pDC) : CBasePictures(pDC) {
 	m_pMummyPic = new CMummyPic(pDC);
@@ -48,6 +50,8 @@ CMonsterPic::CMonsterPic(CDC* pDC) : CBasePictures(pDC) {
 	m_pCouatlPic = new CCouatlPic(pDC);
 	m_pOituPic = new COituPic(pDC);
 	m_pStoneGolemPic = new CStoneGolemPic(pDC);
+	m_pDemonPic = new CDemonPic(pDC);
+	m_pMaterializerPic = new CMaterializerPic(pDC);
 }
 
 CMonsterPic::~CMonsterPic() {
@@ -73,6 +77,8 @@ CMonsterPic::~CMonsterPic() {
 	delete m_pCouatlPic;
 	delete m_pOituPic;
 	delete m_pStoneGolemPic;
+	delete m_pDemonPic;
+	delete m_pMaterializerPic;
 }
 
 CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
@@ -123,7 +129,10 @@ CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
 		return m_pOituPic->GetOituPic(iRicht, pMonster->isAttacking());
 	case STONE_GOLEN:
 		return m_pStoneGolemPic->GetStoneGolemPic(iRicht, pMonster->isAttacking());
-
+	case DEMON:
+		return m_pDemonPic->GetDemonPic(iRicht, pMonster->isAttacking());
+	case MATERIALIZER:
+		return m_pMaterializerPic->GetMaterializerPic(pMonster->isAttacking());
 	default:
 		break;
 	}

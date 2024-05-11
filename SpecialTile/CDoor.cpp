@@ -27,7 +27,7 @@ bool CDoor::ContinueMoving(int heightOfSomeoneBelowDoor) {
 		}
 		break;
 	case (CLOSING):
-		if (heightOfSomeoneBelowDoor * movingHeight >= m_bottomHeight && m_bottomHeight < fullHeight) {
+		if (heightOfSomeoneBelowDoor > 0 && heightOfSomeoneBelowDoor * movingHeight >= m_bottomHeight && m_bottomHeight < fullHeight) {
 			// collision!
 			m_state = OPENING;
 			return true;
