@@ -151,9 +151,9 @@ CMonster* CGrpMonster::AttackHero(VEKTOR monsterPos, VEKTOR heroPos) {
 					pMonster->AttackDone();
 					return pMonster; // pro Tick nur ein Angriff / Gruppe
 				}
-				else {
-					TryToAdvanceToFirstRow(i, monsterPos, heroPos);
-				}
+				//else {
+				//	TryToAdvanceToFirstRow(i, monsterPos, heroPos);
+				//}
 			}
 		}
 	}
@@ -204,7 +204,7 @@ bool CGrpMonster::TrySetToSubPos(CMonster* monster, SUBPOS_ABSOLUTE subPos) {
 	return false;
 }
 
-void CGrpMonster::TryToAdvanceToFirstRow(int index, VEKTOR myPos, VEKTOR hisPos) {
+void CGrpMonster::TryToAdvanceToFirstRow(int index, VEKTOR monPos, VEKTOR heroPos) {
 	CMonster* monster = (CMonster*)m_pMember[index];
 	if (Count() > 1)
 	{
@@ -212,26 +212,26 @@ void CGrpMonster::TryToAdvanceToFirstRow(int index, VEKTOR myPos, VEKTOR hisPos)
 			switch (monster->HoleSubPosition())
 			{
 			case NORTHWEST:
-				if (monster->northOf(myPos, hisPos))
+				if (monster->southOf(monPos, heroPos))
 				{
 					if (!TrySetToSubPos(monster, SOUTHWEST)) {
 						TrySetToSubPos(monster, SOUTHEAST);
 					}
 				}
-				if (monster->westOf(myPos, hisPos)) {
+				if (monster->eastOf(monPos, heroPos)) {
 					if (!TrySetToSubPos(monster, NORTHEAST)) {
 						TrySetToSubPos(monster, SOUTHEAST);
 					}
 				}
 				break;
 			case NORTHEAST:
-				if (monster->northOf(myPos, hisPos))
+				if (monster->southOf(monPos, heroPos))
 				{
 					if (!TrySetToSubPos(monster, SOUTHWEST)) {
 						TrySetToSubPos(monster, SOUTHEAST);
 					}
 				}
-				if (monster->eastOf(myPos, hisPos))
+				if (monster->westOf(monPos, heroPos))
 				{
 					if (!TrySetToSubPos(monster, NORTHWEST)) {
 						TrySetToSubPos(monster, SOUTHWEST);
@@ -239,24 +239,24 @@ void CGrpMonster::TryToAdvanceToFirstRow(int index, VEKTOR myPos, VEKTOR hisPos)
 				}
 				break;
 			case SOUTHWEST:
-				if (monster->southOf(myPos, hisPos)) {
+				if (monster->northOf(monPos, heroPos)) {
 					if (!TrySetToSubPos(monster, NORTHWEST)) {
 						TrySetToSubPos(monster, NORTHEAST);
 					}
 				}
-				if (monster->westOf(myPos, hisPos) ) {
+				if (monster->eastOf(monPos, heroPos) ) {
 					if (!TrySetToSubPos(monster, SOUTHEAST)) {
 						TrySetToSubPos(monster, NORTHEAST);
 					}
 				}
 				break;
 			case SOUTHEAST:
-				if (monster->southOf(myPos, hisPos) && isSubPosAbsoluteFree(NORTHEAST)) {
+				if (monster->northOf(monPos, heroPos) && isSubPosAbsoluteFree(NORTHEAST)) {
 					if (!TrySetToSubPos(monster, NORTHEAST)) {
 						TrySetToSubPos(monster, NORTHWEST);
 					}
 				}
-				if (monster->eastOf(myPos, hisPos) && isSubPosAbsoluteFree(SOUTHWEST))
+				if (monster->westOf(monPos, heroPos) && isSubPosAbsoluteFree(SOUTHWEST))
 				{
 					if (!TrySetToSubPos(monster, SOUTHWEST)) {
 						TrySetToSubPos(monster, NORTHWEST);
