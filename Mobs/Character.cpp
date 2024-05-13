@@ -59,7 +59,6 @@ void CCharacter::AddPoison(int value) {
 	m_iReceivedPoison = min(240, m_iReceivedPoison + value);
 }
 
-// todo auslagern, hat keinen Bezug zur Klasse !!
 bool CCharacter::InFrontOfOpponent(VEKTOR myPos, VEKTOR hisPos, bool emptyNorthRow, bool emptyEastRow, bool emptySouthRow, bool emptyWestRow) {
 	if (myPos.z != hisPos.z) return false;
 		

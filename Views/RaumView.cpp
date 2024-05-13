@@ -1721,10 +1721,11 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	VEKTOR heroPos = pGrpHeroes->GetVector();
 	VEKTOR monPos = pGrpMon->GetVector();
 	VEKTOR targetPos;
-	CField* targetField;
 	CMonsterInfos* monsterInfos = GetMonsterInfos();
 	CMonsterConst mc = monsterInfos->GetMonsterInfo(pGrpMon->GetType());
-	int absDist, xDist, yDist;
+	int xDist = monPos.x - heroPos.x;
+	int yDist = monPos.y - heroPos.y;
+	int absDist = abs(xDist) + abs(yDist);
 
 	if (pGrpMon->GetVector().z != heroPos.z) return monPos; // Falsche Etage, nix tun!
 
@@ -1735,128 +1736,28 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 		pGrpMon->ScaredAction(targetPos, collision);
 	}
 	else {
+		COMPASS_DIRECTION direction = pGrpMon->GetDirection();
 		if (pGrpMon->AnyoneReadyToAttack()) {
-			// pGrpMon->EndAttack(); // Attacke ggf. beenden
-			CField* monsterField = m_pMap->GetField(monPos); // get field where monster actual is
-			COMPASS_DIRECTION dir = pGrpMon->GetDirection();
 			int power = mc.attack_power;
-
 			for (int range = mc.spell_casting_range; range >= 1; range--) {
-				// Versuch, in Blickrichtung zu gehen, ggf. Angriff!
-				targetPos = pGrpMon->GetNextFieldKoord(VORWAERTS, range);
-				targetField = m_pMap->GetField(targetPos);
-				xDist = monPos.x - heroPos.x;
-				yDist = monPos.y - heroPos.y;
-				absDist = abs(xDist) + abs(yDist);
-
-				if ((targetPos.x == heroPos.x && targetPos.y == heroPos.y) || (mc.side_attack && range == 1)) {
-					bool anyObstacle = false;
-					if (range > 1) {
-						for (int checkRange = range - 1; range >= 1; range--) {
-							VEKTOR checkPos = pGrpMon->GetNextFieldKoord(VORWAERTS, checkRange);
-							CField* checkField = m_pMap->GetField(checkPos);
-							if (checkField->BlockedToWalk()) {
-								anyObstacle = true;
-								break;
-							}
-						}
-					}
-					if (!anyObstacle)
+				// Versuch, in Blickrichtung anzugreifen!
+				if (!mc.side_attack)
+				{
+					TryToAttack(pGrpMon, direction, range, power, absDist);
+				}
+				else {
+					for (int dir = 1; dir < 5; dir++)
 					{
-						CMonster* attackingMonster = pGrpMon->AttackHero(monPos, heroPos);
-						if (attackingMonster)
-						{
-							switch (pGrpMon->GetType()) {
-							case SKELETON:
-							case ANIMATED_ARMOUR:
-								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
-								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
-								break;
-							case SCREAMER:
-							case OITU:
-								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
-								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Screamer-Oitu).mp3"); break;
-								break;
-							case ROCKPILE:
-								// todo poison
-								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
-								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Rockpile).mp3"); break;
-								break;
-							case MAGENTA_WORM:
-								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
-								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(MagentaWorm).mp3"); break;
-								break;
-							case MUMMY:
-							case GHOST:
-								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
-								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Mummy-Ghost).mp3"); break;
-								break;
-							case GIGGLER:
-								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Giggler).mp3"); break;
-								// todo stealing !
-								break;
-							case TROLIN:
-							case STONE_GOLEN:
-								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
-								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Trolin-StoneGolem)-TouchingWall.mp3"); break;
-								break;
-							case PAINRAT:
-								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
-								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(PainRat-RedDragon).mp3"); break;
-								break;
-							case WATER_ELEMENTAL:
-								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
-								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB - SoundEffect - Attack(WaterElemental).mp3"); break;
-								break;
-							case RUSTER:
-							case BLACK_FLAME:
-								// silent attack
-								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false); break;
-								break;
-							case GIANT_SCORPION:
-								pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
-								m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(GiantScorpion)"); break;
-								break;
-							case SWAMP_SLIME:
-							case WIZARDS_EYE:
-							case VEXIRK:
-							case MATERIALIZER:
-							case DEMON:
-							case RED_DRAGON:
-								CMagicMissile::MagicMissileType type;
-								switch (pGrpMon->GetType())
-								{
-								case VEXIRK: type = static_cast<CMagicMissile::MagicMissileType>(rand() % 4); break;
-								case MATERIALIZER: type = static_cast<CMagicMissile::MagicMissileType>(2 + rand() % 2); break;
-								case WIZARDS_EYE: type = CMagicMissile::Lightning; break;
-								case SWAMP_SLIME: type = CMagicMissile::PoisonBlob; break;
-								case DEMON: type = CMagicMissile::Fireball; break;
-								case RED_DRAGON:
-									m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(PainRat-RedDragon).mp3"); break;
-									type = CMagicMissile::Fireball;
-									break;
-								}
-								CMagicMissile* missile = new CMagicMissile(type, power, monPos);
-								VEKTOR force = CHelpfulValues::MakeVektor(dir, power * 4);
-								missile->m_flyForce = force;
-								if (attackingMonster->IsLeftForPlayer(monPos, heroPos))
-								{
-									monsterField->CastMissile(missile, CHelpfulValues::GetFirstPositionFromDirection(dir));
-								}
-								else {
-									monsterField->CastMissile(missile, CHelpfulValues::GetSecondPositionFromDirection(dir));
-								}
-
-								// todo monster infos https://gamefaqs.gamespot.com/snes/588299-dungeon-master/faqs/33244
-								break;
-							}
-							attackingMonster->AttackDone();
-							return monPos;
+						if (TryToAttack(pGrpMon, (COMPASS_DIRECTION)dir, range, power, absDist)) {
+							direction = (COMPASS_DIRECTION)dir;
+							break;
 						}
 					}
 				}
 			}
 		}
+		targetPos = pGrpMon->GetNextFieldKoord(direction, 1);
+		CField* targetField = m_pMap->GetField(targetPos);
 		if (pGrpMon->AnyoneReadyToMove())
 		{
 			if (absDist == 1) {
@@ -1932,6 +1833,122 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	}
 	return monPos;
 
+}
+
+boolean CRaumView::TryToAttack(CGrpMonster* pGrpMon, COMPASS_DIRECTION direction, int range, int power, int absDist) {
+	VEKTOR targetPos = pGrpMon->GetNextFieldKoord(direction, range);
+	CGrpHeld* pGrpHeroes = m_pMap->GetHeroes();
+	VEKTOR heroPos = pGrpHeroes->GetVector();
+	VEKTOR monPos = pGrpMon->GetVector();
+	CField* monsterField = m_pMap->GetField(monPos); // get field where monster actual is
+
+	if (targetPos.x == heroPos.x && targetPos.y == heroPos.y) {
+		bool anyObstacle = false;
+		if (range > 1) {
+			for (int checkRange = range - 1; range >= 1; range--) {
+				VEKTOR checkPos = pGrpMon->GetNextFieldKoord(VORWAERTS, checkRange);
+				CField* checkField = m_pMap->GetField(checkPos);
+				if (checkField->BlockedToWalk()) {
+					anyObstacle = true;
+					break;
+				}
+			}
+		}
+		if (!anyObstacle)
+		{
+			CMonster* attackingMonster = pGrpMon->AttackHero(monPos, heroPos);
+			if (attackingMonster)
+			{
+				switch (pGrpMon->GetType()) {
+				case SKELETON:
+				case ANIMATED_ARMOUR:
+					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
+					break;
+				case SCREAMER:
+				case OITU:
+					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Screamer-Oitu).mp3"); break;
+					break;
+				case ROCKPILE:
+					// todo poison
+					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Rockpile).mp3"); break;
+					break;
+				case MAGENTA_WORM:
+					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(MagentaWorm).mp3"); break;
+					break;
+				case MUMMY:
+				case GHOST:
+					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Mummy-Ghost).mp3"); break;
+					break;
+				case GIGGLER:
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Giggler).mp3"); break;
+					// todo stealing !
+					break;
+				case TROLIN:
+				case STONE_GOLEN:
+					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Trolin-StoneGolem)-TouchingWall.mp3"); break;
+					break;
+				case PAINRAT:
+					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(PainRat-RedDragon).mp3"); break;
+					break;
+				case WATER_ELEMENTAL:
+					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB - SoundEffect - Attack(WaterElemental).mp3"); break;
+					break;
+				case RUSTER:
+				case BLACK_FLAME:
+					// silent attack
+					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false); break;
+					break;
+				case GIANT_SCORPION:
+					pGrpHeroes->DamageFrom(attackingMonster, pGrpMon->GetVector(), false);
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(GiantScorpion)"); break;
+					break;
+				case SWAMP_SLIME:
+				case WIZARDS_EYE:
+				case VEXIRK:
+				case MATERIALIZER:
+				case DEMON:
+				case RED_DRAGON:
+					CMagicMissile::MagicMissileType type;
+					switch (pGrpMon->GetType())
+					{
+					case VEXIRK: type = static_cast<CMagicMissile::MagicMissileType>(rand() % 4); break;
+					case MATERIALIZER: type = static_cast<CMagicMissile::MagicMissileType>(2 + rand() % 2); break;
+					case WIZARDS_EYE: type = CMagicMissile::Lightning; break;
+					case SWAMP_SLIME: type = CMagicMissile::PoisonBlob; break;
+					case DEMON: type = CMagicMissile::Fireball; break;
+					case RED_DRAGON:
+						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(PainRat-RedDragon).mp3"); break;
+						type = CMagicMissile::Fireball;
+						break;
+					}
+					CMagicMissile* missile = new CMagicMissile(type, power, monPos);
+					VEKTOR force = CHelpfulValues::MakeVektor(direction, power * 4);
+					missile->m_flyForce = force;
+					if (attackingMonster->IsLeftForPlayer(monPos, heroPos))
+					{
+						monsterField->CastMissile(missile, CHelpfulValues::GetFirstPositionFromDirection(direction));
+					}
+					else {
+						monsterField->CastMissile(missile, CHelpfulValues::GetSecondPositionFromDirection(direction));
+					}
+
+					// todo monster infos https://gamefaqs.gamespot.com/snes/588299-dungeon-master/faqs/33244
+					break;
+				}
+				attackingMonster->AttackDone();
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 
