@@ -418,9 +418,12 @@ void CGrpMonster::TurnToHero(VEKTOR heroPos) {
 	{
 		CMonster* pMonster = (CMonster*)m_pMember[i];
 		if (pMonster) {
-			if (pMonster->TurnTo(newDirection))
+
+			if (m_grpDirection != newDirection && pMonster->TurnTo(newDirection))
+			{
 				m_grpDirection = newDirection;
-			pMonster->EndAttack();
+				pMonster->MoveDone();
+			}
 		}
 	}
 	

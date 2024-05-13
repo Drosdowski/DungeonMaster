@@ -1226,8 +1226,10 @@ void CRaumView::CheckMissileCollisions(VEKTOR pos) {
 						pGrpHeld->DoDamage(topMissile->GetStrength() / 4, 0, pos, true); // todo correct formula
 					}
 				}
-				if (bMonsterHit) {
-					double faktor = (pHittedMonster->getInfo().non_material &&
+				if (pGroupMonster) {
+					CMonsterInfos* monsterInfos = GetMonsterInfos();
+					CMonsterConst mc = monsterInfos->GetMonsterInfo(pGroupMonster->GetType());
+					double faktor = (mc.non_material &&
 									 (topMissile->GetType() == CMagicMissile::MagicMissileType::AntiMagic))
 						 ? 0.3 : 1; // ghosts get less damage from area sources
 					pGroupMonster->DoDamage((int)(topMissile->GetStrength() * faktor / 4), 0, pos, true); // todo correct formula
@@ -1756,7 +1758,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 				}
 			}
 		}
-		targetPos = pGrpMon->GetNextFieldKoord(direction, 1);
+		targetPos = pGrpMon->GetNextFieldKoord(VORWAERTS, 1);
 		CField* targetField = m_pMap->GetField(targetPos);
 		if (pGrpMon->AnyoneReadyToMove())
 		{
@@ -2102,17 +2104,19 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 
 			}
 			else {
-
-				if (pVictims) {
-					if ((attackType == "N") && (ActionId == 3)) {
-						// Warcry
+				if ((attackType == "N") && (ActionId == 3)) {
+					// Warcry
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-WarCry.mp3");
+					if (pVictims) {
 						pVictims->Scare();
-						pHero->ReduceStamina(ac.stamina);
-						pGrpHero->setPhaseDelay(ac.fatigue);
-						pGrpHero->setPhase(SHOW_DAMAGE);
 					}
-					else {
-						// Nahkampf!
+					pHero->ReduceStamina(ac.stamina);
+					pGrpHero->setPhaseDelay(ac.fatigue);
+					pGrpHero->setPhase(SHOW_DAMAGE);
+				}
+				else {
+					// Nahkampf!
+					if (pVictims) {
 						CMonsterConst mc = monsterInfos->GetMonsterInfo(pVictims->GetType());
 						int dmg = pHero->CalcDmg(weapon, ac, mc, diff);
 						if (dmg > 0 && pHero->St().Aktuell > 10 * ac.stamina) {
@@ -2128,28 +2132,16 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 							pGrpHero->setPhase(CHOOSE_HERO);
 						}
 					}
-					/*
-					int itemIndex = -1;
-					if (item && item->getItemType() == CItem::ItemType::WeaponItem) {
-						itemIndex = item->getIndex();
-					}
-					else if (item == NULL) {
-						itemIndex = HANDINDEX;
-					}
-					if (itemIndex >= 0) {
-						CAttackConst ac = attackInfos->GetAttack(itemIndex);
-						int dmg = pHero->CalcDmg(ac, pVictims, myPos.z);
-						pVictims->DoDamage(dmg, myPos, false); // true = Schaden an alle
-						pHero->AttackModeWithDmg(dmg);
-						m_iPhase = 3;
-						m_iPhaseDelay = 2;
-					}*/
-				}
-				else {
+					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
+				
 					CDoor* pDoor = field->HoleDoor();
-					if (pDoor && pDoor->destroyedByForce() && pDoor->getState() == CDoor::CLOSED)
+					if (pDoor && pDoor->getState() == CDoor::CLOSED)
 					{
-						pDoor->SetState(CDoor::DESTROYED);
+						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Trolin-StoneGolem)-TouchingWall.mp3");
+						if (pDoor->destroyedByForce())
+						{
+							pDoor->SetState(CDoor::DESTROYED);
+						}
 					}
 					// kein Gegner!
 					pGrpHero->setPhase(CHOOSE_HERO);
