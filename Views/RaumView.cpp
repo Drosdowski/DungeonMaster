@@ -205,7 +205,7 @@ void CRaumView::DrawFloorPit(CDC* pDC, CDC* cdc, int xxx, int ebene, CPit* pit) 
 			int decoPosX = center.x - (int)(bmpPitInfo.bmWidth);
 			int decoPosY = center.y - (int)(bmpPitInfo.bmHeight);
 
-			DrawInArea(decoPosX, decoPosY, bmpPitInfo.bmWidth, bmpPitInfo.bmHeight, 1, pDC, cdc, TRANS_ORA);
+			DrawInArea(decoPosX, decoPosY, bmpPitInfo.bmWidth, bmpPitInfo.bmHeight, 1, pDC, cdc, TRANS_ORA, false);
 
 		}
 	}
@@ -225,7 +225,7 @@ void CRaumView::DrawCeilingPit(CDC* pDC, CDC* cdc, int xxx, int ebene, CPit* pit
 			int decoPosX = center.x - (int)(bmpPitInfo.bmWidth * faktor);
 			int decoPosY = center.y - (int)(bmpPitInfo.bmHeight * faktor);
 
-			DrawInArea(decoPosX, decoPosY, bmpPitInfo.bmWidth, bmpPitInfo.bmHeight, 1, pDC, cdc, TRANS_ORA);
+			DrawInArea(decoPosX, decoPosY, bmpPitInfo.bmWidth, bmpPitInfo.bmHeight, 1, pDC, cdc, TRANS_ORA, false);
 
 		}
 	}
@@ -274,7 +274,7 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 			CPoint pos = m_pDoorPic->GetDoorTopPos(xxx, ebene, wallPos);
 			bmp->GetBitmap(&bmpInfo);
 
-			DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, 1, pDC, cdc, TRANS_ORA);
+			DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, 1, pDC, cdc, TRANS_ORA, false);
 		}
 		DrawFrame(pDC, cdc, xxx, ebene); // both Frames
 		bmp = m_pDoorPic->GetDoorFrontPic(pDoor, ebene);
@@ -307,7 +307,7 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 			cdc->SelectObject(bmp);
 			CPoint pos = m_pDoorPic->GetDoorFrontPos(xxx, ebene, wallPos);
 			bmp->GetBitmap(&bmpInfo);
-			DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, 1, pDC, cdc, TRANS_ORA);
+			DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, 1, pDC, cdc, TRANS_ORA, false);
 
 		}
 	}
@@ -401,7 +401,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 					graphicTypeFront == ViAltar ||
 					graphicTypeFront == Fountain));
 
-				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
+				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA, false);
 
 				if (isBigContainer) {
 					// icons rein malen!
@@ -457,7 +457,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 					graphicTypeSide == Fountain));
 				if (isBigContainer)
 					decoPosY += (int)(bmpDecoInfo.bmHeight * faktor / 2);
-				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
+				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA, false);
 			}
 
 		}
@@ -529,7 +529,8 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRE
 		CPoint pos = CHelpfulValues::CalcSubPosition(p, subPos, faktor);
 
 		cdc->SelectObject(bmpMonster);
-		DrawInArea(pos.x, pos.y, bmpInfoMonster.bmWidth, bmpInfoMonster.bmHeight, faktor, pDC, cdc, pMonster->transCol);
+		int rnd = rand() % 2;
+		DrawInArea(pos.x, pos.y, bmpInfoMonster.bmWidth, bmpInfoMonster.bmHeight, faktor, pDC, cdc, pMonster->transCol, rnd > 0);
 	}
 }
 
@@ -589,7 +590,7 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 				int decoPosX = center.x - (int)(bmpDecoInfo.bmWidth * faktor);
 				int decoPosY = center.y - (int)(bmpDecoInfo.bmHeight * faktor);
 
-				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
+				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA, false);
 			}
 		}
 	}
@@ -638,7 +639,8 @@ void CRaumView::DrawOneOfPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABS
 					pos.y = 250 - pos.y / 2;
 				}
 				cdc->SelectObject(bmp);
-				DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
+				// todo x invers falls links
+				DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA, xx < 0);
 			}
 		}
 
@@ -696,7 +698,7 @@ void CRaumView::DrawMagicMissile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_
 						pos.x = posWall.x + posMitte.x - (int)(bmpInfo.bmWidth * faktor);
 						pos.y = posWall.y + posMitte.y - (int)(bmpInfo.bmHeight * faktor);
 					}
-					DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA);
+					DrawInArea(pos.x, pos.y, bmpInfo.bmWidth, bmpInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA, xx < 0);
 				}
 			}
 		}
@@ -711,7 +713,7 @@ void CRaumView::DrawMagicMissile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_
 }
 
 
-void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, CDC* cdc, COLORREF col) {
+void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, CDC* cdc, COLORREF col, bool vInvers) {
 	int realWidth = int(w * 2 * faktor);
 	int realHeight = int(h * 2 * faktor);
 	int rechterRand = realWidth + x;
@@ -725,9 +727,17 @@ void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, 
 
 	if (reducedWidth > 0)
 	{
-		pDC->TransparentBlt(x, y,
-			reducedWidth, realHeight,
-			cdc, 0, 0, w - zuvielrechts / 2, h, col);
+		int w_opt = w - zuvielrechts / 2;
+		if (vInvers) {
+			// todo inverses Bild!
+			pDC->TransparentBlt(x, y,
+				reducedWidth, realHeight,
+				cdc, 0, 0, w_opt, h, col);
+		} else {
+			pDC->TransparentBlt(x, y,
+				reducedWidth, realHeight,
+				cdc, 0, 0, w_opt, h, col);
+		}
 	}
 }
 
