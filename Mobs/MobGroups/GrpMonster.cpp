@@ -91,7 +91,7 @@ void CGrpMonster::RandomMove(VEKTOR nextPos, boolean collision) {
 			CMonster* pMonster = (CMonster*)m_pMember[i];
 			if (pMonster) {
 				pMonster->TurnTo(m_grpDirection);
-				pMonster->EndAttack();
+				pMonster->MoveDone();
 			}
 		}
 	}
@@ -430,12 +430,8 @@ void CGrpMonster::TurnToHero(VEKTOR heroPos) {
 }
 
 void CGrpMonster::Laufen(VEKTOR WunschPos, boolean teleport) {
-	for (int i = 1; i <= 4; i++)
-		if ((m_pMember[i]) && (m_pMember[i]->isAlive()))
-		{
-			m_pMember[i]->MoveDone();
-		}
 	m_posPosition = WunschPos;
+	MoveDone();
 }
 
 void CGrpMonster::CarryItem(CItem* item) {

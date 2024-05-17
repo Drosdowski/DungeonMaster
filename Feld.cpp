@@ -151,6 +151,12 @@ bool CField::BlockedToWalk() {
 		CDoor* door = HoleDoor();
 		if (door && door->getState() == CDoor::DoorState::CLOSED) return true;
 	}
+	if (m_iTyp == FeldTyp::TRICKWALL) {
+		CTrickWall* pTrickwall = HoleTrickWall();
+		if (pTrickwall->GetState() != CTrickWall::Opened) {
+			return true;
+		}
+	}
 	return false;
 }
 

@@ -884,49 +884,54 @@ CGrpMonster* CRaumView::GetMonsterGroup(VEKTOR pos) {
 	return pField->GetMonsterGroup();
 }
 
-VEKTOR CRaumView::WalkTo(VEKTOR toPos, boolean &collision)
+VEKTOR CRaumView::GrpMonsterWalkTo(VEKTOR fromPos, VEKTOR toPos, boolean& collision) {
+	CField* pField = m_pMap->GetField(toPos);
+	FeldTyp iTyp = pField->HoleTyp();
+	CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
+	
+	if (pField->BlockedToWalk()) {
+		collision = true;
+		return fromPos;
+	}
+	if (CHelpfulValues::VectorEqual(pGrpHelden->GetVector(), toPos)) return fromPos;
+	if (iTyp == FeldTyp::EMPTY) {
+		collision = false;
+	}
+	else if (iTyp == FeldTyp::PIT) {
+		collision = false;
+	}
+	else if (iTyp == FeldTyp::TELEPORT) {
+		collision = false;
+	}
+	else if (iTyp == FeldTyp::STAIRS) {
+		// monsters do not use stairs!
+		collision = true;
+		return fromPos;
+	}
+	return toPos;
+}
+
+VEKTOR CRaumView::GrpHeroWalkTo(VEKTOR toPos, boolean &collision)
 {
 	CField* pField = m_pMap->GetField(toPos);
 	FeldTyp iTyp = pField->HoleTyp();
 	CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
 	CGrpMonster* pGrpMonster = pField->GetMonsterGroup();
 	VEKTOR fromPos = pGrpHelden->GetVector();
-	if (iTyp == FeldTyp::WALL) {
+
+	if (pField->BlockedToWalk()) {
 		collision = true;
 		return fromPos;
 	}
-	else if (iTyp == FeldTyp::DOOR)
-	{
-		CDoor* pDoor = pField->HoleDoor();
-		if (pDoor->getState() != CDoor::OPEN && pDoor->getState() != CDoor::DESTROYED)
-		{
-			collision = true;
-			return fromPos;
-		}
-		if (pGrpMonster) return fromPos;
-	}
-	else if (iTyp == FeldTyp::TRICKWALL) {
-		CTrickWall* pTrickwall = pField->HoleTrickWall();
-		if (pTrickwall->GetState() != CTrickWall::Opened) {
-			collision = true;
-			return fromPos;
-		}
-	}
-	else if (iTyp == FeldTyp::EMPTY ) {
-		collision = false;
-		if (pGrpMonster) return fromPos;
+	if (pGrpMonster) return fromPos;
+	if (iTyp == FeldTyp::EMPTY ) {
+		collision = false;		
 	}
 	else if (iTyp == FeldTyp::PIT) {
 		collision = false;
-		//FallingHeroes(toPos);
-		//return toPos;
 	}
 	else if (iTyp == FeldTyp::TELEPORT) {
 		collision = false;
-		/*CTeleporter* pTeleport = pField->HoleTeleporter();
-		if (pTeleport->isOpen()) {
-			toPos = pTeleport->Trigger(m_pDoc, m_pMap, toPos, true);
-		}*/ // triggert später!
 	}
 	else if (iTyp == FeldTyp::STAIRS) {
 		collision = false;
@@ -1742,9 +1747,9 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	if (pGrpMon->GetVector().z != heroPos.z) return monPos; // Falsche Etage, nix tun!
 
 	if (pGrpMon->IsScared()) {
-		targetPos = pGrpMon->GetNextFieldKoord(RUECKWAERTS, 1);
+		targetPos = pGrpMon->GetNextFieldKoord(RUECKWAERTS, 1); // klappt nicht bei side-attack!
 		boolean collision = false;
-		targetPos = WalkTo(targetPos, collision);
+		targetPos = GrpMonsterWalkTo(monPos, targetPos, collision);
 		pGrpMon->ScaredAction(targetPos, collision);
 	}
 	else {
@@ -1761,10 +1766,11 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 					for (int dir = 1; dir < 5; dir++)
 					{
 						if (TryToAttack(pGrpMon, (COMPASS_DIRECTION)dir, range, power, absDist)) {
-							direction = (COMPASS_DIRECTION)dir;
+							pGrpMon->TurnToHero(heroPos); // automatisch anschauen, sonst klappt fliehen später nicht
+							direction = pGrpMon->GetDirection();
 							break;
 						}
-					}
+					}					
 				}
 			}
 		}
