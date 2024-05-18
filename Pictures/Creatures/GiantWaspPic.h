@@ -6,7 +6,7 @@ public:
 	CGiantWaspPic(CDC* pDC);
 	~CGiantWaspPic();
 
-	CBitmap* GetGiantWaspPic(int id, bool attacking);
+	CBitmap* GetGiantWaspPic(int id, bool attacking, int flip);
 
 private:
 	void InitPics();
@@ -14,7 +14,7 @@ private:
 	CBitmap* m_pGiantWaspBack;
 	CBitmap* m_pGiantWaspLeft;
 	CBitmap* m_pGiantWaspRight;
-	CBitmap* m_pGiantWaspFront;
-	CBitmap* m_pGiantWaspAttack;
+	CBitmap* m_pGiantWaspFront[2];
+	CBitmap* m_pGiantWaspAttack[2];
 };
 

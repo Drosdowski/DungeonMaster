@@ -6,13 +6,13 @@ public:
 	CGhostPic(CDC* pDC);
 	~CGhostPic();
 
-	CBitmap* GetGhostPic(bool attacking);
+	CBitmap* GetGhostPic(bool attacking, int flip);
 
 private:
 	void InitPics();
 
-	CBitmap* m_pGhostFront;
-	CBitmap* m_pGhostAttack;
+	CBitmap* m_pGhostFront[2];
+	CBitmap* m_pGhostAttack[2];
 
 };
 

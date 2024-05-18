@@ -6,7 +6,7 @@ public:
 	CMummyPic(CDC* pDC);
 	~CMummyPic();
 
-	CBitmap* GetMummyPic(int id, bool attacking);
+	CBitmap* GetMummyPic(int id, bool attacking, int flip);
 
 private:
 	void InitPics();
@@ -14,8 +14,7 @@ private:
 	CBitmap* m_pMummyBack;
 	CBitmap* m_pMummyLeft;
 	CBitmap* m_pMummyRight;
-	CBitmap* m_pMummyFront;
-	CBitmap* m_pMummyAttack;
-
+	CBitmap* m_pMummyFront[2];
+	CBitmap* m_pMummyAttack[2];
 };
 

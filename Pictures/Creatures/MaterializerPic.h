@@ -6,13 +6,13 @@ public:
 	CMaterializerPic(CDC* pDC);
 	~CMaterializerPic();
 
-	CBitmap* GetMaterializerPic(bool attacking);
+	CBitmap* GetMaterializerPic(bool attacking, int flip);
 
 private:
 	void InitPics();
 
-	CBitmap* m_pMaterializerFront[3];
-	CBitmap* m_pMaterializerAttack;
+	CBitmap* m_pMaterializerFront[3][2];
+	CBitmap* m_pMaterializerAttack[2];
 
 	int m_iPhase;
 };

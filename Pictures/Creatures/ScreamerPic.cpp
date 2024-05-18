@@ -8,23 +8,27 @@ CScreamerPic::CScreamerPic(CDC* pDC) : CBasePictures(pDC)
 }
 
 CScreamerPic:: ~CScreamerPic() {
-	delete m_pScreamerAttack;
-	delete m_pScreamerFront;
+	for (int flip = 0; flip < 2; flip++)
+	{
+		delete m_pScreamerAttack[flip];
+		delete m_pScreamerFront[flip];
+	}
 }
-
 
 void CScreamerPic::InitPics() {
 
-	LoadPic(m_pScreamerAttack, IDB_MONSTER_SCREAMER_ATTACK);
-	LoadPic(m_pScreamerFront, IDB_MONSTER_SCREAMER_FRONT);
+	LoadPic(m_pScreamerAttack[0], IDB_MONSTER_SCREAMER_ATTACK);
+	LoadPic(m_pScreamerFront[0], IDB_MONSTER_SCREAMER_FRONT);
+	LoadPicAndFlip(m_pScreamerAttack[1], IDB_MONSTER_SCREAMER_ATTACK);
+	LoadPicAndFlip(m_pScreamerFront[1], IDB_MONSTER_SCREAMER_FRONT);
 }
 
-CBitmap* CScreamerPic::GetScreamerPic(bool attacking) {
+CBitmap* CScreamerPic::GetScreamerPic(bool attacking, int flip) {
 	if (attacking) {
-		return m_pScreamerAttack;
+		return m_pScreamerAttack[flip];
 	}
 	else {
-		return m_pScreamerFront;
+		return m_pScreamerFront[flip];
 	}
 }
 

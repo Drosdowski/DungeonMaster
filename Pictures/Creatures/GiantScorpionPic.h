@@ -6,7 +6,7 @@ public:
 	CGiantScorpionPic(CDC* pDC);
 	~CGiantScorpionPic();
 
-	CBitmap* GetGiantScorpionPic(int id, bool attacking);
+	CBitmap* GetGiantScorpionPic(int id, bool attacking, int flip);
 
 private:
 	void InitPics();
@@ -14,7 +14,7 @@ private:
 	CBitmap* m_pGiantScorpionBack;
 	CBitmap* m_pGiantScorpionLeft;
 	CBitmap* m_pGiantScorpionRight;
-	CBitmap* m_pGiantScorpionFront;
-	CBitmap* m_pGiantScorpionAttack;
+	CBitmap* m_pGiantScorpionFront[2];
+	CBitmap* m_pGiantScorpionAttack[2];
 };
 

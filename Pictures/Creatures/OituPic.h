@@ -6,7 +6,7 @@ public:
 	COituPic(CDC* pDC);
 	~COituPic();
 
-	CBitmap* GetOituPic(int id, bool attacking);
+	CBitmap* GetOituPic(int id, bool attacking, int flip);
 
 private:
 	void InitPics();
@@ -14,7 +14,7 @@ private:
 	CBitmap* m_pOituBack;
 	CBitmap* m_pOituLeft;
 	CBitmap* m_pOituRight;
-	CBitmap* m_pOituFront;
-	CBitmap* m_pOituAttack;
+	CBitmap* m_pOituFront[2];
+	CBitmap* m_pOituAttack[2];
 };
 

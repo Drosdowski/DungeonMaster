@@ -6,13 +6,13 @@ public:
 	CWizardEyePic(CDC* pDC);
 	~CWizardEyePic();
 
-	CBitmap* GetWizardEyePic(bool attacking);
+	CBitmap* GetWizardEyePic(bool attacking, int flip);
 
 private:
 	void InitPics();
 
-	CBitmap* m_pWizardEyeFront;
-	CBitmap* m_pWizardEyeAttack;
+	CBitmap* m_pWizardEyeFront[2];
+	CBitmap* m_pWizardEyeAttack[2];
 
 };
 

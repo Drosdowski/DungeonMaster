@@ -6,7 +6,7 @@ public:
 	CVexirkPic(CDC* pDC);
 	~CVexirkPic();
 
-	CBitmap* GetVexirkPic(int id, bool attacking);
+	CBitmap* GetVexirkPic(int id, bool attacking, int flip);
 
 private:
 	void InitPics();
@@ -14,7 +14,7 @@ private:
 	CBitmap* m_pVexirkBack;
 	CBitmap* m_pVexirkLeft;
 	CBitmap* m_pVexirkRight;
-	CBitmap* m_pVexirkFront;
-	CBitmap* m_pVexirkAttack;
+	CBitmap* m_pVexirkFront[2];
+	CBitmap* m_pVexirkAttack[2];
 };
 

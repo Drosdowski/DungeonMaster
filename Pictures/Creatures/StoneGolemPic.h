@@ -6,7 +6,7 @@ public:
 	CStoneGolemPic(CDC* pDC);
 	~CStoneGolemPic();
 
-	CBitmap* GetStoneGolemPic(int id, bool attacking);
+	CBitmap* GetStoneGolemPic(int id, bool attacking, int flip);
 
 private:
 	void InitPics();
@@ -14,7 +14,7 @@ private:
 	CBitmap* m_pStoneGolemBack;
 	CBitmap* m_pStoneGolemLeft;
 	CBitmap* m_pStoneGolemRight;
-	CBitmap* m_pStoneGolemFront;
-	CBitmap* m_pStoneGolemAttack;
+	CBitmap* m_pStoneGolemFront[2];
+	CBitmap* m_pStoneGolemAttack[2];
 };
 

@@ -83,56 +83,57 @@ CMonsterPic::~CMonsterPic() {
 
 CBitmap* CMonsterPic::GetBitmap(CMonster* pMonster, int richtHero) {
 	int iRicht = (6 - pMonster->GetDirection() + richtHero) % 4;
+	int flip = rand() % 2;
 	switch (pMonster->getType())
 	{
 	case MUMMY:
-		return m_pMummyPic->GetMummyPic(iRicht, pMonster->isAttacking());
+		return m_pMummyPic->GetMummyPic(iRicht, pMonster->isAttacking(), flip);
 	case SKELETON:
-		return m_pSkeletonPic->GetSkeletonPic(iRicht, pMonster->isAttacking());
+		return m_pSkeletonPic->GetSkeletonPic(iRicht, pMonster->isAttacking(), flip);
 	case WIZARDS_EYE:
-		return m_pWIzardEyePic->GetWizardEyePic(pMonster->isAttacking());
+		return m_pWIzardEyePic->GetWizardEyePic(pMonster->isAttacking(), flip);
 	case SCREAMER:
-		return m_pScreamerPic->GetScreamerPic(pMonster->isAttacking());
+		return m_pScreamerPic->GetScreamerPic(pMonster->isAttacking(), flip);
 	case ROCKPILE:
-		return m_pRockPilePic->GetRockPilePic(pMonster->isAttacking());
+		return m_pRockPilePic->GetRockPilePic(pMonster->isAttacking(), flip);
 	case MAGENTA_WORM:
-		return m_pMagentaWormPic->GetMagentaWormPic(pMonster->isAttacking());
+		return m_pMagentaWormPic->GetMagentaWormPic(pMonster->isAttacking(), flip);
 	case TROLIN:
-		return m_pTrolinPic->GetTrolinPic(iRicht, pMonster->isAttacking());
+		return m_pTrolinPic->GetTrolinPic(iRicht, pMonster->isAttacking(), flip);
 	case GIGGLER:
-		return m_pGigglerPic->GetGigglerPic(iRicht, pMonster->isAttacking());
+		return m_pGigglerPic->GetGigglerPic(iRicht, pMonster->isAttacking(), flip);
 	case PAINRAT:
-		return m_pPainRatPic->GetPainRatPic(iRicht, pMonster->isAttacking());
+		return m_pPainRatPic->GetPainRatPic(iRicht, pMonster->isAttacking(), flip);
 	case GHOST:
-		return m_pGhostPic->GetGhostPic(pMonster->isAttacking());
+		return m_pGhostPic->GetGhostPic(pMonster->isAttacking(), flip);
 	case VEXIRK:
-		return m_pVexirkPic->GetVexirkPic(iRicht, pMonster->isAttacking());
+		return m_pVexirkPic->GetVexirkPic(iRicht, pMonster->isAttacking(), flip);
 	case RUSTER:
-		return m_pRusterPic->GetRusterPic(iRicht);
+		return m_pRusterPic->GetRusterPic(iRicht, flip);
 	case WATER_ELEMENTAL:
-		return m_pWaterElementalPic->GetWaterElementalPic(pMonster->isAttacking());
+		return m_pWaterElementalPic->GetWaterElementalPic(pMonster->isAttacking(), flip);
 	case SWAMP_SLIME:
-		return m_pSwampSlimePic->GetSwampSlimePic(pMonster->isAttacking());
+		return m_pSwampSlimePic->GetSwampSlimePic(pMonster->isAttacking(), flip);
 	case BLACK_FLAME:
-		return m_pBlackFlamePic->GetBlackFlamePic(pMonster->isAttacking());
+		return m_pBlackFlamePic->GetBlackFlamePic(pMonster->isAttacking(), flip);
 	case RED_DRAGON:
-		return m_pRedDragonPic->GetRedDragonPic(iRicht, pMonster->isAttacking());
+		return m_pRedDragonPic->GetRedDragonPic(iRicht, pMonster->isAttacking(), flip);
 	case GIANT_WASP:
-		return m_pGiantWaspPic->GetGiantWaspPic(iRicht, pMonster->isAttacking());
+		return m_pGiantWaspPic->GetGiantWaspPic(iRicht, pMonster->isAttacking(), flip);
 	case GIANT_SCORPION:
-		return m_pGiantScorpionPic->GetGiantScorpionPic(iRicht, pMonster->isAttacking());
+		return m_pGiantScorpionPic->GetGiantScorpionPic(iRicht, pMonster->isAttacking(), flip);
 	case ANIMATED_ARMOUR:
-		return m_pAnimatedArmourPic->GetAnimatedArmourPic(iRicht, pMonster->isAttacking());
+		return m_pAnimatedArmourPic->GetAnimatedArmourPic(iRicht, pMonster->isAttacking(), flip);
 	case COUATL:
-		return m_pCouatlPic->GetCouatlPic(iRicht, pMonster->isAttacking());
+		return m_pCouatlPic->GetCouatlPic(iRicht, pMonster->isAttacking(), flip);
 	case OITU:
-		return m_pOituPic->GetOituPic(iRicht, pMonster->isAttacking());
+		return m_pOituPic->GetOituPic(iRicht, pMonster->isAttacking(), flip);
 	case STONE_GOLEN:
-		return m_pStoneGolemPic->GetStoneGolemPic(iRicht, pMonster->isAttacking());
+		return m_pStoneGolemPic->GetStoneGolemPic(iRicht, pMonster->isAttacking(), flip);
 	case DEMON:
-		return m_pDemonPic->GetDemonPic(iRicht, pMonster->isAttacking());
+		return m_pDemonPic->GetDemonPic(iRicht, pMonster->isAttacking(), flip);
 	case MATERIALIZER:
-		return m_pMaterializerPic->GetMaterializerPic(pMonster->isAttacking());
+		return m_pMaterializerPic->GetMaterializerPic(pMonster->isAttacking(), flip);
 	default:
 		break;
 	}

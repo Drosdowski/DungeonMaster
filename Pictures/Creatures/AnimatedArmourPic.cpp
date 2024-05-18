@@ -8,8 +8,11 @@ CAnimatedArmourPic::CAnimatedArmourPic(CDC* pDC) : CBasePictures(pDC)
 }
 
 CAnimatedArmourPic:: ~CAnimatedArmourPic() {
-	delete m_pAnimatedArmourAttack;
-	delete m_pAnimatedArmourFront;
+	for (int flip = 0; flip < 2; flip++)
+	{
+		delete m_pAnimatedArmourAttack[flip];
+		delete m_pAnimatedArmourFront[flip];
+	}
 	delete m_pAnimatedArmourLeft;
 	delete m_pAnimatedArmourRight;
 	delete m_pAnimatedArmourBack;
@@ -17,20 +20,23 @@ CAnimatedArmourPic:: ~CAnimatedArmourPic() {
 
 void CAnimatedArmourPic::InitPics() {
 
-	LoadPic(m_pAnimatedArmourAttack, IDB_MONSTER_ANIMATEDARMOUR_ATTACK);
-	LoadPic(m_pAnimatedArmourFront, IDB_MONSTER_ANIMATEDARMOUR_FRONT);
+	LoadPic(m_pAnimatedArmourAttack[0], IDB_MONSTER_ANIMATEDARMOUR_ATTACK);
+	LoadPic(m_pAnimatedArmourFront[0], IDB_MONSTER_ANIMATEDARMOUR_FRONT);
 	LoadPic(m_pAnimatedArmourRight, IDB_MONSTER_ANIMATEDARMOUR_RIGHT);
 	LoadPicAndFlip(m_pAnimatedArmourLeft, IDB_MONSTER_ANIMATEDARMOUR_RIGHT);
 	LoadPic(m_pAnimatedArmourBack, IDB_MONSTER_ANIMATEDARMOUR_BACK);
+
+	LoadPicAndFlip(m_pAnimatedArmourAttack[1], IDB_MONSTER_ANIMATEDARMOUR_ATTACK);
+	LoadPicAndFlip(m_pAnimatedArmourFront[1], IDB_MONSTER_ANIMATEDARMOUR_FRONT);
 }
 
-CBitmap* CAnimatedArmourPic::GetAnimatedArmourPic(int index, bool attacking) {
+CBitmap* CAnimatedArmourPic::GetAnimatedArmourPic(int index, bool attacking, int flip) {
 	if (index == 0) {
 		if (attacking) {
-			return m_pAnimatedArmourAttack;
+			return m_pAnimatedArmourAttack[flip];
 		}
 		else {
-			return m_pAnimatedArmourFront;
+			return m_pAnimatedArmourFront[flip];
 		}
 	}
 	if (index == 1) return m_pAnimatedArmourRight;

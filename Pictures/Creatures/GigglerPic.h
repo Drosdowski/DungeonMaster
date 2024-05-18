@@ -6,7 +6,7 @@ public:
 	CGigglerPic(CDC* pDC);
 	~CGigglerPic();
 
-	CBitmap* GetGigglerPic(int id, bool attacking);
+	CBitmap* GetGigglerPic(int id, bool attacking, int flip);
 
 private:
 	void InitPics();
@@ -14,7 +14,7 @@ private:
 	CBitmap* m_pGigglerBack;
 	CBitmap* m_pGigglerLeft;
 	CBitmap* m_pGigglerRight;
-	CBitmap* m_pGigglerFront;
-	CBitmap* m_pGigglerAttack;
+	CBitmap* m_pGigglerFront[2];
+	CBitmap* m_pGigglerAttack[2];
 };
 

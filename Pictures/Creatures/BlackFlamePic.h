@@ -6,12 +6,12 @@ public:
 	CBlackFlamePic(CDC* pDC);
 	~CBlackFlamePic();
 
-	CBitmap* GetBlackFlamePic(bool attacking);
+	CBitmap* GetBlackFlamePic(bool attacking, int flip);
 
 private:
 	void InitPics();
 
-	CBitmap* m_pBlackFlameFront;
-	CBitmap* m_pBlackFlameAttack;
+	CBitmap* m_pBlackFlameFront[2];
+	CBitmap* m_pBlackFlameAttack[2];
 };
 

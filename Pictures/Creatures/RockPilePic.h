@@ -6,13 +6,13 @@ public:
 	CRockPilePic(CDC* pDC);
 	~CRockPilePic();
 
-	CBitmap* GetRockPilePic(bool attacking);
+	CBitmap* GetRockPilePic(bool attacking, int flip);
 
 private:
 	void InitPics();
 
-	CBitmap* m_pRockPileFront;
-	CBitmap* m_pRockPileAttack;
+	CBitmap* m_pRockPileFront[2];
+	CBitmap* m_pRockPileAttack[2];
 
 };
 

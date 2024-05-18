@@ -6,13 +6,13 @@ public:
 	CWaterElementalPic(CDC* pDC);
 	~CWaterElementalPic();
 
-	CBitmap* GetWaterElementalPic(bool attacking);
+	CBitmap* GetWaterElementalPic(bool attacking, int flip);
 
 private:
 	void InitPics();
 
-	CBitmap* m_pWaterElementalFront;
-	CBitmap* m_pWaterElementalAttack;
+	CBitmap* m_pWaterElementalFront[2];
+	CBitmap* m_pWaterElementalAttack[2];
 
 };
 

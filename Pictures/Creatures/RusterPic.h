@@ -6,12 +6,12 @@ public:
 	CRusterPic(CDC* pDC);
 	~CRusterPic();
 
-	CBitmap* GetRusterPic(int index);
+	CBitmap* GetRusterPic(int index, int flip);
 
 private:
 	void InitPics();
 
-	CBitmap* m_pRusterFront;
+	CBitmap* m_pRusterFront[2];
 	CBitmap* m_pRusterRight;
 	CBitmap* m_pRusterLeft;
 	CBitmap* m_pRusterBack;

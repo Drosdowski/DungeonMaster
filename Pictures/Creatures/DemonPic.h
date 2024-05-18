@@ -6,7 +6,7 @@ public:
 	CDemonPic(CDC* pDC);
 	~CDemonPic();
 
-	CBitmap* GetDemonPic(int id, bool attacking);
+	CBitmap* GetDemonPic(int id, bool attacking, int flip);
 
 private:
 	void InitPics();
@@ -14,7 +14,7 @@ private:
 	CBitmap* m_pDemonBack;
 	CBitmap* m_pDemonLeft;
 	CBitmap* m_pDemonRight;
-	CBitmap* m_pDemonFront;
-	CBitmap* m_pDemonAttack;
+	CBitmap* m_pDemonFront[2];
+	CBitmap* m_pDemonAttack[2];
 };
 

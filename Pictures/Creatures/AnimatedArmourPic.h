@@ -6,7 +6,7 @@ public:
 	CAnimatedArmourPic(CDC* pDC);
 	~CAnimatedArmourPic();
 
-	CBitmap* GetAnimatedArmourPic(int id, bool attacking);
+	CBitmap* GetAnimatedArmourPic(int id, bool attacking, int flip);
 
 private:
 	void InitPics();
@@ -14,7 +14,7 @@ private:
 	CBitmap* m_pAnimatedArmourBack;
 	CBitmap* m_pAnimatedArmourLeft;
 	CBitmap* m_pAnimatedArmourRight;
-	CBitmap* m_pAnimatedArmourFront;
-	CBitmap* m_pAnimatedArmourAttack;
+	CBitmap* m_pAnimatedArmourFront[2];
+	CBitmap* m_pAnimatedArmourAttack[2];
 };
 

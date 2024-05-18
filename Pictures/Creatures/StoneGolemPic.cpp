@@ -8,29 +8,34 @@ CStoneGolemPic::CStoneGolemPic(CDC* pDC) : CBasePictures(pDC)
 }
 
 CStoneGolemPic:: ~CStoneGolemPic() {
-	delete m_pStoneGolemAttack;
-	delete m_pStoneGolemFront;
+	for (int flip = 0; flip < 2; flip++)
+	{
+		delete m_pStoneGolemAttack[flip];
+		delete m_pStoneGolemFront[flip];
+	}
 	delete m_pStoneGolemLeft;
 	delete m_pStoneGolemRight;
 	delete m_pStoneGolemBack;
 }
 
 void CStoneGolemPic::InitPics() {
+	LoadPic(m_pStoneGolemAttack[0], IDB_MONSTER_STONEGOLEM_ATTACK);
+	LoadPic(m_pStoneGolemFront[0], IDB_MONSTER_STONEGOLEM_FRONT);
 
-	LoadPic(m_pStoneGolemAttack, IDB_MONSTER_STONEGOLEM_ATTACK);
-	LoadPic(m_pStoneGolemFront, IDB_MONSTER_STONEGOLEM_FRONT);
+	LoadPicAndFlip(m_pStoneGolemAttack[1], IDB_MONSTER_STONEGOLEM_ATTACK);
+	LoadPicAndFlip(m_pStoneGolemFront[1], IDB_MONSTER_STONEGOLEM_FRONT);
 	LoadPic(m_pStoneGolemRight, IDB_MONSTER_STONEGOLEM_RIGHT);
 	LoadPicAndFlip(m_pStoneGolemLeft, IDB_MONSTER_STONEGOLEM_RIGHT);
 	LoadPic(m_pStoneGolemBack, IDB_MONSTER_STONEGOLEM_BACK);
 }
 
-CBitmap* CStoneGolemPic::GetStoneGolemPic(int index, bool attacking) {
+CBitmap* CStoneGolemPic::GetStoneGolemPic(int index, bool attacking, int flip) {
 	if (index == 0) {
 		if (attacking) {
-			return m_pStoneGolemAttack;
+			return m_pStoneGolemAttack[flip];
 		}
 		else {
-			return m_pStoneGolemFront;
+			return m_pStoneGolemFront[flip];
 		}
 	}
 	if (index == 1) return m_pStoneGolemRight;

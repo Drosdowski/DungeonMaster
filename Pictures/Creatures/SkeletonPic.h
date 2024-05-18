@@ -6,7 +6,7 @@ public:
 	CSkeletonPic(CDC* pDC);
 	~CSkeletonPic();
 
-	CBitmap* GetSkeletonPic(int id, bool attacking);
+	CBitmap* GetSkeletonPic(int id, bool attacking, int flip);
 
 private:
 	void InitPics();
@@ -14,8 +14,8 @@ private:
 	CBitmap* m_pSkeletonBack;
 	CBitmap* m_pSkeletonLeft;
 	CBitmap* m_pSkeletonRight;
-	CBitmap* m_pSkeletonFront;
-	CBitmap* m_pSkeletonAttack;
+	CBitmap* m_pSkeletonFront[2];
+	CBitmap* m_pSkeletonAttack[2];
 
 };
 

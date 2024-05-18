@@ -6,13 +6,13 @@ public:
 	CMagentaWormPic(CDC* pDC);
 	~CMagentaWormPic();
 
-	CBitmap* GetMagentaWormPic(bool attacking);
+	CBitmap* GetMagentaWormPic(bool attacking, int flip);
 
 private:
 	void InitPics();
 
-	CBitmap* m_pMagentaWormFront;
-	CBitmap* m_pMagentaWormAttack;
+	CBitmap* m_pMagentaWormFront[2];
+	CBitmap* m_pMagentaWormAttack[2];
 
 };
 
