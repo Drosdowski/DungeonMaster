@@ -133,6 +133,35 @@ bool CHelpfulValues::southOf(VEKTOR myPos, VEKTOR hisPos) {
 	return (myPos.x == hisPos.x) && ((hisPos.y - myPos.y) >= 1);
 }
 
+FlyingVektor CHelpfulValues::GetRelativeVector(COMPASS_DIRECTION heroDir, VEKTOR itemVektor) {
+	switch (heroDir)
+	{
+	case NORTH:
+		if (itemVektor.x != 0) return Side;
+		if (itemVektor.y < 0) return Backside;
+		return Frontside;
+		break;
+	case EAST:
+		if (itemVektor.y != 0) return Side;
+		if (itemVektor.x > 0) return Backside;
+		return Frontside;
+		break;
+	case SOUTH:
+		if (itemVektor.x != 0) return Side;
+		if (itemVektor.y > 0) return Backside;
+		return Frontside;
+		break;
+	case WEST:
+		if (itemVektor.y != 0) return Side;
+		if (itemVektor.x < 0) return Backside;
+		return Frontside;
+		break;
+	case STOP:
+		break;
+	default:
+		break;
+	}
+}
 
 SUBPOS CHelpfulValues::GetRelativeSubPosPassive(SUBPOS_ABSOLUTE pos_abs, COMPASS_DIRECTION heroDir) {
 	for (int turns = 0; turns < heroDir; turns++)

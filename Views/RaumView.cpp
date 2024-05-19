@@ -599,6 +599,10 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 
 void CRaumView::DrawOneOfPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, COMPASS_DIRECTION heroDir, CItem* item, bool center) {
 	int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
+	SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(itemSubPos, heroDir); // todo subpos angleichen
+	bool flip = subPos == LINKSFRONT || subPos == LINKSBACK;
+	FlyingVektor v = CHelpfulValues::GetRelativeVector(heroDir, item->m_flyForce);
+	
 	CBitmap* bmp = NULL;
 	CItem::ItemType typ = item->getItemType();
 	if (typ == CItem::ItemType::MiscItem) {
@@ -606,7 +610,7 @@ void CRaumView::DrawOneOfPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABS
 		bmp = m_pItem3DPic->GetMiscBitmap(miscItem->GetType(), miscItem->GetSubtype());
 	}
 	else if (typ == CItem::ItemType::WeaponItem) {
-		bmp = m_pItem3DPic->GetWeaponBitmap(((CWeapon*)item)->GetType(), item->IsFlying());
+		bmp = m_pItem3DPic->GetWeaponBitmap(((CWeapon*)item)->GetType(), item->IsFlying(), flip, v);
 	}
 	else if (typ == CItem::ItemType::ClothItem) {
 		bmp = m_pItem3DPic->GetClothBitmap(((CCloth*)item)->GetType(), item->IsFlying());
@@ -627,7 +631,6 @@ void CRaumView::DrawOneOfPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABS
 
 		CPoint floorMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
 		if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) {
-			SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(itemSubPos, heroDir); // todo subpos angleichen
 			if (ebene > 0 || subPos == LINKSFRONT || subPos == RECHTSFRONT)
 			{
 				if (subPos == LINKSFRONT || subPos == RECHTSFRONT)

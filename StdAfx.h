@@ -112,6 +112,12 @@ enum GroupMode {
 	ASLEEP = 2
 };
 
+enum FlyingVektor {
+	Backside = 1,
+	Frontside = 2,
+	Side = 3
+};
+
 struct VEKTOR
 {
 	int x, y, z;

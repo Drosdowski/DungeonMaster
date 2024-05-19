@@ -36,6 +36,7 @@ public:
 	CString static SkillClass(int nr);
 	CString static VitalName(int nr);
 	int static ManaCost(int layer, int runeId, int power);
+	FlyingVektor static GetRelativeVector(COMPASS_DIRECTION heroDir, VEKTOR itemVektor);
 
 private:
 	SUBPOS static GetPosByIndexWhenFacingNorth(SUBPOS_ABSOLUTE SUBPOSINDEX); // only internal usage when DIR = 0!

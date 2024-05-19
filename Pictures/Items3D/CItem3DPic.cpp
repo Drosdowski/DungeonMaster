@@ -77,7 +77,10 @@ CItem3DPic ::~CItem3DPic() {
 		delete m_pStoneClub[w];
 		delete m_pAxe[w];
 		delete m_pSword[w];
-		delete m_pDagger[w];
+		for (int flip = 0; flip < 2; flip++)
+		{
+			delete m_pDagger[w][flip];
+		}
 		delete m_pArrow[w];
 		delete m_pSlayer[w];
 		delete m_pPoisonDart[w];
@@ -170,10 +173,14 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pSword[1], IDB_MISSILE_SWORD_B);
 	LoadPic(m_pSword[2], IDB_MISSILE_SWORD_F);
 	LoadPic(m_pSword[3], IDB_MISSILE_SWORD_S);
-	LoadPic(m_pDagger[0], IDB_ITEM3D_DAGGER);
-	LoadPic(m_pDagger[1], IDB_MISSILE_DAGGER_B);
-	LoadPic(m_pDagger[2], IDB_MISSILE_DAGGER_F);
-	LoadPic(m_pDagger[3], IDB_MISSILE_DAGGER_S);
+	LoadPic(m_pDagger[0][0], IDB_ITEM3D_DAGGER);
+	LoadPic(m_pDagger[1][0], IDB_MISSILE_DAGGER_B);
+	LoadPic(m_pDagger[2][0], IDB_MISSILE_DAGGER_F);
+	LoadPic(m_pDagger[3][0], IDB_MISSILE_DAGGER_S);
+	LoadPicAndFlip(m_pDagger[0][1], IDB_ITEM3D_DAGGER);
+	LoadPicAndFlip(m_pDagger[1][1], IDB_MISSILE_DAGGER_B);
+	LoadPicAndFlip(m_pDagger[2][1], IDB_MISSILE_DAGGER_F);
+	LoadPicAndFlip(m_pDagger[3][1], IDB_MISSILE_DAGGER_S);
 	LoadPic(m_pArrow[0], IDB_ITEM3D_ARROW);
 	LoadPic(m_pArrow[1], IDB_MISSILE_ARROW_B);
 	LoadPic(m_pArrow[2], IDB_MISSILE_ARROW_F);
@@ -282,12 +289,21 @@ CBitmap* CItem3DPic::GetSword(bool inAir) {
 	}
 }
 
-CBitmap* CItem3DPic::GetDagger(bool inAir) {
+CBitmap* CItem3DPic::GetDagger(bool inAir, bool flip, FlyingVektor v) {
 	if (inAir) {
-		return m_pDagger[1]; // todo !!	
+		// B - F - S
+		if (v == Backside) {
+			return m_pDagger[1][flip];
+		}
+		else if (v == Frontside) {
+			return m_pDagger[2][flip];
+		}
+		else {
+			return m_pDagger[3][flip];
+		}
 	}
 	else {
-		return m_pDagger[0];
+		return m_pDagger[0][flip];
 	}
 }
 
@@ -500,7 +516,7 @@ CBitmap* CItem3DPic::GetMiscBitmap(int miscType, int subType) {
 	return bmp;
 }
 
-CBitmap* CItem3DPic::GetWeaponBitmap(int weaponType, bool inAir) {
+CBitmap* CItem3DPic::GetWeaponBitmap(int weaponType, bool inAir, bool flip, FlyingVektor v) {
 	CBitmap* bmp;
 	if (weaponType >= CWeaponAttributes::Falchion &&
 		weaponType <= CWeaponAttributes::DiamondEdge ||
@@ -512,7 +528,7 @@ CBitmap* CItem3DPic::GetWeaponBitmap(int weaponType, bool inAir) {
 		weaponType == CWeaponAttributes::Hardcleave)
 		bmp = GetAxe(inAir);
 	else if (weaponType == CWeaponAttributes::Dagger)
-		bmp = GetDagger(inAir);
+		bmp = GetDagger(inAir, flip, v);
 	else if (weaponType == CWeaponAttributes::Club)
 		bmp = GetClub(inAir);
 	else if (weaponType == CWeaponAttributes::StoneClub)

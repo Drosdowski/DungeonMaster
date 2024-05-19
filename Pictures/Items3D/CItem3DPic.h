@@ -53,7 +53,7 @@ public:
 	CBitmap* GetStoneClub(bool inAir);
 	CBitmap* GetSword(bool inAir);
 	CBitmap* GetAxe(bool inAir);
-	CBitmap* GetDagger(bool inAir);
+	CBitmap* GetDagger(bool inAir, bool flip, FlyingVektor v);
 	CBitmap* GetArrow(bool inAir);
 	CBitmap* GetSlayer(bool inAir);
 	CBitmap* GetThrowingStar(bool inAir);
@@ -62,7 +62,7 @@ public:
 	CBitmap* GetPotionBitmap(int potionType);
 	CBitmap* GetClothBitmap(int clothType, bool inAir);
 	CBitmap* GetMiscBitmap(int miscType, int subType);
-	CBitmap* GetWeaponBitmap(int weaponType, bool inAir);
+	CBitmap* GetWeaponBitmap(int weaponType, bool inAir, bool flip, FlyingVektor v);
 	CBitmap* GetScrollBitmap();
 	CBitmap* GetContainerBitmap(bool center);
 	CBitmap* GetGemBitmap(char color);
@@ -125,7 +125,7 @@ private:
 	CBitmap* m_pFlamitt;
 	CBitmap* m_pWand;
 	CBitmap* m_pConduit;
-	CBitmap* m_pDagger[4];
+	CBitmap* m_pDagger[4][2];
 	CBitmap* m_pArrow[4];
 	CBitmap* m_pSlayer[4];
 	CBitmap* m_pPoisonDart[4];
