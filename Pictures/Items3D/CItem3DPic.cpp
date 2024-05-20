@@ -73,19 +73,21 @@ CItem3DPic ::~CItem3DPic() {
 	delete m_pHalter;
 	for (int w = 0; w < 4; w++)
 	{
-		delete m_pClub[w];
-		delete m_pStoneClub[w];
-		delete m_pAxe[w];
-		delete m_pSword[w];
 		for (int flip = 0; flip < 2; flip++)
 		{
+			delete m_pClub[w][flip];
+			delete m_pStoneClub[w][flip];
+			delete m_pAxe[w][flip];
+			delete m_pSword[w][flip];
 			delete m_pDagger[w][flip];
+			delete m_pArrow[w][flip];
+			delete m_pSlayer[w][flip];
+			delete m_pPoisonDart[w][flip];
+			if (w < 3) {
+				delete m_pThrowingStar[w][flip];
+			}
 		}
-		delete m_pArrow[w];
-		delete m_pSlayer[w];
-		delete m_pPoisonDart[w];
 		if (w < 3) {
-			delete m_pThrowingStar[w];
 			delete m_pChest[w];
 			if (w < 2) {
 				delete m_pWaterskin[w];
@@ -157,22 +159,38 @@ void CItem3DPic::InitBitmap() {
 	LoadPic(m_pFireStaffComplete, IDB_ITEM3D_FIRESTAFF_COMPLETE);
 	LoadPic(m_pMagnifier, IDB_ITEM3D_MAGNIFIER);
 	LoadPic(m_pHalter, IDB_ITEM3D_HALTER);
-	LoadPic(m_pClub[0], IDB_ITEM3D_CLUB);
-	LoadPic(m_pClub[1], IDB_MISSILE_CLUB_B);
-	LoadPic(m_pClub[2], IDB_MISSILE_CLUB_F);
-	LoadPic(m_pClub[3], IDB_MISSILE_CLUB_S);
-	LoadPic(m_pStoneClub[0], IDB_ITEM3D_STONECLUB);
-	LoadPic(m_pStoneClub[1], IDB_MISSILE_STONECLUB_B);
-	LoadPic(m_pStoneClub[2], IDB_MISSILE_STONECLUB_F);
-	LoadPic(m_pStoneClub[3], IDB_MISSILE_STONECLUB_S);
-	LoadPic(m_pAxe[0], IDB_ITEM3D_AXE);
-	LoadPic(m_pAxe[1], IDB_MISSILE_AXE_B);
-	LoadPic(m_pAxe[2], IDB_MISSILE_AXE_F);
-	LoadPic(m_pAxe[3], IDB_MISSILE_AXE_S);
-	LoadPic(m_pSword[0], IDB_ITEM3D_SWORD);
-	LoadPic(m_pSword[1], IDB_MISSILE_SWORD_B);
-	LoadPic(m_pSword[2], IDB_MISSILE_SWORD_F);
-	LoadPic(m_pSword[3], IDB_MISSILE_SWORD_S);
+	LoadPic(m_pClub[0][0], IDB_ITEM3D_CLUB);
+	LoadPic(m_pClub[1][0], IDB_MISSILE_CLUB_B);
+	LoadPic(m_pClub[2][0], IDB_MISSILE_CLUB_F);
+	LoadPic(m_pClub[3][0], IDB_MISSILE_CLUB_S);
+	LoadPicAndFlip(m_pClub[0][1], IDB_ITEM3D_CLUB);
+	LoadPicAndFlip(m_pClub[1][1], IDB_MISSILE_CLUB_B);
+	LoadPicAndFlip(m_pClub[2][1], IDB_MISSILE_CLUB_F);
+	LoadPicAndFlip(m_pClub[3][1], IDB_MISSILE_CLUB_S);
+	LoadPic(m_pStoneClub[0][0], IDB_ITEM3D_STONECLUB);
+	LoadPic(m_pStoneClub[1][0], IDB_MISSILE_STONECLUB_B);
+	LoadPic(m_pStoneClub[2][0], IDB_MISSILE_STONECLUB_F);
+	LoadPic(m_pStoneClub[3][0], IDB_MISSILE_STONECLUB_S);
+	LoadPicAndFlip(m_pStoneClub[0][1], IDB_ITEM3D_STONECLUB);
+	LoadPicAndFlip(m_pStoneClub[1][1], IDB_MISSILE_STONECLUB_B);
+	LoadPicAndFlip(m_pStoneClub[2][1], IDB_MISSILE_STONECLUB_F);
+	LoadPicAndFlip(m_pStoneClub[3][1], IDB_MISSILE_STONECLUB_S);
+	LoadPic(m_pAxe[0][0], IDB_ITEM3D_AXE);
+	LoadPic(m_pAxe[1][0], IDB_MISSILE_AXE_B);
+	LoadPic(m_pAxe[2][0], IDB_MISSILE_AXE_F);
+	LoadPic(m_pAxe[3][0], IDB_MISSILE_AXE_S);
+	LoadPicAndFlip(m_pAxe[0][1], IDB_ITEM3D_AXE);
+	LoadPicAndFlip(m_pAxe[1][1], IDB_MISSILE_AXE_B);
+	LoadPicAndFlip(m_pAxe[2][1], IDB_MISSILE_AXE_F);
+	LoadPicAndFlip(m_pAxe[3][1], IDB_MISSILE_AXE_S);
+	LoadPic(m_pSword[0][0], IDB_ITEM3D_SWORD);
+	LoadPic(m_pSword[1][0], IDB_MISSILE_SWORD_B);
+	LoadPic(m_pSword[2][0], IDB_MISSILE_SWORD_F);
+	LoadPic(m_pSword[3][0], IDB_MISSILE_SWORD_S);
+	LoadPicAndFlip(m_pSword[0][1], IDB_ITEM3D_SWORD);
+	LoadPicAndFlip(m_pSword[1][1], IDB_MISSILE_SWORD_B);
+	LoadPicAndFlip(m_pSword[2][1], IDB_MISSILE_SWORD_F);
+	LoadPicAndFlip(m_pSword[3][1], IDB_MISSILE_SWORD_S);
 	LoadPic(m_pDagger[0][0], IDB_ITEM3D_DAGGER);
 	LoadPic(m_pDagger[1][0], IDB_MISSILE_DAGGER_B);
 	LoadPic(m_pDagger[2][0], IDB_MISSILE_DAGGER_F);
@@ -181,23 +199,38 @@ void CItem3DPic::InitBitmap() {
 	LoadPicAndFlip(m_pDagger[1][1], IDB_MISSILE_DAGGER_B);
 	LoadPicAndFlip(m_pDagger[2][1], IDB_MISSILE_DAGGER_F);
 	LoadPicAndFlip(m_pDagger[3][1], IDB_MISSILE_DAGGER_S);
-	LoadPic(m_pArrow[0], IDB_ITEM3D_ARROW);
-	LoadPic(m_pArrow[1], IDB_MISSILE_ARROW_B);
-	LoadPic(m_pArrow[2], IDB_MISSILE_ARROW_F);
-	LoadPic(m_pArrow[3], IDB_MISSILE_ARROW_S);
-	LoadPic(m_pSlayer[0], IDB_ITEM3D_SLAYER);
-	LoadPic(m_pSlayer[1], IDB_MISSILE_SLAYER_B);
-	LoadPic(m_pSlayer[2], IDB_MISSILE_SLAYER_F);
-	LoadPic(m_pSlayer[3], IDB_MISSILE_SLAYER_S);
-	LoadPic(m_pThrowingStar[0], IDB_ITEM3D_THROWINGSTAR);
-	LoadPic(m_pThrowingStar[1], IDB_MISSILE_THROWINGSTAR_F);
-	LoadPic(m_pThrowingStar[2], IDB_MISSILE_THROWINGSTAR_S);
+	LoadPic(m_pArrow[0][0], IDB_ITEM3D_ARROW);
+	LoadPic(m_pArrow[1][0], IDB_MISSILE_ARROW_B);
+	LoadPic(m_pArrow[2][0], IDB_MISSILE_ARROW_F);
+	LoadPic(m_pArrow[3][0], IDB_MISSILE_ARROW_S);
+	LoadPicAndFlip(m_pArrow[0][1], IDB_ITEM3D_ARROW);
+	LoadPicAndFlip(m_pArrow[1][1], IDB_MISSILE_ARROW_B);
+	LoadPicAndFlip(m_pArrow[2][1], IDB_MISSILE_ARROW_F);
+	LoadPicAndFlip(m_pArrow[3][1], IDB_MISSILE_ARROW_S);
+	LoadPic(m_pSlayer[0][0], IDB_ITEM3D_SLAYER);
+	LoadPic(m_pSlayer[1][0], IDB_MISSILE_SLAYER_B);
+	LoadPic(m_pSlayer[2][0], IDB_MISSILE_SLAYER_F);
+	LoadPic(m_pSlayer[3][0], IDB_MISSILE_SLAYER_S);
+	LoadPicAndFlip(m_pSlayer[0][1], IDB_ITEM3D_SLAYER);
+	LoadPicAndFlip(m_pSlayer[1][1], IDB_MISSILE_SLAYER_B);
+	LoadPicAndFlip(m_pSlayer[2][1], IDB_MISSILE_SLAYER_F);
+	LoadPicAndFlip(m_pSlayer[3][1], IDB_MISSILE_SLAYER_S);
+	LoadPic(m_pThrowingStar[0][0], IDB_ITEM3D_THROWINGSTAR);
+	LoadPic(m_pThrowingStar[1][0], IDB_MISSILE_THROWINGSTAR_F);
+	LoadPic(m_pThrowingStar[2][0], IDB_MISSILE_THROWINGSTAR_S);
+	LoadPicAndFlip(m_pThrowingStar[0][1], IDB_ITEM3D_THROWINGSTAR);
+	LoadPicAndFlip(m_pThrowingStar[1][1], IDB_MISSILE_THROWINGSTAR_F);
+	LoadPicAndFlip(m_pThrowingStar[2][1], IDB_MISSILE_THROWINGSTAR_S);
 	LoadPic(m_pShield[0], IDB_ITEM3D_SHIELD_S);
 	LoadPic(m_pShield[1], IDB_ITEM3D_SHIELD_L);
-	LoadPic(m_pPoisonDart[0], IDB_ITEM3D_POISONDART);
-	LoadPic(m_pPoisonDart[1], IDB_MISSILE_POISONDART_B);
-	LoadPic(m_pPoisonDart[2], IDB_MISSILE_POISONDART_F);
-	LoadPic(m_pPoisonDart[3], IDB_MISSILE_POISONDART_S);
+	LoadPic(m_pPoisonDart[0][0], IDB_ITEM3D_POISONDART);
+	LoadPic(m_pPoisonDart[1][0], IDB_MISSILE_POISONDART_B);
+	LoadPic(m_pPoisonDart[2][0], IDB_MISSILE_POISONDART_F);
+	LoadPic(m_pPoisonDart[3][0], IDB_MISSILE_POISONDART_S);
+	LoadPicAndFlip(m_pPoisonDart[0][1], IDB_ITEM3D_POISONDART);
+	LoadPicAndFlip(m_pPoisonDart[1][1], IDB_MISSILE_POISONDART_B);
+	LoadPicAndFlip(m_pPoisonDart[2][1], IDB_MISSILE_POISONDART_F);
+	LoadPicAndFlip(m_pPoisonDart[3][1], IDB_MISSILE_POISONDART_S);
 
 	LoadPic(m_pWaterskin[0], IDB_ITEM3D_WATERSKIN_E);
 	LoadPic(m_pWaterskin[1], IDB_ITEM3D_WATERSKIN_F);
@@ -250,42 +283,58 @@ CPoint CItem3DPic::GetFloorMiddle(int x, int ebene) {
 	return middle;
 }
 
-CBitmap* CItem3DPic::GetClub(bool inAir) {
+CBitmap* CItem3DPic::GetClub(bool inAir, bool flip, FlyingVektor v) {
 	if (inAir) {
-		rotationCnt = (rotationCnt % 3) + 1;
-		return m_pClub[rotationCnt];
+		rotationCnt = (rotationCnt % 2) + 1;
+		return m_pClub[rotationCnt][flip];
 	}
 	else {
-		return m_pClub[0];
+		return m_pClub[0][flip];
 	}
 }
 
-CBitmap* CItem3DPic::GetStoneClub(bool inAir) {
+CBitmap* CItem3DPic::GetStoneClub(bool inAir, bool flip, FlyingVektor v) {
 	if (inAir) {
 		rotationCnt = (rotationCnt % 3) + 1;
-		return m_pStoneClub[rotationCnt];
+		if (v == Backside) {
+			return m_pStoneClub[1][flip];
+		}
+		else if (v == Frontside) {
+			return m_pStoneClub[2][flip];
+		}
+		else {
+			return m_pStoneClub[3][flip];
+		}
 	}
 	else {
-		return m_pStoneClub[0];
+		return m_pStoneClub[0][flip];
 	}
 }
 
-CBitmap* CItem3DPic::GetAxe(bool inAir) {
+CBitmap* CItem3DPic::GetAxe(bool inAir, bool flip, FlyingVektor v) {
 	if (inAir) {
-		rotationCnt = (rotationCnt % 3) + 1;
-		return m_pAxe[rotationCnt];
+		rotationCnt = (rotationCnt % 2) + 1;
+		return m_pAxe[rotationCnt][flip];
 	}
 	else {
-		return m_pAxe[0];
+		return m_pAxe[0][flip];
 	}
 }
 
-CBitmap* CItem3DPic::GetSword(bool inAir) {
+CBitmap* CItem3DPic::GetSword(bool inAir, bool flip, FlyingVektor v) {
 	if (inAir) {
-		return m_pSword[1]; // todo !!	
+		if (v == Backside) {
+			return m_pSword[1][flip];
+		}
+		else if (v == Frontside) {
+			return m_pSword[2][flip];
+		}
+		else {
+			return m_pSword[3][flip];
+		}
 	}
 	else {
-		return m_pSword[0];
+		return m_pSword[0][flip];
 	}
 }
 
@@ -307,39 +356,71 @@ CBitmap* CItem3DPic::GetDagger(bool inAir, bool flip, FlyingVektor v) {
 	}
 }
 
-CBitmap* CItem3DPic::GetArrow(bool inAir) {
+CBitmap* CItem3DPic::GetArrow(bool inAir, bool flip, FlyingVektor v) {
 	if (inAir) {
-		return m_pArrow[1]; // todo !!	
+		if (v == Backside) {
+			return m_pArrow[1][flip];
+		}
+		else if (v == Frontside) {
+			return m_pArrow[2][flip];
+		}
+		else {
+			return m_pArrow[3][flip];
+		}
 	}
 	else {
-		return m_pArrow[0];
+		return m_pArrow[0][flip];
 	}
 }
 
-CBitmap* CItem3DPic::GetSlayer(bool inAir) {
+CBitmap* CItem3DPic::GetSlayer(bool inAir, bool flip, FlyingVektor v) {
 	if (inAir) {
-		return m_pSlayer[1]; // todo !!	
+		if (v == Backside) {
+			return m_pSlayer[1][flip];
+		}
+		else if (v == Frontside) {
+			return m_pSlayer[2][flip];
+		}
+		else {
+			return m_pSlayer[3][flip];
+		}
 	}
 	else {
-		return m_pSlayer[0];
+		return m_pSlayer[0][flip];
 	}
 }
 
-CBitmap* CItem3DPic::GetThrowingStar(bool inAir) {
+CBitmap* CItem3DPic::GetThrowingStar(bool inAir, bool flip, FlyingVektor v) {
 	if (inAir) {
-		return m_pThrowingStar[1]; // todo !!	
+		if (v == Backside) {
+			return m_pThrowingStar[1][flip];
+		}
+		else if (v == Frontside) {
+			return m_pThrowingStar[2][flip];
+		}
+		else {
+			return m_pThrowingStar[3][flip];
+		}
 	}
 	else {
-		return m_pThrowingStar[0];
+		return m_pThrowingStar[0][flip];
 	}
 }
 
-CBitmap* CItem3DPic::GetPoisonDart(bool inAir) {
+CBitmap* CItem3DPic::GetPoisonDart(bool inAir, bool flip, FlyingVektor v) {
 	if (inAir) {
-		return m_pPoisonDart[1]; // todo !!	
+		if (v == Backside) {
+			return m_pPoisonDart[1][flip];
+		}
+		else if (v == Frontside) {
+			return m_pPoisonDart[2][flip];
+		}
+		else {
+			return m_pPoisonDart[3][flip];
+		}
 	}
 	else {
-		return m_pPoisonDart[0];
+		return m_pPoisonDart[0][flip];
 	}
 }
 
@@ -523,24 +604,24 @@ CBitmap* CItem3DPic::GetWeaponBitmap(int weaponType, bool inAir, bool flip, Flyi
 		weaponType == CWeaponAttributes::BoltBlade ||
 		weaponType == CWeaponAttributes::Fury ||
 		weaponType == CWeaponAttributes::TheInquisitor)
-		bmp = GetSword(inAir);
+		bmp = GetSword(inAir, flip, v);
 	else if (weaponType == CWeaponAttributes::Axe ||
 		weaponType == CWeaponAttributes::Hardcleave)
-		bmp = GetAxe(inAir);
+		bmp = GetAxe(inAir, flip, v);
 	else if (weaponType == CWeaponAttributes::Dagger)
 		bmp = GetDagger(inAir, flip, v);
 	else if (weaponType == CWeaponAttributes::Club)
-		bmp = GetClub(inAir);
+		bmp = GetClub(inAir, flip, v);
 	else if (weaponType == CWeaponAttributes::StoneClub)
-		bmp = GetStoneClub(inAir);
+		bmp = GetStoneClub(inAir, flip, v);
 	else if (weaponType == CWeaponAttributes::Arrow)
-		bmp = GetArrow(inAir);
+		bmp = GetArrow(inAir, flip, v);
 	else if (weaponType == CWeaponAttributes::Slayer)
-		bmp = GetSlayer(inAir);
+		bmp = GetSlayer(inAir, flip, v);
 	else if (weaponType == CWeaponAttributes::ThrowingStar)
-		bmp = GetThrowingStar(inAir);
+		bmp = GetThrowingStar(inAir, flip, v);
 	else if (weaponType == CWeaponAttributes::PoisonDart)
-		bmp = GetPoisonDart(inAir);
+		bmp = GetPoisonDart(inAir, flip, v);
 	else if (weaponType == CWeaponAttributes::Torch)
 		bmp = GetTorch();
 	else if (weaponType == CWeaponAttributes::Rock)

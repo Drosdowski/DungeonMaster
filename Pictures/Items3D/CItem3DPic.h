@@ -49,15 +49,15 @@ public:
 	CBitmap* GetMoonstone() { return m_pMoonstone; }
 	CBitmap* GetEyeOfTime() { return m_pEyeOfTime; }
 
-	CBitmap* GetClub(bool inAir);
-	CBitmap* GetStoneClub(bool inAir);
-	CBitmap* GetSword(bool inAir);
-	CBitmap* GetAxe(bool inAir);
+	CBitmap* GetClub(bool inAir, bool flip, FlyingVektor v);
+	CBitmap* GetStoneClub(bool inAir, bool flip, FlyingVektor v);
+	CBitmap* GetSword(bool inAir, bool flip, FlyingVektor v);
+	CBitmap* GetAxe(bool inAir, bool flip, FlyingVektor v);
 	CBitmap* GetDagger(bool inAir, bool flip, FlyingVektor v);
-	CBitmap* GetArrow(bool inAir);
-	CBitmap* GetSlayer(bool inAir);
-	CBitmap* GetThrowingStar(bool inAir);
-	CBitmap* GetPoisonDart(bool inAir);
+	CBitmap* GetArrow(bool inAir, bool flip, FlyingVektor v);
+	CBitmap* GetSlayer(bool inAir, bool flip, FlyingVektor v);
+	CBitmap* GetThrowingStar(bool inAir, bool flip, FlyingVektor v);
+	CBitmap* GetPoisonDart(bool inAir, bool flip, FlyingVektor v);
 	CBitmap* GetShield(bool large) { if (large) return m_pShield[1]; else return m_pShield[0]; }
 	CBitmap* GetPotionBitmap(int potionType);
 	CBitmap* GetClothBitmap(int clothType, bool inAir);
@@ -108,10 +108,6 @@ private:
 	CBitmap* m_pCoin[2];
 	CBitmap* m_pCompass;
 
-	CBitmap* m_pClub[4];
-	CBitmap* m_pStoneClub[4];
-	CBitmap* m_pAxe[4];
-	CBitmap* m_pSword[4];
 	CBitmap* m_pMorningstar;
 	CBitmap* m_pVorpalBlade;
 	CBitmap* m_pFirestaff;
@@ -125,11 +121,15 @@ private:
 	CBitmap* m_pFlamitt;
 	CBitmap* m_pWand;
 	CBitmap* m_pConduit;
+	CBitmap* m_pClub[4][2];
+	CBitmap* m_pStoneClub[4][2];
+	CBitmap* m_pAxe[4][2];
+	CBitmap* m_pSword[4][2];
 	CBitmap* m_pDagger[4][2];
-	CBitmap* m_pArrow[4];
-	CBitmap* m_pSlayer[4];
-	CBitmap* m_pPoisonDart[4];
-	CBitmap* m_pThrowingStar[3];
+	CBitmap* m_pArrow[4][2];
+	CBitmap* m_pSlayer[4][2];
+	CBitmap* m_pPoisonDart[4][2];
+	CBitmap* m_pThrowingStar[3][2];
 	CBitmap* m_pShield[2];
 	
 	CBitmap* m_pTorch;
