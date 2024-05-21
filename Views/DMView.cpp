@@ -361,7 +361,7 @@ void CDMView::ParseClickAir(CPoint point) {
 	if (pItemInHand != NULL) {
 		SUBPOS airRegionClicked = CScreenCoords::CheckHitAir(point);
 		if (airRegionClicked != NONE) {
-			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->GetNextFieldKoord(VORWAERTS, 1));
+			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(CHelpfulValues::GetNextFieldKoord(VORWAERTS, grpHelden->GetDirection(), 1, grpHelden->GetVector()));
 			if (FeldVorHeld) {
 				if (FeldVorHeld->BlockedToWalk()) {
 					// skip, nix.
@@ -406,7 +406,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 			CActuator::ActuatorType type = currentActuator->GetType();
 			CActuator::ActionTarget actionTarget = currentActuator->GetActionTarget();
 			CItem* itemInHand = grpHelden->GetItemInHand();
-			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->GetNextFieldKoord(VORWAERTS, 1));
+			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(CHelpfulValues::GetNextFieldKoord(VORWAERTS, grpHelden->GetDirection(), 1, grpHelden->GetVector()));
 			SUBPOS_ABSOLUTE posActuator = (SUBPOS_ABSOLUTE)dir;
 			std::deque<CItem*> itemsInWall = FeldVorHeld->GetItem(posActuator);
 			int data = currentActuator->GetData();
@@ -634,7 +634,7 @@ void CDMView::ParseClickFloor(CPoint point) {
 	CItem* topItem = NULL;
 	if (itemRegionClicked == LINKSBACK || itemRegionClicked == RECHTSBACK)
 	{
-		CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->GetNextFieldKoord(VORWAERTS, 1));
+		CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(CHelpfulValues::GetNextFieldKoord(VORWAERTS, grpHelden->GetDirection(), 1, grpHelden->GetVector()));
 		if (FeldVorHeld && !FeldVorHeld->BlockedToPut())
 		{
 			if (pItemInHand == NULL)
@@ -690,7 +690,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 
 
 			// Unterscheiden: Anklicken oder werfen?
-			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(grpHelden->GetNextFieldKoord(VORWAERTS, 1));
+			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(CHelpfulValues::GetNextFieldKoord(VORWAERTS, grpHelden->GetDirection(), 1, grpHelden->GetVector()));
 			if (FeldVorHeld) {
 				ParseClickDoorButton(point, FeldVorHeld);
 				if (FeldVorHeld->BlockedToPut()) {
@@ -1275,8 +1275,7 @@ void CDMView::Walk()
 				pGrpHeroes->Laufen(posFinal, false);
 			}
 			else {
-
-				posTarget = pGrpHeroes->GetNextFieldKoord(m_iWunschRichtung, 1);
+				posTarget = CHelpfulValues::GetNextFieldKoord(m_iWunschRichtung, pGrpHeroes->GetDirection(), 1, pGrpHeroes->GetVector());
 				posFinal = m_pRaumView->GrpHeroWalkTo(posTarget, collision);
 				if (collision)
 				{

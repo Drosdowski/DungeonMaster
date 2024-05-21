@@ -137,38 +137,6 @@ void CGrpChar::DamageFrom(CCharacter* pEnemy, VEKTOR hisPos, bool areaDmg) {
 	}
 }
 
-
-VEKTOR CGrpChar::GetNextFieldKoord(int iRichtung, int range)
-{
-	int sx = m_values->m_stx[m_grpDirection] * range;
-	int sy = m_values->m_sty[m_grpDirection] * range;
-
-	VEKTOR WunschPos = m_posPosition;
-
-	switch (iRichtung)
-	{
-	case LINKS_STRAFE:
-		WunschPos.x = m_posPosition.x - sx;
-		WunschPos.y = m_posPosition.y - sy;
-		break;
-	case RUECKWAERTS:
-		WunschPos.x = m_posPosition.x - sy;
-		WunschPos.y = m_posPosition.y + sx;
-		break;
-	case RECHTS_STRAFE:
-		WunschPos.x = m_posPosition.x + sx;
-		WunschPos.y = m_posPosition.y + sy;
-		break;
-	case VORWAERTS:
-		WunschPos.x = m_posPosition.x + sy;
-		WunschPos.y = m_posPosition.y - sx;
-		break;
-	default:
-		break;
-	}
-	return WunschPos;
-}
-
 void CGrpChar::DrehenAbsolut(COMPASS_DIRECTION iRichtung) {
 	COMPASS_DIRECTION oldDir = m_grpDirection;
 	m_grpDirection = iRichtung;

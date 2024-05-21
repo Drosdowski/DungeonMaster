@@ -1750,7 +1750,8 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	if (pGrpMon->GetVector().z != heroPos.z) return monPos; // Falsche Etage, nix tun!
 
 	if (pGrpMon->IsScared()) {
-		targetPos = pGrpMon->GetNextFieldKoord(RUECKWAERTS, 1); // klappt nicht bei side-attack!
+		targetPos = CHelpfulValues::GetNextFieldKoord(RUECKWAERTS, pGrpMon->GetDirection(), 1, pGrpMon->GetVector());
+		// klappt nicht bei side-attack!
 		boolean collision = false;
 		targetPos = GrpMonsterWalkTo(monPos, targetPos, collision);
 		pGrpMon->ScaredAction(targetPos, collision);
@@ -1763,6 +1764,8 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 				// Versuch, in Blickrichtung anzugreifen!
 				if (!mc.side_attack)
 				{
+					// todo: grp direction is not monster direction!
+					// 
 					TryToAttack(pGrpMon, direction, range, power, absDist);
 				}
 				else {
@@ -1777,7 +1780,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 				}
 			}
 		}
-		targetPos = pGrpMon->GetNextFieldKoord(VORWAERTS, 1);
+		targetPos = CHelpfulValues::GetNextFieldKoord(VORWAERTS, pGrpMon->GetDirection(), 1, pGrpMon->GetVector());
 		CField* targetField = m_pMap->GetField(targetPos);
 		if (pGrpMon->AnyoneReadyToMove())
 		{
@@ -1857,7 +1860,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 }
 
 boolean CRaumView::TryToAttack(CGrpMonster* pGrpMon, COMPASS_DIRECTION direction, int range, int power, int absDist) {
-	VEKTOR targetPos = pGrpMon->GetNextFieldKoord(direction, range);
+	VEKTOR targetPos = CHelpfulValues::GetNextFieldKoord(VORWAERTS, direction, range, pGrpMon->GetVector());
 	CGrpHeld* pGrpHeroes = m_pMap->GetHeroes();
 	VEKTOR heroPos = pGrpHeroes->GetVector();
 	VEKTOR monPos = pGrpMon->GetVector();
@@ -1867,7 +1870,7 @@ boolean CRaumView::TryToAttack(CGrpMonster* pGrpMon, COMPASS_DIRECTION direction
 		bool anyObstacle = false;
 		if (range > 1) {
 			for (int checkRange = range - 1; range >= 1; range--) {
-				VEKTOR checkPos = pGrpMon->GetNextFieldKoord(VORWAERTS, checkRange);
+				VEKTOR checkPos = CHelpfulValues::GetNextFieldKoord(VORWAERTS, direction, checkRange, pGrpMon->GetVector());
 				CField* checkField = m_pMap->GetField(checkPos);
 				if (checkField->BlockedToWalk()) {
 					anyObstacle = true;
@@ -2070,7 +2073,7 @@ CSize CRaumView::GetSizeOfFrontDeco(CField* pField, COMPASS_DIRECTION dir)
 }
 
 void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
-	VEKTOR monPos = pGrpHero->GetNextFieldKoord(VORWAERTS, 1);
+	VEKTOR monPos = CHelpfulValues::GetNextFieldKoord(VORWAERTS, pGrpHero->GetDirection(), 1, pGrpHero->GetVector());
 	CHeld* pHero = (CHeld*)pGrpHero->GetHeroForAction();
 	CGrpMonster* pVictims = GetMonsterGroup(monPos);
 	CAttackInfos* attackInfos = GetAttackInfos();

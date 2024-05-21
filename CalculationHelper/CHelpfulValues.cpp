@@ -210,6 +210,36 @@ SUBPOS_ABSOLUTE CHelpfulValues::GetSecondPositionFromDirection(COMPASS_DIRECTION
 	if (heroDir == NORTH) return NORTHWEST;
 }
 
+VEKTOR CHelpfulValues::GetNextFieldKoord(int toDirection, int viewDirection, int range, VEKTOR sourcePos)
+{
+	CHelpfulValues* HV = new CHelpfulValues();
+	int sx = HV->m_stx[viewDirection] * range;
+	int sy = HV->m_sty[viewDirection] * range;
+	VEKTOR targetPos = sourcePos;
+	switch (toDirection)
+	{
+	case LINKS_STRAFE:
+		targetPos.x = sourcePos.x - sx;
+		targetPos.y = sourcePos.y - sy;
+		break;
+	case RUECKWAERTS:
+		targetPos.x = sourcePos.x - sy;
+		targetPos.y = sourcePos.y + sx;
+		break;
+	case RECHTS_STRAFE:
+		targetPos.x = sourcePos.x + sx;
+		targetPos.y = sourcePos.y + sy;
+		break;
+	case VORWAERTS:
+		targetPos.x = sourcePos.x + sy;
+		targetPos.y = sourcePos.y - sx;
+		break;
+	default:
+		break;
+	}
+	return targetPos;
+}
+
 
 CPoint CHelpfulValues::CalcRelSubFloorPosition(BITMAP bmpInfo, CPoint wallMiddlePos, SUBPOS subPos, double faktor, int xx, int ebene)
 {
