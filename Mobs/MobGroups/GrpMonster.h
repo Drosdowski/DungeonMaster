@@ -32,7 +32,7 @@ public:
 	void MoveDone();
 	void ScaredAction(VEKTOR nextPos, boolean collision);
 	bool IsScared() { return m_iScaredCounter > 0;}
-	bool AnyoneReadyToAttack();
+	int MonsterIndexReadyToAttack();
 	bool AnyoneReadyToMove();
 	bool EveryoneReadyToAttack();
 	bool EveryoneReadyToMove();
@@ -44,7 +44,7 @@ public:
 // Implementierung
 public:
 	bool SetzeModus(int iModus);	
-	CMonster* AttackHero(VEKTOR myPos, VEKTOR hisPos);
+	CMonster* AttackHero(int monIndex, VEKTOR myPos, VEKTOR hisPos);
 	void TurnToHero(VEKTOR heroPos);
 	void Scare();
 	void Laufen(VEKTOR WunschPos, boolean teleport);

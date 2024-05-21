@@ -135,30 +135,19 @@ void CGrpMonster::EndAttack() {
 	}
 }
 
-CMonster* CGrpMonster::AttackHero(VEKTOR monsterPos, VEKTOR heroPos) {
-	if (AnyoneReadyToAttack())
-	{
-		for (int i = 1; i < 5; i++)
-		{
-			CMonster* pMonster = (CMonster*)m_pMember[i];
-			if (pMonster && pMonster->ReadyToAttack() == 0) {				
-				CMonsterConst mc = pMonster->getInfo();
+CMonster* CGrpMonster::AttackHero(int monIndex, VEKTOR monsterPos, VEKTOR heroPos) {
+	CMonster* pMonster = (CMonster*)m_pMember[monIndex];
+	if (pMonster && pMonster->ReadyToAttack() == 0) {				
+		CMonsterConst mc = pMonster->getInfo();
 
-				if (mc.attack_anyone || pMonster->InFrontOfOpponent(monsterPos, heroPos, emptyNorthRow(), emptyEastRow(), emptySouthRow(), emptyWestRow())) {
-					int dmg = pMonster->CalcDmg(1); // todo monster attacke random
-					int poison = mc.poison;
-					pMonster->AttackModeWithDmg(dmg, poison);
-					pMonster->AttackDone();
-					return pMonster; // pro Tick nur ein Angriff / Gruppe
-				}
-				//else {
-				//	TryToAdvanceToFirstRow(i, monsterPos, heroPos);
-				//}
-			}
+		if (mc.attack_anyone || pMonster->InFrontOfOpponent(monsterPos, heroPos, emptyNorthRow(), emptyEastRow(), emptySouthRow(), emptyWestRow())) {
+			int dmg = pMonster->CalcDmg(1); // todo monster attacke random
+			int poison = mc.poison;
+			pMonster->AttackModeWithDmg(dmg, poison);
+			pMonster->AttackDone();
+			return pMonster; // pro Tick nur ein Angriff / Gruppe
 		}
 	}
-
-	return NULL;
 }
 
 bool CGrpMonster::isSubPosAbsoluteFree(SUBPOS_ABSOLUTE pos) {
@@ -272,16 +261,16 @@ void CGrpMonster::TryToAdvanceToFirstRow(int index, VEKTOR monPos, VEKTOR heroPo
 
 }
 
-bool CGrpMonster::AnyoneReadyToAttack() {
+int CGrpMonster::MonsterIndexReadyToAttack() {
 	for (int i = 1; i < 5; i++)
 	{
 		CMonster* pMonster = (CMonster*)m_pMember[i];
 		if (pMonster) {
 			if (pMonster->ReadyToAttack() == 0)
-				return true;
+				return i;
 		}
 	}
-	return false;
+	return -1;
 }
 
 bool CGrpMonster::AnyoneReadyToMove() {
@@ -413,17 +402,14 @@ void CGrpMonster::TurnToHero(VEKTOR heroPos) {
 	else {
 		newDirection = COMPASS_DIRECTION::SOUTH;
 	}
+	m_grpDirection = newDirection;
 
 	for (int i = 1; i < 5; i++)
 	{
 		CMonster* pMonster = (CMonster*)m_pMember[i];
-		if (pMonster) {
-
-			if (m_grpDirection != newDirection && pMonster->TurnTo(newDirection))
-			{
-				m_grpDirection = newDirection;
-				pMonster->MoveDone();
-			}
+		if (pMonster && pMonster->GetDirection() != newDirection) {
+			pMonster->TurnTo(newDirection);
+			pMonster->MoveDone();
 		}
 	}
 	
