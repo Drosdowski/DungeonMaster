@@ -441,12 +441,14 @@ void CPictures::DrawFontText(CDC* pDC, int x, int y, CString text, bool darkFont
 		}
 		else {
 			CBitmap* bmpLetter = darkFont ? GetScrollFontLetter(pDC, letter) : GetOrigFontLetter(pDC, letter);
-			tmpdc.SelectObject(bmpLetter);
-			CPoint pos = { x + 12 * currentIndex, y };
+			if (bmpLetter) {
+				tmpdc.SelectObject(bmpLetter);
+				CPoint pos = { x + 12 * currentIndex, y };
 
-			pDC->TransparentBlt(pos.x, pos.y, xz, yz, &tmpdc, 0, 0, xz, yz, GANZDUNKELGRAU);
-			delete bmpLetter;
-			currentIndex++;
+				pDC->TransparentBlt(pos.x, pos.y, xz, yz, &tmpdc, 0, 0, xz, yz, GANZDUNKELGRAU);
+				delete bmpLetter;
+				currentIndex++;
+			}
 		}
 	}
 	DeleteObject(tmpdc);
@@ -473,24 +475,32 @@ CBitmap* CPictures::GetOrigFontLetter(CDC* pDC, char letter) {
 }
 
 CBitmap* CPictures::GetScrollFontLetter(CDC* pDC, char letter) {
-	CDC iconDC;
-	CDC sheetDC;
-	iconDC.CreateCompatibleDC(pDC);
-	sheetDC.CreateCompatibleDC(pDC);
-
-	CBitmap* bmpSheet = m_pDMFont->GetBlackLetters();
-	CBitmap* bmpChar = new CBitmap();
-	bmpChar->CreateCompatibleBitmap(pDC, 14, 10);
 	if (letter == 32) letter = 65 + 26 + 1;
 
 	CPoint p = m_pDMFont->GetKoordsBlack(letter);
-	sheetDC.SelectObject(bmpSheet);
-	iconDC.SelectObject(bmpChar);
-	iconDC.StretchBlt(0, 0, 14, 10, &sheetDC, p.x, p.y, 7, 5, SRCCOPY);
+	if (p.x >= 0) {
+		CDC iconDC;
+		CDC sheetDC;
+		iconDC.CreateCompatibleDC(pDC);
+		sheetDC.CreateCompatibleDC(pDC);
 
-	DeleteObject(iconDC);
-	DeleteObject(sheetDC);
-	return bmpChar;
+		CBitmap* bmpSheet = m_pDMFont->GetBlackLetters();
+		CBitmap* bmpChar = new CBitmap();
+		bmpChar->CreateCompatibleBitmap(pDC, 14, 10);
+
+		sheetDC.SelectObject(bmpSheet);
+		iconDC.SelectObject(bmpChar);
+		iconDC.StretchBlt(0, 0, 14, 10, &sheetDC, p.x, p.y, 7, 5, SRCCOPY);
+
+		DeleteObject(iconDC);
+		DeleteObject(sheetDC);
+
+		return bmpChar;
+	}
+	else {
+		return NULL;
+	}
+
 }
 
 

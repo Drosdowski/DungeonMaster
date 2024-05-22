@@ -1518,7 +1518,8 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 		break;
 	case CActuator::Gate:
 		if (field->BlockedToWalk()) { // Wall => Switch, no Pressure Pad
-			if (actuator->GetType()  == CActuator::Hold) return;
+			//if (actuator->GetType()  == CActuator::Hold) 
+			return;
 		}
 		TriggerTarget(pTargetField, actuator, true);
 		actuator->resetDelay();
