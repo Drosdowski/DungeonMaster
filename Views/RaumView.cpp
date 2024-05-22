@@ -1902,7 +1902,6 @@ boolean CRaumView::TryToAttack(CGrpMonster* pGrpMon, int index, COMPASS_DIRECTIO
 				m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Screamer-Oitu).mp3"); break;
 				break;
 			case ROCKPILE:
-				// todo poison
 				pGrpHeroes->DamageFrom(attackingMonster, monPos, false);
 				m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Rockpile).mp3"); break;
 				break;

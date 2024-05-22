@@ -125,16 +125,6 @@ bool CGrpMonster::Altern(CField* field)
 }
 
 
-void CGrpMonster::EndAttack() {
-	for (int i = 1; i < 5; i++)
-	{
-		CMonster* pMonster = (CMonster*)m_pMember[i];
-		if (pMonster) {
-			pMonster->EndAttack();
-		}
-	}
-}
-
 CMonster* CGrpMonster::AttackHero(int monIndex, VEKTOR monsterPos, VEKTOR heroPos) {
 	CMonster* pMonster = (CMonster*)m_pMember[monIndex];
 	if (pMonster && pMonster->ReadyToAttack() == 0) {				

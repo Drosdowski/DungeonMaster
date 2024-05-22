@@ -48,7 +48,6 @@ public:
 	void TurnToHero(VEKTOR heroPos);
 	void Scare();
 	void Laufen(VEKTOR WunschPos, boolean teleport);
-	void EndAttack();
 	void CarryItem(CItem* item);
 	std::deque<CItem*> DropInventory();
 	SUBPOS_ABSOLUTE GetLastPos() { return m_lastPosition; }
