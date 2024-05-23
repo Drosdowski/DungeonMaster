@@ -432,7 +432,7 @@ void CDungeonMap::ParseCreatureGroup(TiXmlElement* creatureGroupItem, VEKTOR coo
 		pGrpMonster = new CGrpMonster(coords, attribute, index);
 		if (saveGameExists)
 		{
-			pGrpMonster->SetDirection((COMPASS_DIRECTION)richt);
+			pGrpMonster->DrehenAbsolut((COMPASS_DIRECTION)richt);
 		}
 		m_pFeld[coords.x][coords.y][coords.z]->SetMonsterGroup(pGrpMonster);
 	}

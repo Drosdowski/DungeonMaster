@@ -745,7 +745,6 @@ void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, 
 }
 
 void CRaumView::DrawActionAreaChoice(CDC* pDC, int weaponIndex) {
-	
 	m_pPictures->DrawActionAreaChoice(pDC, m_pItemInfos, weaponIndex);
 }
 
@@ -891,19 +890,14 @@ VEKTOR CRaumView::GrpMonsterWalkTo(VEKTOR fromPos, VEKTOR toPos, boolean& collis
 	CField* pField = m_pMap->GetField(toPos);
 	FeldTyp iTyp = pField->HoleTyp();
 	CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
+	CGrpMonster* otherGroup = pField->GetMonsterGroup();
 	
-	if (pField->BlockedToWalk()) {
+	if (pField->BlockedToWalk() || otherGroup) {
 		collision = true;
 		return fromPos;
 	}
 	if (CHelpfulValues::VectorEqual(pGrpHelden->GetVector(), toPos)) return fromPos;
-	if (iTyp == FeldTyp::EMPTY) {
-		collision = false;
-	}
-	else if (iTyp == FeldTyp::PIT) {
-		collision = false;
-	}
-	else if (iTyp == FeldTyp::TELEPORT) {
+	if (iTyp == FeldTyp::EMPTY || iTyp == FeldTyp::PIT || iTyp == FeldTyp::TELEPORT) {
 		collision = false;
 	}
 	else if (iTyp == FeldTyp::STAIRS) {
@@ -1019,14 +1013,14 @@ void CRaumView::MoveMonsters(VEKTOR monsterPos) {
 					pGrpMon->FallingDamage();
 				}
 			}
-			int monIndex = pGrpMon->MonsterIndexReadyToAttack();
-			if (pGrpMon->AnyoneReadyToMove() || monIndex >=0)
+			if (pGrpMon->AnyoneReadyToMove())
 			{
 				VEKTOR target = MonsterMoveOrAttack(pGrpMon);
 				if (target.x != monsterPos.x || target.y != monsterPos.y) {
 					CField* targetField = m_pMap->GetField(target);
 					field->SetMonsterGroup(NULL);
 					targetField->SetMonsterGroup(pGrpMon);
+					pGrpMon->SetVector(target);
 					pGrpMon->MoveDone();
 				}
 			}
@@ -1748,20 +1742,34 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	VEKTOR targetPos;
 	CMonsterInfos* monsterInfos = GetMonsterInfos();
 	CMonsterConst mc = monsterInfos->GetMonsterInfo(pGrpMon->GetType());
+	boolean collision = false;
 	int xDist = monPos.x - heroPos.x;
 	int yDist = monPos.y - heroPos.y;
 	int absDist = abs(xDist) + abs(yDist);
 
-	if (pGrpMon->GetVector().z != heroPos.z) return monPos; // Falsche Etage, nix tun!
+	if (monPos.z != heroPos.z) return monPos; // Falsche Etage, nix tun!
 
 	if (pGrpMon->IsScared()) {
 		if (pGrpMon->AnyoneReadyToMove())
 		{
-			targetPos = CHelpfulValues::GetNextFieldKoord(RUECKWAERTS, pGrpMon->GetDirection(), 1, pGrpMon->GetVector());
+			targetPos = CHelpfulValues::GetNextFieldKoord(RUECKWAERTS, pGrpMon->GetDirection(), 1, monPos);
 			// klappt nicht bei side-attack!
-			boolean collision = false;
-			targetPos = GrpMonsterWalkTo(monPos, targetPos, collision);
-			pGrpMon->ScaredAction(targetPos, collision);
+			if (!collision) {
+				pGrpMon->ReduceScaredCounter();
+				targetPos = GrpMonsterWalkTo(monPos, targetPos, collision);
+			}
+			else {
+				int newDirection;
+				if (rand() % 2 == 0) {
+					newDirection = LINKS_STRAFE;
+				}
+				else {
+					newDirection = RECHTS_STRAFE;
+				}
+				targetPos = CHelpfulValues::GetNextFieldKoord(newDirection, pGrpMon->GetDirection(), 1, monPos);
+
+				pGrpMon->DrehenAbsolut((COMPASS_DIRECTION)newDirection);
+			}
 		}
 	}
 	else {
@@ -1806,39 +1814,40 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 				if (absDist > targetDist)
 				{
 					// Kommt näher => Move!
-
-					pGrpMon->Laufen(targetPos, false);
-					switch (pGrpMon->GetType()) {
-					case SKELETON:
-						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(Skeleton).mp3"); break;
-					case GIANT_SCORPION:
-					case SCREAMER:
-					case ROCKPILE:
-					case MAGENTA_WORM:
-					case PAINRAT:
-					case RUSTER:
-					case OITU:
-						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(Screamer-Rockpile-MagentaWorm-PainRat-Ruster-GiantScorpion-Oitu).mp3"); break;
-					case MUMMY:
-					case GIGGLER:
-					case TROLIN:
-					case VEXIRK:
-					case DEMON:
-					case STONE_GOLEN:
-						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(Mummy-Trolin-StoneGolem-Giggler-Vexirk-Demon).mp3"); break;
-					case GHOST:
-						break;
-					case WATER_ELEMENTAL:
-					case SWAMP_SLIME:
-						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(SwampSlime-WaterElemental"); break;
-					case COUATL:
-					case GIANT_WASP:
-						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(GiantWasp-Couatl)"); break;
-					case RED_DRAGON:
-						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(RedDragon)"); break;
+					targetPos = GrpMonsterWalkTo(monPos, targetPos, collision);
+					if (!collision)
+					{
+						switch (pGrpMon->GetType()) {
+						case SKELETON:
+							m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(Skeleton).mp3"); break;
+						case GIANT_SCORPION:
+						case SCREAMER:
+						case ROCKPILE:
+						case MAGENTA_WORM:
+						case PAINRAT:
+						case RUSTER:
+						case OITU:
+							m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(Screamer-Rockpile-MagentaWorm-PainRat-Ruster-GiantScorpion-Oitu).mp3"); break;
+						case MUMMY:
+						case GIGGLER:
+						case TROLIN:
+						case VEXIRK:
+						case DEMON:
+						case STONE_GOLEN:
+							m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(Mummy-Trolin-StoneGolem-Giggler-Vexirk-Demon).mp3"); break;
+						case GHOST:
+							break;
+						case WATER_ELEMENTAL:
+						case SWAMP_SLIME:
+							m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(SwampSlime-WaterElemental"); break;
+						case COUATL:
+						case GIANT_WASP:
+							m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(GiantWasp-Couatl)"); break;
+						case RED_DRAGON:
+							m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Move(RedDragon)"); break;
+						}
+						return targetPos;
 					}
-
-					return targetPos;
 				}
 				else {
 					if (absDist < targetDist)

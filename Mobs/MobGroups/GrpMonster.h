@@ -30,7 +30,7 @@ public:
 	bool Altern(CField* field);
 	CMonster* GetMonster(int ID);
 	void MoveDone();
-	void ScaredAction(VEKTOR nextPos, boolean collision);
+	void ReduceScaredCounter();
 	bool IsScared() { return m_iScaredCounter > 0;}
 	int MonsterIndexReadyToAttack();
 	bool AnyoneReadyToMove();
@@ -47,7 +47,6 @@ public:
 	CMonster* AttackHero(int monIndex, VEKTOR myPos, VEKTOR hisPos);
 	void TurnToHero(VEKTOR heroPos);
 	void Scare();
-	void Laufen(VEKTOR WunschPos, boolean teleport);
 	void CarryItem(CItem* item);
 	std::deque<CItem*> DropInventory();
 	SUBPOS_ABSOLUTE GetLastPos() { return m_lastPosition; }
@@ -60,7 +59,6 @@ private:
 
 	void InitMonster(int nr, CCreatureAttributes attributes);
 	bool isSubPosAbsoluteFree(SUBPOS_ABSOLUTE pos);
-	void RandomMove(VEKTOR nextPos, boolean collision);
 	int Count();
 
 	std::deque<CItem*> carriedItems;

@@ -641,7 +641,7 @@ void CDMView::ParseClickFloor(CPoint point) {
 				topItem = FeldVorHeld->TakeItem(itemRegionReal);
 			else {
 				FeldVorHeld = m_pRaumView->ChangeFieldWithTeleporter(FeldVorHeld, itemRegionReal, groupDirection);
-				grpHelden->SetDirection(groupDirection);
+				grpHelden->DrehenAbsolut(groupDirection);
 				FeldVorHeld = m_pRaumView->ChangeFieldWithStairs(FeldVorHeld, pItemInHand, itemRegionReal);
 
 				FeldVorHeld->PutItem(pItemInHand, itemRegionReal);

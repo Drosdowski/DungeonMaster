@@ -81,22 +81,6 @@ bool CGrpMonster::SetzeModus(int iModus)
 	return true;
 }
 
-void CGrpMonster::RandomMove(VEKTOR nextPos, boolean collision) {
-	if (!collision) {
-		Laufen(nextPos, false);
-	} else {
-		m_grpDirection = (COMPASS_DIRECTION)( rand() % 4);
-		for (int i = 1; i < 5; i++)
-		{
-			CMonster* pMonster = (CMonster*)m_pMember[i];
-			if (pMonster) {
-				pMonster->TurnTo(m_grpDirection);
-				pMonster->MoveDone();
-			}
-		}
-	}
-}
-
 void CGrpMonster::Scare() {
 	m_iScaredCounter += 8;
 }
@@ -322,9 +306,8 @@ void CGrpMonster::MoveDone() {
 	}
 }
 
-void CGrpMonster::ScaredAction(VEKTOR nextPos, boolean collision) {
+void CGrpMonster::ReduceScaredCounter() {
 	if (m_iScaredCounter > 0) {
-		RandomMove(nextPos, collision);
 		m_iScaredCounter--;
 	}
 }
@@ -403,11 +386,6 @@ void CGrpMonster::TurnToHero(VEKTOR heroPos) {
 		}
 	}
 	
-}
-
-void CGrpMonster::Laufen(VEKTOR WunschPos, boolean teleport) {
-	m_posPosition = WunschPos;
-	MoveDone();
 }
 
 void CGrpMonster::CarryItem(CItem* item) {

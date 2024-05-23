@@ -138,7 +138,7 @@ private:
 	void TriggerTarget(CField* pTargetField, CActuator* actuator, boolean criticalWeightBreached);
 	void WriteOnWall(CDC* pDC, CPoint pos, CText* text, int ebene);
 	boolean TryToAttack(CGrpMonster* pGrpMon, int index, COMPASS_DIRECTION direction, int range, int power, int absDist);
-
+	void SoundAttack(CGrpMonster* pGrpMon);
 };
 
 /////////////////////////////////////////////////////////////////////////////

@@ -28,7 +28,6 @@ protected:
 public:
 	void SetNewCharOnNextFreePos(int nr);
 	COMPASS_DIRECTION GetDirection() { return m_grpDirection; };
-	void SetDirection(COMPASS_DIRECTION richt) { m_grpDirection = richt; }
 	VEKTOR GetVector() { return m_posPosition; };
 	void SetVector(VEKTOR newPos) {m_posPosition = newPos; }
 
