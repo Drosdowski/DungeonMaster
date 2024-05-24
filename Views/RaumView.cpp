@@ -506,7 +506,10 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRE
 	bmpWall->GetBitmap(&bmpInfoWall);
 	// P: Unten Mitte der Mauer
 	p.x += bmpInfoWall.bmWidth;
-	p.y += bmpInfoWall.bmHeight * 2; // = untere Kante des Monsters!
+	p.y += bmpInfoWall.bmHeight;
+	if (!pMonster->getInfo().levitate) {
+		p.y += bmpInfoWall.bmHeight; // = untere Kante des Monsters!
+	}
 	SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(pMonster->HoleSubPosition(), richt);
 
 	if (pMonster->isAlive())
