@@ -1952,6 +1952,10 @@ boolean CRaumView::TryToAttack(CGrpMonster* pGrpMon, int index, COMPASS_DIRECTIO
 				pGrpHeroes->DamageFrom(attackingMonster, monPos, false);
 				m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(GiantScorpion)"); break;
 				break;
+			case GIANT_WASP:
+				pGrpHeroes->DamageFrom(attackingMonster, monPos, false);
+				// m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(GiantScorpion)"); break;
+				break;
 			case SWAMP_SLIME:
 			case WIZARDS_EYE:
 			case VEXIRK:
