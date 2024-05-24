@@ -16,17 +16,21 @@ CTeleporter::CTeleporter(TeleporterAttributes attributes, bool visible, Teleport
 
 void CTeleporter::Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos, bool triggerRotate) {
 	CGrpHeld* pGrpHelden = pMap->GetHeroes();
-	CField* pField = pMap->GetField(telePos);
-	CGrpMonster* pGrpMonster = pField->GetMonsterGroup();
+	CField* pTeleporterField = pMap->GetField(telePos);
+	CGrpMonster* pGrpMonster = pTeleporterField->GetMonsterGroup();
 	VEKTOR heroPos = pGrpHelden->GetVector();
 	VEKTOR toPos = getTargetField();
+	CField* targetField = pMap->GetField(toPos);
 	bool soundPlayed = false;
 	// Teleport Monsters
 	if (getScope() == TeleporterAttributes::Scope::Creatures ||
 		getScope() == TeleporterAttributes::Scope::All) {
 
 		if (pGrpMonster) {
+			pTeleporterField->RemoveMonsterGroup();
+			targetField->SetMonsterGroup(pGrpMonster);
 			pGrpMonster->SetVector(toPos);
+
 			if (!soundPlayed && m_attributes.sound) {
 				pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Teleporting.mp3");
 				soundPlayed = true;
@@ -61,7 +65,7 @@ void CTeleporter::Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos, bool 
 					pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Teleporting.mp3");
 					soundPlayed = true;
 				}
-				pGrpMonster = pMap->GetField(toPos)->GetMonsterGroup();
+				pGrpMonster = targetField->GetMonsterGroup();
 				if (pGrpMonster) {
 					// todo telefrag !!
 					ASSERT(false);
@@ -97,13 +101,10 @@ void CTeleporter::Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos, bool 
 		getScope() == TeleporterAttributes::Scope::Items ||
 		getScope() == TeleporterAttributes::Scope::All) {
 		
-		CField* pFieldFrom = pMap->GetField(telePos);
-		CField* pFieldTo = pMap->GetField(toPos);
-
 		for (int i = 0; i < 4; i++) {
 			SUBPOS_ABSOLUTE pos = (SUBPOS_ABSOLUTE)i;
-			for (CItem* item : pFieldFrom->GetItem(pos)) {
-				pFieldTo->PutItem(pFieldFrom->TakeItem(pos), pos);
+			for (CItem* item : pTeleporterField->GetItem(pos)) {
+				targetField->PutItem(pTeleporterField->TakeItem(pos), pos);
 				if (!soundPlayed && m_attributes.sound) {
 					pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Teleporting.mp3");
 					soundPlayed = true;
