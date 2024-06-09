@@ -1784,15 +1784,17 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 				// Versuch, in Blickrichtung anzugreifen!
 				if (!mc.side_attack)
 				{
-					TryToAttack(pGrpMon, monIndex, direction, range, power, absDist);
+					if (TryToAttack(pGrpMon, monIndex, direction, range, power, absDist))
+					{
+						return monPos;
+					}
 				}
 				else {
 					for (int dir = 1; dir < 5; dir++)
 					{
 						if (TryToAttack(pGrpMon, monIndex, (COMPASS_DIRECTION)dir, range, power, absDist)) {
 							pGrpMon->TurnToHero(heroPos); // automatisch anschauen, sonst klappt fliehen später nicht
-							direction = pGrpMon->GetDirection();
-							break;
+							return monPos;
 						}
 					}					
 				}

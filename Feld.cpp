@@ -332,18 +332,6 @@ void CField::RotateActuators(COMPASS_DIRECTION position) {
 	}
 }
 
-void CField::DrehenAbsolut(COMPASS_DIRECTION direction) {
-	for (int i = 0; i < 4; i++) {
-		for (CItem* item : m_pItem[i]) {
-
-		}
-	}
-}
-
-void CField::DrehenRelativ(int iRelRichtung) {
-
-}
-
 CText* CField::GetFirstText(int position)
 { 
 	if (m_wallText[position].size() > 0)
