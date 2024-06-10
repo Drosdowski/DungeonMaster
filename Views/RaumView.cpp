@@ -735,7 +735,7 @@ void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, 
 	{
 		int w_opt = w - zuvielrechts / 2;
 		if (vInvers) {
-			// todo inverses Bild!
+			// todo inverses Bild! Obsolet?
 			pDC->TransparentBlt(x, y,
 				reducedWidth, realHeight,
 				cdc, 0, 0, w_opt, h, col);
@@ -1751,7 +1751,6 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	int absDist = abs(xDist) + abs(yDist);
 
 	if (monPos.z != heroPos.z) return monPos; // Falsche Etage, nix tun!
-
 	if (pGrpMon->IsScared()) {
 		if (pGrpMon->AnyoneReadyToMove())
 		{

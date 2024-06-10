@@ -106,7 +106,8 @@ private:
 	int m_iIndex;
 	int m_heroId;
 	int m_iPoison;
-	int m_delay;
+	int m_iPoisonDelay;
+	int m_delay; // for action
 	bool m_bAktiv;
 	WERTE m_MA;	// Mana
 	WERTE m_ST;	// Stamina

@@ -138,11 +138,18 @@ bool CHeld::Altern()
 		if (m_iReceivedPoison > 0) {
 			// poisoned
 			m_iPoison = min(240, m_iPoison + m_iReceivedPoison);
+			m_iPoisonDelay = 10;
 			m_iReceivedPoison = 0;
 		}
 		if (m_iPoison > 0) {
-			m_iPoison--;
-			m_iReceivedDmg += 1 + (int)(m_iPoison / 60); 
+			if (m_iPoisonDelay > 0) {
+				m_iPoisonDelay--;
+			}
+			else {
+				m_iPoison--;
+				m_iReceivedDmg += 1 + (int)(m_iPoison / 60);
+				m_iPoisonDelay = 10;
+			}
 		}
 		if (m_iReceivedDmg > 0) {
 			// damage

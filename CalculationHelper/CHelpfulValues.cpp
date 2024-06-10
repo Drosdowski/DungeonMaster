@@ -237,6 +237,7 @@ VEKTOR CHelpfulValues::GetNextFieldKoord(int toDirection, int viewDirection, int
 	default:
 		break;
 	}
+	delete HV;
 	return targetPos;
 }
 
