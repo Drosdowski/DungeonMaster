@@ -17,7 +17,7 @@ void CBasePictures::LoadPicAndFlip(CBitmap*& mPic, int ID) {
 	flipDC.SelectObject(mPic);
 	BITMAP bmpInfo;
 	mPic->GetBitmap(&bmpInfo);
-	flipDC.StretchBlt(0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, &flipDC, bmpInfo.bmWidth, 0, -bmpInfo.bmWidth, bmpInfo.bmHeight, SRCCOPY);
+	flipDC.StretchBlt(0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, &flipDC, bmpInfo.bmWidth-1, 0, -bmpInfo.bmWidth, bmpInfo.bmHeight, SRCCOPY);
 	DeleteDC(flipDC);
 }
 
