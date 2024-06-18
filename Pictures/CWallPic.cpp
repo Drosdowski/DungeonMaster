@@ -122,7 +122,7 @@ CPoint CWallPic::GetWallPos(int x, int ebene) {
 		break;
 	case 1:
 		if (x == 2) p.x = 0;
-		if (x == 3) p.x = 326;
+		if (x == 3) p.x = 328;
 		if (x == 4) p.x = 64;
 		p.y = 82;
 		break;
@@ -141,7 +141,7 @@ CPoint CWallPic::GetWallPos(int x, int ebene) {
 		break;
 	case 3:
 		if (x == 0) p.x = 0;
-		if (x == 1) p.x = 358;
+		if (x == 1) p.x = 360;
 		if (x == 2) p.x = 8 * 2 - 2;
 		if (x == 3) p.x = 282 - 8 * 2;
 		if (x == 4) p.x = 152;
