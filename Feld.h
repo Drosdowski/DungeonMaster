@@ -58,7 +58,7 @@ public:
 	bool BlockedToPut();
 	
 	CFloorDecoration* GetFloorDeco() {	return  m_floorOrnateType; }
-	CWallDecoration* GetWallDeco(int position) { return  m_wallOrnateType[position]; }
+	CWallDecoration* GetWallDeco(COMPASS_DIRECTION position) { return  m_wallOrnateType[position]; }
 	void PutFloorDeco(CFloorDecoration* deco);
 	void PutWallDeco(CWallDecoration* deco, int position);
 	void PutWallText(CText* text, int position);

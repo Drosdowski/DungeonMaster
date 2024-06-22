@@ -690,7 +690,8 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 
 
 			// Unterscheiden: Anklicken oder werfen?
-			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(CHelpfulValues::GetNextFieldKoord(VORWAERTS, grpHelden->GetDirection(), 1, grpHelden->GetVector()));
+			VEKTOR posVorHeld = CHelpfulValues::GetNextFieldKoord(VORWAERTS, grpHelden->GetDirection(), 1, grpHelden->GetVector());
+			CField* FeldVorHeld = m_pRaumView->GetMap()->GetField(posVorHeld);
 			if (FeldVorHeld) {
 				ParseClickDoorButton(point, FeldVorHeld);
 				if (FeldVorHeld->BlockedToPut()) {
@@ -706,7 +707,28 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 					{
 						pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Swallowing.mp3"); 
 					}
-
+					CWallDecoration* pWallDeco = FeldVorHeld->GetWallDeco(dir);
+					if (pWallDeco) {
+						WallDecorationType graphicTypeFront = pWallDeco->GetDecoType();
+						if (graphicTypeFront == SquareAlcove ||
+							graphicTypeFront == ArchedAlcove ||
+							graphicTypeFront == ViAltar)
+						{
+							CItem* itemInHand = grpHelden->GetItemInHand();
+							// Alkoven & co
+							// TODO !!
+							/*if (itemInHand == NULL) {
+								std::deque<CItem*> itemsInWall = FeldVorHeld->GetItem(posVorHeld);
+								if (itemsInWall.size() > 0) {
+									grpHelden->TakeItemInHand(FeldVorHeld->TakeItem(posActuator));
+								}
+							}
+							else {
+								FeldVorHeld->PutItem(itemInHand, posActuator);
+								grpHelden->EmptyHand();
+							}*/
+						}
+					}
 				}
 				else {
 					ParseClickAir(point);
