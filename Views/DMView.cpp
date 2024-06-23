@@ -716,17 +716,17 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 						{
 							CItem* itemInHand = grpHelden->GetItemInHand();
 							// Alkoven & co
-							// TODO !!
-							/*if (itemInHand == NULL) {
-								std::deque<CItem*> itemsInWall = FeldVorHeld->GetItem(posVorHeld);
+							SUBPOS_ABSOLUTE posAlcove = (SUBPOS_ABSOLUTE)dir;
+							if (itemInHand == NULL) {
+								std::deque<CItem*> itemsInWall = FeldVorHeld-> GetItem(posAlcove);
 								if (itemsInWall.size() > 0) {
-									grpHelden->TakeItemInHand(FeldVorHeld->TakeItem(posActuator));
+									grpHelden->TakeItemInHand(FeldVorHeld->TakeItem(posAlcove));
 								}
 							}
 							else {
-								FeldVorHeld->PutItem(itemInHand, posActuator);
+								FeldVorHeld->PutItem(itemInHand, posAlcove);
 								grpHelden->EmptyHand();
-							}*/
+							}
 						}
 					}
 				}
