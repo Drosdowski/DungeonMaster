@@ -506,10 +506,8 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRE
 	bmpWall->GetBitmap(&bmpInfoWall);
 	// P: Unten Mitte der Mauer
 	p.x += bmpInfoWall.bmWidth;
-	p.y += bmpInfoWall.bmHeight;
-	if (!pMonster->getInfo().levitate) {
-		p.y += bmpInfoWall.bmHeight; // = untere Kante des Monsters!
-	}
+	p.y += 2 * bmpInfoWall.bmHeight;
+
 	SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(pMonster->HoleSubPosition(), richt);
 
 	if (pMonster->isAlive())
@@ -525,9 +523,15 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRE
 	if (bmpMonster) {
 		//get original size of bitmap
 		bmpMonster->GetBitmap(&bmpInfoMonster);
-
+		
 		p.x = p.x - (int)(bmpInfoMonster.bmWidth * faktor);
 		p.y = p.y - (int)(bmpInfoMonster.bmHeight * faktor * 2);
+
+		if (pMonster->getInfo().levitate) {
+			// TODO where to draw levitating monsters?
+			//p.y -= (bmpInfoWall.bmHeight - bmpInfoMonster.bmHeight * faktor * 2) / 2;
+		}
+
 
 		CPoint pos = CHelpfulValues::CalcSubPosition(p, subPos, faktor);
 
