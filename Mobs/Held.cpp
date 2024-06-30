@@ -527,6 +527,10 @@ void CHeld::undoRune() {
 		m_iRuneTable--;
 		m_spell[m_iRuneTable] = 0;
 	}
+	else if (m_iRuneTable == 1 && m_spell[4] > 0 && m_spell[4] < 7) {
+		m_spell[4] = 0;
+		m_iRuneTable = 4;
+	}
 }
 
 void CHeld::storeRune(int index) {
