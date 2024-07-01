@@ -685,8 +685,12 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 			ParseClickFloor(point);
 			ParseClickMagic(point);
 			ParseClickAction(point);
-			if (!ParseClickPortraitHands(point, false))
+			if (!ParseClickPortraitHands(point, false)) {
 				ParseClickPortrait(point);
+			}
+			else {
+				return;
+			}
 
 
 			// Unterscheiden: Anklicken oder werfen?
