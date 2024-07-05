@@ -422,3 +422,6 @@ int CHelpfulValues::ManaCost(int layer, int runeId, int power) {
 }
 
 
+double CHelpfulValues::round1(double value) {
+	return floor(value * 10.0 + .5) / 10.0;
+}

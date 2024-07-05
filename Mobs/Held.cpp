@@ -192,9 +192,9 @@ void CHeld::WerteSetzen(double hp, double st, double ma) {
 
 void CHeld::WerteTemporaerAendern(double hp, double st, double ma)
 {
-	m_HP.Aktuell = min(max(hp + m_HP.Aktuell, 0), m_HP.Max);
-	m_ST.Aktuell = min(max(st + m_ST.Aktuell, 0), m_ST.Max);
-	m_MA.Aktuell = min(max(ma + m_MA.Aktuell, 0), m_MA.Max);	
+	m_HP.Aktuell = min(max(hp + m_HP.Aktuell, 0), HPMax());
+	m_ST.Aktuell = min(max(st + m_ST.Aktuell, 0), STMax());
+	m_MA.Aktuell = min(max(ma + m_MA.Aktuell, 0), MAMax());	
 }
 
 int CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, int levelDif) {
@@ -330,6 +330,11 @@ void CHeld::Trinken(int amount) {
 	m_iWater = min(maxWater, m_iWater + amount);
 }
 
+void CHeld::RemoveItemCarrying(int index)
+{ 
+	m_itemCarrying[index] = NULL; 
+}
+
 CItem* CHeld::SwitchItemAt(int index, CItem* item)
 {
 	CItem* carryingBefore = m_itemCarrying[index];
@@ -357,14 +362,14 @@ double CHeld::MaxLoad() {
 	double maxLoad = (8 * m_sVitals.str.Aktuell + 100) / 10;
 	// todo: if injured => MaxLoad = 3 * MaxLoad / 4 
 	if (m_itemCarrying[6] && m_itemCarrying[6]->getItemType() == CClothAttributes::ClothType::ElvenBoots) {
-		maxLoad = round1(17 * maxLoad / 16);
+		maxLoad = CHelpfulValues::round1(17 * maxLoad / 16);
 	}
 	if (m_ST.Aktuell >= m_ST.Max / 2) {
 		return maxLoad;
 	}
 	else {
 		// BaseMaxLoad = BaseMaxLoad / 2 + (((BaseMaxLoad / 2) * Stamina) / (MaxStamina / 2))
-		return round1(maxLoad / 2 + (((maxLoad / 2) * m_ST.Aktuell) / (m_ST.Max / 2)));
+		return CHelpfulValues::round1(maxLoad / 2 + (((maxLoad / 2) * m_ST.Aktuell) / (m_ST.Max / 2)));
 	}
 }
 
@@ -381,18 +386,13 @@ double CHeld::CurLoad() {
 
 int CHeld::Armour() {
 	int ac = 0;
-	for (int i = 0; i < 30; i++)
+	for (int i = 0; i < 7; i++)  
 	{
 		CItem* item = m_itemCarrying[i];
 		if (item)
 			ac += item->GetArmourClass();
 	}
 	return ac;
-}
-
-
-double CHeld::round1(double value) {
-	return floor(value * 10.0 + .5) / 10.0;
 }
 
 void CHeld::ChangeCompass() {
@@ -550,4 +550,16 @@ int CHeld::GetPower() {
 		return 0;
 	}
 
+}
+
+double CHeld::MAMax() {
+	int maBonus = 0;
+	for (int index = 0; index < 7; index++) {
+		CItem* item = m_itemCarrying[index];
+		if (item && item->getItemType() == CItem::WeaponItem) {
+			CWeapon* weapon = (CWeapon*)item;
+			maBonus = weapon->GetAttributes().manaplus;
+		}
+	}
+	return (double)(m_MA.Max + maBonus);
 }

@@ -39,6 +39,9 @@ public:
 	int static ManaCost(int layer, int runeId, int power);
 	FlyingVektor static GetRelativeVector(COMPASS_DIRECTION heroDir, VEKTOR itemVektor);
 
+	double static round1(double value);
+
+
 private:
 	SUBPOS static GetPosByIndexWhenFacingNorth(SUBPOS_ABSOLUTE SUBPOSINDEX); // only internal usage when DIR = 0!
 	SUBPOS_ABSOLUTE static GetAbsPosBySubposWhenFacingNorth(SUBPOS pos); // only internal usage when DIR = 0!

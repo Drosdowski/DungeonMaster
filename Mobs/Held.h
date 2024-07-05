@@ -46,9 +46,9 @@ public:
 	void ChangeCompass();
 
 	int CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, int levelDif);
-	double LifePart() { return (double)m_HP.Aktuell / (double)m_HP.Max; }
-	double StaminaPart() { return (double)m_ST.Aktuell / (double)m_ST.Max; }
-	double ManaPart() { return (double)m_MA.Aktuell / (double)m_MA.Max; }
+	double LifePart() { return (double)m_HP.Aktuell / HPMax(); }
+	double StaminaPart() { return (double)m_ST.Aktuell / STMax(); }
+	double ManaPart() { return (double)m_MA.Aktuell / MAMax(); }
 	COLORREF Farbe() { return m_Farbe; }
 	double MaxLoad();
 	double CurLoad();
@@ -68,12 +68,17 @@ public:
 	bool isReady() { return m_delay <= 0; }
 
 	CItem* GetItemCarrying(int index) { return m_itemCarrying[index]; }
-	void RemoveItemCarrying(int index) { m_itemCarrying[index] = NULL; }
+	void RemoveItemCarrying(int index);
 	CItem* SwitchItemAt(int index, CItem* item);
 	CString GetSkillsForSaveGame();
 	CString GetSpellForSaveGame();
 	void SetSkillsFromSaveGame(CString skills);
 	void SetSpellFromSaveGame(CString spell);
+
+	// Get Attributes with item boni
+	double HPMax() { return (double)m_HP.Max; }
+	double STMax() { return (double) m_ST.Max;  }
+	double MAMax();
 
 // Implementation
 public:
@@ -116,7 +121,6 @@ private:
 	CString m_strSubname;
 	bool m_male;
 	CItem* m_itemCarrying[31]; // Letztes Item sind die Knochen, sieht man natürlich nicht im Backpack.
-	double round1(double value);
 	bool hitSucessful(CAttackConst ac, CMonsterConst mc, int levelDif);
 	void DelItem(CItem* pItem);
 	int ACC_Coeff(int levelDif, int armor);

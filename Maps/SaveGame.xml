@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<dungeon start_x="26" start_y="17" start_z="3" start_facing="South">
+<dungeon start_x="20" start_y="17" start_z="3" start_facing="East">
     <heroes>
-        <hero index="1" heroId="1" hp_akt="72" st_akt="750" ma_akt="0" hp_max="90" st_max="750" ma_max="0" name="HALK" subname="" male="Y" LUK="11051" STR="7710" DEX="11822" VIT="10278" WIS="10280" AM="12336" AF="14135" SKILLS="4,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0" SPELL="">
+        <hero index="1" heroId="1" hp_akt="90" st_akt="750" ma_akt="0" hp_max="90" st_max="750" ma_max="0" name="HALK" subname="" male="Y" LUK="14135" STR="11051" DEX="7710" VIT="11822" WIS="10278" AM="12336" AF="10280" SKILLS="4,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0" SPELL="">
             <item item="1" index="76" type="0" />
             <item item="5" index="55" type="2" />
             <item item="6" index="61" type="2" />
         </hero>
-        <hero index="2" heroId="2" hp_akt="80" st_akt="610" ma_akt="5" hp_max="80" st_max="610" ma_max="5" name="HISSSSA" subname="" male="Y" LUK="12336" STR="8995" DEX="8995" VIT="11051" WIS="10280" AM="14135" AF="14906" SKILLS="4,3,0,0,0,3,1,0,0,0,0,0,0,0,0,0" SPELL="">
+        <hero index="2" heroId="2" hp_akt="80" st_akt="610" ma_akt="5" hp_max="80" st_max="610" ma_max="5" name="HISSSSA" subname="" male="Y" LUK="14906" STR="12336" DEX="8995" VIT="8995" WIS="11051" AM="14135" AF="10280" SKILLS="4,3,0,0,0,3,1,0,0,0,0,0,0,0,0,0" SPELL="">
             <item item="0" index="99" type="0" />
             <item item="1" index="30" type="0" />
         </hero>
-        <hero index="3" heroId="3" hp_akt="39" st_akt="630" ma_akt="26" hp_max="39" st_max="630" ma_max="26" name="GANDO" subname="" male="Y" LUK="11565" STR="12079" DEX="8481" VIT="12336" WIS="12850" AM="11051" AF="10023" SKILLS="0,0,0,0,3,0,2,3,0,0,0,0,1,1,2,2" SPELL="3,5,2">
+        <hero index="3" heroId="3" hp_akt="39" st_akt="630" ma_akt="26" hp_max="39" st_max="630" ma_max="26" name="GANDO" subname="" male="Y" LUK="10023" STR="11565" DEX="12079" VIT="8481" WIS="12336" AM="11051" AF="12850" SKILLS="0,0,0,0,3,0,2,3,0,0,0,0,1,1,2,2" SPELL="3,5,2">
             <item item="0" index="1" type="3" />
             <item item="1" index="22" type="0" />
             <item item="15" index="248" type="1" />
@@ -18,7 +18,7 @@
             <item item="20" index="146" type="1" />
             <item item="25" index="249" type="1" />
         </hero>
-        <hero index="4" heroId="4" hp_akt="25" st_akt="450" ma_akt="35" hp_max="25" st_max="450" ma_max="35" name="TIGGY" subname="" male="N" LUK="11565" STR="12850" DEX="8995" VIT="15163" WIS="11565" AM="10280" AF="7710" SKILLS="0,0,0,0,1,3,1,1,0,0,0,1,3,2,3,2" SPELL="">
+        <hero index="4" heroId="4" hp_akt="25" st_akt="450" ma_akt="35" hp_max="25" st_max="450" ma_max="35" name="TIGGY" subname="" male="N" LUK="7710" STR="11565" DEX="12850" VIT="8995" WIS="15163" AM="10280" AF="11565" SKILLS="0,0,0,0,1,3,1,1,0,0,0,1,3,2,3,2" SPELL="">
             <item item="0" index="74" type="0" />
             <item item="1" index="34" type="1" />
             <item item="4" index="63" type="2" />
@@ -4535,8 +4535,8 @@
                 <tile index="686" />
                 <tile index="687">
                     <items>
-                        <creature index="31" position="0" dir="1" hp="141" subIndex="2" readyToAttack="0" readyToMove="14" />
-                        <creature index="31" position="3" dir="1" hp="155" subIndex="1" readyToAttack="0" readyToMove="14" />
+                        <creature index="31" position="0" dir="1" hp="141" subIndex="2" readyToAttack="0" readyToMove="9" />
+                        <creature index="31" position="3" dir="1" hp="155" subIndex="1" readyToAttack="0" readyToMove="9" />
                     </items>
                 </tile>
                 <tile index="688" />
