@@ -304,12 +304,12 @@ CPoint CHelpfulValues::CalcRelSubFloorPosition(BITMAP bmpInfo, CPoint wallMiddle
 			posY = 255;
 		}
 		else {
-			posX += (int)xFaktor * 34;
+			posX += (int)xFaktor * 30;
 			if (subPos == MITTE) {
 				posY = 244;
 			}
 			else {
-				posY = 240;
+				posY = 255;
 			}
 		}
 		break;

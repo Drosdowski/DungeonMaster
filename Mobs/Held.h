@@ -76,7 +76,7 @@ public:
 	void SetSpellFromSaveGame(CString spell);
 
 	// Get Attributes with item boni
-	double HPMax() { return (double)m_HP.Max; }
+	double HPMax() { return (double) m_HP.Max; }
 	double STMax() { return (double) m_ST.Max;  }
 	double MAMax();
 

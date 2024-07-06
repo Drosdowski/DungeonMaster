@@ -887,13 +887,18 @@ CGrpMonster* CRaumView::GetMonsterGroup(VEKTOR pos) {
 	return pField->GetMonsterGroup();
 }
 
-VEKTOR CRaumView::GrpMonsterWalkTo(VEKTOR fromPos, VEKTOR toPos, boolean& collision) {
+VEKTOR CRaumView::GrpMonsterWalkTo(VEKTOR fromPos, VEKTOR toPos, boolean& collision, bool levitate) {
 	CField* pField = m_pMap->GetField(toPos);
 	FeldTyp iTyp = pField->HoleTyp();
 	CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
 	CGrpMonster* otherGroup = pField->GetMonsterGroup();
 	
 	if (pField->BlockedToWalk() || otherGroup) {
+		collision = true;
+		return fromPos;
+	}
+	CPit* pit = pField->HolePit();
+	if (pit && !levitate) {
 		collision = true;
 		return fromPos;
 	}
@@ -1756,7 +1761,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 			// klappt nicht bei side-attack!
 			if (!collision) {
 				pGrpMon->ReduceScaredCounter();
-				targetPos = GrpMonsterWalkTo(monPos, targetPos, collision);
+				targetPos = GrpMonsterWalkTo(monPos, targetPos, collision, mc.levitate);
 			}
 			else {
 				int newDirection;
@@ -1816,7 +1821,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 				if (absDist > targetDist)
 				{
 					// Kommt näher => Move!
-					targetPos = GrpMonsterWalkTo(monPos, targetPos, collision);
+					targetPos = GrpMonsterWalkTo(monPos, targetPos, collision, mc.levitate);
 					if (!collision)
 					{
 						switch (pGrpMon->GetType()) {
