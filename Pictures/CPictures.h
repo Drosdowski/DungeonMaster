@@ -47,7 +47,7 @@ private:
 
 	void ZeichnenHauptbereichHintergrund(CDC* pDC, bool bLooking, bool bEating);
 	void ZeichneSkills(CDC* pDC, CHeld* pHeld);
-	void ZeichneHpStMa(CDC* pDC, WERTE hp, WERTE st, WERTE ma);
+	void ZeichneHpStMa(CDC* pDC, CHeld* pHeld);
 	void ZeichneHungerDurst(CDC* pDC, int i, int j);
 	void ZeichneIcons(CDC* pDC, CHeld* pHeld);
 	void ZeichneItemInfo(CDC* pDC, CItem* item);

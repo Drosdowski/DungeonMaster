@@ -46,9 +46,9 @@ public:
 	void ChangeCompass();
 
 	int CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, int levelDif);
-	double LifePart() { return (double)m_HP.Aktuell / HPMax(); }
-	double StaminaPart() { return (double)m_ST.Aktuell / STMax(); }
-	double ManaPart() { return (double)m_MA.Aktuell / MAMax(); }
+	double LifePart() { return (double)floor(m_HP.Aktuell) / HPMax(); }
+	double StaminaPart() { return (double)floor(m_ST.Aktuell) / STMax(); }
+	double ManaPart() { return (double)(floor(m_MA.Aktuell)) / MAMax(); }
 	COLORREF Farbe() { return m_Farbe; }
 	double MaxLoad();
 	double CurLoad();

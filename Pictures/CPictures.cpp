@@ -192,7 +192,7 @@ void CPictures::RucksackZeichnen(CDC* pDC, CGrpHeld* pGrpHelden)
 		}
 
 	}
-	ZeichneHpStMa(pDC, pHeld->Hp(), pHeld->St(), pHeld->Ma());
+	ZeichneHpStMa(pDC, pHeld);
 	ZeichneIcons(pDC, pHeld);
 }
 
@@ -318,16 +318,16 @@ void CPictures::ZeichneHungerDurst(CDC* pDC, int i, int j)
 
 }
 
-void CPictures::ZeichneHpStMa(CDC* pDC, WERTE hp, WERTE st, WERTE ma)
+void CPictures::ZeichneHpStMa(CDC* pDC, CHeld* pHeld)
 {
 	CString str;
-	str.Format("%3i/%3i", (int)hp.Aktuell, (int)hp.Max);
+	str.Format("%3i/%3i", (int)pHeld->Hp().Aktuell, (int)pHeld->HPMax());
 	DrawFontText(pDC, 96, 284, str, false);
 
-	str.Format("%3i/%3i", (int)(st.Aktuell / 10), (int)(st.Max / 10));
+	str.Format("%3i/%3i", (int)(pHeld->St().Aktuell / 10), (int)(pHeld-> STMax()/ 10));
 	DrawFontText(pDC, 96, 300, str, false);
 
-	str.Format("%3i/%3i", (int)ma.Aktuell, (int)ma.Max);
+	str.Format("%3i/%3i", (int)pHeld->Ma().Aktuell, (int)pHeld->MAMax());
 	DrawFontText(pDC, 96, 316, str, false);
 }
 

@@ -194,7 +194,7 @@ void CHeld::WerteTemporaerAendern(double hp, double st, double ma)
 {
 	m_HP.Aktuell = min(max(hp + m_HP.Aktuell, 0), HPMax());
 	m_ST.Aktuell = min(max(st + m_ST.Aktuell, 0), STMax());
-	m_MA.Aktuell = min(max(ma + m_MA.Aktuell, 0), MAMax());	
+	m_MA.Aktuell = min(max(ma + m_MA.Aktuell, 0), MAMax());
 }
 
 int CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, int levelDif) {
@@ -217,7 +217,7 @@ int CHeld::CalcDmg(CWeapon* weapon, CAttackConst ac, CMonsterConst mc, int level
 		ReduceWhenOverload(d6_weapon_weight, d5_load_coefficient, d7_damage_coefficient);
 		d7_damage_coefficient += weapon ? weapon->GetAttributes().damage : 1;
 		// d7_damage_coefficient += TODO 2* SKILL (SWING / SHOOT / THROW ...)
-		if (m_ST.Aktuell / m_ST.Max < 0.5) {
+		if (m_ST.Aktuell / STMax() < 0.5) {
 			// tired...
 			d7_damage_coefficient /= 2; // +???
 		}
@@ -364,12 +364,12 @@ double CHeld::MaxLoad() {
 	if (m_itemCarrying[6] && m_itemCarrying[6]->getItemType() == CClothAttributes::ClothType::ElvenBoots) {
 		maxLoad = CHelpfulValues::round1(17 * maxLoad / 16);
 	}
-	if (m_ST.Aktuell >= m_ST.Max / 2) {
+	if (m_ST.Aktuell >= STMax() / 2) {
 		return maxLoad;
 	}
 	else {
 		// BaseMaxLoad = BaseMaxLoad / 2 + (((BaseMaxLoad / 2) * Stamina) / (MaxStamina / 2))
-		return CHelpfulValues::round1(maxLoad / 2 + (((maxLoad / 2) * m_ST.Aktuell) / (m_ST.Max / 2)));
+		return CHelpfulValues::round1(maxLoad / 2 + (((maxLoad / 2) * m_ST.Aktuell) / (STMax() / 2)));
 	}
 }
 

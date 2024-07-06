@@ -70,6 +70,7 @@ void CItemInfos::ParseWeaponItems(TiXmlElement* rootNode) {
 			parentElement->QueryIntAttribute("distance", &attribute.distance);
 			parentElement->QueryIntAttribute("shootDamage", &attribute.shootDamage);
 			parentElement->QueryIntAttribute("manaplus", &attribute.manaplus);
+			parentElement->QueryIntAttribute("strengthplus", &attribute.strengthplus);
 
 			attribute.style[0] = ParseStyle(parentElement, "attack1");
 			attribute.style[1] = ParseStyle(parentElement, "attack2");
