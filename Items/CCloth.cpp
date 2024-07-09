@@ -90,6 +90,6 @@ double CCloth::GetWeight() {
 	return m_attribute.fixAttributes.weight[0];
 }
 
-int CCloth::GetArmorClass() {
+int CCloth::GetArmourClass() {
 	return m_attribute.fixAttributes.armor;
 }

@@ -389,8 +389,10 @@ int CHeld::Armour() {
 	for (int i = 0; i < 7; i++)  
 	{
 		CItem* item = m_itemCarrying[i];
-		if (item)
-			ac += item->GetArmourClass();
+		if (item && item->getItemType() == CItem::ItemType::ClothItem)
+		{
+			ac += ((CCloth*)item)->GetArmourClass();
+		}
 	}
 	return ac;
 }
