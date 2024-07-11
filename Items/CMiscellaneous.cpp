@@ -101,7 +101,19 @@ CItem::ItemGroup CMiscellaneous::GetGroup() {
 }
 
 double CMiscellaneous::GetWeight() {
-	return m_attribute.fixAttributes.weight[0];
+	if (m_attribute.type == CMiscellaneousAttributes::MiscItemType::Water) {
+		// 3 = voll = subtype 0
+		// 2 = 60% voll = sub type 1
+		// 1 = 30% voll = sub type 1
+		// 0 = Leer = sub type 2
+		double weightEmpty = m_attribute.fixAttributes.weight[2];
+		double weightWater = m_attribute.fixAttributes.weight[0] - weightEmpty;
+
+		return weightEmpty + weightWater * m_attribute.subtype / 3;
+	}
+	else {
+		return m_attribute.fixAttributes.weight[0];
+	}
 }
 
 CString CMiscellaneous::GetName() {
