@@ -31,6 +31,9 @@ int CWeapon::GetOffsetForGroup(bool active) {
 	} else if (m_attribute.type >= 8 && m_attribute.type < 38) {
 		return m_attribute.type - 8;
 	}
+	else if (m_attribute.type == CWeaponAttributes::HornOfFear) {
+		return 7;
+	}
 	assert(false);
 }
 
@@ -39,6 +42,8 @@ int CWeapon::GetSheetForGroup() {
 		return 0;
 	else if (m_attribute.type < 38)
 		return 1;
+	else if (m_attribute.type == CWeaponAttributes::HornOfFear)
+		return 4;
 	else
 		assert(false); // todo !!
 	return -1;

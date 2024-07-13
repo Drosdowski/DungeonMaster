@@ -61,7 +61,9 @@ CAttackConst CAttackInfos::GetAttack(CString type) {
 	for (int index = 0; index < 44; index++)
 	{
 		CAttackConst ac = attackInfos[index];
-		if (ac.name.MakeUpper() == type.MakeUpper())
+		CString name = ac.name.MakeUpper();
+		name.Replace(" ", "");
+		if (name.Left(type.GetLength()) == type.MakeUpper())
 			return ac;
 	}
 	assert(false); // type not found!
