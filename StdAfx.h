@@ -59,6 +59,7 @@
 #define TRANS_VIO RGB(255, 0, 255)
 #define TRANS_GRA RGB(80, 80, 80)
 #define TRANS_GRE RGB(112, 112, 112)
+#define TRANS_GRY RGB(176, 176, 176)
 #define TRANS_YEL RGB(240, 240, 0)
 #define TRANS_RED RGB(240, 0, 0)
 

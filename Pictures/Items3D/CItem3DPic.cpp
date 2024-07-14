@@ -88,6 +88,7 @@ CItem3DPic ::~CItem3DPic() {
 			}
 		}
 		if (w < 3) {
+			delete m_pGem[w];
 			delete m_pChest[w];
 			if (w < 2) {
 				delete m_pWaterskin[w];
@@ -249,6 +250,9 @@ void CItem3DPic::InitBitmap() {
 
 	LoadPic(m_pScroll, IDB_ITEM3D_SCROLL);
 	LoadPic(m_pBones, IDB_ITEM3D_BONES);
+	LoadPic(m_pGem[0], IDB_ITEM3D_GEM_BLUE);
+	LoadPic(m_pGem[1], IDB_ITEM3D_GEM_ORANGE);
+	LoadPic(m_pGem[2], IDB_ITEM3D_GEM_GREEN);
 }
 
 CPoint CItem3DPic::GetFloorMiddle(int x, int ebene) {
