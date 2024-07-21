@@ -26,6 +26,7 @@ public:
 	void RessurectHero(CString text, int heroId);
 	
 	CHeld* GetHero(int iID) { return (CHeld*)m_pMember[iID]; }
+	CHeld* GetHeroBySubPos(SUBPOS_ABSOLUTE pos);
 	CHeld* GetActiveHero() { return (CHeld*)m_pMember[m_iAktiverHeld]; }
 	CHeld* GetAttackingHero();
 

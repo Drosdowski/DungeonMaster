@@ -1101,9 +1101,11 @@ void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagic
 	// todo refaktorieren mit moveItems
 	CField* field = m_pMap->GetField(position);
 	CGrpHeld* pGrpHeld = m_pMap->GetHeroes();
-	VEKTOR pos = pGrpHeld->GetVector();
-	// todo code doppelt mit checkMissileCollisions?
-	boolean hitsPlayer = CHelpfulValues::VectorEqual(position, pos) && (!CHelpfulValues::VectorEqual(topMissile->GetOrigin(), pos));
+	CGrpMonster* pGroupMonster = field->GetMonsterGroup();
+	VEKTOR posHero = pGrpHeld->GetVector();
+	CHeld* pHero = pGrpHeld->GetHeroBySubPos(posAbs);
+	boolean hitsPlayer = (!pHero == NULL) && CHelpfulValues::VectorEqual(position, posHero) && (!CHelpfulValues::VectorEqual(topMissile->GetOrigin(), posHero));
+	CMonster* pHittedMonster = pGroupMonster ? pGroupMonster->GetMonsterByAbsSubPos(posAbs) : NULL;
 
 	if (!topMissile->HasMovedThisTick()) {
 
@@ -1121,10 +1123,34 @@ void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagic
 				}
 			}
 			else {
-				if (hitsPlayer && (topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob || topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball))
+				if ((hitsPlayer || pHittedMonster) &&
+					(topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob || 
+					 topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball || 
+					 topMissile->GetType() == CMagicMissile::MagicMissileType::Lightning))
 				{
-					// Aufprallschaden, todo Unterscheiden!
-					pGrpHeld->DoDamage(topMissile->GetStrength() * 10, 0, position, true);
+					if (topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob)
+					{
+						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingSpell.mp3");
+						if (hitsPlayer)
+						{
+							pHero->AddDmg(topMissile->GetStrength() * 6);
+							pHero->AddPoison(topMissile->GetStrength());
+						}
+						else {
+							pHittedMonster->AddDmg(topMissile->GetStrength() * 6);
+							pHittedMonster->AddPoison(topMissile->GetStrength());
+						}
+					}
+					else {
+						m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingFireball.mp3");
+						if (hitsPlayer)
+						{
+							pGrpHeld->DoDamage(topMissile->GetStrength() * 10, 0, position, true);
+						}
+						else {
+							pGroupMonster->DoDamage(topMissile->GetStrength() * (rand() % 6 + 1), 0, position, true);
+						}
+					}
 				}
 				field->TakeMissile(posAbs, topMissile);
 				delete topMissile;
@@ -1158,9 +1184,15 @@ void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagic
 					newField->CastMissile(topMissile, newPos);
 				}
 				topMissile->Explode();
-				if (topMissile->GetType() == CMagicMissile::Fireball)
+				if (topMissile->GetType() == CMagicMissile::Fireball || topMissile->GetType() == CMagicMissile::Lightning)
 				{
 					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingFireball.mp3");
+					if (CHelpfulValues::VectorEqual(position, posHero)) {
+						pGrpHeld->DoDamage(topMissile->GetStrength() * 10, 0, position, true);
+					}
+					else if (pGroupMonster) {
+						pGroupMonster->DoDamage(topMissile->GetStrength() * (rand() % 6 + 1), 0, position, true);
+					}
 				}
 				else if (topMissile->GetType() == CMagicMissile::Poison || topMissile->GetType() == CMagicMissile::PoisonBlob || topMissile->GetType() == CMagicMissile::AntiMagic || topMissile->GetType() == CMagicMissile::OpenDoor) {
 					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingSpell.mp3");
@@ -1193,71 +1225,72 @@ void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagic
 	return; // VEKTOR{ 0, 0, 0 };
 }
 
-
-void CRaumView::CheckMissileCollisions(VEKTOR pos) {
-
-	CField* field = m_pMap->GetField(pos);
-	for (int s = 0; s < 4; s++) {
-		SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
-		std::deque<CMagicMissile*> magicMissiles = field->GetMagicMissile(posAbs);
-		if (!magicMissiles.empty()) {
-			CMagicMissile* topMissile = magicMissiles.back(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Missiles je Feld
-			CGrpMonster* pGroupMonster = field->GetMonsterGroup();
-			CMonster* pHittedMonster = pGroupMonster ? pGroupMonster->GetMonsterByAbsSubPos(posAbs) : NULL;
-			boolean bMonsterHit = pHittedMonster && (!CHelpfulValues::VectorEqual(topMissile->GetOrigin(), pos));
-			if ((!topMissile->IsExploding()) && (
-				topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob || 
-				topMissile->GetType() == CMagicMissile::MagicMissileType::Poison || 
-				topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball || 
-				topMissile->GetType() == CMagicMissile::MagicMissileType::Lightning || 
-				topMissile->GetType() == CMagicMissile::MagicMissileType::AntiMagic)) {
-
-				if (bMonsterHit) {
-					if (pHittedMonster->getInfo().non_material == (topMissile->GetType() == CMagicMissile::MagicMissileType::AntiMagic))
-					{
-						topMissile->Explode();
-						if (topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball ||
-							topMissile->GetType() == CMagicMissile::MagicMissileType::Lightning)
-						{
-							m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingFireball.mp3");
-						}
-						else {
-							m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingSpell.mp3");
-						}
-						topMissile->SetDone();
-						pGroupMonster->DoDamage(topMissile->GetStrength() * (rand() % 6 + 1), 0, pos, true);
-					}
-				}
-				else {
-					// todo kann auch spieler treffen!
-				}
-			}
-			else {
-				CGrpHeld* pGrpHeld = m_pMap->GetHeroes();
-				VEKTOR posHero = pGrpHeld->GetVector();
-				if (CHelpfulValues::VectorEqual(posHero, pos))
-				{
-					if (topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob) // todo: klären: stimmt das??
-					{
-						pGrpHeld->DoDamage(0, topMissile->GetStrength() / 4, pos, true); // todo correct formula
-					}
-					else {
-						pGrpHeld->DoDamage(topMissile->GetStrength() / 4, 0, pos, true); // todo correct formula
-					}
-				}
-				if (pGroupMonster) {
-					CMonsterInfos* monsterInfos = GetMonsterInfos();
-					CMonsterConst mc = monsterInfos->GetMonsterInfo(pGroupMonster->GetType());
-					double faktor = (mc.non_material &&
-									 (topMissile->GetType() == CMagicMissile::MagicMissileType::AntiMagic))
-						 ? 0.3 : 1; // ghosts get less damage from area sources
-					pGroupMonster->DoDamage((int)(topMissile->GetStrength() * faktor / 4), 0, pos, true); // todo correct formula
-
-				}
-			}
-		}
-	}
-}
+//
+//void CRaumView::CheckMissileCollisions(VEKTOR position) {
+//
+//	CField* field = m_pMap->GetField(position);
+//	CGrpMonster* pGroupMonster = field->GetMonsterGroup();
+//	
+//	for (int s = 0; s < 4; s++) {
+//		SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
+//		std::deque<CMagicMissile*> magicMissiles = field->GetMagicMissile(posAbs);
+//		if (!magicMissiles.empty()) {
+//			CMagicMissile* topMissile = magicMissiles.back(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Missiles je Feld
+//			CMonster* pHittedMonster = pGroupMonster ? pGroupMonster->GetMonsterByAbsSubPos(posAbs) : NULL;
+//			boolean bMonsterHit = pHittedMonster && (!CHelpfulValues::VectorEqual(topMissile->GetOrigin(), position) && (!CHelpfulValues::VectorEqual(topMissile->GetOrigin(), position)));
+//			if (!topMissile->IsExploding()) {
+//
+//				if (bMonsterHit) {
+//					if (pHittedMonster->getInfo().non_material == (topMissile->GetType() == CMagicMissile::MagicMissileType::AntiMagic))
+//					{
+//						topMissile->Explode();
+//						if (topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball ||
+//							topMissile->GetType() == CMagicMissile::MagicMissileType::Lightning)
+//						{
+//							m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingFireball.mp3");
+//						}
+//						else {
+//							m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingSpell.mp3");
+//						}
+//						topMissile->SetDone();
+//						if ((topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball) || 
+//							(topMissile->GetType() == CMagicMissile::MagicMissileType::Lightning) ||
+//							(topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob))
+//						{							
+//							pGroupMonster->DoDamage(topMissile->GetStrength() * (rand() % 6 + 1), 0, position, true);
+//						}
+//					}
+//				}
+//				else {
+//					// todo spieler treffen in MoveMagicMissile - warum?
+//				}
+//			}
+//			else {
+//				CGrpHeld* pGrpHeld = m_pMap->GetHeroes();
+//				VEKTOR posHero = pGrpHeld->GetVector();
+//				if (CHelpfulValues::VectorEqual(posHero, position))
+//				{
+//					if (topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob) // todo: klären: stimmt das??
+//					{
+//						pGrpHeld->DoDamage(0, topMissile->GetStrength() / 4, position, true); // todo correct formula
+//					}
+//					else {
+//						pGrpHeld->DoDamage(topMissile->GetStrength() / 4, 0, position, true); // todo correct formula
+//					}
+//				}
+//				if (pGroupMonster) {
+//					CMonsterInfos* monsterInfos = GetMonsterInfos();
+//					CMonsterConst mc = monsterInfos->GetMonsterInfo(pGroupMonster->GetType());
+//					double faktor = (mc.non_material &&
+//									 (topMissile->GetType() == CMagicMissile::MagicMissileType::AntiMagic))
+//						 ? 0.3 : 1; // ghosts get less damage from area sources
+//					pGroupMonster->DoDamage((int)(topMissile->GetStrength() * faktor / 4), 0, position, true); // todo correct formula
+//
+//				}
+//			}
+//		}
+//	}
+//}
 
 void CRaumView::CheckFlyingItemCollisions(VEKTOR heroPos) {
 	CField* field = m_pMap->GetField(heroPos);
@@ -1463,7 +1496,7 @@ void CRaumView::MoveAnythingNearby() {
 			PrepareMoveObjects(pos);
 			CheckFlyingItemCollisions(pos);
 			MoveItems(pos);
-			CheckMissileCollisions(pos);
+			// CheckMissileCollisions(pos);
 			for (int s = 0; s < 4; s++) {
 				SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
 				MoveMagicMissiles(pos, posAbs);
@@ -1775,6 +1808,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 
 				pGrpMon->DrehenAbsolut((COMPASS_DIRECTION)newDirection);
 			}
+			return targetPos;
 		}
 	}
 	else {

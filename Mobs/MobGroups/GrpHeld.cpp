@@ -241,6 +241,19 @@ CHeld* CGrpHeld::GetAttackingHero() {
 	return NULL;
 }
 
+CHeld* CGrpHeld::GetHeroBySubPos(SUBPOS_ABSOLUTE pos) {
+	for (int i = 1; i < 5; i++)
+	{
+		CHeld* pHeld = (CHeld*)m_pMember[i];
+		if (pHeld)
+		{
+			if (pos == pHeld->HoleSubPosition())
+				return pHeld;
+		}
+	}
+	return NULL;
+}
+
 bool CGrpHeld::SetActiveCaster(int ID)
 {
 	if (ID <= m_iAnzHelden && m_iAktiverZauberer != ID)

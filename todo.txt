@@ -31,3 +31,5 @@ Monster
 * side attack
 * Poison
 * resi
+
+"This is my prisoner, let him suffer"

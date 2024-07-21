@@ -567,7 +567,7 @@ void CDMView::InvokeRemoteWallActuator(CActuator* activeActuator, CActuator* nex
 		if (activeActuator->GetActionType() == CActuator::Toggle) trickwall->Toggle();
 		if (activeActuator->GetActionType() == CActuator::Set) {
 			trickwall->Open(0);
-			if (activeActuator->Action() == -1 && nextActuator->Action() == -1)
+			if (activeActuator->Action() == -1 && (nextActuator == NULL || nextActuator->Action() == -1))
 			{
 				trickwall->Close(nextActuator->GetDelay());
 			}
@@ -575,7 +575,7 @@ void CDMView::InvokeRemoteWallActuator(CActuator* activeActuator, CActuator* nex
 		if (activeActuator->GetActionType() == CActuator::Hold) trickwall->Open(0); // triggered by Gate
 		if (activeActuator->GetActionType() == CActuator::Clear) {
 			trickwall->Close(0);
-			if (activeActuator->Action() == -1 && nextActuator->Action() == -1)
+			if (activeActuator->Action() == -1 && (nextActuator == NULL || nextActuator->Action() == -1))
 			{ 
 				trickwall->Open(nextActuator->GetDelay());
 			}
