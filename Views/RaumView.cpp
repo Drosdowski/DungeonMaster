@@ -527,6 +527,11 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRE
 		p.x = p.x - (int)(bmpInfoMonster.bmWidth * faktor);
 		p.y = p.y - (int)(bmpInfoMonster.bmHeight * faktor * 2);
 
+		if (pMonster->getType() == WIZARDS_EYE || pMonster->getType() == GIANT_WASP)
+		{
+			p.y -= 60;
+		}
+
 		CPoint pos = CHelpfulValues::CalcSubPosition(p, subPos, faktor);
 
 		cdc->SelectObject(bmpMonster);
