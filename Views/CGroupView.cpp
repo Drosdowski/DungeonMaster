@@ -54,7 +54,7 @@ void CGroupView::DrawGroup(CDC* pDC, DMMode iModus, CGrpHeld* pGrpHeld)
 				}
 				}
 				SUBPOS relPos = CHelpfulValues::GetRelativeSubPosPassive(pHeroToDraw->HoleSubPosition(), pGrpHeld->GetDirection());
-				m_pPictures->SymbolZeichnen(pDC, i, relPos);
+				m_pPictures->DrawSymbol(pDC, i, relPos);
 				int allDamage = pHeroToDraw->ReceivedDmg() + pHeroToDraw->ReceivedPoison();
 				if (allDamage > 0) {
 					DrawDamage(i, pHeroToDraw->isActive() && (pGrpHeld->GetModus() == BACKPACK), allDamage);

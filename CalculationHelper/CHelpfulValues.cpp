@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "CHelpfulValues.h"
+#include <cassert>
 
 CHelpfulValues::CHelpfulValues() {
 	for (int i = 0; i < 4; i++)
@@ -425,3 +426,15 @@ int CHelpfulValues::ManaCost(int layer, int runeId, int power) {
 double CHelpfulValues::round1(double value) {
 	return floor(value * 10.0 + .5) / 10.0;
 }
+
+
+double CHelpfulValues::getDistanceFactor(int iEntfernung) {
+	if (iEntfernung == 0) return 1;
+	if (iEntfernung == 1) return 1;
+	if (iEntfernung == 2) return 0.75;
+	if (iEntfernung == 3) return 0.5;
+	if (iEntfernung == 4) return 0.4;
+	assert(false);
+	return 1; // todo 1 !
+}
+

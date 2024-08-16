@@ -16,8 +16,6 @@ public:
 	CPictures(CDC* pDC);
 	~CPictures();
 
-	double getFaktor(int iEntfernung);
-
 	CBitmap* GetRucksack() { return m_pBmpRuck; }
 	CBitmap* GetHintergrund() { return m_pBmpHintergrund; }
 	CBitmap* GetRunes(int i) { return m_pRunes[i]; }
@@ -34,10 +32,9 @@ public:
 	void DrawActiveWeapon(CDC* pDC, CHeld* held, int id);
 	void DrawSpecialFont(CDC* pDC, CPoint pos, CString text, int size);
 	void DrawItemInfoText(CDC* pDC, CItem* item);
-	void RucksackZeichnen(CDC* pDC, CGrpHeld* pGrpHelden);
-	void SymbolZeichnen(CDC* pDC, int heldIndex, SUBPOS relPos);
-	// void WaffeZeichnen(CDC* pDC);
-	void PfeilZeichnen(CDC* pDC, int index);
+	void DrawBackback(CDC* pDC, CGrpHeld* pGrpHelden);
+	void DrawSymbol(CDC* pDC, int heldIndex, SUBPOS relPos);
+	void DrawArrow(CDC* pDC, int index);
 	void DrawFontText(CDC* pDC, int x, int y, CString text, bool darkFont);
 	void DrawHand(CDC* pDC, CHeld* pHeld, int index);
 
@@ -45,16 +42,16 @@ private:
 	void InitBitmaps();
 	int m_iWunschRichtung;
 
-	void ZeichnenHauptbereichHintergrund(CDC* pDC, bool bLooking, bool bEating);
-	void ZeichneSkills(CDC* pDC, CHeld* pHeld);
-	void ZeichneHpStMa(CDC* pDC, CHeld* pHeld);
-	void ZeichneHungerDurst(CDC* pDC, int i, int j);
-	void ZeichneIcons(CDC* pDC, CHeld* pHeld);
-	void ZeichneItemInfo(CDC* pDC, CItem* item);
-	void ZeichneScroll(CDC* pDC, CScroll* scroll);
-	void ZeichneContainer(CDC* pDC, CContainer* pContainer);
-	void GewichtZeichnen(CDC* pDC, CHeld* pHeld);	// todo einheitliche Namen!
-	void ZeichneVitalText(CDC* pDC, CString text, int index, int y);
+	void DrawMainAreaBackground(CDC* pDC, bool bLooking, bool bEating);
+	void DrawSkills(CDC* pDC, CHeld* pHeld);
+	void DrawHpStMa(CDC* pDC, CHeld* pHeld);
+	void DrawVitals(CDC* pDC, int i, int j);
+	void DrawVitalText(CDC* pDC, CString text, int index, int y);
+	void DrawIcons(CDC* pDC, CHeld* pHeld);
+	void DrawItemInfo(CDC* pDC, CItem* item);
+	void DrawScroll(CDC* pDC, CScroll* scroll);
+	void DrawContainer(CDC* pDC, CContainer* pContainer);
+	void DrawWeight(CDC* pDC, CHeld* pHeld);	
 
 	void DrawText(CDC* pDC, int x, int y, CString text, int h, COLORREF fc, COLORREF bc);
 

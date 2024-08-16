@@ -28,7 +28,7 @@ CMagicMissilePic ::~CMagicMissilePic() {
 void CMagicMissilePic::InitBitmap() {
 	LoadPic(m_pAntiMaterial, IDB_MISSILE_ANTIMAT);
 	LoadPic(m_pFireball, IDB_MISSILE_FIREBALL);
-	LoadPic(m_pLightning, IDB_MISSILE_ANTIMAT); // TODO PIC!
+	LoadPic(m_pLightning, IDB_MISSILE_ANTIMAT); 
 	LoadPic(m_pPoison, IDB_MISSILE_POISON);
 	LoadPic(m_pPoisonBlob, IDB_MISSILE_POISONBLOB);
 

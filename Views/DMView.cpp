@@ -1107,7 +1107,7 @@ void CDMView::FrameZeichnen(CDC* pDC) {
 		m_pPictures->DrawItemInfoText(pDC, pGrpHeroes->GetItemInHand());
 	}
 
-	m_pPictures->PfeilZeichnen(pDC, m_iDir);
+	m_pPictures->DrawArrow(pDC, m_iDir);
 
 }
 
@@ -1133,7 +1133,7 @@ void CDMView::UpdateGrafik()
 			if (m_iModus == MOD_LAUFEN) {
 				if (grpHelden->GetModus() == BACKPACK)
 				{
-					m_pPictures->RucksackZeichnen(pDC_, grpHelden);
+					m_pPictures->DrawBackback(pDC_, grpHelden);
 				}
 				else {
 					m_pRaumView->DrawRoom(pDC_);

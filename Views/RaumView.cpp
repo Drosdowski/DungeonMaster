@@ -199,7 +199,7 @@ void CRaumView::DrawFloorPit(CDC* pDC, CDC* cdc, int xxx, int ebene, CPit* pit) 
 
 		CPoint center = m_pPitPic->GetPos(xxx, ebene);
 		if (pitBmp && center.x > 0 && center.y > 0) {
-			double faktor = m_pPictures->getFaktor(ebene);
+			double faktor = CHelpfulValues::getDistanceFactor(ebene);
 			cdc->SelectObject(pitBmp);
 			pitBmp->GetBitmap(&bmpPitInfo);
 			int decoPosX = center.x - (int)(bmpPitInfo.bmWidth);
@@ -219,7 +219,7 @@ void CRaumView::DrawCeilingPit(CDC* pDC, CDC* cdc, int xxx, int ebene, CPit* pit
 
 		CPoint center = m_pPitPic->GetCeilingPos(xxx, ebene);
 		if (pitBmp && center.x > 0 && center.y > 0) {
-			double faktor = m_pPictures->getFaktor(ebene);
+			double faktor = CHelpfulValues::getDistanceFactor(ebene);
 			cdc->SelectObject(pitBmp);
 			pitBmp->GetBitmap(&bmpPitInfo);
 			int decoPosX = center.x - (int)(bmpPitInfo.bmWidth * faktor);
@@ -288,7 +288,7 @@ void CRaumView::DrawDoor(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 
 				pDC->TransparentBlt(pos.x, pos.y, reducedWidth * 2, reducedHeight * 2, cdc, 0, pDoor->getDoorBottomHeight(), reducedWidth, reducedHeight, TRANS_ORA);
 				if (pDoor->hasButton()) {
-					double faktor = m_pPictures->getFaktor(ebene);
+					double faktor = CHelpfulValues::getDistanceFactor(ebene);
 
 					CBitmap* bmpButton = m_pDoorPic->GetButtonPic(ebene);
 					cdc->SelectObject(bmpButton);
@@ -371,7 +371,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 
 	cdc->SelectObject(bmp);
 	CPoint posWall = m_pWallPic->GetWallPos(xxx, ebene);
-	double faktor = m_pPictures->getFaktor(ebene);
+	double faktor = CHelpfulValues::getDistanceFactor(ebene);
 
 	bmp->GetBitmap(&bmpInfo);
 
@@ -498,7 +498,7 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRE
 
 	CBitmap* bmpMonster;
 	BITMAP bmpInfoMonster, bmpInfoWall;
-	double faktor = m_pPictures->getFaktor(ebene);
+	double faktor = CHelpfulValues::getDistanceFactor(ebene);
 	bool inside = (ebene == 0) && (xxx == 4);
 	CPoint p = m_pWallPic->GetWallPos(xxx, ebene);
 	// monster pos an wallpos orientieren
@@ -590,7 +590,7 @@ void CRaumView::DrawOnFloor(CDC* pDC, CDC* cdc, int xxx, int ebene, CField* pFie
 		{
 			CPoint center = m_pPressurePadPic->GetPos(xxx, ebene);
 			if (decoBmp && center.x > 0 && center.y > 0) {
-				double faktor = m_pPictures->getFaktor(ebene);
+				double faktor = CHelpfulValues::getDistanceFactor(ebene);
 				cdc->SelectObject(decoBmp);
 				decoBmp->GetBitmap(&bmpDecoInfo);
 				int decoPosX = center.x - (int)(bmpDecoInfo.bmWidth * faktor);
@@ -633,7 +633,7 @@ void CRaumView::DrawOneOfPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABS
 	if (bmp) {
 		BITMAP bmpInfo;
 		bmp->GetBitmap(&bmpInfo);
-		double faktor = m_pPictures->getFaktor(ebene);
+		double faktor = CHelpfulValues::getDistanceFactor(ebene);
 
 		CPoint floorMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
 		if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) {
@@ -641,7 +641,7 @@ void CRaumView::DrawOneOfPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABS
 			{
 				if (subPos == LINKSFRONT || subPos == RECHTSFRONT)
 				{
-					faktor = m_pPictures->getFaktor(ebene + 1);
+					faktor = CHelpfulValues::getDistanceFactor(ebene + 1);
 				}
 				CPoint pos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, floorMiddlePos, subPos, faktor, xx, ebene);
 				if (item->IsFlying() && pos.y != 0) {
@@ -678,7 +678,7 @@ void CRaumView::DrawMagicMissile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_
 		cdc->SelectObject(bmp);
 
 		if (!isInside) {
-			double faktor = m_pPictures->getFaktor(ebene);
+			double faktor = CHelpfulValues::getDistanceFactor(ebene);
 		
 			CPoint floorMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
 			if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) { // todo refaktor: inView()
@@ -687,7 +687,7 @@ void CRaumView::DrawMagicMissile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_
 				{
 					if (subPos == LINKSFRONT || subPos == RECHTSFRONT)
 					{
-						faktor = m_pPictures->getFaktor(ebene + 1);
+						faktor = CHelpfulValues::getDistanceFactor(ebene + 1);
 					}
 					CPoint pos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, floorMiddlePos, subPos, faktor, xx, ebene);
 				

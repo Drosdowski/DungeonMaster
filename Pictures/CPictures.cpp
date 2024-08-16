@@ -59,18 +59,6 @@ CPictures::~CPictures()
 	delete m_pChampionPortraits;
 }
 
-
-double CPictures::getFaktor(int iEntfernung) {
-	if (iEntfernung == 0) return 1;
-	if (iEntfernung == 1) return 1;
-	if (iEntfernung == 2) return 0.75;
-	if (iEntfernung == 3) return 0.5;
-	if (iEntfernung == 4) return 0.4;
-	assert(false);
-	return 1; // todo 1 !
-}
-
-
 void CPictures::InitBitmaps()
 {
 	LoadPic(m_pBmpHintergrund, IDB_BITMAP_E);
@@ -125,7 +113,7 @@ CBitmap* CPictures::GetIconBitmap(CDC* pDC, CItem* pItem) {
 	// ggf. die Hand (zweimal!)
 //}
 
-void CPictures::SymbolZeichnen(CDC* pDC, int heldIndex, SUBPOS relPos)
+void CPictures::DrawSymbol(CDC* pDC, int heldIndex, SUBPOS relPos)
 {
 	// kleines Symbol oben rechts; zeigt Richtung / Subpos der einzelnen Helden an
 	CDC tmpdc;
@@ -161,7 +149,7 @@ void CPictures::DrawHand(CDC* pDC, CHeld* pHeld, int handId) {
 }
 
 
-void CPictures::RucksackZeichnen(CDC* pDC, CGrpHeld* pGrpHelden)
+void CPictures::DrawBackback(CDC* pDC, CGrpHeld* pGrpHelden)
 {
 	CHeld* pHeld = pGrpHelden->GetActiveHero();
 	CItem* pItem = pGrpHelden->GetItemInHand();
@@ -169,34 +157,34 @@ void CPictures::RucksackZeichnen(CDC* pDC, CGrpHeld* pGrpHelden)
 
 	bool bLooking = pHeld->GetBackpackLooking();
 	bool bEating = pHeld->GetMouthEating();
-	ZeichnenHauptbereichHintergrund(pDC, bLooking, bEating);
-	GewichtZeichnen(pDC, pHeld);
+	DrawMainAreaBackground(pDC, bLooking, bEating);
+	DrawWeight(pDC, pHeld);
 	if (!bLooking)
 		if (pActiveItem && pActiveItem->getItemType() == CItem::ScrollItem)
-			ZeichneScroll(pDC, (CScroll*)pActiveItem);
+			DrawScroll(pDC, (CScroll*)pActiveItem);
 		else if (pActiveItem && pActiveItem->getItemType() == CItem::ContainerItem)
-			ZeichneContainer(pDC, (CContainer*)pActiveItem);
+			DrawContainer(pDC, (CContainer*)pActiveItem);
 		else
-			ZeichneHungerDurst(pDC, pHeld->getFood(), pHeld->getWater());
+			DrawVitals(pDC, pHeld->getFood(), pHeld->getWater());
 	else {
 		if (pItem) {
 			if (pItem->getItemType() == CItem::ScrollItem)
-				ZeichneScroll(pDC, (CScroll*)pItem);
+				DrawScroll(pDC, (CScroll*)pItem);
 			else if (pItem->getItemType() == CItem::ContainerItem)
-				ZeichneContainer(pDC, (CContainer*)pItem);
+				DrawContainer(pDC, (CContainer*)pItem);
 			else
-				ZeichneItemInfo(pDC, pItem);
+				DrawItemInfo(pDC, pItem);
 		}
 		else {
-			ZeichneSkills(pDC, pHeld);
+			DrawSkills(pDC, pHeld);
 		}
 
 	}
-	ZeichneHpStMa(pDC, pHeld);
-	ZeichneIcons(pDC, pHeld);
+	DrawHpStMa(pDC, pHeld);
+	DrawIcons(pDC, pHeld);
 }
 
-void CPictures::ZeichnenHauptbereichHintergrund(CDC* pDC, bool bLooking, bool bEating)
+void CPictures::DrawMainAreaBackground(CDC* pDC, bool bLooking, bool bEating)
 {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
@@ -211,7 +199,7 @@ void CPictures::ZeichnenHauptbereichHintergrund(CDC* pDC, bool bLooking, bool bE
 	tmpdc.DeleteDC();
 }
 
-void CPictures::ZeichneIcons(CDC* pDC, CHeld* pHeld) {
+void CPictures::DrawIcons(CDC* pDC, CHeld* pHeld) {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 
@@ -231,7 +219,7 @@ void CPictures::ZeichneIcons(CDC* pDC, CHeld* pHeld) {
 	tmpdc.DeleteDC();
 }
 
-void CPictures::ZeichneItemInfo(CDC* pDC, CItem* item) {
+void CPictures::DrawItemInfo(CDC* pDC, CItem* item) {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 
@@ -254,7 +242,7 @@ void CPictures::ZeichneItemInfo(CDC* pDC, CItem* item) {
 	tmpdc.DeleteDC();
 }
 
-void CPictures::ZeichneContainer(CDC* pDC, CContainer* pContainer) {
+void CPictures::DrawContainer(CDC* pDC, CContainer* pContainer) {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 
@@ -276,7 +264,7 @@ void CPictures::ZeichneContainer(CDC* pDC, CContainer* pContainer) {
 	tmpdc.DeleteDC();
 }
 
-void CPictures::ZeichneScroll(CDC* pDC, CScroll* scroll) {
+void CPictures::DrawScroll(CDC* pDC, CScroll* scroll) {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
 
@@ -295,7 +283,7 @@ void CPictures::ZeichneScroll(CDC* pDC, CScroll* scroll) {
 }
 
 
-void CPictures::ZeichneHungerDurst(CDC* pDC, int i, int j)
+void CPictures::DrawVitals(CDC* pDC, int i, int j)
 {
 	pDC->FillSolidRect(CRect(230, 206, 230 + i, 218), SCHWARZ);
 	COLORREF col;
@@ -318,7 +306,7 @@ void CPictures::ZeichneHungerDurst(CDC* pDC, int i, int j)
 
 }
 
-void CPictures::ZeichneHpStMa(CDC* pDC, CHeld* pHeld)
+void CPictures::DrawHpStMa(CDC* pDC, CHeld* pHeld)
 {
 	CString str;
 	str.Format("%3i/%3i", (int)pHeld->Hp().Aktuell, (int)pHeld->HPMax());
@@ -332,7 +320,7 @@ void CPictures::ZeichneHpStMa(CDC* pDC, CHeld* pHeld)
 }
 
 
-void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld)
+void CPictures::DrawSkills(CDC* pDC, CHeld* pHeld)
 {
 	pDC->SetTextColor(HELLGRAU);
 	pDC->SetBkColor(GANZDUNKELGRAU);
@@ -366,20 +354,20 @@ void CPictures::ZeichneSkills(CDC* pDC, CHeld* pHeld)
 	}
 	CString strValues;
 	strValues.Format("%i/ %i", (int)sVitals.str.Max, (int)sVitals.str.Aktuell);
-	ZeichneVitalText(pDC, strValues, 0, 226);
+	DrawVitalText(pDC, strValues, 0, 226);
 	strValues.Format("%i/ %i", (int)sVitals.dex.Max, (int)sVitals.dex.Aktuell);
-	ZeichneVitalText(pDC, strValues, 1, 240);
+	DrawVitalText(pDC, strValues, 1, 240);
 	strValues.Format("%i/ %i", (int)sVitals.vit.Max, (int)sVitals.vit.Aktuell);
-	ZeichneVitalText(pDC, strValues, 2, 254);
+	DrawVitalText(pDC, strValues, 2, 254);
 	strValues.Format("%i/ %i", (int)sVitals.wis.Max, (int)sVitals.wis.Aktuell);
-	ZeichneVitalText(pDC, strValues, 3, 268);
+	DrawVitalText(pDC, strValues, 3, 268);
 	strValues.Format("%i/ %i", (int)sVitals.af.Max, (int)sVitals.af.Aktuell);
-	ZeichneVitalText(pDC, strValues, 4, 282);
+	DrawVitalText(pDC, strValues, 4, 282);
 	strValues.Format("%i/ %i", (int)sVitals.am.Max, (int)sVitals.am.Aktuell);
-	ZeichneVitalText(pDC, strValues, 5, 296);
+	DrawVitalText(pDC, strValues, 5, 296);
 }
 
-void CPictures::ZeichneVitalText(CDC* pDC, CString text, int index, int y) {
+void CPictures::DrawVitalText(CDC* pDC, CString text, int index, int y) {
 	CString strZeile, strVital;
 	strVital.Format("%s", CHelpfulValues::VitalName(index));
 	DrawFontText(pDC, 210, y, strVital, false);
@@ -544,7 +532,7 @@ void CPictures::DrawActiveWeapon(CDC* pDC, CHeld* held, int id) {
 	tmpdc.DeleteDC();
 }
 
-void CPictures::PfeilZeichnen(CDC* pDC, int index)
+void CPictures::DrawArrow(CDC* pDC, int index)
 {
 	CDC tmpdc;
 	tmpdc.CreateCompatibleDC(pDC);
@@ -576,7 +564,7 @@ void CPictures::PfeilZeichnen(CDC* pDC, int index)
 	tmpdc.DeleteDC();
 }
 
-void CPictures::GewichtZeichnen(CDC* pDC, CHeld* pHeld) {
+void CPictures::DrawWeight(CDC* pDC, CHeld* pHeld) {
 	pDC->SetTextColor(HELLGRAU);
 	pDC->SetBkColor(GANZDUNKELGRAU);
 	double dCurValue = pHeld->CurLoad();
