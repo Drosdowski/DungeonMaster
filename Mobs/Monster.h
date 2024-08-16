@@ -30,8 +30,10 @@ public:
 public:
 	virtual bool Altern();
 	virtual int GetIDB(int index);
-	void AttackDone() { m_iReadyToAttack = m_attributes.monsterInfo.attack_dur; } 
-	void MoveDone() { m_iReadyToMove = m_attributes.monsterInfo.move_dur; } 
+	void AttackOrMoveDone() {
+		m_iReadyToAttack = m_attributes.monsterInfo.attack_dur; 
+		m_iReadyToMove = m_attributes.monsterInfo.move_dur;
+	}
 	int getDealingDmg() { return m_dealingDmg; }
 	MonsterTyp getType() { return m_attributes.type; }
 	CMonsterConst getInfo() { return m_attributes.monsterInfo;  }

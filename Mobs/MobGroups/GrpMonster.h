@@ -29,7 +29,7 @@ public:
 public:
 	bool Altern(CField* field);
 	CMonster* GetMonster(int ID);
-	void MoveDone();
+	void AttackOrMoveDone();
 	void ReduceScaredCounter();
 	bool IsScared() { return m_iScaredCounter > 0;}
 	int MonsterIndexReadyToAttack();
@@ -47,6 +47,7 @@ public:
 	CMonster* AttackHero(int monIndex, VEKTOR myPos, VEKTOR hisPos);
 	void TurnToHero(VEKTOR heroPos);
 	void Scare();
+	void InstantKill();
 	void CarryItem(CItem* item);
 	std::deque<CItem*> DropInventory();
 	SUBPOS_ABSOLUTE GetLastPos() { return m_lastPosition; }

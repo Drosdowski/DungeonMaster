@@ -112,7 +112,7 @@ CRaumView::~CRaumView()
 void CRaumView::DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene) {
 	BITMAP bmpInfo;
 	for (int i = 0; i < 2; i++) {
-		CBitmap* bmp = m_pDoorPic->GetDoorFramePic(ebene, (i==0));
+		CBitmap* bmp = m_pDoorPic->GetDoorFramePic(ebene, (i == 0));
 		if (bmp) {
 			CPoint pos = m_pDoorPic->GetDoorFramePos(xxx, ebene, (i == 0), m_pWallPic->GetWallPos(xxx, ebene));
 			if (pos != CPoint(0, 0))
@@ -123,7 +123,7 @@ void CRaumView::DrawFrame(CDC* pDC, CDC* cdc, int xxx, int ebene) {
 			}
 		}
 	}
-	
+
 }
 
 void CRaumView::DrawPressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene, boolean isRound, bool isTiny) {
@@ -134,7 +134,7 @@ void CRaumView::DrawPressurePad(CDC* pDC, CDC* cdc, int xxx, int ebene, boolean 
 		if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) {
 			cdc->SelectObject(bmp);
 			bmp->GetBitmap(&bmpInfo);
-			pDC->TransparentBlt(floorMiddlePos.x - bmpInfo.bmWidth, int(floorMiddlePos.y - bmpInfo.bmHeight*1.5),
+			pDC->TransparentBlt(floorMiddlePos.x - bmpInfo.bmWidth, int(floorMiddlePos.y - bmpInfo.bmHeight * 1.5),
 				bmpInfo.bmWidth * 2, bmpInfo.bmHeight * 2, cdc, 0, 0, bmpInfo.bmWidth, bmpInfo.bmHeight, TRANS_ORA);
 		}
 	}
@@ -338,7 +338,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 		}
 	}
 	if (graphicTypeFront != None) {
-		bmpDecoFront = m_pWallDecoPic->GetPicFront(graphicTypeFront);		
+		bmpDecoFront = m_pWallDecoPic->GetPicFront(graphicTypeFront);
 	}
 
 	std::deque<CActuator*> actuatorsSide;
@@ -422,7 +422,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 						tmpdc.CreateCompatibleDC(pDC);
 						tmpdc.SelectObject(heroPic);
 
-						pDC->TransparentBlt(decoPosX+16*2, decoPosY+6*2, 32*2, 29*2, &tmpdc, koord.x, koord.y, 32, 29, TRANS_GRE);
+						pDC->TransparentBlt(decoPosX + 16 * 2, decoPosY + 6 * 2, 32 * 2, 29 * 2, &tmpdc, koord.x, koord.y, 32, 29, TRANS_GRE);
 						tmpdc.DeleteDC();
 					}
 				}
@@ -523,13 +523,13 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRE
 	if (bmpMonster) {
 		//get original size of bitmap
 		bmpMonster->GetBitmap(&bmpInfoMonster);
-		
+
 		p.x = p.x - (int)(bmpInfoMonster.bmWidth * faktor);
 		p.y = p.y - (int)(bmpInfoMonster.bmHeight * faktor * 2);
 
 		if (pMonster->getType() == WIZARDS_EYE || pMonster->getType() == GIANT_WASP)
 		{
-			p.y -= 60;
+			p.y -= 60 * faktor;
 		}
 
 		CPoint pos = CHelpfulValues::CalcSubPosition(p, subPos, faktor);
@@ -608,7 +608,7 @@ void CRaumView::DrawOneOfPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABS
 	SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(itemSubPos, heroDir); // todo subpos angleichen
 	bool flip = subPos == LINKSFRONT || subPos == LINKSBACK;
 	FlyingVektor v = CHelpfulValues::GetRelativeVector(heroDir, item->m_flyForce);
-	
+
 	CBitmap* bmp = NULL;
 	CItem::ItemType typ = item->getItemType();
 	if (typ == CItem::ItemType::MiscItem) {
@@ -622,7 +622,7 @@ void CRaumView::DrawOneOfPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABS
 		bmp = m_pItem3DPic->GetClothBitmap(((CCloth*)item)->GetType(), item->IsFlying());
 	}
 	else if (typ == CItem::ItemType::PotionItem) {
-		bmp = m_pItem3DPic->GetPotionBitmap(((CPotion*)item)->GetType()); // todo cast notwendig?
+		bmp = m_pItem3DPic->GetPotionBitmap(((CPotion*)item)->GetType()); 
 	}
 	else if (typ == CItem::ItemType::ScrollItem) {
 		bmp = m_pItem3DPic->GetScrollBitmap();
@@ -665,21 +665,20 @@ void CRaumView::DrawPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE
 
 void CRaumView::DrawMagicMissile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABSOLUTE itemSubPos, COMPASS_DIRECTION heroDir, std::deque<CMagicMissile*> magicMissiles) {
 	int xx = wallXFactor[xxx]; // 0,1,2,3,4 => -2,2,-1,1,0
-	CBitmap* bmp;	
+	CBitmap* bmp;
 	CMagicMissile* magicMissile = magicMissiles.back();
 	bool isInside = (ebene == 0) && (xxx == 4);
-	
+
 	bmp = m_pMagicMissilePic->GetMagicMissileBitmap(magicMissile->GetType(), magicMissile->IsExploding(), isInside, magicMissile->GetSize());
 	if (bmp) {
 		// todo refaktorieren mit Throw... viel DOppelcode!
-		// todo exploding in mitte?
 		BITMAP bmpInfo;
 		bmp->GetBitmap(&bmpInfo);
 		cdc->SelectObject(bmp);
 
 		if (!isInside) {
 			double faktor = CHelpfulValues::getDistanceFactor(ebene);
-		
+
 			CPoint floorMiddlePos = m_pItem3DPic->GetFloorMiddle(xxx, ebene);
 			if (floorMiddlePos.x > 0 || floorMiddlePos.y > 0) { // todo refaktor: inView()
 				SUBPOS subPos = CHelpfulValues::GetRelativeSubPosPassive(itemSubPos, heroDir); // todo subpos angleichen
@@ -690,12 +689,7 @@ void CRaumView::DrawMagicMissile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_
 						faktor = CHelpfulValues::getDistanceFactor(ebene + 1);
 					}
 					CPoint pos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, floorMiddlePos, subPos, faktor, xx, ebene);
-				
-					/*for (int aebene = 0; aebene <= 4; aebene++) {
-						CPoint xPos = CHelpfulValues::CalcRelSubFloorPosition(bmpInfo, m_pItem3DPic->GetFloorMiddle(xxx, aebene), subPos, faktor, xx, aebene);
-						pDC->Ellipse(xPos.x - 3, xPos.y - 3, xPos.x + 3, xPos.y + 3);
-					}*/
-				
+
 					if (!magicMissile->IsExploding()) {
 						if (pos.y != 0) {
 							pos.y = 250 - pos.y / 2;
@@ -703,7 +697,7 @@ void CRaumView::DrawMagicMissile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_
 					}
 					else {
 						CPoint posWall = m_pWallPic->GetWallPos(xxx, ebene);
-						CPoint posMitte = m_pWallPic->GetCenterFromFrontWall(xxx, ebene);	
+						CPoint posMitte = m_pWallPic->GetCenterFromFrontWall(xxx, ebene);
 						pos.x = posWall.x + posMitte.x - (int)(bmpInfo.bmWidth * faktor);
 						pos.y = posWall.y + posMitte.y - (int)(bmpInfo.bmHeight * faktor);
 					}
@@ -742,7 +736,8 @@ void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, 
 			pDC->TransparentBlt(x, y,
 				reducedWidth, realHeight,
 				cdc, 0, 0, w_opt, h, col);
-		} else {
+		}
+		else {
 			pDC->TransparentBlt(x, y,
 				reducedWidth, realHeight,
 				cdc, 0, 0, w_opt, h, col);
@@ -817,7 +812,7 @@ void CRaumView::DrawRoom(CDC* pDC)
 						if (pTrickWall->GetState() == CTrickWall::Closed)
 							DrawWall(pDC, &compCdc, xxx, ebene, heroDir, pField);
 					}
-					if (fieldType == FeldTyp::WALL) 
+					if (fieldType == FeldTyp::WALL)
 					{
 						DrawWall(pDC, &compCdc, xxx, ebene, heroDir, pField);
 					}
@@ -897,7 +892,7 @@ VEKTOR CRaumView::GrpMonsterWalkTo(VEKTOR fromPos, VEKTOR toPos, boolean& collis
 	FeldTyp iTyp = pField->HoleTyp();
 	CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
 	CGrpMonster* otherGroup = pField->GetMonsterGroup();
-	
+
 	if (pField->BlockedToWalk() || otherGroup) {
 		collision = true;
 		return fromPos;
@@ -919,7 +914,7 @@ VEKTOR CRaumView::GrpMonsterWalkTo(VEKTOR fromPos, VEKTOR toPos, boolean& collis
 	return toPos;
 }
 
-VEKTOR CRaumView::GrpHeroWalkTo(VEKTOR toPos, boolean &collision)
+VEKTOR CRaumView::GrpHeroWalkTo(VEKTOR toPos, boolean& collision)
 {
 	CField* pField = m_pMap->GetField(toPos);
 	FeldTyp iTyp = pField->HoleTyp();
@@ -932,8 +927,8 @@ VEKTOR CRaumView::GrpHeroWalkTo(VEKTOR toPos, boolean &collision)
 		return fromPos;
 	}
 	if (pGrpMonster) return fromPos;
-	if (iTyp == FeldTyp::EMPTY ) {
-		collision = false;		
+	if (iTyp == FeldTyp::EMPTY) {
+		collision = false;
 	}
 	else if (iTyp == FeldTyp::PIT) {
 		collision = false;
@@ -1032,11 +1027,11 @@ void CRaumView::MoveMonsters(VEKTOR monsterPos) {
 					field->SetMonsterGroup(NULL);
 					targetField->SetMonsterGroup(pGrpMon);
 					pGrpMon->SetVector(target);
-					pGrpMon->MoveDone();
+					pGrpMon->AttackOrMoveDone();
 				}
 			}
 		}
-		
+
 	}
 }
 
@@ -1064,7 +1059,8 @@ void CRaumView::MoveDoors(VEKTOR position) {
 				if (pGrpMonsters) {
 					pGrpMonsters->FallingDamage();
 					pGrpMonsters->Scare();
-				} else if (heightOfSomeoneBelowDoor > 0) {
+				}
+				else if (heightOfSomeoneBelowDoor > 0) {
 					pGrpHeroes->FallingDamage();
 				}
 			}
@@ -1097,7 +1093,7 @@ void CRaumView::MoveMagicMissiles(VEKTOR position, SUBPOS_ABSOLUTE posAbs) {
 	CField* field = m_pMap->GetField(position);
 	std::deque<CMagicMissile*> magicMissiles = field->GetMagicMissile(posAbs);
 	if (!magicMissiles.empty()) {
-		for (CMagicMissile* magicMissile : magicMissiles) 
+		for (CMagicMissile* magicMissile : magicMissiles)
 			MoveMagicMissile(position, posAbs, magicMissile);
 	}
 }
@@ -1129,9 +1125,9 @@ void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagic
 			}
 			else {
 				if ((hitsPlayer || pHittedMonster) &&
-					(topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob || 
-					 topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball || 
-					 topMissile->GetType() == CMagicMissile::MagicMissileType::Lightning))
+					(topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob ||
+						topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball ||
+						topMissile->GetType() == CMagicMissile::MagicMissileType::Lightning))
 				{
 					if (topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob)
 					{
@@ -1204,7 +1200,7 @@ void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagic
 				}
 				topMissile->SetDone();
 				if (pDoor) {
-					if (topMissile->GetType() == CMagicMissile::Fireball || topMissile->GetType() == CMagicMissile::Lightning  && pDoor->destroyedByFireball()) {
+					if (topMissile->GetType() == CMagicMissile::Fireball || topMissile->GetType() == CMagicMissile::Lightning && pDoor->destroyedByFireball()) {
 						pDoor->SetState(CDoor::DESTROYED);
 					}
 					if (topMissile->GetType() == CMagicMissile::OpenDoor && pDoor->hasButton() && pDoor->getState() == CDoor::CLOSED)
@@ -1423,7 +1419,7 @@ void CRaumView::MoveItems(VEKTOR itemPos) {
 	}
 }
 
-CField* CRaumView::ChangeFieldWithTeleporter(CField* &pField, SUBPOS_ABSOLUTE& subPos, COMPASS_DIRECTION& direction) {
+CField* CRaumView::ChangeFieldWithTeleporter(CField*& pField, SUBPOS_ABSOLUTE& subPos, COMPASS_DIRECTION& direction) {
 	CTeleporter* tp = pField->HoleTeleporter();
 
 	if (tp && tp->isOpen()) {
@@ -1453,7 +1449,7 @@ CField* CRaumView::ChangeFieldWithTeleporter(CField* &pField, SUBPOS_ABSOLUTE& s
 			}
 		}
 
-		pField = m_pMap->GetField( tp->getTargetField());
+		pField = m_pMap->GetField(tp->getTargetField());
 	}
 	return pField;
 }
@@ -1480,7 +1476,8 @@ CField* CRaumView::ChangeFieldWithStairs(CField* pField, CMovingObject* pItem, S
 				for (int t = 0; t < (targetDir - sourceDir); t++)
 					subPos = CHelpfulValues::RightFrom(subPos);
 			}
-		} else {
+		}
+		else {
 			subPos = CHelpfulValues::FindNextSubposWithoutFieldChange(subPos, VEKTOR{ -pItem->m_flyForce.x, -pItem->m_flyForce.y, 0 });
 		}
 		pItem->m_flyForce = { 0,0,0 };
@@ -1517,7 +1514,7 @@ void CRaumView::TriggerPassiveActuators(VEKTOR fieldPos, VEKTOR heroPos) {
 	for (int direction = 0; direction < 4; direction++) {
 		// Alle Aktuatoren sammeln, egal welche Position. Aber je Position nur den jeweils ersten.
 		std::deque<CActuator*> actuators = field->GetActuator((COMPASS_DIRECTION)direction);
-		if (!actuators.empty()) {		
+		if (!actuators.empty()) {
 			actuatorsAtPosition.push_back(actuators[0]);
 		}
 	}
@@ -1535,7 +1532,7 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 		return;
 	}
 	VEKTOR source = field->HolePos();
-	VEKTOR target = actuator->GetActionTarget() == CActuator::ActionTarget::Remote ? actuator->GetTarget() : source;
+	VEKTOR target = actuator->GetType() != CActuator::Inactive && actuator->GetActionTarget() == CActuator::ActionTarget::Remote ? actuator->GetTarget() : source;
 	CField* pTargetField = m_pMap->GetField(target);
 	double critWeight = actuator->GetCriticalWeigth();
 	bool isWall = field->HoleTyp() == FeldTyp::WALL;
@@ -1585,7 +1582,7 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 				VEKTOR force = CHelpfulValues::MakeVektor(dir, power * 4);
 				firstMissile->m_flyForce = force;
 				field->CastMissile(firstMissile, CHelpfulValues::GetFirstPositionFromDirection(dir));
-				
+
 				CMagicMissile* secondMissile = new CMagicMissile(missileType, power, source);
 				secondMissile->m_flyForce = force;
 				field->CastMissile(secondMissile, CHelpfulValues::GetSecondPositionFromDirection(dir));
@@ -1655,7 +1652,7 @@ void CRaumView::TriggerPit(CField* pTargetField, CActuator::ActionTypes type, bo
 			break;
 		case CActuator::Clear:
 			if (criticalWeightBreached) {
-				pPit->Close(0); 
+				pPit->Close(0);
 			}
 			break;
 		case CActuator::Hold:
@@ -1699,7 +1696,7 @@ void CRaumView::TriggerTargetActuator(CField* pTargetField, CActuator* sourceAct
 			break;
 		}
 	}
-	
+
 }
 
 void CRaumView::TriggerDoor(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached) {
@@ -1732,7 +1729,7 @@ void CRaumView::TriggerDoor(CField* pTargetField, CActuator::ActionTypes type, b
 void CRaumView::TriggerTeleport(CField* pTargetField, CActuator::ActionTypes type, boolean criticalWeightBreached, boolean triggerRotate) {
 	CGrpHeld* pGrpHeroes = m_pMap->GetHeroes();
 	VEKTOR heroPos = pGrpHeroes->GetVector(); // Namen angleichen - HolePos etc
-	CTeleporter* pTeleport = pTargetField->HoleTeleporter(); 
+	CTeleporter* pTeleport = pTargetField->HoleTeleporter();
 	VEKTOR newPos = heroPos;
 	if (pTeleport != NULL) {
 		switch (type)
@@ -1753,7 +1750,7 @@ void CRaumView::TriggerTeleport(CField* pTargetField, CActuator::ActionTypes typ
 			break;
 		case CActuator::Clear:
 			if (criticalWeightBreached) {
-				pTeleport->setOpen(CTeleporter::Inactive, 0); 
+				pTeleport->setOpen(CTeleporter::Inactive, 0);
 			}
 			break;
 		case CActuator::Hold:
@@ -1837,7 +1834,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 							pGrpMon->TurnToHero(heroPos); // automatisch anschauen, sonst klappt fliehen später nicht
 							return monPos;
 						}
-					}					
+					}
 				}
 			}
 		}
@@ -1855,7 +1852,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 			// todo: schlauer bewegungsalgorithmus!
 
 			int targetDist = (abs(targetPos.x - heroPos.x) + abs(targetPos.y - heroPos.y));
-			if ((targetPos.x != monPos.x || targetPos.y != monPos.y) && !targetField->BlockedToWalk()) { 
+			if ((targetPos.x != monPos.x || targetPos.y != monPos.y) && !targetField->BlockedToWalk()) {
 
 				if (absDist > targetDist)
 				{
@@ -2032,7 +2029,7 @@ boolean CRaumView::TryToAttack(CGrpMonster* pGrpMon, int index, COMPASS_DIRECTIO
 				// todo monster infos https://gamefaqs.gamespot.com/snes/588299-dungeon-master/faqs/33244
 				break;
 			}
-			attackingMonster->AttackDone();
+			attackingMonster->AttackOrMoveDone();
 			return true;
 		}
 	}
@@ -2064,7 +2061,7 @@ void CRaumView::InitDungeon(CDMDoc* pDoc, CDC* pDC, CPictures* pPictures)
 	m_pItem3DPic = new CItem3DPic(pDC);
 	m_pMagicMissilePic = new CMagicMissilePic(pDC);
 
-	
+
 	m_pItemInfos = new CItemInfos();
 	m_pAttackInfos = new CAttackInfos();
 	m_pMonsterInfos = new CMonsterInfos();
@@ -2160,11 +2157,11 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 				weapon = new CWeapon(HANDINDEX, att);*/
 				attackType = "N"; // Punch / Kick / Warcry
 			}
-			if (attackType == "") 
+			if (attackType == "")
 			{
 				return;
 			}
-			
+
 			CAttackConst ac = attackInfos->GetAttack(attackType);
 
 			if (attackType == "throw")
@@ -2224,7 +2221,7 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 					}
 				}
 				m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Attack(Skeleton-AnimatedArmour-PartySlash).mp3");
-				
+
 				CDoor* pDoor = field->HoleDoor();
 				if (pDoor && pDoor->getState() == CDoor::CLOSED)
 				{

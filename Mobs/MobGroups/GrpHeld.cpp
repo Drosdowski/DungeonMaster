@@ -154,22 +154,6 @@ void CGrpHeld::PassAction() {
 
 }
 
-CHeld* CGrpHeld::ClosestHeroTo(CMonster* monster) {
-	// TODO richtig rechnen!! - obsolet??
-	for (int i = 1; i <= 4; i++)
-	{
-		CHeld* pHeld = (CHeld*)m_pMember[i];
-
-		if (m_pMember[i] != NULL)
-		{
-			if (m_pMember[i]->isAlive())
-				return (CHeld*)m_pMember[i];
-		}
-	}
-	return NULL;
-}
-
-
 void CGrpHeld::SetzeModus(GroupMode modus)
 {
 	int iIndex = m_iAktiverHeld;

@@ -67,8 +67,7 @@ void CTeleporter::Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos, bool 
 				}
 				pGrpMonster = targetField->GetMonsterGroup();
 				if (pGrpMonster) {
-					// todo telefrag !!
-					ASSERT(false);
+					pGrpMonster->InstantKill();
 				}
 			}
 			if (triggerRotate)

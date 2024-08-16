@@ -85,6 +85,16 @@ void CGrpMonster::Scare() {
 	m_iScaredCounter += 8;
 }
 
+void CGrpMonster::InstantKill() {
+	for (int i = 1; i < 5; i++)
+	{
+		CMonster* pMonster = (CMonster*)m_pMember[i];
+		if (pMonster && pMonster->isAlive()) {
+			pMonster->AddDmg(pMonster->Hp().Aktuell);
+		}
+	}
+}
+
 bool CGrpMonster::Altern(CField* field)
 {
 	bool didHurt = false;
@@ -118,7 +128,7 @@ CMonster* CGrpMonster::AttackHero(int monIndex, VEKTOR monsterPos, VEKTOR heroPo
 			int dmg = pMonster->CalcDmg(1); // todo monster attacke random
 			int poison = mc.poison;
 			pMonster->AttackModeWithDmg(dmg, poison);
-			pMonster->AttackDone();
+			pMonster->AttackOrMoveDone();
 			return pMonster; // pro Tick nur ein Angriff / Gruppe
 		}
 	}
@@ -161,7 +171,7 @@ void CGrpMonster::TryToAdvanceToFirstRow(VEKTOR myPos) {
 bool CGrpMonster::TrySetToSubPos(CMonster* monster, SUBPOS_ABSOLUTE subPos) {
 	if (isSubPosAbsoluteFree(subPos)) {
 		monster->SetzeSubPosition(subPos);
-		monster->MoveDone();
+		monster->AttackOrMoveDone();
 		return true;
 	}
 	return false;
@@ -296,12 +306,12 @@ bool CGrpMonster:: isAlive() {
 	return false;
 }
 
-void CGrpMonster::MoveDone() {
+void CGrpMonster::AttackOrMoveDone() {
 	for (int i = 1; i < 5; i++)
 	{
 		CMonster* pMonster = (CMonster*)m_pMember[i];
 		if (pMonster) {
-			pMonster->MoveDone();
+			pMonster->AttackOrMoveDone();
 		}
 	}
 }
@@ -382,7 +392,7 @@ void CGrpMonster::TurnToHero(VEKTOR heroPos) {
 		CMonster* pMonster = (CMonster*)m_pMember[i];
 		if (pMonster && pMonster->GetDirection() != newDirection) {
 			pMonster->TurnTo(newDirection);
-			pMonster->MoveDone();
+			pMonster->AttackOrMoveDone();
 		}
 	}
 	

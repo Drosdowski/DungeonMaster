@@ -54,7 +54,6 @@ public:
 	bool Altern();
 
 	CHeld* GetHeroForAction() { return GetHero(m_iHeroForAction); }
-	CHeld* ClosestHeroTo(CMonster* monster);
 // überschriebene Methoden
 	
 	GroupMode GetModus() { return m_Modus; }
@@ -64,7 +63,6 @@ public:
 	virtual ~CGrpHeld();
 
 private:
-	void CloseCombat();
 	void NewHero(CChampion* champ, int nr, int hp_akt, int st_akt, int ma_akt);
 
 	// Generierte Nachrichtenzuordnungsfunktionen

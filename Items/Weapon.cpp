@@ -55,7 +55,7 @@ CItem::ItemGroup CWeapon::GetGroup() {
 }
 
 double CWeapon::GetWeight() {
-	return m_attribute.fixAttributes.weight[0]; // todo sub berücksichtigen!
+	return m_attribute.fixAttributes.weight[0];
 }
 
 CString CWeapon::GetName() {
