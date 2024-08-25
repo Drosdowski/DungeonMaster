@@ -54,6 +54,7 @@ CGrpHeld::CGrpHeld(VEKTOR pos, COMPASS_DIRECTION richt)
 	//m_posPosition = VEKTOR{ 7, 5, 4 }; // ca 999 Actuators
 	//m_posPosition = VEKTOR{ 19, 4, 2 }; // gold key
 	DrehenAbsolut(richt);
+	ChangeCompass();
 	m_Modus = DEFAULT;
 }
 
@@ -324,4 +325,13 @@ void CGrpHeld::TakeItemInHand(CItem* item)
 void CGrpHeld::EmptyHand() {
 	// kein delete, Objekt ist jetzt woanders...
 	m_pItemInHand = NULL;
+}
+
+void CGrpHeld::ChangeCompass() {
+	for (int i = 1; i < 5; i++) {
+		if (m_pMember[i] && m_pMember[i]->IsHero()) {
+			CHeld* hero = (CHeld*)m_pMember[i];
+			hero->ChangeCompass();
+		}
+	}
 }

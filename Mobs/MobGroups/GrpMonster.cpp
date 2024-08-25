@@ -5,7 +5,6 @@
 #include "GrpMonster.h"
 #include "..\..\Feld.h"
 #include "..\Monster.h"
-#include "..\MobGroups\GrpHeld.h"
 #include "..\..\CalculationHelper\CHelpfulValues.h"
 #include "..\..\XMLParser\MonsterInfos.h"
 #include "..\..\Items\CMiscellaneous.h"

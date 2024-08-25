@@ -8,7 +8,6 @@
 /////////////////////////////////////////////////////////////////////////////
 // Ansicht CGrpChar 
 
-class CMonster;
 class CItem;
 class CAttackInfos;
 class CMonsterInfos;
@@ -59,6 +58,7 @@ public:
 	GroupMode GetModus() { return m_Modus; }
 	bool AsleepAndAttacked();
 	void SetzeModus(GroupMode modus);
+	void ChangeCompass();
 
 	virtual ~CGrpHeld();
 

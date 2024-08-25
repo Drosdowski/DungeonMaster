@@ -642,6 +642,8 @@ void CDMView::ParseClickFloor(CPoint point) {
 			else {
 				FeldVorHeld = m_pRaumView->ChangeFieldWithTeleporter(FeldVorHeld, itemRegionReal, groupDirection);
 				grpHelden->DrehenAbsolut(groupDirection);
+				grpHelden->ChangeCompass();
+
 				FeldVorHeld = m_pRaumView->ChangeFieldWithStairs(FeldVorHeld, pItemInHand, itemRegionReal);
 
 				FeldVorHeld->PutItem(pItemInHand, itemRegionReal);
@@ -1285,6 +1287,7 @@ void CDMView::Walk()
 					pGrpHeroes->DrehenRelativ(LINKS);
 				else
 					pGrpHeroes->DrehenRelativ(RECHTS);
+				pGrpHeroes->ChangeCompass();
 			}
 		}
 		break;

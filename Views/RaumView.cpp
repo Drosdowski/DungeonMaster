@@ -953,6 +953,7 @@ VEKTOR CRaumView::GrpHeroWalkTo(VEKTOR toPos, boolean& collision)
 		CStairs* stairsEnd = m_pMap->GetField(toPos)->HoleStairs();
 
 		pGrpHelden->DrehenAbsolut(stairsEnd->StairExit());
+		pGrpHelden->ChangeCompass();
 	}
 	return toPos;
 }

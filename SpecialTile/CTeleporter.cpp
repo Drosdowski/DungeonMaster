@@ -90,6 +90,7 @@ void CTeleporter::Trigger(CDMDoc* pDoc, CDungeonMap* pMap, VEKTOR telePos, bool 
 						pGrpHelden->DrehenRelativ(LINKS);
 					}
 				}
+				pGrpHelden->ChangeCompass();
 			}
 		}
 

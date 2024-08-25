@@ -1389,6 +1389,8 @@ void CDungeonMap::RestorePosition(TiXmlElement* rootElement, CGrpHeld* pGrpHeroe
 	if (strcmp(startDir, "South") == 0) richt = COMPASS_DIRECTION::SOUTH;
 	if (strcmp(startDir, "West") == 0) richt = COMPASS_DIRECTION::WEST;
 	pGrpHeroes->DrehenAbsolut(richt);
+	pGrpHeroes->ChangeCompass();
+
 }
 
 void CDungeonMap::LoadMaps(TiXmlElement* maps) {

@@ -58,7 +58,6 @@ protected:
 	CHelpfulValues* m_values;
 	CCharacter* NearestTarget(VEKTOR hisPos);
 	bool CharCollision(int index, int wunschrichtung);
-	void ChangeCompass();
 };
 
 /////////////////////////////////////////////////////////////////////////////

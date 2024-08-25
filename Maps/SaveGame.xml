@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<dungeon start_x="15" start_y="22" start_z="5" start_facing="East">
+<dungeon start_x="31" start_y="30" start_z="2" start_facing="East">
     <heroes>
         <hero index="1" heroId="1" hp_akt="90" st_akt="750" ma_akt="0" hp_max="90" st_max="750" ma_max="0" name="HALK" subname="" male="Y" LUK="14135" STR="11051" DEX="7710" VIT="11822" WIS="10278" AM="12336" AF="10280" SKILLS="4,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0" SPELL="">
             <item item="0" index="61" type="0" />
