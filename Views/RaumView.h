@@ -11,6 +11,7 @@
 #include "..\XMLParser\ItemInfos.h"
 #include "..\XMLParser\AttackInfos.h"
 #include "..\XMLParser\MonsterInfos.h"
+#include <Items\CActuator.h>
 #include <Items/MagicMissile.h>
 
 
