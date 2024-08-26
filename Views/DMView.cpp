@@ -471,7 +471,8 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 					}
 					return false;
 				}
-				else if (currentActuator->GetData() == 0) {
+				else if ((data == 0 && nextActuator->GetType() != CActuator::Storage) 
+					  || (data == 4 && itemInHand->GetIndex() == 91) ){
 					FeldVorHeld->PutItem(itemInHand, posActuator);
 					grpHelden->EmptyHand();
 					if (!nextActuator->IsOnceOnly()) {
@@ -479,20 +480,11 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 						FeldVorHeld->RotateActuators(dir);
 					}
 					return false;
-				} else if (itemInHand->GetType() == neededItemId) {
-					//if (!type == CActuator::Inactive) {
-					//	// Torch Holder => Empty holder = Item gone
-					//	//InvokeRemoteActuator(currentActuator, nextActuator);					
-					//	FeldVorHeld->RotateActuators(dir);
-					//}
-					FeldVorHeld->PutItem(itemInHand, posActuator);
-					grpHelden->EmptyHand();
-					return false;
 				}
 
 			}
 			else if (type == CActuator::ChampionMirror) {
-				int heroId = currentActuator->GetData();
+				int heroId = data;
 
 				CField* field = m_pRaumView->GetMap()->GetField(grpHelden->GetVector());
 				CString text = field->GetFirstText(0)->GetText();
