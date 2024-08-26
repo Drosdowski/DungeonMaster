@@ -8,10 +8,7 @@
 #include "..\..\Items\Item.h"
 #include "..\..\Items\Weapon.h"
 #include "..\..\XMLParser\AttackInfos.h"
-#include "..\..\XMLParser\MonsterInfos.h"
-#include "..\..\Views\RaumView.h"
 #include "GrpHeld.h"
-#include "GrpMonster.h"
 #include <iostream>
 #include <cassert>
 

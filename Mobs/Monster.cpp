@@ -26,7 +26,6 @@ CMonster::CMonster(CCreatureAttributes attributes, int subId): CCharacter(false)
 
 CMonster::~CMonster()
 {
-	DeleteDC(pCdc);
 }
 
 

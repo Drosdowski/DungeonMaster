@@ -1,6 +1,5 @@
 #pragma once
 #include "../Feld.h"
-#include "../Items/CActuator.h"
 #include "../Attributes/TeleporterAttributes.h"
 #include "../Attributes/CreatureAttributes.h"
 #include "../Attributes/DoorAttributes.h"

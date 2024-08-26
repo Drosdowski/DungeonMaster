@@ -10,7 +10,6 @@
 
 class CItem;
 class CAttackInfos;
-class CMonsterInfos;
 class CChampion;
 class CGrpHeld: public CGrpChar
 {

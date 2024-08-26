@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "CMiscellaneous.h"
-#include "..\Pictures\Items3D\CItem3DPic.h"
 #include <cassert>
 
 CMiscellaneous::CMiscellaneous(int index, CMiscellaneousAttributes att) : CItem(index, MiscItem) {

@@ -46,7 +46,6 @@ protected:
 
 	// Generierte Nachrichtenzuordnungsfunktionen
 protected:
-	CDC pCdc;
 	int m_iReadyToMove;
 	int m_iReadyToAttack;
 	CCreatureAttributes m_attributes;

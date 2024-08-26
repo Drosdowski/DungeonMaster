@@ -9,11 +9,9 @@
 #include "..\Items\Weapon.h"
 #include "..\Items\Scroll.h"
 #include "..\Items\Container.h"
-#include "Monster.h"
 #include "Champion.h"
 #include <Attributes/ClothAttributes.h>
 #include "..\XMLParser\AttackInfos.h"
-#include "..\XMLParser\MonsterInfos.h"
 // following includes for compass
 #include "Held.h"
 #include "..\Attributes\MiscellaneousAttributes.h"

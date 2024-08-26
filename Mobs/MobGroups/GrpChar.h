@@ -21,7 +21,6 @@ public:
 
 	// Attribute
 protected:
-	CDC* m_pDC;
 	CCharacter* m_pMember[5];
 
 	// Operationen

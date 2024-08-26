@@ -14,6 +14,7 @@
 #include "Items/Potion.h"
 #include "Items/Scroll.h"
 #include "Items/Container.h"
+#include "Items/CActuator.h"
 #include "SpecialTile/CTeleporter.h"
 #include "SpecialTile/Trickwall.h"
 #include "Mobs/Champion.h"

@@ -18,7 +18,6 @@
 // CRaumView view
 
 
-class CMonster;
 class CDMDoc;
 class CPictures;
 class CDoorPic;
