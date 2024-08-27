@@ -292,6 +292,7 @@ CPoint CHelpfulValues::CalcRelSubFloorPosition(BITMAP bmpInfo, CPoint wallMiddle
 		else {
 			posX += (int)xFaktor * 40;
 			if (subPos == MITTE) {
+				posX += (int)(faktor * 75 * xx);
 				posY = 268;
 			}
 			else {
@@ -307,6 +308,7 @@ CPoint CHelpfulValues::CalcRelSubFloorPosition(BITMAP bmpInfo, CPoint wallMiddle
 		else {
 			posX += (int)xFaktor * 30;
 			if (subPos == MITTE) {
+				posX += (int)(faktor * 60 * xx);
 				posY = 244;
 			}
 			else {

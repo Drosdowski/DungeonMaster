@@ -261,10 +261,12 @@ CPoint CItem3DPic::GetFloorMiddle(int x, int ebene) {
 	case 2: 
 		if (ebene == 1) middle.x = 20;
 		if (ebene == 2) middle.x = 90;
+		if (ebene == 3) middle.x = 125;
 		break;
 	case 3:
 		if (ebene == 1) middle.x = 418; // tuned for pressure plate
 		if (ebene == 2) middle.x = 360;
+		if (ebene == 3) middle.x = 325; // if change: check Fach Inhalt
 		break;
 	case 4: 
 		middle.x = 225; 

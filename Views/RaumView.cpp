@@ -1095,12 +1095,24 @@ void CRaumView::MoveMagicMissiles(VEKTOR position, SUBPOS_ABSOLUTE posAbs) {
 	std::deque<CMagicMissile*> magicMissiles = field->GetMagicMissile(posAbs);
 	if (!magicMissiles.empty()) {
 		for (CMagicMissile* magicMissile : magicMissiles)
-			MoveMagicMissile(position, posAbs, magicMissile);
+		{
+			if (!MoveMagicMissile(position, posAbs, magicMissile))
+			{
+				for (std::deque<CMagicMissile*>::iterator it = magicMissiles.begin(); it != magicMissiles.end(); ) {
+					if (*it == magicMissile) {
+						magicMissiles.erase(it);
+						return; // todo nicht ganz sauber
+					}
+					++it;
+
+				}
+
+			}
+		}
 	}
 }
 
-void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagicMissile* topMissile) {
-	// todo refaktorieren mit moveItems
+bool CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagicMissile* topMissile) {
 	CField* field = m_pMap->GetField(position);
 	CGrpHeld* pGrpHeld = m_pMap->GetHeroes();
 	CGrpMonster* pGroupMonster = field->GetMonsterGroup();
@@ -1108,20 +1120,24 @@ void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagic
 	CHeld* pHero = pGrpHeld->GetHeroBySubPos(posAbs);
 	boolean hitsPlayer = (!pHero == NULL) && CHelpfulValues::VectorEqual(position, posHero) && (!CHelpfulValues::VectorEqual(topMissile->GetOrigin(), posHero));
 	CMonster* pHittedMonster = pGroupMonster ? pGroupMonster->GetMonsterByAbsSubPos(posAbs) : NULL;
-
-	if (!topMissile->HasMovedThisTick()) {
+	COMPASS_DIRECTION topMissileDir = topMissile->GetDirection();
+	CField* newField  = field;
+	CDoor* pDoor = NULL;
+	// if (!topMissile->HasMovedThisTick()) {
 
 		SUBPOS_ABSOLUTE newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, topMissile->m_flyForce);
 		if (topMissile->IsExploding() && newPos == posAbs) {
+			// schon explodiert - Gift & Staubwolke
 			if (topMissile->GetType() == CMagicMissile::MagicMissileType::Poison || topMissile->GetType() == CMagicMissile::MagicMissileType::Dust) {
 				// Gift- und Staubwolke verschwinden langsam
 				if (topMissile->GetStrength() > 1) {
 					topMissile->DecreaseStrength();
-					return; // heroPos;
+					return true;
 				}
 				else {
 					field->TakeMissile(posAbs, topMissile); // out of energy, gone
 					delete topMissile;
+					return false;
 				}
 			}
 			else {
@@ -1155,76 +1171,79 @@ void CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagic
 					}
 				}
 				field->TakeMissile(posAbs, topMissile);
-				delete topMissile;
+				// delete topMissile;
+				return true;
 			}
 		}
 		else if (newPos == OUTSIDE) {
 			// Feld verlassen
-			CField* newField = m_pMap->GetField(position.x + sign(topMissile->m_flyForce.x), position.y + sign(topMissile->m_flyForce.y), position.z);
-			COMPASS_DIRECTION direction = topMissile->GetDirection();
+			newField = m_pMap->GetField(position.x + sign(topMissile->m_flyForce.x), position.y + sign(topMissile->m_flyForce.y), position.z);
 
-			if (!newField->BlockedToWalk() && !hitsPlayer) {
-				// todo prüfen topMissile = field->TakeMissile(posAbs);
+			if (!newField->BlockedToWalk() && !hitsPlayer && !pHittedMonster) {
+				// weiterfliegen, keine Kollision
 				field->TakeMissile(posAbs, topMissile);
-				newField = ChangeFieldWithTeleporter(newField, posAbs, direction);
-				topMissile->SetDirection(direction);
+				newField = ChangeFieldWithTeleporter(newField, posAbs, topMissileDir);
+				topMissile->SetDirection(topMissileDir);
 				newField = ChangeFieldWithStairs(newField, topMissile, posAbs);
 				// westlich von west ist ost => anders rum subpos suchen
 				newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topMissile->m_flyForce.x, -topMissile->m_flyForce.y, 0 });
 
 				newField->CastMissile(topMissile, newPos);
 				topMissile->SetDone();
-				return; //newField->HolePos();
+				return true;
 			}
-			else {
-				CDoor* pDoor = newField->HoleDoor();
-				if (pDoor) {
-					// Bei Tür noch bewegen, und dann Bumm - Bei Wand sofort.
-					field->TakeMissile(posAbs, topMissile);
-					topMissile->SetDirection(direction);
-					newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topMissile->m_flyForce.x, -topMissile->m_flyForce.y, 0 });
-					newField->CastMissile(topMissile, newPos);
+			pDoor = newField->HoleDoor();
+			if (pDoor && !newField->BlockedToWalk()) {
+				// Bei Tür noch bewegen, und dann Bumm - Bei Wand sofort.
+				field->TakeMissile(posAbs, topMissile);
+				topMissile->SetDirection(topMissileDir);
+				newPos = CHelpfulValues::FindNextSubposWithoutFieldChange(posAbs, VEKTOR{ -topMissile->m_flyForce.x, -topMissile->m_flyForce.y, 0 });
+				newField->CastMissile(topMissile, newPos);
+			}
+		}
+		
+		if (pHittedMonster || hitsPlayer || newField->BlockedToWalk()) {
+			// Missile hits something!
+
+			topMissile->Explode();
+			if (topMissile->GetType() == CMagicMissile::Fireball || topMissile->GetType() == CMagicMissile::Lightning)
+			{
+				m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingFireball.mp3");
+				if (CHelpfulValues::VectorEqual(position, posHero)) {
+					pGrpHeld->DoDamage(topMissile->GetStrength() * 10, 0, position, true);
 				}
-				topMissile->Explode();
-				if (topMissile->GetType() == CMagicMissile::Fireball || topMissile->GetType() == CMagicMissile::Lightning)
+				else if (pGroupMonster) {
+					pGroupMonster->DoDamage(topMissile->GetStrength() * (rand() % 6 + 1), 0, position, true);
+				}
+			}
+			else if (topMissile->GetType() == CMagicMissile::Poison || topMissile->GetType() == CMagicMissile::PoisonBlob || topMissile->GetType() == CMagicMissile::AntiMagic || topMissile->GetType() == CMagicMissile::OpenDoor) {
+				m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingSpell.mp3");
+			}
+			topMissile->SetDone();
+			if (pDoor) {
+				if (topMissile->GetType() == CMagicMissile::Fireball || topMissile->GetType() == CMagicMissile::Lightning && pDoor->destroyedByFireball()) {
+					pDoor->SetState(CDoor::DESTROYED);
+				}
+				if (topMissile->GetType() == CMagicMissile::OpenDoor && pDoor->hasButton() && pDoor->getState() == CDoor::CLOSED)
 				{
-					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingFireball.mp3");
-					if (CHelpfulValues::VectorEqual(position, posHero)) {
-						pGrpHeld->DoDamage(topMissile->GetStrength() * 10, 0, position, true);
-					}
-					else if (pGroupMonster) {
-						pGroupMonster->DoDamage(topMissile->GetStrength() * (rand() % 6 + 1), 0, position, true);
-					}
-				}
-				else if (topMissile->GetType() == CMagicMissile::Poison || topMissile->GetType() == CMagicMissile::PoisonBlob || topMissile->GetType() == CMagicMissile::AntiMagic || topMissile->GetType() == CMagicMissile::OpenDoor) {
-					m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingSpell.mp3");
-				}
-				topMissile->SetDone();
-				if (pDoor) {
-					if (topMissile->GetType() == CMagicMissile::Fireball || topMissile->GetType() == CMagicMissile::Lightning && pDoor->destroyedByFireball()) {
-						pDoor->SetState(CDoor::DESTROYED);
-					}
-					if (topMissile->GetType() == CMagicMissile::OpenDoor && pDoor->hasButton() && pDoor->getState() == CDoor::CLOSED)
-					{
-						pDoor->Toggle();
-					}
+					pDoor->Toggle();
 				}
 			}
 		}
 		else {
-			// todo prüfen topMissile = field->TakeMissile(posAbs);
 			field->TakeMissile(posAbs, topMissile);
 			if (topMissile->IsFlying()) {
 				topMissile->ReduceSpeed();
 				field->CastMissile(topMissile, newPos);
-				return; //heroPos;
+				return true; 
 			}
 			else {
 				delete topMissile;
+				return false;
 			}
 		}
-	}
-	return; // VEKTOR{ 0, 0, 0 };
+	//}
+	return true; 
 }
 
 //
