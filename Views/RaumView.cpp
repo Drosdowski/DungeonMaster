@@ -461,11 +461,11 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 				// 	decoPosY += (int)(bmpDecoInfo.bmHeight * faktor / 2);
 				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA, false);
 
-				int x = posWall.x;
-				int y = posWall.y;
-				x += centerSideWall.x;
-				y += centerSideWall.y;
-				pDC->Ellipse(x - 5, y - 5, x + 5, y + 5);
+				// int x = posWall.x;
+				// int y = posWall.y;
+				// x += centerSideWall.x;
+				// y += centerSideWall.y;
+				// pDC->Ellipse(x - 5, y - 5, x + 5, y + 5);
 				// pDC->Ellipse(decoPosX - 5, decoPosY - 5, decoPosX + 5, decoPosY + 5);
 
 			}
