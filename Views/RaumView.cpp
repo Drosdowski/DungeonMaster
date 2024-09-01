@@ -445,29 +445,14 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 			if (centerSideWall.x > 0 && centerSideWall.y > 0) {
 				bmpDecoSide->GetBitmap(&bmpDecoInfo);
 				cdc->SelectObject(bmpDecoSide);
-				int decoPosX = posWall.x + centerSideWall.x;
-				// if (xx > 0) {
-					decoPosX -= (int)(bmpDecoInfo.bmWidth * faktor);
-					// decoPosX = max(decoPosX, posWall.x);
-				// }
-				// else
-					// decoPosX = max(0, decoPosX - (int)(bmpDecoInfo.bmWidth * faktor));
+				int decoPosX = posWall.x + centerSideWall.x - (int)(bmpDecoInfo.bmWidth * faktor);
 				int decoPosY = posWall.y + centerSideWall.y - (int)(bmpDecoInfo.bmHeight * faktor);
 				isBigContainer = ((graphicTypeSide == SquareAlcove ||
 					graphicTypeSide == ArchedAlcove ||
 					graphicTypeSide == ViAltar ||
 					graphicTypeSide == Fountain));
-				// if (isBigContainer)
-				// 	decoPosY += (int)(bmpDecoInfo.bmHeight * faktor / 2);
 				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA, false);
-
-				// int x = posWall.x;
-				// int y = posWall.y;
-				// x += centerSideWall.x;
-				// y += centerSideWall.y;
-				// pDC->Ellipse(x - 5, y - 5, x + 5, y + 5);
-				// pDC->Ellipse(decoPosX - 5, decoPosY - 5, decoPosX + 5, decoPosY + 5);
-
+				// todo items rein malen??
 			}
 
 		}
