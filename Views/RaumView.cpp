@@ -391,11 +391,12 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 			else
 				centerFrontWall = m_pWallPic->GetCenterFromFrontWall(xxx, ebene);
 
+
 			if (bmpDecoFront && centerFrontWall.x > 0 && centerFrontWall.y > 0) {
 				cdc->SelectObject(bmpDecoFront);
 				bmpDecoFront->GetBitmap(&bmpDecoInfo);
 				int decoPosX = posWall.x + centerFrontWall.x - (int)(bmpDecoInfo.bmWidth * faktor);
-				int decoPosY = posWall.y + centerFrontWall.y - (int)(bmpDecoInfo.bmHeight * faktor) / (drawNearFloor ? 1 : 2);
+				int decoPosY = posWall.y + centerFrontWall.y - (int)(bmpDecoInfo.bmHeight * faktor); // / (drawNearFloor ? 1 : 2);
 				isBigContainer = ((graphicTypeFront == SquareAlcove ||
 					graphicTypeFront == ArchedAlcove ||
 					graphicTypeFront == ViAltar ||
@@ -426,6 +427,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 						tmpdc.DeleteDC();
 					}
 				}
+
 			}
 		}
 
@@ -443,21 +445,29 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 			if (centerSideWall.x > 0 && centerSideWall.y > 0) {
 				bmpDecoSide->GetBitmap(&bmpDecoInfo);
 				cdc->SelectObject(bmpDecoSide);
-				int decoPosX = posWall.x + centerSideWall.x; // die Mitte für die linke Seite ist links im Bild, also nix abziehen
-				if (xx > 0) {
-					decoPosX -= (int)(bmpDecoInfo.bmWidth * 2 * faktor);
-					decoPosX = max(decoPosX, posWall.x);
-				}
-				else
-					decoPosX = max(0, decoPosX - (int)(bmpDecoInfo.bmWidth * faktor));
-				int decoPosY = (int)(posWall.y + centerSideWall.y - bmpDecoInfo.bmHeight * faktor);
+				int decoPosX = posWall.x + centerSideWall.x;
+				// if (xx > 0) {
+					decoPosX -= (int)(bmpDecoInfo.bmWidth * faktor);
+					// decoPosX = max(decoPosX, posWall.x);
+				// }
+				// else
+					// decoPosX = max(0, decoPosX - (int)(bmpDecoInfo.bmWidth * faktor));
+				int decoPosY = posWall.y + centerSideWall.y - (int)(bmpDecoInfo.bmHeight * faktor);
 				isBigContainer = ((graphicTypeSide == SquareAlcove ||
 					graphicTypeSide == ArchedAlcove ||
 					graphicTypeSide == ViAltar ||
 					graphicTypeSide == Fountain));
-				if (isBigContainer)
-					decoPosY += (int)(bmpDecoInfo.bmHeight * faktor / 2);
+				// if (isBigContainer)
+				// 	decoPosY += (int)(bmpDecoInfo.bmHeight * faktor / 2);
 				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA, false);
+
+				int x = posWall.x;
+				int y = posWall.y;
+				x += centerSideWall.x;
+				y += centerSideWall.y;
+				pDC->Ellipse(x - 5, y - 5, x + 5, y + 5);
+				// pDC->Ellipse(decoPosX - 5, decoPosY - 5, decoPosX + 5, decoPosY + 5);
+
 			}
 
 		}
@@ -730,7 +740,7 @@ void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, 
 
 	if (reducedWidth > 0)
 	{
-		int w_opt = w - zuvielrechts / 2;
+		int w_opt = w - zuvielrechts / ( 2 * faktor);
 		if (vInvers) {
 			// todo inverses Bild! Obsolet?
 			pDC->TransparentBlt(x, y,
