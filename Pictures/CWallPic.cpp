@@ -158,19 +158,19 @@ CPoint CWallPic::GetCenterFromFrontWall(int x, int ebene) {
 	case 0:
 		break;
 	case 1:
-		if (x == 2) { xKoord = 0; yKoord = 36 * 2; }
-		if (x == 3) { xKoord = 160 * 2; yKoord = 36 * 2; }
-		if (x == 4) { xKoord = 80 * 2; yKoord = 36 * 2; } // 42 ?
+		if (x == 2) { xKoord = 0; yKoord = 55 * 2; }
+		if (x == 3) { xKoord = 160 * 2; yKoord = 55 * 2; }
+		if (x == 4) { xKoord = 80 * 2; yKoord = 55 * 2; } // 42 ?
 		break;
 	case 2:
-		if (x == 2) { xKoord = 10 * 2; yKoord = 25 * 2; }
-		if (x == 3) { xKoord = 67 * 2; yKoord = 25 * 2; }
-		if (x == 4) { xKoord = 53 * 2; yKoord = 25 * 2; }
+		if (x == 2) { xKoord = 10 * 2; yKoord = 37 * 2; }
+		if (x == 3) { xKoord = 67 * 2; yKoord = 37 * 2; }
+		if (x == 4) { xKoord = 53 * 2; yKoord = 37 * 2; }
 		break;
 	case 3:
-		if (x == 2) { xKoord = 37 * 2; yKoord = 17 * 2; }
-		if (x == 3) { xKoord = 45 * 2; yKoord = 17 * 2; }
-		if (x == 4) { xKoord = 35 * 2; yKoord = 17 * 2; }
+		if (x == 2) { xKoord = 37 * 2; yKoord = 24 * 2; }
+		if (x == 3) { xKoord = 45 * 2; yKoord = 24 * 2; }
+		if (x == 4) { xKoord = 35 * 2; yKoord = 24 * 2; }
 		break;
 	}
 	return CPoint(xKoord, yKoord);
@@ -196,18 +196,18 @@ CPoint CWallPic::GetCenterFromSideWall(int x, int ebene) {
 	case 0:
 		break;
 	case 1:
-		if (x == 2) { xKoord = 49 * 2; yKoord = 38 * 2; }  // Linke Schr‰ge Mitte des groﬂen Steins
-		if (x == 3) { xKoord = 10 * 2; yKoord = 38 * 2; }  // Rechte Schr‰ge Mitte des groﬂen Steins
+		if (x == 2) { xKoord = 49 * 2; yKoord = 48 * 2; }  // Linke Schr‰ge Mitte des groﬂen Steins
+		if (x == 3) { xKoord = 10 * 2; yKoord = 48 * 2; }  // Rechte Schr‰ge Mitte des groﬂen Steins
 		break;
 	case 2:
-		if (x == 2) { xKoord = 67 * 2; yKoord = 25 * 2; }  // Linke Schr‰ge Mitte des groﬂen Steins
-		if (x == 3) { xKoord = 10 * 2; yKoord = 25 * 2; }  // Rechte Schr‰ge Mitte des groﬂen Steins
+		if (x == 2) { xKoord = 67 * 2; yKoord = 34 * 2; }  // Linke Schr‰ge Mitte des groﬂen Steins
+		if (x == 3) { xKoord = 10 * 2; yKoord = 34 * 2; }  // Rechte Schr‰ge Mitte des groﬂen Steins
 		break;
 	case 3:
-		if (x == 0) { xKoord = 29 * 2; yKoord = 16 * 2; }  // Entferne Schr‰ge links 
-		if (x == 1) { xKoord = 13 * 2; yKoord = 16 * 2; }
-		if (x == 2) { xKoord = 75 * 2; yKoord = 16 * 2; }
-		if (x == 3) { xKoord = 7 * 2; yKoord = 16 * 2; }
+		if (x == 0) { xKoord = 29 * 2; yKoord = 24 * 2; }  // Entferne Schr‰ge links 
+		if (x == 1) { xKoord = 13 * 2; yKoord = 24 * 2; }
+		if (x == 2) { xKoord = 75 * 2; yKoord = 24 * 2; }
+		if (x == 3) { xKoord = 7 * 2; yKoord = 24 * 2; }
 		break;
 	}
 	return CPoint(xKoord, yKoord);
