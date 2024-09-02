@@ -125,7 +125,6 @@ private:
 	void MoveItems(VEKTOR heroPos);
 	void MoveMagicMissiles(VEKTOR heroPos, SUBPOS_ABSOLUTE pos);
 	bool MoveMagicMissile(VEKTOR heroPos, SUBPOS_ABSOLUTE posAbs, CMagicMissile* topMissile);
-	// void CheckMissileCollisions(VEKTOR pos);
 	void CheckFlyingItemCollisions(VEKTOR pos);
 	void CheckOtherDelays(VEKTOR fieldPos);
 	void TriggerPassiveActuators(VEKTOR fieldPos, VEKTOR heroPos );
@@ -138,7 +137,8 @@ private:
 	void TriggerTarget(CField* pTargetField, CActuator* actuator, boolean criticalWeightBreached);
 	void WriteOnWall(CDC* pDC, CPoint pos, CText* text, int ebene);
 	boolean TryToAttack(CGrpMonster* pGrpMon, int index, COMPASS_DIRECTION direction, int range, int power, int absDist);
-	void SoundAttack(CGrpMonster* pGrpMon);
+	VEKTOR MoveDown(VEKTOR pos);
+	VEKTOR MoveUp(VEKTOR pos);
 };
 
 /////////////////////////////////////////////////////////////////////////////

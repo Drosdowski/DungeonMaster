@@ -5,6 +5,7 @@
 #include "..\..\Attributes\ClothAttributes.h"
 #include "..\..\Attributes\MiscellaneousAttributes.h"
 #include "..\..\Attributes\WeaponAttributes.h"
+#include <cassert>
 
 
 CItem3DPic::CItem3DPic(CDC* pDC) : CBasePictures(pDC)
@@ -596,10 +597,13 @@ CBitmap* CItem3DPic::GetMiscBitmap(int miscType, int subType) {
 		bmp = GetMoonstone();
 	else if (miscType == CMiscellaneousAttributes::EkkhardCross || miscType == CMiscellaneousAttributes::GemOfAges || miscType == CMiscellaneousAttributes::Illumulet || miscType == CMiscellaneousAttributes::JewelSymal)
 		bmp = GetIllumunet();
-	
+	else if (miscType == CMiscellaneousAttributes::Rope)
+		bmp = m_pRope;
 	else
+	{
+		assert(false);
 		bmp = NULL;
-
+	}
 	return bmp;
 }
 

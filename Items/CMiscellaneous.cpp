@@ -78,6 +78,8 @@ int CMiscellaneous::GetSheetForGroup() {
 	case Throwable:
 		if (m_attribute.type >= CMiscellaneousAttributes::Boulder)
 			return 4;
+	case Climb:
+		return 4;
 	case Other:
 		if (m_attribute.type == CMiscellaneousAttributes::Compass)
 			return 0;

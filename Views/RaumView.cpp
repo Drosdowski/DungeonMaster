@@ -941,13 +941,11 @@ VEKTOR CRaumView::GrpHeroWalkTo(VEKTOR toPos, boolean& collision)
 		CStairs* stairsBegin = pField->HoleStairs();
 		if (stairsBegin->GetType() == CStairs::StairType::DOWN)
 		{
-			toPos.z++;
+			toPos = MoveDown(toPos);
 		}
 		else {
-			toPos.z--;
+			toPos = MoveUp(toPos);
 		}
-		toPos.x += (m_pMap->GetOffset(fromPos.z).x - m_pMap->GetOffset(toPos.z).x);
-		toPos.y += (m_pMap->GetOffset(fromPos.z).y - m_pMap->GetOffset(toPos.z).y);
 		// neue Richtung: Blick auf das einzige EMPTY Feld neben Hero
 
 		CStairs* stairsEnd = m_pMap->GetField(toPos)->HoleStairs();
@@ -964,9 +962,7 @@ void CRaumView::FallingHeroes(VEKTOR heroPos) {
 	if (pit)
 	{
 		if (pit->GetState() == CPit::Opened) {
-			heroPos.x += (m_pMap->GetOffset(heroPos.z).x - m_pMap->GetOffset(heroPos.z + 1).x);
-			heroPos.y += (m_pMap->GetOffset(heroPos.z).y - m_pMap->GetOffset(heroPos.z + 1).y);
-			heroPos.z++;
+			heroPos = MoveDown(heroPos);
 			CGrpHeld* pGrpHelden = m_pMap->GetHeroes();
 			pGrpHelden->Laufen(heroPos, true);
 			pGrpHelden->FallingDamage();
@@ -1014,9 +1010,7 @@ void CRaumView::MoveMonsters(VEKTOR monsterPos) {
 			if (pit) {
 
 				if (pit->GetState() == CPit::Opened && !mc.levitate) {
-					monsterPos.x += (m_pMap->GetOffset(monsterPos.z).x - m_pMap->GetOffset(monsterPos.z + 1).x);
-					monsterPos.y += (m_pMap->GetOffset(monsterPos.z).y - m_pMap->GetOffset(monsterPos.z + 1).y);
-					monsterPos.z++;
+					monsterPos = MoveDown(monsterPos);
 					pGrpMon->FallingDamage();
 				}
 			}
@@ -1246,73 +1240,6 @@ bool CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagic
 	return true; 
 }
 
-//
-//void CRaumView::CheckMissileCollisions(VEKTOR position) {
-//
-//	CField* field = m_pMap->GetField(position);
-//	CGrpMonster* pGroupMonster = field->GetMonsterGroup();
-//	
-//	for (int s = 0; s < 4; s++) {
-//		SUBPOS_ABSOLUTE posAbs = (SUBPOS_ABSOLUTE)s;
-//		std::deque<CMagicMissile*> magicMissiles = field->GetMagicMissile(posAbs);
-//		if (!magicMissiles.empty()) {
-//			CMagicMissile* topMissile = magicMissiles.back(); // todo prüfen, reicht es, nur das oberste anzuschauen, gibt es > 1 fliegende Missiles je Feld
-//			CMonster* pHittedMonster = pGroupMonster ? pGroupMonster->GetMonsterByAbsSubPos(posAbs) : NULL;
-//			boolean bMonsterHit = pHittedMonster && (!CHelpfulValues::VectorEqual(topMissile->GetOrigin(), position) && (!CHelpfulValues::VectorEqual(topMissile->GetOrigin(), position)));
-//			if (!topMissile->IsExploding()) {
-//
-//				if (bMonsterHit) {
-//					if (pHittedMonster->getInfo().non_material == (topMissile->GetType() == CMagicMissile::MagicMissileType::AntiMagic))
-//					{
-//						topMissile->Explode();
-//						if (topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball ||
-//							topMissile->GetType() == CMagicMissile::MagicMissileType::Lightning)
-//						{
-//							m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingFireball.mp3");
-//						}
-//						else {
-//							m_pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-ExplodingSpell.mp3");
-//						}
-//						topMissile->SetDone();
-//						if ((topMissile->GetType() == CMagicMissile::MagicMissileType::Fireball) || 
-//							(topMissile->GetType() == CMagicMissile::MagicMissileType::Lightning) ||
-//							(topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob))
-//						{							
-//							pGroupMonster->DoDamage(topMissile->GetStrength() * (rand() % 6 + 1), 0, position, true);
-//						}
-//					}
-//				}
-//				else {
-//					// todo spieler treffen in MoveMagicMissile - warum?
-//				}
-//			}
-//			else {
-//				CGrpHeld* pGrpHeld = m_pMap->GetHeroes();
-//				VEKTOR posHero = pGrpHeld->GetVector();
-//				if (CHelpfulValues::VectorEqual(posHero, position))
-//				{
-//					if (topMissile->GetType() == CMagicMissile::MagicMissileType::PoisonBlob) // todo: klären: stimmt das??
-//					{
-//						pGrpHeld->DoDamage(0, topMissile->GetStrength() / 4, position, true); // todo correct formula
-//					}
-//					else {
-//						pGrpHeld->DoDamage(topMissile->GetStrength() / 4, 0, position, true); // todo correct formula
-//					}
-//				}
-//				if (pGroupMonster) {
-//					CMonsterInfos* monsterInfos = GetMonsterInfos();
-//					CMonsterConst mc = monsterInfos->GetMonsterInfo(pGroupMonster->GetType());
-//					double faktor = (mc.non_material &&
-//									 (topMissile->GetType() == CMagicMissile::MagicMissileType::AntiMagic))
-//						 ? 0.3 : 1; // ghosts get less damage from area sources
-//					pGroupMonster->DoDamage((int)(topMissile->GetStrength() * faktor / 4), 0, position, true); // todo correct formula
-//
-//				}
-//			}
-//		}
-//	}
-//}
-
 void CRaumView::CheckFlyingItemCollisions(VEKTOR heroPos) {
 	CField* field = m_pMap->GetField(heroPos);
 	for (int s = 0; s < 4; s++) {
@@ -1425,9 +1352,7 @@ void CRaumView::MoveItems(VEKTOR itemPos) {
 					if (pit) {
 						if (pit->GetState() == CPit::Opened) {
 							pItem = field->TakeItem(posAbs);
-							itemPos.x += (m_pMap->GetOffset(itemPos.z).x - m_pMap->GetOffset(itemPos.z + 1).x);
-							itemPos.y += (m_pMap->GetOffset(itemPos.z).y - m_pMap->GetOffset(itemPos.z + 1).y);
-							itemPos.z++;
+							itemPos = MoveDown(itemPos);
 							CField* newField = m_pMap->GetField(itemPos);
 							newField->PutItem(pItem, posAbs);
 						}
@@ -1480,10 +1405,7 @@ CField* CRaumView::ChangeFieldWithStairs(CField* pField, CMovingObject* pItem, S
 		// Falls Treppe runter: Item fliegt runter!
 		if (stair->GetType() == CStairs::StairType::DOWN) {
 			VEKTOR oben = pField->HolePos();
-			VEKTOR unten = { oben.x, oben.y, oben.z + 1 };
-
-			unten.x += (m_pMap->GetOffset(oben.z).x - m_pMap->GetOffset(unten.z).x);
-			unten.y += (m_pMap->GetOffset(oben.z).y - m_pMap->GetOffset(unten.z).y);
+			VEKTOR unten = MoveDown(oben);
 			pField = m_pMap->GetField(unten);
 			CStairs* stairEnd = pField->HoleStairs();
 			COMPASS_DIRECTION sourceDir = CHelpfulValues::OppositeDirection(stair->StairExit());
@@ -2171,6 +2093,10 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 				weapon = (CWeapon*)item;
 				attackType = weapon->GetAttributes().style[ActionId - 1].type;
 			}
+			else if (item && item->GetType() == CMiscellaneousAttributes::MiscItemType::Rope) {
+#
+				attackType = "climb";
+			}
 			else {
 				/*CWeaponAttributes att;
 				att.fixAttributes.damage = 1;
@@ -2222,6 +2148,15 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 				pGrpHero->setPhaseDelay(ac.fatigue);
 				pGrpHero->setPhase(SHOW_DAMAGE);
 			}
+			else if (attackType == "climb") {
+				CPit* pit = field->HolePit();
+				if (pit) {
+					pGrpHero->Laufen(monPos, false);
+					pHero->ReduceStamina(ac.stamina);
+					pGrpHero->setPhaseDelay(ac.fatigue);
+				}
+				pGrpHero->setPhase(SHOW_DAMAGE);
+			}
 			else {
 				// Nahkampf!
 				if (pVictims) {
@@ -2257,5 +2192,21 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 			pHero->setDelay(max(2, ac.fatigue));
 		}
 	}
-
 }
+
+VEKTOR CRaumView::MoveDown(VEKTOR fromPos) {
+	VEKTOR toPos = fromPos;
+	toPos.z++;
+	toPos.x += (m_pMap->GetOffset(fromPos.z).x - m_pMap->GetOffset(toPos.z).x);
+	toPos.y += (m_pMap->GetOffset(fromPos.z).y - m_pMap->GetOffset(toPos.z).y);
+	return toPos;
+}
+
+VEKTOR CRaumView::MoveUp(VEKTOR fromPos) {
+	VEKTOR toPos = fromPos;
+	toPos.z--;
+	toPos.x += (m_pMap->GetOffset(fromPos.z).x - m_pMap->GetOffset(toPos.z).x);
+	toPos.y += (m_pMap->GetOffset(fromPos.z).y - m_pMap->GetOffset(toPos.z).y);
+	return toPos;
+}
+

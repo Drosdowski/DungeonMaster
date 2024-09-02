@@ -382,7 +382,11 @@ void CPictures::DrawActionAreaChoice(CDC* pDC, CItemInfos* m_pItemInfos, int wea
 	BITMAP bmpInfo;
 	double numberActions = 3;
 	CString actionText[3];
-	if (weaponIndex >= 0)
+	if (weaponIndex == CLIMBINDEX) {
+		actionText[0] = "climb down";
+		numberActions = 1;
+	}
+	else if (weaponIndex >= 0)
 	{
 		for (int j = 0; j < 3; j++) {
 			actionText[j] = m_pItemInfos->GetWeaponInfo(weaponIndex).style[j].type;
