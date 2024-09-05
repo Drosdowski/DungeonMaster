@@ -85,7 +85,8 @@ int CMiscellaneous::GetSheetForGroup() {
 			return 0;
 		if (m_attribute.type >= CMiscellaneousAttributes::CopperCoin && m_attribute.type <= CMiscellaneousAttributes::GoldCoin)
 			return 3;
-		if (m_attribute.type == CMiscellaneousAttributes::Bones)
+		if (m_attribute.type >= CMiscellaneousAttributes::MagicBoxBlue && m_attribute.type <= CMiscellaneousAttributes::Choker ||
+			m_attribute.type >= CMiscellaneousAttributes::Magnifier && m_attribute.type <= CMiscellaneousAttributes::Bones)
 			return 4;
 	}
 	assert(false); // todo !!

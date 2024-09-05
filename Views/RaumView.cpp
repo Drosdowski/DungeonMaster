@@ -385,16 +385,18 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 		if (((xxx == 4) && (ebene == 1)) ||
 			((xxx > 1) && (ebene == 2)) ||
 			(ebene == 3)) {
+
+			cdc->SelectObject(bmpDecoFront);
+			bmpDecoFront->GetBitmap(&bmpDecoInfo);
+
 			bool drawNearFloor = m_pWallDecoPic->DrawNearFloor(graphicTypeFront);
 			if (drawNearFloor)
 				centerFrontWall = m_pWallPic->GetBottomCenterFromFrontWall(xxx, ebene);
 			else
-				centerFrontWall = m_pWallPic->GetCenterFromFrontWall(xxx, ebene);
-
+				centerFrontWall = m_pWallPic->GetCenterFromFrontWall(xxx, ebene, bmpDecoInfo.bmHeight < 56);
 
 			if (bmpDecoFront && centerFrontWall.x > 0 && centerFrontWall.y > 0) {
-				cdc->SelectObject(bmpDecoFront);
-				bmpDecoFront->GetBitmap(&bmpDecoInfo);
+
 				int decoPosX = posWall.x + centerFrontWall.x - (int)(bmpDecoInfo.bmWidth * faktor);
 				int decoPosY = posWall.y + centerFrontWall.y - (int)(bmpDecoInfo.bmHeight * faktor); // / (drawNearFloor ? 1 : 2);
 				isBigContainer = ((graphicTypeFront == SquareAlcove ||
@@ -436,15 +438,17 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 	if (bmpDecoSide)
 	{
 		if (ebene > 0 && xxx < 4) {
+			bmpDecoSide->GetBitmap(&bmpDecoInfo);
+			cdc->SelectObject(bmpDecoSide);
 
 			CPoint centerSideWall;
 			if (m_pWallDecoPic->DrawNearFloor(graphicTypeSide))
 				centerSideWall = m_pWallPic->GetBottomCenterFromSideWall(xxx, ebene);
 			else
-				centerSideWall = m_pWallPic->GetCenterFromSideWall(xxx, ebene);
+				centerSideWall = m_pWallPic->GetCenterFromSideWall(xxx, ebene, bmpDecoInfo.bmHeight < 48);
 			if (centerSideWall.x > 0 && centerSideWall.y > 0) {
-				bmpDecoSide->GetBitmap(&bmpDecoInfo);
-				cdc->SelectObject(bmpDecoSide);
+				int x = posWall.x + centerSideWall.x;
+				int y = posWall.y + centerSideWall.y;
 				int decoPosX = posWall.x + centerSideWall.x - (int)(bmpDecoInfo.bmWidth * faktor);
 				int decoPosY = posWall.y + centerSideWall.y - (int)(bmpDecoInfo.bmHeight * faktor);
 				isBigContainer = ((graphicTypeSide == SquareAlcove ||
@@ -452,6 +456,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 					graphicTypeSide == ViAltar ||
 					graphicTypeSide == Fountain));
 				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA, false);
+				pDC->Ellipse(x - 5, y - 5, x + 5, y + 5);
 				// todo items rein malen??
 			}
 
@@ -462,7 +467,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 		((xxx > 1) && (ebene == 2))) {
 		CText* text = pField->GetFirstText(richtOppo);
 		if (text) {
-			centerFrontWall = m_pWallPic->GetCenterFromFrontWall(xxx, ebene);
+			centerFrontWall = m_pWallPic->GetCenterFromFrontWall(xxx, ebene, false);
 			centerFrontWall.x += posWall.x;
 			centerFrontWall.y += posWall.y;
 			WriteOnWall(pDC, centerFrontWall, text, ebene);
@@ -692,7 +697,7 @@ void CRaumView::DrawMagicMissile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_
 					}
 					else {
 						CPoint posWall = m_pWallPic->GetWallPos(xxx, ebene);
-						CPoint posMitte = m_pWallPic->GetCenterFromFrontWall(xxx, ebene);
+						CPoint posMitte = m_pWallPic->GetCenterFromFrontWall(xxx, ebene, false);
 						pos.x = posWall.x + posMitte.x - (int)(bmpInfo.bmWidth * faktor);
 						pos.y = posWall.y + posMitte.y - (int)(bmpInfo.bmHeight * faktor);
 					}
@@ -1520,7 +1525,7 @@ void CRaumView::TriggerPassiveActuator(VEKTOR heroPos, CField* field, CActuator*
 				firstMissile->m_flyForce = force;
 				field->CastMissile(firstMissile, CHelpfulValues::GetFirstPositionFromDirection(dir));
 
-				CMagicMissile* secondMissile = new CMagicMissile(missileType, power, source);
+				CMagicMissile* secondMissile = new CMagicMissile(missileType, power, source); // todo memory leak here
 				secondMissile->m_flyForce = force;
 				field->CastMissile(secondMissile, CHelpfulValues::GetSecondPositionFromDirection(dir));
 				actuator->resetDelay();

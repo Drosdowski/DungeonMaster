@@ -9,8 +9,8 @@ public:
 
 	CPoint GetWallPos(int x, int ebene);
 
-	CPoint GetCenterFromFrontWall(int x, int ebene);
-	CPoint GetCenterFromSideWall(int x, int ebene);
+	CPoint GetCenterFromFrontWall(int x, int ebene, bool ofSecondStone);
+	CPoint GetCenterFromSideWall(int x, int ebene, bool ofSecondStone);
 	CPoint GetBottomCenterFromFrontWall(int x, int ebene);
 	CPoint GetBottomCenterFromSideWall(int x, int ebene);
 	CBitmap* GetWallPic(int x, int ebene, bool bMirror);
