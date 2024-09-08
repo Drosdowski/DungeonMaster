@@ -41,6 +41,8 @@ public:
 	double static getDistanceFactor(int iEntfernung);
 
 	double static round1(double value);
+	//VEKTOR static originFront(int width, int height, boolean bottom, int x, int ebene);
+	//VEKTOR static originSide(int width, int height, boolean bottom, int x, int ebene);
 
 private:
 	SUBPOS static GetPosByIndexWhenFacingNorth(SUBPOS_ABSOLUTE SUBPOSINDEX); // only internal usage when DIR = 0!

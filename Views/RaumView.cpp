@@ -440,23 +440,27 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 		if (ebene > 0 && xxx < 4) {
 			bmpDecoSide->GetBitmap(&bmpDecoInfo);
 			cdc->SelectObject(bmpDecoSide);
-
-			CPoint centerSideWall;
-			if (m_pWallDecoPic->DrawNearFloor(graphicTypeSide))
+			int w = (int)(bmpDecoInfo.bmWidth * faktor);
+			int h = (int)(bmpDecoInfo.bmHeight * faktor);
+			CPoint centerSideWall = { 0,0 };
+			if (m_pWallDecoPic->DrawNearFloor(graphicTypeSide)) {
+				// VEKTOR decoPos = CHelpfulValues::originSide(w, h, true, xxx, ebene);
+				// DrawInArea(decoPos.x, decoPos.y, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA, false);
 				centerSideWall = m_pWallPic->GetBottomCenterFromSideWall(xxx, ebene);
+			}
 			else
 				centerSideWall = m_pWallPic->GetCenterFromSideWall(xxx, ebene, bmpDecoInfo.bmHeight < 48);
 			if (centerSideWall.x > 0 && centerSideWall.y > 0) {
 				int x = posWall.x + centerSideWall.x;
 				int y = posWall.y + centerSideWall.y;
-				int decoPosX = posWall.x + centerSideWall.x - (int)(bmpDecoInfo.bmWidth * faktor);
-				int decoPosY = posWall.y + centerSideWall.y - (int)(bmpDecoInfo.bmHeight * faktor);
+				int decoPosX = posWall.x + centerSideWall.x - w;
+				int decoPosY = posWall.y + centerSideWall.y - h;
 				isBigContainer = ((graphicTypeSide == SquareAlcove ||
 					graphicTypeSide == ArchedAlcove ||
 					graphicTypeSide == ViAltar ||
 					graphicTypeSide == Fountain));
 				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA, false);
-				pDC->Ellipse(x - 5, y - 5, x + 5, y + 5);
+				pDC->Ellipse(x - 3, y - 3, x + 3, y + 3);
 				// todo items rein malen??
 			}
 

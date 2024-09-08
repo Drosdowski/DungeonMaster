@@ -440,3 +440,13 @@ double CHelpfulValues::getDistanceFactor(int iEntfernung) {
 	return 1; // todo 1 !
 }
 
+//VEKTOR CHelpfulValues::originFront(int width, int height, boolean bottom, int x, int ebene) {
+//}
+//VEKTOR CHelpfulValues::originSide(int width, int height, boolean bottom, int x, int ebene) {
+//	switch (ebene) {
+//	case 1:
+//		if (x == 2) return VEKTOR{49, 26};
+//		if (x == 3) return VEKTOR{-2, 28};
+//	case 2:
+//
+//}
