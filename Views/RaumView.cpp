@@ -447,9 +447,22 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 				// VEKTOR decoPos = CHelpfulValues::originSide(w, h, true, xxx, ebene);
 				// DrawInArea(decoPos.x, decoPos.y, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA, false);
 				centerSideWall = m_pWallPic->GetBottomCenterFromSideWall(xxx, ebene);
+				if (bmpDecoInfo.bmWidth == 16) {
+					// Mitte des Bildes liegt bei Bildern unten bei 4/14 (rechts 12/14)
+					if (xx < 0) {
+						centerSideWall.x += (int)(8 * faktor);
+					}
+					else {
+						centerSideWall.x -= (int)(8 * faktor);
+					}
+					centerSideWall.y -= (int)(10 * faktor);
+				}
 			}
-			else
+			else {
 				centerSideWall = m_pWallPic->GetCenterFromSideWall(xxx, ebene, bmpDecoInfo.bmHeight < 48);
+				// Mitte des Bildes liegt bei Bildern Mitte bei 4/8 (rechts 12/8)
+
+			}
 			if (centerSideWall.x > 0 && centerSideWall.y > 0) {
 				int x = posWall.x + centerSideWall.x;
 				int y = posWall.y + centerSideWall.y;
@@ -1168,8 +1181,7 @@ bool CRaumView::MoveMagicMissile(VEKTOR position, SUBPOS_ABSOLUTE posAbs, CMagic
 						}
 					}
 				}
-				field->TakeMissile(posAbs, topMissile);
-				// delete topMissile;
+				delete field->TakeMissile(posAbs, topMissile);
 				return true;
 			}
 		}

@@ -279,43 +279,35 @@ void CDMView::ParseClickDoorButton(CPoint point, CField* FeldVorHeld) {
 	}
 }
 
-bool CDMView::ParseClickFountain(CPoint point, CField* FeldVorHeld, COMPASS_DIRECTION dir) {
+bool CDMView::ParseClickFountain(CGrpHeld* grpHelden) {
+	CHeld* activeHero = grpHelden->GetActiveHero();
+	CItem* itemInHand = grpHelden->GetItemInHand();
 
-	CWallDecoration* deco = FeldVorHeld->GetWallDeco(dir);
-	if (deco && deco->GetDecoType() == Fountain) {
-		CSize size = m_pRaumView->GetSizeOfFrontDeco(FeldVorHeld, dir);
-		if (CScreenCoords::CheckHitDeco(point, size)) {
-			CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
-			if (grpHelden == NULL) return false;
-			CHeld* activeHero = grpHelden->GetActiveHero();
-			CItem* itemInHand = grpHelden->GetItemInHand();
-			if (itemInHand == NULL) {
-				// Hand leer = trinken
-				activeHero->Trinken(50); // todo amount drink?
-				return true; // sound
-			}
-			else {
-				// item in hand füllen
-				if (itemInHand->getItemType() == CItem::MiscItem) {
-					CMiscellaneous* container = (CMiscellaneous*)itemInHand;
-					if (container->GetIndex() == 11 && container->GetSubtype() < 3) {
-						// Waterskin todo empty flask
-						container->SetSubtype(3); // change to full
-					}
-				}
-				else if (itemInHand->getItemType() == CItem::PotionItem) {
-					CPotion* potion = (CPotion*)itemInHand;
-					CPotionAttributes att = potion->GetAttributes();
-					if (att.type == CPotionAttributes::Empty)
-					{
-						att.type = CPotionAttributes::Water;
-						potion->MakePotion(att);
-					}
-				}
+	if (itemInHand == NULL) {
+		// Hand leer = trinken
+		activeHero->Trinken(50); // todo amount drink?
+		return true; // sound
+	}
+	else {
+		// item in hand füllen
+		if (itemInHand->getItemType() == CItem::MiscItem) {
+			CMiscellaneous* container = (CMiscellaneous*)itemInHand;
+			if (container->GetIndex() == 11 && container->GetSubtype() < 3) {
+				// Waterskin todo empty flask
+				container->SetSubtype(3); // change to full
 			}
 		}
+		else if (itemInHand->getItemType() == CItem::PotionItem) {
+			CPotion* potion = (CPotion*)itemInHand;
+			CPotionAttributes att = potion->GetAttributes();
+			if (att.type == CPotionAttributes::Empty)
+			{
+				att.type = CPotionAttributes::Water;
+				potion->MakePotion(att);
+			}
+		}
+		return false;
 	}
-	return false;
 }
 
 
@@ -458,29 +450,37 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 			}
 			else if (type == CActuator::Storage || type == CActuator::Inactive)
 			{
-				int neededItemId = currentActuator->GetData() + 2; // todo formel verstehen.
-				if (itemInHand == NULL) {
-					CItem* item = FeldVorHeld->TakeItem(posActuator);
-					if (item != NULL) {
-						grpHelden->TakeItemInHand(item);
+				if (currentActuator->GetGraphic() == 11) {
+					if (ParseClickFountain(grpHelden)) {
+						CDMDoc* pDoc = (CDMDoc*)GetDocument();
+						pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Swallowing.mp3");
+					}
+				}
+				else {
+					int neededItemId = currentActuator->GetData() + 2; // todo formel verstehen.
+					if (itemInHand == NULL) {
+						CItem* item = FeldVorHeld->TakeItem(posActuator);
+						if (item != NULL) {
+							grpHelden->TakeItemInHand(item);
+							if (!nextActuator->IsOnceOnly()) {
+								// Torch Holder => Empty holder = Item gone
+								//InvokeRemoteActuator(currentActuator, nextActuator);
+								FeldVorHeld->RotateActuators(dir);
+							}
+						}
+						return false;
+					}
+					else if ((data == 0 && nextActuator->GetType() != CActuator::Storage) 
+						  || (data == 4 && itemInHand->GetIndex() == 91) ){
+						FeldVorHeld->PutItem(itemInHand, posActuator);
+						grpHelden->EmptyHand();
 						if (!nextActuator->IsOnceOnly()) {
 							// Torch Holder => Empty holder = Item gone
-							//InvokeRemoteActuator(currentActuator, nextActuator);
 							FeldVorHeld->RotateActuators(dir);
 						}
+						return false;
 					}
-					return false;
-				}
-				else if ((data == 0 && nextActuator->GetType() != CActuator::Storage) 
-					  || (data == 4 && itemInHand->GetIndex() == 91) ){
-					FeldVorHeld->PutItem(itemInHand, posActuator);
-					grpHelden->EmptyHand();
-					if (!nextActuator->IsOnceOnly()) {
-						// Torch Holder => Empty holder = Item gone
-						FeldVorHeld->RotateActuators(dir);
-					}
-					return false;
-				}
+				}				
 
 			}
 			else if (type == CActuator::ChampionMirror) {
@@ -675,7 +675,6 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 		Awake();
 	} else {
 
-		CDMDoc* pDoc = (CDMDoc*)GetDocument();
 		if (m_iModus == MOD_LAUFEN && gMode == DEFAULT)
 		{
 			ParseClickArrows(point);
@@ -703,10 +702,6 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 
 						if (ParseClickActuator(point, actuators, dir, size))
 							FeldVorHeld->RotateActuators(dir);
-					}
-					if (ParseClickFountain(point, FeldVorHeld, dir))
-					{
-						pDoc->PlayDMSound("C:\\Users\\micha\\source\\repos\\DungeonMaster\\sound\\DMCSB-SoundEffect-Swallowing.mp3"); 
 					}
 					CWallDecoration* pWallDeco = FeldVorHeld->GetWallDeco(dir);
 					if (pWallDeco) {

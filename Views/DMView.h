@@ -102,7 +102,7 @@ protected:
 	void ParseClickAir(CPoint point);
 	bool ParseClickActuator(CPoint point, std::deque<CActuator*> &actuators, COMPASS_DIRECTION dir, CSize size);
 	void ParseClickDoorButton(CPoint point, CField* FeldVorHeld);
-	bool ParseClickFountain(CPoint point, CField* FeldVorHeld, COMPASS_DIRECTION dir);
+	bool ParseClickFountain(CGrpHeld* grpHelden);
 	// void ParseClickMirror(CPoint point, CField* FeldVorHeld);
 
 	void InvokeRemoteWallActuator(CActuator* activeActuator, CActuator* nextActuator);

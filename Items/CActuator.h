@@ -43,7 +43,7 @@ public:
 	ActionTypes GetActionType() { return m_actionType; }
 	ActionTarget GetActionTarget() { return m_actionTarget; }
 	double GetCriticalWeigth() { return 0.1; } // todo wo steht das?
-	int GetGraphic() { return m_graphic; }
+	int GetGraphic() { return m_graphic; } // todo enum
 	COMPASS_DIRECTION GetPosition() { return m_position; } 
 	bool IsActive() { return m_active;  }
 	void Activate() { m_active = true; }
