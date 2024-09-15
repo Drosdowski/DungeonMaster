@@ -39,16 +39,17 @@ int CMiscellaneous::GetOffsetForGroup() {
 		switch (m_attribute.type) {
 			case CMiscellaneousAttributes::Compass: return m_attribute.subtype; // N W S E
 			case CMiscellaneousAttributes::Boulder: return 0;
-			case CMiscellaneousAttributes::MagicBoxBlue: return 4;
-			case CMiscellaneousAttributes::MagicBoxGreen: return 5;
-			case CMiscellaneousAttributes::CopperCoin: return 29;
-			case CMiscellaneousAttributes::SilverCoin: return 30;
-			case CMiscellaneousAttributes::GoldCoin: return 31;
-			case CMiscellaneousAttributes::MirrorOfDawn: return 6;
 			case CMiscellaneousAttributes::BlueGem: return 1;
 			case CMiscellaneousAttributes::OrangeGem: return 2;
 			case CMiscellaneousAttributes::GreenGem: return 3;
-			case CMiscellaneousAttributes::Bones: return 19;				
+			case CMiscellaneousAttributes::MagicBoxBlue: return 4;
+			case CMiscellaneousAttributes::MagicBoxGreen: return 5;
+			case CMiscellaneousAttributes::MirrorOfDawn: return 6;
+			case CMiscellaneousAttributes::Corbum: return 10;
+			case CMiscellaneousAttributes::Bones: return 19;
+			case CMiscellaneousAttributes::CopperCoin: return 29;
+			case CMiscellaneousAttributes::SilverCoin: return 30;
+			case CMiscellaneousAttributes::GoldCoin: return 31;
 			default: assert(false); // todo !!
 		}
 		

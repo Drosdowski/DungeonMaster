@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<dungeon start_x="0" start_y="28" start_z="8" start_facing="East">
+<dungeon start_x="23" start_y="15" start_z="8" start_facing="North">
     <heroes>
-        <hero index="1" heroId="1" hp_akt="90" st_akt="750" ma_akt="0" hp_max="90" st_max="750" ma_max="0" name="HALK" subname="" male="Y" LUK="10278" STR="10280" DEX="14135" VIT="11051" WIS="7710" AM="12336" AF="11822" SKILLS="4,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0" SPELL="">
+        <hero index="1" heroId="1" hp_akt="90" st_akt="750" ma_akt="0" hp_max="90" st_max="750" ma_max="0" name="HALK" subname="" male="Y" LUK="11822" STR="10278" DEX="10280" VIT="14135" WIS="11051" AM="12336" AF="7710" SKILLS="4,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0" SPELL="">
             <item item="0" index="61" type="0" />
             <item item="1" index="41" type="0" />
             <item item="2" index="89" type="2" />
@@ -9,13 +9,13 @@
             <item item="5" index="24" type="2" />
             <item item="6" index="61" type="2" />
         </hero>
-        <hero index="2" heroId="2" hp_akt="78" st_akt="610" ma_akt="5" hp_max="80" st_max="610" ma_max="5" name="HISSSSA" subname="" male="Y" LUK="11051" STR="10280" DEX="14906" VIT="12336" WIS="8995" AM="14135" AF="8995" SKILLS="4,3,0,0,0,3,1,0,0,0,0,0,0,0,0,0" SPELL="">
+        <hero index="2" heroId="2" hp_akt="80" st_akt="610" ma_akt="5" hp_max="80" st_max="610" ma_max="5" name="HISSSSA" subname="" male="Y" LUK="8995" STR="11051" DEX="10280" VIT="14906" WIS="12336" AM="14135" AF="8995" SKILLS="4,3,0,0,0,3,1,0,0,0,0,0,0,0,0,0" SPELL="">
             <item item="0" index="88" type="2" />
             <item item="1" index="30" type="0" />
             <item item="5" index="59" type="2" />
             <item item="6" index="62" type="2" />
         </hero>
-        <hero index="3" heroId="3" hp_akt="39" st_akt="630" ma_akt="26" hp_max="39" st_max="630" ma_max="26" name="GANDO" subname="" male="Y" LUK="12336" STR="12850" DEX="10023" VIT="11565" WIS="12079" AM="11051" AF="8481" SKILLS="0,0,0,0,3,0,2,3,0,0,0,0,1,1,2,2" SPELL="3,4,4">
+        <hero index="3" heroId="3" hp_akt="39" st_akt="630" ma_akt="26" hp_max="39" st_max="630" ma_max="26" name="GANDO" subname="" male="Y" LUK="8481" STR="12336" DEX="12850" VIT="10023" WIS="11565" AM="11051" AF="12079" SKILLS="0,0,0,0,3,0,2,3,0,0,0,0,1,1,2,2" SPELL="3,4,4">
             <item item="0" index="1" type="3" />
             <item item="1" index="171" type="1" />
             <item item="5" index="55" type="2" />
@@ -26,15 +26,17 @@
             <item item="23" index="56" type="1" />
             <item item="25" index="249" type="1" />
         </hero>
-        <hero index="4" heroId="4" hp_akt="24" st_akt="450" ma_akt="35" hp_max="25" st_max="450" ma_max="35" name="TIGGY" subname="" male="N" LUK="15163" STR="11565" DEX="7710" VIT="11565" WIS="12850" AM="10280" AF="8995" SKILLS="0,0,0,0,1,3,1,1,0,0,0,1,3,2,3,2" SPELL="">
+        <hero index="4" heroId="4" hp_akt="25" st_akt="450" ma_akt="35" hp_max="25" st_max="450" ma_max="35" name="TIGGY" subname="" male="N" LUK="8995" STR="15163" DEX="11565" VIT="7710" WIS="11565" AM="10280" AF="12850" SKILLS="0,0,0,0,1,3,1,1,0,0,0,1,3,2,3,2" SPELL="">
             <item item="0" index="74" type="0" />
             <item item="1" index="34" type="1" />
             <item item="9" index="73" type="0" />
+            <item item="13" index="79" type="1" />
             <item item="14" index="42" type="1" />
             <item item="15" index="250" type="1" />
             <item item="16" index="1" type="4" />
             <item item="17" index="31" type="0" />
             <item item="22" index="11" type="1" />
+            <item item="23" index="55" type="0" />
             <item item="24" index="7" type="3" />
             <item item="25" index="0" type="3" />
             <item item="26" index="110" type="1" />
@@ -10089,11 +10091,7 @@
                 <tile index="33">
                     <trickwall state="0" />
                 </tile>
-                <tile index="34">
-                    <items>
-                        <miscellaneous index="79" position="0" />
-                    </items>
-                </tile>
+                <tile index="34" />
                 <tile index="35" />
                 <tile index="36" />
                 <tile index="37" />
@@ -10124,11 +10122,7 @@
                 <tile index="62" />
                 <tile index="63" />
                 <tile index="64" />
-                <tile index="65">
-                    <items>
-                        <weapon index="55" position="2" />
-                    </items>
-                </tile>
+                <tile index="65" />
                 <tile index="66">
                     <actuators>
                         <actuator index="282" subPos="3" active="1" />
@@ -10243,7 +10237,7 @@
                 <tile index="145" />
                 <tile index="146">
                     <actuators>
-                        <actuator index="257" subPos="3" active="1" />
+                        <actuator index="257" subPos="3" active="0" />
                     </actuators>
                 </tile>
                 <tile index="147" />

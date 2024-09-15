@@ -60,7 +60,7 @@ public:
 #endif
 
 // Generated message map functions
-protected:
+private:
 	int m_iDir;
 	CPictures* m_pPictures;
 	CZauberView* m_pZauberView;
