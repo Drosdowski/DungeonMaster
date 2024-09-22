@@ -14,8 +14,8 @@ public:
 	};
 	enum ActuatorType {
 		Inactive = 0,
-		PressurePadTPCI = 1, // People, Creatures, Throwing, Items
-		PressurePadTPC = 2, // People, Creatures, Throwing
+		PressurePadTPCI = 1, // People, Creatures, Theron, Items
+		PressurePadTPC = 2, // People, Creatures, Theron
 		PressurePadP = 3, // People
 		Slot = 4,
 		Gate = 5,

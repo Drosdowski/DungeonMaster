@@ -24,7 +24,10 @@
 #include "..\SpecialTile\CTeleporter.h"
 #include "..\Items/Item.h"
 #include "..\Items/Potion.h"
+#include "..\Items/Cloth.h"
 #include "..\Items/CMiscellaneous.h"
+#include "..\Items/Scroll.h"
+#include "..\Items/Weapon.h"
 #include "..\Items/Container.h"
 #include "..\Items/WallDecoration.h"
 #include "..\Items\MagicMissile.h"
@@ -402,6 +405,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 			SUBPOS_ABSOLUTE posActuator = (SUBPOS_ABSOLUTE)dir;
 			std::deque<CItem*> itemsInWall = FeldVorHeld->GetItem(posActuator);
 			int data = currentActuator->GetData();
+			bool matchingItemInHand = itemInHand ? data == GetDataId(itemInHand) : NULL;
 
 
 			if (type == CActuator::PressurePadTPCI) {
@@ -411,41 +415,23 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 			}
 			else if (type == CActuator::Slot /* || type == 3 */) {
 				// Item Receiver - Lock / ... ?
-				CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
-				CItem* itemInHand = grpHelden->GetItemInHand();
-				if (itemInHand) {
-					int neededItemId;
-					if (data > 120 && data < 130) {
-						neededItemId = data - 119;
-					} else if (data > 129 && data < 167) {
-						neededItemId = data - 90;
-					} else if (data > 167) {
-						neededItemId = data - 167;
+				if (matchingItemInHand) {
+					// Match !
+					if (currentActuator->GetActionTarget() == CActuator::Remote) {
+						InvokeRemoteWallActuator(currentActuator, nextActuator);
 					}
-					else assert(false); // todo formel verstehen. - coin = 125  <> index 6 / type 4				- 119
-										//								   127 => 	Key: 184 => Gold Key=17		
-										//								   134 => Mirror => 44					- 90
-										//								   186 => topaz	=19						- 167
-										//								   176 => 9 Iron Key					- 167
-										//								   177 => 10							- 167
-					if (neededItemId == itemInHand->GetType()) {
-						// Match !
-						if (currentActuator->GetActionTarget() == CActuator::Remote) {
-							InvokeRemoteWallActuator(currentActuator, nextActuator);
-						}
-						else assert(false); // todo ...
+					else assert(false); // todo ...
 
-						if (type == 4)
-						{
-							grpHelden->EmptyHand();
-							delete (itemInHand);
-							::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
-						}
-						if (currentActuator->IsOnceOnly()) {
-							currentActuator->Deactivate();
-						}
-						return true; // RotateActuators
+					if (type == 4)
+					{
+						grpHelden->EmptyHand();
+						delete (itemInHand);
+						::SystemParametersInfo(SPI_SETCURSORS, 0, 0, SPIF_SENDCHANGE);
 					}
+					if (currentActuator->IsOnceOnly()) {
+						currentActuator->Deactivate();
+					}
+					return true; // RotateActuators
 				}
 			}
 			else if (type == CActuator::Storage || type == CActuator::Inactive)
@@ -457,7 +443,6 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 					}
 				}
 				else {
-					int neededItemId = currentActuator->GetData() + 2; // todo formel verstehen.
 					if (itemInHand == NULL) {
 						CItem* item = FeldVorHeld->TakeItem(posActuator);
 						if (item != NULL) {
@@ -471,7 +456,7 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 						return false;
 					}
 					else if ((data == 0 && nextActuator->GetType() != CActuator::Storage) 
-						  || (data == 4 && itemInHand->GetIndex() == 91) ){
+						  || (data > 0 && matchingItemInHand)){
 						FeldVorHeld->PutItem(itemInHand, posActuator);
 						grpHelden->EmptyHand();
 						if (!nextActuator->IsOnceOnly()) {
@@ -503,11 +488,16 @@ bool CDMView::ParseClickActuator(CPoint point, std::deque<CActuator*>& actuators
 				else {
 					FeldVorHeld->PutItem(itemInHand, posActuator);
 					grpHelden->EmptyHand();
+					if (data > 0 && matchingItemInHand) {
+						InvokeRemoteWallActuator(currentActuator, nextActuator);
+						return true; // RotateActuators
+					}
 				}
 			}
 		}
 	return false;
 }
+
 
 void CDMView::InvokeRemoteWallActuator(CActuator* activeActuator, CActuator* nextActuator) {
 	VEKTOR target = activeActuator->GetActionTarget() == CActuator::ActionTarget::Remote ? activeActuator->GetTarget() : nextActuator->GetTarget();
@@ -1317,4 +1307,37 @@ void CDMView::Walk()
 void CDMView::SetDirection(int iRichtung)
 {
 	m_iWunschRichtung = iRichtung;
+}
+
+int CDMView::GetDataId(CItem* item) {
+	if (item->getItemType() == CItem::ItemType::WeaponItem)
+		return calcDataId(
+			((CWeapon*)item)->GetSheetForGroup(),
+			((CWeapon*)item)->GetOffsetForGroup(false));
+	else if (item->getItemType() == CItem::ItemType::ClothItem)
+		return calcDataId(
+			((CCloth*)item)->GetSheetForGroup(),
+			((CCloth*)item)->GetOffsetForGroup());
+	else if (item->getItemType() == CItem::ItemType::MiscItem)
+		return calcDataId(
+			((CMiscellaneous*)item)->GetSheetForGroup(),
+			((CMiscellaneous*)item)->GetOffsetForGroup());
+	else if (item->getItemType() == CItem::ItemType::PotionItem)
+		return calcDataId(
+			((CPotion*)item)->GetSheetForGroup(),
+			((CPotion*)item)->GetOffsetForGroup());
+	else if (item->getItemType() == CItem::ItemType::ScrollItem)
+		return calcDataId(
+			((CScroll*)item)->GetSheetForGroup(),
+			((CScroll*)item)->GetOffsetForGroup(false));
+	else if (item->getItemType() == CItem::ItemType::ContainerItem)
+		return calcDataId(
+			((CContainer*)item)->GetSheetForGroup(),
+			((CContainer*)item)->GetOffsetForGroup(false));
+	else
+		return -1;
+}
+
+int CDMView::calcDataId(int sheet, int offset) {
+	return sheet * 32 + offset;
 }

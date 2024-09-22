@@ -114,6 +114,8 @@ private:
 private:
 	void SwitchBackpackItem(CItem* itemInMainHand, int slot, CGrpHeld* grpHelden);
 	void SwitchContainerItem(CItem* itemInMainHand, int slot, CGrpHeld* grpHelden, CContainer* pContainer);
+	int GetDataId(CItem* item);
+	int calcDataId(int sheet, int offset);
 
 };
 
