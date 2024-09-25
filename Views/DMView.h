@@ -49,7 +49,7 @@ public:
 // Implementation
 public:
 	void InitDungeon(CDMDoc* pDoc);
-	void SetDirection(int iRichtung);
+	void SetDirection(DIRECTION iRichtung);
 	void Walk();
 
 	virtual ~CDMView();
@@ -61,7 +61,7 @@ public:
 
 // Generated message map functions
 private:
-	int m_iDir;
+	DIRECTION m_iDir;
 	CPictures* m_pPictures;
 	CZauberView* m_pZauberView;
 	CGroupView* m_pGroupView;
@@ -75,9 +75,9 @@ private:
 	void WaffenZeichnen(CDC* pDC, CGrpHeld* pGrpHeroes);
 	void FrameZeichnen(CDC* pDC);
 	bool m_bPause;
-	DMMode m_iModus;
+	DMMode m_Modus;
 	DMMode lastModus;
-	int m_iWunschRichtung;
+	DIRECTION m_iWunschRichtung;
 
 	//{{AFX_MSG(CDMView)
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);

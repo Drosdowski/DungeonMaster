@@ -211,7 +211,7 @@ SUBPOS_ABSOLUTE CHelpfulValues::GetSecondPositionFromDirection(COMPASS_DIRECTION
 	if (heroDir == NORTH) return NORTHWEST;
 }
 
-VEKTOR CHelpfulValues::GetNextFieldKoord(int toDirection, int viewDirection, int range, VEKTOR sourcePos)
+VEKTOR CHelpfulValues::GetNextFieldKoord(DIRECTION toDirection, COMPASS_DIRECTION viewDirection, int range, VEKTOR sourcePos)
 {
 	CHelpfulValues* HV = new CHelpfulValues();
 	int sx = HV->m_stx[viewDirection] * range;

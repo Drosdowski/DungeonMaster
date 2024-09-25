@@ -26,7 +26,7 @@ public:
 	SUBPOS_ABSOLUTE static GetSecondPositionFromDirection(COMPASS_DIRECTION heroDir);
 	SUBPOS_ABSOLUTE static RightFrom(SUBPOS_ABSOLUTE pos);
 	SUBPOS_ABSOLUTE static LeftFrom(SUBPOS_ABSOLUTE pos);
-	VEKTOR static GetNextFieldKoord(int toDirection, int viewDirection, int range, VEKTOR sourcePos);
+	VEKTOR static GetNextFieldKoord(DIRECTION toDirection, COMPASS_DIRECTION viewDirection, int range, VEKTOR sourcePos);
 
 	bool static westOf(VEKTOR myPos, VEKTOR hisPos);
 	bool static eastOf(VEKTOR myPos, VEKTOR hisPos);

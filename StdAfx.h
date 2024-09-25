@@ -23,13 +23,16 @@
 #define cheatAktiv true
 #define footWaterAktiv false
 
-// todo in enum packen
-#define VORWAERTS 1
-#define RUECKWAERTS 2
-#define LINKS_STRAFE 3
-#define RECHTS_STRAFE 4
-#define LINKS_DREHEN 5
-#define RECHTS_DREHEN 6
+enum DIRECTION
+{
+	NIX = 0,
+	VORWAERTS = 1,
+	RUECKWAERTS = 2,
+	LINKS_STRAFE = 3,
+	RECHTS_STRAFE = 4,
+	LINKS_DREHEN = 5,
+	RECHTS_DREHEN = 6
+};
 
 #define SCHWARZ RGB(0,0,0)
 #define HELLBLAU RGB(0,224,224)

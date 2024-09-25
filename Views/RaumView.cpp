@@ -1757,7 +1757,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 				targetPos = GrpMonsterWalkTo(monPos, targetPos, collision, mc.levitate);
 			}
 			else {
-				int newDirection;
+				DIRECTION newDirection;
 				if (rand() % 2 == 0) {
 					newDirection = LINKS_STRAFE;
 				}

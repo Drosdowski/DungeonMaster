@@ -4,7 +4,7 @@ class CScreenCoords
 public:
 	CScreenCoords();
 
-	static int CheckHitArrows(CPoint point);
+	static DIRECTION CheckHitArrows(CPoint point);
 	static int CheckHitActiveWizard(CPoint point, int activeWizardID);
 	static int CheckHitRunes(CPoint point);
 	static bool CheckHitSpell(CPoint point);

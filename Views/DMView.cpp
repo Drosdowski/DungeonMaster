@@ -66,10 +66,10 @@ CDMView::CDMView()
 	m_pZauberView = new CZauberView();
 	m_pGroupView = NULL;
 	m_bPause = false;
-	m_iModus = MOD_LAUFEN;
+	m_Modus = MOD_LAUFEN;
 	lastModus = MOD_LAUFEN;
-	m_iWunschRichtung = 0;
-	m_iDir = 0;
+	m_iWunschRichtung = NIX;
+	m_iDir = NIX;
 	((CDMApp*)AfxGetApp())->SetView(this);
 
 	/*CFont* pFont;
@@ -130,10 +130,10 @@ CDMDoc* CDMView::GetDocument() // non-debug version is inline
 // CDMView message handlers
 
 void CDMView::ParseClickArrows(CPoint point) {
-	int newDir = CScreenCoords::CheckHitArrows(point);
+	DIRECTION newDir = CScreenCoords::CheckHitArrows(point);
 	if (newDir > 0) {
 		m_iDir = newDir;
-		if ((m_iModus == MOD_LAUFEN) && (m_iDir > 0))
+		if ((m_Modus == MOD_LAUFEN) && (m_iDir > 0))
 		{
 			UpdateGrafik();
 			SetDirection(m_iDir);
@@ -665,7 +665,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 		Awake();
 	} else {
 
-		if (m_iModus == MOD_LAUFEN && gMode == DEFAULT)
+		if (m_Modus == MOD_LAUFEN && gMode == DEFAULT)
 		{
 			ParseClickArrows(point);
 			ParseClickFloor(point);
@@ -722,7 +722,7 @@ void CDMView::OnLButtonDown(UINT nFlags, CPoint point)
 			}
 
 		}
-		else if (m_iModus == MOD_LAUFEN && gMode == BACKPACK)
+		else if (m_Modus == MOD_LAUFEN && gMode == BACKPACK)
 		{
 			if (CScreenCoords::CheckHitMainScr(point)) {
 				ParseClickBackpack(point);
@@ -885,7 +885,7 @@ void CDMView::OnRButtonDown(UINT nFlags, CPoint point)
 	else {
 		if (grpHelden->GetActiveHero() == NULL) return;
 
-		switch (m_iModus)
+		switch (m_Modus)
 		{
 		case MOD_LAUFEN:
 			if (heroMode == DEFAULT)
@@ -898,7 +898,7 @@ void CDMView::OnRButtonDown(UINT nFlags, CPoint point)
 			}
 			break;
 		case MOD_PAUSE:
-			m_iModus = MOD_LAUFEN;
+			m_Modus = MOD_LAUFEN;
 			UpdateGrafik();
 			break;
 		}
@@ -923,12 +923,12 @@ void CDMView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			case 27:
 				if (m_bPause) {
 					m_bPause = false;
-					m_iModus = lastModus;
+					m_Modus = lastModus;
 				}
 				else {
 					m_bPause = true;
-					lastModus = m_iModus;
-					m_iModus = MOD_PAUSE;
+					lastModus = m_Modus;
+					m_Modus = MOD_PAUSE;
 				}
 				break;
 			case 32:
@@ -972,7 +972,7 @@ void CDMView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 			}
 			}
 
-			if (m_iModus == MOD_LAUFEN)
+			if (m_Modus == MOD_LAUFEN)
 			{
 				if (m_iDir > 0)
 				{
@@ -1000,7 +1000,7 @@ void CDMView::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void CDMView::HeldenGrafikZeichnen(CGrpHeld* pGrpHelden, CDC* pDC, CPictures* pPictures)
 {
-	m_pGroupView->DrawGroup(pDC, m_iModus, pGrpHelden);
+	m_pGroupView->DrawGroup(pDC, m_Modus, pGrpHelden);
 }
 
 void CDMView::ZauberReiterZeichnen(CDC* pDC, int iActiveWizard, int runeTableId, int* runeIds)
@@ -1112,7 +1112,7 @@ void CDMView::UpdateGrafik()
 		CGrpHeld* grpHelden = m_pRaumView->GetHeroes();
 		if (grpHelden->GetModus() != ASLEEP)
 		{
-			if (m_iModus == MOD_LAUFEN) {
+			if (m_Modus == MOD_LAUFEN) {
 				if (grpHelden->GetModus() == BACKPACK)
 				{
 					m_pPictures->DrawBackback(pDC_, grpHelden);
@@ -1176,10 +1176,10 @@ void CDMView::OnTimer(UINT nIDEvent)
 			m_pRaumView->TriggerActuatorsNearby();
 		}
 
-		if (m_iDir > 0)
+		if (m_iDir > NIX)
 		{
 			Walk();
-			m_iDir = 0;
+			m_iDir = NIX;
 		}
 		UpdateGrafik();
 	}
@@ -1192,7 +1192,7 @@ void CDMView::OnTimer(UINT nIDEvent)
 
 void CDMView::OnLButtonUp(UINT nFlags, CPoint point)
 {
-	if (m_iModus == MOD_LAUFEN)
+	if (m_Modus == MOD_LAUFEN)
 	{
 		CGrpHeld* held = m_pRaumView->GetHeroes();
 		if (held->GetModus() == BACKPACK)
@@ -1236,7 +1236,7 @@ void CDMView::ChangeMouseCursor() {
 void CDMView::Awake() {
 	CGrpHeld* heroes = m_pRaumView->GetHeroes();
 	heroes->SetzeModus(DEFAULT);
-	m_iModus = MOD_LAUFEN;
+	m_Modus = MOD_LAUFEN;
 	SetTimer(7, 166, NULL);
 }
 
@@ -1300,11 +1300,11 @@ void CDMView::Walk()
 		}
 		break;
 	}
-	m_iWunschRichtung = 0;
+	m_iWunschRichtung = NIX;
 }
 
 
-void CDMView::SetDirection(int iRichtung)
+void CDMView::SetDirection(DIRECTION iRichtung)
 {
 	m_iWunschRichtung = iRichtung;
 }

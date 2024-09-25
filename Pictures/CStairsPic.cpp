@@ -137,11 +137,13 @@ CPoint CStairsPic::GetStairsDownFrontPos(int xx, int ebene, CPoint wallPos) {
 		break;
 	case 1:
 		if (xx == 2) return  CPoint(wallPos.x, wallPos.y + 16);
-		if (xx == 3) return  CPoint(wallPos.x + 58, wallPos.y + 16);
+		if (xx == 3) return  CPoint(wallPos.x + 56, wallPos.y + 16);
 		if (xx == 4) return  CPoint(wallPos.x, wallPos.y + 16);
 		return wallPos;
 		break;
 	case 2:
+		if (xx == 2) return  CPoint(wallPos.x, wallPos.y + 10);
+		if (xx == 3) return  CPoint(wallPos.x + 28, wallPos.y + 10);
 		if (xx == 4) return  CPoint(wallPos.x + 6, wallPos.y + 10);
 		return wallPos;
 		break;

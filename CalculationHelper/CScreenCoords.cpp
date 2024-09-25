@@ -47,7 +47,7 @@ CPoint CScreenCoords::GetContainerSlotKoords(int index) {
 	return CPoint(0, 0);
 }
 
-int CScreenCoords::CheckHitArrows(CPoint point) {
+DIRECTION CScreenCoords::CheckHitArrows(CPoint point) {
 	if (InRect(point, 526, 248, 580, 290))
 		return VORWAERTS;
 	else if (InRect(point, 526, 292, 580, 334))
@@ -60,7 +60,7 @@ int CScreenCoords::CheckHitArrows(CPoint point) {
 		return LINKS_DREHEN;
 	else if (InRect(point, 582, 248, 638, 290))
 		return RECHTS_DREHEN;
-return 0;
+	return NIX;
 }
 
 int CScreenCoords::CheckHitRunes(CPoint point) {
