@@ -205,26 +205,28 @@ CPoint CWallPic::GetCenterFromSideWall(int x, int ebene, bool ofSecondStone) {
 	case 0:
 		break;
 	case 1:
-		if (x == 2) { xKoord = 49 * 2; yKoord = 48 * 2; }  // Linke Schr‰ge Mitte des groﬂen Steins
-		if (x == 3) { xKoord = 10 * 2; yKoord = 48 * 2; }  // Rechte Schr‰ge Mitte des groﬂen Steins
+		if (x == 2) { xKoord = 49 * 2; yKoord = 51 * 2; }  // Linke Schr‰ge Mitte des groﬂen Steins
+		if (x == 3) { xKoord = 10 * 2; yKoord = 51 * 2; }  // Rechte Schr‰ge Mitte des groﬂen Steins
 		if (ofSecondStone) {
-			yKoord -= 11 * 2;
+			yKoord -= 14 * 2;
 		}
 		break;
 	case 2:
-		if (x == 2) { xKoord = 67 * 2; yKoord = 33 * 2; }  // Linke Schr‰ge Mitte des groﬂen Steins
-		if (x == 3) { xKoord = 10 * 2; yKoord = 33 * 2; }  // Rechte Schr‰ge Mitte des groﬂen Steins
+		if (x == 2) { xKoord = 64 * 2; yKoord = 36 * 2; }  // Linke Schr‰ge Mitte des groﬂen Steins
+		if (x == 3) { xKoord = 13 * 2; yKoord = 36 * 2; }  // Rechte Schr‰ge Mitte des groﬂen Steins
 		if (ofSecondStone) {
-			yKoord -= 8 * 2;
+			yKoord -= 11 * 2;
+			xKoord += 3 * 2 * ((x == 2) ? 1 : -1);
 		}
 		break;
 	case 3:
-		if (x == 0) { xKoord = 29 * 2; yKoord = 22 * 2; }  // Entferne Schr‰ge links 
-		if (x == 1) { xKoord = 13 * 2; yKoord = 22 * 2; }
-		if (x == 2) { xKoord = 75 * 2; yKoord = 22 * 2; }
-		if (x == 3) { xKoord = 7 * 2; yKoord = 22 * 2; }
+		if (x == 0) { xKoord = 29 * 2; yKoord = 25 * 2; }  // Entferne Schr‰ge links 
+		if (x == 1) { xKoord = 13 * 2; yKoord = 25 * 2; }
+		if (x == 2) { xKoord = 72 * 2; yKoord = 25 * 2; }
+		if (x == 3) { xKoord = 10 * 2; yKoord = 25 * 2; }
 		if (ofSecondStone) {
-			yKoord -= 6 * 2;
+			yKoord -= 8 * 2;
+			xKoord += 3 * 2 * ((x == 2) ? 1 : (x==3) ? - 1 : 0);
 		}
 		break;
 	}

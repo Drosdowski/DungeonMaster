@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<dungeon start_x="16" start_y="18" start_z="8" start_facing="West">
+<dungeon start_x="26" start_y="15" start_z="8" start_facing="West">
     <heroes>
         <hero index="1" heroId="1" hp_akt="90" st_akt="750" ma_akt="0" hp_max="90" st_max="750" ma_max="0" name="HALK" subname="" male="Y" LUK="7710" STR="11822" DEX="10278" VIT="10280" WIS="14135" AM="12336" AF="11051" SKILLS="4,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0" SPELL="">
             <item item="0" index="61" type="0" />
@@ -30,6 +30,7 @@
             <item item="0" index="74" type="0" />
             <item item="1" index="34" type="1" />
             <item item="9" index="73" type="0" />
+            <item item="13" index="80" type="1" />
             <item item="14" index="42" type="1" />
             <item item="15" index="250" type="1" />
             <item item="16" index="1" type="4" />
@@ -10356,7 +10357,7 @@
                 <tile index="243" />
                 <tile index="244" />
                 <tile index="245">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="246" />
                 <tile index="247" />
@@ -10668,9 +10669,6 @@
                     <actuators>
                         <actuator index="537" subPos="2" active="1" />
                     </actuators>
-                    <items>
-                        <miscellaneous index="80" position="2" />
-                    </items>
                 </tile>
                 <tile index="508">
                     <actuators>
@@ -10778,7 +10776,7 @@
                 <tile index="600" />
                 <tile index="601" />
                 <tile index="602">
-                    <door state="4" />
+                    <door state="0" />
                 </tile>
                 <tile index="603" />
                 <tile index="604" />

@@ -398,7 +398,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 			if (bmpDecoFront && centerFrontWall.x > 0 && centerFrontWall.y > 0) {
 
 				int decoPosX = posWall.x + centerFrontWall.x - (int)(bmpDecoInfo.bmWidth * faktor);
-				int decoPosY = posWall.y + centerFrontWall.y - (int)(bmpDecoInfo.bmHeight * faktor); // / (drawNearFloor ? 1 : 2);
+				int decoPosY = posWall.y + centerFrontWall.y - (int)(bmpDecoInfo.bmHeight * faktor); 
 				isBigContainer = ((graphicTypeFront == SquareAlcove ||
 					graphicTypeFront == ArchedAlcove ||
 					graphicTypeFront == ViAltar ||
@@ -411,7 +411,7 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 					std::deque<CItem*> pile = pField->GetItem((SUBPOS_ABSOLUTE)richtOppo);
 					if (pile.size() > 0) {
 						COMPASS_DIRECTION heroDir = m_pMap->GetHeroes()->GetDirection();
-						DrawPile(pDC, cdc, xxx, ebene, MIDDLE, heroDir, pile, isBigContainer);
+						DrawPile(pDC, cdc, xxx, ebene, MIDDLE, heroDir, pile, true);
 					}
 				}
 				else if (graphicTypeFront == ChampionMirror && actuatorsFront.back()->IsActive()) {
@@ -466,14 +466,18 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 			if (centerSideWall.x > 0 && centerSideWall.y > 0) {
 				int x = posWall.x + centerSideWall.x;
 				int y = posWall.y + centerSideWall.y;
-				int decoPosX = posWall.x + centerSideWall.x - w;
-				int decoPosY = posWall.y + centerSideWall.y - h;
+				int decoPosX = x - w;
+				int decoPosY = y - h;
+				int decoPosX2 = x + w;
+				int decoPosY2 = y + h;
 				isBigContainer = ((graphicTypeSide == SquareAlcove ||
 					graphicTypeSide == ArchedAlcove ||
 					graphicTypeSide == ViAltar ||
 					graphicTypeSide == Fountain));
-				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA, false);
 				pDC->Ellipse(x - 3, y - 3, x + 3, y + 3);
+				pDC->Ellipse(decoPosX - 3, decoPosY - 3, decoPosX + 3, decoPosY + 3);
+				pDC->Ellipse(decoPosX2 - 3, decoPosY2 - 3, decoPosX2 + 3, decoPosY2 + 3);
+				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA, false); // TRANS_ORA
 				// todo items rein malen??
 			}
 
