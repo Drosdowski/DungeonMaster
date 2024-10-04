@@ -114,7 +114,6 @@ protected:
 	CMonsterInfos* m_pMonsterInfos;
 
 private:
-	CDC* m_pDC;
 	int wallXFactor[5];
 	CHelpfulValues* m_values;
 	void FallingHeroes(VEKTOR pos);

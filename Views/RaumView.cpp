@@ -550,7 +550,7 @@ void CRaumView::DrawMonster(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRE
 
 		if (pMonster->getType() == WIZARDS_EYE || pMonster->getType() == GIANT_WASP)
 		{
-			p.y -= 60 * faktor;
+			p.y -= (int)(60 * faktor);
 		}
 
 		CPoint pos = CHelpfulValues::CalcSubPosition(p, subPos, faktor);
@@ -751,7 +751,7 @@ void CRaumView::DrawInArea(int x, int y, int w, int h, double faktor, CDC* pDC, 
 
 	if (reducedWidth > 0)
 	{
-		int w_opt = w - zuvielrechts / ( 2 * faktor);
+		int w_opt = (int)(w - zuvielrechts / ( 2 * faktor));
 		if (vInvers) {
 			// todo inverses Bild! Obsolet?
 			pDC->TransparentBlt(x, y,
@@ -1011,9 +1011,6 @@ void CRaumView::MoveMonsters(VEKTOR monsterPos) {
 	CGrpMonster* pGrpMon = field->GetMonsterGroup();
 	if (pGrpMon)
 	{
-		CMonsterInfos* monsterInfos = GetMonsterInfos();
-		CMonsterConst mc = monsterInfos->GetMonsterInfo(pGrpMon->GetType());
-
 		pGrpMon->Altern(field);
 		if (!pGrpMon->isAlive()) {
 			// Gruppe ausgestorben!
@@ -1027,13 +1024,12 @@ void CRaumView::MoveMonsters(VEKTOR monsterPos) {
 			field->RemoveMonsterGroup();
 		}
 		else {
+			CMonsterConst mc = m_pMonsterInfos->GetMonsterInfo(pGrpMon->GetType());
+			
 			CPit* pit = field->HolePit();
-			if (pit) {
-
-				if (pit->GetState() == CPit::Opened && !mc.levitate) {
-					monsterPos = MoveDown(monsterPos);
-					pGrpMon->FallingDamage();
-				}
+			if (pit && pit->GetState() == CPit::Opened && !mc.levitate) {
+				monsterPos = MoveDown(monsterPos);
+				pGrpMon->FallingDamage();
 			}
 			if (pGrpMon->AnyoneReadyToMove())
 			{
@@ -1058,8 +1054,7 @@ void CRaumView::MoveDoors(VEKTOR position) {
 	int heightOfSomeoneBelowDoor = 0;
 	if (pGrpMonsters)
 	{
-		CMonsterInfos* monsterInfos = GetMonsterInfos();
-		CMonsterConst mc = monsterInfos->GetMonsterInfo(pGrpMonsters->GetType());
+		CMonsterConst mc = m_pMonsterInfos->GetMonsterInfo(pGrpMonsters->GetType());
 		heightOfSomeoneBelowDoor = mc.height;
 	}
 	if (CHelpfulValues::VectorEqual(pGrpHeroes->GetVector(), position)) {
@@ -1273,8 +1268,7 @@ void CRaumView::CheckFlyingItemCollisions(VEKTOR heroPos) {
 				if (pGroupMonster) {
 					CMonster* pHittedMonster = pGroupMonster->GetMonsterByAbsSubPos(posAbs);
 					if (pHittedMonster) {
-						CMonsterInfos* monsterInfos = GetMonsterInfos();
-						CMonsterConst mc = monsterInfos->GetMonsterInfo(pGroupMonster->GetType());
+						CMonsterConst mc = m_pMonsterInfos->GetMonsterInfo(pGroupMonster->GetType());
 						if (!mc.non_material)
 						{
 							pGroupMonster->DoDamage((rand() % 6 + 1), 0, heroPos, true);
@@ -1743,8 +1737,7 @@ VEKTOR CRaumView::MonsterMoveOrAttack(CGrpMonster* pGrpMon) {
 	VEKTOR heroPos = pGrpHeroes->GetVector();
 	VEKTOR monPos = pGrpMon->GetVector();
 	VEKTOR targetPos;
-	CMonsterInfos* monsterInfos = GetMonsterInfos();
-	CMonsterConst mc = monsterInfos->GetMonsterInfo(pGrpMon->GetType());
+	CMonsterConst mc = m_pMonsterInfos->GetMonsterInfo(pGrpMon->GetType());
 	boolean collision = false;
 	int xDist = monPos.x - heroPos.x;
 	int yDist = monPos.y - heroPos.y;
@@ -1964,7 +1957,7 @@ boolean CRaumView::TryToAttack(CGrpMonster* pGrpMon, int index, COMPASS_DIRECTIO
 			case MATERIALIZER:
 			case DEMON:
 			case RED_DRAGON:
-				CMagicMissile::MagicMissileType type;
+				CMagicMissile::MagicMissileType type = CMagicMissile::Dust;
 				switch (pGrpMon->GetType())
 				{
 				case VEXIRK: type = static_cast<CMagicMissile::MagicMissileType>(rand() % 4); break;
@@ -2100,7 +2093,6 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 	CHeld* pHero = (CHeld*)pGrpHero->GetHeroForAction();
 	CGrpMonster* pVictims = GetMonsterGroup(monPos);
 	CAttackInfos* attackInfos = GetAttackInfos();
-	CMonsterInfos* monsterInfos = GetMonsterInfos();
 	CField* field = GetMap()->GetField(monPos);
 	int diff = GetMap()->GetLevelDifficulty(monPos.z);
 	if (pHero) {
@@ -2180,7 +2172,7 @@ void CRaumView::DoActionForChosenHero(CGrpHeld* pGrpHero, int ActionId) {
 			else {
 				// Nahkampf!
 				if (pVictims) {
-					CMonsterConst mc = monsterInfos->GetMonsterInfo(pVictims->GetType());
+					CMonsterConst mc = m_pMonsterInfos->GetMonsterInfo(pVictims->GetType());
 					int dmg = pHero->CalcDmg(weapon, ac, mc, diff);
 					if (dmg > 0 && pHero->St().Aktuell > 10 * ac.stamina) {
 						pVictims->DoDamage(dmg, 0, myPos, false); // true = Schaden an alle

@@ -1,7 +1,7 @@
 #pragma once
-#include "../Consts/WeaponConst.h";
-#include "../Consts/ClothConst.h";
-#include "../Consts/MiscConst.h";
+#include "../Consts/WeaponConst.h"
+#include "../Consts/ClothConst.h"
+#include "../Consts/MiscConst.h"
 
 class TiXmlElement;
 class CItemInfos

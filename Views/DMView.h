@@ -10,7 +10,7 @@
 #endif // _MSC_VER >= 1000
 
 #include <deque>
-#include "..\Items\MagicMissile.h";
+#include "..\Items\MagicMissile.h"
 
 
 class CActuator;

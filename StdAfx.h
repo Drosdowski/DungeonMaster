@@ -117,6 +117,7 @@ enum GroupMode {
 };
 
 enum FlyingVektor {
+	Here = 0,
 	Backside = 1,
 	Frontside = 2,
 	Side = 3
