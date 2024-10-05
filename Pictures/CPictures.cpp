@@ -142,7 +142,7 @@ void CPictures::DrawHand(CDC* pDC, CHeld* pHeld, int handId) {
 		CBitmap* bmp = m_pItemPic->GetBitmapSheet(itemInThisHand);
 		CPoint pos = m_pItemPic->GetSheetKoords(itemInThisHand, true);
 		tmpdc.SelectObject(bmp);
-		pDC->StretchBlt((pHeld->getIndex() - 1) * 138 + 7 + 40 * handId, 18, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, SRCCOPY);
+		pDC->StretchBlt((pHeld->getIndex() - 1) * 138 + 8 + 40 * handId, 18, 32, 32, &tmpdc, pos.x, pos.y, 16, 16, SRCCOPY);
 	}
 	tmpdc.DeleteDC();
 
