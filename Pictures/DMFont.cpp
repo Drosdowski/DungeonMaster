@@ -78,13 +78,13 @@ CPoint CDMFont::GetKoordsLightGreyChar(char letter) {
 
 }
 
-CPoint CDMFont::GetKoordsWhiteSpecialLetter(char letter) {
-	if (letter >= 65 && letter < 91) { 
-		int x = 10 + 8 * (letter - 65);
-		int y = 0;
-		return CPoint(x, y);
-	}
-}
+//CPoint CDMFont::GetKoordsWhiteSpecialLetter(char letter) {
+//	if (letter >= 65 && letter < 91) { 
+//		int x = 10 + 8 * (letter - 65);
+//		int y = 0;
+//		return CPoint(x, y);
+//	}
+//}
 
 CPoint CDMFont::GetKoordsWall(char letter) {
 	int y = 0;

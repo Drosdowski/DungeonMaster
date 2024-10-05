@@ -35,6 +35,7 @@ int CWeapon::GetOffsetForGroup(bool active) {
 		return 7;
 	}
 	assert(false);
+	return 0;
 }
 
 int CWeapon::GetSheetForGroup() {
@@ -107,6 +108,7 @@ CString CWeapon::GetName() {
 	case CWeaponAttributes::SpeedBow: return "Speed Bow";
 	case CWeaponAttributes::FireStaffComplete: return "Fire Staff Complete";
 	case CWeaponAttributes::Conduit: return "Conduit";
-
 	}
+	assert(false);
+	return "UNKNOWN";
 }

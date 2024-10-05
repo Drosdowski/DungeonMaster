@@ -89,7 +89,7 @@ void CGrpMonster::InstantKill() {
 	{
 		CMonster* pMonster = (CMonster*)m_pMember[i];
 		if (pMonster && pMonster->isAlive()) {
-			pMonster->AddDmg(pMonster->Hp().Aktuell);
+			pMonster->AddDmg((int)(pMonster->Hp().Aktuell));
 		}
 	}
 }
@@ -131,6 +131,7 @@ CMonster* CGrpMonster::AttackHero(int monIndex, VEKTOR monsterPos, VEKTOR heroPo
 			return pMonster; // pro Tick nur ein Angriff / Gruppe
 		}
 	}
+	return NULL;
 }
 
 bool CGrpMonster::isSubPosAbsoluteFree(SUBPOS_ABSOLUTE pos) {
@@ -359,6 +360,7 @@ MonsterTyp CGrpMonster::GetType() {
 		}
 	}
 	assert(false);
+	return LORD_CHAOS;
 }
 
 

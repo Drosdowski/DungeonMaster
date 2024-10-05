@@ -13,7 +13,7 @@ public:
 	CPoint GetKoordsBlack(char letter);
 	CPoint GetKoordsWhiteChar(char letter);
 	CPoint GetKoordsLightGreyChar(char letter);
-	CPoint GetKoordsWhiteSpecialLetter(char letter);
+	// CPoint GetKoordsWhiteSpecialLetter(char letter);
 	CPoint GetKoordsWhiteManaSymbol(int sheet, int no);
 	CPoint GetKoordsWall(char letter);
 

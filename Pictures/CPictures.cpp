@@ -698,6 +698,8 @@ CString CPictures::GetText(CItem* item) {
 	else if (typ == CItem::ItemType::ContainerItem) {
 		return ((CContainer*)item)->GetName();
 	}
+	assert(false);
+	return "UNKNOWN";
 }
 
 

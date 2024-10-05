@@ -176,4 +176,6 @@ CString CMiscellaneous::GetName() {
 	case CMiscellaneousAttributes::Potion: return "Potion";
 	case CMiscellaneousAttributes::Bomb: return "Bomb";
 	}
+	assert(false);
+	return "UNKNOWN";
 }
