@@ -141,25 +141,21 @@ FlyingVektor CHelpfulValues::GetRelativeVector(COMPASS_DIRECTION heroDir, VEKTOR
 		if (itemVektor.x != 0) return Side;
 		if (itemVektor.y < 0) return Backside;
 		return Frontside;
-		break;
 	case EAST:
 		if (itemVektor.y != 0) return Side;
 		if (itemVektor.x > 0) return Backside;
 		return Frontside;
-		break;
 	case SOUTH:
 		if (itemVektor.x != 0) return Side;
 		if (itemVektor.y > 0) return Backside;
 		return Frontside;
-		break;
 	case WEST:
 		if (itemVektor.y != 0) return Side;
 		if (itemVektor.x < 0) return Backside;
 		return Frontside;
-		break;
 	case STOP:
-		break;
 	default:
+		return Here;
 		break;
 	}
 }
@@ -203,12 +199,14 @@ SUBPOS_ABSOLUTE CHelpfulValues::GetFirstPositionFromDirection(COMPASS_DIRECTION 
 	if (heroDir == SOUTH) return SOUTHWEST;
 	if (heroDir == WEST) return NORTHWEST;
 	if (heroDir == NORTH) return NORTHEAST;
+	return MIDDLE;
 }
 SUBPOS_ABSOLUTE CHelpfulValues::GetSecondPositionFromDirection(COMPASS_DIRECTION heroDir) {
 	if (heroDir == EAST) return NORTHEAST;
 	if (heroDir == SOUTH) return SOUTHEAST;
 	if (heroDir == WEST) return SOUTHWEST;
 	if (heroDir == NORTH) return NORTHWEST;
+	return MIDDLE;
 }
 
 VEKTOR CHelpfulValues::GetNextFieldKoord(DIRECTION toDirection, COMPASS_DIRECTION viewDirection, int range, VEKTOR sourcePos)

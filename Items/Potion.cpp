@@ -50,4 +50,5 @@ CString CPotion::GetName() {
 	case CPotionAttributes::Empty: return "Empty Flask";
 	}
 	assert(false);
+	return "Unknown";
 }
