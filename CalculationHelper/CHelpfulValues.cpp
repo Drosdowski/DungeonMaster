@@ -431,9 +431,9 @@ double CHelpfulValues::round1(double value) {
 double CHelpfulValues::getDistanceFactor(int iEntfernung) {
 	if (iEntfernung == 0) return 1;
 	if (iEntfernung == 1) return 1;
-	if (iEntfernung == 2) return 0.75;
-	if (iEntfernung == 3) return 0.5;
-	if (iEntfernung == 4) return 0.4;
+	if (iEntfernung == 2) return 0.6666;
+	if (iEntfernung == 3) return 0.4444;
+	if (iEntfernung == 4) return 0.3333;
 	assert(false);
 	return 1; // todo 1 !
 }

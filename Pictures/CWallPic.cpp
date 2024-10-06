@@ -174,11 +174,11 @@ CPoint CWallPic::GetCenterFromFrontWall(int x, int ebene, bool ofSecondStone) {
 		}
 		break;
 	case 3:
-		if (x == 2) { xKoord = 37 * 2; yKoord = 24 * 2; }
-		if (x == 3) { xKoord = 45 * 2; yKoord = 24 * 2; }
-		if (x == 4) { xKoord = 35 * 2; yKoord = 24 * 2; }
+		if (x == 2) { xKoord = 37 * 2; yKoord = 25 * 2; }
+		if (x == 3) { xKoord = 45 * 2; yKoord = 25 * 2; }
+		if (x == 4) { xKoord = 35 * 2; yKoord = 25 * 2; }
 		if (ofSecondStone) {
-			yKoord -= 6 * 2;
+			yKoord -= 5 * 2;
 		}
 		break;
 	}
