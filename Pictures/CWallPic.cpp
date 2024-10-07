@@ -191,9 +191,9 @@ CPoint CWallPic::GetBottomCenterFromFrontWall(int x, int ebene) {
 	case 1:
 		p.y = 96 * 2; break;
 	case 2:
-		p.y = 63 * 2; break;
+		p.y = 64 * 2; break;
 	case 3:
-		p.y = 41 * 2; break;
+		p.y = 42 * 2; break;
 	}
 	return p;
 }

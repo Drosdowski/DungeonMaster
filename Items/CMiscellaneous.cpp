@@ -97,7 +97,7 @@ int CMiscellaneous::GetSheetForGroup() {
 
 CItem::ItemGroup CMiscellaneous::GetGroup() {
 	if (m_attribute.type >= 9 && m_attribute.type <= 24) return ItemGroup::Key;
-	if (m_attribute.type >= 29 && m_attribute.type <= 35 || m_attribute.type == 1) return ItemGroup::Consumable;
+	if (m_attribute.type >= 29 && m_attribute.type <= 36 || m_attribute.type == 1) return ItemGroup::Consumable;
 	if (m_attribute.type == CMiscellaneousAttributes::Boulder || m_attribute.type == CMiscellaneousAttributes::Potion || m_attribute.type == CMiscellaneousAttributes::Bomb) return ItemGroup::Throwable;
 	if (m_attribute.type == CMiscellaneousAttributes::Rope) return ItemGroup::Climb;
 	return ItemGroup::Other;
