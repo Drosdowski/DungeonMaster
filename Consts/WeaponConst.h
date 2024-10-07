@@ -42,8 +42,7 @@ public:
 		"fluxcage"
 	};
 	
-	class AttackStyle {
-	public:
+	struct AttackStyle {
 		CString type = "";
 		int dmg = 0;
 		int difficult = 0;
