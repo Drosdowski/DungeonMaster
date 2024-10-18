@@ -474,9 +474,6 @@ void CRaumView::DrawWall(CDC* pDC, CDC* cdc, int xxx, int ebene, COMPASS_DIRECTI
 					graphicTypeSide == ArchedAlcove ||
 					graphicTypeSide == ViAltar ||
 					graphicTypeSide == Fountain));
-				pDC->Ellipse(x - 3, y - 3, x + 3, y + 3);
-				pDC->Ellipse(decoPosX - 3, decoPosY - 3, decoPosX + 3, decoPosY + 3);
-				pDC->Ellipse(decoPosX2 - 3, decoPosY2 - 3, decoPosX2 + 3, decoPosY2 + 3);
 				DrawInArea(decoPosX, decoPosY, bmpDecoInfo.bmWidth, bmpDecoInfo.bmHeight, faktor, pDC, cdc, TRANS_ORA, false); // TRANS_ORA
 				// todo items rein malen??
 			}
