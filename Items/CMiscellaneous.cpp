@@ -50,6 +50,7 @@ int CMiscellaneous::GetOffsetForGroup() {
 			case CMiscellaneousAttributes::CopperCoin: return 29;
 			case CMiscellaneousAttributes::SilverCoin: return 30;
 			case CMiscellaneousAttributes::GoldCoin: return 31;
+			case CMiscellaneousAttributes::Magnifier: return 1;
 			default: assert(false); // todo !!
 		}
 		
@@ -87,8 +88,10 @@ int CMiscellaneous::GetSheetForGroup() {
 		if (m_attribute.type >= CMiscellaneousAttributes::CopperCoin && m_attribute.type <= CMiscellaneousAttributes::GoldCoin)
 			return 3;
 		if (m_attribute.type >= CMiscellaneousAttributes::MagicBoxBlue && m_attribute.type <= CMiscellaneousAttributes::Choker ||
-			m_attribute.type >= CMiscellaneousAttributes::Magnifier && m_attribute.type <= CMiscellaneousAttributes::Bones)
+			m_attribute.type >= CMiscellaneousAttributes::ZokathraSpell && m_attribute.type <= CMiscellaneousAttributes::Bones)
 			return 4;
+		if (m_attribute.type == CMiscellaneousAttributes::Magnifier)
+			return 6;
 	}
 	assert(false); // todo !!
 	return -1;
