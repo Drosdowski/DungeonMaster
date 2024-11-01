@@ -326,7 +326,8 @@ void CField::RotateActuators(COMPASS_DIRECTION position) {
 	bool action = actuator->Action() == 1 || (
 		m_pActuator[position].front()->Action() == 1 && actuator->Action() == -1
 		);
-	if (actuator->GetActionTarget() == CActuator::Local || action ) { // todo experimentell: wann rotate? delay triggert gleich beides.
+	// if (actuator->GetActionTarget() == CActuator::Local || action ) { // todo experimentell: wann rotate? delay triggert gleich beides.
+	if (actuator->IsActive()) { // todo experimentell: wann rotate? delay triggert gleich beides.
 		m_pActuator[position].pop_back();
 		m_pActuator[position].push_front(actuator);
 	}
