@@ -640,7 +640,7 @@ void CRaumView::DrawOneOfPile(CDC* pDC, CDC* cdc, int xxx, int ebene, SUBPOS_ABS
 		bmp = m_pItem3DPic->GetClothBitmap(((CCloth*)item)->GetType(), item->IsFlying());
 	}
 	else if (typ == CItem::ItemType::PotionItem) {
-		bmp = m_pItem3DPic->GetPotionBitmap(((CPotion*)item)->GetType()); 
+		bmp = m_pItem3DPic->GetPotionBitmap((CPotionAttributes::PotionType)((CPotion*)item)->GetType()); 
 	}
 	else if (typ == CItem::ItemType::ScrollItem) {
 		bmp = m_pItem3DPic->GetScrollBitmap();

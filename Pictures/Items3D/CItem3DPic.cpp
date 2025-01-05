@@ -406,7 +406,7 @@ CBitmap* CItem3DPic::GetThrowingStar(bool inAir, bool flip, FlyingVektor v) {
 			return m_pThrowingStar[2][flip];
 		}
 		else {
-			return m_pThrowingStar[3][flip];
+			return m_pThrowingStar[0][flip];
 		}
 	}
 	else {
@@ -431,10 +431,14 @@ CBitmap* CItem3DPic::GetPoisonDart(bool inAir, bool flip, FlyingVektor v) {
 	}
 }
 
-CBitmap* CItem3DPic::GetPotionBitmap(int potionType) {
+CBitmap* CItem3DPic::GetPotionBitmap(CPotionAttributes::PotionType potionType) {
 	CBitmap* bmp;
 	if (potionType == CPotionAttributes::Empty)
 		bmp = GetFlask(0);
+	else if (potionType == CPotionAttributes::Ful)
+		bmp = m_pBomb;
+	else if (potionType == CPotionAttributes::Ven)
+		bmp = m_pPotion;
 	else
 		bmp = GetFlask(1);
 	return bmp;

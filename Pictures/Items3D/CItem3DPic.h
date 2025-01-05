@@ -1,5 +1,6 @@
 #pragma once
 #include "..\CBasePictures.h"
+#include "..\..\Attributes\PotionAttributes.h"
 class CItem3DPic : CBasePictures
 {
 public:
@@ -59,7 +60,7 @@ public:
 	CBitmap* GetThrowingStar(bool inAir, bool flip, FlyingVektor v);
 	CBitmap* GetPoisonDart(bool inAir, bool flip, FlyingVektor v);
 	CBitmap* GetShield(bool large) { if (large) return m_pShield[1]; else return m_pShield[0]; }
-	CBitmap* GetPotionBitmap(int potionType);
+	CBitmap* GetPotionBitmap(CPotionAttributes::PotionType potionType);
 	CBitmap* GetClothBitmap(int clothType, bool inAir);
 	CBitmap* GetMiscBitmap(int miscType, int subType);
 	CBitmap* GetWeaponBitmap(int weaponType, bool inAir, bool flip, FlyingVektor v);
@@ -129,7 +130,7 @@ private:
 	CBitmap* m_pArrow[4][2];
 	CBitmap* m_pSlayer[4][2];
 	CBitmap* m_pPoisonDart[4][2];
-	CBitmap* m_pThrowingStar[3][2];
+	CBitmap* m_pThrowingStar[4][2];
 	CBitmap* m_pShield[2];
 	
 	CBitmap* m_pTorch;
