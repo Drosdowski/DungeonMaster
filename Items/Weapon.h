@@ -7,7 +7,7 @@ public:
 	CWeapon(int index, CWeaponAttributes attribute);
 	~CWeapon();
 
-	int GetType() { return m_attribute.type; }
+	CWeaponAttributes::WeaponType GetType() { return m_attribute.type; }
 	int GetCharges() { return m_attribute.charges; }
 	CWeaponConst  GetAttributes() { return m_attribute.fixAttributes;  }
 	void reduceCharges();

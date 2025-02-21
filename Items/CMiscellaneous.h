@@ -14,7 +14,7 @@ public:
 	CMiscellaneous(int index, CMiscellaneousAttributes att);
 	~CMiscellaneous();
 
-	int GetType() { return m_attribute.type; };
+	CMiscellaneousAttributes::MiscItemType GetType() { return m_attribute.type; };
 	double GetWeight();
 	CString GetName();
 

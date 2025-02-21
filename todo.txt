@@ -33,3 +33,6 @@ Monster
 * resi
 
 "This is my prisoner, let him suffer"
+
+throw ful/potion bomb
+ROPE !! Name?

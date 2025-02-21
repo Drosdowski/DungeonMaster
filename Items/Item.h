@@ -40,7 +40,6 @@ public:
 	char* getItemTypeString();
 	int GetIndex() { return m_index; }
 
-	virtual int GetType() { return -1; }
 	virtual int GetSheetForGroup() { return -1; }
 	virtual int GetOffsetForGroup(bool active) { return -1; }
 	virtual double GetWeight() { return -1; }

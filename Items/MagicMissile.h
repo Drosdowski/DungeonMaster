@@ -4,6 +4,7 @@ class CMagicMissile : public CMovingObject
 {
 public:
 	enum MagicMissileType {
+		None = -1,
 		OpenDoor = 0,
 		Lightning = 1,
 		Fireball = 2,

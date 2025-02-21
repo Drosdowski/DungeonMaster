@@ -197,8 +197,8 @@ void CDMView::ParseClickSpell(CPoint point, CGrpHeld* grpHelden) {
 
 			CItem* itemInLeftHand = pHeld->GetItemCarrying(0);
 			CItem* itemInRightHand = pHeld->GetItemCarrying(1);
-			bool emptyFlaskInLeftHand = itemInLeftHand && itemInLeftHand->GetType() == CPotionAttributes::PotionType::Empty;
-			bool emptyFlaskInRightHand = itemInRightHand && itemInRightHand->GetType() == CPotionAttributes::PotionType::Empty;
+			bool emptyFlaskInLeftHand   = itemInLeftHand && itemInLeftHand->getItemType()  == CItem::PotionItem && ((CPotion*)itemInLeftHand)->GetType() == CPotionAttributes::PotionType::Empty;
+			bool emptyFlaskInRightHand = itemInRightHand && itemInRightHand->getItemType() == CItem::PotionItem && ((CPotion*)itemInRightHand)->GetType() == CPotionAttributes::PotionType::Empty;
 
 			// Magic Missiles
 			if (spell[2] == 4 && spell[3] == 4 && spell[4] <= 0) {
@@ -1052,11 +1052,11 @@ void CDMView::FrameZeichnen(CDC* pDC) {
 				int index;
 				CItem* pItemMainHand = pHeld->GetItemCarrying(1);
 				if (pItemMainHand) {
-					if (pItemMainHand->GetGroup() == CItem::Weapon) {
-						index = pItemMainHand->GetType();
+					if (pItemMainHand->getItemType() == CItem::Weapon) {
+						index = ((CWeapon*)pItemMainHand)->GetType();
 					}
 					else if (pItemMainHand->GetGroup() == CItem::Throwable) {
-						index = pItemMainHand->GetType();
+						index = ((CMiscellaneous*)pItemMainHand)->GetType(); // TODO all throwable item besides weapon: rock, bombs
 					} 
 					else if (pItemMainHand->GetGroup() == CItem::Climb) {
 						index = CLIMBINDEX;

@@ -401,9 +401,8 @@ void CHeld::ChangeCompass() {
 		CItem* item = m_itemCarrying[i];
 		if (item && item->getItemType() == CItem::ItemType::MiscItem)
 		{
-			if (item->GetType() == CMiscellaneousAttributes::MiscItemType::Compass) {
-				CMiscellaneous* misc = (CMiscellaneous*)item;
-				
+			CMiscellaneous* misc = (CMiscellaneous*)item;
+			if (misc->GetType() == CMiscellaneousAttributes::MiscItemType::Compass) {
 				misc->SetSubtype(GetDirection());
 			}
 
