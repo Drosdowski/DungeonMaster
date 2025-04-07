@@ -35,7 +35,7 @@ void CMovingObject::ResethasMoved() {
 
 COMPASS_DIRECTION CMovingObject::GetDirection() {
 	if (m_flyForce.x > 0) return EAST;
-	if (m_flyForce.y > 0) return SOUTH; // todo prüfen!
+	if (m_flyForce.y > 0) return SOUTH;
 	if (m_flyForce.x < 0) return WEST;
 	if (m_flyForce.y < 0) return NORTH;
 	return STOP;

@@ -53,8 +53,6 @@ int CMiscellaneous::GetOffsetForGroup() {
 			case CMiscellaneousAttributes::Magnifier: return 1;
 			default: assert(false); // todo !!
 		}
-		
-		assert(false); // todo !!
 	}
 	return -1;
 }
