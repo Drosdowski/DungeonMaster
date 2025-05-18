@@ -1019,7 +1019,7 @@ IDB_ITEM3D_LOCKPICKS    BITMAP                  "res\\Items3D\\Item_3d_LockPicks
 
 IDB_ITEM3D_FIRESTAFF_COMPLETE BITMAP                  "res\\Items3D\\Item_3d_Firestaff_Complete.bmp"
 
-IDB_ITEM3D_MAGNIFIER    BITMAP                  "C:\\Users\\mdros\\source\\repos\\DungeonMaster\\res\\Items3D\\Item_3d_Magnifier.bmp"
+IDB_ITEM3D_MAGNIFIER    BITMAP                  "res\\Items3D\\Item_3d_Magnifier.bmp"
 
 IDB_ITEM3D_HALTER       BITMAP                  "res\\Items3D\\Item_3d_Halter.bmp"
 
